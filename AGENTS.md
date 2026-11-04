@@ -30,7 +30,7 @@ Contributors also read [DEVELOPING.md](DEVELOPING.md) and [openspec/README.md](o
    A check of represented restrictions is not a complete eligibility or clinical-suitability assessment.
 5. **Revise and hand over.** A changed premise requires recomputation. Retain complete checks explicitly;
    use public revision to replay both snapshots. Distinguish question, answer, support, wording, origin and
-   evidence-context changes from audit changes. Export the review workbook and readable decision list, deliver returned paths alongside unchanged
+   evidence-context and remaining-requirement changes from audit changes. Export the review workbook and readable decision list, deliver returned paths alongside unchanged
    source evidence, and keep conversational context in a working brief.
 
 ## Sources and certainty
@@ -109,6 +109,34 @@ CLI uses the same inner request: `trialledger reason --request FILE`; Python use
 helpers and canonical `Always`, `AllOf`, `AnyOf`, `Not`; `expanded` shows exact inputs. They do not interpret
 text or authenticate provenance. Scope, force and origin remain explicit; standing defaults to proposed.
 
+Start ordinary typed design work with `{"operation":"describe","view":"prepare"}`. The public
+`prepare` operation accepts short explicit atoms, all/any/not combinations, criteria and question/options;
+it returns a runnable expanded `request`, applied `defaults` and retained `origins`. Run that request next.
+This is available through CLI/MCP, not a requirement to write a Python builder. Read back the actual expanded
+meaning. Preparation neither interprets prose nor confirms a reading; unspecified standing stays proposed.
+Advanced canonical models remain available when the short form does not express the needed structure.
+For larger expansions, retain preparation with a compact reply, then call MCP `reason` with
+`{"prepared":"ARTIFACT_ID","response_view":"compact"}` instead of `request`, or CLI
+`reason --prepared ID --store STORE --compact`. Request and prepared ID are mutually exclusive. The exact
+expansion, defaults and origins remain retained; the computed artifact also keeps its construction ledger.
+After revisions that ledger is historical: current premises and explicit edits take precedence.
+
+In multistage work, an unrelated open cohort must not obscure a proof about entry. A genuine scope
+dependency still needs context; the consistency check remains global. Negative eligibility witnesses concern
+the complete declared candidate, so an unreported scoped requirement can still explain a rejection.
+
+Finite tables expose exactly their declared domains. Optional `prohibitions` are explicit negative
+specifications `{id,when,action}`: check a forbidden selection without removing its case from the domain.
+Covered does not mean clinically safe. Read prohibition coverage and `case_witnesses`/`witness_summary`;
+bounded illustrations can be partial even when a core proof is complete. No undeclared safety variable,
+termination guarantee or operating characteristic is supplied.
+
+Session `definition_checks` explicitly relate two attributed typed readings bound to actual analysis
+request/result addresses. Declare `implies`, `equivalent` or `disjoint`; do not infer equality from a shared
+name or differing thresholds. An earlier safety-assessment trigger can intentionally differ from the later
+endpoint definition. Check the intended implication instead. The relation, each reading's standing/basis,
+actual addressed values and exact target remain visible; proposed readings do not become accepted facts.
+
 | Clinical question | Operation and boundary |
 |---|---|
 | Does our draft require, allow or rule this out? | `entailment`, accepted scoped premises |
@@ -153,6 +181,8 @@ continuation retain omitted detail. Full replies stay full. `result_digest` cove
 - `reason_export` / `reason-export` writes a separate review workbook, readable list, manifest and canonical
   inputs. The output parent must be new; publication is inside its `review` child. Deliver actual returned paths. Source reports remain unchanged. Included standalone analyses stay
   separate unless explicitly linked by the session. Export does not authenticate caller-declared choices.
+  Supporting analyses also appear in Markdown and the Analysis review sheet, with expanded evidence in
+  Analysis details and exact result links. Deliver those findings, not just eligibility options.
 
 The decision list has one entry per consequential choice: question, evidence/silences, alternatives and
 computed consequences, deciding premises, open items, selection and origin. Put contradictions first; retain
@@ -168,6 +198,11 @@ from these effects. The assistant maintains the conversation's brief; a snapshot
 manager. For `source_study`, use the actual returned snapshot study_ref for the historical target; the local
 source-ledger ID is separate. Projection supplies both study and expected_digest, so omit both from parameters.
 
+`requirements_changed` means remaining conditions changed while the same represented question's verdict
+did not. Its independent `requirements` axis applies to option analyses and parent decisions alike. For
+example, widening ECOG can change the outstanding ECOG requirement beside an allowed CNS profile without
+changing that profile's verdict. Report a true `answer` change separately; inspect every changed axis.
+
 ## Acquisition and verification
 
 Use doctor, scope/preview, landscape, save_fetch for relay and record for access. Resolve ambiguous source
@@ -181,11 +216,18 @@ larger scope declares positive `acquisition.max_studies` / `max_registry_request
 flags. These guard NIH acquisition, not local replay. Relay bridges network access only: execution, writing
 and complete unchanged response bytes remain necessary. Excerpts and reconstructed JSON cannot substitute.
 
-Record parts are manifest, statuses, fields, studies, study and address. No separate checks/drug-identity
+Record parts are manifest, statuses, fields, studies, study, address and source. No separate checks/drug-identity
 tool exists. Pages hold at most 50 entries and bounded bytes; that changes neither scope nor completeness.
 Literal heading context never decides entry/crossover scope. Eligible, enrolled, baseline and analysed are
 different populations. Do not join groups by title or add arms and totals. Missing, empty, malformed, zero
 and false remain distinct. Planned outcomes and posted observations stay separate; a paper link is unread.
+
+`record` part `source`, with `nct` and optional raw-study `address`, reads exact retained NIH values with a
+snapshot digest. Follow its pages/text continuations. A source slot may use
+`{"$retained_study":{"run":"REPORT_NAME","nct":"NCT00000000","digest":"RETURNED_DIGEST"}}`.
+MCP resolves it inside its served root; CLI reason uses explicit `--source-root ROOT`. Use real returned
+identity values. Complete hydrated studies enter canonical artifacts before reasoning; later replay uses
+those copies. A handle establishes preservation, never clinical meaning or accepted interpretation.
 
 Read partial registry information beside the headline: possible/excluded outcomes, group/period subtractions
 and denominator fallback provenance survive other unknowns. Never fill a missing date type or infer a
@@ -193,6 +235,10 @@ withdrawal reason from subtraction. Baseline views preserve all measurements and
 `verify FOLDER` checks reproducibility under the writing version, not clinical truth. Copied session-node
 counts are diagnostic; analysis/solver-work/output limits still apply. Never trim evidence or reuse stale
 answers to pass a limit.
+Finite-table work reservations use the actual represented domain, including all declared guard/prohibition
+thresholds, under the unchanged execution limits. An admission-only source inspection has no clinical query;
+unchanged inspection context is not an unknown clinical answer. A new draft's unrepresented choice is
+`unrepresented_design_question`, distinct from missing historical evidence and from proved design freedom.
 
 Complete automatic prose compilation, protocol writing, publication reading, source repair and annotation
 import remain unintegrated. Deviation classification is a Python utility; MCP exposes corpus rarity only.

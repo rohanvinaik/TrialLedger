@@ -25,6 +25,7 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 from TrialLedger import reasoning_artifacts
+from TrialLedger.analysis_review import summaries as analysis_summaries
 from TrialLedger.baseline_view import baseline_tables, group_code
 from TrialLedger.cells import cell_number_state, cell_text_state
 from TrialLedger.landscape_verify import strict_json
@@ -32,6 +33,7 @@ from TrialLedger.layer2.clinical_answers import project
 from TrialLedger.layer2.session_state import canonical
 
 DECISION_WORDS = {
+    "unrepresented_design_question": "Draft does not address this choice",
     "design_choice": "Open design choice",
     "evidence_question": "More evidence is needed",
     "translation_question": "Clarify the represented wording or scope",
@@ -76,6 +78,7 @@ CHANGE_WORDS = {
     "wording_changed": "Caller wording changed",
     "context_changed": "Linked evidence context changed",
     "support_changed": "Supporting warrant changed",
+    "requirements_changed": "Remaining requirements changed; verdict unchanged",
     "origin_changed": "Attributed origin changed",
     "input_only": "Inputs changed; clinical answer, support and origin stayed the same",
     "unchanged": "No change",
@@ -192,6 +195,7 @@ def _finish(sheet) -> None:
             "Baseline values": 56,
             "Decision list": 96,
             "Decision evidence": 180,
+            "Analysis details": 180,
         }.get(sheet.title, 120)
         sheet.row_dimensions[row[0].row].height = min(ceiling, max(28, lines * 14))
 
@@ -252,6 +256,32 @@ def _blocker_text(codes: list) -> str:
             words = "The criterion has conflicting readings"
         elif code == "undecided_by_constraints":
             words = "This exact query is allowed but not required; its negation also fits"
+        elif code == "table_uncovered_case":
+            words = "A feasible declared situation has no action"
+        elif code == "table_conflicting_actions":
+            words = "A feasible declared situation selects different actions"
+        elif code == "table_forbidden_action":
+            words = "The table can select an explicitly prohibited action"
+        elif isinstance(code, str) and code.startswith("estimand_collection_plan_mismatch:"):
+            words = "The collection plan does not meet a declared requirement"
+        elif isinstance(code, str) and code.startswith("estimand_unresolved:"):
+            words = "Actual data availability remains unresolved"
+        elif isinstance(code, str) and code.startswith("dependency_blocked:"):
+            words = "An adopted derivation has no available input alternative"
+        elif isinstance(code, str) and code.startswith("dependency_unresolved:"):
+            words = "Input availability or applicability remains unresolved"
+        elif code in (
+            "definition_missing_support",
+            "definition_proposed_refused",
+            "definition_binding_unresolved",
+        ):
+            words = "The declared relationship between meanings remains unresolved"
+        elif code == "definition_computation_refused":
+            words = "The declared relationship could not be computed from this request"
+        elif isinstance(code, str) and code.startswith("definition_analysis_refused:"):
+            words = "A linked analysis was refused; its definition cannot be certified"
+        elif isinstance(code, str) and code.startswith("definition_empty_antecedent:"):
+            words = "A declared antecedent is inconsistent; the relationship is not certified"
         else:
             words = BLOCKER_WORDS.get(str(code), "Unclassified open item")
         parts.append(f"{words} ({code})")
@@ -795,6 +825,7 @@ def _changes(book: Workbook, payload: dict, identity: str) -> list[str]:
             "Question",
             "Caller wording",
             "Evidence context",
+            "Remaining requirements",
         ],
     )
     difference = payload["response"].get("answer_diff")
@@ -803,7 +834,7 @@ def _changes(book: Workbook, payload: dict, identity: str) -> list[str]:
     lines = ["## Changes from the previous revision", ""]
     rows = [
         (kind, index, item)
-        for kind in ("decisions", "analyses")
+        for kind in ("decisions", "analyses", "definition_checks")
         for index, item in enumerate(difference.get(kind, []))
     ]
     rows.sort(key=lambda row: (row[2].get("code") in ("unchanged", "input_only"), row[0] != "decisions"))
@@ -825,6 +856,7 @@ def _changes(book: Workbook, payload: dict, identity: str) -> list[str]:
                 axes.get("question"),
                 axes.get("wording"),
                 axes.get("context"),
+                axes.get("requirements", "Not recorded in this artifact"),
             ],
             ref,
         )
@@ -837,8 +869,8 @@ def _changes(book: Workbook, payload: dict, identity: str) -> list[str]:
         lines.append(
             f"- {item.get('id')}: {_word(item.get('code'), CHANGE_WORDS)}. "
             + "; ".join(
-                f"{axis}: {axes.get(axis)}"
-                for axis in ("question", "answer", "support", "origin", "wording", "context")
+                f"{axis}: {axes.get(axis, 'Not recorded in this artifact')}"
+                for axis in ("question", "answer", "requirements", "support", "origin", "wording", "context")
             )
         )
     return [*lines, ""]
@@ -873,6 +905,117 @@ def _sources(book: Workbook, payloads: list[tuple[str, dict]]) -> None:
                     [identity, kind if index is not None else f"{kind} container", label, origin, item, ref],
                     ref,
                 )
+
+
+def _analysis_rows(book: Workbook, payloads: list[tuple[str, dict]]) -> list[str]:
+    """Carry returned analyses into the main handoff without assigning them to choices."""
+    sheet = _sheet(
+        book,
+        "Analysis review",
+        [
+            "Analysis",
+            "Kind",
+            "Applied result / conditional calculation",
+            "Standing",
+            "Declared scope and version",
+            "Computed summary",
+            "Open items",
+            "Basis and rule",
+            "Exact result",
+            "Details",
+        ],
+    )
+    detail_sheet = _sheet(
+        book, "Analysis details", ["Analysis", "Returned detail", "Standing", "Exact result", "Part"]
+    )
+    lines = [
+        "## Supporting analyses",
+        "",
+        "These are separate computations, not additional clinical choices. Inclusion alone does not "
+        "bind populations or adopt a comparator's result. Applied results and conditional calculations "
+        "remain distinct; open the exact result for all support and admission details.",
+        "",
+    ]
+    for row in analysis_summaries(payloads):
+        identity = row["artifact"]
+        ref = _reference(identity, row["canonical_ref"])
+        scope = f"{_detail_text(row['scope'], ref)}; version/snapshot: {row['version']}"
+        result = f"Applied: {row['code']}; calculation: {row['calculation_code']}"
+        basis = "; ".join(str(value) for value in row["basis"]) or "Not stated"
+        basis += f"; rule: {row['rule']}"
+        details = list(row["details"])
+        if row["basis"]:
+            details.append(
+                {
+                    "text": "Declared basis references: " + basis,
+                    "standing": row["standing"],
+                    "canonical_ref": row["canonical_ref"],
+                    "sheet_only": True,
+                }
+            )
+        if row["blockers"]:
+            details.append(
+                {
+                    "text": "Reported open items: " + _blocker_text(row["blockers"]),
+                    "standing": row["standing"],
+                    "canonical_ref": row["canonical_ref"],
+                    "sheet_only": True,
+                }
+            )
+        _write(
+            sheet,
+            [
+                row["analysis"],
+                row["kind"],
+                result,
+                row["standing"] if row["standing"] is not None else "Not stated",
+                scope,
+                row["summary"],
+                f"{len(row['blockers'])} reported open items; open Analysis details"
+                if row["blockers"]
+                else "No blocker reported",
+                f"{len(row['basis'])} declared basis references; rule: {row['rule']}; open Analysis details"
+                if row["basis"]
+                else basis,
+                ref,
+                f"{len(details)} returned detail entries" if details else "Open exact result",
+            ],
+            ref,
+        )
+        if details:
+            sheet.cell(sheet.max_row, 10).hyperlink = f"#'Analysis details'!A{detail_sheet.max_row + 1}"
+        else:
+            sheet.cell(sheet.max_row, 10).hyperlink = ref
+        lines.extend(
+            [
+                f"### {row['analysis']} ({row['kind']})",
+                "",
+                f"{result}. Standing: {row['standing'] if row['standing'] is not None else 'Not stated'}.",
+                f"Declared scope: {scope}",
+                row["summary"],
+                f"Basis: {basis}",
+                "Open items: " + _blocker_text(row["blockers"]),
+                f"Exact result: [{row['kind']} result]({ref})",
+                "",
+            ]
+        )
+        for detail in details:
+            detail_ref = _reference(identity, detail["canonical_ref"])
+            parts = _display_parts(detail["text"]) or [""]
+            for part, text in enumerate(parts, 1):
+                _write(
+                    detail_sheet,
+                    [row["analysis"], text, detail["standing"], detail_ref, f"{part}/{len(parts)}"],
+                    detail_ref,
+                )
+            if not detail.get("sheet_only"):
+                lines.extend(
+                    [
+                        f"- {detail['text']} Standing: {detail['standing']}. [Exact detail]({detail_ref})",
+                        "",
+                    ]
+                )
+    return lines
 
 
 def _comparative_table(sheet, table: dict) -> None:
@@ -1094,8 +1237,10 @@ def _notes(book: Workbook, payloads: list[tuple[str, dict]], source: bool) -> No
         ),
         (
             "Related analyses",
-            "Included artifacts are shown separately. Inclusion does not bind their populations "
-            "or assign them to a decision.",
+            "Analysis review and the readable list summarize included and managed analyses once each; "
+            "Analysis details and Findings retain their details. Inclusion does not bind their populations "
+            "or assign them to a decision. Table completeness covers only the declared variables and "
+            "constraints; it is not clinical safety or statistical validity.",
         ),
         (
             "Exact content",
@@ -1190,6 +1335,7 @@ def _stage(folder: Path, payloads: list[tuple[str, dict, bytes]], source_record:
     book = Workbook()
     book.remove(book.active)
     lines = _decision_rows(book, payload, identity)
+    lines.extend(_analysis_rows(book, pairs))
     _findings(book, pairs)
     lines.extend(_changes(book, payload, identity))
     _sources(book, pairs)

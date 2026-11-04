@@ -1,0 +1,12 @@
+{
+  "TrialLedger/analysis_review.py": "a30ee568e8841bd013a9c686105759472cd4190ce85d940bf51763601b93681d",
+  "TrialLedger/retained_sources.py": "7f5dcc59a063d2e1281ad0cdcbcf846940e221b0be4d87779761fee7e1a83de9",
+  "TrialLedger/reasoning_delivery.py": "0f9373231981aefae81505f762bb8089ffd0ebb682de92ab6a656e51319b9fb5",
+  "TrialLedger/layer2/definition_checks.py": "e2a60412f3b0863b185a29c9d2e094e63a7af7f978a142e1ad548831e09109be",
+  "TrialLedger/layer2/request_preparation.py": "b64f36a3de2a6e72e0636bf130e51e84832f97838ddf6194ef9695010ca99c18",
+  "TrialLedger/layer2/decision_tables.py": "ab9210bee7bb4af53b5ad272b5ecb02c805e82c4e82f64b400d756ac498c8ff6",
+  "TrialLedger/layer2/entail.py": "48727bc44e4df6933dbb47b73b8eb6aa19063a6b18a4fb58585cce95b39e5249",
+  "TrialLedger/layer2/design_session.py": "224f62461e7d690135291638050c1a8a76e05d0575869b71d49a7c49b39d8b8a",
+  "TrialLedger/layer2/clinical_answers.py": "1ec5883bdec0bcf73b4c295320a7632bb8c8f4582f57e0147ee47c1acb25b455",
+  "TrialLedger/layer2/result_semantics.py": "157a7d024e403462b53066879ec2412a22372b86705a4b8435a73d1cf627c626"
+}

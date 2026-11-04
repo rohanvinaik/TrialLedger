@@ -25,7 +25,9 @@ def augment(response: dict) -> dict:
     clinical = clinical_answers.project(operation, response["result"], response["problems"])
     dispositions = Counter(row["disposition"] for row in clinical["findings"])
     summary = {
-        "kind": "reasoning" if response["code"] == "complete" else "refusal",
+        "kind": ("inspection" if operation == "prepare" else "reasoning")
+        if response["code"] == "complete"
+        else "refusal",
         "code": response["code"],
         "operation": operation,
         "findings": len(clinical["findings"]),
@@ -35,10 +37,7 @@ def augment(response: dict) -> dict:
     if "answer_diff" in response:
         changes = response["answer_diff"]
         summary["changes"] = (
-            {
-                kind: dict(Counter(row["code"] for row in changes.get(kind, [])))
-                for kind in ("analyses", "decisions")
-            }
+            {kind: dict(Counter(row["code"] for row in changes.get(kind, []))) for kind in changes}
             if isinstance(changes, dict)
             else None
         )
@@ -151,6 +150,17 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
         "canonical_result": "Full request/response retained unchanged. Read canonical_ref with "
         "reason_result part address; follow page.next_offset.",
     }
+    if "preparation" in response:
+        preparation = response["preparation"]
+        reply["preparation"] = {
+            "artifact": preparation["artifact"],
+            "meaning": preparation["meaning"],
+            "defaults": len(preparation["defaults"]),
+            "origins": len(preparation["origins"]),
+            "canonical_ref": "/response/preparation",
+        }
+        if "applies_to" in preparation:
+            reply["preparation"]["applies_to"] = preparation["applies_to"]
     # A group admits a contiguous prefix. If a summary cannot fit, next_offset still names that row.
     # Each channel gets a turn; a long finding list cannot crowd out every revision or decision row.
     groups: list[tuple[list, dict, list, str, Callable[[dict, str], dict]]] = []
@@ -169,7 +179,7 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
         changes = response["answer_diff"]
         section = {"canonical_ref": "/response/answer_diff", "pages": {}}
         reply["answer_diff"] = section
-        for kind in ("analyses", "decisions"):
+        for kind in changes:
             rows = changes.get(kind, [])
             shown_changes: list = []
             change_page = _compact_page(len(rows))

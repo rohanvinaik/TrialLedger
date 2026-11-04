@@ -437,7 +437,11 @@ TOOLS: dict[str, dict[str, Any]] = {
         "safety, canonical drug identity/class evidence and registry consistency checks. Those checks "
         "describe source consistency, not clinical suitability. "
         "Not stated is never none; not posted is never no effect; planned outcomes are not observed results. "
-        "Layer one supplies no inferred setting, clinical recommendation or trial-design proposal.",
+        "Layer one supplies no inferred setting, clinical recommendation or trial-design proposal. "
+        "Part source reads the complete retained raw NIH study for nct, with its digest and study_ref. "
+        "For that part, address is relative to the raw study "
+        "(for example /protocolSection/eligibilityModule). "
+        "Follow the same page/text continuation; snapshot identity is not clinical certification.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -446,12 +450,12 @@ TOOLS: dict[str, dict[str, Any]] = {
                 "nct": {
                     "type": "string",
                     "pattern": NCT_PATTERN,
-                    "description": "the study's NCT number, for part study",
+                    "description": "the study's NCT number, for part study or source",
                 },
                 "address": {
                     "type": "string",
                     "description": "a workbook row's address in the record, a JSON pointer such as "
-                    "/studies/0/posted_outcomes/1, for part address",
+                    "/studies/0/posted_outcomes/1, for part address; for part source, a raw-study pointer",
                 },
                 "offset": {
                     "type": "integer",
@@ -510,7 +514,15 @@ TOOLS: dict[str, dict[str, Any]] = {
         "Premises retain their "
         "source/user status; an assistant's interpretation is never a registry fact. The source_assertions "
         "bridge compiles named structured fields and anchors explicitly proposed readings; it does not "
-        "automatically interpret clinical paragraphs. No source is fetched and no report is changed. "
+        "automatically interpret clinical paragraphs. At source_assertions.study or design_session "
+        "session.sources[].study, {$retained_study:{run,nct,digest}} resolves an exact saved study inside "
+        "this server's root. Use the digest from record part source; complete data is retained with the "
+        "canonical request, without promoting any reading. No source is fetched and no report is changed. "
+        "Operation prepare expands compact typed criteria/query or named questions/options into an exact "
+        "runnable request, showing defaults and origins; it computes no clinical answer. Describe view "
+        "prepare gives the small example; pass its result.request to reason, or retain preparation with "
+        "response_view compact and call reason with prepared:ID to run it without copying expanded JSON. "
+        "Prepared and request are mutually exclusive. No Python script is required. "
         "The complete trial writer is designed "
         "and partly built; these results are not a generated protocol.",
         "inputSchema": {
@@ -548,6 +560,12 @@ TOOLS: dict[str, dict[str, Any]] = {
     },
 }
 TOOLS["reason"]["inputSchema"]["properties"].update(reasoning_mcp.REASON_FIELDS)
+REASON_SCHEMA: dict[str, Any] = TOOLS["reason"]["inputSchema"]
+REASON_SCHEMA["required"] = []
+REASON_SCHEMA["oneOf"] = [
+    {"required": ["request"], "not": {"required": ["prepared"]}},
+    {"required": ["prepared"], "not": {"required": ["request"]}},
+]
 TOOLS.update(reasoning_mcp.TOOL_SCHEMAS)
 REASONING_TOOLS = frozenset(("reason", *reasoning_mcp.TOOL_SCHEMAS))
 

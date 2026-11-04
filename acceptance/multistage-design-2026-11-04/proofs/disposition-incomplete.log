@@ -1,0 +1,179 @@
+  … disposition_code: tracing 41 function-routed tests
+  … disposition_code: baseline traced · 41 tests · 0.1s
+  … disposition_code: 1/201 mutants · 2.4/s · ETA estimating… (heartbeat)
+  … disposition_code: 201/201 mutants · 173.9/s · done in 1.2s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.7s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.1s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ pass 0: 1 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +9 new killing test(s) written [test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py]
+  … disposition_code: tracing 52 function-routed tests
+  … disposition_code: baseline traced · 52 tests · 0.0s
+  … disposition_code: 149/201 mutants · 9.1/s · ETA ~6s (heartbeat)
+  … disposition_code: 201/201 mutants · 7.4/s · done in 27.1s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ pass 1: 37 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ witness pass: +23 distinguishing kill test(s) auto-written
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … disposition_code: tracing 75 function-routed tests
+  … disposition_code: baseline traced · 75 tests · 0.0s
+  … disposition_code: 201/201 mutants · 5.3/s · done in 38.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ minimizing — dropped 9 redundant test(s) our own cover flagged
+  … disposition_code: tracing 66 function-routed tests
+  … disposition_code: baseline traced · 66 tests · 0.0s
+  … disposition_code: 201/201 mutants · 6.9/s · done in 29.2s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ minimization would stop pinning 26 obligation(s) the suite on disk pins: kill:BOUNDARY_43f1771a, kill:OUTPUT_054ca664, kill:OUTPUT_309895c3 (+23 more) — retrying the un-minimized suite
+INCOMPLETE:  suite_render_timeout: the remaining execution deadline is exhausted

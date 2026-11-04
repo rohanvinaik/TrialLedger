@@ -63,6 +63,10 @@ VALUE_FIELDS = (
     "proposals",
     "effect",
     "removed",
+    "action",
+    "when",
+    "rows",
+    "relation",
 )
 SCOPE_FIELDS = ("target", "context", "cohort", "scope", "population", "universe", "study_ref", "time")
 SUPPORT_FIELDS = (
@@ -80,6 +84,8 @@ SUPPORT_FIELDS = (
     "assumptions",
     "exception_check",
     "decision",
+    "declaration",
+    "checks",
 )
 ORIGIN_FIELDS = ("origin", "origin_refs", "criterion_ref")
 
@@ -335,7 +341,9 @@ def change_projection(operation: str, result: object) -> dict:
     Caller wording never certifies clinical meaning. Deciding support versions are
     resolved only for actual warrant IDs; copied evidence context is not a premise.
     """
-    axes = {name: [] for name in ("question", "wording", "answer", "support", "origin", "context")}
+    axes = {
+        name: [] for name in ("question", "wording", "answer", "support", "origin", "context", "requirements")
+    }
     root = {"result": result}
     for row in project(operation, result)["findings"]:
         identity = {"path": row["path"]}
@@ -364,6 +372,11 @@ def change_projection(operation: str, result: object) -> dict:
                 **identity,
                 "outcome": row["outcome"],
                 "values": values,
+            }
+        )
+        axes["requirements"].append(
+            {
+                **identity,
                 "conditions": [_fields(c, ("relation", "body", "scope")) for c in row["conditions"]],
             }
         )

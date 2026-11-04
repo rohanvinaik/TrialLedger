@@ -1,0 +1,5 @@
+lockfile audit (pip-audit@2.10.1, all extras and groups): no_known_flaws
+WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
+WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
+No known vulnerabilities found
+lockfile audit: a lead, not a verdict; it refuses no push

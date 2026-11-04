@@ -1,0 +1,15 @@
+# Verification receipt
+
+The integrated ordinary gate passed 6,792 tests with 10 live tests deselected, Ruff, formatting and package typing. The subsequent discovery clarification passed 108 focused checks; the final generated suites and exact secret-review registry passed 37 checks. The final frozen tree is checked again by `scripts/ci_local.sh` before publication, with its full log retained at `~/trialledger-runs/wild-platform-20261104/ci-frozen.log`. A prior pass is never used to stamp a changed tree.
+
+The separate live suite passed all 10 selected tests; its exact log is committed as `live.log`. The executed consumer trace ran 92 requests across 57 source modules; all recorded source hashes were compared against the integrated tree with no mismatches. OpenSpec strict validation passed. The all-groups/all-extras lockfile audit reported `no_known_flaws`; its exact report remains in `proofs/`.
+
+Eight pure decision targets completed their printed two-sign checks, with equivalence and crash-only qualifications retained. Two additional targets stopped incomplete and supplied no next action. `proofs/status.json` and exact reports distinguish these outcomes. CrossHair's confirmed and not-confirmed contracts remain separate. The extended project-wide deep audit is not claimed; its existing founder-approved boundary remains in `acceptance/rescue-2026-11-02.md`.
+
+Public source gathering and source-workbook replay passed for both fresh clinical samples. The lupus workflow, original five-source depression replay and refreshed NSCLC workflow each reached public CLI/MCP revision and export. Full compared outputs and workbook/Markdown bytes matched on those routes. Migraine's six paired CLI/MCP scenarios preserved conflict, truncation, proposed support, named refusal and managed-session results.
+
+A standalone `reason` replay does not recreate `reason-revise` delivery metadata about the prior artifact and submitted edits. That documentary field remains in the immutable artifact; it is not a computed clinical result. An additional retention check found an older NSCLC change projection from before parent support/origin aggregation. The public revision/export workflow was rerun, and the committed current artifact and receipt were refreshed. No clinical verdict moved apart from the intended ECOG-2 revision.
+
+The unchanged compact input was originally authored by an operator cold to preparation but familiar with the symbolic semantics. The later integration replays are not claimed as another cold trial. All clinical conversations, choices and planning counts remain explicitly simulated; exact source copies remain real documentary evidence.
+
+The secret scan runs every configured detector except the existing documented hex-fingerprint exemption. Its token-like matches in this packet were checked against public NCT snapshot identities or existing artifact/export files; only exact path/detector/added-line fingerprints were added to the review registry. Changed values are not covered. Git's pre-push hook repeats the scan over the actual published commits.

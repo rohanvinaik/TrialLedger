@@ -87,8 +87,17 @@ def prepare_revision(previous_request: object, previous_response: object, next_s
     retained artifact establishes which prior bytes were supplied; this constructor
     checks their documentary consistency and never certifies source truth or consent.
     """
-    prior_request = source_evidence._json_copy(previous_request, "previous_request")
-    state.obj(prior_request, {"operation", "session", "previous"}, "previous_request")
+    # Only the prior session is consumed here. Its already-retained previous
+    # replay is not another query and must not be charged to this copy's node cap.
+    prior = state.obj(previous_request, {"operation", "session", "previous"}, "previous_request")
+    prior_request = source_evidence._json_copy(
+        {
+            "operation": prior["operation"],
+            "session": prior["session"],
+            "previous": None,
+        },
+        "previous_request",
+    )
     if prior_request["operation"] != "design_session":
         raise ValueError("unsupported_session_operation")
     if type(previous_response) is not dict:
@@ -192,6 +201,13 @@ def _question(kind: str, alternatives: list[dict], selected: dict | None, distin
         return "settled_within_declared_alternatives"
     if kind == "historical":
         return "evidence_question"
+    open_options = [option for option in alternatives if option["code"] not in ("feasible", "infeasible")]
+    if open_options and all(
+        option["code"] == "evidence_question"
+        and (option.get("warrant") or {}).get("blockers") == ["no_constraint_mentions_query"]
+        for option in open_options
+    ):
+        return "unrepresented_design_question"
     if codes.count("feasible") >= 2:
         return "design_choice" if distinguished else "options_not_distinguished"
     return "evidence_question"
@@ -326,8 +342,9 @@ def _nested_table_work(node: object) -> int:
             or not 1 <= calls <= 256
         ):
             raise ValueError("invalid_resource_bound:session_table")
-        n = len(data.get("domains", [])) + len(data.get("constraints", []))
-        cost = bound * calls * (2 * n + 4)
+        from TrialLedger.layer2.decision_tables import work_reservation
+
+        cost = work_reservation(data)
     return cost + sum(_nested_table_work(v) for v in node.values())
 
 
@@ -636,6 +653,7 @@ def _decisions(
         "chosen_by_person": 6,
         "chosen_with_open_checks": 3,
         "options_not_distinguished": 3,
+        "unrepresented_design_question": 3,
     }
     return sorted(out, key=lambda v: (priority[v["code"]], v["id"]))
 
@@ -665,6 +683,13 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
             "dependencies": list(prepared["graph"][node]),
         }
         ledger.append({"analysis": key, "projections": projected})
+    from TrialLedger.layer2 import definition_checks
+
+    related_definitions = definition_checks.run(
+        prepared["definition_checks"],
+        analyses,
+        lambda request: _child(request, execute, budget, limits),
+    )
     return {
         "schema_version": 1,
         "session_id": prepared["session"]["id"],
@@ -686,6 +711,7 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
         "analyses": list(analyses.values()),
         "projection_ledger": ledger,
         "decisions": _decisions(prepared, analyses, values, execute, budget),
+        **({"definition_checks": related_definitions} if "definition_checks" in prepared["session"] else {}),
         "limits": deepcopy(limits),
         "limit_semantics": {
             "max_expanded_items": "legacy_nonoperative; expanded_items is diagnostic only",
@@ -704,8 +730,11 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
 
 def _diff(before: dict, after: dict) -> dict:
     out = {}
-    for field in ("sources", "premises", "effective_premises", "analyses", "decisions"):
-        old, new = ({v["id"]: v for v in snapshot[field]} for snapshot in (before, after))
+    fields = ["sources", "premises", "effective_premises", "analyses", "decisions"]
+    if "definition_checks" in before or "definition_checks" in after:
+        fields.append("definition_checks")
+    for field in fields:
+        old, new = ({v["id"]: v for v in snapshot.get(field, [])} for snapshot in (before, after))
         out[field] = [
             {
                 "id": key,
@@ -730,8 +759,13 @@ ANSWER_CHANGE_CODES = (
     "input_only",
     "unchanged",
 )
-REVISION_AXES = ("question", "wording", "answer", "support", "origin", "context")
-REVISION_CHANGE_CODES = ANSWER_CHANGE_CODES + ("question_changed", "wording_changed", "context_changed")
+REVISION_AXES = ("question", "wording", "answer", "support", "origin", "context", "requirements")
+REVISION_CHANGE_CODES = ANSWER_CHANGE_CODES + (
+    "question_changed",
+    "wording_changed",
+    "context_changed",
+    "requirements_changed",
+)
 
 
 def answer_change_code(
@@ -775,6 +809,7 @@ def revision_change_code(
     origin_equal: bool,
     context_equal: bool,
     input_equal: bool,
+    requirements_equal: bool = True,
 ) -> str:
     """Name the primary revision axis while retaining every independent axis (pure).
 
@@ -792,6 +827,8 @@ def revision_change_code(
         return "question_changed"
     if not answer_equal:
         return "answer_changed"
+    if not requirements_equal:
+        return "requirements_changed"
     if not support_equal:
         return "support_changed"
     if not context_equal:
@@ -818,6 +855,11 @@ def _analysis_answer(row: dict, snapshot: dict) -> dict:
     payload["effective_premises"] = deepcopy(snapshot["effective_premises"])
     axes = clinical_answers.change_projection(row["request"]["operation"], payload)
     known = bool(axes["answer"]) and all(item.get("completion") != "unclassified" for item in axes["support"])
+    if envelope.get("metadata", {}).get("kind") == "inspection" and not axes["answer"]:
+        # An admission-only inspection asked no clinical question. Compare its
+        # documentary context without inventing a missing clinical projection.
+        known = True
+        axes["context"] = {"inspection": deepcopy(envelope["result"])}
     axes["question"] = {
         "target": deepcopy(row["target"]),
         "request": {
@@ -854,14 +896,59 @@ def _decision_answer(row: dict, snapshot: dict) -> dict:
         "alternatives": [{"id": option["id"], "label": option["label"]} for option in row["alternatives"]],
     }
     axes["context"] = deepcopy(row.get("evidence", []))
+    # Every option uses its own actual analysis, including options whose clinical
+    # verdict is already copied into this decision. Residuals must not depend on
+    # whether a renderer happened to repeat them at decision level.
+    analyses = {item["id"]: item for item in snapshot.get("analyses", [])}
+    for option in row["alternatives"]:
+        analysis = analyses.get(option.get("analysis"))
+        if analysis is None or analysis["result"].get("code") != "complete":
+            continue
+        payload = deepcopy(analysis["result"]["result"])
+        payload["effective_premises"] = deepcopy(snapshot.get("effective_premises", []))
+        detail = clinical_answers.change_projection(analysis["request"]["operation"], payload)
+        axes["requirements"].append({"option": option["id"], "requirements": detail["requirements"]})
+        if any(item["conditions"] for item in detail["requirements"]):
+            axes["support"].append(
+                {
+                    "option": option["id"],
+                    "condition_support": [
+                        {key: deepcopy(item[key]) for key in ("conditions", "premise_versions")}
+                        for item in detail["support"]
+                    ],
+                }
+            )
+            axes["origin"].append({"option": option["id"], "condition_origins": deepcopy(detail["origin"])})
+    return {"state": "comparable", **axes}
+
+
+def _definition_answer(row: dict, snapshot: dict) -> dict:
+    from TrialLedger.layer2 import clinical_answers
+
+    axes = clinical_answers.change_projection("design_session", {"definition_checks": [row]})
+    axes["question"] = {
+        "target": deepcopy(row["target"]),
+        "relation": row["relation"],
+        "meanings": {key: deepcopy(row["declaration"][key]["body"]) for key in ("left", "right")},
+    }
+    axes["context"] = deepcopy(row["observed"])
+    axes["origin"] = {
+        "relation_basis": deepcopy(row["basis"]),
+        "readings": {key: deepcopy(row["declaration"][key]["basis"]) for key in ("left", "right")},
+    }
     return {"state": "comparable", **axes}
 
 
 def _answer_diff(before: dict, after: dict) -> dict:
     """Clinical consequences alongside, never in place of, full canonical audit changes."""
     out = {}
-    for field in ("analyses", "decisions"):
-        old, new = ({v["id"]: (index, v) for index, v in enumerate(s[field])} for s in (before, after))
+    fields = ["analyses", "decisions"]
+    if "definition_checks" in before or "definition_checks" in after:
+        fields.append("definition_checks")
+    for field in fields:
+        old, new = (
+            {v["id"]: (index, v) for index, v in enumerate(s.get(field, []))} for s in (before, after)
+        )
         rows = []
         for key in sorted(old.keys() | new.keys()):
             projected = []
@@ -873,6 +960,8 @@ def _answer_diff(before: dict, after: dict) -> dict:
                     else _analysis_answer(row, snapshot)
                     if field == "analyses"
                     else _decision_answer(row, snapshot)
+                    if field == "decisions"
+                    else _definition_answer(row, snapshot)
                 )
             left, right = projected
             comparable = (
@@ -891,10 +980,11 @@ def _answer_diff(before: dict, after: dict) -> dict:
                 key in old,
                 key in new,
                 comparable,
-                *equal.values(),
+                *(equal[axis] for axis in REVISION_AXES if axis != "requirements"),
                 source_evidence.exact_json_equal(
                     old.get(key, (None, None))[1], new.get(key, (None, None))[1]
                 ),
+                equal["requirements"],
             )
             active = new[key][1] if key in new else old[key][1]
             rows.append(
@@ -919,8 +1009,20 @@ def _answer_diff(before: dict, after: dict) -> dict:
 
 def run(request: object, execute: Callable[[object], dict] | None = None) -> dict:
     """Run a closed session request; the public service owns envelope/refusal integration."""
-    held = source_evidence._json_copy(request, "session_request")
-    state.obj(held, {"operation", "session", "previous"}, "session_request")
+    raw = state.obj(request, {"operation", "session", "previous"}, "session_request")
+    # Fresh current/previous sessions and the supplied comparison result are
+    # separately bounded JSON units. Summing their repeated retained sources
+    # under one query-node cap rejects ordinary revisions without limiting solver work.
+    held: dict[str, Any] = {
+        "operation": source_evidence._json_copy(raw["operation"], "session_request"),
+        "session": source_evidence._json_copy(raw["session"], "session_request"),
+        "previous": None,
+    }
+    if raw["previous"] is not None:
+        previous = state.obj(raw["previous"], {"session", "result", "expected_result_digest"}, "previous")
+        held["previous"] = {
+            key: source_evidence._json_copy(value, "previous_" + key) for key, value in previous.items()
+        }
     if held["operation"] != "design_session":
         raise ValueError("unsupported_session_operation")
     current = state.prepare(held["session"])
@@ -945,8 +1047,11 @@ def run(request: object, execute: Callable[[object], dict] | None = None) -> dic
         raise ValueError(code)
     if old is None and current["session"]["parent_digest"] is not None:
         raise ValueError("initial_parent_must_be_null")
-    if old is not None and previous["result"].get("session_digest") != old["digest"]:
-        raise ValueError("previous_result_session_mismatch")
+    if old is not None:
+        # old is constructed only in the non-null previous branch above.
+        assert previous is not None
+        if previous["result"].get("session_digest") != old["digest"]:
+            raise ValueError("previous_result_session_mismatch")
     if execute is None:
         from TrialLedger.layer2.service import run as execute
     budget = {"analyses": 0, "expanded_items": 0, "solver_work_reserved": 0}

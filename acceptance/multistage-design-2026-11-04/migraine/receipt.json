@@ -1,0 +1,1234 @@
+{
+  "time": "2026-11-04T16:10:53.753012+00:00",
+  "simulation": "All MX64 choices and clinician exchanges are simulated. Registry copies are real retained NIH evidence. Exact computation is conditional on the typed declarations; no new clinical standard or whole-protocol suitability established.",
+  "sampling": {
+    "seed": 2026110462,
+    "sampling_method": "random.Random(seed).sample(sorted(all_returned_nct_ids),2)",
+    "pool": [
+      "NCT04360044",
+      "NCT04408794",
+      "NCT04417361",
+      "NCT04437199",
+      "NCT04498910",
+      "NCT04567355",
+      "NCT04574713",
+      "NCT04645953",
+      "NCT04845178",
+      "NCT04992494",
+      "NCT05133323",
+      "NCT05546320",
+      "NCT05679908",
+      "NCT05846373",
+      "NCT06323928",
+      "NCT06603623",
+      "NCT06728553",
+      "NCT06848075"
+    ],
+    "selected": [
+      "NCT06728553",
+      "NCT05679908"
+    ],
+    "pool_count": 18
+  },
+  "parity": {
+    "initial": true,
+    "revised": true,
+    "partial": true,
+    "undeclared": true,
+    "unconfirmed": true,
+    "session": true,
+    "export_bytes": true
+  },
+  "declared_table_boundary": [
+    "active safety warning",
+    "pain persists at 2 hours",
+    "rescue already used for this attack",
+    "declared lockout elapsed"
+  ],
+  "additional_partial_illustration_variables": [
+    "nausea",
+    "aura",
+    "preventive arm",
+    "prior CGRP exposure"
+  ],
+  "measurements": {
+    "requested_scenarios": [
+      "covered-but-forbidden",
+      "revised-clear-declared-prohibitions",
+      "bounded-case-discovery",
+      "undeclared-variable-refusal",
+      "proposed-standing-withheld",
+      "managed-profile-results",
+      "included-analysis-export"
+    ],
+    "identified": [
+      "covered-but-forbidden",
+      "revised-clear-declared-prohibitions",
+      "bounded-case-discovery",
+      "undeclared-variable-refusal",
+      "proposed-standing-withheld",
+      "managed-profile-results",
+      "included-analysis-export"
+    ],
+    "abstained": [
+      "unrepresented safety factors",
+      "sequential termination",
+      "operating characteristics",
+      "clinical suitability",
+      "comparator equivalence",
+      "unexamined partial witness combinations"
+    ],
+    "wrong_under_declared_test_oracles": []
+  },
+  "review_inspection": {
+    "tool": "Artifact Tool read-only import/inspect/render; no workbook changes",
+    "summary_range": "Analysis review!A1:J5",
+    "detail_range": "Analysis details!A1:E16",
+    "visuals": [
+      "analysis-review-left.png",
+      "analysis-review-right.png",
+      "analysis-details.png"
+    ],
+    "observation": "Four included-table summaries, support standing, exact-result links and concrete cases visible; no clipping observed in the inspected ranges. Remaining workbook tabs not visually inspected in this bounded check."
+  },
+  "source_record_unchanged_after_export": true,
+  "readable_list_cli_mcp_equal": true,
+  "operator_encoding_errors": [
+    {
+      "request": "managed-session-encoding-refusal-request.json",
+      "response": "managed-session-encoding-refusal-stdout.json",
+      "code": "identity_mismatch:decision.evidence.anchor",
+      "repair": "Used the same declared ID for the evidence entry and its anchor. No source or project edit."
+    }
+  ],
+  "sources": [
+    {
+      "nct": "NCT06728553",
+      "digest": "869fef2cae77bac6be7cb4c31a32fe41a2e539af0696a6549736c725f56fa800",
+      "last_update": {
+        "date": "2025-10-07",
+        "type": "ACTUAL"
+      },
+      "batch_sha256": "b86fb2955e81c31511e7edffb937141f20f8c3372774c312a68111412ba97957",
+      "relevant_modules_read": [
+        "identificationModule",
+        "statusModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "not_assessed": [
+        "posted efficacy magnitude",
+        "clinical suitability",
+        "sample-size adequacy"
+      ]
+    },
+    {
+      "nct": "NCT05679908",
+      "digest": "c49fd193d9ec3c0e9cc49de20ecb0b3d40d6495eb74a4fd6335f0c6e1c794d1a",
+      "last_update": {
+        "date": "2025-02-25",
+        "type": "ACTUAL"
+      },
+      "batch_sha256": "b86fb2955e81c31511e7edffb937141f20f8c3372774c312a68111412ba97957",
+      "relevant_modules_read": [
+        "identificationModule",
+        "statusModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "not_assessed": [
+        "posted efficacy magnitude",
+        "clinical suitability",
+        "sample-size adequacy"
+      ]
+    }
+  ],
+  "canonical_local_evidence": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/migraine-phase2",
+  "complete_result_files": {
+    "table-initial-result.json": {
+      "sha256": "e59ebedfe8fee1ea596f2bc67fc38407324465ae7e94566c7ace81415d805b44",
+      "bytes": 185855
+    },
+    "table-revised-result.json": {
+      "sha256": "0fa2fce8baf5066c1adc3e9c90344019cac9347d75d0ff425ab4837556edae45",
+      "bytes": 171072
+    },
+    "table-partial-witnesses-result.json": {
+      "sha256": "bffeeacb378b83dcb66cd83703922eb16d931d692d912a61926c194e7eabb5ef",
+      "bytes": 142993
+    },
+    "table-unconfirmed-result.json": {
+      "sha256": "f01190fcad6c26562fb45a52e879cd32fa1b1efdd581d65316bbd079dd6811dd",
+      "bytes": 190592
+    },
+    "managed-session-result.json": {
+      "sha256": "e2a9930447998da1bd9cd2db2e7d01092f4e39bcea6091b1a7f47073b7ec9369",
+      "bytes": 190453
+    }
+  },
+  "initial": {
+    "code": "conflict",
+    "calculation_code": "conflict",
+    "status": "known",
+    "blockers": [
+      "table_forbidden_action"
+    ],
+    "value": {
+      "coverage": {
+        "state": "covered",
+        "blockers": [],
+        "basis": [
+          "warning",
+          "pain-rescue",
+          "no-pain-observe"
+        ],
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibition_coverage": {
+        "state": "checked",
+        "declared": 2,
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibitions": [
+        {
+          "id": "no-repeat-or-premature-rescue",
+          "action": "rescue_protocol",
+          "state": "violation",
+          "blockers": [],
+          "basis": [
+            "no-repeat-or-premature-rescue",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        },
+        {
+          "id": "no-rescue-with-warning",
+          "action": "rescue_protocol",
+          "state": "clear",
+          "blockers": [],
+          "basis": [
+            "no-rescue-with-warning",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        }
+      ],
+      "case_witnesses": [
+        {
+          "kind": "prohibition_violation",
+          "result_address": "/value/prohibitions/0",
+          "rows": [
+            "pain-rescue"
+          ],
+          "actions": [
+            "rescue_protocol"
+          ],
+          "prohibition": "no-repeat-or-premature-rescue",
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "profile": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:active_safety_warning",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:pain_persists_at_2h",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:rescue_already_used_for_attack",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:declared_lockout_elapsed",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "prohibition_violation",
+          "result_address": "/value/prohibitions/0",
+          "rows": [
+            "pain-rescue"
+          ],
+          "actions": [
+            "rescue_protocol"
+          ],
+          "prohibition": "no-repeat-or-premature-rescue",
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "profile": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:active_safety_warning",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:pain_persists_at_2h",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:rescue_already_used_for_attack",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:declared_lockout_elapsed",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "prohibition_violation",
+          "result_address": "/value/prohibitions/0",
+          "rows": [
+            "pain-rescue"
+          ],
+          "actions": [
+            "rescue_protocol"
+          ],
+          "prohibition": "no-repeat-or-premature-rescue",
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "profile": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:active_safety_warning",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:pain_persists_at_2h",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:rescue_already_used_for_attack",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:declared_lockout_elapsed",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "witness_summary": {
+        "state": "complete",
+        "combinations_total": 16,
+        "combinations_examined": 16,
+        "feasible_profiles_examined": 16,
+        "witnesses_found": 3,
+        "witnesses_returned": 3,
+        "unexamined_combinations": 0,
+        "omitted_witnesses": 0,
+        "enumeration_limit": 256,
+        "output_limit": 16,
+        "work": 240,
+        "guarantee": "illustrations_only_over_declared_domains"
+      }
+    }
+  },
+  "revised": {
+    "code": "consistent",
+    "calculation_code": "consistent",
+    "status": "known",
+    "blockers": [],
+    "value": {
+      "coverage": {
+        "state": "covered",
+        "blockers": [],
+        "basis": [
+          "warning",
+          "eligible-rescue",
+          "observe-otherwise"
+        ],
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibition_coverage": {
+        "state": "checked",
+        "declared": 2,
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibitions": [
+        {
+          "id": "no-repeat-or-premature-rescue",
+          "action": "rescue_protocol",
+          "state": "clear",
+          "blockers": [],
+          "basis": [
+            "no-repeat-or-premature-rescue",
+            "eligible-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        },
+        {
+          "id": "no-rescue-with-warning",
+          "action": "rescue_protocol",
+          "state": "clear",
+          "blockers": [],
+          "basis": [
+            "no-rescue-with-warning",
+            "eligible-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        }
+      ],
+      "case_witnesses": [],
+      "witness_summary": {
+        "state": "complete",
+        "combinations_total": 16,
+        "combinations_examined": 16,
+        "feasible_profiles_examined": 16,
+        "witnesses_found": 0,
+        "witnesses_returned": 0,
+        "unexamined_combinations": 0,
+        "omitted_witnesses": 0,
+        "enumeration_limit": 256,
+        "output_limit": 16,
+        "work": 352,
+        "guarantee": "illustrations_only_over_declared_domains"
+      }
+    }
+  },
+  "partial": {
+    "code": "conflict",
+    "calculation_code": "conflict",
+    "status": "known",
+    "blockers": [
+      "table_forbidden_action"
+    ],
+    "value": {
+      "coverage": {
+        "state": "covered",
+        "blockers": [],
+        "basis": [
+          "warning",
+          "pain-rescue",
+          "no-pain-observe"
+        ],
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibition_coverage": {
+        "state": "checked",
+        "declared": 2,
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibitions": [
+        {
+          "id": "no-repeat-or-premature-rescue",
+          "action": "rescue_protocol",
+          "state": "violation",
+          "blockers": [],
+          "basis": [
+            "no-repeat-or-premature-rescue",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        },
+        {
+          "id": "no-rescue-with-warning",
+          "action": "rescue_protocol",
+          "state": "clear",
+          "blockers": [],
+          "basis": [
+            "no-rescue-with-warning",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        }
+      ],
+      "case_witnesses": [],
+      "witness_summary": {
+        "state": "truncated",
+        "combinations_total": 256,
+        "combinations_examined": 128,
+        "feasible_profiles_examined": 128,
+        "witnesses_found": 0,
+        "witnesses_returned": 0,
+        "unexamined_combinations": 128,
+        "omitted_witnesses": null,
+        "enumeration_limit": 128,
+        "output_limit": 16,
+        "work": 1920,
+        "guarantee": "illustrations_only_over_declared_domains"
+      }
+    }
+  },
+  "unconfirmed": {
+    "code": "unresolved",
+    "calculation_code": "conflict",
+    "status": "proposed",
+    "blockers": [
+      "table_forbidden_action",
+      "proposed_refused:simulated:MX64:rescue-table"
+    ],
+    "value": {
+      "coverage": {
+        "state": "covered",
+        "blockers": [],
+        "basis": [
+          "warning",
+          "pain-rescue",
+          "no-pain-observe"
+        ],
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibition_coverage": {
+        "state": "checked",
+        "declared": 2,
+        "guarantee": "conditional_on_declared_table"
+      },
+      "prohibitions": [
+        {
+          "id": "no-repeat-or-premature-rescue",
+          "action": "rescue_protocol",
+          "state": "violation",
+          "blockers": [],
+          "basis": [
+            "no-repeat-or-premature-rescue",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        },
+        {
+          "id": "no-rescue-with-warning",
+          "action": "rescue_protocol",
+          "state": "clear",
+          "blockers": [],
+          "basis": [
+            "no-rescue-with-warning",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table"
+        }
+      ],
+      "case_witnesses": [
+        {
+          "kind": "prohibition_violation",
+          "result_address": "/value/prohibitions/0",
+          "rows": [
+            "pain-rescue"
+          ],
+          "actions": [
+            "rescue_protocol"
+          ],
+          "prohibition": "no-repeat-or-premature-rescue",
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "profile": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:active_safety_warning",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:pain_persists_at_2h",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:rescue_already_used_for_attack",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:declared_lockout_elapsed",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "prohibition_violation",
+          "result_address": "/value/prohibitions/0",
+          "rows": [
+            "pain-rescue"
+          ],
+          "actions": [
+            "rescue_protocol"
+          ],
+          "prohibition": "no-repeat-or-premature-rescue",
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "profile": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:active_safety_warning",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:pain_persists_at_2h",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:rescue_already_used_for_attack",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:declared_lockout_elapsed",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "prohibition_violation",
+          "result_address": "/value/prohibitions/0",
+          "rows": [
+            "pain-rescue"
+          ],
+          "actions": [
+            "rescue_protocol"
+          ],
+          "prohibition": "no-repeat-or-premature-rescue",
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "profile": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:active_safety_warning",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:pain_persists_at_2h",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:rescue_already_used_for_attack",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:declared_lockout_elapsed",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "witness_summary": {
+        "state": "complete",
+        "combinations_total": 16,
+        "combinations_examined": 16,
+        "feasible_profiles_examined": 16,
+        "witnesses_found": 3,
+        "witnesses_returned": 3,
+        "unexamined_combinations": 0,
+        "omitted_witnesses": 0,
+        "enumeration_limit": 256,
+        "output_limit": 16,
+        "work": 240,
+        "guarantee": "illustrations_only_over_declared_domains"
+      }
+    }
+  }
+}

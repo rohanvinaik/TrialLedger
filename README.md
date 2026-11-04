@@ -163,7 +163,7 @@ the registry against the real world.
 - **`design-review.xlsx` and `decision-list.md`**, when you continue into design work. For each declared
   choice: the question in clinical words, alternatives, computed consequences, deciding evidence and
   premises, what remains open and any recorded selection. A revision distinguishes a changed question,
-  changed answer, changed deciding support, and changes to wording, attribution or evidence context.
+  changed answer, changed deciding support, remaining requirements, and changes to wording, attribution or evidence context.
   The accompanying manifest and complete saved checks let a colleague
   trace the handoff. Your assistant can keep conversational context in `working-brief.md` beside it.
 
@@ -186,6 +186,9 @@ mandatory. Proposed readings remain unconfirmed; including their results in a re
 Open items name the option they concern: allowing exactly two weeks and longer does not also allow one week.
 
 The design review is a separate handoff. Your reference workbook and registry evidence remain unchanged.
+Supporting analyses also have readable summaries: adaptive-rule gaps and forbidden selections, population
+flow bounds, endpoint collection gaps and explicitly linked definitions. Their assumptions, populations and
+exact checks travel with them; they do not disappear into a sheet of diagnostic codes.
 With a source record supplied, the review also lays out baseline values by their local groups, preserving
 population, unit and denominator context. An arm and a total are never silently added together.
 
@@ -402,6 +405,22 @@ answer must not hide that change. Wording, attribution and evidence attached for
 separately; adding background evidence does not quietly add a new restriction. The complete record of
 input changes remains available beside this comparison of consequences.
 
+Remaining requirements have their own comparison too. Widening ECOG from 0–1 to 0–2 can change what still
+needs checking beside an allowed brain-metastasis profile while leaving that profile allowed. The review
+says **remaining requirements changed; verdict unchanged**, rather than implying that its CNS answer moved.
+
+### A rule can cover every case and still break a declared safety rule
+
+In an invented adaptive protocol, a table can specify an action for every combination it lists and still
+select a dose when the team has explicitly forbidden it. TrialLedger can now check those negative
+specifications directly and show the offending situations. The guarantee concerns the declared variables
+and rules: it does not supply a missing safety variable or establish clinical safety.
+
+The same discipline applies when two parts of a protocol use different thresholds. A lower threshold for
+starting a safety assessment can deliberately precede the threshold defining an endpoint. The designer can
+declare that the endpoint must imply the trigger, or that two definitions really must be equivalent, and
+check that relationship with attributed premises. Different numbers alone do not establish a contradiction.
+
 The [asthma walkthrough](acceptance/design-session-walkthrough-docs-asthma-2026-11-03/README.md) revises the
 representation itself: it adds a missing rival reading of background and relief therapy while retaining
 the original. Their consequences differ, both remain proposed, neither establishes daily relief use, and
@@ -542,6 +561,19 @@ Add `"detail":"schema"` for structural machine shapes and named field contracts,
 for that operation's complete guide. Views `worked_session` and `full` retain the demonstration and full
 manual. View `delivery` describes retained results, revisions and exports. The
 [operator workflow](docs/CLINICAL_WORKFLOW.md) connects the calls without requiring internal Python imports.
+
+For shorter typed requests, use `{"operation":"describe","view":"prepare"}`. Its public preparation
+operation expands explicit criteria and question/options into a runnable request, disclosing defaults and
+preserving origins. Run the returned request after inspecting its meaning. No Python builder is required;
+unconfirmed readings remain proposed, and advanced canonical forms remain available.
+Large preparations can stay in the reasoning store: MCP `reason` accepts `prepared:ARTIFACT_ID` in place
+of `request`, and CLI uses `reason --prepared ID --store STORE`. The assistant inspects the defaults and
+origins once and runs the retained expansion without copying its boilerplate back into conversation.
+
+MCP can also read complete retained registry evidence through `record` part `source`, with `nct` and an
+optional raw-study address. Digest-bound source handles attach the complete retained study without pasting
+it into conversation; CLI uses the same mechanism with `--source-root ROOT`. The full study enters the
+immutable reasoning artifact. Exact quotation establishes a copy's location, not its clinical meaning.
 
 Use `{"operation":"describe","view":"design_bounds"}` for baseline witness bounds. It describes typed
 observations, explicit eligibility bridges and candidate designs, with a runnable invented example. Candidate

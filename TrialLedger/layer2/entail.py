@@ -353,6 +353,33 @@ def _proof(premises: list[tuple], extra: tuple, bound: int) -> tuple[tuple[str, 
     return tuple(sorted(p[1] for p in kept)), weakest_status(tuple(p[2] for p in kept))
 
 
+def scope_blocker_code(blocker: str, result: str, connected: bool, deciding: bool) -> str:
+    """Route only open-scope uncertainty; other admission problems stay visible (pure).
+
+    post: __return__ in ('retain', 'unrelated_scope')
+    post: blocker.startswith('open_scope:') or __return__ == 'retain'
+    post: __return__ != 'unrelated_scope' or not deciding
+    """
+    if not blocker.startswith("open_scope:"):
+        return "retain"
+    if result in (ENTAILED, REFUTED, INCONSISTENT):
+        return "retain" if deciding else "unrelated_scope"
+    return "retain" if connected or deciding else "unrelated_scope"
+
+
+def _question_blockers(raised: dict[str, tuple], result: str, connected: tuple, proof: tuple = ()) -> tuple:
+    return tuple(
+        sorted(
+            {
+                blocker
+                for identity, values in raised.items()
+                for blocker in values
+                if scope_blocker_code(blocker, result, identity in connected, identity in proof) == "retain"
+            }
+        )
+    )
+
+
 def decide(
     assertions: tuple[ScopedAssertion, ...],
     query: object,
@@ -384,10 +411,12 @@ def decide(
     premises: dict[str, tuple] = {}
     scoped_out: list[tuple[str, set]] = []
     blockers: set[str] = set()
+    raised_by_id: dict[str, tuple] = {}
     for item_id in sorted(by_id):
         item = by_id[item_id]
         code, formula, raised = assertion_formula(item, context)
         blockers.update(raised)
+        raised_by_id[item_id] = raised
         variables = {key for _, key, _ in _atoms(formula)}
         if code == "constraint":
             premises[item_id] = (STATUS_RANK[item.status], item_id, item.status, formula, variables)
@@ -401,11 +430,18 @@ def decide(
         state = _satisfiable([p[3] for p in members], bound) if members else True
         if state is False:
             proof, status = _proof(members, TRUE, bound)
-            return Decision(INCONSISTENT, written, status, proof, tuple(sorted(blockers)))
+            return Decision(
+                INCONSISTENT,
+                written,
+                status,
+                proof,
+                _question_blockers(raised_by_id, INCONSISTENT, group, proof),
+            )
         exhausted = exhausted or state is None
     if exhausted:
         return Decision(UNDETERMINED, written, None, (), tuple(sorted(blockers | {"resource_bound"})))
     group = next(g for g in groups if QUERY in g)
+    blockers = set(_question_blockers(raised_by_id, UNDETERMINED, group))
     members = [premises[label][:4] for label in group if label != QUERY]
     if not members:
         speaking = tuple(sorted(i for i, variables in scoped_out if variables & asked_variables))
@@ -422,7 +458,9 @@ def decide(
     if against is False or towards is False:
         result, extra = (ENTAILED, _negate(asked)) if against is False else (REFUTED, asked)
         proof, status = _proof(members, extra, bound)
-        return Decision(result, written, status, proof, tuple(sorted(blockers)))
+        return Decision(
+            result, written, status, proof, _question_blockers(raised_by_id, result, group, proof)
+        )
     considered = tuple(sorted(p[1] for p in members))
     return Decision(
         UNDETERMINED, written, None, considered, tuple(sorted(blockers | {"undecided_by_constraints"}))
@@ -487,6 +525,9 @@ def eligibility_witness(
     if direction == "accepted" or baseline.result == OUT_OF_SCOPE:
         return baseline
     blocked = set(baseline.blockers) - {"undecided_by_constraints", "no_constraint_mentions_query"}
+    # A negative witness concerns the whole eligibility definition, not only the
+    # question component: an unreported criterion can explain its rejection.
+    blocked.update(blocker for item in assertions for blocker in assertion_formula(item, context)[2])
     if blocked:
         return Decision(UNDETERMINED, written, None, baseline.proof, tuple(sorted(blocked)))
     premises = []

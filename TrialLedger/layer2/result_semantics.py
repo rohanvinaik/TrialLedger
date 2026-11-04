@@ -45,6 +45,13 @@ CAUSE_KINDS = {
     "estimand_definition_unresolved": "translation",
     "table_uncovered_case": "conflict",
     "table_conflicting_actions": "conflict",
+    "table_forbidden_action": "conflict",
+    "definition_analysis_refused": "translation",
+    "definition_computation_refused": "computation",
+    "definition_empty_antecedent": "translation",
+    "definition_proposed_refused": "premise",
+    "definition_binding_unresolved": "translation",
+    "definition_missing_support": "premise",
     "stage_scope_mismatch": "translation",
     "stage_unit_mismatch": "translation",
     "stage_binding_unresolved": "translation",
@@ -139,6 +146,8 @@ RESULTS = frozenset(
         "permitted_only",
         "feasible",
         "covered",
+        "clear",
+        "violation",
         "gap",
         "domain_conflict",
         "disjoint",
@@ -251,6 +260,7 @@ def disposition_code(logical_result: str, standing: str, completion: str) -> str
         "floor_conflict",
         "gap",
         "domain_conflict",
+        "violation",
     ):
         return "conflict" if standing in ("known", "interpolated", "proposed") else "unclassified"
     if logical_result in ("ENTAILED", "REFUTED", "ruled_out"):
@@ -372,7 +382,7 @@ def _table_findings(row: dict, path: str) -> list[dict]:
     checks = [(name, None, value.get(name)) for name in ("domain", "coverage")]
     checks.extend(
         (name, index, check)
-        for name in ("overlaps", "actions")
+        for name in ("overlaps", "actions", "prohibitions")
         for index, check in enumerate(value.get(name, ()))
     )
     for name, index, check in checks:
@@ -794,11 +804,17 @@ def _session_findings(result: dict, base: str) -> list[dict]:
     for index, analysis in enumerate(result.get("analyses", ())):
         prefix = _path(_path(_path(base, "analyses"), index), "result")
         extend_child(analysis["result"], prefix)
+    for index, check in enumerate(result.get("definition_checks", ())):
+        path = _path(_path(base, "definition_checks"), index)
+        finding = _row(path, "definition_relation", check["code"], check["status"], check["blockers"])
+        finding["support_path"] = _path(path, "declaration")
+        findings.append(finding)
     dispositions = {
         "blocker": "conflict",
         "translation_question": "translation_question",
         "computation_task": "not_computed",
         "evidence_question": "open",
+        "unrepresented_design_question": "open",
         "design_choice": "open",
         "options_not_distinguished": "open",
         "chosen_by_person": "open",
@@ -864,6 +880,8 @@ def metadata(operation: str, result: object, problems: Sequence[str] = ()) -> di
         }
     if operation == "describe":
         return {"version": 1, "kind": "discovery", "findings": []}
+    if operation == "prepare":
+        return {"version": 1, "kind": "inspection", "findings": []}
     adapters = {
         "coordinates": _coordinates,
         "corpus": _corpus,

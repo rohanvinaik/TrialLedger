@@ -21,7 +21,7 @@ from TrialLedger.record_access import (
     response_bytes,
 )
 
-RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "address")
+RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "address", "source")
 
 RECORD_PAGE_LIMIT = 50
 
@@ -210,6 +210,10 @@ def read_record(folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any]
     Folder authorization belongs to the transport: an explicit CLI folder or MCP's
     existing root/run isolation check. This owner never fetches, repairs or rewrites.
     """
+    if arguments.get("part") == "source":
+        from TrialLedger.retained_sources import read_source
+
+        return read_source(folder, arguments)
     path = folder / "landscape.json"
     if not path.is_file():
         return {

@@ -279,7 +279,11 @@ def test_tools_list_names_every_tool_with_its_description_and_schema(tmp_path):
         assert schema["type"] == "object" and schema["additionalProperties"] is False
         assert set(schema["required"]) <= set(schema["properties"])
         if tool["name"] == "reason":
-            assert schema["required"] == ["request"] and "run" not in schema["properties"]
+            assert schema["required"] == [] and "run" not in schema["properties"]
+            assert schema["oneOf"] == [
+                {"required": ["request"], "not": {"required": ["prepared"]}},
+                {"required": ["prepared"], "not": {"required": ["request"]}},
+            ]
         elif tool["name"] in {"reason_result", "reason_revise", "reason_export"}:
             assert schema["required"] == ["id"] and "run" not in schema["properties"]
         else:
@@ -1081,7 +1085,7 @@ def test_record_refuses_a_record_of_another_schema_and_one_not_there(tmp_path):
 def test_every_part_serves_what_the_contract_names_it_for():
     named = {rest[0] for f in FIELDS for kind, *rest in f.consumers if kind == "mcp"}
     assert named <= set(RECORD_PARTS)
-    assert RECORD_PARTS == ("manifest", "studies", "study", "statuses", "fields", "address")
+    assert RECORD_PARTS == ("manifest", "studies", "study", "statuses", "fields", "address", "source")
     assert MANIFEST_KEYS == ("schema_version", "request", "manifest")
     assert STATUS_KEYS == ("statuses", "envelope")
 

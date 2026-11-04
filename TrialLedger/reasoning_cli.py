@@ -15,6 +15,12 @@ COMMANDS = ("reason-result", "reason-revise", "reason-export")
 def configure(commands: argparse._SubParsersAction, reason: argparse.ArgumentParser) -> None:
     """Declare the CLI part of the same artifact/revision/export contract MCP serves."""
     reason.add_argument("--store", type=Path, help="retain complete canonical reasoning in this folder")
+    reason.add_argument(
+        "--source-root",
+        type=Path,
+        help="root of retained report runs for content-bound $retained_study references; "
+        "no source is fetched",
+    )
     reason.add_argument("--compact", action="store_true", help="bounded view; requires --store")
     budget_help = (
         f"compact reply budget: {clinical_delivery.MIN_BYTES}–{clinical_delivery.MAX_BYTES} bytes; "
@@ -53,6 +59,9 @@ def configure(commands: argparse._SubParsersAction, reason: argparse.ArgumentPar
     )
     revise.add_argument("--store", type=Path, required=True)
     revise.add_argument("--id", required=True)
+    revise.add_argument(
+        "--source-root", type=Path, help="root for retained-study handles in an explicit next session"
+    )
     choice = revise.add_mutually_exclusive_group(required=True)
     choice.add_argument("--session", type=Path, help="complete next session with explicit clinical origins")
     choice.add_argument(
@@ -107,6 +116,7 @@ def handle(args: argparse.Namespace) -> int:
                 question=args.question,
                 max_bytes=args.max_bytes,
                 prepare_only=args.prepare_only,
+                source_root=args.source_root,
             )
         else:
             from TrialLedger.clinical_export import export_review

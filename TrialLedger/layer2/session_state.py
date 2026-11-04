@@ -270,7 +270,13 @@ def _decision_index(items: object) -> dict[str, dict]:
 def prepare(value: object) -> dict:
     """Detach and validate ledgers and complete replay dependencies before any child call."""
     held = source_evidence._json_copy(value, "design_session")
-    session = obj(held, SESSION_FIELDS, "session")
+    if (
+        type(held) is not dict
+        or set(held) - (SESSION_FIELDS | {"definition_checks"})
+        or SESSION_FIELDS - set(held)
+    ):
+        raise ValueError("invalid_fields:session")
+    session = held
     if type(session["schema_version"]) is not int or session["schema_version"] != 1:
         raise ValueError("unsupported_session_version")
     for key in ("id", "revision"):
@@ -357,6 +363,9 @@ def prepare(value: object) -> dict:
             else:
                 graph["analysis:" + key].append("premise:" + ref)
     _decision_inputs(decisions, analyses)
+    from TrialLedger.layer2 import definition_checks
+
+    related_definitions = definition_checks.prepare(session.get("definition_checks", []), analyses)
     context = {
         key: decision_evidence.locate(item.get("evidence", []), sources) for key, item in decisions.items()
     }
@@ -369,6 +378,7 @@ def prepare(value: object) -> dict:
         "analyses": analyses,
         "decisions": decisions,
         "decision_evidence": context,
+        "definition_checks": related_definitions,
         "graph": graph,
         "order": order,
     }

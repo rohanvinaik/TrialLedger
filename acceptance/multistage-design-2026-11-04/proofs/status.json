@@ -1,0 +1,53 @@
+{
+  "scope": "Pure decision targets only; generated characterizations are paired with authored intent tests and clinical/transport verification. No whole-project mutation certificate.",
+  "completed": {
+    "scope_blocker_code": {
+      "killed": "43/43",
+      "value_pinned": "43/43"
+    },
+    "prohibition_state": {
+      "killed": "43/43",
+      "value_pinned": "43/43"
+    },
+    "revision_change_code": {
+      "killed": "134/134",
+      "value_pinned": "134/134"
+    },
+    "source_marker_code": {
+      "killed": "60/60",
+      "value_pinned": "60/60"
+    },
+    "prepared_artifact_code": {
+      "killed": "63/63",
+      "value_pinned": "63/63"
+    },
+    "review_priority_code": {
+      "killed": "82/82",
+      "value_pinned": "82/82"
+    },
+    "compact_node_code": {
+      "killed": "56/57",
+      "value_pinned": "55/57",
+      "qualification": "one oracle-recorded equivalent and one crash-only value gap; see exact report"
+    },
+    "edit_path_code": {
+      "killed": "72/73",
+      "value_pinned": "68/73",
+      "qualification": "modulo two unproven-equivalent and three crash-only value gaps; no equivalence asserted here"
+    }
+  },
+  "incomplete": {
+    "relation_result_code": {
+      "verdict": "INCOMPLETE: harvest_cut: codomain observation did not complete admissibly",
+      "next_action": null,
+      "completed_pin_claimed": false
+    },
+    "disposition_code": {
+      "verdict": "INCOMPLETE: suite_render_timeout: the remaining execution deadline is exhausted",
+      "next_action": null,
+      "completed_pin_claimed": false
+    }
+  },
+  "crosshair": "Exact reports are committed. Not confirmed is not a pass; no counterexample found is not substituted for confirmation.",
+  "extended_deep_audit": "Not rerun as a project-wide certificate; prior founder-approved boundary is documented in acceptance/rescue-2026-11-02.md."
+}

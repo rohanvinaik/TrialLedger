@@ -1,0 +1,55 @@
+TrialLedger/reasoning_delivery.py::edit_path_code: ✓ every killable mutant killed + line-complete — 2 candidate-equivalent (UNPROVEN: `flag` if truly equivalent, or add a distinguishing input); 3 crash-only value gap(s) — detected by crash; no value pins them
+  mutants: 1 → 1 survivors; score 99% → 99% (72/73 killed)
+  value: 6 → 5 unspecified; score 92% → 93% (68/73 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 36 operator mutants · comprehensive — full mutant universe · 68/73 = 93% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 6 survivors, 1 sound tests written
+  pass 1: 5 survivors, 0 sound tests written
+  remaining: 3 SWAP, 1 TYPE, 1 VALUE
+  ✓ every killable mutant killed — remaining survivors have no distinguishing input (candidate-equivalent, NOT proven)
+  candidate-equivalent — retained, UNPROVEN (2: SWAP, VALUE); no distinguishing input in 30 tried. To KILL: supply an input reaching a mutated branch below (or `flag` what you can PROVE equivalent):
+      boundary-probed: 0 further probe input(s) — both sides of every edge, the None of every Optional — distinguished none of these
+    → mutant VALUE_612eed1f [VALUE]: - if path[1:].split('/', 1)[0] not in EDIT_ROOTS:  + if path[1:].split('/', 2)[0] not in EDIT_ROOTS:
+    → mutant SWAP_abdf892b [SWAP]: - if path[1:].split('/', 1)[0] not in EDIT_ROOTS:  + if path[1:].split(1, '/')[0] not in EDIT_ROOTS:
+      target:  edit_path_code(path: object, operation: object)
+      template: --input "(<path>, <operation>)"   # replace every <...> slot before running
+  value-equivalent, crash-only-distinguishable (3: SWAP, TYPE) — the mutant RAISES where the original returns, so no return-value assertion can pin it. Your suite already detects every one by crash — no input is owed for detection; a ↳ line below, where present, names the boundary input that would make the distinction explicit. An input distinguishes each, so none is an equivalence candidate — nothing to `flag`:
+    → mutant SWAP_fb42e6b2 [SWAP]: - if not isinstance(path, str) or not path.startswith('/') or '~' in path:  + if not isinstance(str, path) or not path.startswith('/') or '~' in path:
+    → mutant SWAP_c9633b4d [SWAP]: - if not isinstance(path, str) or not path.startswith('/') or '~' in path:  + if not path or not path.startswith('/') or '~' in path:
+    → mutant TYPE_3d4d7b99 [TYPE]: - if not isinstance(path, str) or not path.startswith('/') or '~' in path:  + if not True or not path.startswith('/') or '~' in path:
+  ⚠ structural caveat: a survivor above may be KILLABLE, not equivalent — its distinguishing input is one the deterministic search did not construct (a nested/cross-referential value, or a branch no tried input reached). Confirm with a differential check over a nested / cross-referential `--input` BEFORE you `flag`.
+  uncertain — no synthesized input discriminates the remaining survivor(s), and their inputs are expressible as literals — supply the distinguishing value(s) with --input rather than searching the covering suite
+  ▶ boundary-probed and still undistinguished — if you can PROVE one equivalent, record it: `detective flag 'TrialLedger/reasoning_delivery.py::edit_path_code' VALUE_612eed1f --two-sign --note why-equivalent`   (repeat for: SWAP_abdf892b)
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 5853 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 8 test(s) cover all kills + lines
+  PROPOSED removals (10, redundant for BOTH kills and lines — confirm to delete, never auto): legacy:tests/detective/test_TrialLedger_reasoning_delivery_edit_path_code_4ab370734c_synth.py::test_edit_path_code_value_0, tests/test_handoff_meaning.py::test_changed_choice_rebinds_own_exchange_but_not_source_warrants_or_standing, tests/test_handoff_meaning.py::test_malformed_replacement_reaches_named_validation_not_a_reference_keyerror, tests/test_reasoning_delivery.py::test_revision_retains_edit_evidence_without_echoing_large_values, tests/test_reasoning_delivery.py::test_shortcut_cannot_mutate_identity_or_source[/decisions-replace-replace_design_field], tests/test_reasoning_delivery.py::test_shortcut_cannot_mutate_identity_or_source[/id-replace-immutable_session_field], tests/test_reasoning_delivery.py::test_shortcut_cannot_mutate_identity_or_source[/premises/0/payload/body-replace-replace_design_field], tests/test_reasoning_delivery.py::test_source_snapshot_cannot_be_rewritten_through_revision_shortcut, tests/test_request_preparation.py::test_definition_revision_replays_changed_declared_relation_with_new_basis, tests/test_request_preparation.py::test_no_copy_preparation_handoff_cli_mcp_parity_and_full_origin_retention
+  wrote: tests/detective/test_TrialLedger_reasoning_delivery_edit_path_code_4ab370734c_synth.py
+  pytest wiring: pytest config already declares the marker — nothing to change; verified 2 test(s) pass under pytest
+  ▶ to run these tests: `pytest`   (only the generated ones: `pytest -m detective`; only your own: `pytest -m "not detective"`)
+  ── written to disk (auto-applied) ──
+  │ # detective-content-sha256: 5dd2d93ec7bffa5e6bea14571a8218d90e93fd91e7992e4ab836b0773dc802f2
+  │ """Auto-generated by Detective — warrant-classed tests for TrialLedger/reasoning_delivery.py::edit_path_code.
+  │ Function digest: 49f39112cad09ecb.
+  │
+  │ Regenerated wholesale by `detective converge`; hand edits will be
+  │ overwritten. Witness lines carry full fidelity on purpose."""
+  │
+  │ import pytest
+  │
+  │ from TrialLedger.reasoning_delivery import edit_path_code
+  │
+  │
+  │ @pytest.mark.detective
+  │ def test_edit_path_code_value_0():
+  │     """VALUE survivor — golden capture (pure + deterministic)."""
+  │     result = edit_path_code(path=1, operation=1)
+  │     assert result == "unsupported_edit_operation"
+  │
+  │
+  │ @pytest.mark.detective
+  │ def test_edit_path_code_value_1():
+  │     """VALUE survivor — distinguishing witness (equivalence search)."""
+  │     result = edit_path_code(path=-1, operation="replace")
+  │     assert result == "invalid_edit_path"
+FINAL TrialLedger/reasoning_delivery.py::edit_path_code: ✓ COMPLETE (operator universe · modulo 2 unproven-equivalent · 3 crash-only value gaps) · 72/73 killed · 2 test(s) → tests/detective/test_TrialLedger_reasoning_delivery_edit_path_code_4ab370734c_synth.py · policy 9+neg.f5a15364c11d

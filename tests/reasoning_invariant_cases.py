@@ -11,10 +11,11 @@ import copy
 import json
 from pathlib import Path
 
-from TrialLedger.layer2 import run, service
+from TrialLedger.capabilities import PREPARATION_OPERATIONS, REASONING_OPERATIONS
+from TrialLedger.layer2 import run
 
 ROOT = Path(__file__).resolve().parents[1]
-OPERATIONS = tuple(operation for operation in service.OPERATIONS if operation != "describe")
+OPERATIONS = REASONING_OPERATIONS
 ORDER_FIELDS = {
     "entailment": ("assertions",),
     "coordinates": ("evidence",),
@@ -84,7 +85,15 @@ def example_cases():
         if isinstance(value, dict) and isinstance(value.get("operation"), str) and "code" not in value:
             cases.append((str(path.relative_to(ROOT)), value))
     full = run({"operation": "describe", "view": "full"})["result"]
-    declared = list(full["examples"].items())
+    assert {request["operation"] for request in full["examples"].values()} <= {
+        *REASONING_OPERATIONS,
+        *PREPARATION_OPERATIONS,
+    }
+    declared = [
+        (name, request)
+        for name, request in full["examples"].items()
+        if request["operation"] in REASONING_OPERATIONS
+    ]
     declared += [("signal/" + key, value) for key, value in full["signal_examples"].items()]
     declared += [
         ("capability/" + key, value["request"]) for key, value in full["capability_examples"].items()

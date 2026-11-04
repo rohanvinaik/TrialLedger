@@ -1,0 +1,42 @@
+{
+  "measured_cases": 140,
+  "public_examples": 1,
+  "random_tables": 128,
+  "all_reservations_cover_actual_work": true,
+  "public_example": {
+    "label": "public:full:0",
+    "reservation": 16834,
+    "measured": {
+      "assignments": 139,
+      "satisfiability_calls": 21,
+      "illustration_work": 63,
+      "total": 202
+    },
+    "data_sha256": "50e21c27c415c472ec4d44238d7a96a6722bfdd34e80452ef367e4f9b06754ad",
+    "declared_limits": {
+      "solver_bound": 4096,
+      "solver_calls": 256
+    },
+    "domain_count": 1,
+    "row_count": 2,
+    "prohibition_count": 0
+  },
+  "additional_threshold_case": {
+    "label": "extra-numeric-thresholds",
+    "reservation": 17068,
+    "measured": {
+      "assignments": 101,
+      "satisfiability_calls": 20,
+      "illustration_work": 56,
+      "total": 157
+    },
+    "data_sha256": "1fdda92a115d12882782f98eb843caf1869e7d473cc0e6f29c91898285643652",
+    "declared_limits": {
+      "solver_bound": 4096,
+      "solver_calls": 256
+    },
+    "domain_count": 1,
+    "row_count": 2,
+    "prohibition_count": 1
+  }
+}

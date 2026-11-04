@@ -1,0 +1,39 @@
+{
+  "operation": "prepare", "for": "design_session", "id": "simulated:ASTER-R", "revision": "one",
+  "target": {"kind":"new_trial","ref":"simulated:ASTER-R","scope":{"study":"simulated:ASTER-R","population":"LN-induction-expansion-withdrawal","arm":"all","time":"draft-protocol","version":"1"}},
+  "criteria": [
+    {"id":"adult","modality":"required","body":{"kind":"quantity","predicate":{"kind":"measurement","key":"age"},"comparison":"ge","number":18,"unit":"Years","inclusivity":"inclusive"},"origin":{"kind":"user_choice","ref":"simulated:exchange1:adult"},"status":"known","resolution":"resolved"},
+    {"id":"renal-entry","modality":"required","body":{"kind":"quantity","predicate":{"kind":"measurement","key":"eGFR-entry"},"comparison":"ge","number":30,"unit":"mL/min/1.73m2","inclusivity":"inclusive"},"origin":{"kind":"user_choice","ref":"simulated:exchange1:renal"},"status":"known","resolution":"resolved"},
+    {"id":"active-LN","modality":"required","body":{"kind":"boolean","predicate":{"kind":"condition_status","key":"active-biopsy-proven-LN"}},"origin":{"kind":"user_choice","ref":"simulated:exchange1:disease"},"status":"known","resolution":"resolved"},
+    {"id":"infection-exclusion","modality":"excluded","body":{"kind":"boolean","predicate":{"kind":"condition_status","key":"uncontrolled-infection"}},"origin":{"kind":"user_choice","ref":"simulated:exchange1:infection"},"status":"known","resolution":"resolved"},
+    {"id":"SGLT2-stability","modality":"required","body":{"kind":"quantity","predicate":{"kind":"measurement","key":"SGLT2-stability-at-screening"},"comparison":"ge","number":8,"unit":"weeks","inclusivity":"inclusive"},"applicability":{"kind":"boolean","predicate":{"kind":"condition_status","key":"SGLT2-use"}},"origin":{"kind":"user_choice","ref":"simulated:exchange1:stability"},"status":"known","resolution":"resolved"},
+    {"id":"SGLT2-permission","modality":"permitted","body":{"kind":"boolean","predicate":{"kind":"condition_status","key":"SGLT2-use"}},"applicability":{"kind":"quantity","predicate":{"kind":"measurement","key":"SGLT2-stability-at-screening"},"comparison":"ge","number":8,"unit":"weeks","inclusivity":"inclusive"},"origin":{"kind":"user_choice","ref":"simulated:exchange1:permission"},"status":"known","resolution":"resolved"},
+    {"id":"withdrawal-response","modality":"required","cohort":{"class":"Scope","kind":"cohort_ref","ref":"C"},"body":{"kind":"boolean","predicate":{"kind":"condition_status","key":"renal-response-at-week24"}},"origin":{"kind":"user_choice","ref":"simulated:exchange1:stageC"},"status":"known","resolution":"resolved"}
+  ],
+  "questions": [
+    {"id":"adult-entry","question":"Which represented ages fit entry without guessing the later cohort?","options":[
+      {"id":"age17","label":"17 years","query":{"kind":"quantity","predicate":{"kind":"measurement","key":"age"},"comparison":"eq","number":17,"unit":"Years","inclusivity":"inclusive"}},
+      {"id":"age45","label":"45 years; other attributes unreported","query":{"kind":"quantity","predicate":{"kind":"measurement","key":"age"},"comparison":"eq","number":45,"unit":"Years","inclusivity":"inclusive"}}
+    ]},
+    {"id":"infection","question":"Does the universal infection exclusion still decide entry?","options":[
+      {"id":"present","label":"Uncontrolled infection","query":{"kind":"boolean","predicate":{"kind":"condition_status","key":"uncontrolled-infection"}}},
+      {"id":"absent","label":"No uncontrolled infection; other attributes unreported","query":{"not":{"kind":"boolean","predicate":{"kind":"condition_status","key":"uncontrolled-infection"}}}}
+    ]},
+    {"id":"renal","question":"Which represented renal profiles fit our chosen threshold?","options":[
+      {"id":"29","label":"eGFR 29","query":{"kind":"quantity","predicate":{"kind":"measurement","key":"eGFR-entry"},"comparison":"eq","number":29,"unit":"mL/min/1.73m2","inclusivity":"inclusive"}},
+      {"id":"35","label":"eGFR 35","query":{"kind":"quantity","predicate":{"kind":"measurement","key":"eGFR-entry"},"comparison":"eq","number":35,"unit":"mL/min/1.73m2","inclusivity":"inclusive"}}
+    ]},
+    {"id":"background","question":"May background SGLT2 treatment continue, and what stability is still needed?","options":[
+      {"id":"use-only","label":"Uses an SGLT2 inhibitor; stability unknown","query":{"kind":"boolean","predicate":{"kind":"condition_status","key":"SGLT2-use"}}},
+      {"id":"four-weeks","label":"Uses an SGLT2 inhibitor stable for four weeks","query":{"all":[{"kind":"boolean","predicate":{"kind":"condition_status","key":"SGLT2-use"}},{"kind":"quantity","predicate":{"kind":"measurement","key":"SGLT2-stability-at-screening"},"comparison":"eq","number":4,"unit":"weeks","inclusivity":"inclusive"}]}}
+    ]},
+    {"id":"withdrawal","question":"Which response profile fits Stage C?","context":{"cohort":"C"},"options":[
+      {"id":"response","label":"Week-24 renal responder","query":{"kind":"boolean","predicate":{"kind":"condition_status","key":"renal-response-at-week24"}}},
+      {"id":"no-response","label":"No week-24 renal response","query":{"not":{"kind":"boolean","predicate":{"kind":"condition_status","key":"renal-response-at-week24"}}}}
+    ]},
+    {"id":"definitions","question":"Typed definitions for an earlier renal assessment and a later renal event; relation checked separately","options":[
+      {"id":"event","label":"eGFR decline greater than 15% from baseline at week 24","query":{"kind":"quantity","predicate":{"kind":"measurement","key":"eGFR-decline-baseline-week24"},"comparison":"gt","number":15,"unit":"percent","inclusivity":"exclusive"}},
+      {"id":"trigger","label":"Start assessment at eGFR decline at least 10% from baseline at week 24","query":{"kind":"quantity","predicate":{"kind":"measurement","key":"eGFR-decline-baseline-week24"},"comparison":"ge","number":10,"unit":"percent","inclusivity":"inclusive"}}
+    ]}
+  ]
+}

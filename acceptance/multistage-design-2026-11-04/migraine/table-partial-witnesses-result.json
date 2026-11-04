@@ -1,0 +1,2983 @@
+{
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "signals",
+    "findings": 11,
+    "dispositions": {
+      "conflict": 2,
+      "settled": 9
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "signals",
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "outcome": "conflict",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "conflict",
+        "scope": {},
+        "values": {
+          "id": "simulated:MX64:rescue-table",
+          "value": {
+            "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+            "version": "simulated:exchange1",
+            "domain": {
+              "state": "feasible",
+              "blockers": [],
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                "status": "known",
+                "proof": [],
+                "blockers": []
+              },
+              "basis": [
+                "domain:simulated:active_safety_warning",
+                "domain:simulated:pain_persists_at_2h",
+                "domain:simulated:rescue_already_used_for_attack",
+                "domain:simulated:declared_lockout_elapsed",
+                "domain:simulated:nausea_present",
+                "domain:simulated:aura_present",
+                "domain:simulated:active_preventive_arm",
+                "domain:simulated:prior_CGRP_exposure"
+              ],
+              "guarantee": "conditional_on_declared_table"
+            },
+            "coverage": {
+              "state": "covered",
+              "blockers": [],
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+                "status": "known",
+                "proof": [],
+                "blockers": []
+              },
+              "basis": [
+                "warning",
+                "pain-rescue",
+                "no-pain-observe"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "uncovered_condition": {
+                "class": "Not",
+                "part": {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "simulated:active_safety_warning",
+                        "kind": "defined_term"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "AllOf",
+                      "parts": [
+                        {
+                          "class": "Not",
+                          "part": {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "simulated:active_safety_warning",
+                              "kind": "defined_term"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "boolean",
+                              "members": [],
+                              "number": null,
+                              "unit": "",
+                              "upper": null
+                            }
+                          }
+                        },
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "simulated:pain_persists_at_2h",
+                            "kind": "defined_term"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "source_case",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "class": "AllOf",
+                      "parts": [
+                        {
+                          "class": "Not",
+                          "part": {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "simulated:active_safety_warning",
+                              "kind": "defined_term"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "boolean",
+                              "members": [],
+                              "number": null,
+                              "unit": "",
+                              "upper": null
+                            }
+                          }
+                        },
+                        {
+                          "class": "Not",
+                          "part": {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "simulated:pain_persists_at_2h",
+                              "kind": "defined_term"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "boolean",
+                              "members": [],
+                              "number": null,
+                              "unit": "",
+                              "upper": null
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "overlaps": [
+              {
+                "state": "disjoint",
+                "blockers": [],
+                "decision": {
+                  "result": "REFUTED",
+                  "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+                  "status": "known",
+                  "proof": [],
+                  "blockers": []
+                },
+                "basis": [
+                  "warning",
+                  "pain-rescue"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "rows": [
+                  "warning",
+                  "pain-rescue"
+                ],
+                "actions": [
+                  "hold_and_review",
+                  "rescue_protocol"
+                ],
+                "same_action": false
+              },
+              {
+                "state": "disjoint",
+                "blockers": [],
+                "decision": {
+                  "result": "REFUTED",
+                  "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+                  "status": "known",
+                  "proof": [],
+                  "blockers": []
+                },
+                "basis": [
+                  "warning",
+                  "no-pain-observe"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "rows": [
+                  "warning",
+                  "no-pain-observe"
+                ],
+                "actions": [
+                  "hold_and_review",
+                  "continue_observation"
+                ],
+                "same_action": false
+              },
+              {
+                "state": "disjoint",
+                "blockers": [],
+                "decision": {
+                  "result": "REFUTED",
+                  "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+                  "status": "known",
+                  "proof": [],
+                  "blockers": []
+                },
+                "basis": [
+                  "pain-rescue",
+                  "no-pain-observe"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "rows": [
+                  "pain-rescue",
+                  "no-pain-observe"
+                ],
+                "actions": [
+                  "rescue_protocol",
+                  "continue_observation"
+                ],
+                "same_action": false
+              }
+            ],
+            "actions": [
+              {
+                "state": "reachable",
+                "blockers": [],
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [
+                    "domain:simulated:active_safety_warning"
+                  ],
+                  "blockers": [
+                    "undecided_by_constraints"
+                  ]
+                },
+                "basis": [
+                  "warning"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "action": "hold_and_review"
+              },
+              {
+                "state": "reachable",
+                "blockers": [],
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                  "status": null,
+                  "proof": [
+                    "domain:simulated:active_safety_warning",
+                    "domain:simulated:pain_persists_at_2h"
+                  ],
+                  "blockers": [
+                    "undecided_by_constraints"
+                  ]
+                },
+                "basis": [
+                  "pain-rescue"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "action": "rescue_protocol"
+              },
+              {
+                "state": "reachable",
+                "blockers": [],
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}",
+                  "status": null,
+                  "proof": [
+                    "domain:simulated:active_safety_warning",
+                    "domain:simulated:pain_persists_at_2h"
+                  ],
+                  "blockers": [
+                    "undecided_by_constraints"
+                  ]
+                },
+                "basis": [
+                  "no-pain-observe"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "action": "continue_observation"
+              }
+            ],
+            "witnesses": [],
+            "declared_domains": [
+              {
+                "id": "simulated:active_safety_warning",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:active_safety_warning"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:active_safety_warning"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              },
+              {
+                "id": "simulated:pain_persists_at_2h",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:pain_persists_at_2h"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:pain_persists_at_2h"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              },
+              {
+                "id": "simulated:rescue_already_used_for_attack",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:rescue_already_used_for_attack"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:rescue_already_used_for_attack"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              },
+              {
+                "id": "simulated:declared_lockout_elapsed",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:declared_lockout_elapsed"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:declared_lockout_elapsed"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              },
+              {
+                "id": "simulated:nausea_present",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:nausea_present"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:nausea_present"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              },
+              {
+                "id": "simulated:aura_present",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:aura_present"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:aura_present"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              },
+              {
+                "id": "simulated:active_preventive_arm",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:active_preventive_arm"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:active_preventive_arm"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              },
+              {
+                "id": "simulated:prior_CGRP_exposure",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:prior_CGRP_exposure"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:prior_CGRP_exposure"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "negative"
+                  }
+                ]
+              }
+            ],
+            "prohibitions": [
+              {
+                "state": "violation",
+                "blockers": [],
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:rescue_already_used_for_attack\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:declared_lockout_elapsed\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+                  "status": null,
+                  "proof": [
+                    "domain:simulated:active_safety_warning",
+                    "domain:simulated:declared_lockout_elapsed",
+                    "domain:simulated:pain_persists_at_2h",
+                    "domain:simulated:rescue_already_used_for_attack"
+                  ],
+                  "blockers": [
+                    "undecided_by_constraints"
+                  ]
+                },
+                "basis": [
+                  "no-repeat-or-premature-rescue",
+                  "pain-rescue"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "id": "no-repeat-or-premature-rescue",
+                "action": "rescue_protocol",
+                "when": {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "simulated:rescue_already_used_for_attack",
+                        "kind": "defined_term"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Not",
+                      "part": {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "simulated:declared_lockout_elapsed",
+                          "kind": "defined_term"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "source_case",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "boolean",
+                          "members": [],
+                          "number": null,
+                          "unit": "",
+                          "upper": null
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "state": "clear",
+                "blockers": [],
+                "decision": {
+                  "result": "REFUTED",
+                  "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+                  "status": "known",
+                  "proof": [],
+                  "blockers": []
+                },
+                "basis": [
+                  "no-rescue-with-warning",
+                  "pain-rescue"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "id": "no-rescue-with-warning",
+                "action": "rescue_protocol",
+                "when": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "simulated:active_safety_warning",
+                    "kind": "defined_term"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              }
+            ],
+            "prohibition_coverage": {
+              "state": "checked",
+              "declared": 2,
+              "guarantee": "conditional_on_declared_table"
+            },
+            "case_witnesses": [],
+            "witness_summary": {
+              "state": "truncated",
+              "combinations_total": 256,
+              "combinations_examined": 128,
+              "feasible_profiles_examined": 128,
+              "witnesses_found": 0,
+              "witnesses_returned": 0,
+              "unexamined_combinations": 128,
+              "omitted_witnesses": null,
+              "enumeration_limit": 128,
+              "output_limit": 16,
+              "work": 1920,
+              "guarantee": "illustrations_only_over_declared_domains"
+            },
+            "checks_requested": 10,
+            "checks_executed": 10,
+            "termination": "not_computed_static_table",
+            "operating_characteristics": "not_computed"
+          }
+        },
+        "support": {
+          "basis": [
+            "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+          ],
+          "rule": "table.finite_cases:1",
+          "support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "table_forbidden_action"
+        ],
+        "canonical_ref": "/result/signals/0"
+      },
+      {
+        "path": "/result/signals/0/value/domain",
+        "kind": "table_domain",
+        "outcome": "feasible",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {},
+        "support": {
+          "basis": [
+            "domain:simulated:active_safety_warning",
+            "domain:simulated:pain_persists_at_2h",
+            "domain:simulated:rescue_already_used_for_attack",
+            "domain:simulated:declared_lockout_elapsed",
+            "domain:simulated:nausea_present",
+            "domain:simulated:aura_present",
+            "domain:simulated:active_preventive_arm",
+            "domain:simulated:prior_CGRP_exposure"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+            "status": "known",
+            "proof": [],
+            "blockers": []
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/domain"
+      },
+      {
+        "path": "/result/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "outcome": "covered",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {},
+        "support": {
+          "basis": [
+            "warning",
+            "pain-rescue",
+            "no-pain-observe"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+            "status": "known",
+            "proof": [],
+            "blockers": []
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/coverage"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "outcome": "disjoint",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "rows": [
+            "warning",
+            "pain-rescue"
+          ]
+        },
+        "support": {
+          "basis": [
+            "warning",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+            "status": "known",
+            "proof": [],
+            "blockers": []
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/overlaps/0"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/1",
+        "kind": "table_overlaps",
+        "outcome": "disjoint",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "rows": [
+            "warning",
+            "no-pain-observe"
+          ]
+        },
+        "support": {
+          "basis": [
+            "warning",
+            "no-pain-observe"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+            "status": "known",
+            "proof": [],
+            "blockers": []
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/overlaps/1"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/2",
+        "kind": "table_overlaps",
+        "outcome": "disjoint",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "rows": [
+            "pain-rescue",
+            "no-pain-observe"
+          ]
+        },
+        "support": {
+          "basis": [
+            "pain-rescue",
+            "no-pain-observe"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+            "status": "known",
+            "proof": [],
+            "blockers": []
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/overlaps/2"
+      },
+      {
+        "path": "/result/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "outcome": "reachable",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "action": "hold_and_review"
+        },
+        "support": {
+          "basis": [
+            "warning"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "domain:simulated:active_safety_warning"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/actions/0"
+      },
+      {
+        "path": "/result/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "outcome": "reachable",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "action": "rescue_protocol"
+        },
+        "support": {
+          "basis": [
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+            "status": null,
+            "proof": [
+              "domain:simulated:active_safety_warning",
+              "domain:simulated:pain_persists_at_2h"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/actions/1"
+      },
+      {
+        "path": "/result/signals/0/value/actions/2",
+        "kind": "table_actions",
+        "outcome": "reachable",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "action": "continue_observation"
+        },
+        "support": {
+          "basis": [
+            "no-pain-observe"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}",
+            "status": null,
+            "proof": [
+              "domain:simulated:active_safety_warning",
+              "domain:simulated:pain_persists_at_2h"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/actions/2"
+      },
+      {
+        "path": "/result/signals/0/value/prohibitions/0",
+        "kind": "table_prohibitions",
+        "outcome": "violation",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "conflict",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "id": "no-repeat-or-premature-rescue",
+          "action": "rescue_protocol",
+          "when": {
+            "class": "AnyOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:rescue_already_used_for_attack",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Not",
+                "part": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "simulated:declared_lockout_elapsed",
+                    "kind": "defined_term"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "no-repeat-or-premature-rescue",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:rescue_already_used_for_attack\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:declared_lockout_elapsed\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+            "status": null,
+            "proof": [
+              "domain:simulated:active_safety_warning",
+              "domain:simulated:declared_lockout_elapsed",
+              "domain:simulated:pain_persists_at_2h",
+              "domain:simulated:rescue_already_used_for_attack"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/prohibitions/0"
+      },
+      {
+        "path": "/result/signals/0/value/prohibitions/1",
+        "kind": "table_prohibitions",
+        "outcome": "clear",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort"
+        },
+        "values": {
+          "id": "no-rescue-with-warning",
+          "action": "rescue_protocol",
+          "when": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "simulated:active_safety_warning",
+              "kind": "defined_term"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "source_case",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "support": {
+          "basis": [
+            "no-rescue-with-warning",
+            "pain-rescue"
+          ],
+          "guarantee": "conditional_on_declared_table",
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+            "status": "known",
+            "proof": [],
+            "blockers": []
+          },
+          "declared_support": [
+            {
+              "id": "simulated:rescue-policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0/value/prohibitions/1"
+      }
+    ]
+  },
+  "code": "complete",
+  "operation": "signals",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "premises": [
+      {
+        "id": "simulated:MX64:rescue-table",
+        "kind": "decision_table",
+        "data": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "domains": [
+            {
+              "id": "simulated:active_safety_warning",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_safety_warning"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_safety_warning"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:pain_persists_at_2h",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:pain_persists_at_2h"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:pain_persists_at_2h"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:rescue_already_used_for_attack",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:rescue_already_used_for_attack"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:rescue_already_used_for_attack"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:declared_lockout_elapsed",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:declared_lockout_elapsed"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:declared_lockout_elapsed"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:nausea_present",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:nausea_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:nausea_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:aura_present",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:aura_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:aura_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:active_preventive_arm",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_preventive_arm"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_preventive_arm"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:prior_CGRP_exposure",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:prior_CGRP_exposure"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:prior_CGRP_exposure"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            }
+          ],
+          "constraints": [],
+          "actions": [
+            "hold_and_review",
+            "rescue_protocol",
+            "continue_observation"
+          ],
+          "rows": [
+            {
+              "id": "warning",
+              "when": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:active_safety_warning"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "positive"
+              },
+              "action": "hold_and_review"
+            },
+            {
+              "id": "pain-rescue",
+              "when": {
+                "class": "AllOf",
+                "parts": [
+                  {
+                    "class": "Not",
+                    "part": {
+                      "class": "Literal",
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case"
+                      },
+                      "predicate": {
+                        "class": "Predicate",
+                        "kind": "defined_term",
+                        "key": "simulated:active_safety_warning"
+                      },
+                      "value": {
+                        "class": "Value",
+                        "kind": "boolean"
+                      },
+                      "polarity": "positive"
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:pain_persists_at_2h"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  }
+                ]
+              },
+              "action": "rescue_protocol"
+            },
+            {
+              "id": "no-pain-observe",
+              "when": {
+                "class": "AllOf",
+                "parts": [
+                  {
+                    "class": "Not",
+                    "part": {
+                      "class": "Literal",
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case"
+                      },
+                      "predicate": {
+                        "class": "Predicate",
+                        "kind": "defined_term",
+                        "key": "simulated:active_safety_warning"
+                      },
+                      "value": {
+                        "class": "Value",
+                        "kind": "boolean"
+                      },
+                      "polarity": "positive"
+                    }
+                  },
+                  {
+                    "class": "Not",
+                    "part": {
+                      "class": "Literal",
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case"
+                      },
+                      "predicate": {
+                        "class": "Predicate",
+                        "kind": "defined_term",
+                        "key": "simulated:pain_persists_at_2h"
+                      },
+                      "value": {
+                        "class": "Value",
+                        "kind": "boolean"
+                      },
+                      "polarity": "positive"
+                    }
+                  }
+                ]
+              },
+              "action": "continue_observation"
+            }
+          ],
+          "limits": {
+            "solver_bound": 128,
+            "solver_calls": 256
+          },
+          "prohibitions": [
+            {
+              "id": "no-repeat-or-premature-rescue",
+              "when": {
+                "class": "AnyOf",
+                "parts": [
+                  {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:rescue_already_used_for_attack"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  },
+                  {
+                    "class": "Not",
+                    "part": {
+                      "class": "Literal",
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case"
+                      },
+                      "predicate": {
+                        "class": "Predicate",
+                        "kind": "defined_term",
+                        "key": "simulated:declared_lockout_elapsed"
+                      },
+                      "value": {
+                        "class": "Value",
+                        "kind": "boolean"
+                      },
+                      "polarity": "positive"
+                    }
+                  }
+                ]
+              },
+              "action": "rescue_protocol"
+            },
+            {
+              "id": "no-rescue-with-warning",
+              "when": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:active_safety_warning"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "positive"
+              },
+              "action": "rescue_protocol"
+            }
+          ]
+        },
+        "support": [
+          {
+            "id": "simulated:rescue-policy",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+            ]
+          }
+        ]
+      }
+    ],
+    "signals": [
+      {
+        "id": "simulated:MX64:rescue-table",
+        "kind": "decision_table",
+        "code": "conflict",
+        "calculation_code": "conflict",
+        "value": {
+          "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+          "version": "simulated:exchange1",
+          "domain": {
+            "state": "feasible",
+            "blockers": [],
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+              "status": "known",
+              "proof": [],
+              "blockers": []
+            },
+            "basis": [
+              "domain:simulated:active_safety_warning",
+              "domain:simulated:pain_persists_at_2h",
+              "domain:simulated:rescue_already_used_for_attack",
+              "domain:simulated:declared_lockout_elapsed",
+              "domain:simulated:nausea_present",
+              "domain:simulated:aura_present",
+              "domain:simulated:active_preventive_arm",
+              "domain:simulated:prior_CGRP_exposure"
+            ],
+            "guarantee": "conditional_on_declared_table"
+          },
+          "coverage": {
+            "state": "covered",
+            "blockers": [],
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+              "status": "known",
+              "proof": [],
+              "blockers": []
+            },
+            "basis": [
+              "warning",
+              "pain-rescue",
+              "no-pain-observe"
+            ],
+            "guarantee": "conditional_on_declared_table",
+            "uncovered_condition": {
+              "class": "Not",
+              "part": {
+                "class": "AnyOf",
+                "parts": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "simulated:active_safety_warning",
+                      "kind": "defined_term"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "AllOf",
+                    "parts": [
+                      {
+                        "class": "Not",
+                        "part": {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "simulated:active_safety_warning",
+                            "kind": "defined_term"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "source_case",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      },
+                      {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "simulated:pain_persists_at_2h",
+                          "kind": "defined_term"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "source_case",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "boolean",
+                          "members": [],
+                          "number": null,
+                          "unit": "",
+                          "upper": null
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "class": "AllOf",
+                    "parts": [
+                      {
+                        "class": "Not",
+                        "part": {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "simulated:active_safety_warning",
+                            "kind": "defined_term"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "source_case",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      },
+                      {
+                        "class": "Not",
+                        "part": {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "simulated:pain_persists_at_2h",
+                            "kind": "defined_term"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "source_case",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "overlaps": [
+            {
+              "state": "disjoint",
+              "blockers": [],
+              "decision": {
+                "result": "REFUTED",
+                "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+                "status": "known",
+                "proof": [],
+                "blockers": []
+              },
+              "basis": [
+                "warning",
+                "pain-rescue"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "rows": [
+                "warning",
+                "pain-rescue"
+              ],
+              "actions": [
+                "hold_and_review",
+                "rescue_protocol"
+              ],
+              "same_action": false
+            },
+            {
+              "state": "disjoint",
+              "blockers": [],
+              "decision": {
+                "result": "REFUTED",
+                "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+                "status": "known",
+                "proof": [],
+                "blockers": []
+              },
+              "basis": [
+                "warning",
+                "no-pain-observe"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "rows": [
+                "warning",
+                "no-pain-observe"
+              ],
+              "actions": [
+                "hold_and_review",
+                "continue_observation"
+              ],
+              "same_action": false
+            },
+            {
+              "state": "disjoint",
+              "blockers": [],
+              "decision": {
+                "result": "REFUTED",
+                "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}]}",
+                "status": "known",
+                "proof": [],
+                "blockers": []
+              },
+              "basis": [
+                "pain-rescue",
+                "no-pain-observe"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "rows": [
+                "pain-rescue",
+                "no-pain-observe"
+              ],
+              "actions": [
+                "rescue_protocol",
+                "continue_observation"
+              ],
+              "same_action": false
+            }
+          ],
+          "actions": [
+            {
+              "state": "reachable",
+              "blockers": [],
+              "decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": null,
+                "proof": [
+                  "domain:simulated:active_safety_warning"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "basis": [
+                "warning"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "action": "hold_and_review"
+            },
+            {
+              "state": "reachable",
+              "blockers": [],
+              "decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                "status": null,
+                "proof": [
+                  "domain:simulated:active_safety_warning",
+                  "domain:simulated:pain_persists_at_2h"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "basis": [
+                "pain-rescue"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "action": "rescue_protocol"
+            },
+            {
+              "state": "reachable",
+              "blockers": [],
+              "decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]}",
+                "status": null,
+                "proof": [
+                  "domain:simulated:active_safety_warning",
+                  "domain:simulated:pain_persists_at_2h"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "basis": [
+                "no-pain-observe"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "action": "continue_observation"
+            }
+          ],
+          "witnesses": [],
+          "declared_domains": [
+            {
+              "id": "simulated:active_safety_warning",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_safety_warning"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_safety_warning"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:pain_persists_at_2h",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:pain_persists_at_2h"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:pain_persists_at_2h"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:rescue_already_used_for_attack",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:rescue_already_used_for_attack"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:rescue_already_used_for_attack"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:declared_lockout_elapsed",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:declared_lockout_elapsed"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:declared_lockout_elapsed"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:nausea_present",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:nausea_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:nausea_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:aura_present",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:aura_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:aura_present"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:active_preventive_arm",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_preventive_arm"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:active_preventive_arm"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            },
+            {
+              "id": "simulated:prior_CGRP_exposure",
+              "values": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:prior_CGRP_exposure"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:prior_CGRP_exposure"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "negative"
+                }
+              ]
+            }
+          ],
+          "prohibitions": [
+            {
+              "state": "violation",
+              "blockers": [],
+              "decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:rescue_already_used_for_attack\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:declared_lockout_elapsed\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+                "status": null,
+                "proof": [
+                  "domain:simulated:active_safety_warning",
+                  "domain:simulated:declared_lockout_elapsed",
+                  "domain:simulated:pain_persists_at_2h",
+                  "domain:simulated:rescue_already_used_for_attack"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "basis": [
+                "no-repeat-or-premature-rescue",
+                "pain-rescue"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "id": "no-repeat-or-premature-rescue",
+              "action": "rescue_protocol",
+              "when": {
+                "class": "AnyOf",
+                "parts": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "simulated:rescue_already_used_for_attack",
+                      "kind": "defined_term"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Not",
+                    "part": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "simulated:declared_lockout_elapsed",
+                        "kind": "defined_term"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "state": "clear",
+              "blockers": [],
+              "decision": {
+                "result": "REFUTED",
+                "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:active_safety_warning\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"simulated:pain_persists_at_2h\",\"kind\":\"defined_term\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+                "status": "known",
+                "proof": [],
+                "blockers": []
+              },
+              "basis": [
+                "no-rescue-with-warning",
+                "pain-rescue"
+              ],
+              "guarantee": "conditional_on_declared_table",
+              "id": "no-rescue-with-warning",
+              "action": "rescue_protocol",
+              "when": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "simulated:active_safety_warning",
+                  "kind": "defined_term"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          ],
+          "prohibition_coverage": {
+            "state": "checked",
+            "declared": 2,
+            "guarantee": "conditional_on_declared_table"
+          },
+          "case_witnesses": [],
+          "witness_summary": {
+            "state": "truncated",
+            "combinations_total": 256,
+            "combinations_examined": 128,
+            "feasible_profiles_examined": 128,
+            "witnesses_found": 0,
+            "witnesses_returned": 0,
+            "unexamined_combinations": 128,
+            "omitted_witnesses": null,
+            "enumeration_limit": 128,
+            "output_limit": 16,
+            "work": 1920,
+            "guarantee": "illustrations_only_over_declared_domains"
+          },
+          "checks_requested": 10,
+          "checks_executed": 10,
+          "termination": "not_computed_static_table",
+          "operating_characteristics": "not_computed"
+        },
+        "rule": "table.finite_cases:1",
+        "status": "known",
+        "basis": [
+          "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+        ],
+        "support": [
+          {
+            "id": "simulated:rescue-policy",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "simulated:exchange1:accepted-in-persona-not-real-confirmation"
+            ]
+          }
+        ],
+        "admission": {
+          "code": "accepted",
+          "application_blockers": []
+        },
+        "blockers": [
+          "table_forbidden_action"
+        ]
+      }
+    ],
+    "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "conflict",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "table_forbidden_action",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "feasible",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "covered",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "disjoint",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/1",
+        "kind": "table_overlaps",
+        "logical_result": "disjoint",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/2",
+        "kind": "table_overlaps",
+        "logical_result": "disjoint",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/actions/2",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/prohibitions/0",
+        "kind": "table_prohibitions",
+        "logical_result": "violation",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/prohibitions/1",
+        "kind": "table_prohibitions",
+        "logical_result": "clear",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/signals/0/support"
+      }
+    ]
+  },
+  "result_digest": "1b43f73873a9041b53e5bbfc52e7657d8890df74e8313ce16f54f2e9da7c60eb",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+  "artifact": {
+    "id": "b65a929c17ca92ed3da4aab7a6dc032a896b4f419609d09dec319b4b7e8344ee",
+    "bytes": 95249,
+    "schema_version": 1,
+    "identity_scope": "SHA256 of complete canonical request/response payload bytes",
+    "parts": [
+      "manifest",
+      "request",
+      "response",
+      "result",
+      "clinical",
+      "summary",
+      "session",
+      "decisions",
+      "decision_view",
+      "changes",
+      "address"
+    ]
+  }
+}

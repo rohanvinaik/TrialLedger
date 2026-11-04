@@ -1,0 +1,29 @@
+{
+  "seed": 2026110462,
+  "sampling_method": "random.Random(seed).sample(sorted(all_returned_nct_ids),2)",
+  "pool": [
+    "NCT04360044",
+    "NCT04408794",
+    "NCT04417361",
+    "NCT04437199",
+    "NCT04498910",
+    "NCT04567355",
+    "NCT04574713",
+    "NCT04645953",
+    "NCT04845178",
+    "NCT04992494",
+    "NCT05133323",
+    "NCT05546320",
+    "NCT05679908",
+    "NCT05846373",
+    "NCT06323928",
+    "NCT06603623",
+    "NCT06728553",
+    "NCT06848075"
+  ],
+  "selected": [
+    "NCT06728553",
+    "NCT05679908"
+  ],
+  "pool_count": 18
+}

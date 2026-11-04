@@ -1,0 +1,455 @@
+{
+  "simulation": "All ASTER-R clinical choices, counts and exchanges simulated; registry quotes are documentary evidence only.",
+  "sample": {
+    "seed": 2026110461,
+    "pool": [
+      "NCT06294236",
+      "NCT05314231",
+      "NCT06925542",
+      "NCT07000292",
+      "NCT06064929",
+      "NCT07123519",
+      "NCT06839976",
+      "NCT06350110",
+      "NCT05938725",
+      "NCT07236762",
+      "NCT06265220",
+      "NCT06342960",
+      "NCT06897930",
+      "NCT05508009",
+      "NCT06557265",
+      "NCT06152172",
+      "NCT07044115",
+      "NCT06121297",
+      "NCT05566977",
+      "NCT07104721",
+      "NCT07109986",
+      "NCT06943937",
+      "NCT06518668",
+      "NCT06375993",
+      "NCT06717815",
+      "NCT06947460",
+      "NCT05780515",
+      "NCT06153095",
+      "NCT06544330",
+      "NCT06434363",
+      "NCT07085104",
+      "NCT05732402",
+      "NCT06113900",
+      "NCT07305116",
+      "NCT06676631",
+      "NCT06255028",
+      "NCT07115745",
+      "NCT07038447",
+      "NCT06585514",
+      "NCT06429800",
+      "NCT06975787",
+      "NCT06285279",
+      "NCT06308978",
+      "NCT05798117",
+      "NCT06377228"
+    ],
+    "selected": [
+      "NCT06544330",
+      "NCT06434363"
+    ]
+  },
+  "sources": [
+    {
+      "nct": "NCT06544330",
+      "digest": "6315054bf35f2b88188125780de9e8141df39b209d90b3329e63cb3a7842daea",
+      "study_ref": "ctg:NCT06544330:6315054bf35f2b88188125780de9e8141df39b209d90b3329e63cb3a7842daea"
+    },
+    {
+      "nct": "NCT06434363",
+      "digest": "921ff464d7ac4506ef6d98db0bd9af8da51e154c0fbc7ceb3ea4e4fc0814f01c",
+      "study_ref": "ctg:NCT06434363:921ff464d7ac4506ef6d98db0bd9af8da51e154c0fbc7ceb3ea4e4fc0814f01c"
+    }
+  ],
+  "baseline": {
+    "adult-entry": {
+      "age17": "REFUTED",
+      "age45": "UNDETERMINED"
+    },
+    "background": {
+      "use-only": "UNDETERMINED",
+      "four-weeks": "REFUTED"
+    },
+    "infection": {
+      "present": "REFUTED",
+      "absent": "ENTAILED"
+    },
+    "renal": {
+      "29": "REFUTED",
+      "35": "UNDETERMINED"
+    },
+    "withdrawal": {
+      "response": "ENTAILED",
+      "no-response": "REFUTED"
+    }
+  },
+  "revised": {
+    "renal": {
+      "29": "UNDETERMINED",
+      "35": "UNDETERMINED"
+    },
+    "adult-entry": {
+      "age17": "REFUTED",
+      "age45": "UNDETERMINED"
+    },
+    "background": {
+      "use-only": "UNDETERMINED",
+      "four-weeks": "REFUTED"
+    },
+    "infection": {
+      "present": "REFUTED",
+      "absent": "ENTAILED"
+    },
+    "withdrawal": {
+      "response": "ENTAILED",
+      "no-response": "REFUTED"
+    }
+  },
+  "definition_results_before": [
+    {
+      "id": "same-definition-claim",
+      "relation": "equivalent",
+      "code": "conflict"
+    },
+    {
+      "id": "endpoint-triggers-assessment",
+      "relation": "implies",
+      "code": "consistent"
+    }
+  ],
+  "definition_results_after": [
+    {
+      "id": "same-definition-claim",
+      "relation": "implies",
+      "code": "consistent"
+    },
+    {
+      "id": "endpoint-triggers-assessment",
+      "relation": "implies",
+      "code": "consistent"
+    }
+  ],
+  "changes": {
+    "analyses": [
+      {
+        "id": "question:adult-entry:option:age17",
+        "code": "input_only",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:adult-entry:option:age45",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:background:option:four-weeks",
+        "code": "input_only",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:background:option:use-only",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:definitions:option:event",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:definitions:option:trigger",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:infection:option:absent",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:infection:option:present",
+        "code": "input_only",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:renal:option:29",
+        "code": "answer_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "changed",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:renal:option:35",
+        "code": "support_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:withdrawal:option:no-response",
+        "code": "input_only",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:withdrawal:option:response",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "simulated:ASTER:estimand",
+        "code": "unchanged",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "simulated:ASTER:flow",
+        "code": "unchanged",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "source0-structured-age",
+        "code": "unchanged",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "source1-structured-age",
+        "code": "unchanged",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      }
+    ],
+    "decisions": [
+      {
+        "id": "adult-entry",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "background",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "infection",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "renal",
+        "code": "answer_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "changed",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "withdrawal",
+        "code": "requirements_changed",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      }
+    ],
+    "definition_checks": [
+      {
+        "id": "endpoint-triggers-assessment",
+        "code": "unchanged",
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "same-definition-claim",
+        "code": "question_changed",
+        "axes": {
+          "question": "changed",
+          "wording": "unchanged",
+          "answer": "changed",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      }
+    ]
+  },
+  "artifact": "ca5ba7b7c0663a8b805d7c1c596bf709b8ce3baa7987b2d7acfdbbef42235548",
+  "revision_artifact": "11fbc17cd4c03c54a2bcf427e482f9fdefeffa663ae54cd28c14468e70545b22",
+  "export": {
+    "workbook": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/reasoning-exports/11fbc17cd4c03c54a2bcf427e482f9fdefeffa663ae54cd28c14468e70545b22/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/reasoning-exports/11fbc17cd4c03c54a2bcf427e482f9fdefeffa663ae54cd28c14468e70545b22/review/decision-list.md",
+    "manifest": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/reasoning-exports/11fbc17cd4c03c54a2bcf427e482f9fdefeffa663ae54cd28c14468e70545b22/review/export-manifest.json"
+  },
+  "cli_mcp_full_parity": true,
+  "export_byte_parity": true,
+  "input_bytes": 5911,
+  "prepared_request_bytes": 58291
+}

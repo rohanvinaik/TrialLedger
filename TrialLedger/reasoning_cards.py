@@ -323,6 +323,10 @@ def _example(view: str) -> dict[str, Any]:
 
 def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
     """Return one small task card or explicit structural schemas; never build the full manual."""
+    if view == "prepare":
+        from TrialLedger.layer2.request_preparation import card
+
+        return card(schema=schema)
     if view == "overview":
         return {
             "detail": "card",
@@ -330,9 +334,17 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
                 "Gather the evidence, settle material readings, compute consequences, revise choices, "
                 "deliver the decision list."
             ),
-            "operations": [{"operation": name, "question": task[0]} for name, task in TASKS.items()],
+            "operations": [
+                {
+                    "operation": "prepare",
+                    "kind": "preparation",
+                    "question": "Expand compact typed input without computing a clinical answer.",
+                },
+                *[{"operation": name, "question": task[0]} for name, task in TASKS.items()],
+            ],
             "discovery": {
                 **{name: {"operation": "describe", "view": name} for name in TASKS},
+                "prepare": {"operation": "describe", "view": "prepare"},
                 "focused": {"operation": "describe", "view": "entailment"},
                 "schema": {"operation": "describe", "view": "entailment", "detail": "schema"},
                 "full": {"operation": "describe", "view": "full"},
@@ -346,15 +358,24 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
                 "Silence is not absence. Corpus counts describe and never decide.",
                 "General prose compilation and complete protocol writing remain unintegrated.",
             ],
+            "preparation": "Use describe view prepare for small typed criteria and questions; "
+            "inspect its defaults/origins, then execute by retained preparation id without copying "
+            "expanded JSON. No Python builder is needed.",
         }
     if view == "delivery":
         from TrialLedger.reasoning_mcp import TOOL_SCHEMAS
+        from TrialLedger.retained_sources import SOURCE_CONTRACT
 
         tools: dict[str, Any] = deepcopy(TOOL_SCHEMAS)
         return {
             "detail": "schema" if schema else "card",
             "operation": "delivery",
             "workflow": [
+                (
+                    "For routine criteria/options, describe view prepare gives short typed input. "
+                    "Retain a successful preparation, then call reason with prepared:ID and no request. "
+                    "Its defaults/origins remain inspectable; preparation never confirms a reading."
+                ),
                 (
                     "reason with retain:true or response_view:compact retains the complete request and "
                     "response separately from source reports."
@@ -373,6 +394,8 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
                 ),
             ],
             "cli": [
+                "reason --request compact-input.json --store STORE --compact",
+                "reason --prepared PREPARATION_ID --store STORE --compact",
                 "reason --request FILE --store STORE --compact",
                 "reason-result --store STORE --id ID --part decisions",
                 "reason-revise --store STORE --id ID --edits FILE --revision LABEL",
@@ -383,6 +406,12 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
             else {
                 name: {"required": spec["inputSchema"]["required"], "description": spec["description"]}
                 for name, spec in tools.items()
+            },
+            "source_handles": {
+                "contract": deepcopy(SOURCE_CONTRACT),
+                "read": {"tool": "record", "run": "RUN", "part": "source", "nct": "NCT00000001"},
+                "identity": "Use returned snapshot.digest and snapshot.study_ref. "
+                "Address is optional and relative to the raw study; follow pages/text unchanged.",
             },
             "boundary": (
                 "An artifact hash proves retained identity, not clinical truth or authenticated "
@@ -410,4 +439,8 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
     }
     if schema:
         card.update(request_schema=_request_schema(view, contracts), input_shapes=contracts)
+    if view == "source_assertions":
+        from TrialLedger.retained_sources import SOURCE_CONTRACT
+
+        card["source_handles"] = deepcopy(SOURCE_CONTRACT)
     return card

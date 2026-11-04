@@ -41,7 +41,9 @@ INPUTS = {
             "transitions": (
                 "{id,source,target,relation,scope,status,resolution,basis,gate_ref}; relation permitted "
                 "or documented_subset. Scope names exact graph and endpoint identities. Each edge "
-                "keeps independent support; no title/count matching or automatic membership."
+                "keeps independent support; no title/count matching or automatic membership. "
+                "documented_subset means target is a subset of source, never the reverse. gate_ref "
+                "must be nonempty. A merge needs a separately warranted partition/union calculation."
             ),
         },
         "claims": "{transition,count,lower,upper}; count is source id, target id or outside",

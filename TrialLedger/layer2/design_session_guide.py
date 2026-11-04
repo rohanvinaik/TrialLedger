@@ -97,6 +97,10 @@ INPUTS = {
             "premises": "premise[]",
             "analyses": "analysis[]",
             "decisions": "decision[]",
+            "definition_checks": (
+                "optional definition_check[]; explicit relations between attributed typed meanings "
+                "at actual analysis request/result addresses, not inferred from labels or numbers"
+            ),
             "limits": {
                 "max_analyses": 128,
                 "max_premises": 1000,
@@ -124,7 +128,10 @@ INPUTS = {
         "required": ["id", "study", "expected_digest"],
         "fields": {
             "id": "local source ID",
-            "study": "complete retained NIH v2 study",
+            "study": (
+                "complete retained NIH v2 study; CLI/MCP transport also resolves digest-bound "
+                "$retained_study handles"
+            ),
             "expected_digest": "exact source.snapshot digest",
         },
     },
@@ -261,6 +268,29 @@ INPUTS = {
             "scope": (
                 "optional caller-declared source scope, at most 1024 characters; no applicability binding"
             ),
+        },
+    },
+    "definition_check": {
+        "required": ["id", "relation", "left", "right", "status", "resolution", "basis"],
+        "fields": {
+            "id": "distinct nonempty ID; at most 32 checks",
+            "relation": ["implies", "equivalent", "disjoint"],
+            "left": "definition_operand; antecedent for implies",
+            "right": "definition_operand; consequent for implies",
+            "status": "known/interpolated/proposed; declaration does not authenticate consent",
+            "resolution": "resolved/partially_resolved/unresolved/conflicting",
+            "basis": "1–32 attributed references establishing intended relation, not source truth",
+        },
+    },
+    "definition_operand": {
+        "required": ["analysis", "address", "body", "status", "resolution", "basis"],
+        "fields": {
+            "analysis": "existing analysis ID; both targets must match exactly",
+            "address": "exact pointer on expanded analysis, beginning /request or /result",
+            "body": "tagged typed proposition expressing the attributed reading of that addressed object",
+            "status": "known/interpolated/proposed; proposed never becomes an admitted relation premise",
+            "resolution": "resolved/partially_resolved/unresolved/conflicting",
+            "basis": "1–32 source or user references attributing this reading",
         },
     },
 }

@@ -4,17 +4,24 @@ from __future__ import annotations
 
 from copy import deepcopy
 from pathlib import Path
+from typing import cast
 
 from TrialLedger import clinical_delivery, reasoning_artifacts
 from TrialLedger.evidence_access import pointer_value
 
 MAX_EDITS = 64
-EDIT_ROOTS = ("premises", "analyses", "decisions", "limits", "target")
+EDIT_ROOTS = ("premises", "analyses", "decisions", "limits", "target", "definition_checks")
 EDIT_CODES = (
     "unsupported_edit_operation",
     "invalid_edit_path",
     "immutable_session_field",
     "replace_design_field",
+)
+PREPARED_CODES = (
+    "not_preparation_artifact",
+    "preparation_not_complete",
+    "invalid_prepared_request",
+    "prepared_request",
 )
 
 
@@ -162,17 +169,21 @@ def edited_session(previous: dict, revision: str, edits: list) -> tuple[dict, li
 
 
 def execute(
-    request: dict,
+    request: dict | None,
     *,
     store: Path | None = None,
     response_view: str = "full",
     intent: str = "unspecified",
     question: str = "",
     max_bytes: int = clinical_delivery.DEFAULT_BYTES,
+    source_root: Path | None = None,
+    prepared: str | None = None,
     _delivery: dict | None = None,
+    _preparation: dict | None = None,
 ) -> dict:
     """Compute once, retain when requested, and return a full or referenced compact reply."""
     from TrialLedger.layer2 import run
+    from TrialLedger.retained_sources import hydrate_request
 
     if response_view not in ("full", "compact"):
         raise ValueError("unsupported_response_view")
@@ -183,7 +194,17 @@ def execute(
         raise ValueError("compact_requires_artifact_store")
     # Validate presentation before invoking a potentially expensive computation.
     clinical_delivery.present({}, intent=intent, question=question)
+    preparation = deepcopy(_preparation)
+    if prepared is not None:
+        if request is not None:
+            raise ValueError("reason_requires_request_or_prepared")
+        if store is None:
+            raise ValueError("prepared_requires_artifact_store")
+        request, preparation = _prepared_request(store, prepared)
+    request = hydrate_request(cast(dict, request), source_root)
     response = clinical_delivery.present(run(request), intent=intent, question=question)
+    if preparation is not None:
+        response["preparation"] = preparation
     if _delivery is not None:
         response["delivery"] = deepcopy(_delivery)
     if store is None:
@@ -199,6 +220,56 @@ def execute(
     )
 
 
+def prepared_artifact_code(
+    request_operation: str, response_operation: str, code: str, expanded_operation: str
+) -> str:
+    """Admit only a completed typed construction, never an arbitrary saved clinical answer (pure).
+
+    post: __return__ in PREPARED_CODES
+    post: __return__ != 'prepared_request' or request_operation == response_operation == 'prepare'
+    post: __return__ != 'prepared_request' or code == 'complete'
+    """
+    if request_operation != "prepare" or response_operation != "prepare":
+        return "not_preparation_artifact"
+    if code != "complete":
+        return "preparation_not_complete"
+    if expanded_operation not in ("entailment", "design_session"):
+        return "invalid_prepared_request"
+    return "prepared_request"
+
+
+def _prepared_request(store: Path, identity: str) -> tuple[dict, dict]:
+    """Load the exact expansion through the existing immutable artifact verifier."""
+    artifact = reasoning_artifacts.load(store, identity)
+    request, response = artifact["request"], artifact["response"]
+    if not isinstance(request, dict) or not isinstance(response, dict):
+        raise ValueError("not_preparation_artifact")
+    result = response.get("result")
+    expanded = result.get("request") if isinstance(result, dict) else None
+    code = prepared_artifact_code(
+        request.get("operation", ""),
+        response.get("operation", ""),
+        response.get("code", ""),
+        expanded.get("operation", "") if isinstance(expanded, dict) else "",
+    )
+    if code != "prepared_request":
+        raise ValueError(code)
+    if not isinstance(result, dict) or not all(
+        isinstance(result.get(key), list) for key in ("defaults", "origins", "limits_of_claim")
+    ):
+        raise ValueError("invalid_prepared_request")
+    return deepcopy(cast(dict, expanded)), {
+        "artifact": identity,
+        "request_ref": "/response/result/request",
+        "defaults_ref": "/response/result/defaults",
+        "origins_ref": "/response/result/origins",
+        "meaning": "Typed construction, not clinical evidence or authenticated confirmation.",
+        "defaults": deepcopy(result["defaults"]),
+        "origins": deepcopy(result["origins"]),
+        "limits_of_claim": deepcopy(result["limits_of_claim"]),
+    }
+
+
 def revise(
     store: Path,
     identity: str,
@@ -211,6 +282,7 @@ def revise(
     question: str = "",
     max_bytes: int = clinical_delivery.DEFAULT_BYTES,
     prepare_only: bool = False,
+    source_root: Path | None = None,
 ) -> dict:
     """Prepare or run a fresh revision through public retained state, with explicit edits."""
     code = clinical_delivery.compact_budget_code(max_bytes)
@@ -234,6 +306,9 @@ def revise(
         raise ValueError("revision_label_is_in_explicit_session")
     if type(session) is not dict:
         raise ValueError("revision_session_not_an_object")
+    from TrialLedger.retained_sources import hydrate_request
+
+    session = hydrate_request({"operation": "design_session", "session": session}, source_root)["session"]
     request = reasoning_artifacts.revision(store, identity, session)
     if type(prepare_only) is not bool:
         raise ValueError("prepare_only_not_boolean")
@@ -247,4 +322,13 @@ def revise(
         question=question,
         max_bytes=max_bytes,
         _delivery={"previous_artifact": identity, "edits": review},
+        _preparation=(
+            {
+                **deepcopy(prior["response"]["preparation"]),
+                "applies_to": "Construction before later revisions; "
+                "current premises and edits take precedence.",
+            }
+            if isinstance(prior["response"].get("preparation"), dict)
+            else None
+        ),
     )

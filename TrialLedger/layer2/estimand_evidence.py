@@ -46,7 +46,12 @@ INPUTS = {
             "id": "nonempty estimand identity",
             "definitions": "exactly treatment/population/variable/intercurrent_events/summary standing refs",
             "events": "{id,event_ref,strategy,status,resolution,basis}; event_ref is a standing ref",
-            "requirements": "{id,event,variable,window,role,mode,relevance,rule}; rule is a standing ref",
+            "requirements": (
+                "{id,event,variable,window,role,mode,relevance,rule}; rule is a standing ref; variable "
+                "must equal definitions.variable.ref exactly. Component inputs (score, rescue date) "
+                "belong in the explicitly attributed window/requirement definition, "
+                "not a replacement variable."
+            ),
             "collection_plan": "{requirement,action,status,resolution,basis}; action collect/stop/unknown",
             "data_state": "{requirement,mode,state,rule}; rule is a standing ref; facts retain exact modes",
             "dependencies": "null or exact existing dependency input; scope/version must match",

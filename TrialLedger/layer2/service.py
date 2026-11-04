@@ -34,6 +34,7 @@ from TrialLedger.layer2 import (
     interpretations_guide,
     nearmiss,
     profile,
+    request_preparation,
     result_semantics,
     signal_binding_gate,
     signals,
@@ -55,7 +56,8 @@ INPUTS = {
     "describe": {
         "required": (),
         "fields": {
-            "view": "overview, entailment, coordinates, corpus, design_bounds, signals, interpretations, "
+            "view": "overview, prepare, entailment, coordinates, corpus, design_bounds, signals, "
+            "interpretations, "
             "source_assertions, design_session, evidence_requests, delivery, worked_session or full",
             "detail": "card (default), schema or full; full/worked_session views retain their full guide",
         },
@@ -1625,6 +1627,10 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     detail = request.get("detail", "card")
     if not isinstance(detail, str) or detail not in ("card", "schema", "full"):
         raise RequestError("request.detail:unsupported_detail")
+    if view == "prepare":
+        from TrialLedger.layer2.request_preparation import card
+
+        return card(schema=detail == "schema")
     if view not in ("full", "worked_session") and (detail != "full" or view == "delivery"):
         from TrialLedger.reasoning_cards import describe_card
 
@@ -1632,6 +1638,26 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         if card is not None:
             return card
     full = _full_description()
+    full["preparation"] = {
+        "meaning": "Typed construction only, not a clinical reasoning operation. "
+        "No Python builder is needed.",
+        "discovery": {"operation": "describe", "view": "prepare"},
+        "next": "Inspect request, defaults and origins, "
+        "then run the returned request to compute consequences.",
+    }
+    full["input_shapes"]["prepare"] = deepcopy(request_preparation.INPUTS["prepare"])
+    full["examples"]["prepare"] = request_preparation.example()
+    full["example_results"]["prepare"] = "Typed construction only; no clinical answer computed."
+    full["result_guides"]["prepare"] = {
+        "fields": {
+            "request": "Exact runnable expanded request; not computed yet.",
+            "defaults": "Applied defaults with exact pointers and values in this preparation result.",
+            "origins": "Complete supplied criterion origins; "
+            "caller declarations, not authenticated confirmation.",
+            "limits_of_claim": "Structural construction only; "
+            "execute the expanded request to check consequences.",
+        }
+    }
     bounds_guide.extend(full)
     signals_guide.extend(full)
     interpretations_guide.extend(full)
@@ -1831,6 +1857,7 @@ def run(request: object) -> dict[str, Any]:
             return augment(response)
         function = {
             "describe": _describe,
+            "prepare": request_preparation.prepare,
             "entailment": _entailment,
             "coordinates": _coordinates,
             "corpus": _corpus,

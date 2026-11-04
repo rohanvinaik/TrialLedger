@@ -1,8 +1,8 @@
 {
   "scope": "Executed examples only. Call coverage does not certify clinical source meaning or all paths.",
   "module_hashes": {
-    "TrialLedger/cli.py": "7b2aa54edff0ef32f959d10275a83862cbbba6a5b24904e3e84bd93bf49f015a",
-    "TrialLedger/clinical_delivery.py": "be4e4ffaf5b5a3b9ad37b5ba72b574ae250e6605686d053ec8017d59efa0326f",
+    "TrialLedger/cli.py": "fcb572932d002a88f99dc32166f948a7eafe63e4d8560acc17ec070dc9a66be9",
+    "TrialLedger/clinical_delivery.py": "6d228f30ee5154497e34d3bb200c10ad4a19baca75b46635fe7573e0af3ae645",
     "TrialLedger/clinical_display.py": "2dee6d7cdee31476a6c3e396d67642c16012f4a340135d3a11f2aff1e0de0478",
     "TrialLedger/clinical_view.py": "37f93450e0185a1773087ffb709e62ddced9edb1cdc1bae3bf02ed52fe941b13",
     "TrialLedger/doctor.py": "37620b6414f3a03696348bdcbc4c9c43b4c502529227dec5f9f0349e24285e83",
@@ -11,18 +11,19 @@
     "TrialLedger/landscape_warrants.py": "3ca24675269e7917483fe90fc21b3bf5ec578786e46cc5a94d95cb9005b0c7f8",
     "TrialLedger/layer2/admission.py": "269f896c1dd403334d1cb5ede13eac2b392fbb67162d04c5d82341983b5bea5f",
     "TrialLedger/layer2/assertions.py": "9fc3de9086fb8d37cc9a1492657ff78e73c98ea40ea7d46170a5fdb61916000e",
-    "TrialLedger/layer2/clinical_answers.py": "b0846e01c581dcef27fd48e3a89970c41b2d7f1e8c5513c2ec0e7a4bc4843130",
+    "TrialLedger/layer2/clinical_answers.py": "1ec5883bdec0bcf73b4c295320a7632bb8c8f4582f57e0147ee47c1acb25b455",
     "TrialLedger/layer2/coherence.py": "b1ecdbbc7f8f71747031fa6bf5dbb48de6a0e891c9253a3c0a1bb25a841b546e",
     "TrialLedger/layer2/coordinate_admission.py": "b13d1c23b435e8f247872d0262a4e516f2082fbc716a2f25e1449af5bd4b8b35",
     "TrialLedger/layer2/corpus_admission.py": "41f8c9b3749cd0d9e3e9b017d378961874c1f8e50da5ac52e0beee9ba4853699",
     "TrialLedger/layer2/decision_evidence.py": "ad1954321b008317e640a7bf4f2ab64cc72487e97ead6348152249850116f87c",
-    "TrialLedger/layer2/decision_tables.py": "0db593d983a38cee865677f02e6b1f65c709907537a4876f48850bfebbdd3c46",
+    "TrialLedger/layer2/decision_tables.py": "ab9210bee7bb4af53b5ad272b5ecb02c805e82c4e82f64b400d756ac498c8ff6",
+    "TrialLedger/layer2/definition_checks.py": "e2a60412f3b0863b185a29c9d2e094e63a7af7f978a142e1ad548831e09109be",
     "TrialLedger/layer2/dependency_evidence.py": "8dbc3986a0c3dd024ece0f5e05caf3d0affd63b6aa10ff9ae5a8c843d7d8e5cc",
     "TrialLedger/layer2/design_bounds.py": "5157d5aa72f443a524b0d3bd9e6b4d311e0ce0378f2ad09f00f9badb6004dcc7",
-    "TrialLedger/layer2/design_session.py": "c7541cf909448d3454d4bc38ba7bc36f99a97a074bec2b291845c3935b52140a",
-    "TrialLedger/layer2/entail.py": "c6792e82514686a5e6af14e28b79b2a995e68750d15782cd8b86b3e1f5e06ab8",
+    "TrialLedger/layer2/design_session.py": "224f62461e7d690135291638050c1a8a76e05d0575869b71d49a7c49b39d8b8a",
+    "TrialLedger/layer2/entail.py": "48727bc44e4df6933dbb47b73b8eb6aa19063a6b18a4fb58585cce95b39e5249",
     "TrialLedger/layer2/entail_explanations.py": "f3e1e863b3f754affa64adc84077834bf87e46aa6fb137d7c592378b31c716b3",
-    "TrialLedger/layer2/estimand_evidence.py": "31e03b587041d71f90772dcd991d53b3d6ac16346300528a468f228daf17a0aa",
+    "TrialLedger/layer2/estimand_evidence.py": "b8824a44574cb2f81f232378d915761380bd2a046b267965517d1e3a688ce804",
     "TrialLedger/layer2/evidence_requests.py": "ef0e57b3767dc58107848edc9822f8940fdc848194c88355bcea8e5f1d5041e5",
     "TrialLedger/layer2/exception_bounds.py": "f01877917c7f3dbad17c447fd42930516b7ae268276af1915e9e838e5c6c639c",
     "TrialLedger/layer2/expectations.py": "ba12c687a40473eccf7bd1d7b9e243a55838e31ee7b72cee8f9fae3c574903d0",
@@ -33,26 +34,28 @@
     "TrialLedger/layer2/numeric_evidence.py": "ba85ff9b672c03d8cfdce0e4a483cbffd254ad1f0abef3d64e0c23cea0f42e2a",
     "TrialLedger/layer2/profile.py": "5e96e2cfd6cca1603d26320d9bd6be5c38131ea4c02f156d9500616d0e6359d6",
     "TrialLedger/layer2/reasoning_explanations.py": "f2d40afa1e60c72282e774cd180917f8b1a86a0a6f0edf18c8bc34ede8a0a017",
+    "TrialLedger/layer2/request_preparation.py": "b64f36a3de2a6e72e0636bf130e51e84832f97838ddf6194ef9695010ca99c18",
     "TrialLedger/layer2/residual_requirements.py": "fbab70c20c050093c0104df13d4c0257e41a03c2d419d4223e525cfaf8510f42",
-    "TrialLedger/layer2/result_semantics.py": "734085efe7ec08ce84dacb8b0d0c99db99c6a342c66ba348b64e91849b1d2a19",
-    "TrialLedger/layer2/service.py": "24e3f991bd9c90de2d2802a1ecaebf473d5778d83b1ad3ba88440e49b201445a",
+    "TrialLedger/layer2/result_semantics.py": "157a7d024e403462b53066879ec2412a22372b86705a4b8435a73d1cf627c626",
+    "TrialLedger/layer2/service.py": "861689705861f4331fdefd50d716f5a27422c265d7152f09f31e7f1a4f6a74a7",
     "TrialLedger/layer2/session_projections.py": "5d5ac9feb105f4ff955fe3069129cc5c753490ebcd8bf5f4cd93c2f1f37d2a1c",
-    "TrialLedger/layer2/session_state.py": "1685bb010a9f17ad9fd6b03ec0206d83990c563bbcb7ee87cfe0395a185a089c",
+    "TrialLedger/layer2/session_state.py": "e66f39429b141e2e103d4ca91b019215bded6decf432bd03b0fe713319177505",
     "TrialLedger/layer2/signal_binding_gate.py": "902615d1d57540abcf444585b194495277eaf31c4f194425d8a0b36e8737f23e",
     "TrialLedger/layer2/signals.py": "cb6c6d5cefec14f241ffb67ebf04d7be1730cf6e37a6b7394fdfb8eacf16d2b2",
     "TrialLedger/layer2/solver_work.py": "579cf977f67ef23d35c5b053763c8feb2832a53dbe60bf376cac05030f8926dc",
     "TrialLedger/layer2/source_assertions.py": "7830b3c4561cfdb742b9eae4b43bce80ef363e1ad9c255237e2698eb424cbc6b",
     "TrialLedger/layer2/source_evidence.py": "0cd06238c3a1b578ec873dc15e90745f684f6c4818522727e99ad9d494456bf0",
-    "TrialLedger/layer2/stage_evidence.py": "1d00ad113fd6b5ea2c98fcb30eb1e8f7487d0c477d402b690473884324242add",
+    "TrialLedger/layer2/stage_evidence.py": "f17d8052c5478e66fd2fcfb372c4c46b9e79734858924b93bf9cb52d82f1be8f",
     "TrialLedger/layer2/translation_diagnostics.py": "e55eff2cc7c0542017f29497d61cabbd7552b32a095eecc40760399a640c62a2",
-    "TrialLedger/mcp_server.py": "7f07f869f75447d3980c19417e23c865404f76d1667636584b6a135ddb68b84d",
+    "TrialLedger/mcp_server.py": "88f73f13b88133899125d64e57126f521dfa801ab6dd481340ac823726b497b0",
     "TrialLedger/operate.py": "d7c5171d94310c716f30b772d5f5b00ba36bb26787a04db69d6a13edacf087cb",
     "TrialLedger/preview.py": "75dd2dce00b221793d32e9579d936386f46702faeb0203c4bc83f4205dafdcf9",
     "TrialLedger/reasoning_artifacts.py": "1d5b0c8cf0c6c13f45137d9478cd0c8ee30ce32a9b113d3e12843a27ef236158",
-    "TrialLedger/reasoning_cli.py": "0099da27140491121058411e6605ec3f342bb5b98c8d2c3a921f3d96ee00436c",
-    "TrialLedger/reasoning_delivery.py": "e64fb4f96dbe10d9221dc5a27a36f828c512e8e08df6830a6dd3649491f76b09",
-    "TrialLedger/reasoning_mcp.py": "008cdd9ced019d74e881bb527bcfbb3bfe5c09f59b5ccb09d5c4ca6740b7488a",
+    "TrialLedger/reasoning_cli.py": "de0b7a89788c007ad1f1123d502752030a14c37285e78ffe9605449954115188",
+    "TrialLedger/reasoning_delivery.py": "0f9373231981aefae81505f762bb8089ffd0ebb682de92ab6a656e51319b9fb5",
+    "TrialLedger/reasoning_mcp.py": "e669fa64a80da363f85d17f1ce54d200ff6702c6bc533dfba5096a4703bc046f",
     "TrialLedger/record.py": "a3f45bc20eb54af9be2fc963df37e4259d247b8850e01bc5d9d6edccdd4275b0",
+    "TrialLedger/retained_sources.py": "7f5dcc59a063d2e1281ad0cdcbcf846940e221b0be4d87779761fee7e1a83de9",
     "TrialLedger/steps.py": "04adf787833356a44616643749d3ab1691a534699c7bd12591c0f3dc22a1c910",
     "TrialLedger/warrants.py": "03a2669ff257aaed33ec10e21669917c88d982837094b52876bd2523787d622a"
   },
@@ -111,6 +114,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -150,7 +154,9 @@
         "TrialLedger/reasoning_delivery.py::<module>",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::<module>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -407,6 +413,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -550,6 +560,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -615,6 +629,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -667,6 +682,7 @@
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/reasoning_mcp.py::<module>",
         "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/steps.py::<module>",
         "TrialLedger/steps.py::Step",
         "TrialLedger/steps.py::StepError",
@@ -965,6 +981,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -1156,6 +1176,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ],
@@ -1268,7 +1292,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -1614,6 +1639,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/record.py::_unique",
@@ -1705,7 +1734,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -2093,6 +2123,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -2171,7 +2205,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -2487,6 +2522,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -2574,7 +2613,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -2930,6 +2970,795 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
+          "TrialLedger/reasoning_mcp.py::reason",
+          "TrialLedger/reasoning_delivery.py::execute"
+        ]
+      ]
+    },
+    {
+      "case": "discovery:prepare",
+      "mode": "cli",
+      "operation": "prepare",
+      "request_digest": "a5ff276260642e0fcd46fa9c2113306d1f04f62c2d6e24aa52ca4fbbcffb5712",
+      "result_digest": "6255c977ed0319c980267dbd543d1b30ea073364cce02318e06c221dea0a50a3",
+      "entries": [
+        "TrialLedger/cli.py::_reason",
+        "TrialLedger/cli.py::main",
+        "TrialLedger/clinical_delivery.py::augment",
+        "TrialLedger/clinical_delivery.py::augment.<locals>.<genexpr>",
+        "TrialLedger/clinical_delivery.py::compact_budget_code",
+        "TrialLedger/clinical_delivery.py::present",
+        "TrialLedger/landscape_verify.py::strict_json",
+        "TrialLedger/layer2/assertions.py::_Validated.__post_init__",
+        "TrialLedger/layer2/assertions.py::_assertion_problem",
+        "TrialLedger/layer2/assertions.py::_assertion_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::_build",
+        "TrialLedger/layer2/assertions.py::_build.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::_evidence_problem",
+        "TrialLedger/layer2/assertions.py::_evidence_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::_finite",
+        "TrialLedger/layer2/assertions.py::_plain",
+        "TrialLedger/layer2/assertions.py::_value_problem",
+        "TrialLedger/layer2/assertions.py::_value_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::canonical",
+        "TrialLedger/layer2/assertions.py::from_canonical",
+        "TrialLedger/layer2/assertions.py::model_problem",
+        "TrialLedger/layer2/assertions.py::model_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/clinical_answers.py::project",
+        "TrialLedger/layer2/request_preparation.py::_added_defaults",
+        "TrialLedger/layer2/request_preparation.py::_bound",
+        "TrialLedger/layer2/request_preparation.py::_context",
+        "TrialLedger/layer2/request_preparation.py::_criterion",
+        "TrialLedger/layer2/request_preparation.py::_default",
+        "TrialLedger/layer2/request_preparation.py::_fields",
+        "TrialLedger/layer2/request_preparation.py::_literal",
+        "TrialLedger/layer2/request_preparation.py::_model",
+        "TrialLedger/layer2/request_preparation.py::_origin",
+        "TrialLedger/layer2/request_preparation.py::_pointer",
+        "TrialLedger/layer2/request_preparation.py::_rows",
+        "TrialLedger/layer2/request_preparation.py::_take",
+        "TrialLedger/layer2/request_preparation.py::_text",
+        "TrialLedger/layer2/request_preparation.py::_typed",
+        "TrialLedger/layer2/request_preparation.py::compact_node_code",
+        "TrialLedger/layer2/request_preparation.py::prepare",
+        "TrialLedger/layer2/request_preparation.py::proposition",
+        "TrialLedger/layer2/result_semantics.py::metadata",
+        "TrialLedger/layer2/service.py::run",
+        "TrialLedger/layer2/session_state.py::canonical",
+        "TrialLedger/layer2/session_state.py::digest",
+        "TrialLedger/layer2/source_evidence.py::_json_copy",
+        "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.encoded",
+        "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.spend",
+        "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+        "TrialLedger/layer2/source_evidence.py::_selected",
+        "TrialLedger/layer2/source_evidence.py::pointer_state",
+        "TrialLedger/layer2/source_evidence.py::pointer_tokens",
+        "TrialLedger/layer2/source_evidence.py::pointer_tokens.<locals>.<genexpr>",
+        "TrialLedger/reasoning_cli.py::configure",
+        "TrialLedger/reasoning_delivery.py::execute",
+        "TrialLedger/record.py::_unique",
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
+      ],
+      "edges": [
+        [
+          "TrialLedger/cli.py::_reason",
+          "TrialLedger/landscape_verify.py::strict_json"
+        ],
+        [
+          "TrialLedger/cli.py::_reason",
+          "TrialLedger/reasoning_delivery.py::execute"
+        ],
+        [
+          "TrialLedger/cli.py::main",
+          "TrialLedger/cli.py::_reason"
+        ],
+        [
+          "TrialLedger/cli.py::main",
+          "TrialLedger/reasoning_cli.py::configure"
+        ],
+        [
+          "TrialLedger/clinical_delivery.py::augment",
+          "TrialLedger/layer2/clinical_answers.py::project"
+        ],
+        [
+          "TrialLedger/clinical_delivery.py::augment",
+          "TrialLedger/layer2/session_state.py::digest"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_Validated.__post_init__",
+          "TrialLedger/layer2/assertions.py::model_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_assertion_problem",
+          "TrialLedger/layer2/assertions.py::_assertion_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_build",
+          "TrialLedger/layer2/assertions.py::_build"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_build",
+          "TrialLedger/layer2/assertions.py::_build.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_build.<locals>.<genexpr>",
+          "TrialLedger/layer2/assertions.py::_build"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_evidence_problem",
+          "TrialLedger/layer2/assertions.py::_evidence_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_plain",
+          "TrialLedger/layer2/assertions.py::_plain"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_value_problem",
+          "TrialLedger/layer2/assertions.py::_value_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_value_problem.<locals>.<genexpr>",
+          "TrialLedger/layer2/assertions.py::_finite"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::canonical",
+          "TrialLedger/layer2/assertions.py::_plain"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::from_canonical",
+          "TrialLedger/layer2/assertions.py::_build"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::_assertion_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::_evidence_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::_value_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::model_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/clinical_answers.py::project",
+          "TrialLedger/layer2/result_semantics.py::metadata"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_added_defaults",
+          "TrialLedger/layer2/request_preparation.py::_added_defaults"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_added_defaults",
+          "TrialLedger/layer2/request_preparation.py::_default"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_added_defaults",
+          "TrialLedger/layer2/request_preparation.py::_pointer"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_context",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_context",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_model"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_origin"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_text"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_typed"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::proposition"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_model"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_pointer"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_typed"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_model",
+          "TrialLedger/layer2/assertions.py::canonical"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_model",
+          "TrialLedger/layer2/assertions.py::from_canonical"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_model",
+          "TrialLedger/layer2/request_preparation.py::_added_defaults"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_origin",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_origin",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_origin",
+          "TrialLedger/layer2/request_preparation.py::_text"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_take",
+          "TrialLedger/layer2/request_preparation.py::_default"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_take",
+          "TrialLedger/layer2/request_preparation.py::_pointer"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_typed",
+          "TrialLedger/layer2/request_preparation.py::_model"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_bound"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_context"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_criterion"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_rows"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::proposition"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/source_evidence.py::_json_copy"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/source_evidence.py::_selected"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::proposition",
+          "TrialLedger/layer2/request_preparation.py::_literal"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::proposition",
+          "TrialLedger/layer2/request_preparation.py::compact_node_code"
+        ],
+        [
+          "TrialLedger/layer2/service.py::run",
+          "TrialLedger/clinical_delivery.py::augment"
+        ],
+        [
+          "TrialLedger/layer2/service.py::run",
+          "TrialLedger/layer2/request_preparation.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/service.py::run",
+          "TrialLedger/layer2/result_semantics.py::metadata"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::digest",
+          "TrialLedger/layer2/session_state.py::canonical"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.encoded"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.spend"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_selected",
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens",
+          "TrialLedger/layer2/source_evidence.py::pointer_state"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens",
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/clinical_delivery.py::compact_budget_code"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/clinical_delivery.py::present"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
+          "TrialLedger/record.py::_unique",
+          "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        ]
+      ]
+    },
+    {
+      "case": "discovery:prepare",
+      "mode": "mcp",
+      "operation": "prepare",
+      "request_digest": "a5ff276260642e0fcd46fa9c2113306d1f04f62c2d6e24aa52ca4fbbcffb5712",
+      "result_digest": "6255c977ed0319c980267dbd543d1b30ea073364cce02318e06c221dea0a50a3",
+      "entries": [
+        "TrialLedger/cli.py::_mcp",
+        "TrialLedger/cli.py::main",
+        "TrialLedger/clinical_delivery.py::augment",
+        "TrialLedger/clinical_delivery.py::augment.<locals>.<genexpr>",
+        "TrialLedger/clinical_delivery.py::compact_budget_code",
+        "TrialLedger/clinical_delivery.py::present",
+        "TrialLedger/layer2/assertions.py::_Validated.__post_init__",
+        "TrialLedger/layer2/assertions.py::_assertion_problem",
+        "TrialLedger/layer2/assertions.py::_assertion_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::_build",
+        "TrialLedger/layer2/assertions.py::_build.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::_evidence_problem",
+        "TrialLedger/layer2/assertions.py::_evidence_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::_finite",
+        "TrialLedger/layer2/assertions.py::_plain",
+        "TrialLedger/layer2/assertions.py::_value_problem",
+        "TrialLedger/layer2/assertions.py::_value_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/assertions.py::canonical",
+        "TrialLedger/layer2/assertions.py::from_canonical",
+        "TrialLedger/layer2/assertions.py::model_problem",
+        "TrialLedger/layer2/assertions.py::model_problem.<locals>.<genexpr>",
+        "TrialLedger/layer2/clinical_answers.py::project",
+        "TrialLedger/layer2/request_preparation.py::_added_defaults",
+        "TrialLedger/layer2/request_preparation.py::_bound",
+        "TrialLedger/layer2/request_preparation.py::_context",
+        "TrialLedger/layer2/request_preparation.py::_criterion",
+        "TrialLedger/layer2/request_preparation.py::_default",
+        "TrialLedger/layer2/request_preparation.py::_fields",
+        "TrialLedger/layer2/request_preparation.py::_literal",
+        "TrialLedger/layer2/request_preparation.py::_model",
+        "TrialLedger/layer2/request_preparation.py::_origin",
+        "TrialLedger/layer2/request_preparation.py::_pointer",
+        "TrialLedger/layer2/request_preparation.py::_rows",
+        "TrialLedger/layer2/request_preparation.py::_take",
+        "TrialLedger/layer2/request_preparation.py::_text",
+        "TrialLedger/layer2/request_preparation.py::_typed",
+        "TrialLedger/layer2/request_preparation.py::compact_node_code",
+        "TrialLedger/layer2/request_preparation.py::prepare",
+        "TrialLedger/layer2/request_preparation.py::proposition",
+        "TrialLedger/layer2/result_semantics.py::metadata",
+        "TrialLedger/layer2/service.py::run",
+        "TrialLedger/layer2/session_state.py::canonical",
+        "TrialLedger/layer2/session_state.py::digest",
+        "TrialLedger/layer2/source_evidence.py::_json_copy",
+        "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.encoded",
+        "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.spend",
+        "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+        "TrialLedger/layer2/source_evidence.py::_selected",
+        "TrialLedger/layer2/source_evidence.py::pointer_state",
+        "TrialLedger/layer2/source_evidence.py::pointer_tokens",
+        "TrialLedger/layer2/source_evidence.py::pointer_tokens.<locals>.<genexpr>",
+        "TrialLedger/mcp_server.py::_reason",
+        "TrialLedger/mcp_server.py::_text",
+        "TrialLedger/mcp_server.py::answer",
+        "TrialLedger/mcp_server.py::argument_problems",
+        "TrialLedger/mcp_server.py::argument_problems.<locals>.<genexpr>",
+        "TrialLedger/mcp_server.py::call_target",
+        "TrialLedger/mcp_server.py::call_tool",
+        "TrialLedger/mcp_server.py::negotiate",
+        "TrialLedger/mcp_server.py::route",
+        "TrialLedger/mcp_server.py::serve",
+        "TrialLedger/mcp_server.py::wire",
+        "TrialLedger/reasoning_cli.py::configure",
+        "TrialLedger/reasoning_delivery.py::execute",
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
+      ],
+      "edges": [
+        [
+          "TrialLedger/cli.py::_mcp",
+          "TrialLedger/mcp_server.py::serve"
+        ],
+        [
+          "TrialLedger/cli.py::main",
+          "TrialLedger/cli.py::_mcp"
+        ],
+        [
+          "TrialLedger/cli.py::main",
+          "TrialLedger/reasoning_cli.py::configure"
+        ],
+        [
+          "TrialLedger/clinical_delivery.py::augment",
+          "TrialLedger/layer2/clinical_answers.py::project"
+        ],
+        [
+          "TrialLedger/clinical_delivery.py::augment",
+          "TrialLedger/layer2/session_state.py::digest"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_Validated.__post_init__",
+          "TrialLedger/layer2/assertions.py::model_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_assertion_problem",
+          "TrialLedger/layer2/assertions.py::_assertion_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_build",
+          "TrialLedger/layer2/assertions.py::_build"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_build",
+          "TrialLedger/layer2/assertions.py::_build.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_build.<locals>.<genexpr>",
+          "TrialLedger/layer2/assertions.py::_build"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_evidence_problem",
+          "TrialLedger/layer2/assertions.py::_evidence_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_plain",
+          "TrialLedger/layer2/assertions.py::_plain"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_value_problem",
+          "TrialLedger/layer2/assertions.py::_value_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::_value_problem.<locals>.<genexpr>",
+          "TrialLedger/layer2/assertions.py::_finite"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::canonical",
+          "TrialLedger/layer2/assertions.py::_plain"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::from_canonical",
+          "TrialLedger/layer2/assertions.py::_build"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::_assertion_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::_evidence_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::_value_problem"
+        ],
+        [
+          "TrialLedger/layer2/assertions.py::model_problem",
+          "TrialLedger/layer2/assertions.py::model_problem.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/clinical_answers.py::project",
+          "TrialLedger/layer2/result_semantics.py::metadata"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_added_defaults",
+          "TrialLedger/layer2/request_preparation.py::_added_defaults"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_added_defaults",
+          "TrialLedger/layer2/request_preparation.py::_default"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_added_defaults",
+          "TrialLedger/layer2/request_preparation.py::_pointer"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_context",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_context",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_model"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_origin"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_text"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::_typed"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_criterion",
+          "TrialLedger/layer2/request_preparation.py::proposition"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_model"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_pointer"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_literal",
+          "TrialLedger/layer2/request_preparation.py::_typed"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_model",
+          "TrialLedger/layer2/assertions.py::canonical"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_model",
+          "TrialLedger/layer2/assertions.py::from_canonical"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_model",
+          "TrialLedger/layer2/request_preparation.py::_added_defaults"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_origin",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_origin",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_origin",
+          "TrialLedger/layer2/request_preparation.py::_text"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_take",
+          "TrialLedger/layer2/request_preparation.py::_default"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_take",
+          "TrialLedger/layer2/request_preparation.py::_pointer"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::_typed",
+          "TrialLedger/layer2/request_preparation.py::_model"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_bound"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_context"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_criterion"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_fields"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_rows"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::_take"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/request_preparation.py::proposition"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/source_evidence.py::_json_copy"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::prepare",
+          "TrialLedger/layer2/source_evidence.py::_selected"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::proposition",
+          "TrialLedger/layer2/request_preparation.py::_literal"
+        ],
+        [
+          "TrialLedger/layer2/request_preparation.py::proposition",
+          "TrialLedger/layer2/request_preparation.py::compact_node_code"
+        ],
+        [
+          "TrialLedger/layer2/service.py::run",
+          "TrialLedger/clinical_delivery.py::augment"
+        ],
+        [
+          "TrialLedger/layer2/service.py::run",
+          "TrialLedger/layer2/request_preparation.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/service.py::run",
+          "TrialLedger/layer2/result_semantics.py::metadata"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::digest",
+          "TrialLedger/layer2/session_state.py::canonical"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.encoded"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.spend"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk",
+          "TrialLedger/layer2/source_evidence.py::_json_copy.<locals>.walk"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::_selected",
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens",
+          "TrialLedger/layer2/source_evidence.py::pointer_state"
+        ],
+        [
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens",
+          "TrialLedger/layer2/source_evidence.py::pointer_tokens.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/mcp_server.py::_reason",
+          "TrialLedger/reasoning_mcp.py::reason"
+        ],
+        [
+          "TrialLedger/mcp_server.py::answer",
+          "TrialLedger/mcp_server.py::call_tool"
+        ],
+        [
+          "TrialLedger/mcp_server.py::answer",
+          "TrialLedger/mcp_server.py::negotiate"
+        ],
+        [
+          "TrialLedger/mcp_server.py::answer",
+          "TrialLedger/mcp_server.py::route"
+        ],
+        [
+          "TrialLedger/mcp_server.py::argument_problems",
+          "TrialLedger/mcp_server.py::argument_problems.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/mcp_server.py::call_tool",
+          "TrialLedger/mcp_server.py::_reason"
+        ],
+        [
+          "TrialLedger/mcp_server.py::call_tool",
+          "TrialLedger/mcp_server.py::_text"
+        ],
+        [
+          "TrialLedger/mcp_server.py::call_tool",
+          "TrialLedger/mcp_server.py::argument_problems"
+        ],
+        [
+          "TrialLedger/mcp_server.py::call_tool",
+          "TrialLedger/mcp_server.py::call_target"
+        ],
+        [
+          "TrialLedger/mcp_server.py::serve",
+          "TrialLedger/mcp_server.py::answer"
+        ],
+        [
+          "TrialLedger/mcp_server.py::serve",
+          "TrialLedger/mcp_server.py::wire"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/clinical_delivery.py::compact_budget_code"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/clinical_delivery.py::present"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -2998,6 +3827,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -3068,7 +3898,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -3374,6 +4205,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -3780,6 +4615,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -3847,6 +4686,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -3927,7 +4767,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -4229,6 +5070,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -4679,6 +5524,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -4765,7 +5614,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -5117,6 +5967,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -5212,7 +6066,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -5602,6 +6457,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -5667,6 +6526,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -5757,7 +6617,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -6039,6 +6900,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -6597,6 +7462,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -6659,6 +7528,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -6759,7 +7629,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -7037,6 +7908,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -7637,6 +8512,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -7701,6 +8580,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -7822,6 +8702,8 @@
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
         "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -8106,6 +8988,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -8900,8 +9786,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -8969,6 +9863,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -9100,6 +9995,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -9380,6 +10277,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -10218,8 +11119,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -10298,6 +11207,8 @@
         "TrialLedger/layer2/clinical_answers.py::change_projection",
         "TrialLedger/layer2/clinical_answers.py::project",
         "TrialLedger/layer2/decision_evidence.py::locate",
+        "TrialLedger/layer2/definition_checks.py::prepare",
+        "TrialLedger/layer2/definition_checks.py::run",
         "TrialLedger/layer2/design_session.py::_accepted_decision",
         "TrialLedger/layer2/design_session.py::_child",
         "TrialLedger/layer2/design_session.py::_decision_support",
@@ -10335,6 +11246,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -10437,7 +11349,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -10946,6 +11859,10 @@
         ],
         [
           "TrialLedger/layer2/design_session.py::replay",
+          "TrialLedger/layer2/definition_checks.py::run"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::replay",
           "TrialLedger/layer2/design_session.py::_child"
         ],
         [
@@ -11087,6 +12004,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -11498,6 +12419,10 @@
         ],
         [
           "TrialLedger/layer2/session_state.py::prepare",
+          "TrialLedger/layer2/definition_checks.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::prepare",
           "TrialLedger/layer2/session_state.py::_decision_index"
         ],
         [
@@ -11707,6 +12632,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/record.py::_unique",
@@ -11780,6 +12709,8 @@
         "TrialLedger/layer2/clinical_answers.py::change_projection",
         "TrialLedger/layer2/clinical_answers.py::project",
         "TrialLedger/layer2/decision_evidence.py::locate",
+        "TrialLedger/layer2/definition_checks.py::prepare",
+        "TrialLedger/layer2/definition_checks.py::run",
         "TrialLedger/layer2/design_session.py::_accepted_decision",
         "TrialLedger/layer2/design_session.py::_child",
         "TrialLedger/layer2/design_session.py::_decision_support",
@@ -11817,6 +12748,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -11929,7 +12861,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -12434,6 +13367,10 @@
         ],
         [
           "TrialLedger/layer2/design_session.py::replay",
+          "TrialLedger/layer2/definition_checks.py::run"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::replay",
           "TrialLedger/layer2/design_session.py::_child"
         ],
         [
@@ -12575,6 +13512,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -12986,6 +13927,10 @@
         ],
         [
           "TrialLedger/layer2/session_state.py::prepare",
+          "TrialLedger/layer2/definition_checks.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::prepare",
           "TrialLedger/layer2/session_state.py::_decision_index"
         ],
         [
@@ -13241,6 +14186,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -13251,7 +14200,7 @@
       "mode": "cli",
       "operation": "evidence_requests",
       "request_digest": "3c267608c005f406793178f54d7447fe68717737ceeecd3e1a200a59b55ca6ea",
-      "result_digest": "d85b477f150e8acf4288cbde61c2b877ed91f6641eb2452d03523c6e0cd93c65",
+      "result_digest": "16c5092434f049206c3097389a948a8a5d2ac210daf852313de4a25177ad2609",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -13305,6 +14254,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -13393,7 +14343,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -13678,6 +14629,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -13735,6 +14690,10 @@
         [
           "TrialLedger/layer2/entail.py::eligibility_witness",
           "TrialLedger/layer2/entail.py::weakest_status"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::eligibility_witness.<locals>.<genexpr>",
+          "TrialLedger/layer2/entail.py::assertion_formula"
         ],
         [
           "TrialLedger/layer2/entail.py::proposition_formula",
@@ -14173,6 +15132,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -14183,7 +15146,7 @@
       "mode": "mcp",
       "operation": "evidence_requests",
       "request_digest": "3c267608c005f406793178f54d7447fe68717737ceeecd3e1a200a59b55ca6ea",
-      "result_digest": "d85b477f150e8acf4288cbde61c2b877ed91f6641eb2452d03523c6e0cd93c65",
+      "result_digest": "16c5092434f049206c3097389a948a8a5d2ac210daf852313de4a25177ad2609",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -14236,6 +15199,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -14334,7 +15298,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -14615,6 +15580,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -14672,6 +15641,10 @@
         [
           "TrialLedger/layer2/entail.py::eligibility_witness",
           "TrialLedger/layer2/entail.py::weakest_status"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::eligibility_witness.<locals>.<genexpr>",
+          "TrialLedger/layer2/entail.py::assertion_formula"
         ],
         [
           "TrialLedger/layer2/entail.py::proposition_formula",
@@ -15154,6 +16127,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -15219,6 +16196,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -15330,6 +16308,7 @@
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
         "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -15626,6 +16605,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -16312,6 +17295,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ],
@@ -16384,6 +17371,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -16505,6 +17493,7 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -16797,6 +17786,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -17527,6 +18520,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ],
@@ -17545,7 +18542,7 @@
       "mode": "cli",
       "operation": "signals",
       "request_digest": "1263ca65bc50059d16e5a4a3c3f8f8de6a5d27a8e1977117f0572d239cb2835e",
-      "result_digest": "e0e0f623ab381bd75eb0ea45f3cdbe7caf58225c31dbadc90d36211c5dcce7bd",
+      "result_digest": "3a714f67884c45be7b9a0083bdb3700a814c749fbaeeba45bafec286af6739bc",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -17638,7 +18635,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -18128,6 +19126,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/record.py::_unique",
@@ -18140,7 +19142,7 @@
       "mode": "mcp",
       "operation": "signals",
       "request_digest": "1263ca65bc50059d16e5a4a3c3f8f8de6a5d27a8e1977117f0572d239cb2835e",
-      "result_digest": "e0e0f623ab381bd75eb0ea45f3cdbe7caf58225c31dbadc90d36211c5dcce7bd",
+      "result_digest": "3a714f67884c45be7b9a0083bdb3700a814c749fbaeeba45bafec286af6739bc",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -18242,7 +19244,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -18774,6 +19777,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -18784,7 +19791,7 @@
       "mode": "cli",
       "operation": "design_session",
       "request_digest": "c3e86f1196bd06fd2f199aaee50cbdda0b52f7e9d4b34641c971e807de9f0542",
-      "result_digest": "a291044759264f535c248acc7d29f506ade4917e72b886754036b289c9338535",
+      "result_digest": "a4a21997acc01182c866f8dc8fa382b4568f1644bf4b9185a5656655f2ddab15",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -18847,6 +19854,8 @@
         "TrialLedger/layer2/clinical_answers.py::change_projection",
         "TrialLedger/layer2/clinical_answers.py::project",
         "TrialLedger/layer2/decision_evidence.py::locate",
+        "TrialLedger/layer2/definition_checks.py::prepare",
+        "TrialLedger/layer2/definition_checks.py::run",
         "TrialLedger/layer2/design_session.py::_accepted_decision",
         "TrialLedger/layer2/design_session.py::_analysis_answer",
         "TrialLedger/layer2/design_session.py::_analysis_answer.<locals>.<genexpr>",
@@ -18854,6 +19863,7 @@
         "TrialLedger/layer2/design_session.py::_answer_diff.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_child",
         "TrialLedger/layer2/design_session.py::_decision_answer",
+        "TrialLedger/layer2/design_session.py::_decision_answer.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_decision_support",
         "TrialLedger/layer2/design_session.py::_decision_support.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_decision_support.<locals>.<lambda>",
@@ -18892,6 +19902,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -18995,7 +20006,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -19387,6 +20399,10 @@
           "TrialLedger/layer2/clinical_answers.py::change_projection"
         ],
         [
+          "TrialLedger/layer2/design_session.py::_decision_answer",
+          "TrialLedger/layer2/design_session.py::_decision_answer.<locals>.<genexpr>"
+        ],
+        [
           "TrialLedger/layer2/design_session.py::_decision_support",
           "TrialLedger/layer2/design_session.py::_decision_support.<locals>.<genexpr>"
         ],
@@ -19552,6 +20568,10 @@
         ],
         [
           "TrialLedger/layer2/design_session.py::replay",
+          "TrialLedger/layer2/definition_checks.py::run"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::replay",
           "TrialLedger/layer2/design_session.py::_child"
         ],
         [
@@ -19701,6 +20721,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -20112,6 +21136,10 @@
         ],
         [
           "TrialLedger/layer2/session_state.py::prepare",
+          "TrialLedger/layer2/definition_checks.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::prepare",
           "TrialLedger/layer2/session_state.py::_decision_index"
         ],
         [
@@ -20323,6 +21351,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -20333,7 +21365,7 @@
       "mode": "mcp",
       "operation": "design_session",
       "request_digest": "c3e86f1196bd06fd2f199aaee50cbdda0b52f7e9d4b34641c971e807de9f0542",
-      "result_digest": "a291044759264f535c248acc7d29f506ade4917e72b886754036b289c9338535",
+      "result_digest": "a4a21997acc01182c866f8dc8fa382b4568f1644bf4b9185a5656655f2ddab15",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -20395,6 +21427,8 @@
         "TrialLedger/layer2/clinical_answers.py::change_projection",
         "TrialLedger/layer2/clinical_answers.py::project",
         "TrialLedger/layer2/decision_evidence.py::locate",
+        "TrialLedger/layer2/definition_checks.py::prepare",
+        "TrialLedger/layer2/definition_checks.py::run",
         "TrialLedger/layer2/design_session.py::_accepted_decision",
         "TrialLedger/layer2/design_session.py::_analysis_answer",
         "TrialLedger/layer2/design_session.py::_analysis_answer.<locals>.<genexpr>",
@@ -20402,6 +21436,7 @@
         "TrialLedger/layer2/design_session.py::_answer_diff.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_child",
         "TrialLedger/layer2/design_session.py::_decision_answer",
+        "TrialLedger/layer2/design_session.py::_decision_answer.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_decision_support",
         "TrialLedger/layer2/design_session.py::_decision_support.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_decision_support.<locals>.<lambda>",
@@ -20440,6 +21475,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -20553,7 +21589,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -20941,6 +21978,10 @@
           "TrialLedger/layer2/clinical_answers.py::change_projection"
         ],
         [
+          "TrialLedger/layer2/design_session.py::_decision_answer",
+          "TrialLedger/layer2/design_session.py::_decision_answer.<locals>.<genexpr>"
+        ],
+        [
           "TrialLedger/layer2/design_session.py::_decision_support",
           "TrialLedger/layer2/design_session.py::_decision_support.<locals>.<genexpr>"
         ],
@@ -21106,6 +22147,10 @@
         ],
         [
           "TrialLedger/layer2/design_session.py::replay",
+          "TrialLedger/layer2/definition_checks.py::run"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::replay",
           "TrialLedger/layer2/design_session.py::_child"
         ],
         [
@@ -21255,6 +22300,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -21666,6 +22715,10 @@
         ],
         [
           "TrialLedger/layer2/session_state.py::prepare",
+          "TrialLedger/layer2/definition_checks.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::prepare",
           "TrialLedger/layer2/session_state.py::_decision_index"
         ],
         [
@@ -21921,6 +22974,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -21931,7 +22988,7 @@
       "mode": "cli",
       "operation": "design_bounds",
       "request_digest": "5d39fe1b80af2c006a3b770f6cc05c0446b8e06984344fce3a4338282e80cefc",
-      "result_digest": "d0b2317d927178ca27b3e01ec5c79388a087c8fbe8898974e4c521ec09bc9102",
+      "result_digest": "e9f8c3a5ef01a63463847e5c6d01b9d48b865368791d66af58735633ddfce188",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -21975,6 +23032,7 @@
         "TrialLedger/layer2/entail.py::_holds",
         "TrialLedger/layer2/entail.py::_literal_formula",
         "TrialLedger/layer2/entail.py::_measured",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::decide",
@@ -22067,7 +23125,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -22285,6 +23344,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_components"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -22819,6 +23882,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -22829,7 +23896,7 @@
       "mode": "mcp",
       "operation": "design_bounds",
       "request_digest": "5d39fe1b80af2c006a3b770f6cc05c0446b8e06984344fce3a4338282e80cefc",
-      "result_digest": "d0b2317d927178ca27b3e01ec5c79388a087c8fbe8898974e4c521ec09bc9102",
+      "result_digest": "e9f8c3a5ef01a63463847e5c6d01b9d48b865368791d66af58735633ddfce188",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -22872,6 +23939,7 @@
         "TrialLedger/layer2/entail.py::_holds",
         "TrialLedger/layer2/entail.py::_literal_formula",
         "TrialLedger/layer2/entail.py::_measured",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::decide",
@@ -22974,7 +24042,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -23188,6 +24257,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_components"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -23766,6 +24839,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -23852,7 +24929,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -24204,6 +25282,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -24299,7 +25381,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -24691,6 +25774,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -24776,7 +25863,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -25124,6 +26212,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -25218,7 +26310,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -25606,6 +26699,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -25690,7 +26787,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -26030,6 +27128,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -26123,7 +27225,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -26501,6 +27604,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -26588,7 +27695,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -26952,6 +28060,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -27046,7 +28158,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -27450,6 +28563,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -27534,7 +28651,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -27890,6 +29008,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -27983,7 +29105,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -28379,6 +29502,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -28462,7 +29589,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -28802,6 +29930,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -28894,7 +30026,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -29274,6 +30407,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -29355,7 +30492,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -29687,6 +30825,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -29777,7 +30919,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -30147,6 +31290,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -30236,7 +31383,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -30624,6 +31772,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -30720,7 +31872,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -31146,6 +32299,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -31158,7 +32315,7 @@
       "mode": "cli",
       "operation": "signals",
       "request_digest": "9da341170dd8a2bb5fd1a66d530a6577706f79da624eff582f8d39f7bf09f379",
-      "result_digest": "3ee8dc8404b804a2601e10010f0e24cab350763646b2cce0a26230a782bf62b5",
+      "result_digest": "e8a540cd80edd7d0d783d26b7aed9e730a4ff34b6fb1445e2b98fa01712d625c",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -31248,7 +32405,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -31708,6 +32866,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -31718,7 +32880,7 @@
       "mode": "mcp",
       "operation": "signals",
       "request_digest": "9da341170dd8a2bb5fd1a66d530a6577706f79da624eff582f8d39f7bf09f379",
-      "result_digest": "3ee8dc8404b804a2601e10010f0e24cab350763646b2cce0a26230a782bf62b5",
+      "result_digest": "e8a540cd80edd7d0d783d26b7aed9e730a4ff34b6fb1445e2b98fa01712d625c",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -31817,7 +32979,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -32317,6 +33480,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -32327,7 +33494,7 @@
       "mode": "cli",
       "operation": "signals",
       "request_digest": "5dc31955adcfd051c612473ce8a9c6d1a112ef995dab7d700d00f833102cc9b2",
-      "result_digest": "64ee85fb17f52d22b2190adcf32071fe7039f9128d47c77ba2515480c0e020f3",
+      "result_digest": "a435ba88d0e978385799939eea46f2c730c23fd36c5fbb547419dfc626c60a22",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -32370,17 +33537,27 @@
         "TrialLedger/layer2/decision_tables.py::_assertion",
         "TrialLedger/layer2/decision_tables.py::_bounded_input",
         "TrialLedger/layer2/decision_tables.py::_bounded_input.<locals>.<genexpr>",
+        "TrialLedger/layer2/decision_tables.py::_case_issues",
+        "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+        "TrialLedger/layer2/decision_tables.py::_case_witnesses.<locals>.<genexpr>",
+        "TrialLedger/layer2/decision_tables.py::_check_prohibitions",
+        "TrialLedger/layer2/decision_tables.py::_domain_options",
         "TrialLedger/layer2/decision_tables.py::_domains",
         "TrialLedger/layer2/decision_tables.py::_domains.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_evaluate",
         "TrialLedger/layer2/decision_tables.py::_evaluate.<locals>.<genexpr>",
+        "TrialLedger/layer2/decision_tables.py::_formula_work",
+        "TrialLedger/layer2/decision_tables.py::_formula_work.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_join",
         "TrialLedger/layer2/decision_tables.py::_keys",
         "TrialLedger/layer2/decision_tables.py::_keys.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_limits",
         "TrialLedger/layer2/decision_tables.py::_object",
+        "TrialLedger/layer2/decision_tables.py::_prohibitions",
         "TrialLedger/layer2/decision_tables.py::_proposition",
         "TrialLedger/layer2/decision_tables.py::_rows",
+        "TrialLedger/layer2/decision_tables.py::_table_inputs",
+        "TrialLedger/layer2/decision_tables.py::_table_inputs.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_text",
         "TrialLedger/layer2/decision_tables.py::evaluate",
         "TrialLedger/layer2/decision_tables.py::table_check_state",
@@ -32397,6 +33574,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -32442,7 +33620,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -32634,6 +33813,38 @@
           "TrialLedger/layer2/decision_tables.py::_bounded_input.<locals>.<genexpr>"
         ],
         [
+          "TrialLedger/layer2/decision_tables.py::_case_issues",
+          "TrialLedger/layer2/entail.py::_holds"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/decision_tables.py::_case_issues"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/decision_tables.py::_domain_options"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/entail.py::proposition_formula"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses.<locals>.<genexpr>",
+          "TrialLedger/layer2/decision_tables.py::_formula_work"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_domain_options",
+          "TrialLedger/layer2/decision_tables.py::_keys"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_domain_options",
+          "TrialLedger/layer2/decision_tables.py::_proposition"
+        ],
+        [
           "TrialLedger/layer2/decision_tables.py::_domains",
           "TrialLedger/layer2/assertions.py::canonical"
         ],
@@ -32683,11 +33894,11 @@
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_bounded_input"
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_domains"
+          "TrialLedger/layer2/decision_tables.py::_check_prohibitions"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
@@ -32699,31 +33910,19 @@
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_keys"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_limits"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_object"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_proposition"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_rows"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_text"
+          "TrialLedger/layer2/decision_tables.py::_table_inputs"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
           "TrialLedger/layer2/decision_tables.py::table_state"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_formula_work",
+          "TrialLedger/layer2/decision_tables.py::_formula_work.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_formula_work.<locals>.<genexpr>",
+          "TrialLedger/layer2/decision_tables.py::_formula_work"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_keys",
@@ -32742,12 +33941,56 @@
           "TrialLedger/layer2/decision_tables.py::_object"
         ],
         [
+          "TrialLedger/layer2/decision_tables.py::_prohibitions",
+          "TrialLedger/layer2/decision_tables.py::_rows"
+        ],
+        [
           "TrialLedger/layer2/decision_tables.py::_proposition",
           "TrialLedger/layer2/assertions.py::from_canonical"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_proposition",
           "TrialLedger/layer2/entail.py::proposition_formula"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_bounded_input"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_domains"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_keys"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_limits"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_object"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_prohibitions"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_proposition"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_rows"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_table_inputs.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_text"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::evaluate",
@@ -32844,6 +34087,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -33042,6 +34289,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -33052,7 +34303,7 @@
       "mode": "mcp",
       "operation": "signals",
       "request_digest": "5dc31955adcfd051c612473ce8a9c6d1a112ef995dab7d700d00f833102cc9b2",
-      "result_digest": "64ee85fb17f52d22b2190adcf32071fe7039f9128d47c77ba2515480c0e020f3",
+      "result_digest": "a435ba88d0e978385799939eea46f2c730c23fd36c5fbb547419dfc626c60a22",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -33094,17 +34345,27 @@
         "TrialLedger/layer2/decision_tables.py::_assertion",
         "TrialLedger/layer2/decision_tables.py::_bounded_input",
         "TrialLedger/layer2/decision_tables.py::_bounded_input.<locals>.<genexpr>",
+        "TrialLedger/layer2/decision_tables.py::_case_issues",
+        "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+        "TrialLedger/layer2/decision_tables.py::_case_witnesses.<locals>.<genexpr>",
+        "TrialLedger/layer2/decision_tables.py::_check_prohibitions",
+        "TrialLedger/layer2/decision_tables.py::_domain_options",
         "TrialLedger/layer2/decision_tables.py::_domains",
         "TrialLedger/layer2/decision_tables.py::_domains.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_evaluate",
         "TrialLedger/layer2/decision_tables.py::_evaluate.<locals>.<genexpr>",
+        "TrialLedger/layer2/decision_tables.py::_formula_work",
+        "TrialLedger/layer2/decision_tables.py::_formula_work.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_join",
         "TrialLedger/layer2/decision_tables.py::_keys",
         "TrialLedger/layer2/decision_tables.py::_keys.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_limits",
         "TrialLedger/layer2/decision_tables.py::_object",
+        "TrialLedger/layer2/decision_tables.py::_prohibitions",
         "TrialLedger/layer2/decision_tables.py::_proposition",
         "TrialLedger/layer2/decision_tables.py::_rows",
+        "TrialLedger/layer2/decision_tables.py::_table_inputs",
+        "TrialLedger/layer2/decision_tables.py::_table_inputs.<locals>.<genexpr>",
         "TrialLedger/layer2/decision_tables.py::_text",
         "TrialLedger/layer2/decision_tables.py::evaluate",
         "TrialLedger/layer2/decision_tables.py::table_check_state",
@@ -33121,6 +34382,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -33176,7 +34438,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -33364,6 +34627,38 @@
           "TrialLedger/layer2/decision_tables.py::_bounded_input.<locals>.<genexpr>"
         ],
         [
+          "TrialLedger/layer2/decision_tables.py::_case_issues",
+          "TrialLedger/layer2/entail.py::_holds"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/decision_tables.py::_case_issues"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/decision_tables.py::_domain_options"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses",
+          "TrialLedger/layer2/entail.py::proposition_formula"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses.<locals>.<genexpr>",
+          "TrialLedger/layer2/decision_tables.py::_formula_work"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_domain_options",
+          "TrialLedger/layer2/decision_tables.py::_keys"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_domain_options",
+          "TrialLedger/layer2/decision_tables.py::_proposition"
+        ],
+        [
           "TrialLedger/layer2/decision_tables.py::_domains",
           "TrialLedger/layer2/assertions.py::canonical"
         ],
@@ -33413,11 +34708,11 @@
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_bounded_input"
+          "TrialLedger/layer2/decision_tables.py::_case_witnesses"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_domains"
+          "TrialLedger/layer2/decision_tables.py::_check_prohibitions"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
@@ -33429,31 +34724,19 @@
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_keys"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_limits"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_object"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_proposition"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_rows"
-        ],
-        [
-          "TrialLedger/layer2/decision_tables.py::_evaluate",
-          "TrialLedger/layer2/decision_tables.py::_text"
+          "TrialLedger/layer2/decision_tables.py::_table_inputs"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_evaluate",
           "TrialLedger/layer2/decision_tables.py::table_state"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_formula_work",
+          "TrialLedger/layer2/decision_tables.py::_formula_work.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_formula_work.<locals>.<genexpr>",
+          "TrialLedger/layer2/decision_tables.py::_formula_work"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_keys",
@@ -33472,12 +34755,56 @@
           "TrialLedger/layer2/decision_tables.py::_object"
         ],
         [
+          "TrialLedger/layer2/decision_tables.py::_prohibitions",
+          "TrialLedger/layer2/decision_tables.py::_rows"
+        ],
+        [
           "TrialLedger/layer2/decision_tables.py::_proposition",
           "TrialLedger/layer2/assertions.py::from_canonical"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::_proposition",
           "TrialLedger/layer2/entail.py::proposition_formula"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_bounded_input"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_domains"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_keys"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_limits"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_object"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_prohibitions"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_proposition"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_rows"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_table_inputs.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/decision_tables.py::_table_inputs",
+          "TrialLedger/layer2/decision_tables.py::_text"
         ],
         [
           "TrialLedger/layer2/decision_tables.py::evaluate",
@@ -33574,6 +34901,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -33814,6 +35145,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -33826,7 +35161,7 @@
       "mode": "cli",
       "operation": "signals",
       "request_digest": "a10a33d78d84c738097ee366d1227b82640355cb083188f074caef7be1c0e75f",
-      "result_digest": "c524bac524736e03ed7b12954cfa3bdbb15a37414a8d07b2c406767c2c7207d5",
+      "result_digest": "dcb5233f0215fea6150094624791c3d09eb84e1d6570f24cba5fa5cb1469e65d",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -33922,7 +35257,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -34450,6 +35786,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -34460,7 +35800,7 @@
       "mode": "mcp",
       "operation": "signals",
       "request_digest": "a10a33d78d84c738097ee366d1227b82640355cb083188f074caef7be1c0e75f",
-      "result_digest": "c524bac524736e03ed7b12954cfa3bdbb15a37414a8d07b2c406767c2c7207d5",
+      "result_digest": "dcb5233f0215fea6150094624791c3d09eb84e1d6570f24cba5fa5cb1469e65d",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -34565,7 +35905,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -35133,6 +36474,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -35215,7 +36560,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -35551,6 +36897,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -35642,7 +36992,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -36018,6 +37369,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -36092,7 +37447,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -36380,6 +37736,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -36463,7 +37823,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -36791,6 +38152,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -36863,7 +38228,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -37147,6 +38513,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -37228,7 +38598,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -37552,6 +38923,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -37620,7 +38995,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -37872,6 +39248,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -37949,7 +39329,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -38239,6 +39620,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -38305,6 +39690,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -38479,6 +39865,8 @@
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
         "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -38771,6 +40159,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -39897,8 +41289,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -39968,6 +41368,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -40152,6 +41553,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -40440,6 +41843,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -41610,8 +43017,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -41678,6 +43093,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -41761,6 +43177,8 @@
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
         "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -42029,6 +43447,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -42487,8 +43909,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -42554,6 +43984,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -42647,6 +44078,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -42911,6 +44344,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -43413,8 +44850,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -43483,6 +44928,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -43634,6 +45080,8 @@
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
         "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -43922,6 +45370,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -44896,8 +46348,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -44965,6 +46425,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -45126,6 +46587,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::_resolve",
+        "TrialLedger/retained_sources.py::hydrate_request",
         "TrialLedger/warrants.py::canonical",
         "TrialLedger/warrants.py::digest",
         "TrialLedger/warrants.py::study_digest"
@@ -45410,6 +46873,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -46428,8 +47895,16 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
+        ],
+        [
+          "TrialLedger/retained_sources.py::hydrate_request",
+          "TrialLedger/retained_sources.py::_resolve"
         ],
         [
           "TrialLedger/warrants.py::study_digest",
@@ -46517,7 +47992,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -46871,6 +48347,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/record.py::_unique",
@@ -46963,7 +48443,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -47359,6 +48840,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -47420,6 +48905,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -47483,7 +48969,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -47757,6 +49244,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -48115,6 +49606,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -48175,6 +49670,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -48248,7 +49744,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -48518,6 +50015,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -48920,6 +50421,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -49001,7 +50506,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -49341,6 +50847,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -49431,7 +50941,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -49811,6 +51322,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -49871,6 +51386,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -49934,7 +51450,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -50200,6 +51717,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -50546,6 +52067,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -50605,6 +52130,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -50678,7 +52204,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -50940,6 +52467,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -51328,6 +52859,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -51421,6 +52956,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -51569,7 +53105,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -52026,6 +53563,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -52079,6 +53620,10 @@
         [
           "TrialLedger/layer2/entail.py::eligibility_witness",
           "TrialLedger/layer2/entail.py::weakest_status"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::eligibility_witness.<locals>.<genexpr>",
+          "TrialLedger/layer2/entail.py::assertion_formula"
         ],
         [
           "TrialLedger/layer2/entail.py::proposition_formula",
@@ -53001,6 +54546,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -53091,6 +54640,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -53249,7 +54799,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -53702,6 +55253,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -53755,6 +55310,10 @@
         [
           "TrialLedger/layer2/entail.py::eligibility_witness",
           "TrialLedger/layer2/entail.py::weakest_status"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::eligibility_witness.<locals>.<genexpr>",
+          "TrialLedger/layer2/entail.py::assertion_formula"
         ],
         [
           "TrialLedger/layer2/entail.py::proposition_formula",
@@ -54721,6 +56280,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -54781,6 +56344,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -54816,7 +56380,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -55081,6 +56646,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -55220,6 +56789,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -55279,6 +56852,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -55324,7 +56898,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -55585,6 +57160,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -55768,6 +57347,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -55832,6 +57415,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -55948,7 +57532,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -56238,6 +57823,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -56956,6 +58545,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -57019,6 +58612,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -57145,7 +58739,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -57431,6 +59026,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -58193,6 +59792,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -58256,6 +59859,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -58346,7 +59950,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -58628,6 +60233,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -59186,6 +60795,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -59248,6 +60861,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -59348,7 +60962,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -59626,6 +61241,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -60226,6 +61845,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -60291,6 +61914,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -60381,7 +62005,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -60663,6 +62288,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -61221,6 +62850,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -61283,6 +62916,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -61383,7 +63017,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -61661,6 +63296,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -62261,6 +63900,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -62326,6 +63969,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -62416,7 +64060,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -62698,6 +64343,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -63256,6 +64905,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -63318,6 +64971,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -63418,7 +65072,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -63696,6 +65351,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -64296,6 +65955,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -64381,6 +66044,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -64491,7 +66155,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -64897,6 +66562,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -65615,6 +67284,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -65697,6 +67370,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -65817,7 +67491,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -66219,6 +67894,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -66981,6 +68660,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -67045,6 +68728,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -67173,7 +68857,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -67463,6 +69148,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -68293,6 +69982,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -68356,6 +70049,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -68494,7 +70188,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -68780,6 +70475,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -69654,6 +71353,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/reasoning_mcp.py::reason",
           "TrialLedger/reasoning_delivery.py::execute"
         ]
@@ -69717,6 +71420,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -69845,7 +71549,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -70131,6 +71836,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -70965,6 +72674,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -71027,6 +72740,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -71165,7 +72879,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -71447,6 +73162,10 @@
         [
           "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_proof"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
@@ -72323,6 +74042,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",
@@ -72335,7 +74058,7 @@
       "mode": "cli",
       "operation": "design_session",
       "request_digest": "9df7390be749635492ac588d7159f1a97f28eeb061b687b456a7a4ada75f1898",
-      "result_digest": "824c2cbefc2b18d372d55eaf18866638621e29560ff798cfc89d69685020ea7a",
+      "result_digest": "f80ccfd317f055f7ed48584b76e4a0f2ab4cf500496d2648533e4529a4d2a1b4",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -72375,6 +74098,8 @@
         "TrialLedger/layer2/clinical_answers.py::_scope",
         "TrialLedger/layer2/clinical_answers.py::_selected",
         "TrialLedger/layer2/clinical_answers.py::project",
+        "TrialLedger/layer2/definition_checks.py::prepare",
+        "TrialLedger/layer2/definition_checks.py::run",
         "TrialLedger/layer2/design_bounds.py::witness_verdict",
         "TrialLedger/layer2/design_bounds.py::witness_verdict.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_child",
@@ -72400,6 +74125,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -72509,7 +74235,8 @@
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
         "TrialLedger/record.py::_unique",
-        "TrialLedger/record.py::_unique.<locals>.<genexpr>"
+        "TrialLedger/record.py::_unique.<locals>.<genexpr>",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -72734,6 +74461,10 @@
         ],
         [
           "TrialLedger/layer2/design_session.py::replay",
+          "TrialLedger/layer2/definition_checks.py::run"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::replay",
           "TrialLedger/layer2/design_session.py::_child"
         ],
         [
@@ -72886,6 +74617,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -72943,6 +74678,10 @@
         [
           "TrialLedger/layer2/entail.py::eligibility_witness",
           "TrialLedger/layer2/entail.py::weakest_status"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::eligibility_witness.<locals>.<genexpr>",
+          "TrialLedger/layer2/entail.py::assertion_formula"
         ],
         [
           "TrialLedger/layer2/entail.py::proposition_formula",
@@ -73402,6 +75141,10 @@
         ],
         [
           "TrialLedger/layer2/session_state.py::prepare",
+          "TrialLedger/layer2/definition_checks.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::prepare",
           "TrialLedger/layer2/session_state.py::_decision_index"
         ],
         [
@@ -73497,6 +75240,10 @@
           "TrialLedger/layer2/service.py::run"
         ],
         [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
+        ],
+        [
           "TrialLedger/record.py::_unique",
           "TrialLedger/record.py::_unique.<locals>.<genexpr>"
         ]
@@ -73507,7 +75254,7 @@
       "mode": "mcp",
       "operation": "design_session",
       "request_digest": "9df7390be749635492ac588d7159f1a97f28eeb061b687b456a7a4ada75f1898",
-      "result_digest": "824c2cbefc2b18d372d55eaf18866638621e29560ff798cfc89d69685020ea7a",
+      "result_digest": "f80ccfd317f055f7ed48584b76e4a0f2ab4cf500496d2648533e4529a4d2a1b4",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -73546,6 +75293,8 @@
         "TrialLedger/layer2/clinical_answers.py::_scope",
         "TrialLedger/layer2/clinical_answers.py::_selected",
         "TrialLedger/layer2/clinical_answers.py::project",
+        "TrialLedger/layer2/definition_checks.py::prepare",
+        "TrialLedger/layer2/definition_checks.py::run",
         "TrialLedger/layer2/design_bounds.py::witness_verdict",
         "TrialLedger/layer2/design_bounds.py::witness_verdict.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::_child",
@@ -73571,6 +75320,7 @@
         "TrialLedger/layer2/entail.py::_negate",
         "TrialLedger/layer2/entail.py::_proof",
         "TrialLedger/layer2/entail.py::_proof.<locals>.<genexpr>",
+        "TrialLedger/layer2/entail.py::_question_blockers",
         "TrialLedger/layer2/entail.py::_satisfiable",
         "TrialLedger/layer2/entail.py::_satisfiable.<locals>.<genexpr>",
         "TrialLedger/layer2/entail.py::_scope_formula",
@@ -73690,7 +75440,8 @@
         "TrialLedger/mcp_server.py::wire",
         "TrialLedger/reasoning_cli.py::configure",
         "TrialLedger/reasoning_delivery.py::execute",
-        "TrialLedger/reasoning_mcp.py::reason"
+        "TrialLedger/reasoning_mcp.py::reason",
+        "TrialLedger/retained_sources.py::hydrate_request"
       ],
       "edges": [
         [
@@ -73911,6 +75662,10 @@
         ],
         [
           "TrialLedger/layer2/design_session.py::replay",
+          "TrialLedger/layer2/definition_checks.py::run"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::replay",
           "TrialLedger/layer2/design_session.py::_child"
         ],
         [
@@ -74063,6 +75818,10 @@
         ],
         [
           "TrialLedger/layer2/entail.py::decide",
+          "TrialLedger/layer2/entail.py::_question_blockers"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::decide",
           "TrialLedger/layer2/entail.py::_satisfiable"
         ],
         [
@@ -74120,6 +75879,10 @@
         [
           "TrialLedger/layer2/entail.py::eligibility_witness",
           "TrialLedger/layer2/entail.py::weakest_status"
+        ],
+        [
+          "TrialLedger/layer2/entail.py::eligibility_witness.<locals>.<genexpr>",
+          "TrialLedger/layer2/entail.py::assertion_formula"
         ],
         [
           "TrialLedger/layer2/entail.py::proposition_formula",
@@ -74579,6 +76342,10 @@
         ],
         [
           "TrialLedger/layer2/session_state.py::prepare",
+          "TrialLedger/layer2/definition_checks.py::prepare"
+        ],
+        [
+          "TrialLedger/layer2/session_state.py::prepare",
           "TrialLedger/layer2/session_state.py::_decision_index"
         ],
         [
@@ -74716,6 +76483,10 @@
         [
           "TrialLedger/reasoning_delivery.py::execute",
           "TrialLedger/layer2/service.py::run"
+        ],
+        [
+          "TrialLedger/reasoning_delivery.py::execute",
+          "TrialLedger/retained_sources.py::hydrate_request"
         ],
         [
           "TrialLedger/reasoning_mcp.py::reason",

@@ -1,0 +1,478 @@
+{
+  "operation": "signals",
+  "signals": [
+    {
+      "id": "simulated:MX64:rescue-table",
+      "kind": "decision_table",
+      "data": {
+        "scope": "simulated:MX64:migraine-phase2:attack-rescue:adult-cohort",
+        "version": "simulated:exchange2",
+        "domains": [
+          {
+            "id": "simulated:active_safety_warning",
+            "values": [
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:active_safety_warning"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "positive"
+              },
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:active_safety_warning"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "negative"
+              }
+            ]
+          },
+          {
+            "id": "simulated:pain_persists_at_2h",
+            "values": [
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:pain_persists_at_2h"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "positive"
+              },
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:pain_persists_at_2h"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "negative"
+              }
+            ]
+          },
+          {
+            "id": "simulated:rescue_already_used_for_attack",
+            "values": [
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:rescue_already_used_for_attack"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "positive"
+              },
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:rescue_already_used_for_attack"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "negative"
+              }
+            ]
+          },
+          {
+            "id": "simulated:declared_lockout_elapsed",
+            "values": [
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:declared_lockout_elapsed"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "positive"
+              },
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "source_case"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "defined_term",
+                  "key": "simulated:declared_lockout_elapsed"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "polarity": "negative"
+              }
+            ]
+          }
+        ],
+        "constraints": [],
+        "actions": [
+          "hold_and_review",
+          "rescue_protocol",
+          "continue_observation"
+        ],
+        "rows": [
+          {
+            "id": "warning",
+            "when": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "source_case"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "defined_term",
+                "key": "simulated:active_safety_warning"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "boolean"
+              },
+              "polarity": "positive"
+            },
+            "action": "hold_and_review"
+          },
+          {
+            "id": "eligible-rescue",
+            "when": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Not",
+                  "part": {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:active_safety_warning"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:pain_persists_at_2h"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Not",
+                  "part": {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:rescue_already_used_for_attack"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:declared_lockout_elapsed"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                }
+              ]
+            },
+            "action": "rescue_protocol"
+          },
+          {
+            "id": "observe-otherwise",
+            "when": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Not",
+                  "part": {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:active_safety_warning"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  }
+                },
+                {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Not",
+                      "part": {
+                        "class": "Literal",
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "source_case"
+                        },
+                        "predicate": {
+                          "class": "Predicate",
+                          "kind": "defined_term",
+                          "key": "simulated:pain_persists_at_2h"
+                        },
+                        "value": {
+                          "class": "Value",
+                          "kind": "boolean"
+                        },
+                        "polarity": "positive"
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case"
+                      },
+                      "predicate": {
+                        "class": "Predicate",
+                        "kind": "defined_term",
+                        "key": "simulated:rescue_already_used_for_attack"
+                      },
+                      "value": {
+                        "class": "Value",
+                        "kind": "boolean"
+                      },
+                      "polarity": "positive"
+                    },
+                    {
+                      "class": "Not",
+                      "part": {
+                        "class": "Literal",
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "source_case"
+                        },
+                        "predicate": {
+                          "class": "Predicate",
+                          "kind": "defined_term",
+                          "key": "simulated:declared_lockout_elapsed"
+                        },
+                        "value": {
+                          "class": "Value",
+                          "kind": "boolean"
+                        },
+                        "polarity": "positive"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "action": "continue_observation"
+          }
+        ],
+        "limits": {
+          "solver_bound": 4096,
+          "solver_calls": 256
+        },
+        "prohibitions": [
+          {
+            "id": "no-repeat-or-premature-rescue",
+            "when": {
+              "class": "AnyOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "defined_term",
+                    "key": "simulated:rescue_already_used_for_attack"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "polarity": "positive"
+                },
+                {
+                  "class": "Not",
+                  "part": {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "defined_term",
+                      "key": "simulated:declared_lockout_elapsed"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "polarity": "positive"
+                  }
+                }
+              ]
+            },
+            "action": "rescue_protocol"
+          },
+          {
+            "id": "no-rescue-with-warning",
+            "when": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "source_case"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "defined_term",
+                "key": "simulated:active_safety_warning"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "boolean"
+              },
+              "polarity": "positive"
+            },
+            "action": "rescue_protocol"
+          },
+          {
+            "id": "undeclared-allergy",
+            "when": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "source_case"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "defined_term",
+                "key": "simulated:unrepresented_allergic_reaction"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "boolean"
+              },
+              "polarity": "positive"
+            },
+            "action": "rescue_protocol"
+          }
+        ]
+      },
+      "support": [
+        {
+          "id": "simulated:rescue-policy",
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "simulated:exchange2:accepted-in-persona-not-real-confirmation"
+          ]
+        }
+      ]
+    }
+  ]
+}

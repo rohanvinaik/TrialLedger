@@ -500,8 +500,11 @@ def main(
             "or a typed trial corpus. "
             "No trial text is interpreted. This is working symbolic logic; the complete trial writer is "
             'designed but its integration is unfinished. First put {"operation":"describe"} in the '
-            "request file for an overview. Add view entailment, coordinates, corpus, design_bounds or "
-            "signals "
+            "request file for an overview. Use view prepare for short typed criteria and questions; "
+            "prepare them with --store STORE --compact, then run the returned preparation id with "
+            "--prepared ID --store STORE --compact, without copying expanded JSON. Preparation "
+            "constructs input; it does not confirm interpretations or compute a clinical answer. "
+            "Add view entailment, coordinates, corpus, design_bounds, signals or design_session "
             "for "
             "that operation's "
             "exact formats, answer guide and runnable example; view worked_session or full gives the "
@@ -510,7 +513,11 @@ def main(
             "exit status: 0 evaluated (the logical result may be undetermined); 2 request refused"
         ),
     )
-    reason_parser.add_argument("--request", type=Path, required=True, metavar="FILE")
+    reason_input = reason_parser.add_mutually_exclusive_group(required=True)
+    reason_input.add_argument("--request", type=Path, metavar="FILE")
+    reason_input.add_argument(
+        "--prepared", help="run a retained successful preparation by its artifact id; requires --store"
+    )
     reasoning_cli.configure(commands, reason_parser)
     args = parser.parse_args(argv)
     if args.command == "record":
@@ -523,6 +530,8 @@ def main(
             intent=args.intent,
             question=args.question,
             max_bytes=args.max_bytes,
+            source_root=args.source_root,
+            prepared=args.prepared,
         )
     if args.command in reasoning_cli.COMMANDS:
         return reasoning_cli.handle(args)
@@ -726,20 +735,22 @@ def _record(args: argparse.Namespace) -> int:
 
 
 def _reason(
-    path: Path,
+    path: Path | None,
     *,
     store: Path | None = None,
     compact: bool = False,
     intent: str = "unspecified",
     question: str = "",
     max_bytes: int = 24_576,
+    source_root: Path | None = None,
+    prepared: str | None = None,
 ) -> int:
     from TrialLedger.landscape_verify import strict_json
     from TrialLedger.reasoning_delivery import execute
     from TrialLedger.record import DuplicateKey
 
     try:
-        request = strict_json(path.read_text(encoding="utf-8"))
+        request = strict_json(path.read_text(encoding="utf-8")) if path is not None else None
     except (OSError, ValueError, DuplicateKey) as error:
         print(f"trialledger reason: unreadable request — {error}", file=sys.stderr)
         return 2
@@ -751,6 +762,8 @@ def _reason(
             intent=intent,
             question=question,
             max_bytes=max_bytes,
+            source_root=source_root,
+            prepared=prepared,
         )
     except (OSError, ValueError, TypeError, KeyError) as error:
         result = {"code": "refused", "operation": "", "result": None, "problems": [str(error)]}

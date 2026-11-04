@@ -20,7 +20,16 @@ PRESENTATION = {
         "Full mode stays full. Omitted detail remains at exact artifact references.",
     },
 }
-REASON_FIELDS: dict[str, Any] = {**PRESENTATION, "retain": {"type": "boolean"}}
+REASON_FIELDS: dict[str, Any] = {
+    **PRESENTATION,
+    "retain": {"type": "boolean"},
+    "prepared": {
+        **IDENTITY,
+        "description": "Run result.request from this successful retained prepare artifact; "
+        "mutually exclusive with request. "
+        "The complete expanded request is retained with the computed result.",
+    },
+}
 TOOL_SCHEMAS = {
     "reason_result": {
         "name": "reason_result",
@@ -119,14 +128,22 @@ def store_root(root: Path) -> Path:
 
 
 def reason(root: Path, arguments: dict) -> dict:
-    retain = arguments.get("retain", False) or arguments.get("response_view") == "compact"
+    if ("request" in arguments) == ("prepared" in arguments):
+        raise ValueError("reason_requires_request_or_prepared")
+    retain = (
+        arguments.get("retain", False)
+        or arguments.get("response_view") == "compact"
+        or "prepared" in arguments
+    )
     return reasoning_delivery.execute(
-        arguments["request"],
+        arguments.get("request"),
         store=store_root(root) if retain else None,
         response_view=arguments.get("response_view", "full"),
         intent=arguments.get("intent", "unspecified"),
         question=arguments.get("question", ""),
         max_bytes=arguments.get("max_bytes", clinical_delivery.DEFAULT_BYTES),
+        source_root=root,
+        prepared=arguments.get("prepared"),
     )
 
 
@@ -139,7 +156,10 @@ def handle(name: str, root: Path, arguments: dict) -> dict:
             )
         if name == "reason_revise":
             return reasoning_delivery.revise(
-                store_root(root), arguments["id"], **{k: v for k, v in arguments.items() if k != "id"}
+                store_root(root),
+                arguments["id"],
+                source_root=root,
+                **{k: v for k, v in arguments.items() if k != "id"},
             )
         if name == "reason_export":
             from TrialLedger.clinical_export import export_review

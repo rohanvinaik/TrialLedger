@@ -1,0 +1,13 @@
+[
+  {
+    "op": "replace",
+    "path": "/premises/0/payload/body/value/number",
+    "value": 2,
+    "origin": {
+      "kind": "user_choice",
+      "ref": "simulated:nsclc:exchange-2; no clinician confirmation",
+      "source": null,
+      "analysis": null
+    }
+  }
+]

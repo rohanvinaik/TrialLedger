@@ -1,0 +1,67 @@
+{
+  "code": "complete",
+  "source_count": 5,
+  "source_reads": [
+    {
+      "nct": "NCT05624268",
+      "digest": "f9ca70e0553db096d1ef8e095e383681a08b73bb4ca0ed051c5ff87c7b07302d",
+      "text_characters": 2400
+    },
+    {
+      "nct": "NCT05711940",
+      "digest": "a0c63575fe31c5b4c64f0f0b7601e49fed35744d74cce8eabc7af3332943843d",
+      "text_characters": 2365
+    },
+    {
+      "nct": "NCT02493868",
+      "digest": "94b83a464358ad2f43fe1bdd2820a8f661dea046aa975c63aef11d851bf79ca3",
+      "text_characters": 3970
+    },
+    {
+      "nct": "NCT02418585",
+      "digest": "9c94e78a66c3c7a6e24e3cb5d16f7d3cffeee1145c07ba3fbf8523b49e0b4020",
+      "text_characters": 3548
+    },
+    {
+      "nct": "NCT04338321",
+      "digest": "9a44a58a2e7dd9f2410a270c4b48b81202e60e6fcbe3d5482f529c8450e07404",
+      "text_characters": 4595
+    }
+  ],
+  "artifact": "10de357e66063f6828e3c993f0a876e63ff57a280b840b861568838ee3f2a0cd",
+  "revised_artifact": "e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e",
+  "export": {
+    "code": "complete",
+    "artifact": "e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e",
+    "folder": "/Users/rohanvinaik/trialledger-runs/reasoning-exports/e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e/review",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/reasoning-exports/e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/reasoning-exports/e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e/review/decision-list.md",
+    "manifest": "/Users/rohanvinaik/trialledger-runs/reasoning-exports/e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e/review/export-manifest.json",
+    "files": {
+      "artifacts/e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e.json": {
+        "sha256": "e9d4834ba6ef562a1664cb2fa6f3b5234881518c184d37bf34cfb020c587b14e",
+        "bytes": 6080350
+      },
+      "decision-list.md": {
+        "sha256": "2eabe82d2db9ae59d64ca3b352acc0a26d9265d95776a4eab267bffb4f9c0bb8",
+        "bytes": 36116
+      },
+      "design-review.xlsx": {
+        "sha256": "cfb012bd467f02a8e8190b67c03ed8cfe8118be464416363ccf5478932d92fcb",
+        "bytes": 71601
+      },
+      "landscape.json": {
+        "sha256": "0291aff4724d83b1081c20b3f12d1b85a69c55f73d94e37a53c4777bf8db71e4",
+        "bytes": 1606355
+      },
+      "landscape.xlsx": {
+        "sha256": "c5b9b3bf739e6f5f52e467dc3f5047a758d1cfcc311ab98630c32f13bd004c03",
+        "bytes": 272765
+      }
+    },
+    "problems": []
+  },
+  "premises_unchanged": true,
+  "complete_sources_retained": true,
+  "request_bytes": 92082
+}

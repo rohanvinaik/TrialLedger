@@ -118,7 +118,7 @@ pipeline wiring or claim an integrated writer from unit tests.
 
 The public discovery request is `{"operation":"describe"}` through reason; it returns an overview. Add
 `"view":"entailment"`, `coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or
-`source_assertions`, `evidence_requests` or `design_session` for focused formats, vocabulary,
+`source_assertions`, `evidence_requests`, `design_session` or `prepare` for focused formats, vocabulary,
 small task cards and runnable examples. Add `"detail":"schema"` for structural machine shapes or
 `"detail":"full"` for the detailed operation guide; `worked_session` and `full` retain the complete
 demonstration and manual. The `delivery` card describes retained results, public revisions and export.
@@ -155,6 +155,18 @@ retrieval follows the same exact pointer/page/text owners as source records.
 MCP schemas. Dispatch coverage remains explicitly tested. `layer2.construction` provides small strict Python
 constructors over existing assertion validation/canonical JSON, with explicit scope/force/origin and proposed
 defaults. It is not a second encoder or clinical parser.
+
+`layer2.request_preparation` owns the public short typed construction format. It expands explicit atoms,
+logical combinations, criteria and question/options into the existing canonical requests, with exact
+default pointers and origins. It interprets no clinical prose and invokes no solver. Missing standing
+remains proposed. Shared `reasoning_delivery` can execute a successful retained preparation by identity;
+its full construction ledger remains available, while compact replies return counts and exact links.
+Later revisions preserve that ledger as historical context rather than overriding edited premise origins.
+
+`retained_sources` owns exact raw-study access and digest-bound source-handle hydration for shared CLI/MCP
+delivery. It verifies served-root containment, retained manifest/body identity and snapshot digests before
+computation. Complete hydrated inputs enter immutable reasoning artifacts; a source handle is transport,
+not clinical interpretation or admission.
 
 | Existing component | Current access and boundary |
 |---|---|
@@ -206,10 +218,17 @@ allowance at every elimination.
 `clinical_answers` projects the existing metadata owner into findings with canonical addresses, scope,
 values, support, origins, conditions and blockers. `clinical_delivery` uses that projection for full and
 compact responses. Refusal problems reach the same projection; unknown outcomes remain unclassified.
-`design_session.answer_diff` compares independent question/answer/support/origin/wording/context axes
+`design_session.answer_diff` compares independent question/answer/support/origin/wording/context/requirements axes
 with actual versioned deciding premises, alongside unchanged audit
 differences. `solver_work` bounds the represented finite partitions conservatively, including explanation
 checks and fresh old/current replay; numeric refusals remain separate from clinical unknowns.
+
+`definition_checks` binds attributed typed meanings to actual expanded analysis addresses and checks only
+declared implication, equivalence or disjointness. Session child execution, fresh replay and budgets apply;
+numeric resemblance never supplies the relation. `decision_tables` checks declared forbidden actions against
+feasible cases without adding prohibitions to constraints. Proof and bounded case illustrations are separate.
+Its session reservation includes every domain, constraint, guard and prohibition threshold. `analysis_review`
+projects included results into supporting-analysis summaries and details without recomputing conclusions.
 
 `reasoning_delivery` shares public revision execution between CLI and MCP. `prepare_revision` fills only
 mechanical integrity fields. Explicit replacement edits require attribution for changed premises and

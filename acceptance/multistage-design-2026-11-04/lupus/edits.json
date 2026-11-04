@@ -1,0 +1,25 @@
+[
+  {
+    "op": "replace",
+    "path": "/premises/1/payload/body/value/number",
+    "value": 20,
+    "origin": {
+      "kind": "user_choice",
+      "ref": "simulated:exchange2:renal-widening",
+      "source": null,
+      "analysis": null
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/definition_checks/0/relation",
+    "value": "implies"
+  },
+  {
+    "op": "replace",
+    "path": "/definition_checks/0/basis",
+    "value": [
+      "simulated:exchange2:distinct-roles-not-equality"
+    ]
+  }
+]

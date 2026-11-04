@@ -1,0 +1,61 @@
+{
+  "complete_pairs": [
+    {
+      "path": "lupus/artifacts/ca5ba7b7c0663a8b805d7c1c596bf709b8ce3baa7987b2d7acfdbbef42235548.json",
+      "bytes": 911143,
+      "sha256": "ca5ba7b7c0663a8b805d7c1c596bf709b8ce3baa7987b2d7acfdbbef42235548",
+      "kind": "complete immutable request/response artifact"
+    },
+    {
+      "path": "lupus/artifacts/11fbc17cd4c03c54a2bcf427e482f9fdefeffa663ae54cd28c14468e70545b22.json",
+      "bytes": 2901220,
+      "sha256": "11fbc17cd4c03c54a2bcf427e482f9fdefeffa663ae54cd28c14468e70545b22",
+      "kind": "complete immutable request/response artifact"
+    },
+    {
+      "path": "migraine/table-initial-result.json",
+      "bytes": 185855,
+      "sha256": "e59ebedfe8fee1ea596f2bc67fc38407324465ae7e94566c7ace81415d805b44",
+      "kind": "complete canonical result; compared CLI/MCP copies kept locally"
+    },
+    {
+      "path": "migraine/table-revised-result.json",
+      "bytes": 171072,
+      "sha256": "0fa2fce8baf5066c1adc3e9c90344019cac9347d75d0ff425ab4837556edae45",
+      "kind": "complete canonical result; compared CLI/MCP copies kept locally"
+    },
+    {
+      "path": "migraine/table-partial-witnesses-result.json",
+      "bytes": 142993,
+      "sha256": "bffeeacb378b83dcb66cd83703922eb16d931d692d912a61926c194e7eabb5ef",
+      "kind": "complete canonical result; compared CLI/MCP copies kept locally"
+    },
+    {
+      "path": "migraine/table-undeclared-result.json",
+      "bytes": 1812,
+      "sha256": "4310b38148862b6087ab9ead10a322e8e754c2c768cb109dbbbb31c4ee355d66",
+      "kind": "complete canonical result; compared CLI/MCP copies kept locally"
+    },
+    {
+      "path": "migraine/table-unconfirmed-result.json",
+      "bytes": 190592,
+      "sha256": "f01190fcad6c26562fb45a52e879cd32fa1b1efdd581d65316bbd079dd6811dd",
+      "kind": "complete canonical result; compared CLI/MCP copies kept locally"
+    },
+    {
+      "path": "nsclc/artifacts/3262ec5513f05efb9b560cbf92b0cf30a0dd39150ac2f53c3141e32d248acb7c.json",
+      "bytes": 1664631,
+      "sha256": "3262ec5513f05efb9b560cbf92b0cf30a0dd39150ac2f53c3141e32d248acb7c",
+      "kind": "complete immutable request/response artifact"
+    },
+    {
+      "path": "nsclc/artifacts/4044b28ad071583091d21493a2b7c45a8a4a897cb26e9ed0bfe376f64f914886.json",
+      "bytes": 502330,
+      "sha256": "4044b28ad071583091d21493a2b7c45a8a4a897cb26e9ed0bfe376f64f914886",
+      "kind": "complete immutable request/response artifact"
+    }
+  ],
+  "local_packet": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104",
+  "raw_reports_committed": false,
+  "note": "Artifact JSON bytes are copied unchanged, named by their payload SHA256; source snapshots embedded in them remain complete."
+}

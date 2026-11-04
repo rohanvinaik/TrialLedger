@@ -1,0 +1,2671 @@
+{
+  "scope": "Reservation conservatively covers actual yielded satisfiability assignments plus returned illustration-work units for this measured population; analytical union argument covers the supported typed table representation. Not wall-clock measurement or new clinical guarantee.",
+  "formula": "P(all domain/constraint/row/prohibition formulas, capped by solver_bound) * min(2+prohibitions+row_pairs+actions, solver_calls, MAX_WORK//(solver_bound*3)) * (2*assertion_count+4) + MAX_CASE_WORK",
+  "public_views_checked": [
+    "full",
+    "signals",
+    "design_session",
+    "interpretations",
+    "design_bounds",
+    "source_assertions"
+  ],
+  "distinct_public_table_examples": 1,
+  "random_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127
+  ],
+  "counter_instrument": "Count each assignment yielded by itertools.product inside entail._satisfiable; instrument satisfiability call count independently. Table case enumeration uses its own already-bound product reference; add returned witness_summary.work separately.",
+  "rows": [
+    {
+      "label": "public:full:0",
+      "reservation": 16834,
+      "measured": {
+        "assignments": 139,
+        "satisfiability_calls": 21,
+        "illustration_work": 63,
+        "total": 202
+      },
+      "data_sha256": "50e21c27c415c472ec4d44238d7a96a6722bfdd34e80452ef367e4f9b06754ad",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:0",
+      "reservation": 20164,
+      "measured": {
+        "assignments": 91,
+        "satisfiability_calls": 21,
+        "illustration_work": 64,
+        "total": 155
+      },
+      "data_sha256": "340f3848482c38284b14ade0d13063aac0e21b108e9089a61044f39f0764b9ef",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:1",
+      "reservation": 16394,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "ec9bf7ecb8d4ad0cec59e58d2ae46e25d0215fac0baa7a5f5a5d113f55da9fe3",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:2",
+      "reservation": 16504,
+      "measured": {
+        "assignments": 68,
+        "satisfiability_calls": 44,
+        "illustration_work": 18,
+        "total": 86
+      },
+      "data_sha256": "435d83c27aafedd686b6e3ba0676f5188a049c42e83fa3399dce441ced38ecd7",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:3",
+      "reservation": 16984,
+      "measured": {
+        "assignments": 120,
+        "satisfiability_calls": 15,
+        "illustration_work": 16,
+        "total": 136
+      },
+      "data_sha256": "c258084dc7652f0873702e93cedac2efb9f0242ead077dfa546697d585bc95b2",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:4",
+      "reservation": 16456,
+      "measured": {
+        "assignments": 13,
+        "satisfiability_calls": 6,
+        "illustration_work": 28,
+        "total": 41
+      },
+      "data_sha256": "e9054f4a301c77ca49c91912a0faf22f8a31783aad83429693945dac2342e463",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:5",
+      "reservation": 16496,
+      "measured": {
+        "assignments": 23,
+        "satisfiability_calls": 6,
+        "illustration_work": 0,
+        "total": 23
+      },
+      "data_sha256": "0fad9cb306bec09901f88ddf5b18655e9dd1e3c173608f4ceeddd59aa804c08d",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 3,
+      "row_count": 1,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:6",
+      "reservation": 16528,
+      "measured": {
+        "assignments": 52,
+        "satisfiability_calls": 24,
+        "illustration_work": 8,
+        "total": 60
+      },
+      "data_sha256": "3919ee20d73e9891c7db30cc9c12c1aa14492ba39c3ca429265ad0dc6a876731",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 1,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:7",
+      "reservation": 16394,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "945f0e7a8557e3347536e5f15b945db90e1da2bd674fc18a500553662f3addfb",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 3,
+      "row_count": 1,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:8",
+      "reservation": 16816,
+      "measured": {
+        "assignments": 52,
+        "satisfiability_calls": 27,
+        "illustration_work": 12,
+        "total": 64
+      },
+      "data_sha256": "6caa61052a805cbb96c496ff25876cfbfbd14fd7680d6acb61511c9455f51c0a",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:9",
+      "reservation": 17464,
+      "measured": {
+        "assignments": 18,
+        "satisfiability_calls": 8,
+        "illustration_work": 16,
+        "total": 34
+      },
+      "data_sha256": "1aa45a06e8f51a3df42a212f143e50e7e3069260848889df4ac9e25628005093",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 1
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:10",
+      "reservation": 16504,
+      "measured": {
+        "assignments": 66,
+        "satisfiability_calls": 30,
+        "illustration_work": 6,
+        "total": 72
+      },
+      "data_sha256": "05c284f120ee18e673de8d0543e1734fb685e3f4daf00c353b094da0f9abd154",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 32
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:11",
+      "reservation": 16400,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "5fba67ebe86af5b844ac5423c036210509bac5e6fc73d13510a75d28b7fdbf33",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 4,
+      "row_count": 5,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:12",
+      "reservation": 16566,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "2eb2108b4993f4da93d53ce5bebc1a72a30d80a8b26a5090f1ead98aeab7f18d",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 4,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:13",
+      "reservation": 17134,
+      "measured": {
+        "assignments": 15,
+        "satisfiability_calls": 7,
+        "illustration_work": 24,
+        "total": 39
+      },
+      "data_sha256": "825154be4d07add97995da69ffe81716dc91822b457f5f38b05e358536f2cc6b",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 1
+      },
+      "domain_count": 3,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:14",
+      "reservation": 16534,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 21
+      },
+      "data_sha256": "aeb641223e6d471b0666eabc022acbacf1d49cac0db080202dd7f600597ae2c4",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:15",
+      "reservation": 17104,
+      "measured": {
+        "assignments": 9,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 9
+      },
+      "data_sha256": "ec19b7d1ce48f08afa4a15e5bd5ac9f68cf4c3b143b098aad34da2ae1e9de94f",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:16",
+      "reservation": 16420,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "6056cc338ff64665819ccbe92cd58efeeed1db804d783ad13170533705bfded1",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:17",
+      "reservation": 16768,
+      "measured": {
+        "assignments": 30,
+        "satisfiability_calls": 18,
+        "illustration_work": 56,
+        "total": 86
+      },
+      "data_sha256": "8d32a3fe4956821342f0e330487362978485bfeba5ad9179c87eaa3770f185c2",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:18",
+      "reservation": 16684,
+      "measured": {
+        "assignments": 30,
+        "satisfiability_calls": 12,
+        "illustration_work": 24,
+        "total": 54
+      },
+      "data_sha256": "3dd5e4c37803cebad5cc723f990e28c9bbf814300aa4e3d9a1522f9e66f628d6",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:19",
+      "reservation": 16414,
+      "measured": {
+        "assignments": 15,
+        "satisfiability_calls": 5,
+        "illustration_work": 14,
+        "total": 29
+      },
+      "data_sha256": "454a1c1cbb1674099b1fac349645deced3add7fe4f0fd2e40ed1d3fb661e49bd",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 5,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:20",
+      "reservation": 16588,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "d73bfbf7059b3f98bf22b57b8bf2a008ae09d46a4ffcf7cad05d466ae24bec9b",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 5,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:21",
+      "reservation": 16624,
+      "measured": {
+        "assignments": 19,
+        "satisfiability_calls": 11,
+        "illustration_work": 20,
+        "total": 39
+      },
+      "data_sha256": "118146c8b875e9bcd6d5aec12d5741406ca400cc91c50cad19c6a1119634deca",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:22",
+      "reservation": 16528,
+      "measured": {
+        "assignments": 40,
+        "satisfiability_calls": 21,
+        "illustration_work": 24,
+        "total": 64
+      },
+      "data_sha256": "56ad8cc5f93617981c918ee1909aebc0ccc76288f9efdc3a0638992cc6a2ab97",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:23",
+      "reservation": 19504,
+      "measured": {
+        "assignments": 348,
+        "satisfiability_calls": 81,
+        "illustration_work": 96,
+        "total": 444
+      },
+      "data_sha256": "b00a501ee0c966610add9b4a2b49472af7f18204fec7bbd1793ecde50e7796a0",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 32
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:24",
+      "reservation": 20224,
+      "measured": {
+        "assignments": 86,
+        "satisfiability_calls": 32,
+        "illustration_work": 96,
+        "total": 182
+      },
+      "data_sha256": "1567ab2ca5f7147b12b67e7f73ab95a2635a7875ddfcfc4d08eb01c2fcd6e29b",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 2,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:25",
+      "reservation": 16510,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "0c31774c97dacd81298aea24fb56f543ae0752900bad07a413d668a6920adf9b",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:26",
+      "reservation": 16414,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "286e546bbcbbf9be42fcdedbf02bc1d65b0dc2ebc677d86a4f7c9179e3a1e717",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:27",
+      "reservation": 16960,
+      "measured": {
+        "assignments": 49,
+        "satisfiability_calls": 28,
+        "illustration_work": 24,
+        "total": 73
+      },
+      "data_sha256": "0d150c02056cfe8d20a08f9ed3d87a5feb9e122e7ef9a8ad610135cac01c9609",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:28",
+      "reservation": 16474,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 1,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "0e2aee383c0a2642e7e45854b644627ffd457cffddc4e88869d7c1a80936c4d9",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 5,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:29",
+      "reservation": 16894,
+      "measured": {
+        "assignments": 12,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 12
+      },
+      "data_sha256": "58d89f4422e20ec71dbc3eaa13c15a80f1ed28a826ce16284f87540e89300664",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 5,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:30",
+      "reservation": 16426,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "cb518095105ab678e21b857ce6469257235db8cbb3da70ba8ab576198b5c75ec",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:31",
+      "reservation": 16438,
+      "measured": {
+        "assignments": 19,
+        "satisfiability_calls": 11,
+        "illustration_work": 8,
+        "total": 27
+      },
+      "data_sha256": "cd39b82e0bb9a13ff45bec8a1eee613fb9968b6cf67ce518c3341b9666a5525e",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 1,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:32",
+      "reservation": 16396,
+      "measured": {
+        "assignments": 8,
+        "satisfiability_calls": 5,
+        "illustration_work": 18,
+        "total": 26
+      },
+      "data_sha256": "3ee2df904c2043a6112990e3b05d1888cbc7220cda7a74748578d1bdddfddf89",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:33",
+      "reservation": 17784,
+      "measured": {
+        "assignments": 368,
+        "satisfiability_calls": 93,
+        "illustration_work": 36,
+        "total": 404
+      },
+      "data_sha256": "721770fba3ad972f142cbcfcd4506cee03039c115e0a5204c9a77012dcce460e",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 5,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:34",
+      "reservation": 18384,
+      "measured": {
+        "assignments": 100,
+        "satisfiability_calls": 54,
+        "illustration_work": 56,
+        "total": 156
+      },
+      "data_sha256": "536ce6287cfa4aea52839085cf0041addf4ad3a32c2ab5b18bff4978d4567562",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 32
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:35",
+      "reservation": 16394,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "418c013976257119232255f4d2069ff68ceddb6688cd8405ba9adfb84ac56570",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 3,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:36",
+      "reservation": 16984,
+      "measured": {
+        "assignments": 22,
+        "satisfiability_calls": 17,
+        "illustration_work": 24,
+        "total": 46
+      },
+      "data_sha256": "1f37e4109a3e85040226eed06ac5124621008d8ceb499ca8fd33feb5cfeb8550",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 32
+      },
+      "domain_count": 3,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:37",
+      "reservation": 16434,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 21
+      },
+      "data_sha256": "04df2a52a8b9ca1148a00dc10bd0aac61d3cbf373c6edcb086b627b512d5dd4b",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:38",
+      "reservation": 18904,
+      "measured": {
+        "assignments": 66,
+        "satisfiability_calls": 25,
+        "illustration_work": 112,
+        "total": 178
+      },
+      "data_sha256": "31759a71888d886470c23714dd1b2832f3528f9a2eabe77cb615b864e084e253",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:39",
+      "reservation": 16456,
+      "measured": {
+        "assignments": 12,
+        "satisfiability_calls": 6,
+        "illustration_work": 16,
+        "total": 28
+      },
+      "data_sha256": "5550d2331a71687098cd33ab3f7862cf7f53950adbca96dd8d5e37c3f6d0b05c",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:40",
+      "reservation": 17784,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 8,
+        "illustration_work": 64,
+        "total": 85
+      },
+      "data_sha256": "1a50494b32576fc392de9fd781552d3058a006c6565d9b40af25a1ca743b4def",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 1
+      },
+      "domain_count": 4,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:41",
+      "reservation": 18112,
+      "measured": {
+        "assignments": 32,
+        "satisfiability_calls": 16,
+        "illustration_work": 176,
+        "total": 208
+      },
+      "data_sha256": "91303f06fc289ad001c3550766f908d0bff779145ce4175dab4c889f1c5e9c45",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 4,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:42",
+      "reservation": 16394,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 1,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "e5cd8f66fb64d2e5208b30b3caaa390d99bc1a900e5be1979ff1b72288edb1c8",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:43",
+      "reservation": 16414,
+      "measured": {
+        "assignments": 12,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 12
+      },
+      "data_sha256": "ec5d2effbd9badb2982c74028e21a2ebf38bd3a3095b26569c57f418472e5101",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:44",
+      "reservation": 16528,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "8a6ea0bc6eca00115773ebffd5d94e19a41e3198cbc11706b3c1ae32b0506e88",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 4,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:45",
+      "reservation": 16414,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "0060474cca66fab82a96f7d53ec071e3dbca4089241229a5dea5dd34363425b4",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:46",
+      "reservation": 16672,
+      "measured": {
+        "assignments": 78,
+        "satisfiability_calls": 52,
+        "illustration_work": 14,
+        "total": 92
+      },
+      "data_sha256": "a7311f78b3751208c98841d430efe9130ac59fd33e3655acdaf867430e381afb",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 5,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:47",
+      "reservation": 16468,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "5993b345ec663f0bf1275860e0161424e5b3d69dc6a9fa54d0b1209eff8322dc",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 3,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:48",
+      "reservation": 18484,
+      "measured": {
+        "assignments": 80,
+        "satisfiability_calls": 19,
+        "illustration_work": 32,
+        "total": 112
+      },
+      "data_sha256": "6ab4422cd7d88b68a37101f2001c6d9e2607d239a105fd3bb240aaa0fb0766e2",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 2,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:49",
+      "reservation": 16408,
+      "measured": {
+        "assignments": 14,
+        "satisfiability_calls": 6,
+        "illustration_work": 10,
+        "total": 24
+      },
+      "data_sha256": "8d6dfd8a3542d5c7d6a89bc570781d867d6e98b090449916d978adbcfeb5c369",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:50",
+      "reservation": 16896,
+      "measured": {
+        "assignments": 72,
+        "satisfiability_calls": 26,
+        "illustration_work": 24,
+        "total": 96
+      },
+      "data_sha256": "57394b1fa09c29ec71a32a0bc923ef50f32b667d09cd1710c707dcc6a81f0f99",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:51",
+      "reservation": 16392,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "33a418aede99b914d3df367a016bb639491ea9bd52a8fb99da42e08a8ba9db69",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:52",
+      "reservation": 22384,
+      "measured": {
+        "assignments": 285,
+        "satisfiability_calls": 67,
+        "illustration_work": 48,
+        "total": 333
+      },
+      "data_sha256": "fcee61ebacfaaca3fff02ba16bc449dfc821d4edb2fcbfdacaf5a2c183d158a2",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:53",
+      "reservation": 16924,
+      "measured": {
+        "assignments": 22,
+        "satisfiability_calls": 6,
+        "illustration_work": 0,
+        "total": 22
+      },
+      "data_sha256": "d60b0843c0898d369542380058cd648f9618c805076f3bde6a40e5ff9d8280dd",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:54",
+      "reservation": 16464,
+      "measured": {
+        "assignments": 15,
+        "satisfiability_calls": 6,
+        "illustration_work": 32,
+        "total": 47
+      },
+      "data_sha256": "817e35630f332b921eb05e66e58c222117bdeb002048ce988ed02cb0f64d55aa",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:55",
+      "reservation": 16402,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 1,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "94527d57e12ea0fc4dd93513500dbf126539a5ac0a62e9652c212b25bd175cbd",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:56",
+      "reservation": 16594,
+      "measured": {
+        "assignments": 70,
+        "satisfiability_calls": 28,
+        "illustration_work": 12,
+        "total": 82
+      },
+      "data_sha256": "fa95d9fdbb394f19cce5e31af64e81893d4fc1ce430bcf23090049412f0595dc",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:57",
+      "reservation": 16804,
+      "measured": {
+        "assignments": 231,
+        "satisfiability_calls": 98,
+        "illustration_work": 14,
+        "total": 245
+      },
+      "data_sha256": "6d2b0d2bde959ffec63097a0d2b83a53e5d62bc9f341fd63405ea24998d8ae29",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 32
+      },
+      "domain_count": 1,
+      "row_count": 5,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:58",
+      "reservation": 16468,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "b3fec7a9a6d8455ec8843b9e0de44a756e16d76178a431be300a7867d66262a2",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:59",
+      "reservation": 16464,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "9dec065cb2fc5ceeb267cf53c0fc5d2fd50bac0da2b060e0cb1e747ce50c5677",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:60",
+      "reservation": 16480,
+      "measured": {
+        "assignments": 19,
+        "satisfiability_calls": 8,
+        "illustration_work": 40,
+        "total": 59
+      },
+      "data_sha256": "f645c3e650e80dcf12c9fb01dd7e3e6014c0b8a679ef44ff136efe4346129d13",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:61",
+      "reservation": 17056,
+      "measured": {
+        "assignments": 50,
+        "satisfiability_calls": 31,
+        "illustration_work": 32,
+        "total": 82
+      },
+      "data_sha256": "4d58ec15e2ba0eec669f323f2ff09ad9a4084c6b34b4836585a1a2301dab90b5",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:62",
+      "reservation": 16454,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "1ecf6de5dbe444c04f7e27f34d8814de6cbf99f43e7fd8c30af7cbbbd28e1454",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:63",
+      "reservation": 17152,
+      "measured": {
+        "assignments": 70,
+        "satisfiability_calls": 36,
+        "illustration_work": 40,
+        "total": 110
+      },
+      "data_sha256": "26c5d309ef509ebfdd45c13484d90d4af6d1933c4e5707ea7ee8adbd2f294a63",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:64",
+      "reservation": 16496,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "7a9d5375ee911fedda610c8c4fdb108c06250c4a6dfefa71e9dd96cccf0e9b7d",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:65",
+      "reservation": 18176,
+      "measured": {
+        "assignments": 157,
+        "satisfiability_calls": 84,
+        "illustration_work": 72,
+        "total": 229
+      },
+      "data_sha256": "43d9a55531f064c7e8c0d517da10eb790d5d163d46db9a18b011a8d1798286d0",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 5,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:66",
+      "reservation": 16480,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 1,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "5056923f99eafe7448c1d50ecaa7ab4a11c2ed4556d010b361af53b1f375d7ea",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 4,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:67",
+      "reservation": 16544,
+      "measured": {
+        "assignments": 117,
+        "satisfiability_calls": 60,
+        "illustration_work": 14,
+        "total": 131
+      },
+      "data_sha256": "8615ae85f0ab93b77ddb2c252ad256d442f51bb7fa733cbe5bb0315721a61c03",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:68",
+      "reservation": 18432,
+      "measured": {
+        "assignments": 22,
+        "satisfiability_calls": 8,
+        "illustration_work": 112,
+        "total": 134
+      },
+      "data_sha256": "b2e1b8fec39b397e5e9b18ec3987ee6840804a535083b16f27b31c78a841a668",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 1
+      },
+      "domain_count": 4,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:69",
+      "reservation": 16468,
+      "measured": {
+        "assignments": 24,
+        "satisfiability_calls": 17,
+        "illustration_work": 8,
+        "total": 32
+      },
+      "data_sha256": "1c858aa9e5be4021aa858eada99e8f5114f192211f254f9dfde9e94d96b2210c",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 1,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:70",
+      "reservation": 16624,
+      "measured": {
+        "assignments": 110,
+        "satisfiability_calls": 42,
+        "illustration_work": 14,
+        "total": 124
+      },
+      "data_sha256": "6792dc9828f7d99999a7dcadadecc3a2e32582f3cfd2b7fdf4c2f3c614f64674",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:71",
+      "reservation": 19984,
+      "measured": {
+        "assignments": 417,
+        "satisfiability_calls": 31,
+        "illustration_work": 40,
+        "total": 457
+      },
+      "data_sha256": "7b4043c09c1607a414da35cb5c126d59deb9f236227a6fd9566bb23eeb231d47",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:72",
+      "reservation": 16434,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 21
+      },
+      "data_sha256": "83824eca41258a195d52975d784a4994820f8dfcd5d6bd3da580778e5ebb773f",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 5,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:73",
+      "reservation": 20584,
+      "measured": {
+        "assignments": 295,
+        "satisfiability_calls": 67,
+        "illustration_work": 80,
+        "total": 375
+      },
+      "data_sha256": "47a4f29de47dbfb25d032b761194a8a7455c5bcabd941f06b6aa41a0bf3f29bf",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 3,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:74",
+      "reservation": 16390,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 1,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "c5be5e603a3d9454a6b337d644eae217068f0f0509b60994e7ca454538d9e77f",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:75",
+      "reservation": 25024,
+      "measured": {
+        "assignments": 56,
+        "satisfiability_calls": 26,
+        "illustration_work": 80,
+        "total": 136
+      },
+      "data_sha256": "67c2410c81d7329dd46dc19ea4c9322f6e361f0f163724dd9234f5fe4479e16c",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:76",
+      "reservation": 16528,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "1c20b837c60dba1212954d60630a18823fbffbdf1b6fc2764c5709b6627fa31f",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:77",
+      "reservation": 16504,
+      "measured": {
+        "assignments": 13,
+        "satisfiability_calls": 7,
+        "illustration_work": 24,
+        "total": 37
+      },
+      "data_sha256": "64f7db21c289275ff64cac66f3cad8ab105c467d652af5370247ab76c3f464e8",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 1
+      },
+      "domain_count": 3,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:78",
+      "reservation": 16420,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "1493e824b31b02066116592b92292c0c1f45c3a0887b7ebd090c707ff3817e75",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:79",
+      "reservation": 16480,
+      "measured": {
+        "assignments": 20,
+        "satisfiability_calls": 8,
+        "illustration_work": 16,
+        "total": 36
+      },
+      "data_sha256": "762aa96632c11b0fcf92ff9fe1574007d74420d2215565f1067c210fe20b258b",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:80",
+      "reservation": 19084,
+      "measured": {
+        "assignments": 147,
+        "satisfiability_calls": 19,
+        "illustration_work": 40,
+        "total": 187
+      },
+      "data_sha256": "7939b1cf8fdd85fceffc068d20d84175f516668b98332a9b0909c3facf1a0639",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 3,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:81",
+      "reservation": 16426,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "b7a9e18058b3ac2a39ebf354d8f48bca55bc88831019218013c41ea268b717e6",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 2,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:82",
+      "reservation": 16464,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "2b01193753d7d36cf77bc469522cee83d307aee349b94750af19d28100293037",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 2,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:83",
+      "reservation": 16444,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "dfe7a0e2c7c717f83728d1c27ce6fcfbb0a57f8801d0cd110e5bc74beeee2c39",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:84",
+      "reservation": 17392,
+      "measured": {
+        "assignments": 149,
+        "satisfiability_calls": 43,
+        "illustration_work": 56,
+        "total": 205
+      },
+      "data_sha256": "b440246673d585f59f2f0824642912082cc74c7b6ea02b673e7bb7553378dba3",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:85",
+      "reservation": 16392,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "b69536c3651e31931ab2d86318e6edf585b5094cba9944ee511ba2e282790a7e",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:86",
+      "reservation": 16416,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 1,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "6e712df8075d5592d41f3e177e6e705497f803af7609b82b833f859d501ac8f1",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 1,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:87",
+      "reservation": 16504,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 7,
+        "illustration_work": 36,
+        "total": 57
+      },
+      "data_sha256": "b13f61dac584b3e7093e614d45fcdefeef9ffbe82e658df44d9a1cd7c9f81974",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:88",
+      "reservation": 16576,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 4,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "836686ffa4b31e7cc39f5f7c734627d06ca9be9f4000839728a3d327d2622837",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 5,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:89",
+      "reservation": 16534,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 21
+      },
+      "data_sha256": "67af520e6293e2aa9dc5552d05529d07dc572bbc8a5e078ac1084168d6f4293a",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:90",
+      "reservation": 16464,
+      "measured": {
+        "assignments": 16,
+        "satisfiability_calls": 6,
+        "illustration_work": 28,
+        "total": 44
+      },
+      "data_sha256": "fddcd0325f5d12cdfe50891bffa4b3fb88f831a7042001f8689faf9c0e33732a",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:91",
+      "reservation": 16624,
+      "measured": {
+        "assignments": 58,
+        "satisfiability_calls": 19,
+        "illustration_work": 10,
+        "total": 68
+      },
+      "data_sha256": "801c69af7622e387a19cdf1ad8ed22a68dbfcf3f23dc3e7f9d1a8379bd2d2811",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:92",
+      "reservation": 186384,
+      "measured": {
+        "assignments": 2539,
+        "satisfiability_calls": 121,
+        "illustration_work": 160,
+        "total": 2699
+      },
+      "data_sha256": "a3cbb3624db445136d79ba6d167f489747e89a84ca6ef46e9537f2309a89c63b",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 32
+      },
+      "domain_count": 4,
+      "row_count": 5,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:93",
+      "reservation": 27136,
+      "measured": {
+        "assignments": 91,
+        "satisfiability_calls": 34,
+        "illustration_work": 64,
+        "total": 155
+      },
+      "data_sha256": "64926ba8cea65a7adbbb068d7ff471b45952cdb71157337c5989a6bd2f7659ea",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:94",
+      "reservation": 16444,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "0ce28b428a0b68ba346d78dc9f1520c7311f2a37529808fc59c82018b68b96a5",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 1,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:95",
+      "reservation": 16424,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "5a680784852ecda2bdbc7d02cf6dd4fab13440443eb101374717543214c630ee",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:96",
+      "reservation": 16704,
+      "measured": {
+        "assignments": 34,
+        "satisfiability_calls": 17,
+        "illustration_work": 8,
+        "total": 42
+      },
+      "data_sha256": "5423a421fc30cb8e10c38e6af4f6b3afbe21742a97cdc34e5233022711d08338",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 1,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:97",
+      "reservation": 16600,
+      "measured": {
+        "assignments": 56,
+        "satisfiability_calls": 18,
+        "illustration_work": 28,
+        "total": 84
+      },
+      "data_sha256": "de9ad4d16d1568f76cffdd2cfb0f5ca6470f9a36b725d1b88bc7fc8564c37fbe",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 5,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:98",
+      "reservation": 16504,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "81ad8086bf318e0543bf48b0645f323d3b634ea8da3d99a3b0ebf85ab9d39319",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:99",
+      "reservation": 18544,
+      "measured": {
+        "assignments": 43,
+        "satisfiability_calls": 18,
+        "illustration_work": 48,
+        "total": 91
+      },
+      "data_sha256": "99f63abb448b447ea31c78fbf4a83b4b44ac53cadf672b0c1a4c70e5b79b7ba9",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 2,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:100",
+      "reservation": 16600,
+      "measured": {
+        "assignments": 23,
+        "satisfiability_calls": 12,
+        "illustration_work": 20,
+        "total": 43
+      },
+      "data_sha256": "8ef97750ba6ad8ad146383e87e7bbc312cdef6232eddfd3d7c7d24036f1b7b72",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:101",
+      "reservation": 16834,
+      "measured": {
+        "assignments": 97,
+        "satisfiability_calls": 17,
+        "illustration_work": 28,
+        "total": 125
+      },
+      "data_sha256": "307c8f455704170685feaa207ab6ef3b98afdcd779626cf14c33e9223c97cef7",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 5,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:102",
+      "reservation": 16414,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 2,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "d4280c09e29fe75d6c90e3f61c7a82fed777c37b77ac51e5ad77bd0a3079bf79",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 5,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:103",
+      "reservation": 16512,
+      "measured": {
+        "assignments": 34,
+        "satisfiability_calls": 10,
+        "illustration_work": 48,
+        "total": 82
+      },
+      "data_sha256": "f3d9569d959d9e778a5b52a8ae9045dc507affc4c2e00f8079d959d305b4cf34",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 4,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:104",
+      "reservation": 16454,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 1,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "4f2eb90a57b9d87bf9d318eda886d26e87fb5054de52674b07f260707b64da20",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 32
+      },
+      "domain_count": 1,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:105",
+      "reservation": 18016,
+      "measured": {
+        "assignments": 86,
+        "satisfiability_calls": 53,
+        "illustration_work": 104,
+        "total": 190
+      },
+      "data_sha256": "c120a78b8667e34703b1ba34dc36302d2bd130ca5f91bf0797b7f94667c39b8a",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 32
+      },
+      "domain_count": 3,
+      "row_count": 5,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:106",
+      "reservation": 16672,
+      "measured": {
+        "assignments": 45,
+        "satisfiability_calls": 19,
+        "illustration_work": 40,
+        "total": 85
+      },
+      "data_sha256": "fa0139a3c01eea29c1a7313e439d376f3c355e4a70938d1747e864467c03de16",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:107",
+      "reservation": 16672,
+      "measured": {
+        "assignments": 51,
+        "satisfiability_calls": 15,
+        "illustration_work": 28,
+        "total": 79
+      },
+      "data_sha256": "2afe64b42de40ab87431a4f1bc733842c4f59f353c2cb7fd5e2b5ea53f6fc6d5",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:108",
+      "reservation": 16480,
+      "measured": {
+        "assignments": 11,
+        "satisfiability_calls": 6,
+        "illustration_work": 0,
+        "total": 11
+      },
+      "data_sha256": "2d78d6344cfdface8bcc9f177d252bf6aaa2e2031022a56580ed4b536094246c",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 1
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:109",
+      "reservation": 17140,
+      "measured": {
+        "assignments": 29,
+        "satisfiability_calls": 17,
+        "illustration_work": 56,
+        "total": 85
+      },
+      "data_sha256": "2ba2c1c3fcdaded1f94902bdfb088bd467782d0e08ece3fd1e4e3b20fedff52c",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:110",
+      "reservation": 39424,
+      "measured": {
+        "assignments": 844,
+        "satisfiability_calls": 121,
+        "illustration_work": 144,
+        "total": 988
+      },
+      "data_sha256": "3c262ddd9f483359ba8f8e4ff740d600ad093cf1234beeaae0d5b06a7317c32f",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 5,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:111",
+      "reservation": 16600,
+      "measured": {
+        "assignments": 22,
+        "satisfiability_calls": 12,
+        "illustration_work": 28,
+        "total": 50
+      },
+      "data_sha256": "8ba1d501e73fc2da20e21f310254309dd63841fc706ed847c7bfd0ee37944439",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:112",
+      "reservation": 16768,
+      "measured": {
+        "assignments": 14,
+        "satisfiability_calls": 6,
+        "illustration_work": 0,
+        "total": 14
+      },
+      "data_sha256": "672cd5fe0cfa6c58ab1f4aded3fca0adb59c15a57c65de5d1fbb6387e0965dd9",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 4,
+      "row_count": 2,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:113",
+      "reservation": 17034,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 21
+      },
+      "data_sha256": "529bff880b4d8eab36beeab585f1b6dad77a149ebfaa3641a546c3be265d3923",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 4,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:114",
+      "reservation": 17784,
+      "measured": {
+        "assignments": 517,
+        "satisfiability_calls": 88,
+        "illustration_work": 32,
+        "total": 549
+      },
+      "data_sha256": "ff212bef36af1dab9a2b56201763935475b190dd6234f0025f391d6ee5320aee",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 5,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:115",
+      "reservation": 16984,
+      "measured": {
+        "assignments": 49,
+        "satisfiability_calls": 21,
+        "illustration_work": 64,
+        "total": 113
+      },
+      "data_sha256": "af28400d25b3fb9de226911e42dc08397576e38e0d7b8fab63ce7f7e3c23296a",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 3,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:116",
+      "reservation": 16552,
+      "measured": {
+        "assignments": 0,
+        "satisfiability_calls": 3,
+        "illustration_work": 0,
+        "total": 0
+      },
+      "data_sha256": "0f457ba110979e11636a23eb4d09b7683da702157f1e14905eb6aade11bb375e",
+      "declared_limits": {
+        "solver_bound": 1,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:117",
+      "reservation": 16768,
+      "measured": {
+        "assignments": 95,
+        "satisfiability_calls": 53,
+        "illustration_work": 36,
+        "total": 131
+      },
+      "data_sha256": "ea42c02b34d3381dbefeaa6de64bb9d4f448f217cbf21ebf3a5df15771b8f8c7",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 2
+    },
+    {
+      "label": "random-seed:118",
+      "reservation": 16672,
+      "measured": {
+        "assignments": 38,
+        "satisfiability_calls": 22,
+        "illustration_work": 24,
+        "total": 62
+      },
+      "data_sha256": "1c0b7f8966941b99b88e28266aab3e94937775e65ab00f83501104c4cba1888f",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 1,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:119",
+      "reservation": 18484,
+      "measured": {
+        "assignments": 38,
+        "satisfiability_calls": 19,
+        "illustration_work": 40,
+        "total": 78
+      },
+      "data_sha256": "5f72733ce594b6b607a7c0b884a6f0cbfa2cb3d1d715b86b7c86a6a88ef257b1",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 3,
+      "row_count": 1,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:120",
+      "reservation": 17224,
+      "measured": {
+        "assignments": 324,
+        "satisfiability_calls": 53,
+        "illustration_work": 24,
+        "total": 348
+      },
+      "data_sha256": "ac45e6b07bc0a1200ce561f98c7dafb4d20ffee5fb317158c8deffcb1288a85a",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:121",
+      "reservation": 16404,
+      "measured": {
+        "assignments": 9,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 9
+      },
+      "data_sha256": "0c8123698f3cc4686fb02e09cf8cc9cf369adc1be01724901699c5f55aa606fe",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 5,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:122",
+      "reservation": 16896,
+      "measured": {
+        "assignments": 34,
+        "satisfiability_calls": 19,
+        "illustration_work": 16,
+        "total": 50
+      },
+      "data_sha256": "1bc835cb4f5ff9f43ff24497b6e473f90c6628da78f934b6e393becc09966830",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 32
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:123",
+      "reservation": 16438,
+      "measured": {
+        "assignments": 26,
+        "satisfiability_calls": 13,
+        "illustration_work": 10,
+        "total": 36
+      },
+      "data_sha256": "62c61341ac6a16b20e2fb7bd2e2db490c563cc96399a95f464430e0dc01daa76",
+      "declared_limits": {
+        "solver_bound": 8,
+        "solver_calls": 3
+      },
+      "domain_count": 1,
+      "row_count": 4,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:124",
+      "reservation": 18384,
+      "measured": {
+        "assignments": 173,
+        "satisfiability_calls": 49,
+        "illustration_work": 48,
+        "total": 221
+      },
+      "data_sha256": "a1a16f7af8cb9547f4af5c5b9ccbe69089c6a32c4b64ef3931fd91c95509e225",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "random-seed:125",
+      "reservation": 16684,
+      "measured": {
+        "assignments": 42,
+        "satisfiability_calls": 21,
+        "illustration_work": 36,
+        "total": 78
+      },
+      "data_sha256": "88b17b1da800cd6f9bab84192dfee434091af7745781bb759776d03cc2c41e86",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 3
+      },
+      "domain_count": 2,
+      "row_count": 3,
+      "prohibition_count": 3
+    },
+    {
+      "label": "random-seed:126",
+      "reservation": 16534,
+      "measured": {
+        "assignments": 21,
+        "satisfiability_calls": 5,
+        "illustration_work": 0,
+        "total": 21
+      },
+      "data_sha256": "18ed8f366578bef2e5442c74c46d861d16115430de6af1743fdca11a400a92bc",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 3
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 1
+    },
+    {
+      "label": "random-seed:127",
+      "reservation": 16434,
+      "measured": {
+        "assignments": 25,
+        "satisfiability_calls": 7,
+        "illustration_work": 12,
+        "total": 37
+      },
+      "data_sha256": "930d2e1e361d5c9871cc925d65a48d54ee71bb5b0be93152037c928cf5d1ee9d",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 1
+      },
+      "domain_count": 1,
+      "row_count": 1,
+      "prohibition_count": 3
+    },
+    {
+      "label": "migraine:table-initial:0",
+      "reservation": 18304,
+      "measured": {
+        "assignments": 135,
+        "satisfiability_calls": 67,
+        "illustration_work": 240,
+        "total": 375
+      },
+      "data_sha256": "4644363965ad99d6d4607069feafc6fe1588e25975bea68cb7d07c9280073442",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "migraine:table-revised:0",
+      "reservation": 18304,
+      "measured": {
+        "assignments": 624,
+        "satisfiability_calls": 68,
+        "illustration_work": 352,
+        "total": 976
+      },
+      "data_sha256": "0a68732adc38d2588a5502b4d5b4c8dde18eb5fc981f21b8dd99c4856f659905",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "migraine:table-partial-witnesses:0",
+      "reservation": 41984,
+      "measured": {
+        "assignments": 175,
+        "satisfiability_calls": 107,
+        "illustration_work": 1920,
+        "total": 2095
+      },
+      "data_sha256": "bbdd789478e2270392ca6fb17cbef9de98c16a883c78e3d127464731820af3a3",
+      "declared_limits": {
+        "solver_bound": 128,
+        "solver_calls": 256
+      },
+      "domain_count": 8,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "migraine:table-unconfirmed:0",
+      "reservation": 18304,
+      "measured": {
+        "assignments": 135,
+        "satisfiability_calls": 67,
+        "illustration_work": 240,
+        "total": 375
+      },
+      "data_sha256": "4644363965ad99d6d4607069feafc6fe1588e25975bea68cb7d07c9280073442",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 3,
+      "prohibition_count": 2
+    },
+    {
+      "label": "trd:decision-table-v2-lowsafety-request.json:0",
+      "reservation": 31936,
+      "measured": {
+        "assignments": 1032,
+        "satisfiability_calls": 114,
+        "illustration_work": 272,
+        "total": 1304
+      },
+      "data_sha256": "d87d212128249b90c6f0977dbc3d6226970a609a6e5dd9385971048d993d57b1",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 5,
+      "prohibition_count": 0
+    },
+    {
+      "label": "trd:decision-table-v3-request.json:0",
+      "reservation": 49432,
+      "measured": {
+        "assignments": 8057,
+        "satisfiability_calls": 255,
+        "illustration_work": 528,
+        "total": 8585
+      },
+      "data_sha256": "5869788825ff81834d5af5d80891892d43170c17d883d0437e593034c95a3ffe",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 4,
+      "row_count": 8,
+      "prohibition_count": 0
+    },
+    {
+      "label": "trd:decision-tables-request.json:0",
+      "reservation": 19354,
+      "measured": {
+        "assignments": 419,
+        "satisfiability_calls": 55,
+        "illustration_work": 96,
+        "total": 515
+      },
+      "data_sha256": "36068f2b6427af2bfce2711b9df7dd97b4943e1dceeda6c995d49e07ca1638f9",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "trd:decision-tables-request.json:1",
+      "reservation": 17792,
+      "measured": {
+        "assignments": 184,
+        "satisfiability_calls": 47,
+        "illustration_work": 72,
+        "total": 256
+      },
+      "data_sha256": "84d65d501cdb20ddd6d6ef285e70c0e727cb480b207581e2a7ddd080f1a2f027",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "trd:decision-tables-v2-request.json:0",
+      "reservation": 20704,
+      "measured": {
+        "assignments": 1016,
+        "satisfiability_calls": 98,
+        "illustration_work": 136,
+        "total": 1152
+      },
+      "data_sha256": "5ceb378b5a67992f638c98ac2cd28eaf35c88ca5531992555b76edaccd16d0ef",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 3,
+      "row_count": 5,
+      "prohibition_count": 0
+    },
+    {
+      "label": "trd:decision-tables-v2-request.json:1",
+      "reservation": 17792,
+      "measured": {
+        "assignments": 359,
+        "satisfiability_calls": 58,
+        "illustration_work": 90,
+        "total": 449
+      },
+      "data_sha256": "71a47d29b663a2cc7d55ef9871d7df65684b35e2bcf2946f7d98829fb169bd97",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 2,
+      "row_count": 4,
+      "prohibition_count": 0
+    },
+    {
+      "label": "extra-numeric-thresholds",
+      "reservation": 17068,
+      "measured": {
+        "assignments": 101,
+        "satisfiability_calls": 20,
+        "illustration_work": 56,
+        "total": 157
+      },
+      "data_sha256": "1fdda92a115d12882782f98eb843caf1869e7d473cc0e6f29c91898285643652",
+      "declared_limits": {
+        "solver_bound": 4096,
+        "solver_calls": 256
+      },
+      "domain_count": 1,
+      "row_count": 2,
+      "prohibition_count": 1
+    }
+  ],
+  "source_hashes": {
+    "/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/decision_tables.py": "ab9210bee7bb4af53b5ad272b5ecb02c805e82c4e82f64b400d756ac498c8ff6",
+    "/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/solver_work.py": "579cf977f67ef23d35c5b053763c8feb2832a53dbe60bf376cac05030f8926dc",
+    "/Users/rohanvinaik/tools/TrialLedger/tests/test_table_work_reservation.py": "47383bbaa2faf8a8620ab5563e8bd575b5de0785c6059e35e6455194b428b4c2"
+  }
+}

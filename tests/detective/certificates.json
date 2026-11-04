@@ -11,6 +11,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/analysis_review.py::review_priority_code": {
+    "cut_reasons": [],
+    "function_digest": "79885b8be85b4cfc",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/assertions.py::canonical": {
     "cut_reasons": [],
     "function_digest": "74e2534b4ce31112",
@@ -826,6 +832,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/decision_tables.py::prohibition_state": {
+    "cut_reasons": [],
+    "function_digest": "e991b8a8b5d4aaff",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/decision_tables.py::table_check_state": {
     "cut_reasons": [],
     "function_digest": "9fdaa1e7152fb9aa",
@@ -892,6 +904,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/design_session.py::revision_change_code": {
+    "cut_reasons": [],
+    "function_digest": "ac9c24cbf15d381a",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/design_session.py::revision_input_code": {
     "cut_reasons": [],
     "function_digest": "000e845da450934b",
@@ -913,6 +931,12 @@
   "TrialLedger/layer2/entail.py::rejected_outcome": {
     "cut_reasons": [],
     "function_digest": "220acaa1ca89139e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/entail.py::scope_blocker_code": {
+    "cut_reasons": [],
+    "function_digest": "f1ecb8999d70c34f",
     "refusal": "",
     "standing": "complete"
   },
@@ -1129,6 +1153,12 @@
   "TrialLedger/layer2/reasoning_explanations.py::relation_application_code": {
     "cut_reasons": [],
     "function_digest": "2b9d5207964a2cc4",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/request_preparation.py::compact_node_code": {
+    "cut_reasons": [],
+    "function_digest": "d66931f8afbd4f52",
     "refusal": "",
     "standing": "complete"
   },
@@ -1630,6 +1660,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/reasoning_delivery.py::prepared_artifact_code": {
+    "cut_reasons": [],
+    "function_digest": "a63fbb29d30fd032",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/record.py::commit_named": {
     "cut_reasons": [],
     "function_digest": "6886d31e50cfd9d2",
@@ -1750,6 +1786,12 @@
   "TrialLedger/request.py::subclass_attribution": {
     "cut_reasons": [],
     "function_digest": "7098a1ade196f3ae",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/retained_sources.py::source_marker_code": {
+    "cut_reasons": [],
+    "function_digest": "cd021dffa0daa154",
     "refusal": "",
     "standing": "complete"
   },

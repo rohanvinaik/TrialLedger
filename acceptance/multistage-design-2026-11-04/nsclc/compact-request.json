@@ -1,0 +1,130 @@
+{
+  "operation": "prepare",
+  "for": "design_session",
+  "id": "simulated-firstline-egfr-platform",
+  "revision": "one",
+  "target": {
+    "kind": "new_trial",
+    "ref": "invented-TRX-platform",
+    "scope": {
+      "study": "invented-TRX-platform",
+      "population": "advanced EGFR-mutant NSCLC; draft-only simulation",
+      "arm": "all",
+      "time": "entry and responder withdrawal stage",
+      "version": "simulated-draft-one"
+    }
+  },
+  "criteria": [
+    {
+      "id": "ecog-floor",
+      "modality": "required",
+      "body": {"kind": "quantity", "predicate": {"kind": "measurement", "key": "ECOG"}, "comparison": "le", "number": 1, "unit": "ECOG-point", "inclusivity": "inclusive"},
+      "origin": {"kind": "user_choice", "ref": "simulated:nsclc:exchange-1; no clinician confirmation"},
+      "status": "known", "resolution": "resolved"
+    },
+    {
+      "id": "qualifying-egfr",
+      "modality": "required",
+      "body": {"any": [
+        {"kind": "enum_set", "predicate": {"kind": "disease_attribute", "key": "EGFR_mutations_present"}, "comparison": "in", "members": ["L858R"]},
+        {"kind": "enum_set", "predicate": {"kind": "disease_attribute", "key": "EGFR_mutations_present"}, "comparison": "in", "members": ["exon19_deletion"]}
+      ]},
+      "origin": {"kind": "user_choice", "ref": "simulated:nsclc:exchange-1; no clinician confirmation"},
+      "status": "known", "resolution": "resolved"
+    },
+    {
+      "id": "unstable-cns-only",
+      "modality": "excluded",
+      "body": {"all": [
+        {"kind": "boolean", "predicate": {"kind": "condition_status", "key": "brain_metastases"}},
+        {"kind": "boolean", "predicate": {"kind": "condition_status", "key": "neurologic_instability"}}
+      ]},
+      "origin": {"kind": "user_choice", "ref": "simulated:nsclc:exchange-1; no clinician confirmation"},
+      "status": "known", "resolution": "resolved"
+    },
+    {
+      "id": "adjuvant-permission",
+      "modality": "permitted",
+      "body": {"kind": "boolean", "predicate": {"kind": "treatment_history", "key": "prior_adjuvant_systemic_therapy"}},
+      "origin": {"kind": "user_choice", "ref": "simulated:nsclc:exchange-1; no clinician confirmation"},
+      "status": "known", "resolution": "resolved"
+    },
+    {
+      "id": "prior-tki-exclusion",
+      "modality": "excluded",
+      "body": {"kind": "boolean", "predicate": {"kind": "treatment_history", "key": "prior_EGFR_TKI"}},
+      "origin": {"kind": "user_choice", "ref": "simulated:nsclc:exchange-1; no clinician confirmation"},
+      "status": "known", "resolution": "resolved"
+    },
+    {
+      "id": "withdrawal-responder",
+      "modality": "required",
+      "body": {"kind": "quantity", "predicate": {"kind": "measurement", "key": "induction_tumor_reduction"}, "comparison": "ge", "number": 50, "unit": "percent", "inclusivity": "inclusive"},
+      "cohort": {"class": "Scope", "kind": "cohort_ref", "ref": "stage-c-withdrawal", "parts": []},
+      "origin": {"kind": "user_choice", "ref": "simulated:nsclc:exchange-1; no clinician confirmation"},
+      "status": "known", "resolution": "resolved"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ecog-admission",
+      "question": "Would ECOG 2 or ECOG 1 be compatible with our represented entry restrictions?",
+      "options": [
+        {"id": "ecog2", "label": "ECOG 2 profile", "query": {"kind": "quantity", "predicate": {"kind": "measurement", "key": "ECOG"}, "comparison": "eq", "number": 2, "unit": "ECOG-point", "inclusivity": "inclusive"}},
+        {"id": "ecog1", "label": "ECOG 1 profile", "query": {"kind": "quantity", "predicate": {"kind": "measurement", "key": "ECOG"}, "comparison": "eq", "number": 1, "unit": "ECOG-point", "inclusivity": "inclusive"}}
+      ]
+    },
+    {
+      "id": "cns-admission",
+      "question": "Does our qualified CNS exclusion distinguish stable from neurologically unstable brain metastases?",
+      "options": [
+        {"id": "stable-cns", "label": "Brain metastases without neurologic instability", "query": {"all": [
+          {"kind": "boolean", "predicate": {"kind": "condition_status", "key": "brain_metastases"}},
+          {"not": {"kind": "boolean", "predicate": {"kind": "condition_status", "key": "neurologic_instability"}}}
+        ]}},
+        {"id": "unstable-cns", "label": "Brain metastases with neurologic instability", "query": {"all": [
+          {"kind": "boolean", "predicate": {"kind": "condition_status", "key": "brain_metastases"}},
+          {"kind": "boolean", "predicate": {"kind": "condition_status", "key": "neurologic_instability"}}
+        ]}}
+      ]
+    },
+    {
+      "id": "genotype-admission",
+      "question": "Does at least one qualifying EGFR mutation allow compound mutations while excluding an exon20-only profile?",
+      "options": [
+        {"id": "compound-egfr", "label": "L858R plus exon20 insertion; not mutually exclusive", "query": {"all": [
+          {"kind": "enum_set", "predicate": {"kind": "disease_attribute", "key": "EGFR_mutations_present"}, "comparison": "in", "members": ["L858R"]},
+          {"kind": "enum_set", "predicate": {"kind": "disease_attribute", "key": "EGFR_mutations_present"}, "comparison": "in", "members": ["exon20_insertion"]}
+        ]}},
+        {"id": "exon20-without-qualifier", "label": "Exon20 insertion, no L858R and no exon19 deletion", "query": {"all": [
+          {"kind": "enum_set", "predicate": {"kind": "disease_attribute", "key": "EGFR_mutations_present"}, "comparison": "in", "members": ["exon20_insertion"]},
+          {"not": {"kind": "enum_set", "predicate": {"kind": "disease_attribute", "key": "EGFR_mutations_present"}, "comparison": "in", "members": ["L858R"]}},
+          {"not": {"kind": "enum_set", "predicate": {"kind": "disease_attribute", "key": "EGFR_mutations_present"}, "comparison": "in", "members": ["exon19_deletion"]}}
+        ]}}
+      ]
+    },
+    {
+      "id": "adjuvant-and-tki",
+      "question": "Does permission for prior adjuvant therapy override the separately stated prior-TKI exclusion?",
+      "options": [
+        {"id": "adjuvant-with-tki", "label": "Prior adjuvant therapy including an EGFR TKI", "query": {"all": [
+          {"kind": "boolean", "predicate": {"kind": "treatment_history", "key": "prior_adjuvant_systemic_therapy"}},
+          {"kind": "boolean", "predicate": {"kind": "treatment_history", "key": "prior_EGFR_TKI"}}
+        ]}},
+        {"id": "adjuvant-without-tki", "label": "Prior adjuvant therapy, explicitly no EGFR TKI", "query": {"all": [
+          {"kind": "boolean", "predicate": {"kind": "treatment_history", "key": "prior_adjuvant_systemic_therapy"}},
+          {"not": {"kind": "boolean", "predicate": {"kind": "treatment_history", "key": "prior_EGFR_TKI"}}}
+        ]}}
+      ]
+    },
+    {
+      "id": "withdrawal-admission",
+      "question": "Can a 40-percent improver enter Stage C, compared with a 60-percent improver?",
+      "context": {"cohort": "stage-c-withdrawal"},
+      "options": [
+        {"id": "response40", "label": "40-percent tumor reduction at induction end", "query": {"kind": "quantity", "predicate": {"kind": "measurement", "key": "induction_tumor_reduction"}, "comparison": "eq", "number": 40, "unit": "percent", "inclusivity": "inclusive"}},
+        {"id": "response60", "label": "60-percent tumor reduction at induction end", "query": {"kind": "quantity", "predicate": {"kind": "measurement", "key": "induction_tumor_reduction"}, "comparison": "eq", "number": 60, "unit": "percent", "inclusivity": "inclusive"}}
+      ]
+    }
+  ]
+}

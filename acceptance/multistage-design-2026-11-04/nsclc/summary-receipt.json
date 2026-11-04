@@ -1,0 +1,571 @@
+{
+  "code": "complete",
+  "scope": "Draft-only simulated NSCLC; cold to prepare interface, not to existing symbolic semantics",
+  "implementation_reads_or_model_builder_imports": false,
+  "input": {
+    "preparation_first_attempt_accepted": true,
+    "criteria": 6,
+    "questions": 5,
+    "options": 10,
+    "compact_fields": 265,
+    "prepared_fields": 1728,
+    "compact_canonical_bytes": 6235,
+    "prepared_canonical_bytes": 34934,
+    "prepare_reply_bytes": 113004,
+    "prepare_disclosed_defaults": 367
+  },
+  "logical_receipt": {
+    "code": "complete",
+    "changed_option_outcomes": [
+      "ecog2"
+    ],
+    "non_ecog_outcomes_equal": true,
+    "unrelated_open_scope_blockers": [],
+    "old_artifact_immutable_digest_verified": true,
+    "source_snapshots": 0,
+    "all_origins_explicitly_simulated": true,
+    "revised_ecog_adoption_refs_consistent": true,
+    "baseline_outcomes": {
+      "adjuvant-with-tki": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "adjuvant-without-tki": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "stable-cns": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "unstable-cns": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "ecog2": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "ecog1": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "compound-egfr": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "exon20-without-qualifier": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "response40": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "response60": [
+        "feasible",
+        "UNDETERMINED"
+      ]
+    },
+    "revised_outcomes": {
+      "ecog2": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "ecog1": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "adjuvant-with-tki": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "adjuvant-without-tki": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "stable-cns": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "unstable-cns": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "compound-egfr": [
+        "feasible",
+        "UNDETERMINED"
+      ],
+      "exon20-without-qualifier": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "response40": [
+        "infeasible",
+        "REFUTED"
+      ],
+      "response60": [
+        "feasible",
+        "UNDETERMINED"
+      ]
+    }
+  },
+  "revision_axes": {
+    "decision": [
+      {
+        "id": "adjuvant-and-tki",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "cns-admission",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "ecog-admission",
+        "code": "answer_changed",
+        "changes": [
+          "answer",
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "changed",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "genotype-admission",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "withdrawal-admission",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      }
+    ],
+    "analysis": [
+      {
+        "id": "question:adjuvant-and-tki:option:adjuvant-with-tki",
+        "code": "input_only",
+        "changes": [],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:adjuvant-and-tki:option:adjuvant-without-tki",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:cns-admission:option:stable-cns",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:cns-admission:option:unstable-cns",
+        "code": "input_only",
+        "changes": [],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:ecog-admission:option:ecog1",
+        "code": "support_changed",
+        "changes": [
+          "support",
+          "origin"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:ecog-admission:option:ecog2",
+        "code": "answer_changed",
+        "changes": [
+          "answer",
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "changed",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:genotype-admission:option:compound-egfr",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      },
+      {
+        "id": "question:genotype-admission:option:exon20-without-qualifier",
+        "code": "input_only",
+        "changes": [],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:withdrawal-admission:option:response40",
+        "code": "input_only",
+        "changes": [],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "unchanged",
+          "origin": "unchanged",
+          "context": "unchanged",
+          "requirements": "unchanged"
+        }
+      },
+      {
+        "id": "question:withdrawal-admission:option:response60",
+        "code": "requirements_changed",
+        "changes": [
+          "support",
+          "origin",
+          "requirements"
+        ],
+        "axes": {
+          "question": "unchanged",
+          "wording": "unchanged",
+          "answer": "unchanged",
+          "support": "changed",
+          "origin": "changed",
+          "context": "unchanged",
+          "requirements": "changed"
+        }
+      }
+    ]
+  },
+  "copy_path": {
+    "clinical_operation_calls_total": 11,
+    "mcp_setup_calls": 2,
+    "spreadsheet_checks": {
+      "changes_decision_rows": 5,
+      "answer_changed_rows": 1,
+      "requirements_changed_rows": 5,
+      "permission_rows": 2,
+      "decision_list_rows": 5
+    },
+    "cli_mcp_baseline_equal": true,
+    "cli_mcp_revision_equal": true,
+    "cli_mcp_export_bytes_equal": true
+  },
+  "handle_path": {
+    "code": "complete",
+    "canonical_expanded_request_equal": true,
+    "computed_result_equal_to_baseline": true,
+    "cli_mcp_preparation_ids_equal": true,
+    "cli_mcp_computed_ids_equal": true,
+    "cli_mcp_canonical_payload_equal": true,
+    "prepared_id": "6e402b75cb19e938ef43aad4431db2e34bd562ae0bad6ccaa05b63a7b0c54b65",
+    "computed_id": "ca6f01b2be03d22acb23b53fd65281846359c3782cb2cd6b9803f14417e722d2",
+    "no_expanded_request_sent_in_handle_calls": true,
+    "default_payload_budget": 24576,
+    "calls": [
+      {
+        "channel": "CLI",
+        "operation": "reason",
+        "prepared_handle_used": false,
+        "response_bytes": 981
+      },
+      {
+        "channel": "CLI",
+        "operation": "reason",
+        "prepared_handle_used": true,
+        "response_bytes": 9546
+      },
+      {
+        "channel": "MCP",
+        "operation": "initialize",
+        "request_bytes": 174,
+        "transport_response_bytes": 4303
+      },
+      {
+        "channel": "MCP",
+        "operation": "tools/list",
+        "request_bytes": 58,
+        "transport_response_bytes": 23805
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason",
+        "request_bytes": 6359,
+        "transport_response_bytes": 1229,
+        "response_payload_bytes": 999
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason",
+        "request_bytes": 191,
+        "transport_response_bytes": 10792,
+        "response_payload_bytes": 9564
+      }
+    ],
+    "canonical_payload_sha256": "ca6f01b2be03d22acb23b53fd65281846359c3782cb2cd6b9803f14417e722d2"
+  },
+  "handle_delivery": {
+    "code": "complete",
+    "all_decision_views_retrieved": 5,
+    "decision_pages": [
+      {
+        "offset": 0,
+        "limit": 50,
+        "returned": 5,
+        "total": 5,
+        "next_offset": null
+      }
+    ],
+    "revision_equal_to_baseline_copy_path": true,
+    "cli_mcp_revision_artifact_equal": true,
+    "cli_mcp_export_bytes_equal": true,
+    "calls": [
+      {
+        "channel": "CLI",
+        "operation": "reason-revise",
+        "response_bytes": 18142
+      },
+      {
+        "channel": "CLI",
+        "operation": "reason-export",
+        "response_bytes": 1148
+      },
+      {
+        "channel": "MCP",
+        "operation": "initialize",
+        "request_bytes": 165,
+        "transport_response_bytes": 4303
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_result",
+        "request_bytes": 229,
+        "transport_response_bytes": 1003,
+        "response_payload_bytes": 773
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_result",
+        "request_bytes": 239,
+        "transport_response_bytes": 12026,
+        "response_payload_bytes": 10708
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_result",
+        "request_bytes": 239,
+        "transport_response_bytes": 9385,
+        "response_payload_bytes": 8341
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_result",
+        "request_bytes": 239,
+        "transport_response_bytes": 9178,
+        "response_payload_bytes": 8142
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_result",
+        "request_bytes": 239,
+        "transport_response_bytes": 9730,
+        "response_payload_bytes": 8662
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_result",
+        "request_bytes": 239,
+        "transport_response_bytes": 10699,
+        "response_payload_bytes": 9536
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_revise",
+        "request_bytes": 417,
+        "transport_response_bytes": 20624,
+        "response_payload_bytes": 18167
+      },
+      {
+        "channel": "MCP",
+        "operation": "reason_export",
+        "request_bytes": 166,
+        "transport_response_bytes": 1661,
+        "response_payload_bytes": 1481
+      }
+    ],
+    "export": {
+      "code": "complete",
+      "artifact": "0fe82e00b8fcd45d3cd5d247b8ef4162e99610bdbb59e4300e71c599c188ba0c",
+      "folder": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/cold-prepare-nsclc/cli-handle-export-final/review",
+      "workbook": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/cold-prepare-nsclc/cli-handle-export-final/review/design-review.xlsx",
+      "decision_list": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/cold-prepare-nsclc/cli-handle-export-final/review/decision-list.md",
+      "manifest": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/cold-prepare-nsclc/cli-handle-export-final/review/export-manifest.json",
+      "files": {
+        "artifacts/0fe82e00b8fcd45d3cd5d247b8ef4162e99610bdbb59e4300e71c599c188ba0c.json": {
+          "sha256": "0fe82e00b8fcd45d3cd5d247b8ef4162e99610bdbb59e4300e71c599c188ba0c",
+          "bytes": 1705608
+        },
+        "decision-list.md": {
+          "sha256": "2552dc722bb60e2642653ac3c9b5cc916f05d5a433ead9751ca9395e72ea2526",
+          "bytes": 21381
+        },
+        "design-review.xlsx": {
+          "sha256": "6ef3979684c103c9f25546b3a06e3cb9a3a61855be0fdf95596133f556f35a46",
+          "bytes": 31242
+        }
+      },
+      "problems": []
+    }
+  },
+  "outputs": {
+    "workbook": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/cold-prepare-nsclc/cli-handle-export-final/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/wild-platform-20261104/cold-prepare-nsclc/cli-handle-export-final/review/decision-list.md",
+    "sha256": {
+      "workbook": "6ef3979684c103c9f25546b3a06e3cb9a3a61855be0fdf95596133f556f35a46",
+      "decision_list": "2552dc722bb60e2642653ac3c9b5cc916f05d5a433ead9751ca9395e72ea2526"
+    }
+  },
+  "complete_local_evidence": "All original full requests/results, retained payloads and default receipts remain beside this summary.",
+  "final_replay": {
+    "code": "complete",
+    "baseline_id": "4044b28ad071583091d21493a2b7c45a8a4a897cb26e9ed0bfe376f64f914886",
+    "revision_id": "3262ec5513f05efb9b560cbf92b0cf30a0dd39150ac2f53c3141e32d248acb7c",
+    "cli_mcp_full_result_equal": true,
+    "export_bytes_equal": true,
+    "note": "Original compact input and cold authorship retained; final integration replay refreshes parent support/origin axes. Initial copy-path byte measurements are historical, separate from final handle-delivery measurements."
+  }
+}

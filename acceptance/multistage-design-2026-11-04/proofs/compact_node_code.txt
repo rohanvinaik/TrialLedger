@@ -1,0 +1,37 @@
+TrialLedger/layer2/request_preparation.py::compact_node_code: ✓ every killable mutant killed + line-complete — 1 crash-only value gap(s) — detected by crash; no value pins them
+  mutants: 1 → 1 survivors; score 98% → 98% (56/57 killed)
+  value: 2 → 2 unspecified; score 96% → 96% (55/57 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 29 operator mutants · comprehensive — full mutant universe · 55/57 = 96% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 2 survivors, 2 sound tests written
+  pass 1: 2 survivors, 0 sound tests written
+  remaining: 2 VALUE
+  value-equivalent, crash-only-distinguishable (1: VALUE) — the mutant RAISES where the original returns, so no return-value assertion can pin it. Your suite already detects every one by crash — no input is owed for detection; a ↳ line below, where present, names the boundary input that would make the distinction explicit. An input distinguishes each, so none is an equivalence candidate — nothing to `flag`:
+    → mutant VALUE_4cc5e6fe [VALUE]: - return compounds[0] if len(keys) == 1 else 'invalid_compound'  + return compounds[1] if len(keys) == 1 else 'invalid_compound'
+  ✓ 1 survivor(s) flagged equivalent (oracle — PROVEN, not gaps)
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 5680 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 7 test(s) cover all kills + lines
+  PROPOSED removals (30, redundant for BOTH kills and lines — confirm to delete, never auto): legacy:tests/detective/test_TrialLedger_layer2_request_preparation_compact_node_code_d4d6a01b7e_synth.py::test_compact_node_code_value_0, tests/test_request_preparation.py::test_advanced_canonical_analysis_is_retained_without_execution, tests/test_request_preparation.py::test_cli_mcp_prepare_and_run_need_only_public_json_requests, tests/test_request_preparation.py::test_compact_preparation_and_execution_never_echo_the_full_defaults_ledger[2048], tests/test_request_preparation.py::test_compact_preparation_and_execution_never_echo_the_full_defaults_ledger[24576], tests/test_request_preparation.py::test_compact_preparation_and_execution_never_echo_the_full_defaults_ledger[4096], tests/test_request_preparation.py::test_compact_syntax_selects_exact_declared_branch_not_token_meaning[keys6-invalid_compound], tests/test_request_preparation.py::test_compact_syntax_selects_exact_declared_branch_not_token_meaning[keys7-invalid_compound], tests/test_request_preparation.py::test_compact_syntax_selects_exact_declared_branch_not_token_meaning[keys9-invalid_node], tests/test_request_preparation.py::test_every_reported_default_names_its_actual_expanded_value[example], tests/test_request_preparation.py::test_every_reported_default_names_its_actual_expanded_value[session_example], tests/test_request_preparation.py::test_missing_standing_stays_proposed_and_unresolved_even_for_declared_user_choice, tests/test_request_preparation.py::test_no_copy_preparation_handoff_cli_mcp_parity_and_full_origin_retention, tests/test_request_preparation.py::test_no_input_mutation_and_returned_objects_are_detached, tests/test_request_preparation.py::test_preparation_never_invokes_solver_or_source_reader, tests/test_request_preparation.py::test_prepare_is_inspection_with_no_computed_clinical_finding, tests/test_request_preparation.py::test_prepare_keeps_raw_source_handles_unchanged_until_execution, tests/test_request_preparation.py::test_quantity_requires_material_numeric_choices_instead_of_guessing[comparison], tests/test_request_preparation.py::test_quantity_requires_material_numeric_choices_instead_of_guessing[inclusivity], tests/test_request_preparation.py::test_quantity_requires_material_numeric_choices_instead_of_guessing[unit], tests/test_request_preparation.py::test_selection_must_name_an_actual_alternative_and_never_confers_source_truth, tests/test_request_preparation.py::test_session_projection_defaults_and_explicit_criterion_subset_are_inspectable, tests/test_request_preparation.py::test_session_requires_distinct_real_options_at_least_two[options0], tests/test_request_preparation.py::test_session_requires_distinct_real_options_at_least_two[options1], tests/test_request_preparation.py::test_session_requires_distinct_real_options_at_least_two[options2], tests/test_request_preparation.py::test_source_changed_after_preparation_is_refused_before_computation, tests/test_request_preparation.py::test_unknown_fields_or_vocabularies_never_silently_become_a_rule[body-words-age 18], tests/test_request_preparation.py::test_unknown_fields_or_vocabularies_never_silently_become_a_rule[criterion-modality-must], tests/test_request_preparation.py::test_unknown_fields_or_vocabularies_never_silently_become_a_rule[criterion-status-confirmed], tests/test_request_preparation.py::test_wrong_artifact_type_and_modified_artifact_are_named_refusals
+  wrote: tests/detective/test_TrialLedger_layer2_request_preparation_compact_node_code_d4d6a01b7e_synth.py
+  pytest wiring: pytest config already declares the marker — nothing to change; verified 1 test(s) pass under pytest
+  ▶ to run these tests: `pytest`   (only the generated ones: `pytest -m detective`; only your own: `pytest -m "not detective"`)
+  ── written to disk (auto-applied) ──
+  │ # detective-content-sha256: 08cb266928afa9903dba2335baadc3f93e04caa92887dc2d3ed39541be94d293
+  │ """Auto-generated by Detective — warrant-classed tests for TrialLedger/layer2/request_preparation.py::compact_node_code.
+  │ Function digest: d66931f8afbd4f52.
+  │
+  │ Regenerated wholesale by `detective converge`; hand edits will be
+  │ overwritten. Witness lines carry full fidelity on purpose."""
+  │
+  │ import pytest
+  │
+  │ from TrialLedger.layer2.request_preparation import compact_node_code
+  │
+  │
+  │ @pytest.mark.detective
+  │ def test_compact_node_code_value_0():
+  │     """VALUE survivor — golden capture (pure + deterministic)."""
+  │     result = compact_node_code(keys=["all"])
+  │     assert result == "all"
+FINAL TrialLedger/layer2/request_preparation.py::compact_node_code: ✓ COMPLETE (operator universe · modulo 1 crash-only value gap) · 56/57 killed · 1 test(s) → tests/detective/test_TrialLedger_layer2_request_preparation_compact_node_code_d4d6a01b7e_synth.py · policy 9+neg.f5a15364c11d

@@ -15,6 +15,14 @@ REASONING_OPERATIONS = (
     "source_assertions",
     "design_session",
 )
-OPERATIONS = ("describe", *REASONING_OPERATIONS)
-DISCOVERY_VIEWS = ("overview", *REASONING_OPERATIONS, "delivery", "worked_session", "full")
+PREPARATION_OPERATIONS = ("prepare",)
+OPERATIONS = ("describe", *PREPARATION_OPERATIONS, *REASONING_OPERATIONS)
+DISCOVERY_VIEWS = (
+    "overview",
+    *PREPARATION_OPERATIONS,
+    *REASONING_OPERATIONS,
+    "delivery",
+    "worked_session",
+    "full",
+)
 REASONING_WORDS = ", ".join(REASONING_OPERATIONS)

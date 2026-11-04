@@ -27,6 +27,26 @@ structural machine shapes and named field contracts, or `"detail":"full"` for th
 Schema acceptance does not establish clinical meaning, admission or source truth. View full retains the
 complete manual; delivery describes retained results, revision and export.
 
+For routine design, discover `{"operation":"describe","view":"prepare"}` first. `prepare` lets an
+LLM submit explicit typed criteria and a list of questions/options without writing model boilerplate or a
+Python script. Its reply supplies `request` (run this next), `defaults` (inspect these), and `origins` (retain
+these). Short `all`, `any` and `not` structures keep their logical force; quantities keep their comparison,
+units and boundaries. Unspecified standing stays proposed. The expansion is inspectable structure, not
+clinical translation or confirmation. Advanced canonical objects remain available.
+
+Retain a large preparation with `response_view:"compact"`, then call MCP reason with
+`{"prepared":"ARTIFACT_ID","response_view":"compact"}` instead of a request object. CLI uses
+`trialledger reason --prepared ID --store STORE --compact`. This runs the exact retained expansion without
+resending it. The computed artifact keeps the complete origin/default ledger; after a revision it is
+labelled historical construction, with current premises and explicit edits taking precedence.
+
+To attach comparator evidence through MCP, read `record` with `part:"source"`, the report `run`, `nct`,
+and the raw-study address. Follow all continuation offsets. Keep the returned snapshot digest and exact
+quote. In a study slot use `{"$retained_study":{"run":"REPORT","nct":"NCT_ID","digest":"DIGEST"}}`
+with actual returned values. MCP resolves inside its served root; CLI uses `--source-root ROOT`. The
+complete study is retained in the canonical request, so later revision does not reread a mutable source
+folder. Attach quotes as decision context; adoption still requires a separate attributed premise.
+
 ## Keep the information inside an open answer
 
 Ordinary entailment checks accepted scoped premises. Interpretations explores rivals separately while
@@ -55,6 +75,31 @@ ordinary premise ledger separately.
 Historical unknowns are evidence questions. Different feasible draft alternatives can be design choices.
 Malformed translation needs correction; unfinished computation needs a narrower or adequately bounded run.
 Keep remedies separate and retain independently settled conclusions.
+
+For multistage designs, query-relevant scope is distinct from the whole eligibility definition. An open
+withdrawal-stage responder criterion does not erase a universal entry exclusion or unrelated residuals.
+When a question actually depends on that cohort, specify it. Global inconsistency remains a blocker; a
+negative eligibility witness still considers every restriction that could explain rejection.
+If a new draft does not represent a choice at all, `unrepresented_design_question` says so without
+claiming evidence is missing or that both options were proved feasible. Historical silence remains an
+evidence question. An unchanged admission-only source inspection is documentary context, not a failed
+clinical comparison.
+
+For an adaptive action table, declare every domain and any forbidden-action condition explicitly. A table
+can cover all declared cases and still select a forbidden dose. `prohibitions` checks those cases without
+removing them from the feasible domain. Read `prohibition_coverage`, `case_witnesses` and `witness_summary`;
+the last distinguishes a complete illustration from a bounded sample. Coverage supplies neither missing
+clinical variables nor a general safety, termination or statistical guarantee.
+Managed-session reservations use the actual represented domain and all declared guard/prohibition
+thresholds; the table's execution ceilings, solver limits and independent illustration bound still apply.
+
+For cross-operation definitions, session `definition_checks` binds each typed reading to an existing
+analysis ID and an address beginning `/request` or `/result`, with status, resolution and basis. The check
+also declares relation, standing and basis. `implies` is directional; `equivalent` checks both directions;
+`disjoint` checks exclusion. Matching targets are required. An assessment trigger at a lower threshold can
+intentionally precede an endpoint: test the endpoint-implies-trigger relation rather than claiming that
+different numbers contradict. Proposed or unresolved readings stay unresolved. Both the actual addressed
+values and the supplied readings remain inspectable beside the fresh solver checks.
 
 ## Retain the complete check, retrieve only what is needed
 
@@ -89,7 +134,7 @@ the shortcut refuses edits to copied source snapshots. For example, an age-limit
 Use an actual retained path and actual accepted choice; never invent an exchange reference.
 
 Use prepare_only:true to inspect the valid request without running it. The program fills mechanical integrity
-fingerprints and recomputes both complete snapshots. Read `answer_diff` for six independent comparisons:
+fingerprints and recomputes both complete snapshots. Read `answer_diff` for seven independent comparisons:
 
 | Comparison | What the person needs to hear |
 |---|---|
@@ -99,6 +144,7 @@ fingerprints and recomputes both complete snapshots. Read `answer_diff` for six 
 | Wording | Caller-supplied question or option wording changed; clinical equivalence is not certified |
 | Origin | Attribution changed; a saved label does not authenticate confirmation |
 | Context | Attached evidence context changed; it did not become a logical constraint |
+| Requirements | Remaining conditions changed while the query's verdict can stay unchanged |
 
 Read every entry in `changes`: the primary code names only the first applicable kind. `diff` independently
 retains the complete audit-object changes. A sharper query can have the same verdict; an unchanged refusal
@@ -111,6 +157,10 @@ baseline/revision examples. CLI uses:
 ```bash
 trialledger reason-revise --store STORE --id ARTIFACT_ID --edits EDITS_FILE --revision revised
 ```
+
+For example, widening ECOG can leave an asymptomatic-CNS profile allowed while changing the ECOG condition
+listed beside it. That is `requirements_changed`, not a new CNS verdict. The same comparison is made for
+individual option analyses and their parent decision. A genuine changed verdict still uses the answer axis.
 
 ## Deliver the review
 
@@ -130,6 +180,12 @@ row with profile, standing and scope; Findings retains detailed codes and typed 
 for inspection alongside the complete canonical files. With source
 evidence supplied, baseline presentation retains every measurement and matching denominator scope, including
 unresolved groups. Never add arms and totals or interpret matching titles as identity.
+
+Included population-stage, decision-table and estimand analyses also appear under Supporting analyses in
+Markdown and in Analysis review. Analysis details retains the expanded basis and open items in readable
+parts; full Findings remains available. A summary preserves the returned population/denominator, support
+and exact result address. A table's many disjoint row pairs do not crowd out its actual gaps, conflicts or
+forbidden selections. Session definition checks appear with their declared relation and conditional warrant.
 
 Keep the original verified landscape.xlsx as the reference sheet. The manifest and exact canonical inputs
 let a colleague trace the review. It reflects caller-declared premises and choices, not independent consent

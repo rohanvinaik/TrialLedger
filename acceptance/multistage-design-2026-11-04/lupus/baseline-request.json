@@ -1,0 +1,2699 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "simulated:ASTER-R",
+    "revision": "one",
+    "parent_digest": null,
+    "target": {
+      "kind": "new_trial",
+      "ref": "simulated:ASTER-R",
+      "scope": {
+        "study": "simulated:ASTER-R",
+        "population": "LN-induction-expansion-withdrawal",
+        "arm": "all",
+        "time": "draft-protocol",
+        "version": "1"
+      }
+    },
+    "sources": [
+      {
+        "id": "source0",
+        "study": {
+          "$retained_study": {
+            "run": "lupus-reference",
+            "nct": "NCT06544330",
+            "digest": "6315054bf35f2b88188125780de9e8141df39b209d90b3329e63cb3a7842daea"
+          }
+        },
+        "expected_digest": "6315054bf35f2b88188125780de9e8141df39b209d90b3329e63cb3a7842daea"
+      },
+      {
+        "id": "source1",
+        "study": {
+          "$retained_study": {
+            "run": "lupus-reference",
+            "nct": "NCT06434363",
+            "digest": "921ff464d7ac4506ef6d98db0bd9af8da51e154c0fbc7ceb3ea4e4fc0814f01c"
+          }
+        },
+        "expected_digest": "921ff464d7ac4506ef6d98db0bd9af8da51e154c0fbc7ceb3ea4e4fc0814f01c"
+      }
+    ],
+    "premises": [
+      {
+        "id": "adult",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:exchange1:adult",
+          "id": "adult",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "typed-request-declaration",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:adult"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:adult",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "renal-entry",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-entry",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 30.0,
+              "unit": "mL/min/1.73m2",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:exchange1:renal",
+          "id": "renal-entry",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "typed-request-declaration",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:renal"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:renal",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "active-LN",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "active-biopsy-proven-LN",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:exchange1:disease",
+          "id": "active-LN",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "typed-request-declaration",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:disease"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:disease",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "infection-exclusion",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "uncontrolled-infection",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:exchange1:infection",
+          "id": "infection-exclusion",
+          "modality": "excluded",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "typed-request-declaration",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:infection"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:infection",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "SGLT2-stability",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "SGLT2-use",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "SGLT2-stability-at-screening",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 8.0,
+              "unit": "weeks",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:exchange1:stability",
+          "id": "SGLT2-stability",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "typed-request-declaration",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:stability"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:stability",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "SGLT2-permission",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "SGLT2-stability-at-screening",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 8.0,
+              "unit": "weeks",
+              "upper": null
+            }
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "SGLT2-use",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:exchange1:permission",
+          "id": "SGLT2-permission",
+          "modality": "permitted",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "typed-request-declaration",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:permission"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:permission",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "withdrawal-response",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "renal-response-at-week24",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "cohort_ref",
+            "parts": [],
+            "ref": "C"
+          },
+          "criterion_ref": "simulated:exchange1:stageC",
+          "id": "withdrawal-response",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "typed-request-declaration",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:stageC"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:stageC",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "simulated:ASTER:flow",
+        "kind": "signal",
+        "payload": {
+          "id": "simulated:ASTER:flow",
+          "kind": "stages",
+          "data": {
+            "study": "simulated:ASTER",
+            "snapshot": "simulated:planning-scenario-1",
+            "resolution": "resolved",
+            "stages": [
+              {
+                "id": "induction",
+                "population": "simulated-induction-starters",
+                "arm": "all",
+                "time": "entry",
+                "unit": "person",
+                "total": 30
+              },
+              {
+                "id": "maintenance",
+                "population": "simulated-withdrawal-entrants",
+                "arm": "all",
+                "time": "week24",
+                "unit": "person",
+                "total": 12
+              }
+            ],
+            "transitions": [
+              {
+                "id": "simulated-response-gate",
+                "source": "induction",
+                "target": "maintenance",
+                "relation": "documented_subset",
+                "scope": {
+                  "study": "simulated:ASTER",
+                  "snapshot": "simulated:planning-scenario-1",
+                  "source_population": "simulated-induction-starters",
+                  "target_population": "simulated-withdrawal-entrants",
+                  "source_arm": "all",
+                  "target_arm": "all",
+                  "source_time": "entry",
+                  "target_time": "week24",
+                  "unit": "person"
+                },
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "simulated:planning-lineage-assumption"
+                ],
+                "gate_ref": "simulated:week24-response-assumption"
+              }
+            ]
+          },
+          "support": [
+            {
+              "id": "invented-inputs",
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:counts-assumed-for-planning-not-observed"
+              ]
+            }
+          ]
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:simulated:ASTER:flow",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "simulated:ASTER:estimand",
+        "kind": "signal",
+        "payload": {
+          "id": "simulated:ASTER:estimand",
+          "kind": "estimand",
+          "data": {
+            "scope": "simulated:ASTER:LN:week24",
+            "version": "1",
+            "id": "simulated:renal-week24",
+            "definitions": {
+              "intercurrent_events": {
+                "ref": "simulated:ASTER:intercurrent_events",
+                "version": "1",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "simulated:chosen-estimand-not-source-fact"
+                ]
+              },
+              "population": {
+                "ref": "simulated:ASTER:population",
+                "version": "1",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "simulated:chosen-estimand-not-source-fact"
+                ]
+              },
+              "summary": {
+                "ref": "simulated:ASTER:summary",
+                "version": "1",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "simulated:chosen-estimand-not-source-fact"
+                ]
+              },
+              "treatment": {
+                "ref": "simulated:ASTER:treatment",
+                "version": "1",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "simulated:chosen-estimand-not-source-fact"
+                ]
+              },
+              "variable": {
+                "ref": "simulated:ASTER:variable",
+                "version": "1",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "simulated:chosen-estimand-not-source-fact"
+                ]
+              }
+            },
+            "events": [
+              {
+                "id": "discontinuation",
+                "event_ref": {
+                  "ref": "invented:treatment-discontinuation",
+                  "version": "1",
+                  "status": "known",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:declared-example-not-registry-evidence"
+                  ]
+                },
+                "strategy": "treatment_policy",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:chosen-event-handling"
+                ]
+              }
+            ],
+            "requirements": [
+              {
+                "id": "renal-week24",
+                "event": "discontinuation",
+                "variable": "simulated:ASTER:variable",
+                "window": "simulated:UPCR-and-eGFR-week24-regardless-of-discontinuation",
+                "role": "observed_measurement",
+                "mode": "observed",
+                "relevance": "required",
+                "rule": {
+                  "ref": "invented:week12-relevance",
+                  "version": "1",
+                  "status": "known",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:declared-example-not-registry-evidence"
+                  ]
+                }
+              }
+            ],
+            "collection_plan": [
+              {
+                "requirement": "renal-week24",
+                "action": "stop",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:stop-after-discontinuation"
+                ]
+              }
+            ],
+            "data_state": [],
+            "dependencies": null
+          },
+          "support": [
+            {
+              "id": "invented-inputs",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated:operations-plan-stop-after-discontinuation"
+              ]
+            }
+          ]
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:exchange1:simulated:ASTER:estimand",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "question:adult-entry:option:age17",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 17.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:adult-entry:option:age45",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 45.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:infection:option:present",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "uncontrolled-infection",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:infection:option:absent",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Not",
+            "part": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "uncontrolled-infection",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:renal:option:29",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-entry",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 29.0,
+              "unit": "mL/min/1.73m2",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:renal:option:35",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-entry",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 35.0,
+              "unit": "mL/min/1.73m2",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:background:option:use-only",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "SGLT2-use",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:background:option:four-weeks",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "SGLT2-use",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "SGLT2-stability-at-screening",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 4.0,
+                  "unit": "weeks",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:withdrawal:option:response",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "renal-response-at-week24",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": "C",
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:withdrawal:option:no-response",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Not",
+            "part": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "renal-response-at-week24",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "context": {
+            "cohort": "C",
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:definitions:option:event",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-decline-baseline-week24",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "gt",
+              "inclusivity": "exclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 15.0,
+              "unit": "percent",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "question:definitions:option:trigger",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-decline-baseline-week24",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 10.0,
+              "unit": "percent",
+              "upper": null
+            }
+          },
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "bound": 65536
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "renal-entry",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "active-LN",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "infection-exclusion",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-stability",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "SGLT2-permission",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "withdrawal-response",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "source0-structured-age",
+        "operation": "source_assertions",
+        "target": {
+          "kind": "historical",
+          "ref": "NCT06544330",
+          "scope": {
+            "study": "ctg:NCT06544330:6315054bf35f2b88188125780de9e8141df39b209d90b3329e63cb3a7842daea",
+            "population": "registered-study",
+            "arm": "all",
+            "time": "registered-entry",
+            "version": "6315054bf35f2b88188125780de9e8141df39b209d90b3329e63cb3a7842daea"
+          }
+        },
+        "parameters": {},
+        "uses": [
+          {
+            "premise": "source0",
+            "slot": "study",
+            "projection": "source_study"
+          }
+        ]
+      },
+      {
+        "id": "source1-structured-age",
+        "operation": "source_assertions",
+        "target": {
+          "kind": "historical",
+          "ref": "NCT06434363",
+          "scope": {
+            "study": "ctg:NCT06434363:921ff464d7ac4506ef6d98db0bd9af8da51e154c0fbc7ceb3ea4e4fc0814f01c",
+            "population": "registered-study",
+            "arm": "all",
+            "time": "registered-entry",
+            "version": "921ff464d7ac4506ef6d98db0bd9af8da51e154c0fbc7ceb3ea4e4fc0814f01c"
+          }
+        },
+        "parameters": {},
+        "uses": [
+          {
+            "premise": "source1",
+            "slot": "study",
+            "projection": "source_study"
+          }
+        ]
+      },
+      {
+        "id": "simulated:ASTER:flow",
+        "operation": "signals",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {},
+        "uses": [
+          {
+            "premise": "simulated:ASTER:flow",
+            "slot": "signals",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "simulated:ASTER:estimand",
+        "operation": "signals",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "parameters": {},
+        "uses": [
+          {
+            "premise": "simulated:ASTER:estimand",
+            "slot": "signals",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "adult-entry",
+        "question": "Which represented ages fit entry without guessing the later cohort?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "age17",
+            "label": "17 years",
+            "analysis": "question:adult-entry:option:age17",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "inclusive",
+                "kind": "quantity",
+                "members": [],
+                "number": 17.0,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "age45",
+            "label": "45 years; other attributes unreported",
+            "analysis": "question:adult-entry:option:age45",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "inclusive",
+                "kind": "quantity",
+                "members": [],
+                "number": 45.0,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          }
+        ],
+        "selected": null
+      },
+      {
+        "id": "infection",
+        "question": "Does the universal infection exclusion still decide entry?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "present",
+            "label": "Uncontrolled infection",
+            "analysis": "question:infection:option:present",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "uncontrolled-infection",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "absent",
+            "label": "No uncontrolled infection; other attributes unreported",
+            "analysis": "question:infection:option:absent",
+            "query": {
+              "class": "Not",
+              "part": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "uncontrolled-infection",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "selected": null
+      },
+      {
+        "id": "renal",
+        "question": "Which represented renal profiles fit our chosen threshold?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "29",
+            "label": "eGFR 29",
+            "analysis": "question:renal:option:29",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "eGFR-entry",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "inclusive",
+                "kind": "quantity",
+                "members": [],
+                "number": 29.0,
+                "unit": "mL/min/1.73m2",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "35",
+            "label": "eGFR 35",
+            "analysis": "question:renal:option:35",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "eGFR-entry",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "inclusive",
+                "kind": "quantity",
+                "members": [],
+                "number": 35.0,
+                "unit": "mL/min/1.73m2",
+                "upper": null
+              }
+            }
+          }
+        ],
+        "selected": null,
+        "evidence": [
+          {
+            "id": "source0",
+            "source": "source0",
+            "role": "quote",
+            "anchor": {
+              "id": "source0",
+              "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+              "digest": "6315054bf35f2b88188125780de9e8141df39b209d90b3329e63cb3a7842daea",
+              "expected": "General Inclusion Criteria:\n\nAge ≥18 years at screening.\n\nSLE Inclusion Criteria:\n\n1. Clinical diagnosis of SLE according to the 2019 European League Rheumatism EULAR/ACR classification criteria.\n2. Subject must be positive for at least one of the following at screening: Anti-dsDNA (above the upper limit of normal \\[ULN\\]); or anti-Sm (above the ULN); or anti-Chromatin (above the ULN).\n3. Subjects with active, severe, non-renal SLE or subjects with active proliferative LN\n\nSSc Inclusion Criteria:\n\n1. Classified as SSc according to the ACR/EULAR classification criteria.\n2. Diffuse cutaneous SSc (dcSSc) or SSc-associated ILD (SSc-ILD; significant or progressive).\n\nGeneral Exclusion Criteria:\n\n1. History of or active central nervous system manifestations of autoimmune disease.\n2. Prior treatment with anti-CD19 adoptive T cell therapy, or any prior gene therapy product (e.g., CAR T cell therapy).\n\nSLE Exclusion Criteria:\n\n1. Rapidly progressive glomerulonephritis.\n2. End stage renal failure requiring dialysis or most recent renal biopsy with purely chronic lesions (Class III\\[C\\], IV-S\\[C\\], or IV-G\\[C\\]) if isolated renal disease.\n\nSSc Exclusion Criteria:\n\n1. FVC \\<50% of predicted or DLCO \\<40% of predicted.\n2. Pulmonary arterial hypertension (PAH) requiring PAH-specific treatment.\n\nOther protocol-defined criteria apply."
+            },
+            "note": "Exact wording. Different autoimmune cohorts and permitted pathways are not automatically adopted or treated as comparable."
+          },
+          {
+            "id": "source1",
+            "source": "source1",
+            "role": "quote",
+            "anchor": {
+              "id": "source1",
+              "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+              "digest": "921ff464d7ac4506ef6d98db0bd9af8da51e154c0fbc7ceb3ea4e4fc0814f01c",
+              "expected": "Inclusion Criteria:\n\nSSc Specific Inclusion Criteria\n\nA. Diagnosis of SSc defined as follows:\n\ni) Fulfilling 2013 American College of Rheumatology (ACR)and European League Against Rheumatism classification (EULAR) criteria for SSc.46 ii) Antinuclear Antibody (ANA) by immunofluorescence positive at titer ≥ 1:80 at screening or prior to screening.\n\nB. SSc disease activity i) Diffuse SSc meeting the following criteria:\n\n(1) Disease duration ≤ 7 years (from onset of first non-Raynaud manifestation) AND (2) mRSS ≥ 15 at screening (Appendix 1) OR ii) Participants diagnosed with diffuse or limited cutaneous SSc AND presence of ILD changes on HRCT AND Disease duration ≤ 7 years (from onset of first non- Raynaud manifestation) AND either (1) or (2)\n\n1. Progressive ILD as defined by Raghu et al47 (≥ 2 of the following):\n\n   (a) worsening respiratory symptoms (b) physiological evidence of disease progression (≥ 1 of the following): (i) Absolute decline in FVC ≥ 5% predicted within 1 year of follow-up (ii) Absolute decline in DLCO (corrected for Hb) ≥ 10% predicted within 1 year of follow-up radiological evidence of disease progression (c) radiological evidence of disease progression (≥ 1 of the following):\n\n   (i) Increased extent or severity of traction bronchiectasis and bronchiolectasis.\n\n   (ii) New ground-glass opacity with traction bronchiectasis (iii) New fine reticulation (iv) Increased extent or increased coarseness of reticular abnormality.\n\n   (v) New or increased honeycombing (vi) Increased lobar volume loss\n2. FVC \\< 80% predicted or extent of ILD changes on HRCT \\> 20%. C. Inadequate response to at least 1 of the following treatments used for at least 3 months: mycophenolate, cyclophosphamide, rituximab, and/or tocilizumab\n\nSLE Specific Inclusion Criteria\n\n1. A clinical diagnosis of SLE, based on the 2019 EULAR/ ACR classification criteria for adult SLE.\n2. Positive ANA titer ≥1:80 or positive anti-dsDNA antibody at screening or prior to screening.\n3. For LN subjects only: Active, biopsy-proven lupus nephritis (kidney biopsy should have been done within 1 year of study enrollment) class III or IV, with or without the presence of Class V, using the 2018 Revised International Society of Nephrology/Renal Pathology Society criteria48.\n4. Diagnosed with active SLE. Subjects with either LN or without LN will be eligible if they meet the following criteria:\n\n   a. For LN subjects: urine protein-to-creatinine ratio (UPCR) ≥0.5 g/g on 2 first morning void urine samples during screening despite prior or current treatment with standard of care therapy for at least 12 weeks, including corticosteroids, MMF/mycophenolic acid (MPA), CY, calcineurin inhibitors, belimumab, and/or rituximab. Patients should have failed at least 2 standard of care immunosuppressive therapies tried for 3 months, b. For non-renal SLE subjects: SLEDAI-2K ≥8 and clinical SLEDAI-2K ≥6 (excluding headache, alopecia, mucosal ulcers, fever, and organic brain syndrome) or ≥ 1 major organ system with a BILAG A score (excluding musculoskeletal, mucocutaneous, and/or constitutional organ system) during screening despite prior or current treatment with standard of care therapy, including corticosteroids, rituximab or other B cell depleting agents, CY, MMF/MPA, azathioprine, methotrexate, 6-mercaptopurine, sirolimus, tacrolimus, thalidomide, leflunomide, mizorbine, anifrolumab, and/or belimumab. Patients should have failed at least 2 standard of care immunosuppressive therapies tried for 3 months, or failed due to intolerance, or unable to obtain medication.\n5. If a subject is currently receiving:\n\n   1. A renin-angiotensin-aldosterone inhibitor, (including direct renin inhibitors, angiotensin converting enzyme (ACE) inhibitors, angiotensin receptor blockers (ARBs), and mineralocorticoid receptor blockers), the subject must be on a stable dose for at least 8 weeks prior to screening. A sodium-glucose cotransporter-2 (SGLT2) inhibitor, the subject must be on a stable dose for at least 8 weeks prior to screening.\n   2. Regarding oral corticosteroid, doses \\<0.5 mg/kg prednisone equivalent at the time of enrollment are required. Steroid taper to ≤10 mg prednisone equivalent prior to lymphodepleting chemotherapy is recommended.\n\nChronic GVHD specific inclusion criteria\n\n1. The patient has a history of steroid resistant chronic graft versus host disease (SR- chronic GVHD) or is intolerant of or has unacceptable complications with steroids.\n\n   Definition of SR-chronic GVHD - Chronic GVHD that does not respond adequately to full-dose prednisone. Any of the following conditions would be considered SR-chronic GVHD:\n   * Progressive symptoms / manifestations of chronic GVHD despite receiving prednisone 1 mg/kg/day (or equivalent) for two weeks\n   * Stable symptoms / manifestations of chronic GVHD after four to six weeks of prednisone ≥0.5 mg/kg/day (or equivalent)\n   * Inability to taper prednisone to \\<0.5 mg/kg/day (or equivalent) without worsening of symptoms / manifestations of chronic GVHD\n2. Disease activity:\n\n   • Manifestations/symptoms of chronic GVHD rated as moderate to severe on the NIH chronic GVHD global severity score.\n3. Manifestations/symptoms of chronic GVHD that have not adequately responded or intolerant to both:\n\n   * Ruxolitinib\n   * Belumosudil.\n4. May be receiving adrenal replacement doses of corticosteroids\n\nInclusion Criteria: For SLE, SSc, and chronic GVHD\n\n1. Able to provide informed consent.\n2. Age ≥18 to ≤80 years.\n3. Adequate organ function i) Peripheral blood absolute neutrophil count (ANC) ≥ 1 × 109/L, unless the neutropenia is deemed to be caused by the underlying autoimmune disease.\n\nii) Hemoglobin ≥ 8 g/dl, unless the anemia is deemed to be caused by the underlying autoimmune disease.\n\niii) Platelet count ≥ 50 × 109/L without platelet transfusion support, unless the thrombocytopenia is deemed to be caused by the underlying autoimmune disease. No clinically significant active bleeding.\n\niv) Aspartate aminotransferase (AST) / alanine aminotransferase (ALT) ≤ 3 × upper limit of normal (ULN) and total bilirubin ≤ 3 × ULN (or direct bilirubin ≤ 3 × ULN with documented Gilbert's syndrome).\n\nv) Oxygen saturation (SaO2) ≥ 92% on room air (as measured by forehead probes in SSc patients).\n\nvi) Adequate cardiac function, defined as left ventricular ejection fraction (LVEF) ≥ 45% as assessed by echocardiogram (ECHO) or multigated acquisition (MUGA) scan.\n\nvii) Adequate renal function, defined as serum creatinine ≤ 2x ULN and estimated Glomerular Filtration Rate (eGFR using the CKD-EPI equation) ≥ 30 ml/min/1.73 m2 5. Recovery to ≤ Grade 1 or baseline of any non-hematological toxicities due to prior therapy.\n\n6\\. Negative pregnancy test in WOCBP. 7. All participants who are able to have children must practice effective birth control while on study and up to 3 months post completion of therapy. Acceptable forms of birth control for female patients include hormonal birth control, intrauterine device, diaphragm with spermicide, condom with spermicide, or abstinence, for the length of the study. If the participant is a female and becomes pregnant or suspects pregnancy, she must immediately notify her doctor. If the participant becomes pregnant during this study, she will be taken off this study. Men who are able to have children must use effective birth control while on the study. If the male participant fathers a child or suspects that he has fathered a child while on the study, he must immediately notify his doctor. Participant is willing and able to adhere to the study visit schedule and other protocol requirements and willing to sign informed consent.\n\nExclusion Criteria:\n\nSSc specific exclusion criteria\n\n1. SSc related pulmonary arterial hypertension (PAH) requiring active treatment.\n2. Rapidly progressive SSc related lower GI (small and large intestines) involvement (requiring parenteral nutrition); active gastric antral vascular ectasia.\n3. Prior scleroderma renal crisis.\n4. Severe pulmonary dysfunction with a hemoglobin corrected DLC0 \\< 40% or FVC \\< 40% of predicted or O2 saturation \\< 92% at rest without supplemental oxygen as measured by forehead oxygen pulse oximetry.\n\n   SLE specific Exclusion Criteria\n\n   Subjects are excluded from the study if any of the following criteria apply:\n5. For LN subjects only: Evidence of severe chronicity on kidney biopsy, defined as a modified National Institute of Health chronicity index score of 3+ for any of the following\n\n   individual biopsy features: total glomerulosclerosis score, fibrous crescents, tubular atrophy, or interstitial fibrosis.\n6. The presence of biopsy-proven kidney disease other than active lupus nephritis\n7. Severe pulmonary dysfunction with a hemoglobin corrected DLC0 \\< 40% or FVC \\< 40% of predicted or O2 saturation \\< 92% at rest without supplemental oxygen as measured by forehead oxygen pulse oximetry.Active, severe cardiac manifestations of SLE, including constrictive pericarditis, hemodynamically significant pericardial effusions, and myocarditis at the time of screening.\n\n   Exclusion Criteria for Chronic GVHD\n8. Treatment with any immunosuppressive drug (except steroids) within 5 half lives prior to administration of lymphodepleting therapy.\n\n   Immunosuppressive Drug Five Half Lives Half Life of the Drug Axatilimab 23 days 108 hours Belumosudil 4 days 19 hours Cyclophosphamide 3 days 3-12 hours Ibrutinib 2 days 4-6 hours Ruxolitinib 2 days 5.8 hours Sirolimus 13 days 62 hours Tacrolimus 8 days 2.1-36 hours Tocilizumab 9 weeks 5-13 days\n9. Receiving any immunosuppressive medications that are not being used for management of chronic GVHD.\n10. Treatment with steroids ≥0.5 mg/kg prednisone daily or equivalent at the time of enrollment and \\>10 mg prednisone daily or equivalent at the time of lymphodepletion.\n11. Received rituximab within 6 months of lymphodepletion.\n\n    Exclusion Criteria for SLE, SSc, and chronic GVHD\n\n    Subjects are excluded from the study if any of the following medical conditions apply:\n12. Uncontrolled medical, psychological, familial, sociological, or geographical conditions that do not permit compliance with the protocol, as judged by the Investigator; or unwillingness or inability to follow the procedures required in the protocol.\n13. Active, clinically significant central nervous system pathology\n14. Prior history of malignancies or lymphoproliferative disease, following are allowed: Basal or squamous cell carcinoma of the skin, Carcinoma in situ of the cervix or breast or Smoldering Myeloma. History of malignancy that has been treated with a curative intent and is in remission may be allowed after discussion with PI.\n15. Active hepatitis C, active syphilis, any human immunodeficiency virus (HIV), human lymphocytic T-cell virus type 1 and/or type 2 (HTLV-1 and/or HTLV-2\n16. Uncontrolled systemic fungal, bacterial, viral, or other infection despite appropriate anti- infective treatment at screening or within 72 hours before LD chemotherapy, or 5 days before AD-PluReceptor administration.\n17. History of any one of the following cardiovascular conditions within the 6 months prior to screening: Class III or IV heart failure as defined by the New York Heart Association, myocardial infarction, unstable angina, or other clinically significant cardiac disease.\n18. Prior CAR T cell therapy, genetically modified T cell therapy.\n19. Treatment with cyclophosphamide within 3 days, tocilizumab within 9 weeks, and/or any other immunosuppressive drug (excluding steroids) within 5 half-lives prior to administration of lymphodepleting chemotherapy. Immunosuppressive medications are allowed if not being used for management of SLE, LN or SSc.\n20. Treatment with mycophenolate mofetil within 4 days prior to administration of lymphodepleting chemotherapy. For patients who will receive tafasitamab alone may continue mycophenolate mofetil throughout the study.\n21. History of anaphylactic or severe systemic reaction to FLU, CY, Tafasitamab, or any of their metabolites.\n22. Uncontrolled infection at screening.\n23. Current symptoms of severe, progressive, or uncontrolled renal, hepatic, hematological, gastrointestinal (on TPN), pulmonary, psychiatric, cardiac, neurological, or cerebral disease, including severe and uncontrolled infections, such as sepsis and opportunistic infections.\n24. Concomitant medical conditions that, in the opinion of the investigator, might place the subject at unacceptable risk for participation in this study, interfere with the assessment of the effects or safety of the investigational product or with the study procedures."
+            },
+            "note": "Exact wording. Different autoimmune cohorts and permitted pathways are not automatically adopted or treated as comparable."
+          }
+        ]
+      },
+      {
+        "id": "background",
+        "question": "May background SGLT2 treatment continue, and what stability is still needed?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "use-only",
+            "label": "Uses an SGLT2 inhibitor; stability unknown",
+            "analysis": "question:background:option:use-only",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "SGLT2-use",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "four-weeks",
+            "label": "Uses an SGLT2 inhibitor stable for four weeks",
+            "analysis": "question:background:option:four-weeks",
+            "query": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "SGLT2-use",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "SGLT2-stability-at-screening",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 4.0,
+                    "unit": "weeks",
+                    "upper": null
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "selected": null
+      },
+      {
+        "id": "withdrawal",
+        "question": "Which response profile fits Stage C?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated:ASTER-R",
+          "scope": {
+            "study": "simulated:ASTER-R",
+            "population": "LN-induction-expansion-withdrawal",
+            "arm": "all",
+            "time": "draft-protocol",
+            "version": "1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "response",
+            "label": "Week-24 renal responder",
+            "analysis": "question:withdrawal:option:response",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "renal-response-at-week24",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "no-response",
+            "label": "No week-24 renal response",
+            "analysis": "question:withdrawal:option:no-response",
+            "query": {
+              "class": "Not",
+              "part": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "renal-response-at-week24",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "selected": null
+      }
+    ],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    },
+    "definition_checks": [
+      {
+        "id": "same-definition-claim",
+        "relation": "equivalent",
+        "left": {
+          "analysis": "question:definitions:option:event",
+          "address": "/request/query",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-decline-baseline-week24",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "gt",
+              "inclusivity": "exclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 15.0,
+              "unit": "percent",
+              "upper": null
+            }
+          },
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "simulated:exchange1:typed-role-definition"
+          ]
+        },
+        "right": {
+          "analysis": "question:definitions:option:trigger",
+          "address": "/request/query",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-decline-baseline-week24",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 10.0,
+              "unit": "percent",
+              "upper": null
+            }
+          },
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "simulated:exchange1:typed-role-definition"
+          ]
+        },
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "simulated:exchange1:equivalence-to-test"
+        ]
+      },
+      {
+        "id": "endpoint-triggers-assessment",
+        "relation": "implies",
+        "left": {
+          "analysis": "question:definitions:option:event",
+          "address": "/request/query",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-decline-baseline-week24",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "gt",
+              "inclusivity": "exclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 15.0,
+              "unit": "percent",
+              "upper": null
+            }
+          },
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "simulated:exchange1:typed-role-definition"
+          ]
+        },
+        "right": {
+          "analysis": "question:definitions:option:trigger",
+          "address": "/request/query",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "eGFR-decline-baseline-week24",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 10.0,
+              "unit": "percent",
+              "upper": null
+            }
+          },
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "simulated:exchange1:typed-role-definition"
+          ]
+        },
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "simulated:exchange1:event-must-trigger-review"
+        ]
+      }
+    ]
+  },
+  "previous": null
+}

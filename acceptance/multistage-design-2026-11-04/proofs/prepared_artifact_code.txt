@@ -1,0 +1,11 @@
+TrialLedger/reasoning_delivery.py::prepared_artifact_code: ✓ COMPLETE — every mutant killed or oracle-proven-equivalent, line-complete
+  mutants: 0 → 0 survivors; score 100% → 100% (63/63 killed)
+  value: 0 → 0 unspecified; score 100% → 100% (63/63 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 26 operator mutants · comprehensive — full mutant universe · 63/63 = 100% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 0 survivors, 0 sound tests written
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 5832 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 6 test(s) cover all kills + lines
+  PROPOSED removals (3, redundant for BOTH kills and lines — confirm to delete, never auto): tests/test_request_preparation.py::test_no_copy_preparation_handoff_cli_mcp_parity_and_full_origin_retention, tests/test_request_preparation.py::test_prepared_artifact_guard_never_treats_an_answer_as_an_executable_preparation[prepare-prepare-complete--invalid_prepared_request], tests/test_request_preparation.py::test_wrong_artifact_type_and_modified_artifact_are_named_refusals
+FINAL TrialLedger/reasoning_delivery.py::prepared_artifact_code: ✓ COMPLETE (operator universe) · 63/63 killed · minimal cover 6 test(s) · policy 9+neg.f5a15364c11d
