@@ -99,13 +99,15 @@ it but never edit it. Report a gap as a factual case instead.
 - Policies that still exceed the 1,000,000 protocol-work ceiling return `limit`, with reserved and actual
   work, rather than refusing or partially succeeding.
 
-**R6b. Support for the extended form.**
-- `signals.evaluate` refuses application only when an operator's `support_status` is `"proposed"`. `null` adds
-  nothing.
-- So packets C and D return `"proposed"` whenever an internal rule or assumption isn't accepted, or a binomial
-  role is missing.
-- Traced by hand with known outer support: STA-4 and a proposed prohibition come back `unresolved`, with the
-  arithmetic kept in `calculation_code`.
+**R6b. Internal support without relabelling (corrected after the side-agent review).**
+- The first correction made packets C and D report `proposed` for missing, unresolved or conflicting internal
+  support. That changed what `proposed` means, which C1.1 and P2 reserve for Rohan. It was not clerical.
+- Corrected:
+  - `signals.evaluate` accepts an optional `support_resolution` beside `support_status`.
+  - Operators report the true weakest declared status and the worst declared resolution (a missing binomial
+    role makes it unresolved).
+  - The existing gate refuses through its existing channels, `proposed_refused` and `binding_unresolved`.
+- No standing word changes meaning, and no new status word exists.
 
 **R7. Staged freeze: a coordinator deviation from P2, reported to the user at release.**
 - P2 requires all of 1.1–1.6 before any worker starts.

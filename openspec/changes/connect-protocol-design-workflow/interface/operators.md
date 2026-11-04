@@ -14,8 +14,11 @@ under "Wave-0 resolutions" in `README.md` and is binding on every packet. Fixtur
   - `check(kind: str, data: dict, claims: list[dict]) -> dict`;
   - `work_reservation(data: dict) -> int`, a pure function that may raise the same `ValueError` codes as
     `check`.
+  - `EXAMPLES: dict`, exactly `{kind: <one invented, valid data dict>}`, mirroring `decision_tables.EXAMPLES`.
+    `signals_guide.example(kind)` wraps it for discovery. Values and labels are plainly invented, with no
+    clinical defaults. (Added during wave 1, after the registration trace; sent to B, C and D.)
 - **Result envelope.** The result is a dict with exactly the keys `code`, `value`, `blockers` and `rule`. Packets C
-  and D return the extended form, which adds `support_status` and `determining_ids`. Packet B returns the plain form. `blockers` is a sorted list of
+  and D return the resolved extended form (see "Support envelope"). Packet B returns the plain form. `blockers` is a sorted list of
   unique strings. `rule` is a fixed string naming the rule and its version.
 - **Translation refusals.** Malformed input raises `ValueError("<named_code>")`; nothing is ever coerced. The
   listed codes are exhaustive for each operator. A new refusal needs a coordinator decision.
@@ -39,14 +42,21 @@ under "Wave-0 resolutions" in `README.md` and is binding on every packet. Fixtur
     normalizing. The prefixes are `schedule` and `binomial`. Set arithmetic and normalization belong to
     packet B.
 - **Display caps never change outcomes.** Exhaustive counts are reported beside capped witness lists.
-- **How the existing gate reads the extended form (`signals.evaluate`).**
-  - A non-null `support_status` is conjoined with the signal's outer support, with resolution `resolved`.
-  - Only `"proposed"` makes the gate refuse application (`proposed_refused`, so the signal code is `unresolved`
-    and `calculation_code` is kept).
-  - `null` means "no internal support to add". The gate then admits on outer support alone.
-  - So an operator whose result rests on an internal rule or assumption that isn't accepted **must return
-    `"proposed"`, never `null`**. The exact per-row reason stays in `value`. This is the public path's
-    conservative single gate; per-claim gating (R1) is the coordinator's managed path.
+- **Support envelope (C and D): standing words keep their existing meaning (C1.1).**
+  - C and D return the *resolved* extended form: `code`, `value`, `blockers`, `rule`, `support_status`,
+    `determining_ids` and `support_resolution`. `signals.evaluate` accepts this third form; the coordinator
+    added it after the side-agent review on 2026-11-04.
+  - `support_status` is the weakest status *actually declared* on the internal rules or assumptions: proposed
+    if any is proposed, else interpolated if any is, else known. It is **never** set to `proposed` for anything
+    that wasn't proposed.
+  - `support_resolution` is the worst declared resolution, in the order conflicting > unresolved >
+    partially_resolved > resolved. A missing required binding (packet D's missing role) makes it at least
+    `unresolved`.
+  - Both are `null` together, only when no internal rule or assumption is in play.
+  - The gate conjoins both with the outer support. A proposed status is refused as `proposed_refused`; a
+    non-resolved resolution is refused as `binding_unresolved`. The signal code becomes `unresolved` and
+    `calculation_code` keeps the arithmetic. The exact per-row reason stays in `value`.
+  - Per-claim gating (R1) remains the coordinator's managed path.
 - **Prohibited imports and side effects.** No module imports `session_state`, `design_session`,
   `session_projections`, `service`, `request_preparation`, transport (`cli`, `mcp_server`, `reasoning_*`),
   acquisition or presentation modules. No file I/O, no network, no randomness, no clock reads.
@@ -104,7 +114,8 @@ The full refusal list for packet B is `unsupported_schedule_kind`, `schedule_dat
 - `claims` is a nonempty list of 1 to 3 objects, each with exactly `id` and `claim`.
   - `id` is a nonempty string; ids are unique.
   - `claim` is one of `existence`, `nominal` or `full_window`, each used at most once
-    (`schedule_duplicate_claim`).
+    (`schedule_duplicate_claim`). A repeated `id` also refuses with `schedule_duplicate_claim` (settled
+    during wave 1 after the B′ oracle report).
   - An empty list or wrong shape refuses with `schedule_invalid_claims`.
 - `evaluate(kind, data)` equals `check(kind, data, [{"id":"existence","claim":"existence"},
   {"id":"nominal","claim":"nominal"},{"id":"full_window","claim":"full_window"}])`.
@@ -262,6 +273,7 @@ The value has these fields, in order:
 - `claims` is a nonempty list of objects, each with exactly `id`, `claim` and `witness_limit`:
   - `claim` ∈ coverage, exclusivity, prohibition, invariant or termination, each at most once;
   - `witness_limit` is a strict int from 0 to 64.
+  - A repeated `claim` kind or a repeated `id` refuses with `policy_duplicate_claim`.
 - `evaluate(kind, data)` equals `check` with coverage, exclusivity, prohibition and invariant, each with
   witness_limit 64 and id equal to its claim name. Termination is never implicit.
 
@@ -315,13 +327,11 @@ What `violations_found` counts for each claim:
   `known`/`interpolated` when accepted. Otherwise it is the support_state code itself (`proposed_refused`,
   `binding_unresolved` or `missing_support`). With no rules, the standing is `"no_rule_support"`.
 - The coordinator gates application per claim from these rows. The operator never decides admission.
-- **Envelope support (extended form).**
+- **Envelope support.**
   - `determining_ids` lists every constraint, prohibition and invariant id, in declared order (constraints,
     then prohibitions, then invariants).
-  - `support_status` is `null` when there are no such rules.
-  - It is `known` or `interpolated` when `signals.support_state` accepts all of their rules.
-  - It is `"proposed"` otherwise: any rule proposed, or not resolved. Application is withheld, and each row
-    keeps its own `standing`.
+  - `support_status` and `support_resolution` follow the common rule over those rules, and are both `null`
+    when there are none.
 
 ### Code, blockers and rule
 
@@ -438,15 +448,14 @@ validated but not evaluated.
   - `binomial_assumption_missing:<role>` for each missing role (the calculation is retained);
   - `binomial_claim_not_satisfied:<id>`;
   - `binomial_bit_limit`.
-- **Support (extended form; see the gate rule in "Common rules").**
-  - `support_status` is `known` or `interpolated` when all three roles are declared **and** `signals.support_state`
-    accepts every assumption.
-  - Otherwise it is `"proposed"`: application is withheld, so the existing gate refuses it and keeps the
-    arithmetic.
-  - It is `null` only for `unsupported_method` and `limit` results.
+- **Support (common rule).**
+  - `support_status` is the weakest declared assumption status.
+  - `support_resolution` is the worst declared resolution, raised to at least `unresolved` when any of the
+    three roles is missing.
+  - Both are `null` only for `unsupported_method` and `limit`.
   - `determining_ids` lists every assumption's `ref`, unique, in declared order.
   - `value.application` is exactly `{"code": "withheld" | "not_withheld_by_assumptions", "reasons": [...]}`.
-    The reasons are sorted and drawn from `assumption_missing:<role>` and `assumption_not_accepted:<ref>`.
+    The reasons are sorted, from `assumption_missing:<role>` and `assumption_not_accepted:<ref>`.
     `not_withheld_by_assumptions` doesn't admit anything; admission still needs the outer gate.
 - **Rule.** `"binomial.exact_one_stage_greater:1"`.
 

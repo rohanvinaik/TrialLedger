@@ -520,6 +520,7 @@ policy_cases = [
         "expect": {
             "code": "violated",
             "support_status": "known",
+            "support_resolution": "resolved",
             "determining_ids": ["no-low-dose-with-low-dose-signal"],
             "reachability": {
                 "reachable_states": ["interim", "selected"],
@@ -543,6 +544,7 @@ policy_cases = [
         "expect": {
             "code": "violated",
             "support_status": "proposed",
+            "support_resolution": "resolved",
             "claims": {"prohibition": prow("violation", 3, 3, standing="proposed_refused")},
         },
     },
@@ -574,6 +576,7 @@ policy_cases = [
         "expect": {
             "code": "violated",
             "support_status": None,
+            "support_resolution": None,
             "determining_ids": [],
             "reachability": {
                 "reachable_states": ["a", "b", "c", "d"],
@@ -947,6 +950,7 @@ binomial_cases = [
         "expect": {
             **bexp(2, 2, "1/2", "3/4"),
             "support_status": "known",
+            "support_resolution": "resolved",
             "application": {"code": "not_withheld_by_assumptions", "reasons": []},
         },
     },
@@ -1026,7 +1030,8 @@ binomial_cases = [
             **bexp(2, 2, "1/2", "3/4"),
             "assumption_coverage": {"fixed_n": "declared", "iid_binary": "declared", "alignment": "missing"},
             "blockers_include": ["binomial_assumption_missing:alignment"],
-            "support_status": "proposed",
+            "support_status": "known",
+            "support_resolution": "unresolved",
             "application": {"code": "withheld", "reasons": ["assumption_missing:alignment"]},
         },
     },
@@ -1048,6 +1053,7 @@ binomial_cases = [
         "expect": {
             **bexp(2, 2, "1/2", "3/4"),
             "support_status": "proposed",
+            "support_resolution": "resolved",
             "application": {
                 "code": "withheld",
                 "reasons": ["assumption_not_accepted:user:alignment assumption (interface fixture)"],

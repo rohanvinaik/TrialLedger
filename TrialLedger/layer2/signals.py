@@ -75,15 +75,26 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
     )
     fields = {"code", "value", "blockers", "rule"}
     extended = fields | {"support_status", "determining_ids"}
-    if not isinstance(calculation, dict) or set(calculation) not in (fields, extended):
+    # An operator may also report its internal support's resolution separately from its status, so that a
+    # missing, unresolved or conflicting internal binding is refused as unresolved, never relabelled proposed.
+    resolved_form = extended | {"support_resolution"}
+    if not isinstance(calculation, dict) or set(calculation) not in (fields, extended, resolved_form):
         raise ValueError("invalid_signal_operator_result")
     status = entail.weakest_status(tuple(p.status for p in signal.support))
     inner = None
-    if set(calculation) == extended:
+    inner_resolution = "resolved"
+    if set(calculation) in (extended, resolved_form):
         inner = calculation["support_status"]
         ids = calculation["determining_ids"]
         if inner not in (None, "known", "interpolated", "proposed") or not isinstance(ids, list):
             raise ValueError("invalid_signal_operator_support")
+        if set(calculation) == resolved_form:
+            declared = calculation["support_resolution"]
+            if (inner is None) != (declared is None) or (
+                declared is not None and declared not in a.RESOLUTIONS
+            ):
+                raise ValueError("invalid_signal_operator_support")
+            inner_resolution = declared or "resolved"
         if any(not isinstance(identity, str) or not identity for identity in ids) or len(set(ids)) != len(
             ids
         ):
@@ -92,7 +103,7 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
             status = entail.weakest_status((status, inner))
     state = support_state(
         [p.status for p in signal.support] + ([inner] if inner is not None else []),
-        [p.resolution for p in signal.support] + (["resolved"] if inner is not None else []),
+        [p.resolution for p in signal.support] + ([inner_resolution] if inner is not None else []),
     )
     blockers = list(calculation["blockers"]) + list(signal.application_blockers)
     if state != "accepted":
@@ -112,11 +123,13 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
         "admission": {"code": state, "application_blockers": list(signal.application_blockers)},
         "blockers": blockers,
     }
-    if set(calculation) == extended:
+    if set(calculation) in (extended, resolved_form):
         result["operator_support"] = {
             "status": calculation["support_status"],
             "determining_ids": list(calculation["determining_ids"]),
         }
+        if set(calculation) == resolved_form:
+            result["operator_support"]["resolution"] = calculation["support_resolution"]
     return result
 
 

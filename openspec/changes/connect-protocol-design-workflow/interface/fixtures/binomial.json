@@ -59,6 +59,7 @@
      "rounding": "half_even_4dp"
     },
     "support_status": "known",
+    "support_resolution": "resolved",
     "application": {
      "code": "not_withheld_by_assumptions",
      "reasons": []
@@ -594,7 +595,8 @@
     "blockers_include": [
      "binomial_assumption_missing:alignment"
     ],
-    "support_status": "proposed",
+    "support_status": "known",
+    "support_resolution": "unresolved",
     "application": {
      "code": "withheld",
      "reasons": [
@@ -661,6 +663,7 @@
      "rounding": "half_even_4dp"
     },
     "support_status": "proposed",
+    "support_resolution": "resolved",
     "application": {
      "code": "withheld",
      "reasons": [
