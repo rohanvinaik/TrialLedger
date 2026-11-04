@@ -654,6 +654,10 @@
    "claims": null,
    "expect": {
     "code": "violated",
+    "support_status": "known",
+    "determining_ids": [
+     "no-low-dose-with-low-dose-signal"
+    ],
     "reachability": {
      "reachable_states": [
       "interim",
@@ -1351,6 +1355,7 @@
    ],
    "expect": {
     "code": "violated",
+    "support_status": "proposed",
     "claims": {
      "prohibition": {
       "outcome": "violation",
@@ -2404,6 +2409,8 @@
    ],
    "expect": {
     "code": "violated",
+    "support_status": null,
+    "determining_ids": [],
     "reachability": {
      "reachable_states": [
       "a",

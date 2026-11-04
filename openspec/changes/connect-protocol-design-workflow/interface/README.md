@@ -91,16 +91,41 @@ it but never edit it. Report a gap as a factual case instead.
   and D import it.
 - This avoids three copies of C5 syntax built by three parallel agents.
 
-**R6. C10 ceilings fit together.** Guard evaluations are at most 4096 × 128 = 524,288. Policies that exceed
-the 1,000,000 protocol-work ceiling once constraints and rules are counted return `limit`, keeping their
-reserved and actual work, rather than refusing or partially succeeding.
+**R6. C10 ceilings fit together.**
+- Each guard is evaluated only at valuations of its own from-state, so guard work is at most V·T, which is
+  4096 × 128 = 524,288.
+- The policy reservation is `S·V·(K+P+I) + V·T`. It doesn't charge S·V·T, because C10 forbids overcharging
+  when a smaller safe bound is known.
+- Policies that still exceed the 1,000,000 protocol-work ceiling return `limit`, with reserved and actual
+  work, rather than refusing or partially succeeding.
 
-**R7. Staged freeze (process; the user approved the waves on 2026-11-04).**
-- P2's rule that no worker codes against an unfrozen interface is kept per packet.
-- B, C and D, their independent oracles, and A start once `operators.md` and `ledger.md` are frozen.
-- E and F start only after `projections.md` and representative result fixtures are frozen.
-- Coordinator task 1.3 (the Serena producer/consumer trace for shared integration owners) is completed during
-  wave 1, before any shared-path integration.
+**R6b. Support for the extended form.**
+- `signals.evaluate` refuses application only when an operator's `support_status` is `"proposed"`. `null` adds
+  nothing.
+- So packets C and D return `"proposed"` whenever an internal rule or assumption isn't accepted, or a binomial
+  role is missing.
+- Traced by hand with known outer support: STA-4 and a proposed prohibition come back `unresolved`, with the
+  arithmetic kept in `calculation_code`.
+
+**R7. Staged freeze: a coordinator deviation from P2, reported to the user at release.**
+- P2 requires all of 1.1–1.6 before any worker starts.
+- The coordinator releases B, C and D, their independent oracles, and A once `operators.md` and `ledger.md` are
+  frozen. Task 1.3 (the Serena producer/consumer trace for shared integration owners) and `projections.md` are
+  finished during wave 1, before any shared-path integration and before E or F start.
+- P2's purpose, that no worker codes against an unfrozen interface, still holds for every packet.
+- The P4 "production consumers" for B, C and D are the coordinator's wave-2 work: `signals.MODULES`
+  registration and the managed per-claim check.
+
+**R8. Fixture disputes.**
+- The fixtures are hand-derived by the coordinator, except the binomial tails, which the generator computes.
+- If a fixture disagrees with the contract text, the builder stops that case and reports it. Never make the
+  code match the fixture against the text, and never edit fixtures.
+- Oracle authors first run their oracle against the fixture expectations without importing production code,
+  and report any mismatch in their handback.
+
+**R9. Commits in a shared checkout.**
+- The gate reads the whole working tree. Commits and pushes happen only between waves, when no worker is
+  writing, or the gate runs on a clean export of the commit.
 
 ## Ownership (P3) and import direction (P2.4)
 

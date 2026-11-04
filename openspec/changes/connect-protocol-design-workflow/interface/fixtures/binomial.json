@@ -58,7 +58,11 @@
      "power": "0.5625",
      "rounding": "half_even_4dp"
     },
-    "support_status": "known"
+    "support_status": "known",
+    "application": {
+     "code": "not_withheld_by_assumptions",
+     "reasons": []
+    }
    }
   },
   {
@@ -589,7 +593,14 @@
     },
     "blockers_include": [
      "binomial_assumption_missing:alignment"
-    ]
+    ],
+    "support_status": "proposed",
+    "application": {
+     "code": "withheld",
+     "reasons": [
+      "assumption_missing:alignment"
+     ]
+    }
    }
   },
   {
@@ -649,7 +660,13 @@
      "power": "0.5625",
      "rounding": "half_even_4dp"
     },
-    "support_status": null
+    "support_status": "proposed",
+    "application": {
+     "code": "withheld",
+     "reasons": [
+      "assumption_not_accepted:user:alignment assumption (interface fixture)"
+     ]
+    }
    }
   }
  ],

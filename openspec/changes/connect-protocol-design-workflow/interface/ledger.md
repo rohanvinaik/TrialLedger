@@ -29,7 +29,11 @@ translation refusal, never a clinical finding.
 - `TrialLedger.layer2.assertions` and `TrialLedger.layer2.entail`, for `proposition_formula` blockers only;
 - `TrialLedger.layer2.source_evidence`, for `_selected(study, pointer)` only.
 
-**Never import** `session_state`, `design_session` or anything that imports them. Those modules will import
+**Never import** `dependency_evidence`, `estimand_evidence`, the protocol operators, `session_state`,
+`design_session` or anything that imports them. The literal key lists R-DEP, R-EST and R-POL below are copied
+into `protocol_objects.py` as module constants. A coordinator integration test (not packet A's) asserts that
+they equal `dependency_evidence.INPUTS`, `estimand_evidence.INPUTS` and `protocol_policies.INPUTS`.
+`session_state` and `design_session` are excluded for a further reason: Those modules will import
 this one, and a cycle is a refusal. Write the small `_object`/`_text`/`_rows` helpers locally, in the style of
 `decision_tables`.
 
@@ -110,12 +114,12 @@ Fields are exact (`protocol_data_fields:<kind>`). "ID of K" means an object id w
 | kind | data fields |
 |---|---|
 | measurement | `definition`: a standing_ref. `unit`: nonempty string or null (null means unresolved). `mode`: observed, imputed or derived. `baseline`: ID of measurement, or null. A baseline may not name the object itself (that is a cycle) |
-| endpoint | `variable`: ID of measurement. `definition`: a standing_ref. `estimand`: ID of estimand, or null. `dependencies`: null, or a dict whose key set equals exactly `dependency_evidence.INPUTS["dependencies"]["required"]`. Deep validation is the operator's job at projection time |
-| estimand | A dict whose key set equals exactly `estimand_evidence.INPUTS["estimand"]["required"]`. Deep validation happens at projection time. Its `requirements[*].id` values must be unique nonempty strings, because collections refer to them |
+| endpoint | `variable`: ID of measurement. `definition`: a standing_ref. `estimand`: ID of estimand, or null. `dependencies`: null, or a dict whose key set is exactly {scope, version, rules, adopted, available, unavailable, conditions} (literal list R-DEP). Deep validation is the operator's job at projection time |
+| estimand | A dict whose key set is exactly {scope, version, id, definitions, events, requirements, collection_plan, data_state, dependencies} (literal list R-EST). Deep validation happens at projection time. Its `requirements[*].id` values must be unique nonempty strings, because collections refer to them |
 | assessment | `measurement`: ID of measurement. `anchor`: nonempty string. `unit`: nonempty string. `nominal`: rational or null. `permitted`: union or null (`protocol_numbers` with prefix `protocol`). `condition`: typed proposition or null. A null condition means unconditional within this exact scope, not all populations |
 | collection | `assessment`: ID of assessment. `mode`: observed, imputed or derived. `availability`: union or null (prefix `protocol`). `event_handling`: null, or exactly `{estimand, requirement}`, where `estimand` is an ID of estimand and `requirement` names one of that estimand's `requirements[*].id` (`protocol_unknown_requirement`) |
 | efficacy | `endpoint`: ID of endpoint. `method`: binomial_design or external_method. `parameters`: for binomial_design, exactly `{model, direction, n, critical_count, p0, p1}`, with only a shape check here (strings and ints; packet D validates the values). For external_method, an ID of external_method. `assumptions`: a unique list of `{role, premise}`, where `role` ∈ fixed_n, iid_binary or alignment and `premise` is in `premises`. Roles may repeat across different premises; missing roles are allowed, because packet D reports them |
-| policy | `model`: a dict whose key set equals exactly the C6 `finite_policy` field set (deep validation is packet C's job at projection time). `bindings`: a unique list of exactly `{variable, object, premise}`. `variable` is a nonempty string that must equal a `model.variables[*].id` (`protocol_unknown_policy_variable`). Exactly one of `object` (an object id) or `premise` (a premise id) is non-null (`protocol_invalid_binding`) |
+| policy | `model`: a dict whose key set is exactly {scope, version, variables, constraints, states, initial, terminal, actions, transitions, prohibitions, invariants} (literal list R-POL; deep validation is packet C's job at projection time). `bindings`: a unique list of exactly `{variable, object, premise}`. `variable` is a nonempty string that must equal a `model.variables[*].id` (`protocol_unknown_policy_variable`). Exactly one of `object` (an object id) or `premise` (a premise id) is non-null (`protocol_invalid_binding`) |
 | external_method | `definition`: a standing_ref. `inputs`: a unique-by-name list of exactly `{name, value, unit, ref}`, where `value` and `unit` are strings or null and `ref` is an object id, a premise id or null. `missing`: a unique list of nonempty names, disjoint from the input names (`protocol_external_missing`) |
 
 When a data reference names an object, it counts as a data reference and must also appear in `depends_on`.
@@ -186,9 +190,14 @@ Every check has exactly `id`, `kind`, `scope`, `objects`, `bindings`, `claims`, 
 **MUST-NOT also covers these non-errors:**
 - An empty `support` list must not refuse.
 - An own `known` status must not be returned as effective standing; packet A returns none.
-- No solver or operator module may be imported. A test asserts that `sys.modules` gains none of
-  `TrialLedger.layer2.decision_tables`, `.protocol_schedule`, `.protocol_policies` or `.protocol_statistics`
-  from importing and running `protocol_objects`.
+- No solver or operator module may be imported. A test runs a **subprocess**
+  (`sys.executable -c ...`) that imports `TrialLedger.layer2.protocol_objects`, validates one valid fixture,
+  and asserts that `sys.modules` contains none of:
+  - `TrialLedger.layer2.decision_tables`, `.dependency_evidence`, `.estimand_evidence`;
+  - `.protocol_schedule`, `.protocol_policies`, `.protocol_statistics`;
+  - `.session_state`, `.design_session`.
+
+  An in-process check is not acceptable: the full suite has already imported them.
 
 **Fixtures.**
 - `fixtures/objects.json`, written by packet A. Each case has `{id, protocol, expect | refusal}` and a builder

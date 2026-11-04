@@ -519,6 +519,8 @@ policy_cases = [
         "claims": None,
         "expect": {
             "code": "violated",
+            "support_status": "known",
+            "determining_ids": ["no-low-dose-with-low-dose-signal"],
             "reachability": {
                 "reachable_states": ["interim", "selected"],
                 "unreachable_states": [],
@@ -540,6 +542,7 @@ policy_cases = [
         "claims": [claim("prohibition")],
         "expect": {
             "code": "violated",
+            "support_status": "proposed",
             "claims": {"prohibition": prow("violation", 3, 3, standing="proposed_refused")},
         },
     },
@@ -570,6 +573,8 @@ policy_cases = [
         "claims": [claim("coverage"), claim("exclusivity"), claim("termination")],
         "expect": {
             "code": "violated",
+            "support_status": None,
+            "determining_ids": [],
             "reachability": {
                 "reachable_states": ["a", "b", "c", "d"],
                 "unreachable_states": ["z"],
@@ -939,7 +944,11 @@ binomial_cases = [
         "acceptance": ["STA-1"],
         "data": bdata(2, 2, "1/2", "3/4"),
         "claims": [],
-        "expect": {**bexp(2, 2, "1/2", "3/4"), "support_status": "known"},
+        "expect": {
+            **bexp(2, 2, "1/2", "3/4"),
+            "support_status": "known",
+            "application": {"code": "not_withheld_by_assumptions", "reasons": []},
+        },
     },
     {
         "id": "STA-1-k1",
@@ -1017,6 +1026,8 @@ binomial_cases = [
             **bexp(2, 2, "1/2", "3/4"),
             "assumption_coverage": {"fixed_n": "declared", "iid_binary": "declared", "alignment": "missing"},
             "blockers_include": ["binomial_assumption_missing:alignment"],
+            "support_status": "proposed",
+            "application": {"code": "withheld", "reasons": ["assumption_missing:alignment"]},
         },
     },
     {
@@ -1034,7 +1045,14 @@ binomial_cases = [
             ],
         ),
         "claims": [],
-        "expect": {**bexp(2, 2, "1/2", "3/4"), "support_status": None},
+        "expect": {
+            **bexp(2, 2, "1/2", "3/4"),
+            "support_status": "proposed",
+            "application": {
+                "code": "withheld",
+                "reasons": ["assumption_not_accepted:user:alignment assumption (interface fixture)"],
+            },
+        },
     },
 ]
 b_ok = bdata(2, 2, "1/2", "3/4")
