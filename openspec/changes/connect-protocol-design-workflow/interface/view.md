@@ -207,3 +207,10 @@ Every test body calls `protocol_view.view(...)` directly, by name.
    - A known prohibited-dose violation therefore reads "specified" **and** "conflict found", never "specified"
      alone.
    - Downstream outputs (the decision list and the workbook) must always show `findings` beside `coverage`.
+4. **Conditional claims and applicability** (after the side-agent review).
+   - A claim with `application: "conditional"` is a checked conditional obligation. It no longer makes its
+     section `open`, and it stays visible through its wording prefix and a `claim_conditional` open item.
+   - `application: "not_applicable"`, when the declared premises refute the condition, has the fixed wording
+     "Not applicable: the declared condition does not hold in this scope." It is excluded from section findings.
+   - Applicability is decided upstream by a check's explicit `condition_applicability` binding (task 2.9). It is
+     never inferred.

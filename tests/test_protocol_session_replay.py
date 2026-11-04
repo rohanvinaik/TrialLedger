@@ -160,3 +160,62 @@ def test_a_declared_assessment_condition_keeps_every_claim_conditional():
 def test_without_a_condition_claims_apply_unconditionally():
     child = run(_session("84"))["result"]["protocol"]["checks"][0]["children"][0]
     assert {row["application"] for row in child["signals"][0]["claim_admission"]} == {"unconditional"}
+
+
+def _adult_body(request: dict) -> dict:
+    return copy.deepcopy(request["session"]["premises"][0]["payload"]["body"])
+
+
+def _with_condition(condition: dict, deciding: list | None) -> dict:
+    request = _session("84", collection_status="known")
+    request["session"]["protocol"]["objects"][2]["support"] = ["adult"]
+    request["session"]["protocol"]["objects"][1]["data"]["condition"] = condition
+    if deciding is not None:
+        request["session"]["protocol"]["checks"][0]["bindings"] = [
+            {"projection": "condition_applicability", "premises": deciding}
+        ]
+    return request
+
+
+def _applications(reply: dict) -> set:
+    child = reply["result"]["protocol"]["checks"][0]["children"][0]
+    return {row["application"] for row in child["signals"][0]["claim_admission"]}, child
+
+
+def test_a_condition_entailed_by_the_declared_premises_applies_unconditionally():
+    base = _session("84")
+    applications, child = _applications(run(_with_condition(_adult_body(base), ["adult"])))
+    assert applications == {"unconditional"}
+    assert [row["code"] for row in child["applicability"]] == ["applies"]
+    assert child["applicability"][0]["request"]["operation"] == "entailment"
+
+
+def test_a_condition_refuted_by_the_declared_premises_is_not_applicable():
+    base = _session("84")
+    condition = {"class": "Not", "part": _adult_body(base)}
+    applications, child = _applications(run(_with_condition(condition, ["adult"])))
+    assert applications == {"not_applicable"}
+    assert [row["code"] for row in child["applicability"]] == ["does_not_apply"]
+
+
+def test_an_undecided_or_undeclared_condition_stays_conditional():
+    other = {
+        "class": "Literal",
+        "subject": {"class": "Subject", "kind": "participant", "referent": ""},
+        "predicate": {"class": "Predicate", "kind": "treatment_history", "key": "discontinued_study_drug"},
+        "value": {"class": "Value", "kind": "boolean"},
+        "polarity": "positive",
+        "time": None,
+        "qualifiers": {"class": "Always"},
+        "evidence": [],
+    }
+    decided, child = _applications(run(_with_condition(other, ["adult"])))
+    assert decided == {"conditional"} and child["applicability"][0]["code"] == "undetermined"
+    undeclared, child = _applications(run(_with_condition(_adult_body(_session("84")), None)))
+    assert undeclared == {"conditional"} and child["applicability"] == []
+
+
+def test_an_invalid_applicability_binding_is_a_named_refusal():
+    for premises in ([], ["nobody"], ["adult", "adult"]):
+        reply = run(_with_condition(_adult_body(_session("84")), premises))
+        assert reply["problems"] == ["protocol_applicability_binding"], premises

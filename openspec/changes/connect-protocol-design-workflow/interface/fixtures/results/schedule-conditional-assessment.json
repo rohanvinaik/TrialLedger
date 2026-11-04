@@ -3170,6 +3170,7 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [],
            "disposition": "settled",
            "kind": "protocol_claim",
            "logical_result": "satisfied",
@@ -3180,6 +3181,7 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [],
            "disposition": "open",
            "kind": "protocol_claim",
            "logical_result": "not_collected",
@@ -3190,6 +3192,7 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [],
            "disposition": "open",
            "kind": "protocol_claim",
            "logical_result": "uncovered",
@@ -3308,9 +3311,11 @@
             {
              "admission": "accepted",
              "claim": "existence",
+             "determining_ids": [],
              "effective_outcome": "satisfied",
              "id": "visit",
              "outcome": "satisfied",
+             "status": "known",
              "support": [
               "object:collection",
               "object:week12",
@@ -3320,9 +3325,11 @@
             {
              "admission": "accepted",
              "claim": "nominal",
+             "determining_ids": [],
              "effective_outcome": "not_collected",
              "id": "target",
              "outcome": "not_collected",
+             "status": "known",
              "support": [
               "object:collection",
               "object:week12",
@@ -3332,9 +3339,11 @@
             {
              "admission": "accepted",
              "claim": "full_window",
+             "determining_ids": [],
              "effective_outcome": "uncovered",
              "id": "window",
              "outcome": "uncovered",
+             "status": "known",
              "support": [
               "object:collection",
               "object:week12",
@@ -3470,7 +3479,7 @@
           }
          ]
         },
-        "result_digest": "29091c5992eb88311588bcb42c33e88ca5fcdacc5d6199ac14020e6138a0d4b3",
+        "result_digest": "976696082e7feafed9a8ca697d0a456b8333a93c3e61bfee559d10dcc0f6cc21",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -3485,7 +3494,7 @@
         }
        },
        "request_digest": "42b0c075dec68c3b1d06cd5c9d452e82b3d3cc8f40e0717e0c90c05ce858791d",
-       "result_digest": "80090275c2bf914a2ac26931a1e9be4bc3ba30f73b595161540ef9a8450e785b",
+       "result_digest": "e5a16b1f75c371ee4cf4c963c553ad865978da8579b279869d3f83338bbf5e45",
        "signals": [
         {
          "id": "week12-schedule:schedule_window_coverage",
@@ -3505,9 +3514,11 @@
           {
            "admission": "accepted",
            "claim": "existence",
+           "determining_ids": [],
            "effective_outcome": "satisfied",
            "id": "visit",
            "outcome": "satisfied",
+           "status": "known",
            "support": [
             "object:collection",
             "object:week12",
@@ -3518,9 +3529,11 @@
           {
            "admission": "accepted",
            "claim": "nominal",
+           "determining_ids": [],
            "effective_outcome": "not_collected",
            "id": "target",
            "outcome": "not_collected",
+           "status": "known",
            "support": [
             "object:collection",
             "object:week12",
@@ -3531,9 +3544,11 @@
           {
            "admission": "accepted",
            "claim": "full_window",
+           "determining_ids": [],
            "effective_outcome": "uncovered",
            "id": "window",
            "outcome": "uncovered",
+           "status": "known",
            "support": [
             "object:collection",
             "object:week12",
@@ -3578,6 +3593,7 @@
          }
         }
        ],
+       "applicability": [],
        "refusal": null
       }
      ],

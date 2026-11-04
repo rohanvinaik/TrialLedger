@@ -98,7 +98,8 @@ EXPECTED_COVERAGE = {
     "policy-violation-known": {"safety": "specified"},
     "policy-violation-proposed": {"safety": "open"},
     "policy-work-limit": {"safety": "not_computed"},
-    "schedule-conditional-assessment": {"assessments": "open"},
+    # Corrected after review: a checked conditional obligation is specified, not open.
+    "schedule-conditional-assessment": {"assessments": "specified"},
     "schedule-refuted-and-conditional": {
         "assessments": "open",
         "safety": "open",
@@ -170,7 +171,7 @@ def test_scope_mismatch_has_no_schedule_numbers():
     assert out["checks"][0]["summary"] is None and out["checks"][0]["refs"] == []
 
 
-def test_conditional_assessment_prefix_and_open_section():
+def test_conditional_assessment_prefix_and_specified_section():
     out = protocol_view.view(load("schedule-conditional-assessment"))
     prefix = "If the declared condition applies: "
     row = next(c for c in out["checks"] if c["id"] == "week12-schedule")
@@ -180,7 +181,7 @@ def test_conditional_assessment_prefix_and_open_section():
         prefix + "Planned collection does not cover part of the permitted window: (80, 91]."
     )
     assert out["schedule"][0]["conditionality"] == "conditional"
-    assert coverage("schedule-conditional-assessment")["assessments"] == "open"
+    assert coverage("schedule-conditional-assessment")["assessments"] == "specified"
     assert [i["kind"] for i in out["open_items"] if i["kind"] == "claim_conditional"] == [
         "claim_conditional"
     ] * 3
@@ -261,7 +262,8 @@ def test_open_items_order():
     assert kinds == ["not_computed", "claim_unsettled", "claim_unsettled", "section", "section"]
     out = protocol_view.view(load("schedule-conditional-assessment"))
     kinds = [i["kind"] for i in out["open_items"]]
-    assert kinds == ["claim_conditional"] * 3 + ["claim_failure"] * 2 + ["section"]
+    # The conditional section is specified (checked as a conditional obligation), so no section item.
+    assert kinds == ["claim_conditional"] * 3 + ["claim_failure"] * 2
     for item in out["open_items"]:
         assert set(item) == {"kind", "check", "claim", "text", "ref"}
 
@@ -477,3 +479,17 @@ def test_section_findings_precedence():
     assert protocol_view.section_findings("specified", 0, 0) == "none_found_in_declared_checks"
     assert protocol_view.section_findings("open", 0, 0) == "not_checked"
     assert protocol_view.section_findings("not_computed", 0, 0) == "not_checked"
+
+
+def test_a_not_applicable_claim_has_its_own_wording_and_no_section_finding():
+    import copy as _copy
+
+    result = _copy.deepcopy(load("schedule-conditional-assessment"))
+    for row in result["protocol"]["checks"][0]["children"][0]["signals"][0]["claim_admission"]:
+        row["application"] = "not_applicable"
+    out = protocol_view.view(result)
+    assert {c["wording"] for c in out["checks"][0]["claims"]} == {
+        "Not applicable: the declared condition does not hold in this scope."
+    }
+    section = next(s for s in out["sections"] if s["id"] == "assessments")
+    assert section["findings_detail"] == []

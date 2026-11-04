@@ -153,6 +153,8 @@ def claim_wording(row: dict, child: dict) -> str:
     post: isinstance(__return__, str)
     post: row.get("application") != "conditional" or __return__.startswith(CONDITIONAL_PREFIX)
     """
+    if row.get("application") == "not_applicable":
+        return "Not applicable: the declared condition does not hold in this scope."
     text = _template(row, child)
     return CONDITIONAL_PREFIX + text if row.get("application") == "conditional" else text
 
@@ -285,8 +287,8 @@ def _open_reasons(check: dict) -> list[str]:
         for r, _ in rows
         if r.get("effective_outcome") in UNSETTLED
     ]
-    if any(r.get("application") == "conditional" for r, _ in rows):
-        out.append(f"conditional:{check['id']}")
+    # A conditional claim is a checked conditional obligation, not an unchecked one: it does not open the
+    # section. It stays visible as a claim_conditional open item and in its wording (corrected after review).
     return out
 
 
@@ -493,7 +495,7 @@ def _section_detail(consuming: list[dict]) -> list[dict]:
     for check in consuming:
         for row, _ in _claim_rows(check):
             outcome = row.get("outcome")
-            if row.get("admission") != "accepted":
+            if row.get("admission") != "accepted" or row.get("application") == "not_applicable":
                 continue
             if outcome in CONFLICT_OUTCOMES or outcome in REPAIR_OUTCOMES:
                 detail.append(

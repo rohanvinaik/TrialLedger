@@ -662,6 +662,88 @@ def _decisions(
     return sorted(out, key=lambda v: (priority[v["code"]], v["id"]))
 
 
+APPLICABILITY_PREMISE_KINDS = ("assertion", "source_assertion", "derived_assertion")
+
+
+def applicability_code(result: str, admitted: bool) -> str:
+    """Whether a declared assessment condition applies in the check's scope (pure).
+
+    Only an admitted proof decides; anything else leaves the claims conditional (C4).
+
+    pre: isinstance(result, str)
+    post: __return__ in ("applies", "does_not_apply", "undetermined")
+    post: __return__ == "undetermined" or admitted
+    post: __return__ != "applies" or result == "ENTAILED"
+    post: __return__ != "does_not_apply" or result == "REFUTED"
+    """
+    if admitted and result == "ENTAILED":
+        return "applies"
+    if admitted and result == "REFUTED":
+        return "does_not_apply"
+    return "undetermined"
+
+
+def _applicability_premises(declared: dict, prepared: dict) -> list[str] | None:
+    """The explicitly declared premises that decide a check's conditions; None when none are declared."""
+    rows = [b for b in declared["bindings"] if b.get("projection") == "condition_applicability"]
+    if not rows:
+        return None
+    if len(rows) != 1 or set(rows[0]) != {"projection", "premises"}:
+        raise ValueError("protocol_applicability_binding")
+    premises = rows[0]["premises"]
+    if (
+        type(premises) is not list
+        or not premises
+        or len(set(map(str, premises))) != len(premises)
+        or any(p not in prepared["premises"] for p in premises)
+        or any(prepared["premises"][p]["kind"] not in APPLICABILITY_PREMISE_KINDS for p in premises)
+    ):
+        raise ValueError("protocol_applicability_binding")
+    return list(premises)
+
+
+def _applicability(
+    conditions: list[dict], premises: list[str] | None, declared: dict, values: dict, run_child: Callable
+) -> tuple[str, list[dict]]:
+    """Decide each declared condition by ordinary budgeted entailment over the declared premises."""
+    if not conditions:
+        return "unconditional", []
+    if premises is None:
+        return "conditional", []
+    context = {k: v for k, v in declared["scope"]["context"].items() if v is not None}
+    rows = []
+    for item in conditions:
+        request = {
+            "operation": "entailment",
+            "assertions": [deepcopy(values[p]["payload"]) for p in premises],
+            "query": deepcopy(item["condition"]),
+            **({"context": context} if context else {}),
+        }
+        result = run_child(request)
+        decision = (result.get("result") or {}).get("decision") or {}
+        admitted = (
+            result.get("code") == "complete"
+            and admission.admission_code(decision.get("status", "proposed"), "resolved", True) == "accepted"
+        )
+        rows.append(
+            {
+                "object": item["object"],
+                "premises": list(premises),
+                "request": request,
+                "result": deepcopy(result),
+                "request_digest": state.digest(request),
+                "result_digest": state.digest(result),
+                "code": applicability_code(decision.get("result", ""), admitted),
+            }
+        )
+    codes = {row["code"] for row in rows}
+    if "does_not_apply" in codes:
+        return "not_applicable", rows
+    if codes == {"applies"}:
+        return "unconditional", rows
+    return "conditional", rows
+
+
 def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], dict], budget: dict) -> dict:
     """Run every declared protocol check through its named projection and the ordinary budgeted child path.
 
@@ -680,8 +762,16 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
     for check_id in index["check_order"]:
         projected = protocol_projections.project(index, check_id, premise_standing=standing)
         children = []
+        declared = index["checks"][check_id]
+        deciding = _applicability_premises(declared, prepared)
         for child in projected["children"]:
-            application = "conditional" if child["receipt"].get("conditions") else "unconditional"
+            application, applicability = _applicability(
+                child["receipt"].get("conditions", []),
+                deciding,
+                declared,
+                values,
+                lambda request: _child(request, execute, budget, limits)["result"],
+            )
             checked = _child(child["request"], execute, budget, limits)
             result = checked["result"]
             signals_out = (
@@ -718,6 +808,7 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
                         for signal in signals_out
                     ],
                     "conditions": deepcopy(child["receipt"].get("conditions", [])),
+                    "applicability": applicability,
                     "refusal": None if result.get("code") == "complete" else list(result.get("problems", [])),
                 }
             )

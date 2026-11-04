@@ -3549,6 +3549,7 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [],
            "disposition": "settled",
            "kind": "protocol_claim",
            "logical_result": "covered",
@@ -3559,6 +3560,7 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [],
            "disposition": "settled",
            "kind": "protocol_claim",
            "logical_result": "exclusive",
@@ -3569,6 +3571,9 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [
+            "no-low-with-signal"
+           ],
            "disposition": "conflict",
            "kind": "protocol_claim",
            "logical_result": "violation",
@@ -3579,6 +3584,7 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [],
            "disposition": "settled",
            "kind": "protocol_claim",
            "logical_result": "all_paths_terminate",
@@ -3879,9 +3885,11 @@
             {
              "admission": "accepted",
              "claim": "coverage",
+             "determining_ids": [],
              "effective_outcome": "covered",
              "id": "coverage",
              "outcome": "covered",
+             "status": "known",
              "support": [
               "object:interim-rule",
               "premise:adult"
@@ -3890,9 +3898,11 @@
             {
              "admission": "accepted",
              "claim": "exclusivity",
+             "determining_ids": [],
              "effective_outcome": "exclusive",
              "id": "exclusivity",
              "outcome": "exclusive",
+             "status": "known",
              "support": [
               "object:interim-rule",
               "premise:adult"
@@ -3901,9 +3911,13 @@
             {
              "admission": "accepted",
              "claim": "prohibition",
+             "determining_ids": [
+              "no-low-with-signal"
+             ],
              "effective_outcome": "violation",
              "id": "prohibition",
              "outcome": "violation",
+             "status": "known",
              "support": [
               "object:interim-rule",
               "premise:adult"
@@ -3912,9 +3926,11 @@
             {
              "admission": "accepted",
              "claim": "termination",
+             "determining_ids": [],
              "effective_outcome": "all_paths_terminate",
              "id": "termination",
              "outcome": "all_paths_terminate",
+             "status": "known",
              "support": [
               "object:interim-rule",
               "premise:adult"
@@ -4168,7 +4184,7 @@
           }
          ]
         },
-        "result_digest": "8d7aa5bfe01f9f254e828bf0f52a8d2eca22e5c7ebf8fc2204d42a7407d901a8",
+        "result_digest": "cce48f502e3cc1588a84592e4af9d823cc8297368c9f40731134b645cceaba9f",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -4183,7 +4199,7 @@
         }
        },
        "request_digest": "d14e3e6a3ee9d8a65838d16017aea6a52a2d2ea745a33aaf1cd1b5d2efb40322",
-       "result_digest": "6f0619a19cb2b9591f0c427e0d0f3bccf6a35d25d9ab354b89f683e614fa4393",
+       "result_digest": "b5f01a16f1a7d0dc33bec63ecd0d410f85f4e0cc7b43a176ca884049c4a3882e",
        "signals": [
         {
          "id": "interim-safety:finite_policy_model",
@@ -4202,9 +4218,11 @@
           {
            "admission": "accepted",
            "claim": "coverage",
+           "determining_ids": [],
            "effective_outcome": "covered",
            "id": "coverage",
            "outcome": "covered",
+           "status": "known",
            "support": [
             "object:interim-rule",
             "premise:adult"
@@ -4214,9 +4232,11 @@
           {
            "admission": "accepted",
            "claim": "exclusivity",
+           "determining_ids": [],
            "effective_outcome": "exclusive",
            "id": "exclusivity",
            "outcome": "exclusive",
+           "status": "known",
            "support": [
             "object:interim-rule",
             "premise:adult"
@@ -4226,9 +4246,13 @@
           {
            "admission": "accepted",
            "claim": "prohibition",
+           "determining_ids": [
+            "no-low-with-signal"
+           ],
            "effective_outcome": "violation",
            "id": "prohibition",
            "outcome": "violation",
+           "status": "known",
            "support": [
             "object:interim-rule",
             "premise:adult"
@@ -4238,9 +4262,11 @@
           {
            "admission": "accepted",
            "claim": "termination",
+           "determining_ids": [],
            "effective_outcome": "all_paths_terminate",
            "id": "termination",
            "outcome": "all_paths_terminate",
+           "status": "known",
            "support": [
             "object:interim-rule",
             "premise:adult"
@@ -4251,6 +4277,7 @@
         }
        ],
        "conditions": [],
+       "applicability": [],
        "refusal": null
       }
      ],

@@ -11074,6 +11074,16 @@
           {
            "causes": [],
            "completion": "complete",
+           "determining_ids": [
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7"
+           ],
            "disposition": "not_computed",
            "kind": "protocol_claim",
            "logical_result": "not_executed",
@@ -13444,9 +13454,20 @@
             {
              "admission": "undetermined",
              "claim": "coverage",
+             "determining_ids": [
+              "k0",
+              "k1",
+              "k2",
+              "k3",
+              "k4",
+              "k5",
+              "k6",
+              "k7"
+             ],
              "effective_outcome": "not_executed",
              "id": "coverage",
              "outcome": "not_executed",
+             "status": "known",
              "support": [
               "object:big-rule",
               "premise:adult"
@@ -15088,7 +15109,7 @@
           }
          ]
         },
-        "result_digest": "4380a3387a47ff5ececad6c7ddc1b9e795d8494ad61f2cd4a9a5e70881e92af9",
+        "result_digest": "5870f46e86cb3a73600388fae975d46d4009df173a2a4d0d0843d0fbde1fe0a9",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -15102,7 +15123,7 @@
         }
        },
        "request_digest": "034bb76bbcb43d045204b46cbe3eec999b1fcdb4f2a3c7891d65b2485767cca6",
-       "result_digest": "319214064c0c1326d66167af2f85499cedfc756850b081a6654e0b01e32cc9e7",
+       "result_digest": "4db31e0548607f4bd783d7990492a59c1cd89fef3fcb9d61bdded3a0c0cb667c",
        "signals": [
         {
          "id": "big-safety:finite_policy_model",
@@ -15121,9 +15142,20 @@
           {
            "admission": "undetermined",
            "claim": "coverage",
+           "determining_ids": [
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7"
+           ],
            "effective_outcome": "not_executed",
            "id": "coverage",
            "outcome": "not_executed",
+           "status": "known",
            "support": [
             "object:big-rule",
             "premise:adult"
@@ -15134,6 +15166,7 @@
         }
        ],
        "conditions": [],
+       "applicability": [],
        "refusal": null
       }
      ],

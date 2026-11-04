@@ -3234,6 +3234,9 @@
             }
            ],
            "completion": "complete",
+           "determining_ids": [
+            "premise:adult"
+           ],
            "disposition": "open",
            "kind": "protocol_claim",
            "logical_result": "unresolved",
@@ -3251,6 +3254,9 @@
             }
            ],
            "completion": "complete",
+           "determining_ids": [
+            "premise:adult"
+           ],
            "disposition": "open",
            "kind": "protocol_claim",
            "logical_result": "unresolved",
@@ -3377,9 +3383,13 @@
             {
              "admission": "binding_unresolved",
              "claim": "null_rejection_probability",
+             "determining_ids": [
+              "premise:adult"
+             ],
              "effective_outcome": "unresolved",
              "id": "alpha",
              "outcome": "satisfied",
+             "status": "known",
              "support": [
               "object:efficacy",
               "object:response",
@@ -3389,9 +3399,13 @@
             {
              "admission": "binding_unresolved",
              "claim": "power",
+             "determining_ids": [
+              "premise:adult"
+             ],
              "effective_outcome": "unresolved",
              "id": "power",
              "outcome": "not_satisfied",
+             "status": "known",
              "support": [
               "object:efficacy",
               "object:response",
@@ -3528,7 +3542,7 @@
           }
          ]
         },
-        "result_digest": "64cd96d4c5f230f5c363e2e70ba1cbc4120253e71e35be6b945bae3dff8d790f",
+        "result_digest": "fe6577729ac2f36cf426e0073f835b6261bda5283f008c81fbee3dc3c3fd2133",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -3542,7 +3556,7 @@
         }
        },
        "request_digest": "fa54dd6af484ff137a9c193954545cbb1800f9063f6dc98852592ebe86360a50",
-       "result_digest": "2122e26efb8fe1932e6a107c3d46f12b50ff1b1566105eb5a3696a06dafa19f3",
+       "result_digest": "4cf52c6ab27a36d2e7f9b5f82d81619b7299fd38bd7324cc045cda9be6fccc59",
        "signals": [
         {
          "id": "efficacy-exact:binomial_efficacy",
@@ -3563,9 +3577,13 @@
           {
            "admission": "binding_unresolved",
            "claim": "null_rejection_probability",
+           "determining_ids": [
+            "premise:adult"
+           ],
            "effective_outcome": "unresolved",
            "id": "alpha",
            "outcome": "satisfied",
+           "status": "known",
            "support": [
             "object:efficacy",
             "object:response",
@@ -3576,9 +3594,13 @@
           {
            "admission": "binding_unresolved",
            "claim": "power",
+           "determining_ids": [
+            "premise:adult"
+           ],
            "effective_outcome": "unresolved",
            "id": "power",
            "outcome": "not_satisfied",
+           "status": "known",
            "support": [
             "object:efficacy",
             "object:response",
@@ -3590,6 +3612,7 @@
         }
        ],
        "conditions": [],
+       "applicability": [],
        "refusal": null
       }
      ],
