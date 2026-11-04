@@ -240,7 +240,10 @@ def test_check_support_premises_follow_object_entries():
     child = run(protocol, "k-sched")["children"][0]
     assert ids(child["request"]["signals"][0]["support"])[-1] == "premise:p2"
     assert child["receipt"]["premises"] == ["p2"]
-    assert not any(e["id"] == "premise:p2" for r in child["receipt"]["role_support"].values() for e in r)
+    # Corrected after external review: check-wide support is explicit in every role, never inferred.
+    roles = child["receipt"]["role_support"]
+    assert roles and all(any(e["id"] == "premise:p2" for e in r) for r in roles.values())
+    assert all("premise:p2" in ids for ids in child["request"]["signals"][0]["role_support"].values())
 
 
 def test_assessment_condition_always_appears_in_conditions():

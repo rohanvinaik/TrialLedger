@@ -159,6 +159,9 @@ class _Build:
     def role(self, name: str, ids: list[str], premises: list[str] | None = None) -> None:
         rows = _obj_entries(self.index, ids, self.standing)
         rows += [_premise_entry(p, self.standing) for p in premises or []]
+        # Check-wide support is explicit in every role. It is never inferred from absence: a premise that
+        # also backs one object must still reach every claim when the check declares it (external review).
+        rows += [_premise_entry(p, self.standing) for p in self.check["support"]]
         self.roles[name] = _unique(rows)
 
     def support(self) -> list[dict]:

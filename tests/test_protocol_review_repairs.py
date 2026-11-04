@@ -141,3 +141,45 @@ def test_an_estimand_collection_mismatch_reaches_the_view_and_keeps_the_section_
     assert "estimand_collection_plan_mismatch:week12" in signal["blockers"]
     assert any("estimand_collection_plan_mismatch:week12" in text for text in texts)
     assert endpoints["coverage"] != "specified"
+
+
+# 1b. A premise backing one object and also declared check-wide reaches every claim (second review).
+def _outside_window_with_collection_premise(check_wide: bool) -> dict:
+    request = _with_proposed_premise(_session("100", collection_status="known"))
+    request["session"]["protocol"]["objects"][2]["support"] = ["draft-reading"]
+    if check_wide:
+        request["session"]["protocol"]["checks"][0]["support"] = ["draft-reading"]
+    return request
+
+
+def _nominal(reply: dict) -> dict:
+    return next(row for row in _claims(reply) if row["claim"] == "nominal")
+
+
+def test_collection_only_proposed_support_leaves_the_known_outside_window_finding_admitted():
+    reply = run(_outside_window_with_collection_premise(check_wide=False))
+    nominal = _nominal(reply)
+    assert (nominal["outcome"], nominal["admission"], nominal["status"]) == (
+        "outside_window",
+        "accepted",
+        "known",
+    )
+    assert nominal["effective_outcome"] == "outside_window"
+    assert "premise:draft-reading" not in nominal["support"]
+
+
+def test_the_same_premise_declared_check_wide_withholds_that_finding():
+    reply = run(_outside_window_with_collection_premise(check_wide=True))
+    nominal = _nominal(reply)
+    assert nominal["admission"] == "proposed_refused"
+    assert nominal["effective_outcome"] == "unresolved"
+    assert "premise:draft-reading" in nominal["support"]
+
+
+def test_declaring_a_premise_check_wide_changes_the_child_request():
+    def digest(reply):
+        return reply["result"]["protocol"]["checks"][0]["children"][0]["request_digest"]
+
+    assert digest(run(_outside_window_with_collection_premise(False))) != digest(
+        run(_outside_window_with_collection_premise(True))
+    )

@@ -124,3 +124,15 @@ above, then check premises.
 - Repeated projection of the same check yields the same digest.
 - The index and `premise_standing` are not mutated.
 - No operator, `signals` or `service` import. Check this in a subprocess `sys.modules` test, as packet A does.
+
+## Integration correction (coordinator, after the second external review on 2026-11-04)
+
+**Check-wide support is explicit in every role.** Every `check.support` premise entry is appended to every role's
+support entries, so it appears in the receipt's `role_support` and in the child signal's `role_support` ids.
+Previously check premises appeared in no role, and the gate inferred them as common from their absence. A premise
+that also backed one object, such as the collection plan, therefore escaped the check-wide gate, and declaring it
+check-wide didn't even change the request digest.
+
+The paired regression in `tests/test_protocol_review_repairs.py` covers both sides:
+- collection-only proposed support leaves a known outside-window finding admitted;
+- the same premise declared check-wide withholds it, and the request digest changes.
