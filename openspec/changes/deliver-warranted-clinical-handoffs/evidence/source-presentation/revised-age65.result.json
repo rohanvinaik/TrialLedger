@@ -1,0 +1,187 @@
+{
+ "summary": {
+  "kind": "reasoning",
+  "code": "complete",
+  "operation": "entailment",
+  "findings": 1,
+  "dispositions": {
+   "open": 1
+  },
+  "problems": []
+ },
+ "clinical": {
+  "version": 1,
+  "operation": "entailment",
+  "findings": [
+   {
+    "path": "/result/decision",
+    "kind": "logical",
+    "outcome": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "disposition": "open",
+    "scope": {
+     "query": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "eq",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 60.0,
+       "unit": "Years",
+       "upper": null
+      }
+     }
+    },
+    "values": {},
+    "support": {
+     "proof": [
+      "simulated-draft-age"
+     ],
+     "explanation_blockers": []
+    },
+    "origins": [
+     {
+      "premise": "simulated-draft-age",
+      "criterion_ref": "simulated:operator-choice-not-registry"
+     }
+    ],
+    "conditions": [],
+    "blockers": [
+     "undecided_by_constraints"
+    ],
+    "canonical_ref": "/result/decision"
+   }
+  ]
+ },
+ "code": "complete",
+ "operation": "entailment",
+ "result": {
+  "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+  "decision": {
+   "result": "UNDETERMINED",
+   "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":60.0,\"unit\":\"Years\",\"upper\":null}}",
+   "status": null,
+   "proof": [
+    "simulated-draft-age"
+   ],
+   "blockers": [
+    "undecided_by_constraints"
+   ]
+  },
+  "premises": [
+   {
+    "applicability": {
+     "class": "Always"
+    },
+    "body": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "age",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": null,
+     "value": {
+      "class": "Value",
+      "kind": "interval",
+      "comparison": "in",
+      "number": 18,
+      "upper": 65,
+      "unit": "Years",
+      "inclusivity": "inclusive"
+     }
+    },
+    "branch": {
+     "class": "Branch",
+     "node": "unresolved",
+     "path": []
+    },
+    "class": "ScopedAssertion",
+    "cohort": {
+     "class": "Scope",
+     "kind": "all_participants",
+     "parts": [],
+     "ref": ""
+    },
+    "criterion_ref": "simulated:operator-choice-not-registry",
+    "id": "simulated-draft-age",
+    "modality": "required",
+    "resolution": "resolved",
+    "rule": {
+     "class": "Rule",
+     "id": "simulated-design-choice",
+     "version": "1",
+     "warrants": [
+      "simulated:operator-choice-not-human-confirmation"
+     ]
+    },
+    "span": [],
+    "status": "known"
+   }
+  ],
+  "explanations": {
+   "permissions": [],
+   "conditions": [],
+   "blockers": [],
+   "checks": {
+    "code": "complete",
+    "decisions": 0,
+    "intrinsic_queries": 1,
+    "planned": 0,
+    "limit": 8
+   }
+  }
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/decision",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "undecided_by_constraints",
+      "kind": "constraint"
+     }
+    ],
+    "disposition": "open"
+   }
+  ]
+ },
+ "result_digest": "198a04d00d044ffa1bef8eacb3a286cf453d3b826b62c8c91d1125d6e0cacbc7",
+ "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
+}

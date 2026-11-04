@@ -1,0 +1,1780 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "hfref-persona",
+    "revision": "v1",
+    "parent_digest": null,
+    "target": {
+      "kind": "new_trial",
+      "ref": "hfref-draft",
+      "scope": {
+        "study": "hfref-draft",
+        "population": "chronic HFrEF",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+      }
+    },
+    "sources": [],
+    "premises": [
+      {
+        "id": "age",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:draft-v1 (simulated exchange 1)",
+          "id": "age",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-choice",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "user:draft-v1 (simulated exchange 1)"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:draft-v1 (simulated exchange 1)",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "nyha",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "nyha_class",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "in",
+              "inclusivity": "unspecified",
+              "kind": "enum",
+              "members": [
+                "II",
+                "III"
+              ],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:draft-v1 (simulated exchange 1)",
+          "id": "nyha",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-choice",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "user:draft-v1 (simulated exchange 1)"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:draft-v1 (simulated exchange 1)",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "lvef",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "lvef",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 40.0,
+              "unit": "%",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:draft-v1 (simulated exchange 1)",
+          "id": "lvef",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-choice",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "user:draft-v1 (simulated exchange 1)"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:draft-v1 (simulated exchange 1)",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "ntprobnp_no_af",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "negative",
+            "predicate": {
+              "class": "Predicate",
+              "key": "atrial_fibrillation_or_flutter_on_screening_ecg",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "nt_probnp",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 600.0,
+              "unit": "pg/mL",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:draft-v1 (simulated exchange 1)",
+          "id": "ntprobnp_no_af",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-choice",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "user:draft-v1 (simulated exchange 1)"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:draft-v1 (simulated exchange 1)",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "ntprobnp_af",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "atrial_fibrillation_or_flutter_on_screening_ecg",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "nt_probnp",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 1200.0,
+              "unit": "pg/mL",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:draft-v1 (simulated exchange 1)",
+          "id": "ntprobnp_af",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-choice",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "user:draft-v1 (simulated exchange 1)"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:draft-v1 (simulated exchange 1)",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "egfr",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "egfr",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 20.0,
+              "unit": "mL/min/1.73 m2 (CKD-EPI)",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:draft-v1 (simulated exchange 1)",
+          "id": "egfr",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-choice",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "user:draft-v1 (simulated exchange 1)"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:draft-v1 (simulated exchange 1)",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "sglt2i_permitted",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "current_sglt2_inhibitor",
+              "kind": "medication_use"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:draft-v1 (simulated exchange 1)",
+          "id": "sglt2i_permitted",
+          "modality": "permitted",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-choice",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "user:draft-v1 (simulated exchange 1)"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:draft-v1 (simulated exchange 1)",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "nyha-iv-patient",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "nyha_class",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "enum",
+              "members": [
+                "IV"
+              ],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "uses": [
+          {
+            "premise": "age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "nyha",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "lvef",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_no_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "egfr",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "sglt2i_permitted",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "non-iv-required",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Not",
+            "part": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "nyha_class",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "enum",
+                "members": [
+                  "IV"
+                ],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          }
+        },
+        "uses": [
+          {
+            "premise": "age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "nyha",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "lvef",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_no_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "egfr",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "sglt2i_permitted",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "af-ntp900",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "atrial_fibrillation_or_flutter_on_screening_ecg",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "nt_probnp",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 900.0,
+                  "unit": "pg/mL",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        },
+        "uses": [
+          {
+            "premise": "age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "nyha",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "lvef",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_no_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "egfr",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "sglt2i_permitted",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "egfr-25",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "egfr",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 25.0,
+              "unit": "mL/min/1.73 m2 (CKD-EPI)",
+              "upper": null
+            }
+          }
+        },
+        "uses": [
+          {
+            "premise": "age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "nyha",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "lvef",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_no_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "egfr",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "sglt2i_permitted",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "ef38-no-hfh-ntp800",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "atrial_fibrillation_or_flutter_on_screening_ecg",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "lvef",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 38.0,
+                  "unit": "%",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "hf_hospitalization_past_12_months",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "nt_probnp",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 800.0,
+                  "unit": "pg/mL",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        },
+        "uses": [
+          {
+            "premise": "age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "nyha",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "lvef",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_no_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "egfr",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "sglt2i_permitted",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "ef38-no-hfh-ntp800-excluded",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Not",
+            "part": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "negative",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "atrial_fibrillation_or_flutter_on_screening_ecg",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "lvef",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 38.0,
+                    "unit": "%",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "negative",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "hf_hospitalization_past_12_months",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "nt_probnp",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 800.0,
+                    "unit": "pg/mL",
+                    "upper": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "uses": [
+          {
+            "premise": "age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "nyha",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "lvef",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_no_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "egfr",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "sglt2i_permitted",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "current-sglt2i",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "current_sglt2_inhibitor",
+              "kind": "medication_use"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "uses": [
+          {
+            "premise": "age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "nyha",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "lvef",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_no_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "ntprobnp_af",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "egfr",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "sglt2i_permitted",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "nyha-iv",
+        "question": "Should NYHA class IV patients be able to enrol?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "nyha-iv-patient",
+            "label": "NYHA IV can enrol",
+            "analysis": "nyha-iv-patient",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "nyha_class",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "enum",
+                "members": [
+                  "IV"
+                ],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "non-iv-required",
+            "label": "Everyone must be NYHA I-III",
+            "analysis": "non-iv-required",
+            "query": {
+              "class": "Not",
+              "part": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "nyha_class",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "enum",
+                  "members": [
+                    "IV"
+                  ],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "selected": null
+      },
+      {
+        "id": "ntprobnp-banding",
+        "question": "Should a patient without AF, EF 38%, no recent HF hospitalization and NT-proBNP 800 pg/mL be able to enrol (EMPEROR-Reduced would not have, under either reading)?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "hfref-draft",
+          "scope": {
+            "study": "hfref-draft",
+            "population": "chronic HFrEF",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "ef38-no-hfh-ntp800",
+            "label": "Admitted (flat 600 pg/mL threshold)",
+            "analysis": "ef38-no-hfh-ntp800",
+            "query": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "negative",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "atrial_fibrillation_or_flutter_on_screening_ecg",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "lvef",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 38.0,
+                    "unit": "%",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "negative",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "hf_hospitalization_past_12_months",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "nt_probnp",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 800.0,
+                    "unit": "pg/mL",
+                    "upper": null
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "ef38-no-hfh-ntp800-excluded",
+            "label": "Excluded (EF-banded thresholds)",
+            "analysis": "ef38-no-hfh-ntp800-excluded",
+            "query": {
+              "class": "Not",
+              "part": {
+                "class": "AllOf",
+                "parts": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "negative",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "atrial_fibrillation_or_flutter_on_screening_ecg",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "lvef",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 38.0,
+                      "unit": "%",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "negative",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "hf_hospitalization_past_12_months",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "nt_probnp",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 800.0,
+                      "unit": "pg/mL",
+                      "upper": null
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "selected": null
+      }
+    ],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    }
+  },
+  "previous": null
+}

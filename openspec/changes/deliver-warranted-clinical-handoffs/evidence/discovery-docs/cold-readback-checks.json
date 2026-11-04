@@ -1,0 +1,49 @@
+{
+  "artifacts/122869eba4bda2e192ea8fc23ff2eb42662c4f93b1aa93233a1d65b7d39e3afc.json": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "artifacts/40b8adf2b522dbe31c4d5bc7f814aff5e858c15c3e927e4df2a99c72fd2dbe6f.json": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "artifacts/52ad4d6cbbedebca128233f3bdf201a94cf5f5556e5c862da7fb28b6f23927db.json": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "artifacts/cf8a955f38a931186ecb24699caff6669b03345462f9cd34bebc6069647c013a.json": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "decision-list.md": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "design-review.xlsx": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "landscape.json": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "landscape.xlsx": {
+    "sha256_matches": true,
+    "bytes_match": true
+  },
+  "source_copies_equal": {
+    "landscape.json": true,
+    "landscape.xlsx": true
+  },
+  "sheets": [
+    "Read me",
+    "Decision list",
+    "Options",
+    "Findings",
+    "Changes",
+    "Sources and origins",
+    "Baseline values",
+    "Baseline tables"
+  ],
+  "formula_cells": []
+}

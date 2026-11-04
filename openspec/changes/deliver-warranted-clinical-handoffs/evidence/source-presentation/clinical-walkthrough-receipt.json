@@ -1,0 +1,130 @@
+{
+  "source_folder": "/Users/rohanvinaik/trialledger-runs/source-presentation-migraine-20261104",
+  "pool": {
+    "total": 131,
+    "pages": 2,
+    "complete": true,
+    "seed": 202611041431,
+    "selected": [
+      "NCT00781456",
+      "NCT02959177"
+    ]
+  },
+  "transport": "CLI landscape direct; CLI record; CLI and MCP reason",
+  "registry_report": {
+    "verify": "verified",
+    "requested_ids": 2,
+    "found_ids": 2
+  },
+  "baseline_view": {
+    "tables": 9,
+    "measurements": 88,
+    "every_measurement_equals_source_pointer": true,
+    "no_aggregation": true
+  },
+  "source_age": {
+    "trial": "NCT02959177",
+    "fixed_assertions": [
+      "registry-age-minimumAge",
+      "registry-age-maximumAge"
+    ],
+    "decision": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":60.0,\"unit\":\"Years\",\"upper\":null}}",
+      "status": null,
+      "proof": [
+        "registry-age-maximumAge",
+        "registry-age-minimumAge"
+      ],
+      "blockers": [
+        "undecided_by_constraints"
+      ]
+    },
+    "source_digest": "aab365df2a9b82ac2b4efc54ae8876cc8eb29f88888987bcaa4e94d00481fb06",
+    "unresolved_source_content_retained": true
+  },
+  "simulated_revision": {
+    "invented": "Both draft choices are simulated operator choices, not a human confirmation or registry evidence.",
+    "query": "age60 Years",
+    "initial_maximum": 50,
+    "initial_result": {
+      "result": "REFUTED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":60.0,\"unit\":\"Years\",\"upper\":null}}",
+      "status": "known",
+      "proof": [
+        "simulated-draft-age"
+      ],
+      "blockers": []
+    },
+    "revised_maximum": 65,
+    "revised_result": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":60.0,\"unit\":\"Years\",\"upper\":null}}",
+      "status": null,
+      "proof": [
+        "simulated-draft-age"
+      ],
+      "blockers": [
+        "undecided_by_constraints"
+      ]
+    },
+    "cli_mcp_identical": true
+  },
+  "limits": [
+    "Not a complete clinical protocol or clinical validation.",
+    "Two different migraine populations were kept as separate references; no shared standard/frequency claim.",
+    "No automatic semantic compilation of migraine text, endpoint definitions or time frames.",
+    "HIT-6 source reports an administration error; no imputed score.",
+    "No revision replay/export is claimed by this source-presentation lane receipt."
+  ],
+  "files": {
+    "candidate-query.json": {
+      "sha256": "84a0f192e73b87fa1d20510c762cd49de89f4a7947e06f80c98b0688b72109e5",
+      "bytes": 199
+    },
+    "candidate-pool.json": {
+      "sha256": "36bd8ab25baba1c854243defa7b7dbc85783d0d6deee512284276a43bd1f6b92",
+      "bytes": 3833022
+    },
+    "candidate-pool-page2.json": {
+      "sha256": "0c4b27c0977a6b215f7b9612613257ea17f41f2655dfdc372c57da560681ce5c",
+      "bytes": 1156310
+    },
+    "selection-pool-seed.json": {
+      "sha256": "7d62162f0d200f74e5847f47de1bc2460bbc2c0342a9fcbd21a3dcf8f8774522",
+      "bytes": 2592
+    },
+    "selected.json": {
+      "sha256": "2f7b28cd88b2ff79f4a8259970c164f76287ba73b87c25ff0d91b184f76ae590",
+      "bytes": 56
+    },
+    "request.json": {
+      "sha256": "f59ea42ef95d47d9a3103b7d8ce68251ed21d7e957bbd6d4d2876849703d5286",
+      "bytes": 66
+    },
+    "landscape-run/bodies/studies-001.json": {
+      "sha256": "21ca419c0aadabfa6131ab231705774cb6dfa0aff2189549481be1af8e4366c1",
+      "bytes": 264376
+    },
+    "landscape-run/landscape.json": {
+      "sha256": "2acac4d43a437585ea32b66c4864e9709177feb60fa5abc1e747df290ee176b9",
+      "bytes": 908348
+    },
+    "landscape-run/landscape.xlsx": {
+      "sha256": "00a509b9d5a849e4c0b49b6789043a5ebf8b270ec6bb1d6367caadced1b5a357",
+      "bytes": 194371
+    },
+    "age-source.request.json": {
+      "sha256": "676229fa09033dab31858d728f0b4f626ef871f368486b84cc74f3fa43e01f05",
+      "bytes": 457293
+    },
+    "age-source.result.json": {
+      "sha256": "e72d0fe14eacd49125840d607910f67bc6e15d1b58378cf0cbc841e673653099",
+      "bytes": 25736
+    },
+    "baseline-tables.json": {
+      "sha256": "98fc1beb45e104056d722e9126c7c7d2a2a5c9a6d379493d100fd18232ebb3b9",
+      "bytes": 175014
+    }
+  }
+}

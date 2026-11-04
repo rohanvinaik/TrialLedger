@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "source_freeze": "source-freeze.json",
+  "source_hashes": {
+    "TrialLedger/clinical_export.py": "24d55d12595285bf602d0d320e3f6835b817859a916370e6ec68602ca9355842",
+    "tests/test_clinical_export.py": "04cefd16f62ddb496c2a82a530d40c1c7cedf393bcbfc019a77f901e283bd655",
+    "TrialLedger/cells.py": "d386ea59cd71ff9102e689f5e97f6ebf33c9a1e2822b1d766702fcf253865f85",
+    "TrialLedger/baseline_view.py": "b83e640396f00aea1279b01a9a9de513685de7407093ce8317399cac83c70f6f",
+    "TrialLedger/layer2/clinical_answers.py": "7e6a4022f29ae5bc66f401444b08cda7a1d7a3312e24a691b799fedb50a32d67"
+  },
+  "authored_verification": {
+    "command": ".venv/bin/pytest tests/test_clinical_export.py",
+    "passed": 43,
+    "ruff": "clean",
+    "ty": "clean",
+    "scope": "frozen final owned files"
+  },
+  "proofs": {
+    "option_wording_code": {
+      "target": "TrialLedger/clinical_export.py::option_wording_code",
+      "certificate_file": "/tmp/trialledger-export-wording-current-two-sign-20261104/tests/detective/certificates.json",
+      "certificate_key": "TrialLedger/clinical_export.py::option_wording_code",
+      "certificate_entry": {
+        "cut_reasons": [],
+        "function_digest": "2ea505ab13f636b8",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "mode": "explicit --two-sign",
+      "policy": "9+neg.f5a15364c11d",
+      "standing": "complete",
+      "operator_universe": 36,
+      "killed": 36,
+      "value_pinned": 36,
+      "unproven_equivalence_candidates": 0,
+      "crash_only_value_gaps": 0,
+      "report": {
+        "path": "/tmp/trialledger-export-wording-current-two-sign-20261104/.detective/reports/converge_option_wording_code.txt",
+        "sha256": "ba9a727de090aea9118acd463a40494e1c8a7af515027aba368c61011dcb4b9c"
+      },
+      "command_log": {
+        "path": "openspec/changes/deliver-warranted-clinical-handoffs/evidence/clinical-export/option_wording_code-two-sign.txt",
+        "sha256": "139768161e697bde6d1d64519c426d8b9c0d95775a5993853653a2dcf87e5f4f"
+      },
+      "crosshair": {
+        "verdict": "Confirmed over all paths (four contracts)",
+        "log": "openspec/changes/deliver-warranted-clinical-handoffs/evidence/clinical-export/option_wording_code-crosshair.txt",
+        "sha256": "1f9be65686945ffc79f28631999a59641e28bb3956bc6f43c1c17fa6e8727cd7"
+      },
+      "generated_suite": null
+    },
+    "text_display_code": {
+      "target": "TrialLedger/clinical_export.py::text_display_code",
+      "certificate_file": "/tmp/trialledger-export-text-final-two-sign-20261104/tests/detective/certificates.json",
+      "certificate_key": "TrialLedger/clinical_export.py::text_display_code",
+      "certificate_entry": {
+        "cut_reasons": [],
+        "function_digest": "59f1c29bd3aada25",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "mode": "explicit --two-sign",
+      "policy": "9+neg.f5a15364c11d",
+      "standing": "complete",
+      "operator_universe": 47,
+      "killed": 47,
+      "value_pinned": 45,
+      "unproven_equivalence_candidates": 0,
+      "crash_only_value_gaps": 2,
+      "report": {
+        "path": "/tmp/trialledger-export-text-final-two-sign-20261104/.detective/reports/converge_text_display_code.txt",
+        "sha256": "56a159ea55cd52ee114119e51eec2ed8e236c2e0542835fe4467b98d30d0ee35"
+      },
+      "command_log": {
+        "path": "openspec/changes/deliver-warranted-clinical-handoffs/evidence/clinical-export/text_display_code-two-sign.txt",
+        "sha256": "949c41929018a18659addf929d92d719fec3bef8ed53db6682bc4e475471534b"
+      },
+      "crosshair": {
+        "verdict": "Not confirmed; no proof or pass claimed",
+        "log": "openspec/changes/deliver-warranted-clinical-handoffs/evidence/clinical-export/text_display_code-crosshair.txt",
+        "sha256": "a7d00a36f000895598429b2a471d40db4961a9bde0e4f93f439eb58e56f02bcf"
+      },
+      "generated_suite": {
+        "path": "/tmp/trialledger-export-text-final-two-sign-20261104/tests/detective/test_TrialLedger_clinical_export_text_display_code_365eb7095b_synth.py",
+        "sha256": "f5941d9cefb50ed0f92e2bbfa0a18ae9a46b8a0a7581fbbb27ac372e88fcc52e",
+        "cases": 2
+      },
+      "distinguishing_witness": {
+        "construction": "tuple containing x repeated 32767 times followed by one carriage return",
+        "utf16_units": 32768,
+        "utf8_sha256": "b50041f9b236bd6bf271e1a51e7d45b4b95b164da89bf7d5d04d7c364a8f3ea0",
+        "expected": "reference_required",
+        "killed_mutant": "VALUE_0d34a8ab",
+        "authored_must_not": "tests/test_clinical_export.py::test_validation_must_not_delete_a_carriage_return_to_make_an_overflow_fit"
+      }
+    }
+  },
+  "history_limits": [
+    "The first current text-display walk withheld its certificate after pytest verification timed out. Its prescribed rerun completed. A distinguishing CR boundary witness then removed the remaining equivalence candidate. Only the final COMPLETE certificate is eligible for adoption.",
+    "Earlier custom text-validator 51/51 results are obsolete and are not the proof for this implementation.",
+    "Proof copies contain the earlier 42-case authored suite plus their generated witnesses. The final main suite only adds the direct CR boundary MUST-NOT; the production file and referenced owners remain byte-identical."
+  ],
+  "clinical_verification": {
+    "hfref": {
+      "artifact": "c7242e9f2b61233a5cb715877cc642f0303c22332c1760d54dd4c29a2fa24615",
+      "workbook": "/Users/rohanvinaik/trialledger-runs/final-clinical-delivery-20261104/cell-verified-export/review/design-review.xlsx",
+      "decision_list": "/Users/rohanvinaik/trialledger-runs/final-clinical-delivery-20261104/cell-verified-export/review/decision-list.md",
+      "readback_receipt": "/Users/rohanvinaik/trialledger-runs/final-clinical-delivery-20261104/colleague-export-readback.json",
+      "readback_receipt_sha256": "9e52ea512587c141d535aa2ce6cdc6c2977a07246813c7e90c5e92d97fb6e647",
+      "source_unchanged": true,
+      "baseline_cells": 126,
+      "nyha_comparative_values": [
+        [
+          "1606",
+          "1597",
+          "3203"
+        ],
+        [
+          "747",
+          "751",
+          "1498"
+        ],
+        [
+          "20",
+          "23",
+          "43"
+        ]
+      ],
+      "included_analyses": 6,
+      "workbook_sha256": "c66be6209b8057b0dd1071c03f931898e0b1249f0781ee19ee107d412ea767df",
+      "decision_list_sha256": "b4529e12fdd02a4d89966ea370aa930f3c1d7b0e43fd8519782f75333534546e"
+    },
+    "phase1_malaria": {
+      "receipt": "/Users/rohanvinaik/trialledger-runs/docs-phase1-vaccine-20261104/handoff-receipt.json",
+      "sha256": "e864b367957946f2e20f30e58ca3d378a73fe30cfef025934bf684c20e074280",
+      "scope": "Separate docs-lane public CLI/MCP clinical walkthrough; receipt read, not independently re-executed by this export lane."
+    }
+  },
+  "previews": {
+    "Decision-list.png": {
+      "path": "/Users/rohanvinaik/trialledger-runs/clinical-export-hfref-20261104/Decision-list.png",
+      "sha256": "7cb7eb93e16d60398a931d1dcd6316ec97eeae8bb6c5a32a7ad419f39ff25be5"
+    },
+    "Baseline-tables.png": {
+      "path": "/Users/rohanvinaik/trialledger-runs/clinical-export-hfref-20261104/Baseline-tables.png",
+      "sha256": "4d997e74c522c0d9e08ee84ba73a57c31ae46348c91238aeb40846f2838d0cce"
+    }
+  },
+  "adoption": "Root may adopt only the two listed current certificate entries and the unmodified current text-display generated suite. This lane has not changed shared certificates or committed."
+}

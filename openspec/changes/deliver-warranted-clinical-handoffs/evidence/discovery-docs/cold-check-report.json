@@ -1,0 +1,83 @@
+{
+  "scope": "Read-only public CLI check using retained evidence; no fresh NIH acquisition, repository edits, changed clinical premises, or commits.",
+  "instrument": "Public TrialLedger CLI and public exported handoff; openpyxl used only to read exported worksheets.",
+  "specimen": "Retained Phase1 malaria packet; simulated revised draft age18–65 and proposed adult-safety reading.",
+  "confirmed_observations": [
+    {
+      "claim": "Mixed-study general age bounds leave age12 allowed but not required; this is not an adult-cohort entry check.",
+      "evidence": "NCT06413108-age12-compact.json",
+      "proof": [
+        "registry-age-maximumAge",
+        "registry-age-minimumAge"
+      ]
+    },
+    {
+      "claim": "CHMI general age minimum rules age12 out, standing known.",
+      "evidence": "NCT07730177-age12-compact.json",
+      "proof": [
+        "registry-age-minimumAge"
+      ]
+    },
+    {
+      "claim": "Adult-safety hypothesis is explicitly cohort_ref adult-safety, required age>=18 Years, status proposed, assistant origin, simulated and unconfirmed. Its age12 answer remains proposed/conditional despite REFUTED.",
+      "evidence": [
+        "adult-interpretation-input.json",
+        "adult-safety-reading-compact.json"
+      ]
+    },
+    {
+      "claim": "Registry eligibility full unit reports adult safety18–50, child safety10–15, efficacy10–50; structured range10–50 Years.",
+      "evidence": "source-eligibility.json"
+    },
+    {
+      "claim": "Current revised decision leaves age55 and not-age55 feasible under simulated draft18–65; selection null; origin explicitly says no real human confirmation.",
+      "evidence": [
+        "decision0.json",
+        "complete-handoff/review/decision-list.md"
+      ]
+    },
+    {
+      "claim": "Invalid artifact id refused with invalid_artifact_id and exit2.",
+      "evidence": [
+        "invalid-id.json",
+        "invalid-id-command.json"
+      ]
+    },
+    {
+      "claim": "Eight files match returned export hashes and lengths; source JSON/XLSX copies byte-identical; workbook has zero formula cells.",
+      "evidence": "readback-checks.json"
+    }
+  ],
+  "concrete_usability_gaps": [
+    {
+      "severity": "minor",
+      "observed": "Workbook Findings C2:C12 retains raw result codes; D2 displays literal null; G2 contains serialized typed query JSON. Decision-list.md and primary Decision list result do use plain explanatory wording.",
+      "path": "complete-handoff/review/design-review.xlsx",
+      "cells": [
+        "Findings!C2",
+        "Findings!D2",
+        "Findings!G2"
+      ],
+      "reproduction": "export-including-source-checks-command.json",
+      "evidence": "findings-sheet.json",
+      "limit": "No incorrect clinical result or promoted proposed standing observed."
+    },
+    {
+      "severity": "minor",
+      "observed": "reason-result max-bytes1500 returns max_bytes_out_of_range without a permitted range, while CLI help does not state the range. Retrying5000 succeeds.",
+      "reproduction": "adult-request-directory-command.json",
+      "evidence": [
+        "adult-request-directory.json",
+        "adult-request-directory-valid.json"
+      ],
+      "limit": "Recoverable operator error; named refusal is appropriate."
+    }
+  ],
+  "delivery": {
+    "folder": "/Users/rohanvinaik/trialledger-runs/cold-handoff-check-20261104/complete-handoff/review",
+    "response": "export-including-source-checks.json",
+    "readback": "readback-checks.json"
+  },
+  "trust_bounds": "Colleague can trace retained registry snapshots and conditional computations from the manifest/canonical artifacts. Simulated choices do not authenticate human confirmation. The adult-safety result remains a proposed reading; source association does not prove comparability; represented age checks do not certify complete eligibility or clinical suitability.",
+  "confidence": "High for these observed public responses and file checks; workbook not visually rendered and broader clinical interpretation not assessed."
+}

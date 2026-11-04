@@ -113,6 +113,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/baseline_view.py::group_code": {
+    "cut_reasons": [],
+    "function_digest": "45dc54aef3edfa1e",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/cells.py::book_size_state": {
     "cut_reasons": [],
     "function_digest": "1102a651e8cfe459",
@@ -389,6 +395,18 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/clinical_export.py::option_wording_code": {
+    "cut_reasons": [],
+    "function_digest": "2ea505ab13f636b8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/clinical_export.py::text_display_code": {
+    "cut_reasons": [],
+    "function_digest": "59f1c29bd3aada25",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/coherence.py::accepted_value": {
     "cut_reasons": [],
     "function_digest": "d79467e734d5bac3",
@@ -485,9 +503,15 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/eligibility.py::heading_kind": {
+    "cut_reasons": [],
+    "function_digest": "744111a5d86711ef",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/eligibility.py::split_eligibility": {
     "cut_reasons": [],
-    "function_digest": "4acac92198cf2482",
+    "function_digest": "0835abda93baa413",
     "refusal": "",
     "standing": "complete"
   },
@@ -759,7 +783,7 @@
   },
   "TrialLedger/landscape.py::literal_context_kind": {
     "cut_reasons": [],
-    "function_digest": "931ae24178be907f",
+    "function_digest": "b60b76cabdf9e2f3",
     "refusal": "",
     "standing": "complete"
   },
@@ -781,6 +805,12 @@
   "TrialLedger/landscape.py::study_extract": {
     "cut_reasons": [],
     "function_digest": "f06a47226e3cec6f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/landscape_warrants.py::retained_format": {
+    "cut_reasons": [],
+    "function_digest": "f9a2e76bc33afdd9",
     "refusal": "",
     "standing": "complete"
   },
@@ -850,6 +880,18 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/design_session.py::answer_change_code": {
+    "cut_reasons": [],
+    "function_digest": "b89141bb25b11cff",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/design_session.py::revision_input_code": {
+    "cut_reasons": [],
+    "function_digest": "000e845da450934b",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/design_session.py::session_work_code": {
     "cut_reasons": [],
     "function_digest": "4c902a0d77ef1c29",
@@ -865,6 +907,24 @@
   "TrialLedger/layer2/entail.py::rejected_outcome": {
     "cut_reasons": [],
     "function_digest": "220acaa1ca89139e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/entail_explanations.py::condition_code": {
+    "cut_reasons": [],
+    "function_digest": "b692c353207d9e54",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/entail_explanations.py::explanation_gate": {
+    "cut_reasons": [],
+    "function_digest": "8e6fcbad39283b6c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/entail_explanations.py::permission_code": {
+    "cut_reasons": [],
+    "function_digest": "611e7a31ef80a567",
     "refusal": "",
     "standing": "complete"
   },
@@ -1099,6 +1159,12 @@
   "TrialLedger/layer2/signals.py::support_state": {
     "cut_reasons": [],
     "function_digest": "b5e3cc8892bf9ea8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/solver_work.py::partition_product": {
+    "cut_reasons": [],
+    "function_digest": "94db767e4a3d7182",
     "refusal": "",
     "standing": "complete"
   },
@@ -1537,6 +1603,18 @@
   "TrialLedger/readout.py::stat_cell": {
     "cut_reasons": [],
     "function_digest": "2724ace3fd478d62",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/reasoning_artifacts.py::artifact_id_code": {
+    "cut_reasons": [],
+    "function_digest": "276de3776e381b7f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/reasoning_delivery.py::edit_path_code": {
+    "cut_reasons": [],
+    "function_digest": "49f39112cad09ecb",
     "refusal": "",
     "standing": "complete"
   },

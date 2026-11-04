@@ -1,4 +1,80 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "entailment",
+    "findings": 1,
+    "dispositions": {
+      "conditional": 1
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "entailment",
+    "findings": [
+      {
+        "path": "/result/decision",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "performance_status",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 1.0,
+              "unit": "WHO",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "invented-ECOG-criterion",
+            "invented-declared-equivalence"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "invented-ECOG-criterion",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          },
+          {
+            "premise": "invented-declared-equivalence",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/decision"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "entailment",
   "result": {
@@ -246,7 +322,19 @@
         "span": [],
         "status": "interpolated"
       }
-    ]
+    ],
+    "explanations": {
+      "permissions": [],
+      "conditions": [],
+      "blockers": [],
+      "checks": {
+        "code": "not_open",
+        "decisions": 0,
+        "intrinsic_queries": 0,
+        "planned": 0,
+        "limit": 8
+      }
+    }
   },
   "problems": [],
   "metadata": {
@@ -263,5 +351,7 @@
         "disposition": "conditional"
       }
     ]
-  }
+  },
+  "result_digest": "8d8e5c54144c190d8a6f56ea40a3bc874218bab444ce899acb1573131cb2af50",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

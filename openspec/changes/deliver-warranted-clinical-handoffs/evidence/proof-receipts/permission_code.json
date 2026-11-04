@@ -1,0 +1,85 @@
+{
+  "adopted_into_main": false,
+  "authored_intent_witness": "tests/test_entail_explanations.py::test_permission_codes_never_promote_a_mention",
+  "certificate": {
+    "cut_reasons": [],
+    "function_digest": "611e7a31ef80a567",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "counterexample_or_falsifier": "A changed target/function dependency, a distinguishing mutant witness, an unrouted negative test, or a main-suite failure invalidates the corresponding claim.",
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/permission_code",
+  "generated_suites": [],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "input": [
+        "('accepted', 'applicable', 'exact', 0)"
+      ],
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 48482,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/private/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-permission-two-sign-ydg1u7yg/.venv/bin/python",
+      "project_root": "/private/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-permission-two-sign-ydg1u7yg",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 0,
+    "outcome": [
+      [
+        "outcome",
+        "converge",
+        "settled"
+      ]
+    ],
+    "refusal": null,
+    "state": {
+      "equivalents": "",
+      "inputs": "sha256:ad51f325830140ce39408c57a6c489f2",
+      "suite": "sha256:c90e85dff0cc94d3c903ddade5bf5a82",
+      "target_src": "sha256:0b1ff48798c5499c9dd46a3de3a52024"
+    },
+    "target": "TrialLedger/layer2/entail_explanations.py::permission_code",
+    "ts": "2026-11-04T05:24:34Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-permission-two-sign-ydg1u7yg/.detective/ledger.jsonl",
+    "sha256": "a8d051ac5cb9bb9cfb993d48d67b844247a7061267de94651358d20f1040dabd"
+  },
+  "negative_test_scope": "Named authored witness was read in full; the complete report identifies function-routed authored test coverage. This is not a claim that a generated characterization establishes clinical intent.",
+  "policy": "9+neg.f5a15364c11d",
+  "proof_directory": "/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-permission-two-sign-ydg1u7yg",
+  "recorded_at": "2026-11-04T05:30:26.176493+00:00",
+  "report": {
+    "path": "/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-permission-two-sign-ydg1u7yg/.detective/reports/converge_permission_code.txt",
+    "read_complete": true,
+    "sha256": "fa70a76b8467398298e29f6966f02a40cbd2badd49160c72d5146587a759808e"
+  },
+  "reported": {
+    "completion": "COMPLETE",
+    "crash_only_value_gaps": 0,
+    "flagged_equivalent": 0,
+    "killed": 109,
+    "scored": 109,
+    "unproven_equivalent": 0
+  },
+  "schema_version": 1,
+  "scope": "This function and the reported operator universe; not a project-wide proof or a clinical-source-truth check.",
+  "source": {
+    "byte_equal_to_current": true,
+    "function_ast_sha256": "611e7a31ef80a5677415cdb438fab4b2f5bdb676e8710a709db236e065af7aa8",
+    "path": "TrialLedger/layer2/entail_explanations.py",
+    "sha256": "0b1ff48798c5499c9dd46a3de3a52024c9b1a89aa1a09eac1b6ec277b74818e5"
+  },
+  "target": "TrialLedger/layer2/entail_explanations.py::permission_code"
+}

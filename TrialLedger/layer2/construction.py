@@ -12,6 +12,15 @@ import json
 from typing import Any
 
 from TrialLedger.layer2.assertions import (
+    AllOf as AllOf,
+)
+from TrialLedger.layer2.assertions import (
+    Always as Always,
+)
+from TrialLedger.layer2.assertions import (
+    AnyOf as AnyOf,
+)
+from TrialLedger.layer2.assertions import (
     Branch,
     Condition,
     Evidence,
@@ -28,6 +37,9 @@ from TrialLedger.layer2.assertions import (
     Value,
     canonical,
     model_problem,
+)
+from TrialLedger.layer2.assertions import (
+    Not as Not,
 )
 
 UNRESOLVED_BRANCH = Branch("unresolved")

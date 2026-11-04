@@ -1,0 +1,28 @@
+{
+  "external_packet": "/Users/rohanvinaik/trialledger-runs/docs-phase1-vaccine-20261104",
+  "owned_files": {
+    "TrialLedger/reasoning_cards.py": "59d97b9afe5acce64ef206b84e1464dedbd9700240bbe6321544e48bed5ac007",
+    "TrialLedger/layer2/construction.py": "c1e4a2a0b8c1c43442b7355c103fad14a7e4b15982a8222febd6254d08e8f42f",
+    "tests/test_reasoning_cards.py": "10a00ba8fc61a8460ea8ed7f7ae3e8ea83f96a7d513d95619c5e8af5f4659c49",
+    "README.md": "88c3a31b8595440700d22ce02122efada9e26c917407e2606f429c5bd07cb559",
+    "AGENTS.md": "923ec523fcb84c01660b175b741f6b520a29f4091eeb676491c8f51a00cc2afd",
+    "SKILL.md": "10fde81859906703ae7d0e5afe9ce3956150f0010c83ab46e17b1fc793cf98d9",
+    "docs/CLINICAL_WORKFLOW.md": "da279a1a9e5074e75d234363978eecd6ceff17efa426cb3b14d49d02a932d19b",
+    "docs/OPERATOR_REFERENCE.md": "01f38e985c5db439e52ddae9a4b7b9d5c71e2becc28356dc0b2ebc54fd7b1046"
+  },
+  "source_files": {
+    "pool-1.json": "84602499798d83f743a2f58aed39d4b74add0562fe09d23a84cd49dbe8cd35f6",
+    "NCT06413108-raw-study.json": "a73e31c98c2008b8e37fcab27ce6e79565d8b34fb4a4557113142b6d7cad0eda",
+    "NCT07730177-raw-study.json": "8f1d74c198e2d25112f262f12eb06d050ffa44de5f826d3af7b4d9fb8ab3aa3e",
+    "mcp-exchanges.json": "8998aa38b123241a482f65a0dc200b81cef4b493d74f22b834c51809b8317d04",
+    "source-fingerprints.json": "e0f1df2073678933af67c76385da20364f33d11e93a4d497e2baa52f6e4e4cba"
+  },
+  "verification": {
+    "scoped_tests": 23,
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "ty": "passed",
+    "detective": "No new clinical decision rule; descriptive cards/structural reflection have authored integration tests, no mutation pin claimed."
+  },
+  "artifact_policy": "Full registry responses, full canonical revision and workbook stay in external run; committed subset keeps the brief, measured receipt and one complete small draft request/result pair."
+}

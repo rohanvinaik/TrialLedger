@@ -99,7 +99,7 @@ def example_cases():
     assert located == represented, "A discovery request slot has no invariant-inventory policy"
     cases.extend(("describe/full/" + label, request) for label, request in declared)
     for operation in OPERATIONS:
-        focus = run({"operation": "describe", "view": operation})["result"]
+        focus = run({"operation": "describe", "view": operation, "detail": "full"})["result"]
         requests = [("example", focus["example"])]
         requests += [
             (key, focus[key])

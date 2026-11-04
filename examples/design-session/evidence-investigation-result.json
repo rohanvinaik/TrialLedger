@@ -1,4 +1,583 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "design_session",
+    "findings": 6,
+    "dispositions": {
+      "descriptive": 2,
+      "not_computed": 1,
+      "open": 3
+    },
+    "problems": [],
+    "changes": null
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "design_session",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/result/family",
+        "kind": "candidate_family",
+        "outcome": "searched",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {
+          "study_ref": "invented:evidence-request-example",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          }
+        },
+        "values": {
+          "requests": [
+            {
+              "accommodates": [
+                "adult_scale_le_2"
+              ],
+              "cells": {
+                "marker": "does not hold"
+              },
+              "checks": [
+                {
+                  "candidate": "adult_scale_le_2",
+                  "decision": {
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ],
+                    "proof": [],
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "result": "UNDETERMINED",
+                    "status": null
+                  },
+                  "verdict": "not_ruled_out"
+                },
+                {
+                  "candidate": "adult_scale_le_2_marker",
+                  "decision": {
+                    "blockers": [],
+                    "proof": [
+                      "marker-m"
+                    ],
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "result": "REFUTED",
+                    "status": "known"
+                  },
+                  "verdict": "ruled_out"
+                }
+              ],
+              "conditional_status": "known",
+              "eliminates": [
+                "adult_scale_le_2_marker"
+              ],
+              "id": "request-1",
+              "kind": "hypothetical_evidence_request",
+              "observed": false,
+              "profile": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "negative",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "profile_size": 1,
+              "required_premises": [
+                "eligibility_attribution:accepted",
+                "accepted_resolved_bridge",
+                "count_above_exception_allowance"
+              ],
+              "scope": {
+                "bound": 32,
+                "context": {
+                  "arm": null,
+                  "cohort": null,
+                  "phase": null
+                },
+                "study_ref": "invented:evidence-request-example"
+              },
+              "seek": "Participation records bound to eligibility at entry, such as baseline characteristics or enrolled-participant listings for the same measurement and time, with an eligibility bridge.",
+              "separates": [
+                [
+                  "adult_scale_le_2",
+                  "adult_scale_le_2_marker"
+                ]
+              ],
+              "sign": "accepted",
+              "specified": [
+                "marker"
+              ],
+              "undecided": []
+            },
+            {
+              "accommodates": [
+                "adult_scale_le_2_marker"
+              ],
+              "cells": {
+                "age": "= 18 years",
+                "scale": "= 0 example_scale"
+              },
+              "checks": [
+                {
+                  "candidate": "adult_scale_le_2",
+                  "decision": {
+                    "blockers": [],
+                    "proof": [
+                      "adult",
+                      "scale"
+                    ],
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"years\",\"upper\":null}}]}",
+                    "result": "REFUTED",
+                    "status": "known"
+                  },
+                  "verdict": "ruled_out"
+                },
+                {
+                  "candidate": "adult_scale_le_2_marker",
+                  "decision": {
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ],
+                    "proof": [
+                      "adult-m",
+                      "marker-m",
+                      "scale-m"
+                    ],
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"years\",\"upper\":null}}]}",
+                    "result": "UNDETERMINED",
+                    "status": null
+                  },
+                  "verdict": "not_ruled_out"
+                }
+              ],
+              "conditional_status": "known",
+              "eliminates": [
+                "adult_scale_le_2"
+              ],
+              "id": "request-2",
+              "kind": "hypothetical_evidence_request",
+              "observed": false,
+              "profile": {
+                "class": "AllOf",
+                "parts": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_scale",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 0.0,
+                      "unit": "example_scale",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "years",
+                      "upper": null
+                    }
+                  }
+                ]
+              },
+              "profile_size": 2,
+              "required_premises": [
+                "eligibility_attribution:rejected",
+                "accepted_resolved_bridge",
+                "count_above_exception_allowance",
+                "complete_candidate_eligibility:adult_scale_le_2"
+              ],
+              "scope": {
+                "bound": 32,
+                "context": {
+                  "arm": null,
+                  "cohort": null,
+                  "phase": null
+                },
+                "study_ref": "invented:evidence-request-example"
+              },
+              "seek": "Eligibility-attributed screening or adjudication records, such as screening logs or screen-failure reasons for this profile. Registry participant-flow categories rarely identify the profile or the failed criterion, and corpus silence is never a rejected witness.",
+              "separates": [
+                [
+                  "adult_scale_le_2",
+                  "adult_scale_le_2_marker"
+                ]
+              ],
+              "sign": "rejected",
+              "specified": [
+                "scale",
+                "age"
+              ],
+              "undecided": []
+            }
+          ]
+        },
+        "support": {
+          "basis": "Hypothetical witnesses checked by the existing participant-witness engine; conditional on declared survivors, variables and the premises each request names."
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/result/family"
+      },
+      {
+        "path": "/result/analyses/0/result/result/search",
+        "kind": "evidence_search",
+        "outcome": "incomplete",
+        "standing": "known",
+        "completion": "limited",
+        "disposition": "not_computed",
+        "scope": {
+          "study_ref": "invented:evidence-request-example",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          }
+        },
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "resource_bound:decisions"
+        ],
+        "canonical_ref": "/result/analyses/0/result/result/search"
+      },
+      {
+        "path": "/result/analyses/0/result/result/output",
+        "kind": "evidence_output",
+        "outcome": "complete",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {
+          "study_ref": "invented:evidence-request-example",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          }
+        },
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/result/output"
+      },
+      {
+        "path": "/result/analyses/0/result/result/pairs/0",
+        "kind": "evidence_pair",
+        "outcome": "separated",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:evidence-request-example",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          }
+        },
+        "values": {
+          "requests": [
+            "request-1",
+            "request-2"
+          ]
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/result/pairs/0"
+      },
+      {
+        "path": "/result/analyses/0/result/result/requests/0",
+        "kind": "hypothetical_evidence_request",
+        "outcome": "hypothetical_evidence_request",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "scope": {
+            "bound": 32,
+            "context": {
+              "arm": null,
+              "cohort": null,
+              "phase": null
+            },
+            "study_ref": "invented:evidence-request-example"
+          },
+          "study_ref": "invented:evidence-request-example",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          }
+        },
+        "values": {
+          "id": "request-1",
+          "sign": "accepted",
+          "profile": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "negative",
+            "predicate": {
+              "class": "Predicate",
+              "key": "example_marker",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "required_premises": [
+            "eligibility_attribution:accepted",
+            "accepted_resolved_bridge",
+            "count_above_exception_allowance"
+          ]
+        },
+        "support": {
+          "declared_support": [
+            "eligibility_attribution:accepted",
+            "accepted_resolved_bridge",
+            "count_above_exception_allowance"
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/result/requests/0"
+      },
+      {
+        "path": "/result/analyses/0/result/result/requests/1",
+        "kind": "hypothetical_evidence_request",
+        "outcome": "hypothetical_evidence_request",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "scope": {
+            "bound": 32,
+            "context": {
+              "arm": null,
+              "cohort": null,
+              "phase": null
+            },
+            "study_ref": "invented:evidence-request-example"
+          },
+          "study_ref": "invented:evidence-request-example",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          }
+        },
+        "values": {
+          "id": "request-2",
+          "sign": "rejected",
+          "profile": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_scale",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "example_scale",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "years",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "required_premises": [
+            "eligibility_attribution:rejected",
+            "accepted_resolved_bridge",
+            "count_above_exception_allowance",
+            "complete_candidate_eligibility:adult_scale_le_2"
+          ]
+        },
+        "support": {
+          "declared_support": [
+            "eligibility_attribution:rejected",
+            "accepted_resolved_bridge",
+            "count_above_exception_allowance",
+            "complete_candidate_eligibility:adult_scale_le_2"
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/result/requests/1"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "design_session",
   "result": {
@@ -1142,6 +1721,506 @@
           ]
         },
         "result": {
+          "clinical": {
+            "findings": [
+              {
+                "blockers": [],
+                "canonical_ref": "/result/family",
+                "completion": "complete",
+                "conditions": [],
+                "disposition": "descriptive",
+                "kind": "candidate_family",
+                "origins": [],
+                "outcome": "searched",
+                "path": "/result/family",
+                "scope": {
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "standing": "known",
+                "support": {
+                  "basis": "Hypothetical witnesses checked by the existing participant-witness engine; conditional on declared survivors, variables and the premises each request names."
+                },
+                "values": {
+                  "requests": [
+                    {
+                      "accommodates": [
+                        "adult_scale_le_2"
+                      ],
+                      "cells": {
+                        "marker": "does not hold"
+                      },
+                      "checks": [
+                        {
+                          "candidate": "adult_scale_le_2",
+                          "decision": {
+                            "blockers": [
+                              "no_constraint_mentions_query"
+                            ],
+                            "proof": [],
+                            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                            "result": "UNDETERMINED",
+                            "status": null
+                          },
+                          "verdict": "not_ruled_out"
+                        },
+                        {
+                          "candidate": "adult_scale_le_2_marker",
+                          "decision": {
+                            "blockers": [],
+                            "proof": [
+                              "marker-m"
+                            ],
+                            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                            "result": "REFUTED",
+                            "status": "known"
+                          },
+                          "verdict": "ruled_out"
+                        }
+                      ],
+                      "conditional_status": "known",
+                      "eliminates": [
+                        "adult_scale_le_2_marker"
+                      ],
+                      "id": "request-1",
+                      "kind": "hypothetical_evidence_request",
+                      "observed": false,
+                      "profile": {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "negative",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_marker",
+                          "kind": "demographic"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "boolean",
+                          "members": [],
+                          "number": null,
+                          "unit": "",
+                          "upper": null
+                        }
+                      },
+                      "profile_size": 1,
+                      "required_premises": [
+                        "eligibility_attribution:accepted",
+                        "accepted_resolved_bridge",
+                        "count_above_exception_allowance"
+                      ],
+                      "scope": {
+                        "bound": 32,
+                        "context": {
+                          "arm": null,
+                          "cohort": null,
+                          "phase": null
+                        },
+                        "study_ref": "invented:evidence-request-example"
+                      },
+                      "seek": "Participation records bound to eligibility at entry, such as baseline characteristics or enrolled-participant listings for the same measurement and time, with an eligibility bridge.",
+                      "separates": [
+                        [
+                          "adult_scale_le_2",
+                          "adult_scale_le_2_marker"
+                        ]
+                      ],
+                      "sign": "accepted",
+                      "specified": [
+                        "marker"
+                      ],
+                      "undecided": []
+                    },
+                    {
+                      "accommodates": [
+                        "adult_scale_le_2_marker"
+                      ],
+                      "cells": {
+                        "age": "= 18 years",
+                        "scale": "= 0 example_scale"
+                      },
+                      "checks": [
+                        {
+                          "candidate": "adult_scale_le_2",
+                          "decision": {
+                            "blockers": [],
+                            "proof": [
+                              "adult",
+                              "scale"
+                            ],
+                            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"years\",\"upper\":null}}]}",
+                            "result": "REFUTED",
+                            "status": "known"
+                          },
+                          "verdict": "ruled_out"
+                        },
+                        {
+                          "candidate": "adult_scale_le_2_marker",
+                          "decision": {
+                            "blockers": [
+                              "undecided_by_constraints"
+                            ],
+                            "proof": [
+                              "adult-m",
+                              "marker-m",
+                              "scale-m"
+                            ],
+                            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"years\",\"upper\":null}}]}",
+                            "result": "UNDETERMINED",
+                            "status": null
+                          },
+                          "verdict": "not_ruled_out"
+                        }
+                      ],
+                      "conditional_status": "known",
+                      "eliminates": [
+                        "adult_scale_le_2"
+                      ],
+                      "id": "request-2",
+                      "kind": "hypothetical_evidence_request",
+                      "observed": false,
+                      "profile": {
+                        "class": "AllOf",
+                        "parts": [
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "example_scale",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "participant",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 0.0,
+                              "unit": "example_scale",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "example_age",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "participant",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 18.0,
+                              "unit": "years",
+                              "upper": null
+                            }
+                          }
+                        ]
+                      },
+                      "profile_size": 2,
+                      "required_premises": [
+                        "eligibility_attribution:rejected",
+                        "accepted_resolved_bridge",
+                        "count_above_exception_allowance",
+                        "complete_candidate_eligibility:adult_scale_le_2"
+                      ],
+                      "scope": {
+                        "bound": 32,
+                        "context": {
+                          "arm": null,
+                          "cohort": null,
+                          "phase": null
+                        },
+                        "study_ref": "invented:evidence-request-example"
+                      },
+                      "seek": "Eligibility-attributed screening or adjudication records, such as screening logs or screen-failure reasons for this profile. Registry participant-flow categories rarely identify the profile or the failed criterion, and corpus silence is never a rejected witness.",
+                      "separates": [
+                        [
+                          "adult_scale_le_2",
+                          "adult_scale_le_2_marker"
+                        ]
+                      ],
+                      "sign": "rejected",
+                      "specified": [
+                        "scale",
+                        "age"
+                      ],
+                      "undecided": []
+                    }
+                  ]
+                }
+              },
+              {
+                "blockers": [
+                  "resource_bound:decisions"
+                ],
+                "canonical_ref": "/result/search",
+                "completion": "limited",
+                "conditions": [],
+                "disposition": "not_computed",
+                "kind": "evidence_search",
+                "origins": [],
+                "outcome": "incomplete",
+                "path": "/result/search",
+                "scope": {
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "standing": "known",
+                "support": {},
+                "values": {}
+              },
+              {
+                "blockers": [],
+                "canonical_ref": "/result/output",
+                "completion": "complete",
+                "conditions": [],
+                "disposition": "descriptive",
+                "kind": "evidence_output",
+                "origins": [],
+                "outcome": "complete",
+                "path": "/result/output",
+                "scope": {
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "standing": "known",
+                "support": {},
+                "values": {}
+              },
+              {
+                "blockers": [],
+                "canonical_ref": "/result/pairs/0",
+                "completion": "complete",
+                "conditions": [],
+                "disposition": "open",
+                "kind": "evidence_pair",
+                "origins": [],
+                "outcome": "separated",
+                "path": "/result/pairs/0",
+                "scope": {
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "standing": null,
+                "support": {},
+                "values": {
+                  "requests": [
+                    "request-1",
+                    "request-2"
+                  ]
+                }
+              },
+              {
+                "blockers": [],
+                "canonical_ref": "/result/requests/0",
+                "completion": "complete",
+                "conditions": [],
+                "disposition": "open",
+                "kind": "hypothetical_evidence_request",
+                "origins": [],
+                "outcome": "hypothetical_evidence_request",
+                "path": "/result/requests/0",
+                "scope": {
+                  "scope": {
+                    "bound": 32,
+                    "context": {
+                      "arm": null,
+                      "cohort": null,
+                      "phase": null
+                    },
+                    "study_ref": "invented:evidence-request-example"
+                  },
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "standing": "known",
+                "support": {
+                  "declared_support": [
+                    "eligibility_attribution:accepted",
+                    "accepted_resolved_bridge",
+                    "count_above_exception_allowance"
+                  ]
+                },
+                "values": {
+                  "id": "request-1",
+                  "profile": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "negative",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_marker",
+                      "kind": "demographic"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "required_premises": [
+                    "eligibility_attribution:accepted",
+                    "accepted_resolved_bridge",
+                    "count_above_exception_allowance"
+                  ],
+                  "sign": "accepted"
+                }
+              },
+              {
+                "blockers": [],
+                "canonical_ref": "/result/requests/1",
+                "completion": "complete",
+                "conditions": [],
+                "disposition": "open",
+                "kind": "hypothetical_evidence_request",
+                "origins": [],
+                "outcome": "hypothetical_evidence_request",
+                "path": "/result/requests/1",
+                "scope": {
+                  "scope": {
+                    "bound": 32,
+                    "context": {
+                      "arm": null,
+                      "cohort": null,
+                      "phase": null
+                    },
+                    "study_ref": "invented:evidence-request-example"
+                  },
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "standing": "known",
+                "support": {
+                  "declared_support": [
+                    "eligibility_attribution:rejected",
+                    "accepted_resolved_bridge",
+                    "count_above_exception_allowance",
+                    "complete_candidate_eligibility:adult_scale_le_2"
+                  ]
+                },
+                "values": {
+                  "id": "request-2",
+                  "profile": {
+                    "class": "AllOf",
+                    "parts": [
+                      {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_scale",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 0.0,
+                          "unit": "example_scale",
+                          "upper": null
+                        }
+                      },
+                      {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_age",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 18.0,
+                          "unit": "years",
+                          "upper": null
+                        }
+                      }
+                    ]
+                  },
+                  "required_premises": [
+                    "eligibility_attribution:rejected",
+                    "accepted_resolved_bridge",
+                    "count_above_exception_allowance",
+                    "complete_candidate_eligibility:adult_scale_le_2"
+                  ],
+                  "sign": "rejected"
+                }
+              }
+            ],
+            "operation": "evidence_requests",
+            "version": 1
+          },
           "code": "complete",
           "metadata": {
             "findings": [
@@ -1947,10 +3026,24 @@
               "adult_scale_le_2",
               "adult_scale_le_2_marker"
             ]
+          },
+          "result_digest": "db04f7e30e770bdcacdc5eb27cf5f92c977a7312cbac4934c9e2f0212677598d",
+          "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+          "summary": {
+            "code": "complete",
+            "dispositions": {
+              "descriptive": 2,
+              "not_computed": 1,
+              "open": 3
+            },
+            "findings": 6,
+            "kind": "reasoning",
+            "operation": "evidence_requests",
+            "problems": []
           }
         },
         "request_digest": "5a1d0aedd9e8898bad40b4491bfb89a9c8bc1e43ca088d279500b9cfdb7fc46f",
-        "result_digest": "db7a047079cd11f16889e67c4b69b664ebf751abe9e931bdc0ffbece3468e4c0",
+        "result_digest": "0004dd623bbe32479d107fb25478409cebaa17a8d68034f8fd99592e06d0c9d9",
         "dependencies": [
           "premise:adult_scale_le_2",
           "premise:adult_scale_le_2_marker"
@@ -2306,6 +3399,11 @@
       "max_solver_work": 10000000,
       "max_output_bytes": 16000000
     },
+    "limit_semantics": {
+      "max_expanded_items": "legacy_nonoperative; expanded_items is diagnostic only",
+      "max_solver_work": "aggregate reservation across fresh previous and current analyses",
+      "max_output_bytes": "complete serialized output; no truncation"
+    },
     "limits_of_claim": [
       "Caller labels do not independently verify source truth or confirmation.",
       "Exact representation comparison is not clinical semantic equivalence.",
@@ -2313,8 +3411,10 @@
       "All analysis inputs are replay dependencies; only claimed support or actual deciding warrants weaken a finding."
     ]
   },
+  "result_digest": "c09c9b990e1b8cc8a3641b982679f5169ed9d6650979db8efe30348b98d5f5c7",
   "previous_fresh": null,
   "diff": null,
+  "answer_diff": null,
   "work": {
     "analyses": 1,
     "expanded_items": 320,
@@ -2399,5 +3499,6 @@
         "support_path": "/result/analyses/0/result/result/requests/1/required_premises"
       }
     ]
-  }
+  },
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

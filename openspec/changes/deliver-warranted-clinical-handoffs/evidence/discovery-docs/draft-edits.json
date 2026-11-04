@@ -1,0 +1,13 @@
+[
+  {
+    "op": "replace",
+    "path": "/premises/0/payload/body/parts/1/value/number",
+    "value": 65,
+    "origin": {
+      "kind": "user_choice",
+      "ref": "simulated:adult-malaria-draft-revision-cap65; no real human confirmation",
+      "source": null,
+      "analysis": null
+    }
+  }
+]

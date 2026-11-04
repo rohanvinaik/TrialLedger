@@ -1,4 +1,70 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "entailment",
+    "findings": 1,
+    "dispositions": {
+      "open": 1
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "entailment",
+    "findings": [
+      {
+        "path": "/result/decision",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "performance_status",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 1.0,
+              "unit": "WHO",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ],
+        "canonical_ref": "/result/decision"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "entailment",
   "result": {
@@ -76,6 +142,18 @@
         "status": "known"
       }
     ],
+    "explanations": {
+      "permissions": [],
+      "conditions": [],
+      "blockers": [],
+      "checks": {
+        "code": "complete",
+        "decisions": 0,
+        "intrinsic_queries": 1,
+        "planned": 0,
+        "limit": 8
+      }
+    },
     "translation_diagnostics": [
       {
         "code": "candidate_translation_mismatch",
@@ -221,5 +299,7 @@
         "disposition": "open"
       }
     ]
-  }
+  },
+  "result_digest": "77dee7f388e156eb2728afda305c943f31dbe3f72b8c25196edaf1fc3b057fbe",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

@@ -1,0 +1,78 @@
+{
+  "scope": "Actual emitted public schemas validated by Draft202012 and their examples run through executable CLI; structural acceptance does not establish clinical admission or source truth.",
+  "validator": "jsonschema",
+  "cases": [
+    {
+      "operation": "entailment",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "7bac2d520340f52237b4ccb7b41349f90b1f699135521c49d52677b5088852fd",
+      "response_sha256": "1ca69107b52423cef3e675a3dca2f0d62906db1f1751c355355c174807372a4e"
+    },
+    {
+      "operation": "coordinates",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "95aff8caed3bd1028b91b32f5d19d0a465a1cae3310a0a0efeee14a046e5f81b",
+      "response_sha256": "b43495a7ce2c9b78a9d5e58f6edfda59920c178fe060dbb21ca2764746e8f98a"
+    },
+    {
+      "operation": "corpus",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "37e46ab12ffa81753b5b4a9a26eb4a403fb6208648f43df5fdeb64f53ba99127",
+      "response_sha256": "2984eb23036762e382c7daf2f24d6279dd88d1b38b10c09e62f04cfbe4026ef6"
+    },
+    {
+      "operation": "design_bounds",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "6e3ff7989d22861966e04033f719b2a6fa3fc79879b432c09d919e2257ea69ad",
+      "response_sha256": "7d8285aa34ea4a40199d26b80c0edcc3c41c4f3870ded72fa44b202d832d1beb"
+    },
+    {
+      "operation": "signals",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "c18fb8bd4bc34299a4d8fe69391f9cd2f9ee11e1af245b689fded9509ca03b38",
+      "response_sha256": "8791f4705abe47dfbd5c54774340c87f964d95550ca073857f4f76eda91902d6"
+    },
+    {
+      "operation": "interpretations",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "2667d151ecf5b88472bb2d8f0ce02a7ce43269e34311b8a92881ca222304f12b",
+      "response_sha256": "77d223bba4c94bbb9f6321022bf3950ef87c15acdce3e109541ff76f8665fca3"
+    },
+    {
+      "operation": "source_assertions",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "c7057aee965fc1d01cc751297a2315be8f2e82c26bcd05dce832ef75fa1db489",
+      "response_sha256": "09224cad335d12cfe33830a452bb8d8018fb44bfba8339577aab288b4a087e89"
+    },
+    {
+      "operation": "evidence_requests",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "1ba263cb079d55fc9a23ea609e2ff59895af73be9cd4042c6acf4115fe35d2da",
+      "response_sha256": "5fb58947a58859ac9ce6dd92f5a2325ea9d9a7105d391c5058e5909d2fd84d12"
+    },
+    {
+      "operation": "design_session",
+      "structural_schema_valid": true,
+      "example_validates": true,
+      "actual_cli_code": "complete",
+      "schema_sha256": "0781549989070fd3db896dcc6175155569358aef183994f756ccd80bf7215f71",
+      "response_sha256": "784aa6f3410184e67e7dedbc78bfb9a0632db3dbfcd7a959d509d5563198ad9f"
+    }
+  ]
+}

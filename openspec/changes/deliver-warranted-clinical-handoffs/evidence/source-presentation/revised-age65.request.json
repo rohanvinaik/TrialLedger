@@ -1,0 +1,93 @@
+{
+  "operation": "entailment",
+  "assertions": [
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "kind": "interval",
+          "comparison": "in",
+          "number": 18,
+          "upper": 65,
+          "unit": "Years",
+          "inclusivity": "inclusive"
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "simulated:operator-choice-not-registry",
+      "id": "simulated-draft-age",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "class": "Rule",
+        "id": "simulated-design-choice",
+        "version": "1",
+        "warrants": [
+          "simulated:operator-choice-not-human-confirmation"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    }
+  ],
+  "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+      "class": "Predicate",
+      "key": "age",
+      "kind": "measurement"
+    },
+    "qualifiers": {
+      "class": "Always"
+    },
+    "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+    },
+    "time": null,
+    "value": {
+      "class": "Value",
+      "comparison": "eq",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 60,
+      "unit": "Years",
+      "upper": null
+    }
+  }
+}

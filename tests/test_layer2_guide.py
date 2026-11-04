@@ -131,7 +131,7 @@ def test_the_decision_list_routes_every_category_and_reaches_every_operation_vie
     assert set(full["entry"]) == {"decision", "evidence", "consequence", "status"}
     assert "finds them" in full["purpose"]
     for view in ("overview", "entailment", "coordinates", "corpus"):
-        result = run({"operation": "describe", "view": view})["result"]
+        result = run({"operation": "describe", "view": view, "detail": "full"})["result"]
         found = result.get("decision_list") or result["answer_guide"]["decision_list"]
         assert found == full, view
 
@@ -141,5 +141,5 @@ def test_resource_limits_are_operational_tasks_not_evidence_gaps():
     assert full["entailment"]["blockers"]["resource_bound"][0] == "computation"
     assert "computation limit" not in full["categories"]["not_knowable_here"]
     assert "independently settled" in full["computation"]
-    focused = run({"operation": "describe", "view": "entailment"})["result"]
+    focused = run({"operation": "describe", "view": "entailment", "detail": "full"})["result"]
     assert focused["answer_guide"]["computation"] == full["computation"]

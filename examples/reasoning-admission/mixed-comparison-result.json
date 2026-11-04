@@ -1,4 +1,371 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "corpus",
+    "findings": 13,
+    "dispositions": {
+      "descriptive": 5,
+      "open": 8
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "corpus",
+    "findings": [
+      {
+        "path": "/result/frequency/0",
+        "kind": "corpus_statistic",
+        "outcome": "computed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {
+          "lower": 1.0,
+          "upper": 1.0,
+          "stating": 2,
+          "trials": 2,
+          "unresolved": 0,
+          "tier": "met",
+          "description": {
+            "scope": "declared_comparison_set",
+            "stating": 2,
+            "trials": 2,
+            "threshold": 0.9,
+            "meaning": "descriptive frequency threshold; no clinical standard or recommendation"
+          },
+          "sponsors": 2
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/frequency/0"
+      },
+      {
+        "path": "/result/frequency/0/tier",
+        "kind": "corpus_eligibility_interval",
+        "outcome": "met",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {
+          "lower": 1.0,
+          "upper": 1.0,
+          "stating": 2,
+          "trials": 2,
+          "unresolved": 0,
+          "tier": "met",
+          "description": {
+            "scope": "declared_comparison_set",
+            "stating": 2,
+            "trials": 2,
+            "threshold": 0.9,
+            "meaning": "descriptive frequency threshold; no clinical standard or recommendation"
+          },
+          "sponsors": 2
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/frequency/0/tier"
+      },
+      {
+        "path": "/result/frequency/1",
+        "kind": "corpus_statistic",
+        "outcome": "computed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {
+          "lower": 0.5,
+          "upper": 1.0,
+          "stating": 1,
+          "trials": 2,
+          "unresolved": 1,
+          "tier": "unresolved",
+          "description": {
+            "scope": "declared_comparison_set",
+            "stating": 1,
+            "trials": 2,
+            "threshold": 0.9,
+            "meaning": "descriptive frequency threshold; no clinical standard or recommendation"
+          },
+          "sponsors": 1
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/frequency/1"
+      },
+      {
+        "path": "/result/frequency/1/tier",
+        "kind": "corpus_eligibility_interval",
+        "outcome": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "lower": 0.5,
+          "upper": 1.0,
+          "stating": 1,
+          "trials": 2,
+          "unresolved": 1,
+          "tier": "unresolved",
+          "description": {
+            "scope": "declared_comparison_set",
+            "stating": 1,
+            "trials": 2,
+            "threshold": 0.9,
+            "meaning": "descriptive frequency threshold; no clinical standard or recommendation"
+          },
+          "sponsors": 1
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "eligibility_frequency_unresolved"
+        ],
+        "canonical_ref": "/result/frequency/1/tier"
+      },
+      {
+        "path": "/result/occupancy/0",
+        "kind": "corpus_statistic",
+        "outcome": "occupied",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/occupancy/0"
+      },
+      {
+        "path": "/result/occupancy/1",
+        "kind": "corpus_statistic",
+        "outcome": "empty",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/occupancy/1"
+      },
+      {
+        "path": "/result/association_abstentions/0",
+        "kind": "admission",
+        "outcome": "unresolved",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "trials": [
+            "invented-B"
+          ]
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "pending_support"
+        ],
+        "canonical_ref": "/result/association_abstentions/0"
+      },
+      {
+        "path": "/result/near_miss_abstentions/0",
+        "kind": "admission",
+        "outcome": "unresolved",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "pending_support"
+        ],
+        "canonical_ref": "/result/near_miss_abstentions/0"
+      },
+      {
+        "path": "/result/pending/0",
+        "kind": "admission",
+        "outcome": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "value": "exclusion:brain_metastases=present"
+        },
+        "support": {
+          "basis": [
+            "invented:teaching-only"
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "proposed_refused"
+        ],
+        "canonical_ref": "/result/pending/0"
+      },
+      {
+        "path": "/result/pending/1",
+        "kind": "admission",
+        "outcome": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "value": "0-2"
+        },
+        "support": {
+          "basis": [
+            "invented:teaching-only"
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "proposed_refused"
+        ],
+        "canonical_ref": "/result/pending/1"
+      },
+      {
+        "path": "/result/pending/2",
+        "kind": "admission",
+        "outcome": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "value": [
+            "invented-setting-X"
+          ]
+        },
+        "support": {
+          "basis": [
+            "invented:teaching-only"
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "proposed_refused"
+        ],
+        "canonical_ref": "/result/pending/2"
+      },
+      {
+        "path": "/result/expectations/0",
+        "kind": "corpus_statistic",
+        "outcome": "abstain",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "id": "invented-expectation",
+          "rarity": [
+            "abstain",
+            null,
+            1,
+            null,
+            null
+          ]
+        },
+        "support": {
+          "basis": [
+            "invented:teaching-only"
+          ],
+          "admission": [
+            {
+              "index": 0,
+              "observation": [
+                "invented-cell",
+                "present"
+              ],
+              "standing": {
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:accepted-teaching-premise"
+                ]
+              },
+              "code": "accepted",
+              "basis": [
+                "invented:teaching-only"
+              ]
+            },
+            {
+              "index": 1,
+              "observation": [
+                "invented-cell",
+                "explicitly_negated"
+              ],
+              "standing": {
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:accepted-teaching-premise"
+                ]
+              },
+              "code": "proposed_refused",
+              "basis": [
+                "invented:teaching-only"
+              ]
+            }
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "rarity_abstained"
+        ],
+        "canonical_ref": "/result/expectations/0"
+      },
+      {
+        "path": "/result/expectations/0/pending/0",
+        "kind": "admission",
+        "outcome": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {
+          "basis": [
+            "invented:teaching-only"
+          ]
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "proposed_refused"
+        ],
+        "canonical_ref": "/result/expectations/0/pending/0"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "corpus",
   "result": {
@@ -923,5 +1290,7 @@
         "disposition": "open"
       }
     ]
-  }
+  },
+  "result_digest": "bbc1f628fc0aee221dcaf58e3b426f337eb6079c5ea8b5088f98eca1857298ce",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

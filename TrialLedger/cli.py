@@ -28,7 +28,18 @@ from TrialLedger.request import PHASES, STATUSES, STUDY_TYPES
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
 
 # The public commands the assistant can run, in the same order as the guides and command help.
-USER_COMMANDS = ("doctor", "landscape", "record", "pull", "verify", "mcp", "reason")
+USER_COMMANDS = (
+    "doctor",
+    "landscape",
+    "record",
+    "pull",
+    "verify",
+    "mcp",
+    "reason",
+    "reason-result",
+    "reason-revise",
+    "reason-export",
+)
 
 DESCRIPTION = """\
 TrialLedger gathers every ClinicalTrials.gov study that matches a question about clinical trials (a drug, a
@@ -306,6 +317,8 @@ def main(
     probe_get: Callable[..., Any] | None = None,
     mcp_streams: tuple[Iterable[bytes], Callable[[str], None]] | None = None,
 ) -> int:
+    from TrialLedger import reasoning_cli
+
     parser = argparse.ArgumentParser(
         prog="trialledger",
         description=DESCRIPTION,
@@ -498,11 +511,16 @@ def main(
         ),
     )
     reason_parser.add_argument("--request", type=Path, required=True, metavar="FILE")
+    reasoning_cli.configure(commands, reason_parser)
     args = parser.parse_args(argv)
     if args.command == "record":
         return _record(args)
     if args.command == "reason":
-        return _reason(args.request)
+        return _reason(
+            args.request, store=args.store, compact=args.compact, intent=args.intent, question=args.question
+        )
+    if args.command in reasoning_cli.COMMANDS:
+        return reasoning_cli.handle(args)
     if args.command == "doctor":
         return _doctor(args.run, probe_get)
     if args.command == "landscape":
@@ -702,9 +720,16 @@ def _record(args: argparse.Namespace) -> int:
     return 2 if is_error else 0
 
 
-def _reason(path: Path) -> int:
+def _reason(
+    path: Path,
+    *,
+    store: Path | None = None,
+    compact: bool = False,
+    intent: str = "unspecified",
+    question: str = "",
+) -> int:
     from TrialLedger.landscape_verify import strict_json
-    from TrialLedger.layer2 import run
+    from TrialLedger.reasoning_delivery import execute
     from TrialLedger.record import DuplicateKey
 
     try:
@@ -712,6 +737,15 @@ def _reason(path: Path) -> int:
     except (OSError, ValueError, DuplicateKey) as error:
         print(f"trialledger reason: unreadable request — {error}", file=sys.stderr)
         return 2
-    result = run(request)
+    try:
+        result = execute(
+            request,
+            store=store,
+            response_view="compact" if compact else "full",
+            intent=intent,
+            question=question,
+        )
+    except (OSError, ValueError, TypeError, KeyError) as error:
+        result = {"code": "refused", "operation": "", "result": None, "problems": [str(error)]}
     print(json.dumps(result, ensure_ascii=False, indent=1, allow_nan=False))
     return 0 if result["code"] == "complete" else 2

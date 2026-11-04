@@ -1,0 +1,88 @@
+{
+  "adopted_into_main": false,
+  "authored_intent_witness": "tests/test_entail_explanations.py::test_conditional_gate_refuses_vacuity_and_unresolved_profiles",
+  "certificate": {
+    "cut_reasons": [],
+    "function_digest": "8e6fcbad39283b6c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "counterexample_or_falsifier": "A changed target/function dependency, a distinguishing mutant witness, an unrouted negative test, or a main-suite failure invalidates the corresponding claim.",
+  "equivalence": {
+    "diagnostic_limit": "The subsequent module style plan repeatedly stopped collection_incomplete. Doctor reported stale_collection_failure not reproduced now; rerunning plan produced the same stop. No module rewrite or blanket style pass is claimed.",
+    "mutant": "BOUNDARY_752a967c",
+    "proof": "After identical result/blocker guards: intrinsic None returns limited directly in the original; deleting the guard falls through intrinsic is True and intrinsic is False, both false for None, yielding limited. Every non-None input skips the original guard and follows identical remaining branches. Identity comparisons do not coerce equality or truthiness.",
+    "status": "flagged_and_refreshed_converge_complete"
+  },
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/explanation_gate",
+  "generated_suites": [],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 49658,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/private/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-gate-p5ub0esh/.venv/bin/python",
+      "project_root": "/private/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-gate-p5ub0esh",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 0,
+    "outcome": [
+      [
+        "outcome",
+        "converge",
+        "settled"
+      ]
+    ],
+    "refusal": null,
+    "state": {
+      "equivalents": "sha256:2c993924ee6fe31e4d154c0df728f486",
+      "inputs": "sha256:ab26e80e9fbdc2842aaeb12ad46e29f4",
+      "suite": "sha256:c90e85dff0cc94d3c903ddade5bf5a82",
+      "target_src": "sha256:0b1ff48798c5499c9dd46a3de3a52024"
+    },
+    "target": "TrialLedger/layer2/entail_explanations.py::explanation_gate",
+    "ts": "2026-11-04T05:29:16Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-gate-p5ub0esh/.detective/ledger.jsonl",
+    "sha256": "4edadf665e7ed966573af7d22ba273a43430d2d2ad537b9260d2bdd0ae7cbefc"
+  },
+  "negative_test_scope": "Named authored witness was read in full; the complete report identifies function-routed authored test coverage. This is not a claim that a generated characterization establishes clinical intent.",
+  "policy": "9+neg.f5a15364c11d",
+  "proof_directory": "/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-gate-p5ub0esh",
+  "recorded_at": "2026-11-04T05:30:26.184532+00:00",
+  "report": {
+    "path": "/var/folders/y3/9hy3l65d7xvdl89kh19dnlf40000gp/T/tl-clinical-gate-p5ub0esh/.detective/reports/converge_explanation_gate.txt",
+    "read_complete": true,
+    "sha256": "e8f789ff76fdc7b38e3b12f7e538234b2b4994a95a906cab2ce9637492179ba6"
+  },
+  "reported": {
+    "completion": "COMPLETE",
+    "crash_only_value_gaps": 0,
+    "flagged_equivalent": 1,
+    "killed": 75,
+    "scored": 76,
+    "unproven_equivalent": 0
+  },
+  "schema_version": 1,
+  "scope": "This function and the reported operator universe; not a project-wide proof or a clinical-source-truth check.",
+  "source": {
+    "byte_equal_to_current": true,
+    "function_ast_sha256": "8e6fcbad39283b6c9fcebdbbfd48693e764e05686799c637445799bdefc634eb",
+    "path": "TrialLedger/layer2/entail_explanations.py",
+    "sha256": "0b1ff48798c5499c9dd46a3de3a52024c9b1a89aa1a09eac1b6ec277b74818e5"
+  },
+  "target": "TrialLedger/layer2/entail_explanations.py::explanation_gate"
+}

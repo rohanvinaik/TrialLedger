@@ -1,0 +1,82 @@
+{
+  "adopted_into_main": false,
+  "authored_intent_witness": "tests/test_session_revision_delivery.py::test_revision_integrity_returns_the_specific_remedy",
+  "certificate": {
+    "cut_reasons": [],
+    "function_digest": "000e845da450934b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "counterexample_or_falsifier": "A changed target/function dependency, a distinguishing mutant witness, an unrouted negative test, or a main-suite failure invalidates the corresponding claim.",
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/revision_input_code",
+  "generated_suites": [],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 29155,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "project_root": "/private/tmp/trialledger-session-two-sign-20261104",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 0,
+    "outcome": [
+      [
+        "outcome",
+        "converge",
+        "settled"
+      ]
+    ],
+    "refusal": null,
+    "state": {
+      "equivalents": "",
+      "inputs": "",
+      "suite": "sha256:c90e85dff0cc94d3c903ddade5bf5a82",
+      "target_src": "sha256:f7b8b81d6bde950b7ec8e4e90e66e346"
+    },
+    "target": "TrialLedger/layer2/design_session.py::revision_input_code",
+    "ts": "2026-11-04T05:21:51Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/tmp/trialledger-session-two-sign-20261104/.detective/ledger.jsonl",
+    "sha256": "1b997813f2fe4ba51c820963d30dc017432fba7efd0549fb535e316c7a4decfd"
+  },
+  "negative_test_scope": "Named authored witness was read in full; the complete report identifies function-routed authored test coverage. This is not a claim that a generated characterization establishes clinical intent.",
+  "policy": "9+neg.f5a15364c11d",
+  "proof_directory": "/tmp/trialledger-session-two-sign-20261104",
+  "recorded_at": "2026-11-04T05:30:26.158705+00:00",
+  "report": {
+    "path": "/tmp/trialledger-session-two-sign-20261104/.detective/reports/converge_revision_input_code.txt",
+    "read_complete": true,
+    "sha256": "63cbc00ea2e54cf2370aa1ae5cc59f3a2799fac9f252fa7dcac7d3dbc00a5385"
+  },
+  "reported": {
+    "completion": "COMPLETE",
+    "crash_only_value_gaps": 0,
+    "flagged_equivalent": 0,
+    "killed": 74,
+    "scored": 74,
+    "unproven_equivalent": 0
+  },
+  "schema_version": 1,
+  "scope": "This function and the reported operator universe; not a project-wide proof or a clinical-source-truth check.",
+  "source": {
+    "byte_equal_to_current": true,
+    "function_ast_sha256": "000e845da450934bf08059128cc29f6f6c18ca785d6f5dc190ab11473edbb7bc",
+    "path": "TrialLedger/layer2/design_session.py",
+    "sha256": "f7b8b81d6bde950b7ec8e4e90e66e346ad38c769b4f377407ac0af9a588fdd2b"
+  },
+  "target": "TrialLedger/layer2/design_session.py::revision_input_code"
+}

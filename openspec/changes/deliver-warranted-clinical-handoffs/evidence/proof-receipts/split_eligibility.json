@@ -1,0 +1,88 @@
+{
+  "adopted_into_main": false,
+  "authored_intent_witness": "tests/test_split_eligibility.py::test_case_variants_do_not_relax_repeated_or_reversed_sections",
+  "certificate": {
+    "cut_reasons": [],
+    "function_digest": "0835abda93baa413",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "counterexample_or_falsifier": "A changed target/function dependency, a distinguishing mutant witness, an unrouted negative test, or a main-suite failure invalidates the corresponding claim.",
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/split_eligibility",
+  "generated_suites": [
+    {
+      "external_packet": "/tmp/trialledger-final-proof-packets-20261104/split_eligibility/test_TrialLedger_eligibility_split_eligibility_c5b8a2e2e5_synth.py",
+      "path": "/tmp/trialledger-source-two-sign-20261104-split/tests/detective/test_TrialLedger_eligibility_split_eligibility_c5b8a2e2e5_synth.py",
+      "sha256": "6574fb0ce1f18d75f43729fd530d66cd3d15101844554a0537c0dd1a1de5d18f"
+    }
+  ],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 85578,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/private/tmp/trialledger-source-two-sign-20261104-split/.venv/bin/python",
+      "project_root": "/private/tmp/trialledger-source-two-sign-20261104-split",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 0,
+    "outcome": [
+      [
+        "outcome",
+        "converge",
+        "settled"
+      ]
+    ],
+    "refusal": null,
+    "state": {
+      "equivalents": "",
+      "inputs": "",
+      "suite": "sha256:18f56e1053c1b5708e332d425f69e72f",
+      "target_src": "sha256:a4f62d53053f7132a8168f2ccd862d13"
+    },
+    "target": "TrialLedger/eligibility.py::split_eligibility",
+    "ts": "2026-11-04T05:22:53Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/tmp/trialledger-source-two-sign-20261104-split/.detective/ledger.jsonl",
+    "sha256": "31e2358bf1d6bfa09ec5621cb5a90111f7db0ee2e946b77d315debbc85d75c85"
+  },
+  "negative_test_scope": "Named authored witness was read in full; the complete report identifies function-routed authored test coverage. This is not a claim that a generated characterization establishes clinical intent.",
+  "policy": "9+neg.f5a15364c11d",
+  "proof_directory": "/tmp/trialledger-source-two-sign-20261104-split",
+  "recorded_at": "2026-11-04T05:30:26.136400+00:00",
+  "report": {
+    "path": "/tmp/trialledger-source-two-sign-20261104-split/.detective/reports/converge_split_eligibility.txt",
+    "read_complete": true,
+    "sha256": "60ddf6b36dff49c688ca0c7da17faea31ec61046d40b61f342269193dbc7344f"
+  },
+  "reported": {
+    "completion": "COMPLETE",
+    "crash_only_value_gaps": 5,
+    "flagged_equivalent": 0,
+    "killed": 101,
+    "scored": 104,
+    "unproven_equivalent": 4
+  },
+  "schema_version": 1,
+  "scope": "This function and the reported operator universe; not a project-wide proof or a clinical-source-truth check.",
+  "source": {
+    "byte_equal_to_current": true,
+    "function_ast_sha256": "0835abda93baa413df978c459bdb88a2cd6a0b636446af6778816f83a4003c2a",
+    "path": "TrialLedger/eligibility.py",
+    "sha256": "a4f62d53053f7132a8168f2ccd862d13231375175dadfc8949546db9f1fe9f4a"
+  },
+  "target": "TrialLedger/eligibility.py::split_eligibility"
+}

@@ -1,4 +1,83 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "signals",
+    "findings": 1,
+    "dispositions": {
+      "open": 1
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "signals",
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "outcome": "unresolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "id": "ipass-first-scheduled-tumour-assessment",
+          "value": {
+            "scope": "NCT00322452:registered-PFS:planned-first-postbaseline:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_scheduled_assessment",
+                "after": "randomization",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame",
+            "assistant:exploration-reading-first-42-plus-or-minus-7-day-window-inclusive-not-user-confirmed"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "source-plus-reading",
+              "status": "interpolated",
+              "resolution": "unresolved",
+              "basis": [
+                "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame",
+                "assistant:exploration-reading-first-42-plus-or-minus-7-day-window-inclusive-not-user-confirmed"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "binding_unresolved",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "binding_unresolved:ipass-first-scheduled-tumour-assessment"
+        ],
+        "canonical_ref": "/result/signals/0"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "signals",
   "result": {
@@ -119,5 +198,7 @@
         "raw_path": "/result/signals/0/calculation_code"
       }
     ]
-  }
+  },
+  "result_digest": "59652514b0ff17aee53842f7f7fa902f158aa77933982557a946a1b9dc0b03e1",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

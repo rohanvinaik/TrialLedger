@@ -1,0 +1,350 @@
+{
+ "summary": {
+  "kind": "reasoning",
+  "code": "complete",
+  "operation": "design_session",
+  "findings": 3,
+  "dispositions": {
+   "settled": 3
+  },
+  "problems": [],
+  "changes": null
+ },
+ "clinical": {
+  "version": 1,
+  "operation": "design_session",
+  "findings": [
+   {
+    "path": "/result/analyses/0/result/result/decision",
+    "kind": "logical",
+    "outcome": "REFUTED",
+    "standing": "known",
+    "completion": "complete",
+    "disposition": "settled",
+    "scope": {
+     "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+       "study": "draft",
+       "population": "general",
+       "arm": "all",
+       "time": "entry",
+       "version": "v1"
+      }
+     },
+     "query": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "eq",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 55.0,
+       "unit": "Years",
+       "upper": null
+      }
+     }
+    },
+    "values": {},
+    "support": {
+     "proof": [
+      "draft-age"
+     ],
+     "explanation_blockers": []
+    },
+    "origins": [
+     {
+      "premise": "draft-age",
+      "criterion_ref": "simulated:new-trial-age-choice"
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/analyses/0/result/result/decision"
+   },
+   {
+    "path": "/result/analyses/1/result/result/decision",
+    "kind": "logical",
+    "outcome": "ENTAILED",
+    "standing": "known",
+    "completion": "complete",
+    "disposition": "settled",
+    "scope": {
+     "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+       "study": "draft",
+       "population": "general",
+       "arm": "all",
+       "time": "entry",
+       "version": "v1"
+      }
+     },
+     "query": {
+      "class": "Not",
+      "part": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 55.0,
+        "unit": "Years",
+        "upper": null
+       }
+      }
+     }
+    },
+    "values": {},
+    "support": {
+     "proof": [
+      "draft-age"
+     ],
+     "explanation_blockers": []
+    },
+    "origins": [
+     {
+      "premise": "draft-age",
+      "criterion_ref": "simulated:new-trial-age-choice"
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/analyses/1/result/result/decision"
+   },
+   {
+    "path": "/result/decisions/0",
+    "kind": "session_decision",
+    "outcome": "settled_within_declared_alternatives",
+    "standing": "known",
+    "completion": "complete",
+    "disposition": "settled",
+    "scope": {
+     "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+       "study": "draft",
+       "population": "general",
+       "arm": "all",
+       "time": "entry",
+       "version": "v1"
+      }
+     }
+    },
+    "values": {
+     "id": "age-policy",
+     "question": "Should our represented adult age restriction allow age55?",
+     "selected": null,
+     "alternatives": [
+      {
+       "id": "older",
+       "label": "Age55",
+       "query": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 55,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "code": "infeasible"
+      },
+      {
+       "id": "younger",
+       "label": "Not age55",
+       "query": {
+        "class": "Not",
+        "part": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 55,
+          "unit": "Years",
+          "upper": null
+         }
+        }
+       },
+       "code": "feasible"
+      }
+     ],
+     "distinctions": []
+    },
+    "support": {
+     "coverage": "represented_restriction",
+     "coverage_limit": "Only caller-declared represented constructs; not complete clinical eligibility.",
+     "determining_alternatives": [
+      "older",
+      "younger"
+     ],
+     "determining_distinctions": [],
+     "alternatives": [
+      {
+       "id": "older",
+       "warrant": {
+        "blockers": [],
+        "proof": [
+         "draft-age"
+        ],
+        "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":55.0,\"unit\":\"Years\",\"upper\":null}}",
+        "result": "REFUTED",
+        "status": "known"
+       },
+       "feasibility_status": "known"
+      },
+      {
+       "id": "younger",
+       "warrant": {
+        "blockers": [],
+        "proof": [
+         "draft-age"
+        ],
+        "query": "{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":55.0,\"unit\":\"Years\",\"upper\":null}}}",
+        "result": "ENTAILED",
+        "status": "known"
+       },
+       "feasibility_status": "known"
+      }
+     ],
+     "distinctions": []
+    },
+    "origins": [
+     {
+      "origin": {
+       "kind": "computed",
+       "refs": [
+        {
+         "premise": "draft-age",
+         "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:adult-malaria-draft-age18-50; no real human confirmation",
+          "source": null,
+          "analysis": null
+         }
+        }
+       ]
+      },
+      "origin_refs": [
+       {
+        "premise": "draft-age",
+        "origin": {
+         "kind": "user_choice",
+         "ref": "simulated:adult-malaria-draft-age18-50; no real human confirmation",
+         "source": null,
+         "analysis": null
+        }
+       }
+      ]
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/decisions/0"
+   }
+  ]
+ },
+ "code": "complete",
+ "operation": "design_session",
+ "problems": [],
+ "result_digest": "a8e2188b8faa8e9ede93dd23fbc4e223f44cd465770974467417d7c6e3c8e91d",
+ "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+ "answer_diff": null,
+ "artifact": {
+  "id": "500a5d19723b78489b39161432985345dffc88b277af7a57a011b341711fa8fe",
+  "bytes": 33238,
+  "schema_version": 1,
+  "identity_scope": "SHA256 of complete canonical request/response payload bytes",
+  "parts": [
+   "manifest",
+   "request",
+   "response",
+   "result",
+   "clinical",
+   "summary",
+   "session",
+   "decisions",
+   "changes",
+   "address"
+  ]
+ },
+ "view": "compact",
+ "canonical_result": "Full request/response retained; retrieve by artifact id and exact address."
+}

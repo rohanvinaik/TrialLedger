@@ -55,7 +55,7 @@ from typing import Any
 
 import httpx
 
-from TrialLedger import __version__
+from TrialLedger import __version__, reasoning_mcp
 from TrialLedger import classes as rx
 from TrialLedger.capabilities import DISCOVERY_VIEWS, OPERATIONS, REASONING_WORDS
 from TrialLedger.classes import CLASS_SOURCES
@@ -528,6 +528,12 @@ TOOLS: dict[str, dict[str, Any]] = {
                             "enum": list(DISCOVERY_VIEWS),
                             "description": "For describe only; default overview.",
                         },
+                        "detail": {
+                            "type": "string",
+                            "enum": ["card", "schema", "full"],
+                            "description": "For describe: small task card (default), machine shape "
+                            "or full guide.",
+                        },
                     },
                     "required": ["operation"],
                     "description": "Start with operation describe for the overview; "
@@ -541,6 +547,9 @@ TOOLS: dict[str, dict[str, Any]] = {
         },
     },
 }
+TOOLS["reason"]["inputSchema"]["properties"].update(reasoning_mcp.REASON_FIELDS)
+TOOLS.update(reasoning_mcp.TOOL_SCHEMAS)
+REASONING_TOOLS = frozenset(("reason", *reasoning_mcp.TOOL_SCHEMAS))
 
 
 # ── the decisions ─────────────────────────────────────────────────────────────────────────────────────────
@@ -649,7 +658,7 @@ def argument_problems(schema: dict[str, Any], arguments: Any) -> tuple[str, list
     missing = sorted(name for name in schema.get("required", ()) if name not in arguments)
     if missing:
         return "missing_argument", missing
-    kinds = {"string": str, "object": dict, "integer": int, "boolean": bool}
+    kinds = {"string": str, "object": dict, "integer": int, "boolean": bool, "array": list}
     wrong = sorted(
         name
         for name, value in arguments.items()
@@ -829,16 +838,35 @@ def _record(_context: Context, folder: Path, arguments: dict[str, Any]) -> tuple
     return read_record(folder, arguments)
 
 
-def _reason(_context: Context, _folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
-    """A separate symbolic operation; no report, network or file mutation."""
-    from TrialLedger.layer2 import run
+def _reason(context: Context, _folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+    """Compute through the shared delivery owner; retention is an explicit option."""
+    try:
+        reply = reasoning_mcp.reason(context.root, arguments)
+    except (OSError, ValueError, TypeError, KeyError) as error:
+        reply = {"code": "refused", "problems": [str(error)]}
+    return reply, reply["code"] != "complete"
 
-    reply = run(arguments["request"])
+
+def _reason_result(context: Context, _folder: Path, arguments: dict[str, Any]) -> tuple[dict, bool]:
+    reply = reasoning_mcp.handle("reason_result", context.root, arguments)
+    return reply, reply["code"] != "complete"
+
+
+def _reason_revise(context: Context, _folder: Path, arguments: dict[str, Any]) -> tuple[dict, bool]:
+    reply = reasoning_mcp.handle("reason_revise", context.root, arguments)
+    return reply, reply["code"] not in ("complete", "prepared")
+
+
+def _reason_export(context: Context, _folder: Path, arguments: dict[str, Any]) -> tuple[dict, bool]:
+    reply = reasoning_mcp.handle("reason_export", context.root, arguments)
     return reply, reply["code"] != "complete"
 
 
 HANDLERS: dict[str, Callable[[Context, Path, dict[str, Any]], tuple[dict[str, Any], bool]]] = {
     "reason": _reason,
+    "reason_result": _reason_result,
+    "reason_revise": _reason_revise,
+    "reason_export": _reason_export,
     "doctor": _doctor,
     "landscape": _landscape,
     "save_fetch": _save_fetch,
@@ -862,13 +890,13 @@ def call_tool(context: Context, params: Any) -> tuple[str, Any]:
     if verdict != "ok":
         refusal = {"tool": name, "refused": verdict, "arguments": concerned, "why": ARGUMENT_WORDS[verdict]}
         return "ok", _text(refusal, True)
-    folder = context.root if name == "reason" else context.root / arguments["run"]
-    if name != "reason" and folder.resolve().parent != context.root.resolve():
+    folder = context.root if name in REASONING_TOOLS else context.root / arguments["run"]
+    if name not in REASONING_TOOLS and folder.resolve().parent != context.root.resolve():
         refusal = {"tool": name, "refused": "run_outside_root", "why": SAVE_REFUSALS["run_outside_root"]}
         return "ok", _text(refusal, True)
     reply, is_error = HANDLERS[name](context, folder, arguments)
     result = {"tool": name, **reply}
-    if name != "reason":
+    if name not in REASONING_TOOLS:
         result["run_folder"] = str(folder.resolve())
     return "ok", _text(result, is_error)
 

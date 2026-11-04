@@ -1,4 +1,1760 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "interpretations",
+    "findings": 23,
+    "dispositions": {
+      "conditional": 7,
+      "conflict": 2,
+      "open": 7,
+      "settled": 7
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "interpretations",
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "frame-consistency",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ],
+        "canonical_ref": "/result/fixed/consistency"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "adult"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-adults",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/fixed/queries/0"
+      },
+      {
+        "path": "/result/fixed/queries/1",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "PS3"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-PS-min",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/fixed/queries/1"
+      },
+      {
+        "path": "/result/fixed/signals/0",
+        "kind": "signal",
+        "outcome": "consistent",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "planned-schedule",
+          "value": {
+            "scope": "invented:planned-routine-assessments:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_scheduled_assessment",
+                "after": "randomization",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "planned-schedule-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/fixed/signals/0"
+      },
+      {
+        "path": "/result/fixed/signals/1",
+        "kind": "signal",
+        "outcome": "consistent",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "observed-scan",
+          "value": {
+            "scope": "invented:observed-unscheduled-scan-log:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "actual_unscheduled_scan",
+                "lower": 28,
+                "upper": 28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "actual_unscheduled_scan",
+                "after": "randomization",
+                "lower": -28,
+                "upper": -28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "observed-scan-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/fixed/signals/1"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "outcome": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "scheduled-42",
+          "label": "Routine first assessment on day 42, ECOG 0–2"
+        },
+        "support": {
+          "warrant": {
+            "rule": "interpretations.compatibility:1",
+            "guarantee": "conditional_on_fixed_and_interpretation_premises",
+            "fixed_status": "known",
+            "status": "proposed",
+            "fixed_premises": [],
+            "assumptions": [
+              "scheduled-42-PS"
+            ],
+            "bindings": [],
+            "basis": [
+              "invented:hypothesis-to-discuss-not-an-established-protocol"
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "intrinsic_consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "signal_rules": [
+              {
+                "id": "planned-schedule",
+                "rule": "graph.temporal:1"
+              }
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [
+          {
+            "origin": "assistant"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/0"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "adult"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-42-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-42-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-adults",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/0/queries/0"
+      },
+      {
+        "path": "/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "outcome": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "PS3"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-42-PS"
+            ],
+            "proof": [
+              "scheduled-42-PS"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": "interpolated",
+            "proof": [
+              "scheduled-42-PS"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-42-PS"
+            ],
+            "proof": [
+              "scheduled-42-PS"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "scheduled-42-PS",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/0/queries/1"
+      },
+      {
+        "path": "/result/interpretations/0/signal_checks/0",
+        "kind": "signal",
+        "outcome": "consistent",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "planned-schedule",
+          "value": {
+            "scope": "invented:planned-routine-assessments:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 42,
+                "upper": 42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_scheduled_assessment",
+                "after": "randomization",
+                "lower": -42,
+                "upper": -42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "planned-schedule-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/0/signal_checks/0"
+      },
+      {
+        "path": "/result/interpretations/1",
+        "kind": "interpretation",
+        "outcome": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "scheduled-49",
+          "label": "Routine first assessment at the day-49 boundary, ECOG 0–3"
+        },
+        "support": {
+          "warrant": {
+            "rule": "interpretations.compatibility:1",
+            "guarantee": "conditional_on_fixed_and_interpretation_premises",
+            "fixed_status": "known",
+            "status": "proposed",
+            "fixed_premises": [],
+            "assumptions": [
+              "scheduled-49-PS"
+            ],
+            "bindings": [],
+            "basis": [
+              "invented:hypothesis-to-discuss-not-an-established-protocol"
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "intrinsic_consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "signal_rules": [
+              {
+                "id": "planned-schedule",
+                "rule": "graph.temporal:1"
+              }
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [
+          {
+            "origin": "assistant"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/1"
+      },
+      {
+        "path": "/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "adult"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-49-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-49-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-adults",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/1/queries/0"
+      },
+      {
+        "path": "/result/interpretations/1/queries/1",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "PS3"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-49-PS"
+            ],
+            "proof": [
+              "draft-PS-min",
+              "scheduled-49-PS"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "draft-PS-min",
+              "scheduled-49-PS"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-49-PS"
+            ],
+            "proof": [
+              "draft-PS-min",
+              "scheduled-49-PS"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-PS-min",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          },
+          {
+            "premise": "scheduled-49-PS",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/interpretations/1/queries/1"
+      },
+      {
+        "path": "/result/interpretations/1/signal_checks/0",
+        "kind": "signal",
+        "outcome": "consistent",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "planned-schedule",
+          "value": {
+            "scope": "invented:planned-routine-assessments:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 49,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_scheduled_assessment",
+                "after": "randomization",
+                "lower": -49,
+                "upper": -49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "planned-schedule-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/1/signal_checks/0"
+      },
+      {
+        "path": "/result/interpretations/2",
+        "kind": "interpretation",
+        "outcome": "refuted",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conflict",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "scheduled-28",
+          "label": "Treat day 28 as the routine scheduled first assessment"
+        },
+        "support": {
+          "warrant": {
+            "rule": "interpretations.compatibility:1",
+            "guarantee": "conditional_on_fixed_and_interpretation_premises",
+            "fixed_status": "known",
+            "status": "proposed",
+            "fixed_premises": [],
+            "assumptions": [
+              "scheduled-28-PS"
+            ],
+            "bindings": [],
+            "basis": [
+              "invented:hypothesis-to-discuss-not-an-established-protocol"
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "intrinsic_consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "signal_rules": [
+              {
+                "id": "planned-schedule",
+                "rule": "graph.temporal:1"
+              }
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [
+          {
+            "origin": "assistant"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/2"
+      },
+      {
+        "path": "/result/interpretations/2/queries/0",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "adult"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-28-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": [
+              "interpretation_refuted"
+            ]
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-28-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": [
+              "interpretation_refuted"
+            ]
+          },
+          "explanation_blockers": [
+            "interpretation_refuted"
+          ]
+        },
+        "origins": [
+          {
+            "premise": "draft-adults",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [
+          "interpretation_refuted"
+        ],
+        "canonical_ref": "/result/interpretations/2/queries/0"
+      },
+      {
+        "path": "/result/interpretations/2/queries/1",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "PS3"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-28-PS"
+            ],
+            "proof": [
+              "scheduled-28-PS"
+            ],
+            "blockers": [
+              "interpretation_refuted"
+            ]
+          },
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": "interpolated",
+            "proof": [
+              "scheduled-28-PS"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "scheduled-28-PS"
+            ],
+            "proof": [
+              "scheduled-28-PS"
+            ],
+            "blockers": [
+              "interpretation_refuted"
+            ]
+          },
+          "explanation_blockers": [
+            "interpretation_refuted"
+          ]
+        },
+        "origins": [
+          {
+            "premise": "scheduled-28-PS",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [
+          "interpretation_refuted"
+        ],
+        "canonical_ref": "/result/interpretations/2/queries/1"
+      },
+      {
+        "path": "/result/interpretations/2/signal_checks/0",
+        "kind": "signal",
+        "outcome": "conflict",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "conflict",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "planned-schedule",
+          "value": {
+            "scope": "invented:planned-routine-assessments:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": []
+          }
+        },
+        "support": {
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "planned-schedule-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/2/signal_checks/0"
+      },
+      {
+        "path": "/result/interpretations/3",
+        "kind": "interpretation",
+        "outcome": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "unscheduled-28",
+          "label": "Keep day 28 as a separate actual unscheduled scan, ECOG 0–3"
+        },
+        "support": {
+          "warrant": {
+            "rule": "interpretations.compatibility:1",
+            "guarantee": "conditional_on_fixed_and_interpretation_premises",
+            "fixed_status": "known",
+            "status": "proposed",
+            "fixed_premises": [],
+            "assumptions": [
+              "unscheduled-28-PS"
+            ],
+            "bindings": [],
+            "basis": [
+              "invented:hypothesis-to-discuss-not-an-established-protocol"
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "intrinsic_consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "signal_rules": [
+              {
+                "id": "observed-scan",
+                "rule": "graph.temporal:1"
+              }
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [
+          {
+            "origin": "assistant"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/3"
+      },
+      {
+        "path": "/result/interpretations/3/queries/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "adult"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "unscheduled-28-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "unscheduled-28-PS"
+            ],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-adults",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/3/queries/0"
+      },
+      {
+        "path": "/result/interpretations/3/queries/1",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "PS3"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "unscheduled-28-PS"
+            ],
+            "proof": [
+              "draft-PS-min",
+              "unscheduled-28-PS"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "draft-PS-min",
+              "unscheduled-28-PS"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "proposed",
+            "assumptions": [
+              "unscheduled-28-PS"
+            ],
+            "proof": [
+              "draft-PS-min",
+              "unscheduled-28-PS"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-PS-min",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          },
+          {
+            "premise": "unscheduled-28-PS",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/interpretations/3/queries/1"
+      },
+      {
+        "path": "/result/interpretations/3/signal_checks/0",
+        "kind": "signal",
+        "outcome": "consistent",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1"
+        },
+        "values": {
+          "id": "observed-scan",
+          "value": {
+            "scope": "invented:observed-unscheduled-scan-log:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "actual_unscheduled_scan",
+                "lower": 28,
+                "upper": 28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "actual_unscheduled_scan",
+                "after": "randomization",
+                "lower": -28,
+                "upper": -28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "observed-scan-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/interpretations/3/signal_checks/0"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "adult"
+        },
+        "support": {
+          "basis": "fixed_floor",
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-adults",
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/consequences/0"
+      },
+      {
+        "path": "/result/consequences/1",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "invented:adult-NSCLC-draft:v1",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "PS3"
+        },
+        "support": {
+          "basis": "declared_interpretation_family",
+          "warrant": {
+            "rule": "interpretations.common:1",
+            "guarantee": "conditional_on_declared_family_not_exhaustive",
+            "status": "proposed",
+            "blockers": [
+              "interpretation_answer_contrast",
+              "undecided_by_constraints"
+            ]
+          },
+          "declared_support": {
+            "rule": "interpretations.common:1",
+            "guarantee": "conditional_on_declared_family_not_exhaustive",
+            "status": "proposed",
+            "blockers": [
+              "interpretation_answer_contrast",
+              "undecided_by_constraints"
+            ]
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "interpretation_answer_contrast",
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/consequences/1"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "interpretations",
   "result": {
@@ -181,6 +1937,18 @@
             ],
             "blockers": []
           },
+          "explanations": {
+            "permissions": [],
+            "conditions": [],
+            "blockers": [],
+            "checks": {
+              "code": "not_open",
+              "decisions": 0,
+              "intrinsic_queries": 0,
+              "planned": 0,
+              "limit": 8
+            }
+          },
           "warrant": {
             "rule": "entail.decide:1",
             "guarantee": "fixed_floor",
@@ -234,6 +2002,18 @@
             "blockers": [
               "undecided_by_constraints"
             ]
+          },
+          "explanations": {
+            "permissions": [],
+            "conditions": [],
+            "blockers": [],
+            "checks": {
+              "code": "complete",
+              "decisions": 0,
+              "intrinsic_queries": 1,
+              "planned": 0,
+              "limit": 8
+            }
           },
           "warrant": {
             "rule": "entail.decide:1",
@@ -547,6 +2327,18 @@
               ],
               "blockers": []
             },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [],
+              "checks": {
+                "code": "not_open",
+                "decisions": 0,
+                "intrinsic_queries": 0,
+                "planned": 0,
+                "limit": 8
+              }
+            },
             "warrant": {
               "rule": "entail.decide:1",
               "guarantee": "conditional_on_interpretation",
@@ -600,6 +2392,18 @@
                 "scheduled-42-PS"
               ],
               "blockers": []
+            },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [],
+              "checks": {
+                "code": "not_open",
+                "decisions": 0,
+                "intrinsic_queries": 0,
+                "planned": 0,
+                "limit": 8
+              }
             },
             "warrant": {
               "rule": "entail.decide:1",
@@ -849,6 +2653,18 @@
               ],
               "blockers": []
             },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [],
+              "checks": {
+                "code": "not_open",
+                "decisions": 0,
+                "intrinsic_queries": 0,
+                "planned": 0,
+                "limit": 8
+              }
+            },
             "warrant": {
               "rule": "entail.decide:1",
               "guarantee": "conditional_on_interpretation",
@@ -905,6 +2721,18 @@
               "blockers": [
                 "undecided_by_constraints"
               ]
+            },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [],
+              "checks": {
+                "code": "complete",
+                "decisions": 0,
+                "intrinsic_queries": 1,
+                "planned": 0,
+                "limit": 8
+              }
             },
             "warrant": {
               "rule": "entail.decide:1",
@@ -1140,6 +2968,18 @@
               ],
               "blockers": []
             },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [
+                "interpretation_refuted"
+              ],
+              "checks": {
+                "code": "interpretation_withheld",
+                "decisions": 0,
+                "intrinsic_queries": 0
+              }
+            },
             "warrant": {
               "rule": "entail.decide:1",
               "guarantee": "conditional_on_interpretation",
@@ -1195,6 +3035,18 @@
                 "scheduled-28-PS"
               ],
               "blockers": []
+            },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [
+                "interpretation_refuted"
+              ],
+              "checks": {
+                "code": "interpretation_withheld",
+                "decisions": 0,
+                "intrinsic_queries": 0
+              }
             },
             "warrant": {
               "rule": "entail.decide:1",
@@ -1446,6 +3298,18 @@
               ],
               "blockers": []
             },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [],
+              "checks": {
+                "code": "not_open",
+                "decisions": 0,
+                "intrinsic_queries": 0,
+                "planned": 0,
+                "limit": 8
+              }
+            },
             "warrant": {
               "rule": "entail.decide:1",
               "guarantee": "conditional_on_interpretation",
@@ -1502,6 +3366,18 @@
               "blockers": [
                 "undecided_by_constraints"
               ]
+            },
+            "explanations": {
+              "permissions": [],
+              "conditions": [],
+              "blockers": [],
+              "checks": {
+                "code": "complete",
+                "decisions": 0,
+                "intrinsic_queries": 1,
+                "planned": 0,
+                "limit": 8
+              }
             },
             "warrant": {
               "rule": "entail.decide:1",
@@ -1617,6 +3493,18 @@
             "draft-adults"
           ],
           "blockers": []
+        },
+        "explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "not_open",
+            "decisions": 0,
+            "intrinsic_queries": 0,
+            "planned": 0,
+            "limit": 8
+          }
         },
         "warrant": {
           "rule": "entail.decide:1",
@@ -2096,5 +3984,7 @@
         ]
       }
     ]
-  }
+  },
+  "result_digest": "a56bb668f895bd4849d3b2d6badb02cf259a6b8520f6a0fa4cc76b878c540537",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

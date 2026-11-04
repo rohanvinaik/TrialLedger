@@ -37,7 +37,9 @@ def complete(payload):
 
 
 def guide(operation):
-    return copy.deepcopy(complete({"operation": "describe", "view": operation})["result"]["example"])
+    return copy.deepcopy(
+        complete({"operation": "describe", "view": operation, "detail": "full"})["result"]["example"]
+    )
 
 
 def query_decisions(response):
@@ -59,7 +61,7 @@ def test_inventory_covers_every_existing_operation_and_every_named_discovery_slo
 
 
 def test_public_session_requests_are_atomic_and_include_the_focused_revision_slot():
-    focus = complete({"operation": "describe", "view": "design_session"})["result"]
+    focus = complete({"operation": "describe", "view": "design_session", "detail": "full"})["result"]
     current, revision = focus["example"], focus["revision_example"]
     declaration = current["session"]["analyses"][0]
     assert declaration["operation"] == "entailment"
@@ -187,11 +189,12 @@ def test_entailment_weakening_support_never_promotes_a_conclusion(status):
 
 
 @pytest.mark.parametrize(
-    "kind", list(run({"operation": "describe", "view": "signals"})["result"]["signal_examples"])
+    "kind",
+    list(run({"operation": "describe", "view": "signals", "detail": "full"})["result"]["signal_examples"]),
 )
 def test_each_signal_kind_retains_arithmetic_but_cannot_promote_weakened_support(kind):
     payload = copy.deepcopy(
-        run({"operation": "describe", "view": "signals"})["result"]["signal_examples"][kind]
+        run({"operation": "describe", "view": "signals", "detail": "full"})["result"]["signal_examples"][kind]
     )
     original = complete(payload)["result"]["signals"][0]
     for status in ("interpolated", "proposed"):
@@ -206,7 +209,9 @@ def test_each_signal_kind_retains_arithmetic_but_cannot_promote_weakened_support
 
 
 def test_independent_signal_addition_and_retraction_preserve_existing_calculations():
-    examples = run({"operation": "describe", "view": "signals"})["result"]["signal_examples"]
+    examples = run({"operation": "describe", "view": "signals", "detail": "full"})["result"][
+        "signal_examples"
+    ]
     original = copy.deepcopy(examples["overlap"])
     before = semantic_view(complete(original))
     combined = copy.deepcopy(original)
@@ -221,9 +226,9 @@ def test_design_elimination_is_local_to_its_support_and_candidate_family_is_expl
     payload = guide("design_bounds")
     before = semantic_view(complete(payload))
     unrelated = copy.deepcopy(
-        run({"operation": "describe", "view": "signals"})["result"]["signal_examples"]["temporal"]["signals"][
-            0
-        ]
+        run({"operation": "describe", "view": "signals", "detail": "full"})["result"]["signal_examples"][
+            "temporal"
+        ]["signals"][0]
     )
     payload["signals"] = [unrelated]
     assert semantic_view(complete(payload)) == before
@@ -249,7 +254,7 @@ def test_design_elimination_is_local_to_its_support_and_candidate_family_is_expl
     ],
 )
 def test_attribution_ambiguity_compatible_under_every_reading_keeps_independent_eliminations(targets, status):
-    description = run({"operation": "describe", "view": "design_bounds"})["result"]
+    description = run({"operation": "describe", "view": "design_bounds", "detail": "full"})["result"]
     payload = copy.deepcopy(description["exception_example"])
     payload["observations"][0]["bridge"]["max_exceptions"] = 5
     baseline = copy.deepcopy(payload)

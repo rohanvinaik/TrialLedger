@@ -437,11 +437,11 @@ def test_a_raw_code_is_not_shown():
     assert codes(safety_findings(rows)) == ["not_shown"]
 
 
-def test_an_unworded_absence_and_a_missing_row_are_caught():
+def test_optional_absent_notes_stay_blank_and_a_missing_row_is_caught():
     rows = safety_rows()
     rows[0][SAFETY["columns"].index("Notes")] = None
     found = safety_findings(rows[:3], complete=True)
-    assert codes(found) == ["row_missing", "unexplained_blank"]
+    assert codes(found) == ["row_missing"]
 
 
 # ── record → cell: a Posted results row, written by hand from the example's hand-checked values ─────────

@@ -12,7 +12,7 @@ from typing import Any, NamedTuple
 
 from TrialLedger import checks, registry
 
-CONTRACT_VERSION = "4.2"
+CONTRACT_VERSION = "4.3"
 SCHEMA_VERSION = 4
 
 
@@ -183,7 +183,11 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Brief title",
         kind="plain",
         source=("protocolSection.identificationModule.briefTitle",),
-        consumers=(("sheet", "Trial index", "Acronym or short title"), ("sheet", "Trial review", "Value")),
+        consumers=(
+            ("sheet", "Trial index", "Acronym or short title"),
+            ("sheet", "Trial review", "Value"),
+            ("mcp", "studies"),
+        ),
         display="",
         form="as held",
         reads=(),
@@ -194,7 +198,11 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Acronym",
         kind="plain",
         source=("protocolSection.identificationModule.acronym",),
-        consumers=(("sheet", "Trial index", "Acronym or short title"), ("sheet", "Trial review", "Value")),
+        consumers=(
+            ("sheet", "Trial index", "Acronym or short title"),
+            ("sheet", "Trial review", "Value"),
+            ("mcp", "studies"),
+        ),
         display="",
         form="as held",
         reads=(),
@@ -205,7 +213,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Official title",
         kind="plain",
         source=("protocolSection.identificationModule.officialTitle",),
-        consumers=(("sheet", "Trial review", "Value"),),
+        consumers=(("sheet", "Trial review", "Value"), ("mcp", "studies")),
         display="",
         form="as held",
         reads=(),
@@ -4092,7 +4100,7 @@ UNEXERCISED: dict[str, str] = {
 # codes the API gives no words for (AgencyClass) written out. FlowMilestone and LargeDocType are the
 # registry's fixed values of text fields, not enums of the API; their sources say so.
 
-DISPLAY_VERSION = "display-1"
+DISPLAY_VERSION = "display-2"
 DISPLAY: dict[str, dict[str, str]] = {
     "ObservationalModel": {
         "COHORT": "Cohort",

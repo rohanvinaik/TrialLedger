@@ -1,0 +1,88 @@
+{
+  "adopted_into_main": false,
+  "authored_intent_witness": "tests/test_eligibility_source_context.py::test_markdown_context_ignores_fenced_or_indented_code_and_bulleted_labels",
+  "certificate": {
+    "cut_reasons": [],
+    "function_digest": "b60b76cabdf9e2f3",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "counterexample_or_falsifier": "A changed target/function dependency, a distinguishing mutant witness, an unrouted negative test, or a main-suite failure invalidates the corresponding claim.",
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/literal_context_kind",
+  "generated_suites": [
+    {
+      "external_packet": "/tmp/trialledger-final-proof-packets-20261104/literal_context_kind/test_TrialLedger_landscape_literal_context_kind_5bd1ea8670_synth.py",
+      "path": "/tmp/trialledger-source-two-sign-20261104-context/tests/detective/test_TrialLedger_landscape_literal_context_kind_5bd1ea8670_synth.py",
+      "sha256": "e76a4a6c0b9e4014b7028e34e003752184d96a34706dc73c632ae6795047093a"
+    }
+  ],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 184102,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/private/tmp/trialledger-source-two-sign-20261104-context/.venv/bin/python",
+      "project_root": "/private/tmp/trialledger-source-two-sign-20261104-context",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 0,
+    "outcome": [
+      [
+        "outcome",
+        "converge",
+        "settled"
+      ]
+    ],
+    "refusal": null,
+    "state": {
+      "equivalents": "",
+      "inputs": "",
+      "suite": "sha256:1567c7d344f1abb3a097cbcb3430b01a",
+      "target_src": "sha256:81b4f51bba14a022be1732e3cd264307"
+    },
+    "target": "TrialLedger/landscape.py::literal_context_kind",
+    "ts": "2026-11-04T05:24:32Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/tmp/trialledger-source-two-sign-20261104-context/.detective/ledger.jsonl",
+    "sha256": "b79aefcd5ee05f25ee2fb378013da6639f4be428a85fb449e47dc7a0004eba96"
+  },
+  "negative_test_scope": "Named authored witness was read in full; the complete report identifies function-routed authored test coverage. This is not a claim that a generated characterization establishes clinical intent.",
+  "policy": "9+neg.f5a15364c11d",
+  "proof_directory": "/tmp/trialledger-source-two-sign-20261104-context",
+  "recorded_at": "2026-11-04T05:30:26.148425+00:00",
+  "report": {
+    "path": "/tmp/trialledger-source-two-sign-20261104-context/.detective/reports/converge_literal_context_kind.txt",
+    "read_complete": true,
+    "sha256": "a15ac4ca42e44df7ad2301f38f02080c6fd4fdc4608521bef1b01fa0c5128109"
+  },
+  "reported": {
+    "completion": "COMPLETE",
+    "crash_only_value_gaps": 3,
+    "flagged_equivalent": 0,
+    "killed": 94,
+    "scored": 104,
+    "unproven_equivalent": 11
+  },
+  "schema_version": 1,
+  "scope": "This function and the reported operator universe; not a project-wide proof or a clinical-source-truth check.",
+  "source": {
+    "byte_equal_to_current": true,
+    "function_ast_sha256": "b60b76cabdf9e2f300a946926ed918f429966b5cb2068d9f97ebc7b245eddb92",
+    "path": "TrialLedger/landscape.py",
+    "sha256": "81b4f51bba14a022be1732e3cd264307f5b5346000de5e374a6a788a4f451a83"
+  },
+  "target": "TrialLedger/landscape.py::literal_context_kind"
+}

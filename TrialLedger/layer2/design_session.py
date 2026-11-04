@@ -12,7 +12,7 @@ from copy import deepcopy
 from itertools import combinations
 from typing import Any, cast
 
-from TrialLedger.layer2 import admission, source_evidence
+from TrialLedger.layer2 import admission, solver_work, source_evidence
 from TrialLedger.layer2 import assertions as a
 from TrialLedger.layer2 import session_projections as projections
 from TrialLedger.layer2 import session_state as state
@@ -34,6 +34,105 @@ SESSION_WORK_CODES = (
     "resource_bound:session_solver_work",
     "resource_bound:session_analyses",
 )
+
+REVISION_INPUT_CODES = (
+    "ready",
+    "invalid_previous_response",
+    "previous_result_session_mismatch",
+    "result_mismatch",
+    "invalid_session_revision_identity",
+    "parent_mismatch",
+)
+
+
+class SessionBudgetError(ValueError):
+    """A named resource refusal with the numeric reservation retained for public delivery."""
+
+    def __init__(self, code: str, diagnostics: dict) -> None:
+        super().__init__(code)
+        self.diagnostics = deepcopy(diagnostics)
+
+
+def revision_input_code(
+    complete: bool,
+    session_matches: bool,
+    result_matches: bool,
+    same_id: bool,
+    new_revision: bool,
+    parent_matches: bool,
+) -> str:
+    """Name the first failed public revision integrity check (pure).
+
+    post: __return__ in REVISION_INPUT_CODES
+    post: __return__ != 'ready' or (complete and session_matches and result_matches)
+    post: __return__ != 'ready' or (same_id and new_revision and parent_matches)
+    """
+    if not complete:
+        return "invalid_previous_response"
+    if not session_matches:
+        return "previous_result_session_mismatch"
+    if not result_matches:
+        return "result_mismatch"
+    if not same_id or not new_revision:
+        return "invalid_session_revision_identity"
+    if not parent_matches:
+        return "parent_mismatch"
+    return "ready"
+
+
+def prepare_revision(previous_request: object, previous_response: object, next_session: object) -> dict:
+    """Prepare a public revision without interpreting or accepting any clinical field.
+
+    The public result fingerprint covers exactly ``response['result']``. The caller's
+    retained artifact establishes which prior bytes were supplied; this constructor
+    checks their documentary consistency and never certifies source truth or consent.
+    """
+    prior_request = source_evidence._json_copy(previous_request, "previous_request")
+    state.obj(prior_request, {"operation", "session", "previous"}, "previous_request")
+    if prior_request["operation"] != "design_session":
+        raise ValueError("unsupported_session_operation")
+    prior_response = source_evidence._json_copy(previous_response, "previous_response")
+    if type(prior_response) is not dict:
+        raise ValueError("invalid_previous_response")
+    old = state.prepare(prior_request["session"])
+    following = source_evidence._json_copy(next_session, "next_session")
+    if type(following) is not dict:
+        raise ValueError("invalid_fields:session")
+    supplied_parent = following.get("parent_digest")
+    following.setdefault("parent_digest", None)
+    next_prepared = state.prepare(following)
+    result = prior_response.get("result")
+    complete = (
+        prior_response.get("code") == "complete"
+        and prior_response.get("operation") == "design_session"
+        and type(result) is dict
+    )
+    code = revision_input_code(
+        complete,
+        complete
+        and result.get("session_digest") == old["digest"]
+        and result.get("session_id") == old["session"]["id"]
+        and result.get("revision") == old["session"]["revision"]
+        and source_evidence.exact_json_equal(result.get("target"), old["session"]["target"]),
+        complete
+        and type(prior_response.get("result_digest")) is str
+        and prior_response["result_digest"] == state.digest(result),
+        next_prepared["session"]["id"] == old["session"]["id"],
+        next_prepared["session"]["revision"] != old["session"]["revision"],
+        supplied_parent is None or supplied_parent == old["digest"],
+    )
+    if code != "ready":
+        raise ValueError(code)
+    next_prepared["session"]["parent_digest"] = old["digest"]
+    return {
+        "operation": "design_session",
+        "session": next_prepared["session"],
+        "previous": {
+            "session": old["session"],
+            "result": result,
+            "expected_result_digest": prior_response["result_digest"],
+        },
+    }
 
 
 def alternative_code(result: str, blockers: list[str], accepted: bool, target_matches: bool) -> str:
@@ -110,7 +209,8 @@ def session_work_code(
 def _child(request: dict, execute: Callable[[object], dict], budget: dict, limits: dict) -> dict:
     """One common budget owner for named analyses and pairwise distinction checks."""
     budget["expanded_items"] += _nodes(request)
-    budget["solver_work_reserved"] += _reserve(request)
+    reserved = _reserve(request)
+    budget["solver_work_reserved"] += reserved
     budget["analyses"] += 1
     code = session_work_code(
         budget["analyses"],
@@ -119,7 +219,16 @@ def _child(request: dict, execute: Callable[[object], dict], budget: dict, limit
         limits["max_solver_work"],
     )
     if code != "within_budget":
-        raise ValueError(code)
+        raise SessionBudgetError(
+            code,
+            {
+                "code": code,
+                "operation": request["operation"],
+                "budget": deepcopy(budget),
+                "limits": {key: limits[key] for key in ("max_analyses", "max_solver_work")},
+                "request_reservation": reserved,
+            },
+        )
     result = json.loads(state.canonical(execute(deepcopy(request))))
     if type(result) is not dict or result.get("code") not in ("complete", "refused"):
         raise ValueError("invalid_child_result")
@@ -250,6 +359,33 @@ def _reserve(request: dict) -> int:
         if operation in ("entailment", "interpretations", "design_bounds", "source_assertions")
         else _nodes(request)
     )
+    # Unsupported estimates retain the declared per-enumeration ceiling. These
+    # call counts include proof minimization and the shared explanation plan.
+    from TrialLedger.layer2.entail_explanations import MAX_CONDITIONS
+
+    ordinary = 2 * n + 4
+    explained = ordinary * (2 * MAX_CONDITIONS + 1) + 1
+    if operation == "entailment":
+        base = bound * explained
+    elif operation == "interpretations":
+        base = bound * (ordinary * (2 * len(frames) + 1) + explained * queries * (len(frames) + 1))
+    elif operation == "design_bounds":
+        base = (
+            bound * max(1, len(candidates)) * ((3 * n + 8) * len(request.get("observations", [])) + explained)
+        )
+    elif operation == "source_assertions":
+        from TrialLedger.layer2 import source_assertions
+
+        try:
+            expanded = source_assertions.prepare(request)
+        except ValueError:
+            # The same pure preparation refuses before any solver call in service.
+            pass
+        else:
+            base = sum(_reserve(child) for child in expanded["requests"])
+    represented = solver_work.logical_reservation(request, bound)
+    if represented is not None:
+        base = represented
     # Parsing, raw validation and effective checks may visit the same table. Count every declared
     # query/frame/candidate use conservatively instead of assuming the wrapper calls it once.
     table_repeats = 3 * (queries + 1) * (len(frames) + 1) * (len(candidates) + 1)
@@ -569,6 +705,141 @@ def _diff(before: dict, after: dict) -> dict:
     return out
 
 
+ANSWER_CHANGE_CODES = (
+    "new",
+    "withdrawn",
+    "projection_unknown",
+    "answer_changed",
+    "support_changed",
+    "origin_changed",
+    "input_only",
+    "unchanged",
+)
+
+
+def answer_change_code(
+    before: bool,
+    after: bool,
+    comparable: bool,
+    answer_equal: bool,
+    support_equal: bool,
+    origin_equal: bool,
+    input_equal: bool,
+) -> str:
+    """Name a change without collapsing its independently retained axes (pure).
+
+    post: __return__ in ANSWER_CHANGE_CODES
+    post: __return__ != 'unchanged' or (before and after and comparable)
+    post: __return__ != 'unchanged' or (answer_equal and support_equal and origin_equal and input_equal)
+    """
+    if not before:
+        return "new"
+    if not after:
+        return "withdrawn"
+    if not comparable:
+        return "projection_unknown"
+    if not answer_equal:
+        return "answer_changed"
+    if not support_equal:
+        return "support_changed"
+    if not origin_equal:
+        return "origin_changed"
+    return "unchanged" if input_equal else "input_only"
+
+
+def _analysis_answer(row: dict, snapshot: dict) -> dict:
+    """Use the shared clinical projection; source origins remain session-owned data."""
+    from TrialLedger.layer2 import clinical_answers
+
+    envelope = row["result"]
+    if envelope.get("code") != "complete":
+        return {"state": "not_comparable", "refusal": deepcopy(envelope.get("problems", []))}
+    payload = deepcopy(envelope["result"])
+    if type(payload) is not dict:
+        return {"state": "not_comparable", "reason": "unsupported_result_shape"}
+    # The projector resolves only IDs in actual deciding warrants against this
+    # ledger. This copy supplies provenance, not an additional logical premise.
+    payload["effective_premises"] = deepcopy(snapshot["effective_premises"])
+    axes = clinical_answers.change_projection(row["request"]["operation"], payload)
+    known = bool(axes["answer"]) and all(item.get("completion") != "unclassified" for item in axes["support"])
+    axes["answer"] = {"target": deepcopy(row["target"]), "findings": axes["answer"]}
+    return {"state": "comparable" if known else "not_comparable", **axes}
+
+
+def _decision_answer(row: dict, snapshot: dict) -> dict:
+    """Use the same session-decision projection as the clinical handoff."""
+    from TrialLedger.layer2 import clinical_answers
+
+    axes = clinical_answers.change_projection(
+        "design_session",
+        {
+            "decisions": [deepcopy(row)],
+            "effective_premises": deepcopy(snapshot["effective_premises"]),
+        },
+    )
+    return {"state": "comparable", **axes}
+
+
+def _answer_diff(before: dict, after: dict) -> dict:
+    """Clinical consequences alongside, never in place of, full canonical audit changes."""
+    out = {}
+    for field in ("analyses", "decisions"):
+        old, new = ({v["id"]: (index, v) for index, v in enumerate(s[field])} for s in (before, after))
+        rows = []
+        for key in sorted(old.keys() | new.keys()):
+            projected = []
+            for values, snapshot in ((old, before), (new, after)):
+                row = values[key][1] if key in values else None
+                projected.append(
+                    None
+                    if row is None
+                    else _analysis_answer(row, snapshot)
+                    if field == "analyses"
+                    else _decision_answer(row, snapshot)
+                )
+            left, right = projected
+            comparable = (
+                left is not None
+                and right is not None
+                and all(item["state"] == "comparable" for item in (left, right))
+            )
+            equal = {
+                axis: comparable
+                and left is not None
+                and right is not None
+                and source_evidence.exact_json_equal(left[axis], right[axis])
+                for axis in ("answer", "support", "origin")
+            }
+            code = answer_change_code(
+                key in old,
+                key in new,
+                comparable,
+                *equal.values(),
+                source_evidence.exact_json_equal(
+                    old.get(key, (None, None))[1], new.get(key, (None, None))[1]
+                ),
+            )
+            active = new[key][1] if key in new else old[key][1]
+            rows.append(
+                {
+                    "id": key,
+                    "operation": active["request"]["operation"] if field == "analyses" else "design_session",
+                    "code": code,
+                    "changes": [axis for axis, same in equal.items() if comparable and not same],
+                    "axes": {
+                        axis: "unchanged" if same else "changed" if comparable else "not_comparable"
+                        for axis, same in equal.items()
+                    },
+                    "before": left,
+                    "after": right,
+                    "before_path": f"/previous_fresh/{field}/{old[key][0]}" if key in old else None,
+                    "after_path": f"/result/{field}/{new[key][0]}" if key in new else None,
+                }
+            )
+        out[field] = rows
+    return out
+
+
 def run(request: object, execute: Callable[[object], dict] | None = None) -> dict:
     """Run a closed session request; the public service owns envelope/refusal integration."""
     held = source_evidence._json_copy(request, "session_request")
@@ -608,8 +879,10 @@ def run(request: object, execute: Callable[[object], dict] | None = None) -> dic
         "code": "complete",
         "operation": "design_session",
         "result": after,
+        "result_digest": state.digest(after),
         "previous_fresh": before,
         "diff": _diff(before, after) if before is not None else None,
+        "answer_diff": _answer_diff(before, after) if before is not None else None,
         "work": budget,
         "problems": [],
     }

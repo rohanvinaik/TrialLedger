@@ -1,0 +1,3075 @@
+{
+  "scope": "Actual CLI replay of all25 active paired examples; every old field retained. Only additive findings/explanations/values and explicitly revised session work/digests permitted. No request changed.",
+  "cases": [
+    {
+      "request": "examples/design-session/evidence-investigation-request.json",
+      "request_sha256": "0b2156b0a097c3fff5fe72fddf669d39e4a35fde16f5a9e650a1ac6e2c151fc7",
+      "result": "examples/design-session/evidence-investigation-result.json",
+      "before_sha256": "1a47d1acb7f09a53c27eddce4823146d4bc962cfef3a29c1d158bcf894583740",
+      "changes": [
+        {
+          "path": "/result/analyses/0/result/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/result_digest_scope",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result_digest",
+          "kind": "changed",
+          "before": "db7a047079cd11f16889e67c4b69b664ebf751abe9e931bdc0ffbece3468e4c0",
+          "after": "0004dd623bbe32479d107fb25478409cebaa17a8d68034f8fd99592e06d0c9d9"
+        },
+        {
+          "path": "/result/limit_semantics",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/answer_diff",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/assessment-roles-request.json",
+      "request_sha256": "6d767c0bfcc031b524f1c93c45a5deb9b21fb70b6722dc9d94fcd6b228b3d6eb",
+      "result": "examples/interpretations/assessment-roles-result.json",
+      "before_sha256": "ac73594db0952fcce682497b66aa52565d0555efac5eb8868e569f7f50ae74d3",
+      "changes": [
+        {
+          "path": "/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/3/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/3/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/draft-choices-request.json",
+      "request_sha256": "15c80b45815d727203842836b88d888eea7b92c336aefc23bb3b3e47e8d84d21",
+      "result": "examples/interpretations/draft-choices-result.json",
+      "before_sha256": "63330c070e034027c4c83c0df2988da5e81e4c7d6a5bc49e31a234e73424ded1",
+      "changes": [
+        {
+          "path": "/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/draft-revised-PS0-3-request.json",
+      "request_sha256": "ac5b80d9526e5383cca64fda1ae3293e236d54eebdf3393c693bb7f5d5b97fa3",
+      "result": "examples/interpretations/draft-revised-PS0-3-result.json",
+      "before_sha256": "cbb84ce449b39540a89e0371b028136973e801fc9e10b4b2cf5b137396aa8aa8",
+      "changes": [
+        {
+          "path": "/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/draft-selected-PS0-2-request.json",
+      "request_sha256": "5367498dda95a4276343bb2bbf22e722c4ce1779255d14d87b68443a51d1c31e",
+      "result": "examples/interpretations/draft-selected-PS0-2-result.json",
+      "before_sha256": "640cc290b2c2486a5eac05794ff3ea802236a46eea2b01b296448d7edc41d5c6",
+      "changes": [
+        {
+          "path": "/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/endpoint-inputs-request.json",
+      "request_sha256": "7e340d6600105f02b6068f6a0308b1dbb5984cedf983e0410e78974e043eeeff",
+      "result": "examples/interpretations/endpoint-inputs-result.json",
+      "before_sha256": "e5382dfe6946a9d2f6b42970f5d8244ca8e34458bb4ec5a51d44aed4bab95027",
+      "changes": [
+        {
+          "path": "/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/2/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/population-resolved-request.json",
+      "request_sha256": "cea57b0807453fcb4dd480d746fd2781c4d07b95e47092d0ce93a4750a7d16c6",
+      "result": "examples/interpretations/population-resolved-result.json",
+      "before_sha256": "8fd858075f6b7a0fa676e67a8539626676f2b8a32486a214b780d432e5f29bc4",
+      "changes": [
+        {
+          "path": "/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/population-unresolved-request.json",
+      "request_sha256": "c9ff25a308c65edd5638a2619ad042bab5dad2a331bb3ebb8829f6d9061bea1b",
+      "result": "examples/interpretations/population-unresolved-result.json",
+      "before_sha256": "79fd3cb3c49864a62273c39ed2e271fe97ffad04d9461d2f068568d88eee2c83",
+      "changes": [
+        {
+          "path": "/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/interpretations/1/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/partial-evidence/design-request.json",
+      "request_sha256": "b037bd9628b2b3ec1dad3d723d73a83cc3666bce7032b16d73ec009d6ef362ad",
+      "result": "examples/partial-evidence/design-result.json",
+      "before_sha256": "9a99f15f4e40f87c71b10910797ee37a667f2c1944ee6a4b74a18dfddd97c832",
+      "changes": [
+        {
+          "path": "/result/candidates/0/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/6/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/7/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/8/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/9/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/10/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/1/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/2/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/3/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/3/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/3/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/3/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/3/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/3/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/observations/3/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/11/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/partial-evidence/draft-request.json",
+      "request_sha256": "9afcb20ec002868d4bb9925e3a99c022a190ed51a2d8fdd814aff3996fbd16e6",
+      "result": "examples/partial-evidence/draft-result.json",
+      "before_sha256": "d6632b7fb67d7476b7b96a6879b0f77c11f286fb014ee0bf6e096bcfb428e502",
+      "changes": [
+        {
+          "path": "/result/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/reasoning-admission/coordinate-standing-request.json",
+      "request_sha256": "15483f742f073bd45e4a1d81dc8a75059d2d2c03514f8a8925a9250cca0cf530",
+      "result": "examples/reasoning-admission/coordinate-standing-result.json",
+      "before_sha256": "1e581383645c09646bbe7c998136c014ce911d887e9a5cf41f6ffd9a2ac0bde2",
+      "changes": [
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/reasoning-admission/declared-proposition-bridge-request.json",
+      "request_sha256": "c2f94c0868dabdce549d2ce9264484a11a788ae406fda02cd6d0104daffd8c9f",
+      "result": "examples/reasoning-admission/declared-proposition-bridge-result.json",
+      "before_sha256": "c33fbad0a45fc3ba0b74d7b801ba4a587307e3ca2bb5e3f10776263d3ae6c7a5",
+      "changes": [
+        {
+          "path": "/result/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/reasoning-admission/mixed-comparison-request.json",
+      "request_sha256": "ff9a4b0aea008aadfd90f03779f604160b9defcaa60deb312f946b0deeafa495",
+      "result": "examples/reasoning-admission/mixed-comparison-result.json",
+      "before_sha256": "f5fb6f325929e3e230f805f4b3fc9d7cee2fafd23429c8c643f20b2cafcda8a6",
+      "changes": [
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/reasoning-admission/unbound-scale-request.json",
+      "request_sha256": "3d97b45c1a3d6edb39928c1af86e044394fde7db894e4ce6ab5e351e4cbe7d7e",
+      "result": "examples/reasoning-admission/unbound-scale-result.json",
+      "before_sha256": "6a68279b11e68bd14c98f17cd40729f57fd2d0f76fbcebbfa4f255133530129d",
+      "changes": [
+        {
+          "path": "/result/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-bridge/ipass-baseline-overlap-request.json",
+      "request_sha256": "48c25f5d370efe555561eb10c94d0c07a12f9e67cb27af5afa530f98c83d2294",
+      "result": "examples/source-bridge/ipass-baseline-overlap-result.json",
+      "before_sha256": "d4274d18e1772fe570a6c8cf31286198bcd29926d578531a3827fb0d325fb99e",
+      "changes": [
+        {
+          "path": "/result/analyses/0/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/fixed/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/interpretations/0/queries/1/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result_digest_scope",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-bridge/ipass-registered-age-request.json",
+      "request_sha256": "013889874faed788fd8818f7ddc53cf16356f8109d485887029a230dddb9ba16",
+      "result": "examples/source-bridge/ipass-registered-age-result.json",
+      "before_sha256": "eae3ce789d56ce2302eedfb6883578ee0c474675c609e598b40c61ccf9769ad7",
+      "changes": [
+        {
+          "path": "/result/analyses/0/result/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result_digest_scope",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/1/result/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/1/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/1/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/1/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/1/result_digest_scope",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-bridge/ipass-schedule-readings-request.json",
+      "request_sha256": "56659a6ec0452fabd12e498480b2ab80d39684e7c004928f9be427415e65cd5f",
+      "result": "examples/source-bridge/ipass-schedule-readings-result.json",
+      "before_sha256": "65a828e51d6de325bcf1f1f5138b8f5de17e3df81227fcce3457d9ee11ff167d",
+      "changes": [
+        {
+          "path": "/result/analyses/0/result/fixed/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/interpretations/0/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/interpretations/1/queries/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result/consequences/0/explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result/analyses/0/result_digest_scope",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-analysis-overlap-request.json",
+      "request_sha256": "54c9e48385fee9f3c59e4d1e8b399a3951a12b97652a0849f42c92544adec483",
+      "result": "examples/source-workflows/ipass-analysis-overlap-result.json",
+      "before_sha256": "e20a97f73a4b80fad9c19f7bacf6da8090ffdc0627e3ee1238f6dedfd4f6fe38",
+      "changes": [
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-analysis-populations-request.json",
+      "request_sha256": "21229676ddd2e3eb3e82216d207e3653eec308c8e35dce0a483de671369d7c95",
+      "result": "examples/source-workflows/ipass-analysis-populations-result.json",
+      "before_sha256": "bd875745f6b06065c1476e8fd2073ea4e70ae4eef933cd8f59b60da59497bdc7",
+      "changes": [
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-assessment-window-request.json",
+      "request_sha256": "64b60f02d53c0f8ce6312e0f8eceda8abe0d79802bc7860bbe9105be1ace5a4e",
+      "result": "examples/source-workflows/ipass-assessment-window-result.json",
+      "before_sha256": "4c0d3ca3c562bd29b031b1cba83ea4d5e013513e36de4328122da31b4f193695",
+      "changes": [
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-assessment-window-unresolved-request.json",
+      "request_sha256": "76638e8549974924722c594dc7ec9a0fbafff21d75d9482e09dfbff71ee65741",
+      "result": "examples/source-workflows/ipass-assessment-window-unresolved-result.json",
+      "before_sha256": "6df090f8bf14323c36a94cc59fe017f6129d98f74892d40db56b4f4793dba772",
+      "changes": [
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-joint-exceptions-48-request.json",
+      "request_sha256": "3d2b49d45f08d78157452d5ae0ff01a9a5c434f7a3d2cc7c3386797f921da50f",
+      "result": "examples/source-workflows/ipass-joint-exceptions-48-result.json",
+      "before_sha256": "c47b415a48faa05cc90021a984a33d14c78e4cf44e58734726513d4950d9676e",
+      "changes": [
+        {
+          "path": "/result/candidates/0/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-joint-exceptions-49-request.json",
+      "request_sha256": "1a1257e59c617bfcf18317031c35fd343a5eba63298a3664f4a35a79ba41b998",
+      "result": "examples/source-workflows/ipass-joint-exceptions-49-result.json",
+      "before_sha256": "7611fbf53af24880a11b0ed837cf7c04582bceefcf0f22263bfecb93dd2bd469",
+      "changes": [
+        {
+          "path": "/result/candidates/0/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-joint-request.json",
+      "request_sha256": "88c36a165b615ef32be879c2baa57c5ff320a4adcad7ec32684482946dd45c83",
+      "result": "examples/source-workflows/ipass-joint-result.json",
+      "before_sha256": "b6d17ac6086b461351bbcb6243066717f8c4fd165e583b497a4ab4085053d65a",
+      "changes": [
+        {
+          "path": "/result/candidates/0/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    },
+    {
+      "request": "examples/source-workflows/ipass-performance-status-request.json",
+      "request_sha256": "587d3299bbc6d7a8f152cda0819a28d0bd14140e55750585bc0bb56ed08cd35b",
+      "result": "examples/source-workflows/ipass-performance-status-result.json",
+      "before_sha256": "12e01c6bea58e093b0ccd9f53fa2d932262fc1b2dcba503e7c6d7680437d0988",
+      "changes": [
+        {
+          "path": "/result/candidates/0/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/0/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/1/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/2/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/3/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/4/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/count_upper",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/count_lower",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/count_kind",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/max_exceptions",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/denominator",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/direction",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/context",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/observations/0/population",
+          "kind": "added"
+        },
+        {
+          "path": "/result/candidates/5/query_explanations",
+          "kind": "added"
+        },
+        {
+          "path": "/clinical",
+          "kind": "added"
+        },
+        {
+          "path": "/summary",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest",
+          "kind": "added"
+        },
+        {
+          "path": "/result_digest_scope",
+          "kind": "added"
+        }
+      ]
+    }
+  ]
+}

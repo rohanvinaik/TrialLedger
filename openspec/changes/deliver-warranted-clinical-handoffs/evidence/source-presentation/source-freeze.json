@@ -1,0 +1,37 @@
+[
+  {
+    "path": "TrialLedger/eligibility.py",
+    "proof_copy_equals_main": true,
+    "sha256": "a4f62d53053f7132a8168f2ccd862d13231375175dadfc8949546db9f1fe9f4a"
+  },
+  {
+    "path": "TrialLedger/landscape.py",
+    "proof_copy_equals_main": true,
+    "sha256": "81b4f51bba14a022be1732e3cd264307f5b5346000de5e374a6a788a4f451a83"
+  },
+  {
+    "path": "TrialLedger/landscape_warrants.py",
+    "proof_copy_equals_main": true,
+    "sha256": "3ca24675269e7917483fe90fc21b3bf5ec578786e46cc5a94d95cb9005b0c7f8"
+  },
+  {
+    "path": "TrialLedger/landscape_verify.py",
+    "proof_copy_equals_main": true,
+    "sha256": "640f56c72644652d3aae94d4996c41e43c1cd20543ad006fd0c7b7e6098a1886"
+  },
+  {
+    "path": "TrialLedger/readout.py",
+    "proof_copy_equals_main": true,
+    "sha256": "1d4a400ea28a2f2bf8cc044eb8bb858f8a696b2c790099f04d1c560645833bc1"
+  },
+  {
+    "path": "TrialLedger/contract.py",
+    "proof_copy_equals_main": true,
+    "sha256": "487ba3c5b6815aef37c115320e0f377ba781980c6ba121ecdeb124d6cf26de12"
+  },
+  {
+    "path": "TrialLedger/baseline_view.py",
+    "proof_copy_equals_main": true,
+    "sha256": "b83e640396f00aea1279b01a9a9de513685de7407093ce8317399cac83c70f6f"
+  }
+]

@@ -471,7 +471,7 @@ def public_design(signal, claims):
 
 @pytest.mark.parametrize("view", ["signals", "design_bounds"])
 def test_public_discovery_supplies_runnable_graph_examples_and_claim_contracts(view):
-    envelope = run({"operation": "describe", "view": view})
+    envelope = run({"operation": "describe", "view": view, "detail": "full"})
     assert envelope["code"] == "complete"
     discovery = envelope["result"]
     for kind in ("temporal", "regimen", "relations"):

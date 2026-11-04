@@ -1,4 +1,502 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "design_bounds",
+    "findings": 11,
+    "dispositions": {
+      "conditional": 1,
+      "open": 9,
+      "settled": 1
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "design_bounds",
+    "findings": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "outcome": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "no_joint"
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/0"
+      },
+      {
+        "path": "/result/candidates/0/query_decision",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "never_smoker",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "no_joint"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/candidates/0/query_decision"
+      },
+      {
+        "path": "/result/candidates/0/observations/0",
+        "kind": "witness",
+        "outcome": "not_ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 49,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 49,
+          "bounds": {
+            "lower": 49,
+            "upper": 126
+          },
+          "count_kind": "derived_interval",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "/studies/0/baseline/measures/4/classes/0/categories/0/measurements/2/value",
+            "test:assume-exact-participant-counts-in-one-baseline-universe",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "no_witness",
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"never_smoker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+            "status": "known",
+            "proof": [
+              "no_joint"
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/0/observations/0"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "outcome": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "requires_never"
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/1"
+      },
+      {
+        "path": "/result/candidates/1/query_decision",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "never_smoker",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "requires_never"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/1/query_decision"
+      },
+      {
+        "path": "/result/candidates/1/observations/0",
+        "kind": "witness",
+        "outcome": "not_ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 49,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 49,
+          "bounds": {
+            "lower": 49,
+            "upper": 126
+          },
+          "count_kind": "derived_interval",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "/studies/0/baseline/measures/4/classes/0/categories/0/measurements/2/value",
+            "test:assume-exact-participant-counts-in-one-baseline-universe",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "no_witness",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"never_smoker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+            "status": null,
+            "proof": [
+              "requires_never"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/candidates/1/observations/0"
+      },
+      {
+        "path": "/result/candidates/2",
+        "kind": "candidate",
+        "outcome": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "unrestricted"
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/2"
+      },
+      {
+        "path": "/result/candidates/2/query_decision",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "never_smoker",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ],
+        "canonical_ref": "/result/candidates/2/query_decision"
+      },
+      {
+        "path": "/result/candidates/2/observations/0",
+        "kind": "witness",
+        "outcome": "not_ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 49,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 49,
+          "bounds": {
+            "lower": 49,
+            "upper": 126
+          },
+          "count_kind": "derived_interval",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "/studies/0/baseline/measures/4/classes/0/categories/0/measurements/2/value",
+            "test:assume-exact-participant-counts-in-one-baseline-universe",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "no_witness",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"never_smoker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ],
+        "canonical_ref": "/result/candidates/2/observations/0"
+      },
+      {
+        "path": "/result/consequence",
+        "kind": "candidate_family_consequence",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {},
+        "support": {
+          "basis": "All remaining declared candidate designs; includes the support of eliminations."
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query",
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/consequence"
+      },
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "outcome": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "joint-count",
+          "value": {
+            "universe": "NCT00322452:baseline:BG002",
+            "total": 1217,
+            "counts": [
+              {
+                "id": "intersection",
+                "lower": 49,
+                "upper": 126
+              }
+            ],
+            "witnesses": [
+              {
+                "id": "intersection",
+                "lower": 49,
+                "upper": 126,
+                "expression": {
+                  "kind": "all_of",
+                  "refs": [
+                    "ps2",
+                    "never"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "/studies/0/baseline/measures/4/classes/0/categories/0/measurements/2/value",
+            "test:assume-exact-participant-counts-in-one-baseline-universe"
+          ],
+          "rule": "numeric.overlap:1",
+          "support": [
+            {
+              "id": "retained-counts",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+                "/studies/0/baseline/denominators/0/counts/2",
+                "/studies/0/digest",
+                "/studies/0/baseline/measures/4/classes/0/categories/0/measurements/2/value"
+              ]
+            },
+            {
+              "id": "same-universe",
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "test:assume-exact-participant-counts-in-one-baseline-universe"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/signals/0"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "design_bounds",
   "result": {
@@ -366,6 +864,18 @@
               ],
               "blockers": []
             },
+            "count_lower": 49,
+            "count_upper": 126,
+            "count_kind": "derived_interval",
+            "denominator": 1217,
+            "max_exceptions": 49,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted",
             "bounds": {
               "lower": 49,
               "upper": 126
@@ -396,6 +906,18 @@
           "blockers": [
             "undecided_by_constraints"
           ]
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "complete",
+            "decisions": 0,
+            "intrinsic_queries": 1,
+            "planned": 0,
+            "limit": 8
+          }
         },
         "signal_checks": []
       },
@@ -428,6 +950,18 @@
                 "undecided_by_constraints"
               ]
             },
+            "count_lower": 49,
+            "count_upper": 126,
+            "count_kind": "derived_interval",
+            "denominator": 1217,
+            "max_exceptions": 49,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted",
             "bounds": {
               "lower": 49,
               "upper": 126
@@ -456,6 +990,18 @@
             "requires_never"
           ],
           "blockers": []
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "not_open",
+            "decisions": 0,
+            "intrinsic_queries": 0,
+            "planned": 0,
+            "limit": 8
+          }
         },
         "signal_checks": []
       },
@@ -486,6 +1032,18 @@
                 "no_constraint_mentions_query"
               ]
             },
+            "count_lower": 49,
+            "count_upper": 126,
+            "count_kind": "derived_interval",
+            "denominator": 1217,
+            "max_exceptions": 49,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted",
             "bounds": {
               "lower": 49,
               "upper": 126
@@ -514,6 +1072,18 @@
           "blockers": [
             "no_constraint_mentions_query"
           ]
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "complete",
+            "decisions": 0,
+            "intrinsic_queries": 1,
+            "planned": 0,
+            "limit": 8
+          }
         },
         "signal_checks": []
       }
@@ -732,5 +1302,7 @@
         "disposition": "conditional"
       }
     ]
-  }
+  },
+  "result_digest": "b760060bb63a27548a3b926612f7426c65a8d3fe083b1bdd0adc566554cf605b",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

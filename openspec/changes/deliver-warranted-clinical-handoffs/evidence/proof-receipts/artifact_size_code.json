@@ -1,0 +1,82 @@
+{
+  "adopted_into_main_at_receipt_creation": false,
+  "adoption": "No completed pin certificate claimed; partial generated characterization is retained externally only.",
+  "certificate": null,
+  "counterexample_or_falsifier": "Changed target/dependency, distinguishing mutant input, unrouted authored negative, or failing main adoption.",
+  "crosshair": {
+    "log": "/tmp/trialledger-final-two-sign-20261104-artifact-size/crosshair.log",
+    "report_all": true,
+    "sha256": "621ab0fc013d9d58f5fdc8e07c54a1a4117a9a5bfeab43161e3007c8308db904",
+    "status": "Confirmed over all paths"
+  },
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/artifact_size_code",
+  "generated_suites": [
+    {
+      "eligible_for_completed_pin_adoption": false,
+      "external_packet": "/tmp/trialledger-final-proof-packets-20261104/artifact_size_code/test_TrialLedger_reasoning_artifacts_artifact_size_code_ea96e1e7a4_synth.py",
+      "path": "/tmp/trialledger-final-two-sign-20261104-artifact-size/tests/detective/test_TrialLedger_reasoning_artifacts_artifact_size_code_ea96e1e7a4_synth.py",
+      "sha256": "22b7d5952e6b59ba99a318f9e6fb1b23cef70a862439c3a66f0d066965013399"
+    }
+  ],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 322040,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/private/tmp/trialledger-final-two-sign-20261104-artifact-size/.venv/bin/python",
+      "project_root": "/private/tmp/trialledger-final-two-sign-20261104-artifact-size",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 3,
+    "outcome": [],
+    "refusal": "harvest_cut",
+    "state": {
+      "equivalents": "",
+      "inputs": "",
+      "suite": "sha256:4c86b8397620e665ea7c93615aaadaf9",
+      "target_src": "sha256:74e2a292302b885aba265073654725e2"
+    },
+    "target": "TrialLedger/reasoning_artifacts.py::artifact_size_code",
+    "ts": "2026-11-04T05:47:25Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/tmp/trialledger-final-two-sign-20261104-artifact-size/.detective/ledger.jsonl",
+    "sha256": "a29d2f40ee316e0167d4cb0e7a910e0e807a7b56219fa84b6f3b53de5d0c5aec"
+  },
+  "next_action": "None supplied; no retry, diagnosis or bypass performed.",
+  "ordinary_verification": {
+    "command": "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker .venv/bin/python -m pytest tests/test_reasoning_artifacts.py tests/test_reasoning_delivery.py",
+    "passed": 48,
+    "scope": "Authored artifact/delivery tests on current main, independent of mutation completion."
+  },
+  "policy": "9+neg.f5a15364c11d",
+  "proof_directory": "/tmp/trialledger-final-two-sign-20261104-artifact-size",
+  "recorded_at": "2026-11-04T05:49:02.000527+00:00",
+  "reported": {
+    "completion": "INCOMPLETE",
+    "verbatim": "INCOMPLETE:  harvest_cut: codomain observation did not complete admissibly"
+  },
+  "schema_version": 1,
+  "scope": "One named pure decision; no project-wide proof.",
+  "source": {
+    "byte_equal_to_current": true,
+    "current_sha256": "74e2a292302b885aba265073654725e263c384bd70648d02c510d2ea6a2d981e",
+    "function_ast_equal_to_current": true,
+    "function_ast_sha256": "4b6d1adc9974a9d8035bebf4a877b4b2e75e1eb6caff8544170f87b87bf95ee4",
+    "path": "TrialLedger/reasoning_artifacts.py",
+    "sha256": "74e2a292302b885aba265073654725e263c384bd70648d02c510d2ea6a2d981e"
+  },
+  "target": "TrialLedger/reasoning_artifacts.py::artifact_size_code"
+}

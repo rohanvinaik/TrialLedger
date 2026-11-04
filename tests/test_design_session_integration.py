@@ -37,7 +37,7 @@ def test_complete_session_findings_point_to_actual_local_results_and_warrants(sn
 
 
 def test_focused_discovery_exposes_exact_shapes_and_actual_revision():
-    response = run({"operation": "describe", "view": "design_session"})
+    response = run({"operation": "describe", "view": "design_session", "detail": "full"})
     assert response["code"] == "complete", response
     description = response["result"]
     assert description["example"]["operation"] == "design_session"

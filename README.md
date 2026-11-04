@@ -160,10 +160,15 @@ the registry against the real world.
   their own details. Missing information stays visible: "not stated" never becomes "none".
 - **`landscape.json`**, the matching evidence record your assistant answers from, linked back to the
   registry. The complete registry responses are kept too.
-- **The decision list.** For each consequential choice: the decision in clinical words, the evidence from the
-  compared trials (including where the registry is silent), the computed consequence of each option, and its
-  status, open or chosen by you. Your assistant can keep it in a `working-brief.md` file beside the saved
-  checks, so the design can be revised and rechecked later.
+- **`design-review.xlsx` and `decision-list.md`**, when you continue into design work. For each declared
+  choice: the question in clinical words, alternatives, computed consequences, deciding evidence and
+  premises, what remains open and any recorded selection. A revision distinguishes changed answers from
+  changed support or attribution. The accompanying manifest and complete saved checks let a colleague
+  trace the handoff. Your assistant can keep conversational context in `working-brief.md` beside it.
+
+The design review is a separate handoff. Your reference workbook and registry evidence remain unchanged.
+With a source record supplied, the review also lays out baseline values by their local groups, preserving
+population, unit and denominator context. An arm and a total are never silently added together.
 
 ## How far to trust each answer
 
@@ -372,6 +377,31 @@ the original. Their consequences differ, both remain proposed, neither establish
 the independent registered age restriction stays settled. The remaining question is visible for the person
 to resolve.
 
+### Three useful answers inside one open question
+
+Consider a heart-failure draft with different NT-proBNP requirements for participants with and without
+atrial fibrillation. In the executed HFrEF workflow, the **draft premises are simulated choices**, separate
+from the retained DAPA-HF and EMPEROR-Reduced registry records.
+
+- Asked whether **900 pg/mL** fits, the draft does not give an unconditional yes or no. The computation
+  nevertheless proves a useful condition: **if that profile fits these restrictions, the participant must
+  not have atrial fibrillation**. A condition is retained with what proves it; the open headline does not
+  erase it or become a claim that all eligibility has been checked.
+- A draft statement that background SGLT2 treatment **is permitted** remains visible beside the answer.
+  It imposes no requirement to use it and cannot defeat a separate exclusion. Being mentioned and being
+  required are different information.
+- DAPA-HF's posted NYHA table has **20, 23 and 43** class-IV participants in its two arms and total. Those
+  are three source cells, not 86 people. Under an explicitly accepted working assumption aligning the
+  baseline population with entry eligibility, the total
+  rules out a candidate allowing only classes II–III when fewer than 43 exceptions are allowed. Allowing
+  43 exceptions removes that particular elimination; it does not prove the candidate is the actual protocol.
+
+Widening the simulated draft from NYHA II–III to II–IV changes two of its seven clinical answers. All seven
+audit objects change because their inputs changed. The review shows both facts separately, so a colleague
+can see the actual consequences without mistaking bookkeeping changes for seven new clinical findings.
+The [implementation evidence](openspec/changes/deliver-warranted-clinical-handoffs/evidence/session-revisions/wiring-and-work.md)
+records the executed checks and their scope.
+
 ## What isn't built yet
 
 - **Automatic reading of eligibility prose.** Today you and your assistant settle readings together;
@@ -468,23 +498,27 @@ For an assistant client that supports local MCP servers:
 }
 ```
 
-Use absolute paths. Tools are doctor, scope, landscape, save_fetch, record and reason. The assistant handles
+Use absolute paths. Tools are doctor, scope, landscape, save_fetch, record, reason, reason_result,
+reason_revise and reason_export. The assistant handles
 record paging: at most 50 entries and a default 24,576-byte record reply. Oversized nested values return exact
 addresses to follow; long strings have lossless text continuation. Saved records are complete. These are
 conversation-output limits, not a limit on the whole process's memory or a change to requested study scope.
 
 Reasoning uses `trialledger reason --request FILE` or MCP `reason(request)`. Start with
-`{"operation":"describe"}` for an overview. Ask for `{"operation":"describe","view":"entailment"}`,
-`coordinates` or `corpus` for the relevant formats, guide and runnable example. Views `worked_session` and
-`full` retain the demonstration and complete manual on demand.
+`{"operation":"describe"}` for a short overview, then an operation view such as
+`{"operation":"describe","view":"entailment"}` for its task card and invented runnable example.
+Add `"detail":"schema"` for structural machine shapes and named field contracts, or `"detail":"full"`
+for that operation's complete guide. Views `worked_session` and `full` retain the demonstration and full
+manual. View `delivery` describes retained results, revisions and exports. The
+[operator workflow](docs/CLINICAL_WORKFLOW.md) connects the calls without requiring internal Python imports.
 
 Use `{"operation":"describe","view":"design_bounds"}` for baseline witness bounds. It describes typed
 observations, explicit eligibility bridges and candidate designs, with a runnable invented example. Candidate
 eliminations feed a common-consequence query through the existing scoped solver. The operation does not read
 tables automatically, reconstruct a complete protocol or change source-text frequency counts.
 
-Use `{"operation":"describe","view":"signals"}` for the partial-evidence contracts and a
-runnable invented request per kind. `signals` evaluates those supplied inputs independently. To constrain a
+Use `{"operation":"describe","view":"signals"}` for the partial-evidence card and a
+runnable invented request. Add `"detail":"full"` for the contracts and examples for every signal kind. `signals` evaluates those supplied inputs independently. To constrain a
 design, include them in `design_bounds.signals`, select a derived observation with explicit predicate bindings,
 or attach typed `signal_claims` to a candidate. Claims against one signal are checked together. Relations,
 regimens and temporal graphs keep their own scopes; the operation does not invent joins between them.
@@ -505,7 +539,8 @@ returned-row limits and the complete response-byte limit. Unsupported numeric pr
 than changing comparison boundaries.
 
 Use `{"operation":"describe","view":"design_session"}` for the closed version-1 session schema,
-named premise projections, computed decisions and runnable baseline/revision examples. Candidates and
+named premise projections, computed decisions and a runnable baseline example. Add `"detail":"full"`
+for the complete schema and baseline/revision examples. Candidates and
 other clinical inputs travel through its premise ledger, not arbitrary parameter substitution. Explicit
 session budgets include child solver work; large evidence searches may need smaller declared bounds.
 Copied-source JSON-node counts are diagnostic; the legacy `max_expanded_items` field no longer refuses
@@ -513,14 +548,32 @@ local replay. Aggregate solver work, analysis count and complete response-byte l
 The `source_study` projection supplies both `study` and `expected_digest`; omit both from child parameters.
 Its historical target uses the exact `/result/source/study_ref` returned by source inspection; an NCT
 number alone does not identify that snapshot. Its local source-ledger ID remains separate.
-The operation returns reusable JSON and does not save files or manage a background session. Save each
-request/result pair separately; the complete trial writer is a further integration.
+The pure operation returns reusable JSON. The CLI/MCP delivery layer can retain it explicitly, without
+changing a source report or managing a background conversation:
+
+```bash
+trialledger reason --request SESSION_FILE --store REASONING_FOLDER --compact
+trialledger reason-result --store REASONING_FOLDER --id ARTIFACT_ID --part decisions
+trialledger reason-revise --store REASONING_FOLDER --id ARTIFACT_ID --edits EDITS_FILE --revision revised
+trialledger reason-export --store REASONING_FOLDER --id REVISED_ARTIFACT_ID --out REVIEW_FOLDER \
+    --source-record REPORT_FOLDER/landscape.json
+```
+
+The corresponding MCP calls use `reason` with `retain:true` or `response_view:"compact"`, followed by
+`reason_result`, `reason_revise` and `reason_export`. The complete canonical request and response remain
+retrievable by artifact ID and exact address. Follow all relevant page and text continuations. A revision
+supplies explicit edits or a complete next session; the program fills integrity fingerprints and freshly
+replays both snapshots. Changed clinical premises retain explicit attribution. Deliver the export's actual
+returned file paths, including its workbook, readable list and manifest. Additional included analyses remain
+separate unless the session explicitly relates them to a decision. The complete trial writer is a further
+integration.
 
 Entailment checks supplied scoped premises; coordinates uses the explicit NSCLC domain; corpus computes
 statement rates with silence bounds, class associations, rarity, occupancy and one-feature comparisons.
 Expectation-deviation classification remains a supporting Python utility. Derivational significance is
 specified for future implementation; it is distinct from today's corpus rarity. The operations do not fetch
-sources or alter reports. The assistant can save a full response separately as `reason-result.json` for reuse.
+sources or alter reports. Full responses can be retained in the separate reasoning store or saved as explicit
+request/result files for reuse.
 
 </details>
 

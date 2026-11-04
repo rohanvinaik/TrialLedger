@@ -25,7 +25,7 @@ def help_text(capsys, *argv):
 
 
 def test_the_public_commands_are_the_two_layer_guide_interface():
-    assert (*REPORTING_COMMANDS, "reason") == USER_COMMANDS
+    assert (*REPORTING_COMMANDS, "reason", "reason-result", "reason-revise", "reason-export") == USER_COMMANDS
 
 
 def test_the_top_level_help_lists_actual_commands(capsys):

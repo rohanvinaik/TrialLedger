@@ -10,7 +10,11 @@ from test_landscape_verify import completed_run, document, save
 
 from TrialLedger import landscape, readout
 from TrialLedger.landscape_verify import verify_landscape
-from TrialLedger.landscape_warrants import LEGACY_SOURCE_PASSAGES_VERSIONS, retained_format
+from TrialLedger.landscape_warrants import (
+    LEGACY_SOURCE_CONTEXT_VERSIONS,
+    LEGACY_SOURCE_PASSAGES_VERSIONS,
+    retained_format,
+)
 
 
 @pytest.mark.parametrize(
@@ -18,6 +22,8 @@ from TrialLedger.landscape_warrants import LEGACY_SOURCE_PASSAGES_VERSIONS, reta
     [
         ("Inclusion Criteria:", False, "registry_heading"),
         ("Exclusion Criteria", False, "registry_heading"),
+        ("Inclusion criteria:\r\n", False, "registry_heading"),
+        ("EXCLUSION CRITERIA:", False, "registry_heading"),
         ("### Crossover", False, "markdown_heading"),
         ("   # Crossover", False, "markdown_heading"),
         ("Crossover Inclusion Criteria:", True, "colon_label"),
@@ -84,6 +90,20 @@ def test_long_continuations_keep_same_context_and_crlf_offsets():
 
 def test_unstructured_text_does_not_invent_context():
     assert all("source_context" not in row for row in landscape.criterion_entries("Adults\n* ECOG 0-2"))
+
+
+def test_case_variants_preserve_exact_context_and_section_without_entry_scope():
+    text = "Intro\r\nInclusion criteria:\r\n* Adults\r\nExclusion criteria:\r\n* Other trial"
+    rows = landscape.criterion_entries(text)
+    assert {row["heading"] for row in rows} == {"unsectioned", "inclusion", "exclusion"}
+    assert "".join(row["text"] for row in rows) == text
+    for row in rows:
+        assert text[row["source_start"] : row["source_end"]] == row["text"]
+        if row["heading"] == "exclusion":
+            assert row["source_context"]["text"] == "Exclusion criteria:"
+            assert row["source_context"]["kind"] == "registry_heading"
+        assert "scope" not in row and "population" not in row
+    assert {row["heading"] for row in landscape.criterion_entries(text, legacy=True)} == {"unsectioned"}
 
 
 @pytest.mark.parametrize(
@@ -160,6 +180,44 @@ def test_unknown_legacy_root_is_never_projected_or_verified(tmp_path):
     save(folder / "manifest.json", record["manifest"])
     assert retained_format(record["manifest"]["rule_versions"]) == "current"
     assert verify_landscape(folder)[0] == "wrong_code"
+
+
+def test_explicit_context_v2_projection_retains_old_context_and_note_display(tmp_path):
+    folder = completed_run(tmp_path / "context-v2")
+    record = document(folder / "landscape.json")
+    record["manifest"]["rule_versions"] = copy.deepcopy(LEGACY_SOURCE_CONTEXT_VERSIONS)
+    record = landscape.legacy_record_projection(record, "legacy_source_context_v2")
+    assert retained_format(record["manifest"]["rule_versions"]) == "legacy_source_context_v2"
+    assert landscape.schema_problems(record) == ()
+    save(folder / "landscape.json", record)
+    save(folder / "manifest.json", record["manifest"])
+    readout.write_book(record, folder / "landscape.xlsx")
+    code, details = verify_landscape(folder)
+    assert code == "verified" and "source-context-v2" in details[0]
+    book = load_workbook(folder / "landscape.xlsx", read_only=True)
+    assert "Local source context" in [cell.value for cell in book["Eligibility"][1]]
+    provenance = next(
+        row[1] for row in book["Read me"].iter_rows(values_only=True) if row[0] == "Technical provenance"
+    )
+    assert "clinical words display-1" in provenance
+    assert "clinical words display-2" not in provenance
+    book.close()
+
+
+def test_context_v2_unknown_root_and_version_type_are_not_admitted():
+    for mutation in (
+        {"derivation_code_root": "unknown"},
+        {"landscape_schema": 4.0},
+        {"display": "display-2"},
+    ):
+        versions = dict(LEGACY_SOURCE_CONTEXT_VERSIONS)
+        versions.update(mutation)
+        assert retained_format(versions) == "current"
+
+
+def test_unknown_projection_code_cannot_rewrite_a_record():
+    with pytest.raises(ValueError, match="unsupported_legacy_projection"):
+        landscape.legacy_record_projection({}, "unknown")
 
 
 @pytest.mark.parametrize("value", [4.0, True, "4"])

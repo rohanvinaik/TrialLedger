@@ -1,0 +1,107 @@
+{
+  "adopted_into_main_at_receipt_creation": false,
+  "authored_intent_witness": "tests/test_reasoning_delivery.py::test_shortcut_cannot_mutate_identity_or_source[xpremises-replace-invalid_edit_path]",
+  "authored_test_sha256": "1f173bd58bd2ca79032f20e34f06e4aae83b39bba250c58d565b5e0bb1420bb7",
+  "certificate": {
+    "cut_reasons": [],
+    "function_digest": "49f39112cad09ecb",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "counterexample_or_falsifier": "Changed target/dependency, distinguishing mutant input, unrouted authored negative, or failing main adoption.",
+  "crosshair": {
+    "log": "/tmp/trialledger-final-two-sign-20261104-edit-path/crosshair.log",
+    "report_all": true,
+    "sha256": "e2f569fc0202447489463c1edde14bcda46a0784a995e0ff795a97c7bcd3f417",
+    "status": "Not confirmed"
+  },
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/edit_path_code",
+  "generated_suites": [
+    {
+      "eligible_for_completed_pin_adoption": true,
+      "external_packet": "/tmp/trialledger-final-proof-packets-20261104/edit_path_code/test_TrialLedger_reasoning_delivery_edit_path_code_4ab370734c_synth.py",
+      "path": "/tmp/trialledger-final-two-sign-20261104-edit-path/tests/detective/test_TrialLedger_reasoning_delivery_edit_path_code_4ab370734c_synth.py",
+      "sha256": "f308bf33274facd69daacac3e8137878607fb715cb6308a920b63b27f6b0c5b4"
+    }
+  ],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "input": [
+        "('xpremises', 'replace')"
+      ],
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 75657,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/private/tmp/trialledger-final-two-sign-20261104-edit-path/.venv/bin/python",
+      "project_root": "/private/tmp/trialledger-final-two-sign-20261104-edit-path",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 0,
+    "outcome": [
+      [
+        "outcome",
+        "converge",
+        "settled"
+      ]
+    ],
+    "refusal": null,
+    "state": {
+      "equivalents": "",
+      "inputs": "sha256:3b7f0083cec6cfc67b3701c04461d75d",
+      "suite": "sha256:a7eb73176bd069a818d8203a8a8336ed",
+      "suite_exact": "sha256:a6cd8a9175dd98f74516065c246c1ccd",
+      "target_src": "sha256:15982f7df725a373ce324f3c271dd43b"
+    },
+    "target": "TrialLedger/reasoning_delivery.py::edit_path_code",
+    "ts": "2026-11-04T05:48:06Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/tmp/trialledger-final-two-sign-20261104-edit-path/.detective/ledger.jsonl",
+    "sha256": "aa20f56d4f0ef4a79e10d3aad67f1980a75291159f99a571c224d79ad08769f1"
+  },
+  "ordinary_verification": {
+    "command": "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker .venv/bin/python -m pytest tests/test_reasoning_artifacts.py tests/test_reasoning_delivery.py",
+    "passed": 48,
+    "scope": "Authored artifact/delivery tests on current main, independent of mutation completion."
+  },
+  "policy": "9+neg.f5a15364c11d",
+  "prescribed_distinguishing_input": "('xpremises', 'replace')",
+  "proof_directory": "/tmp/trialledger-final-two-sign-20261104-edit-path",
+  "recorded_at": "2026-11-04T05:49:01.992638+00:00",
+  "report": {
+    "path": "/tmp/trialledger-final-two-sign-20261104-edit-path/.detective/reports/converge_edit_path_code.txt",
+    "read_complete": true,
+    "sha256": "dfb6ba7631bf0cf9a6195a0c990006b4f4b9e00aedb66551423e7feacd72fc9d"
+  },
+  "reported": {
+    "completion": "COMPLETE",
+    "crash_only_value_gaps": 3,
+    "killed": 72,
+    "scored": 73,
+    "unproven_equivalent": 2
+  },
+  "schema_version": 1,
+  "scope": "One named pure decision; no project-wide proof.",
+  "source": {
+    "byte_equal_to_current": true,
+    "current_sha256": "15982f7df725a373ce324f3c271dd43bcbf10d959b2a99930a9592dcb34d468e",
+    "function_ast_equal_to_current": true,
+    "function_ast_sha256": "49f39112cad09ecba6cff4e645550eb1ab189e9220875890826a92edd4980630",
+    "path": "TrialLedger/reasoning_delivery.py",
+    "sha256": "15982f7df725a373ce324f3c271dd43bcbf10d959b2a99930a9592dcb34d468e"
+  },
+  "style": "Zero funded; other module orchestrators excluded as unpinned. No unrelated rewrite claimed.",
+  "target": "TrialLedger/reasoning_delivery.py::edit_path_code"
+}

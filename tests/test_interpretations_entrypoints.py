@@ -105,7 +105,7 @@ def questions(result):
 
 
 def test_focused_discovery_exposes_a_runnable_conditional_workflow(invoke):
-    discovery = invoke({"operation": "describe", "view": "interpretations"})
+    discovery = invoke({"operation": "describe", "view": "interpretations", "detail": "full"})
     assert discovery["code"] == "complete"
     guide = discovery["result"]
     result = invoke(guide["example"])

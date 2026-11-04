@@ -1,0 +1,29 @@
+{
+  "scope": "Declared ordinary local gate on final source/tests, plus separate earlier opt-in live run. Documentation and receipt changes during the run prevented a tree stamp; normal pre-push must check the committed tree. No deep audit pass inferred.",
+  "command": "PYTEST_ADDOPTS=--junitxml=/tmp/trialledger-final-frozen-tests-20261104.xml bash scripts/ci_local.sh",
+  "exit_code": 0,
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "6372",
+    "time": "115.357",
+    "timestamp": "2026-11-04T01:10:01.576566-05:00",
+    "hostname": "MacBookPro"
+  },
+  "log": {
+    "path": "/tmp/trialledger-final-frozen-gate-20261104.log",
+    "sha256": "0eb7a035136d40a0b5077dbaece618efe76f499129ff647dba22c5a3c6ee3c3d"
+  },
+  "junit": {
+    "path": "/tmp/trialledger-final-frozen-tests-20261104.xml",
+    "sha256": "40da67d4f14127bb14269e78bb89beb1ba49d30cb1e83aef69c633c92d483a45"
+  },
+  "live": {
+    "path": "/tmp/trialledger-live-controls-20261104.log",
+    "sha256": "fb82eade034c8bb449f29de415f9ab043c5fd489b822b887347668320baa1fa0",
+    "passed": 10,
+    "scope": "Separate opt-in actual API tests; not a clinical-validation claim."
+  }
+}

@@ -10,7 +10,7 @@ from __future__ import annotations
 import dataclasses
 from typing import Any, NotRequired, TypedDict
 
-from TrialLedger.layer2 import entail
+from TrialLedger.layer2 import entail, entail_explanations
 from TrialLedger.layer2 import signals as signal_engine
 from TrialLedger.layer2.assertions import ScopedAssertion
 
@@ -41,6 +41,13 @@ class WitnessResult(TypedDict):
     status: str
     basis: tuple[str, ...]
     decision: dict[str, Any]
+    count_lower: int
+    count_upper: int | None
+    count_kind: str
+    denominator: int
+    max_exceptions: int
+    population: str
+    context: dict
     bounds: NotRequired[dict]
     direction: NotRequired[str]
     derivation: NotRequired[dict]
@@ -53,6 +60,7 @@ class CandidateResult(TypedDict):
     state: str
     observations: list[WitnessResult]
     query_decision: dict[str, Any]
+    query_explanations: dict
     signal_checks: NotRequired[list[dict]]
     elimination_status: NotRequired[str]
 
@@ -196,6 +204,20 @@ def bound_designs(
                     "status": status,
                     "basis": observation.basis,
                     "decision": dataclasses.asdict(decision),
+                    "count_lower": observation.count,
+                    "count_upper": observation.upper
+                    if observation.derivation is not None or observation.upper is not None
+                    else observation.count,
+                    "count_kind": "derived_interval"
+                    if observation.derivation is not None
+                    else "exact"
+                    if observation.upper is None
+                    else "interval",
+                    "denominator": observation.denominator,
+                    "max_exceptions": observation.max_exceptions,
+                    "population": observation.population,
+                    "context": dataclasses.asdict(observation.context),
+                    "direction": observation.direction,
                 }
             )
             if observation.upper is not None or observation.derivation is not None:
@@ -260,6 +282,9 @@ def bound_designs(
                 "state": state,
                 "observations": evidence,
                 "query_decision": dataclasses.asdict(consequence),
+                "query_explanations": entail_explanations.explain(
+                    assertions, query, context, consequence, bound
+                ),
             }
         )
         if signals:

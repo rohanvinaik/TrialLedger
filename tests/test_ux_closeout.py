@@ -24,20 +24,24 @@ def test_default_discovery_is_small_and_points_to_every_focused_guide():
     overview = reply["result"]
     assert "worked_session" not in overview and "tagged_model" not in overview
     operations = set(service.OPERATIONS) - {"describe"}
-    assert set(overview["discovery"]) == operations | {"overview", "worked_session", "full"}
-    assert len(overview["availability"]["built"]) == len(operations)
+    assert operations <= set(overview["discovery"])
+    assert {"full", "schema", "delivery"} <= set(overview["discovery"])
+    assert {row["operation"] for row in overview["operations"]} == operations
     for operation in sorted(operations):
         focused = run(overview["discovery"][operation])["result"]
         assert run(focused["example"])["code"] == "complete"
-        assert operation in focused["input_shapes"]
-        assert focused["result_guide"] and focused["answer_guide"][operation]
+        assert focused["input"] and focused["procedure"] and focused["boundary"]
+        schema = run(focused["discover"]["schema"])["result"]
+        assert operation in schema["input_shapes"]
+        assert schema["request_schema"]["properties"]["operation"] == {"const": operation}
         assert "worked_session" not in focused and "developer_building_blocks" not in focused
         other_operations = operations - {operation}
         assert not (other_operations - ({"signals"} if operation == "design_bounds" else set())).intersection(
-            focused["input_shapes"]
+            schema["input_shapes"]
         )
-    assert "tagged_model" in run(overview["discovery"]["entailment"])["result"]
-    assert "worked_session" in run(overview["discovery"]["worked_session"])["result"]
+    full = run({"operation": "describe", "view": "entailment", "detail": "full"})["result"]
+    assert "tagged_model" in full and full["answer_guide"]["entailment"]
+    assert "worked_session" in run({"operation": "describe", "view": "worked_session"})["result"]
     assert "developer_building_blocks" in run(overview["discovery"]["full"])["result"]
 
 

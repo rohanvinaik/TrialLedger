@@ -1,0 +1,200 @@
+{
+  "scope": "Exact frozen source identity and generated-suite byte copies, certificate entries copied from explicit two-sign walks; no generated test hand edits. Final suite verification remains separate.",
+  "targets": [
+    {
+      "target": "TrialLedger/eligibility.py::heading_kind",
+      "source_sha256": "a4f62d53053f7132a8168f2ccd862d13231375175dadfc8949546db9f1fe9f4a",
+      "function_digest": "744111a5d86711ef",
+      "suites": [
+        {
+          "path": "tests/detective/test_TrialLedger_eligibility_heading_kind_4a000bbfd0_synth.py",
+          "sha256": "05f484f652b555ac9e622fad523a2c608cb9229f872f36882bd2b3df9170c163"
+        }
+      ],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 2,
+        "flagged_equivalent": 0,
+        "killed": 81,
+        "scored": 84,
+        "unproven_equivalent": 3
+      }
+    },
+    {
+      "target": "TrialLedger/eligibility.py::split_eligibility",
+      "source_sha256": "a4f62d53053f7132a8168f2ccd862d13231375175dadfc8949546db9f1fe9f4a",
+      "function_digest": "0835abda93baa413",
+      "suites": [
+        {
+          "path": "tests/detective/test_TrialLedger_eligibility_split_eligibility_c5b8a2e2e5_synth.py",
+          "sha256": "6574fb0ce1f18d75f43729fd530d66cd3d15101844554a0537c0dd1a1de5d18f"
+        }
+      ],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 5,
+        "flagged_equivalent": 0,
+        "killed": 101,
+        "scored": 104,
+        "unproven_equivalent": 4
+      }
+    },
+    {
+      "target": "TrialLedger/baseline_view.py::group_code",
+      "source_sha256": "b83e640396f00aea1279b01a9a9de513685de7407093ce8317399cac83c70f6f",
+      "function_digest": "45dc54aef3edfa1e",
+      "suites": [
+        {
+          "path": "tests/detective/test_TrialLedger_baseline_view_group_code_0ee2fb7965_synth.py",
+          "sha256": "0e85a888538842b8e85587801cd030b04eba2328fc66a3290151d03970ba3d28"
+        }
+      ],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 1,
+        "flagged_equivalent": 0,
+        "killed": 81,
+        "scored": 81,
+        "unproven_equivalent": 1
+      }
+    },
+    {
+      "target": "TrialLedger/landscape.py::literal_context_kind",
+      "source_sha256": "81b4f51bba14a022be1732e3cd264307f5b5346000de5e374a6a788a4f451a83",
+      "function_digest": "b60b76cabdf9e2f3",
+      "suites": [
+        {
+          "path": "tests/detective/test_TrialLedger_landscape_literal_context_kind_5bd1ea8670_synth.py",
+          "sha256": "e76a4a6c0b9e4014b7028e34e003752184d96a34706dc73c632ae6795047093a"
+        }
+      ],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 3,
+        "flagged_equivalent": 0,
+        "killed": 94,
+        "scored": 104,
+        "unproven_equivalent": 11
+      }
+    },
+    {
+      "target": "TrialLedger/landscape_warrants.py::retained_format",
+      "source_sha256": "3ca24675269e7917483fe90fc21b3bf5ec578786e46cc5a94d95cb9005b0c7f8",
+      "function_digest": "f9a2e76bc33afdd9",
+      "suites": [
+        {
+          "path": "tests/detective/test_TrialLedger_landscape_warrants_retained_format_719cc74161_synth.py",
+          "sha256": "2afe98cc8129ecb72ff0a0eed1688480e3fb1e2cf2a2ee36e1e836fa6d36124c"
+        }
+      ],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 3,
+        "flagged_equivalent": 0,
+        "killed": 40,
+        "scored": 42,
+        "unproven_equivalent": 2
+      }
+    },
+    {
+      "target": "TrialLedger/layer2/design_session.py::revision_input_code",
+      "source_sha256": "f7b8b81d6bde950b7ec8e4e90e66e346ad38c769b4f377407ac0af9a588fdd2b",
+      "function_digest": "000e845da450934b",
+      "suites": [],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 0,
+        "flagged_equivalent": 0,
+        "killed": 74,
+        "scored": 74,
+        "unproven_equivalent": 0
+      }
+    },
+    {
+      "target": "TrialLedger/layer2/design_session.py::answer_change_code",
+      "source_sha256": "f7b8b81d6bde950b7ec8e4e90e66e346ad38c769b4f377407ac0af9a588fdd2b",
+      "function_digest": "b89141bb25b11cff",
+      "suites": [],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 0,
+        "flagged_equivalent": 0,
+        "killed": 85,
+        "scored": 85,
+        "unproven_equivalent": 0
+      }
+    },
+    {
+      "target": "TrialLedger/layer2/solver_work.py::partition_product",
+      "source_sha256": "970bed61b064365de74e7fe5f7c83f83fe6578963f89edcecb5d0a8e15a50bd9",
+      "function_digest": "94db767e4a3d7182",
+      "suites": [
+        {
+          "path": "tests/detective/test_TrialLedger_layer2_solver_work_partition_product_17c61f8cf8_synth.py",
+          "sha256": "f694fe226b50a330aa520430b3462b742856bc8f97038204cbcb0355c4c2f665"
+        }
+      ],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 12,
+        "flagged_equivalent": 0,
+        "killed": 56,
+        "scored": 58,
+        "unproven_equivalent": 5
+      }
+    },
+    {
+      "target": "TrialLedger/layer2/entail_explanations.py::permission_code",
+      "source_sha256": "0b1ff48798c5499c9dd46a3de3a52024c9b1a89aa1a09eac1b6ec277b74818e5",
+      "function_digest": "611e7a31ef80a567",
+      "suites": [],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 0,
+        "flagged_equivalent": 0,
+        "killed": 109,
+        "scored": 109,
+        "unproven_equivalent": 0
+      }
+    },
+    {
+      "target": "TrialLedger/layer2/entail_explanations.py::condition_code",
+      "source_sha256": "0b1ff48798c5499c9dd46a3de3a52024c9b1a89aa1a09eac1b6ec277b74818e5",
+      "function_digest": "b692c353207d9e54",
+      "suites": [],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 0,
+        "flagged_equivalent": 0,
+        "killed": 60,
+        "scored": 60,
+        "unproven_equivalent": 0
+      }
+    },
+    {
+      "target": "TrialLedger/layer2/entail_explanations.py::explanation_gate",
+      "source_sha256": "0b1ff48798c5499c9dd46a3de3a52024c9b1a89aa1a09eac1b6ec277b74818e5",
+      "function_digest": "8e6fcbad39283b6c",
+      "suites": [],
+      "explicit_two_sign": true,
+      "reported": {
+        "completion": "COMPLETE",
+        "crash_only_value_gaps": 0,
+        "flagged_equivalent": 1,
+        "killed": 75,
+        "scored": 76,
+        "unproven_equivalent": 0
+      }
+    }
+  ]
+}

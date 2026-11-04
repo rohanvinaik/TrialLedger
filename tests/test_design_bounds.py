@@ -271,7 +271,7 @@ def test_duplicate_ids_and_unknown_fields_are_not_silently_accepted():
 
 
 def test_discovery_exposes_working_schema_categories_and_reusable_example():
-    description = complete({"operation": "describe", "view": "design_bounds"})
+    description = complete({"operation": "describe", "view": "design_bounds", "detail": "full"})
     result = complete(description["example"])
     assert set(description["result_guide"]["fields"]) == set(result)
     assert set(description["answer_guide"]["design_bounds"]) == {

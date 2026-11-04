@@ -16,6 +16,7 @@ import tempfile
 from pathlib import Path
 
 from TrialLedger import cli
+from TrialLedger.clinical_delivery import present
 from TrialLedger.layer2 import run
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -120,7 +121,7 @@ def build():
     receipts = []
     modules = set()
     for name, request in cases():
-        reference = json.loads(json.dumps(run(request)))
+        reference = json.loads(json.dumps(present(run(request))))
         assert reference["code"] == "complete", (name, reference)
         original = digest(request)
         for mode in ("cli", "mcp"):

@@ -1,0 +1,189 @@
+{
+  "command_blocks": [
+    {
+      "bytes": 84,
+      "heading": "== the locked environment",
+      "index": 0,
+      "read_complete": true,
+      "sha256": "7b9e38ae74e8264b4a025a04f435dd2ace97aad144f9fdcc573fb050351e195e"
+    },
+    {
+      "bytes": 33,
+      "heading": "== ruff check",
+      "index": 1,
+      "read_complete": true,
+      "sha256": "7ba5a7ba0a2eacebde15c9e463b49c5c64d6a43fb87afee87496f883c2077c81"
+    },
+    {
+      "bytes": 51,
+      "heading": "== ruff format --check",
+      "index": 2,
+      "read_complete": true,
+      "sha256": "2772dac93d7fd49070cdf5302d65523f77a45677b6b73bcc499f63f865968532"
+    },
+    {
+      "bytes": 52642,
+      "heading": "== pytest (live calls deselected; uv run pytest -m live runs them)",
+      "index": 3,
+      "read_complete": true,
+      "sha256": "375be937b1445e1d27ebb10e0d9b5816743942fc69156bde6bcff94eb2cffd3c"
+    },
+    {
+      "bytes": 36,
+      "heading": "== ty (advisory)",
+      "index": 4,
+      "read_complete": true,
+      "sha256": "fee6398726b8e76ddf6e896842a8e3b9365f72896a59446c19d3db5e117d81a2"
+    },
+    {
+      "bytes": 319,
+      "heading": "== Detective and Wesker, as the deep gate imports them",
+      "index": 5,
+      "read_complete": true,
+      "sha256": "52e7fafacff8161680474c6a9c24987ea099d1dd8b580936c459208c697e50ff"
+    },
+    {
+      "bytes": 2445,
+      "heading": "== Detective: audit --two-sign --check on every pinned decision",
+      "index": 6,
+      "read_complete": true,
+      "sha256": "ae028692d8f26301559566f1991b1b64e1d606a5cc86401a6faa2ec004edd276"
+    }
+  ],
+  "counterexample_or_falsifier": "Changed final-log bytes invalidate its identity; a separate completed gate run can establish its own outcome but cannot retroactively complete this cancelled run.",
+  "deep_phase": {
+    "aggregate_audit_count_line": "not_reached",
+    "audit_failed_records_in_this_log": [],
+    "completed_target_observations": [
+      {
+        "authored_intent_grounded": 25,
+        "characterized": 1,
+        "crash_only_value_gaps": 1,
+        "next_command_executed_for_this_receipt": false,
+        "prescribed_next_command": "detective converge 'TrialLedger/baseline_view.py::group_code' --two-sign",
+        "scope": "This named target only; retains both report qualifications.",
+        "scored": 81,
+        "target": "TrialLedger/baseline_view.py::group_code",
+        "tests": 26,
+        "unproven_equivalent": 1,
+        "value_pinned": 79,
+        "verbatim_outcome": "audit \u00b7 26 test(s) \u00b7 79/81 value-pinned \u00b7 100.0% killed (value+crash) \u00b7 complete, modulo 1 unproven-equivalent and 1 crash-only value gap"
+      }
+    ],
+    "completion": "interrupted",
+    "declared_scope": "audit --two-sign --check on every function tagged (pure \u2014 pinned), followed by advisory Vulture scans.",
+    "failure_count_scope": "No completed AUDIT FAILED record appears in the fully read log; this is not evidence that remaining or historical targets pass.",
+    "final_gate_verdict": "not_reached",
+    "historical_audit_limit": "This run does not replace, erase or resolve prior project-wide audit failures or limitations; it was stopped under the reported historical waiver.",
+    "local_resolution": {
+      "Detective": {
+        "checkout": "/Users/rohanvinaik/tools/Detective",
+        "imported_from": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+        "reported_commit": "ce2a500",
+        "reported_date": "2026-10-26"
+      },
+      "Wesker": {
+        "checkout": "/Users/rohanvinaik/tools/Wesker",
+        "imported_from": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py",
+        "reported_commit": "2fbd029",
+        "reported_date": "2026-10-25"
+      }
+    },
+    "started_without_terminal_verdict_in_log": [
+      {
+        "last_visible_observations": [
+          "tracing 29 function-routed tests",
+          "baseline traced \u00b7 29 tests \u00b7 33.9s",
+          "1/61 mutants \u00b7 2.6/s \u00b7 ETA estimating\u2026 (heartbeat)"
+        ],
+        "status": "no_terminal_verdict_in_final_log",
+        "target_name": "cell_text_state"
+      },
+      {
+        "last_visible_observations": [
+          "tracing 42 function-routed tests",
+          "baseline traced \u00b7 42 tests \u00b7 32.7s"
+        ],
+        "status": "no_terminal_verdict_in_final_log",
+        "target_name": "cell_number_state"
+      }
+    ],
+    "total_audited_target_count": null,
+    "tree_stamp_step": "not_reached_in_this_invocation",
+    "vulture_scans": "not_reached",
+    "whole_project_failure_verdict": "not_established_by_this_interrupted_invocation",
+    "whole_project_pass": false
+  },
+  "diagnosis_bypass_or_rerun": false,
+  "instrument": "Whole final command log, the declared gate script read in full, and the lead completion notice for termination status and stop reason.",
+  "invocation": {
+    "arguments": [
+      "scripts/ci_local.sh",
+      "--deep"
+    ],
+    "cwd": "/Users/rohanvinaik/tools/TrialLedger",
+    "program": "bash",
+    "source": "Lead supplied invocation; no rerun performed for this receipt."
+  },
+  "kind": "existing_run_outcome_receipt_with_attributed_root_cancellation",
+  "log": {
+    "bytes": 55610,
+    "path": "/tmp/trialledger-final-deep-gate-20261104.log",
+    "read_complete": true,
+    "read_method": "Every command block was read in full. The long pytest block was additionally read as contiguous complete generated-suite and authored-suite units to avoid response truncation; the command-block reconstruction preserves the entire log byte-for-byte.",
+    "sha256": "9b99341cb1f23ded9a0999633ea553d1122953748e4f025b53365ce95f2e5a29"
+  },
+  "new_verification_runs_for_this_receipt": false,
+  "ordinary_phase": {
+    "completion": "listed_checks_completed_before_interruption",
+    "locked_environment": {
+      "command": "uv sync --locked",
+      "independent_step_exit_status_logged": false,
+      "observed_output": [
+        "Resolved 21 packages in 4ms",
+        "Checked 20 packages in 0.69ms"
+      ]
+    },
+    "pytest": {
+      "collected": 6379,
+      "command": ".venv/bin/pytest",
+      "deselected": 10,
+      "duration_seconds": 115.77,
+      "live_test_scope": "The 10 live tests were deselected; this invocation establishes no live-test result.",
+      "passed": 6369,
+      "reported": "6369 passed, 10 deselected in 115.77s (0:01:55)",
+      "selected": 6369
+    },
+    "ruff_check": {
+      "command": ".venv/bin/ruff check .",
+      "reported": "All checks passed!"
+    },
+    "ruff_format": {
+      "command": ".venv/bin/ruff format --check .",
+      "reported": "670 files already formatted"
+    },
+    "scope": "Completed outputs of these checks in this historical invocation. The script did not reach its final gate verdict or tree-stamp step; this receipt does not substitute for a separate completed fast-gate invocation on a final tree.",
+    "ty": {
+      "advisory": true,
+      "command": "uvx ty check --python .venv TrialLedger",
+      "reported": "All checks passed!"
+    }
+  },
+  "recorded_at": "2026-11-04T06:11:55.118730+00:00",
+  "schema_version": 1,
+  "source_test_or_certificate_changes_for_this_receipt": false,
+  "specimen": "The single interrupted bash scripts/ci_local.sh --deep invocation.",
+  "termination": {
+    "exit_code": 143,
+    "reason_source": "Lead completion notice, attributed rather than independently inferred.",
+    "reason_verbatim": "Explicitly stopped by root after reading acceptance/rescue-2026-11-02.md and ux-followup-2026-11-02.md confirming user's prior extended project-wide audit waiver; this was unnecessary broader work, no current whole-project pass claimed.",
+    "status": "interrupted_by_root",
+    "status_source": "Lead completion notice after process termination; this is not a newly measured exit status.",
+    "tool_refusal": false,
+    "waiver_documents_reported_by_lead": [
+      "acceptance/rescue-2026-11-02.md",
+      "ux-followup-2026-11-02.md"
+    ],
+    "waiver_scope": "Historical extended project-wide recertification, as reported by the lead. It does not convert this interrupted invocation into a pass or expand any completed target claim."
+  }
+}

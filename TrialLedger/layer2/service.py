@@ -56,7 +56,8 @@ INPUTS = {
         "required": (),
         "fields": {
             "view": "overview, entailment, coordinates, corpus, design_bounds, signals, interpretations, "
-            "source_assertions, worked_session or full"
+            "source_assertions, design_session, evidence_requests, delivery, worked_session or full",
+            "detail": "card (default), schema or full; full/worked_session views retain their full guide",
         },
     },
     "entailment": {
@@ -259,6 +260,8 @@ def _model(value: Any) -> object:
 
 
 def _entailment(request: dict[str, Any]) -> dict[str, Any]:
+    from TrialLedger.layer2.entail_explanations import explain
+
     _input(request, "entailment", "request")
     given = _scoped_assertions(request["assertions"])
     context = _reason_context(request.get("context", {}))
@@ -266,6 +269,7 @@ def _entailment(request: dict[str, Any]) -> dict[str, Any]:
     query = _model(request["query"])
     decision = entail.decide(given, query, context, bound)
     result = {"basis": BASIS, "decision": dataclasses.asdict(decision), "premises": request["assertions"]}
+    result["explanations"] = explain(given, query, context, decision, bound)
     if "no_constraint_mentions_query" in decision.blockers and isinstance(query, assertions.PROPOSITIONS):
         result["translation_diagnostics"] = translation_diagnostics.diagnose(given, query)
     return result
@@ -1618,6 +1622,15 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     views = DISCOVERY_VIEWS
     if not isinstance(view, str) or view not in views:
         raise RequestError("request.view:unsupported_view")
+    detail = request.get("detail", "card")
+    if not isinstance(detail, str) or detail not in ("card", "schema", "full"):
+        raise RequestError("request.detail:unsupported_detail")
+    if view not in ("full", "worked_session") and (detail != "full" or view == "delivery"):
+        from TrialLedger.reasoning_cards import describe_card
+
+        card = describe_card(view, schema=detail == "schema")
+        if card is not None:
+            return card
     full = _full_description()
     bounds_guide.extend(full)
     signals_guide.extend(full)
@@ -1625,6 +1638,19 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     source_assertions_guide.extend(full)
     design_session_guide.extend(full)
     evidence_requests_guide.extend(full)
+    full["result_guides"]["envelope"]["summary"] = "Short discovery or operation summary; no new premises."
+    full["result_guides"]["reasoning_envelope"] = {
+        **full["result_guides"]["envelope"],
+        "clinical": "Operation-aware findings with canonical paths, scope, support and origin.",
+        "result_digest": "SHA256 of canonical result only, returned on completion.",
+        "result_digest_scope": "Excludes summary, presentation, artifact and other envelope metadata.",
+    }
+    full["result_guides"]["entailment"]["fields"]["explanations"] = {
+        "permissions": "Scoped accepted or withheld mentions; permission never requires presence.",
+        "conditions": "Solver-proved necessary conditions for an otherwise feasible query, with warrants.",
+        "checks": "Bounded additional explanation checks, separate from the original decision.",
+        "blockers": "Exact limits or unresolved explanation support; not a clinical negative.",
+    }
     full["exception_example"] = exception_guide.example()
     full["response_metadata"] = {
         "location": "Every reason envelope has additive metadata; original clinical results remain intact.",
@@ -1791,6 +1817,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
 
 def run(request: object) -> dict[str, Any]:
     """Run one existing symbolic operation, or return a named refusal for malformed/unsupported input."""
+    from TrialLedger.clinical_delivery import augment
+
     operation = request.get("operation") if isinstance(request, dict) else None
     try:
         if not isinstance(request, dict):
@@ -1800,7 +1828,7 @@ def run(request: object) -> dict[str, Any]:
         if operation == "design_session":
             response = design_session.run(request, execute=run)
             response["metadata"] = result_semantics.metadata(operation, response["result"])
-            return response
+            return augment(response)
         function = {
             "describe": _describe,
             "entailment": _entailment,
@@ -1829,9 +1857,9 @@ def run(request: object) -> dict[str, Any]:
             ).encode()
             if len(encoded) > maximum:
                 raise RequestError("resource_bound:evidence_requests:response_bytes")
-        return response
+        return augment(response)
     except (ValueError, TypeError, KeyError, RecursionError, OverflowError) as error:
-        return {
+        response = {
             "code": "refused",
             "operation": operation if isinstance(operation, str) else "",
             "result": None,
@@ -1840,3 +1868,6 @@ def run(request: object) -> dict[str, Any]:
                 operation if isinstance(operation, str) else "", None, [str(error)]
             ),
         }
+        if isinstance(error, design_session.SessionBudgetError):
+            response["diagnostics"] = error.diagnostics
+        return augment(response)

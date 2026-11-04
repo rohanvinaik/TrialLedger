@@ -1,0 +1,53 @@
+{
+  "scope": "Current integrated public transports over retained fresh Phase4 asthma walkthrough inputs; source clinical readings/choices remain explicitly simulated or proposed. Not a new registry pull.",
+  "cases": [
+    {
+      "request": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/fev65-copd-request.json",
+      "request_sha256": "857f3c35a49a4dce1583db22f9db3b569ee62fd33eec85e12b4a53959ce95601",
+      "result_sha256": "f41b5c30be61f5a000716f877bcdfecfc2377bb0ed4e6dc5fdd2b7b332adc2ed",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_exact": true
+    },
+    {
+      "request": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/fev65-request.json",
+      "request_sha256": "21fafd61fac4e6fbdff85928ad85783eaa974c5ac6cf8ab095173b4bef3ec3b8",
+      "result_sha256": "adc43e2fc80f90ad8ca1ff90da620dd50c3150ba24773bb6f075f5d2acf0ea59",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_exact": true
+    },
+    {
+      "request": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/fev65-revised-request.json",
+      "request_sha256": "e01be6fa8e1296b20b80408ceed8323198ccfecd20bea434bc0932e99bcd62d5",
+      "result_sha256": "9b9d9ac6b4d9ea6e0e41f91b9bf78b85cd02fdee050228b4836251fd3492972c",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_exact": true
+    },
+    {
+      "request": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/rescue-use-request.json",
+      "request_sha256": "67630bac5c2b347d881d9d0ce9b828a2e892386e279c94904d1e2f0659221d83",
+      "result_sha256": "53c1a4ebfdf68b19e1d3cbe2fdb0bd87636ed1d72c26886a99fd332be8000e3b",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_exact": true
+    },
+    {
+      "request": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/source-proposed-request.json",
+      "request_sha256": "adf2e8ff9837b6321592721a25453d7f4dbd628b0b47bd0cffa86c9d72341a74",
+      "result_sha256": "6b5f90870fa4192720bcdf2ffe3a4fd1dc84ca26744451f7a0213aead0dcb086",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_exact": true
+    },
+    {
+      "request": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/unable-withhold-request.json",
+      "request_sha256": "05b3b153e8c5786686da8a713166d623ff8daaa84c19206a3a2361fb43270f95",
+      "result_sha256": "8ce17650cfe3f31237945a67e48c81783d8aea66a040d1a2d3fc714417a936d3",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_exact": true
+    }
+  ]
+}

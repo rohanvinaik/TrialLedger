@@ -1,4 +1,887 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "coordinates",
+    "findings": 30,
+    "dispositions": {
+      "conditional": 4,
+      "descriptive": 3,
+      "open": 20,
+      "settled": 3
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "coordinates",
+    "findings": [
+      {
+        "path": "/result/coordinates/setting",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "advanced_first_line"
+            ],
+            "state": "resolved",
+            "causes": [
+              [
+                "setting",
+                [
+                  "neoadjuvant",
+                  "adjuvant",
+                  "perioperative",
+                  "definitive_chemoradiation",
+                  "consolidation_after_chemoradiation",
+                  "advanced_previously_treated",
+                  "maintenance",
+                  "local_consolidative_therapy"
+                ],
+                "first_line_when_no_prior_advanced_therapy"
+              ]
+            ]
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/setting"
+      },
+      {
+        "path": "/result/coordinates/setting/interpolated",
+        "kind": "coordinate",
+        "outcome": "resolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/setting/interpolated"
+      },
+      {
+        "path": "/result/coordinates/prior_advanced_lines",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "0"
+            ],
+            "state": "resolved",
+            "causes": [
+              [
+                "prior_advanced_lines",
+                [
+                  "1",
+                  "2",
+                  "3+"
+                ],
+                "invented:prior_linesinterpolated"
+              ]
+            ]
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/prior_advanced_lines"
+      },
+      {
+        "path": "/result/coordinates/prior_advanced_lines/interpolated",
+        "kind": "coordinate",
+        "outcome": "resolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/prior_advanced_lines/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:EGFR",
+        "kind": "coordinate",
+        "outcome": "resolved",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "positive"
+            ],
+            "state": "resolved",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:EGFR"
+      },
+      {
+        "path": "/result/coordinates/selection:EGFR/interpolated",
+        "kind": "coordinate",
+        "outcome": "resolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:EGFR/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:ALK",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:ALK"
+      },
+      {
+        "path": "/result/coordinates/selection:ALK/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:ALK/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:ROS1",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:ROS1"
+      },
+      {
+        "path": "/result/coordinates/selection:ROS1/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:ROS1/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:KRAS",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:KRAS"
+      },
+      {
+        "path": "/result/coordinates/selection:KRAS/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:KRAS/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:BRAF",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:BRAF"
+      },
+      {
+        "path": "/result/coordinates/selection:BRAF/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:BRAF/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:MET",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:MET"
+      },
+      {
+        "path": "/result/coordinates/selection:MET/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:MET/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:RET",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:RET"
+      },
+      {
+        "path": "/result/coordinates/selection:RET/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:RET/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:NTRK",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:NTRK"
+      },
+      {
+        "path": "/result/coordinates/selection:NTRK/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:NTRK/interpolated"
+      },
+      {
+        "path": "/result/coordinates/selection:HER2",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "interpolated": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": []
+          },
+          "proposals": []
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:HER2"
+      },
+      {
+        "path": "/result/coordinates/selection:HER2/interpolated",
+        "kind": "coordinate",
+        "outcome": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/coordinates/selection:HER2/interpolated"
+      },
+      {
+        "path": "/result/admission/0",
+        "kind": "admission",
+        "outcome": "accepted",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/admission/0"
+      },
+      {
+        "path": "/result/admission/1",
+        "kind": "admission",
+        "outcome": "accepted",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/admission/1"
+      },
+      {
+        "path": "/result/admission/2",
+        "kind": "admission",
+        "outcome": "accepted",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/admission/2"
+      },
+      {
+        "path": "/result/admission/3",
+        "kind": "admission",
+        "outcome": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {},
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "proposed_refused"
+        ],
+        "canonical_ref": "/result/admission/3"
+      },
+      {
+        "path": "/result/effects/0",
+        "kind": "coordinate_effect",
+        "outcome": "computed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {
+          "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+        },
+        "support": {
+          "declared_support": {
+            "index": 0,
+            "ref": "invented:biomarker:EGFRknown",
+            "standing": {
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:accepted-teaching-premise"
+              ]
+            },
+            "level": "known",
+            "code": "narrowed",
+            "input_path": "/result/admission/0",
+            "consumers": [
+              {
+                "kind": "direct_coordinate",
+                "coordinate": "selection:EGFR",
+                "rule": "coherence.narrow_by_evidence",
+                "level": "input_standing",
+                "applicability": "applicable",
+                "reason": "exact_coordinate_restriction"
+              }
+            ],
+            "domain_deltas": [
+              {
+                "coordinate": "selection:EGFR",
+                "level": "known",
+                "excluded_by_input": [
+                  "negative",
+                  "unknown"
+                ],
+                "preserved_by_input": []
+              },
+              {
+                "coordinate": "selection:EGFR",
+                "level": "interpolated",
+                "excluded_by_input": [
+                  "negative",
+                  "unknown"
+                ],
+                "preserved_by_input": []
+              }
+            ],
+            "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "coordinate_effect_narrowed"
+        ],
+        "canonical_ref": "/result/effects/0"
+      },
+      {
+        "path": "/result/effects/1",
+        "kind": "coordinate_effect",
+        "outcome": "computed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {
+          "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+        },
+        "support": {
+          "declared_support": {
+            "index": 1,
+            "ref": "invented:prior_linesinterpolated",
+            "standing": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "invented:accepted-teaching-premise"
+              ]
+            },
+            "level": "interpolated",
+            "code": "narrowed",
+            "input_path": "/result/admission/1",
+            "consumers": [
+              {
+                "kind": "direct_coordinate",
+                "coordinate": "prior_advanced_lines",
+                "rule": "coherence.narrow_by_evidence",
+                "level": "input_standing",
+                "applicability": "applicable",
+                "reason": "exact_coordinate_restriction"
+              },
+              {
+                "kind": "relation",
+                "relation": "first_line_when_no_prior_advanced_therapy",
+                "relation_kind": "default",
+                "coordinate": "setting",
+                "level": "interpolated",
+                "matched_fact_roles": {},
+                "line_domain_consumer": true,
+                "applicability": "applicable",
+                "details": {
+                  "code": "applicable",
+                  "missing_required": [],
+                  "matched_required": [],
+                  "matched_alternatives": [
+                    "inclusion:extent:advanced"
+                  ],
+                  "required_alternatives": [
+                    "inclusion:extent:metastatic",
+                    "inclusion:stage:IV",
+                    "inclusion:extent:recurrent",
+                    "inclusion:extent:advanced"
+                  ],
+                  "matched_forbidden": [],
+                  "prior_advanced_lines": [
+                    "0"
+                  ],
+                  "lines_within": [
+                    "0"
+                  ],
+                  "lines_fit": true
+                }
+              },
+              {
+                "kind": "relation",
+                "relation": "previously_treated_when_prior_advanced_therapy_required",
+                "relation_kind": "default",
+                "coordinate": "setting",
+                "level": "interpolated",
+                "matched_fact_roles": {},
+                "line_domain_consumer": true,
+                "applicability": "lines_outside",
+                "details": {
+                  "code": "lines_outside",
+                  "missing_required": [],
+                  "matched_required": [],
+                  "matched_alternatives": [],
+                  "required_alternatives": [],
+                  "matched_forbidden": [],
+                  "prior_advanced_lines": [
+                    "0"
+                  ],
+                  "lines_within": [
+                    "1",
+                    "2",
+                    "3+"
+                  ],
+                  "lines_fit": false
+                }
+              }
+            ],
+            "domain_deltas": [
+              {
+                "coordinate": "setting",
+                "level": "interpolated",
+                "excluded_by_input": [
+                  "neoadjuvant",
+                  "adjuvant",
+                  "perioperative",
+                  "definitive_chemoradiation",
+                  "consolidation_after_chemoradiation",
+                  "advanced_previously_treated",
+                  "maintenance",
+                  "local_consolidative_therapy"
+                ],
+                "preserved_by_input": []
+              },
+              {
+                "coordinate": "prior_advanced_lines",
+                "level": "interpolated",
+                "excluded_by_input": [
+                  "1",
+                  "2",
+                  "3+"
+                ],
+                "preserved_by_input": []
+              }
+            ],
+            "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "coordinate_effect_narrowed"
+        ],
+        "canonical_ref": "/result/effects/1"
+      },
+      {
+        "path": "/result/effects/2",
+        "kind": "coordinate_effect",
+        "outcome": "computed",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "descriptive",
+        "scope": {},
+        "values": {
+          "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+        },
+        "support": {
+          "declared_support": {
+            "index": 2,
+            "ref": "invented:extentknown",
+            "standing": {
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:accepted-teaching-premise"
+              ]
+            },
+            "level": "known",
+            "code": "narrowed",
+            "input_path": "/result/admission/2",
+            "consumers": [
+              {
+                "kind": "relation",
+                "relation": "first_line_when_no_prior_advanced_therapy",
+                "relation_kind": "default",
+                "coordinate": "setting",
+                "level": "interpolated",
+                "matched_fact_roles": {
+                  "alternative": [
+                    "inclusion:extent:advanced"
+                  ]
+                },
+                "line_domain_consumer": false,
+                "applicability": "applicable",
+                "details": {
+                  "code": "applicable",
+                  "missing_required": [],
+                  "matched_required": [],
+                  "matched_alternatives": [
+                    "inclusion:extent:advanced"
+                  ],
+                  "required_alternatives": [
+                    "inclusion:extent:metastatic",
+                    "inclusion:stage:IV",
+                    "inclusion:extent:recurrent",
+                    "inclusion:extent:advanced"
+                  ],
+                  "matched_forbidden": [],
+                  "prior_advanced_lines": [
+                    "0"
+                  ],
+                  "lines_within": [
+                    "0"
+                  ],
+                  "lines_fit": true
+                }
+              }
+            ],
+            "domain_deltas": [
+              {
+                "coordinate": "setting",
+                "level": "interpolated",
+                "excluded_by_input": [
+                  "neoadjuvant",
+                  "adjuvant",
+                  "perioperative",
+                  "definitive_chemoradiation",
+                  "consolidation_after_chemoradiation",
+                  "advanced_previously_treated",
+                  "maintenance",
+                  "local_consolidative_therapy"
+                ],
+                "preserved_by_input": []
+              }
+            ],
+            "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "coordinate_effect_narrowed"
+        ],
+        "canonical_ref": "/result/effects/2"
+      },
+      {
+        "path": "/result/effects/3",
+        "kind": "coordinate_effect",
+        "outcome": "computed",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {},
+        "values": {
+          "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+        },
+        "support": {
+          "declared_support": {
+            "index": 3,
+            "ref": "invented:biomarker:EGFRproposed",
+            "standing": {
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "invented:accepted-teaching-premise"
+              ]
+            },
+            "level": "pending",
+            "code": "withheld",
+            "input_path": "/result/admission/3",
+            "consumers": [
+              {
+                "kind": "direct_coordinate",
+                "coordinate": "selection:EGFR",
+                "rule": "coherence.narrow_by_evidence",
+                "level": "input_standing",
+                "applicability": "applicable",
+                "reason": "exact_coordinate_restriction"
+              }
+            ],
+            "domain_deltas": [],
+            "comparison": "marginal_retraction_not_unique_proof_or_clinical_causality"
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "coordinate_effect_withheld"
+        ],
+        "canonical_ref": "/result/effects/3"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "coordinates",
   "result": {
@@ -1158,5 +2041,7 @@
         "support_path": "/result/effects/3"
       }
     ]
-  }
+  },
+  "result_digest": "c3140f9ca91c04aa0b1e628776f9f0006d841f5e42ee91e1088370faa70e5fae",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

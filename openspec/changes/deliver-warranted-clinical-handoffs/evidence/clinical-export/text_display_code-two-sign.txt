@@ -1,0 +1,65 @@
+  ▸ recalled 2 pinned test(s) from a previous run
+  … text_display_code: tracing 35 function-routed tests
+  … text_display_code: baseline traced · 35 tests · 4.2s
+  … text_display_code: 1/47 mutants · 2.2s/mutant · ETA estimating… (heartbeat)
+  … text_display_code: 47/47 mutants · 4.9/s · done in 9.6s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.0s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.0s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.0s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.0s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.0s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.0s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.0s
+  … text_display_code: tracing 1 function-routed tests
+  … text_display_code: baseline traced · 1 tests · 0.2s
+  ▸ pass 0: 3 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +10 new killing test(s) written [test_TrialLedger_clinical_export_text_display_code_365eb7095b_synth.py]
+  … text_display_code: tracing 45 function-routed tests
+  … text_display_code: baseline traced · 45 tests · 0.0s
+  … text_display_code: 47/47 mutants · 5.1/s · done in 9.2s
+  ▸ pass 1: 2 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 1: no new killing test for the remaining survivor(s) — at ceiling
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … text_display_code: tracing 45 function-routed tests
+  … text_display_code: baseline traced · 45 tests · 0.0s
+  … text_display_code: 47/47 mutants · 5.1/s · done in 9.2s
+  ▸ minimizing — dropped 10 redundant test(s) our own cover flagged
+  … text_display_code: tracing 35 function-routed tests
+  … text_display_code: baseline traced · 35 tests · 0.0s
+  … text_display_code: 47/47 mutants · 5.2/s · done in 9.0s
+  ▸ 2 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … text_display_code: tracing 35 function-routed tests
+  … text_display_code: baseline traced · 35 tests · 0.0s
+  … text_display_code: tracing 8 function-routed tests
+  … text_display_code: baseline traced · 8 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/clinical_export.py::text_display_code — converge · 47 behaviours · 45 pinned · 2 crash-only
+
+  ✓ wrote              2 test(s) → tests/detective/test_TrialLedger_clinical_export_text_display_code_365eb7095b_synth.py
+  · crash-only-equiv   2 — detected by crash; no value pins them
+  · not consulted      5410 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_text_display_code.txt
+
+DONE:  every killable behaviour Detective found is pinned.
+       What remains differs from your function only by a CRASH: an input
+       distinguishes each (the mutant raises where your function returns), so
+       none is an equivalence candidate and nothing is offered to `flag` — no
+       value assertion can pin a raise. They are detected, not equivalent.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/clinical_export.py'
+         detective decompose 'TrialLedger/clinical_export.py::text_display_code' --apply --two-sign
+         detective survey 'TrialLedger/clinical_export.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/clinical_export.py::text_display_code: ✓ COMPLETE (operator universe · modulo 2 crash-only value gaps) · 47/47 killed · 2 test(s) → tests/detective/test_TrialLedger_clinical_export_text_display_code_365eb7095b_synth.py · policy 9+neg.f5a15364c11d

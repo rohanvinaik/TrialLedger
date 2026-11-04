@@ -16,5 +16,5 @@ REASONING_OPERATIONS = (
     "design_session",
 )
 OPERATIONS = ("describe", *REASONING_OPERATIONS)
-DISCOVERY_VIEWS = ("overview", *REASONING_OPERATIONS, "worked_session", "full")
+DISCOVERY_VIEWS = ("overview", *REASONING_OPERATIONS, "delivery", "worked_session", "full")
 REASONING_WORDS = ", ".join(REASONING_OPERATIONS)

@@ -1,0 +1,28 @@
+[
+  {
+    "op": "replace",
+    "path": "/premises/1/payload/body/value/members",
+    "value": [
+      "II",
+      "III",
+      "IV"
+    ],
+    "origin": {
+      "kind": "user_choice",
+      "ref": "simulated-clinician:final-walkthrough-nyha-widening",
+      "source": null,
+      "analysis": null
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/decisions/0/selected",
+    "value": {
+      "alternative": "nyha-iv-patient",
+      "origin": "user",
+      "basis": [
+        "simulated-clinician:final-walkthrough-nyha-widening"
+      ]
+    }
+  }
+]

@@ -18,7 +18,13 @@ from TrialLedger import __version__, checks, contract, registry, warrants
 from TrialLedger import classes as rx
 from TrialLedger.contract import FIELDS as CONTRACT_FIELDS
 from TrialLedger.contract import holds_value, template_values
-from TrialLedger.eligibility import EXCLUSION_HEADINGS, INCLUSION_HEADINGS, split_eligibility
+from TrialLedger.eligibility import (
+    EXCLUSION_HEADINGS,
+    INCLUSION_HEADINGS,
+    heading_kind,
+    legacy_split_eligibility,
+    split_eligibility,
+)
 from TrialLedger.landscape_warrants import derivation_root, retained_format
 from TrialLedger.ledger import APPLIES_TO, REDACTED_WHEN_WITHHELD, absence_state, get, results_state
 from TrialLedger.links import document_link, study_link
@@ -91,7 +97,7 @@ RULE_VERSIONS = {
     "trialledger": __version__,
     "derivation_code_root": derivation_root(Path(__file__).parent),
     "display": contract.DISPLAY_VERSION,
-    "eligibility_sections": "registry-headings-source-context/2",
+    "eligibility_sections": "registry-headings-source-context/3",
     "registry_checks": checks.CHECKS_VERSION,
 }
 RECORD_KEYS = ("schema_version", "request", "scope", "manifest", "statuses", "envelope", "fields", "studies")
@@ -308,7 +314,7 @@ def collection_presence(study: dict[str, Any], templates: list[str]) -> dict[str
     return states
 
 
-def literal_context_kind(line: str, isolated: bool) -> str:
+def literal_context_kind(line: str, isolated: bool, legacy: bool = False) -> str:
     """Classify literal source structure, never population, timing or clinical force.
 
     ATX headings use at most three leading spaces. Colon labels require a standalone
@@ -319,7 +325,11 @@ def literal_context_kind(line: str, isolated: bool) -> str:
     stripped = words.strip(" \t")
     if words.startswith("\t") or len(words) - len(words.lstrip(" ")) > 3:
         return "unstated"
-    if stripped in INCLUSION_HEADINGS + EXCLUSION_HEADINGS:
+    if (
+        stripped in INCLUSION_HEADINGS + EXCLUSION_HEADINGS
+        if legacy
+        else heading_kind(stripped) in ("inclusion", "exclusion")
+    ):
         return "registry_heading"
     if re.fullmatch(r" {0,3}#{1,6}[ \t]+\S.*", words):
         return "markdown_heading"
@@ -333,7 +343,7 @@ def literal_context_kind(line: str, isolated: bool) -> str:
     return "unstated"
 
 
-def criterion_entries(text: str) -> list[dict[str, Any]]:
+def criterion_entries(text: str, *, legacy: bool = False) -> list[dict[str, Any]]:
     """Exact passages and nearest literal source context, never clinical scope.
 
     Context is a copied source line with character offsets. Coarse registry sections
@@ -342,7 +352,8 @@ def criterion_entries(text: str) -> list[dict[str, Any]]:
     """
     if not text:
         return []
-    code, before, inclusion, exclusion = split_eligibility(text)
+    splitter = legacy_split_eligibility if legacy else split_eligibility
+    code, before, inclusion, exclusion = splitter(text)
     sections = (("unsectioned", before), ("inclusion", inclusion), ("exclusion", exclusion))
     if code != "split":
         sections = (("unsectioned", text),)
@@ -368,7 +379,7 @@ def criterion_entries(text: str) -> list[dict[str, Any]]:
             isolated = (index == 0 or not lines[index - 1].strip()) and (
                 index + 1 == len(lines) or not lines[index + 1].strip()
             )
-            kind = literal_context_kind(line, isolated) if not in_fence and not marker else "unstated"
+            kind = literal_context_kind(line, isolated, legacy) if not in_fence and not marker else "unstated"
             if kind != "unstated":
                 context = {
                     "text": literal,
@@ -427,15 +438,23 @@ def context_problem(context: Any, text: str, passage_start: Any) -> str:
     return "ok"
 
 
-def legacy_record_projection(record: dict[str, Any]) -> dict[str, Any]:
-    """Explicit source-passages-v1 representation; it makes no claim to contain local context."""
+def legacy_record_projection(
+    record: dict[str, Any], version: str = "legacy_source_passages_v1"
+) -> dict[str, Any]:
+    """Reproduce one explicitly supported old heading format, without upgrading source text."""
+    if version not in ("legacy_source_passages_v1", "legacy_source_context_v2"):
+        raise ValueError("unsupported_legacy_projection")
     projected = copy.deepcopy(record)
-    projected["fields"] = {
-        key: value for key, value in projected["fields"].items() if ".source_context." not in key
-    }
+    if version == "legacy_source_passages_v1":
+        projected["fields"] = {
+            key: value for key, value in projected["fields"].items() if ".source_context." not in key
+        }
     for study in projected["studies"]:
-        for passage in study["criteria"]:
-            passage.pop("source_context", None)
+        text = get(study, "eligibility", "text")
+        study["criteria"] = criterion_entries(text, legacy=True) if isinstance(text, str) else []
+        if version == "legacy_source_passages_v1":
+            for passage in study["criteria"]:
+                passage.pop("source_context", None)
     return projected
 
 

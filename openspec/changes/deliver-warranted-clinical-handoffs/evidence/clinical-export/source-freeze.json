@@ -1,0 +1,29 @@
+{
+  "files": {
+    "TrialLedger/clinical_export.py": "24d55d12595285bf602d0d320e3f6835b817859a916370e6ec68602ca9355842",
+    "tests/test_clinical_export.py": "04cefd16f62ddb496c2a82a530d40c1c7cedf393bcbfc019a77f901e283bd655",
+    "TrialLedger/cells.py": "d386ea59cd71ff9102e689f5e97f6ebf33c9a1e2822b1d766702fcf253865f85",
+    "TrialLedger/baseline_view.py": "b83e640396f00aea1279b01a9a9de513685de7407093ce8317399cac83c70f6f",
+    "TrialLedger/layer2/clinical_answers.py": "7e6a4022f29ae5bc66f401444b08cda7a1d7a3312e24a691b799fedb50a32d67"
+  },
+  "owned_files": [
+    "TrialLedger/clinical_export.py",
+    "tests/test_clinical_export.py"
+  ],
+  "target_scope": "Function body plus referenced owners; no claim that I/O orchestration is mutation-complete.",
+  "functions": {
+    "text_display_code": {
+      "source_sha256": "a656acac1c7f0fb577375aadb1da2722aa900fd8f3846fec5813bec595bab3c6",
+      "line": 89
+    },
+    "option_wording_code": {
+      "source_sha256": "d40408ca149cbbdb9183774814168cf0de8a3a1b7012d09519adfe266a5b821a",
+      "line": 215
+    }
+  },
+  "proof_authored_snapshots": {
+    "trialledger-export-wording-current-two-sign-20261104": "69a3469c6534f68c2a1b8ab091680e12b8e8d6b86e15700d1741dd4679b45183",
+    "trialledger-export-text-final-two-sign-20261104": "69a3469c6534f68c2a1b8ab091680e12b8e8d6b86e15700d1741dd4679b45183"
+  },
+  "additional_final_intent": "The final authored suite adds a direct MUST-NOT that validation deletes a CR to make an overflow fit. No earlier assertion or production code was changed."
+}

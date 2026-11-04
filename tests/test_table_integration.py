@@ -53,7 +53,7 @@ def test_table_is_discovered_and_preserves_inputs():
         "table_actions",
         "table_overlaps",
     }
-    guide = run({"operation": "describe", "view": "signals"})
+    guide = run({"operation": "describe", "view": "signals", "detail": "full"})
     assert "decision_table" in guide["result"]["signal_kinds"]
 
 

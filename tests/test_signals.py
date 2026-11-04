@@ -30,7 +30,7 @@ def test_support_state_requires_each_resolved_accepted_premise():
 
 @pytest.mark.parametrize("kind", list(signals.MODULES))
 def test_all_discovered_operator_examples_run_without_mutating_inputs(kind):
-    guide = run({"operation": "describe", "view": "signals"})["result"]
+    guide = run({"operation": "describe", "view": "signals", "detail": "full"})["result"]
     request = guide["signal_examples"][kind]
     before = copy.deepcopy(request)
     reply = run(request)

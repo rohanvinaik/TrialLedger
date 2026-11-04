@@ -268,6 +268,9 @@ def test_tools_list_names_every_tool_with_its_description_and_schema(tmp_path):
         "scope",
         "record",
         "reason",
+        "reason_result",
+        "reason_revise",
+        "reason_export",
     ]
     for tool in tools:
         assert set(tool) == {"name", "description", "inputSchema"}
@@ -277,6 +280,8 @@ def test_tools_list_names_every_tool_with_its_description_and_schema(tmp_path):
         assert set(schema["required"]) <= set(schema["properties"])
         if tool["name"] == "reason":
             assert schema["required"] == ["request"] and "run" not in schema["properties"]
+        elif tool["name"] in {"reason_result", "reason_revise", "reason_export"}:
+            assert schema["required"] == ["id"] and "run" not in schema["properties"]
         else:
             assert "run" in schema["required"]
 
@@ -826,7 +831,7 @@ def test_argument_problems_reads_an_enum_a_pattern_and_an_integer_alone(schema, 
 
 
 def test_every_tools_schema_is_one_argument_problems_reads():
-    kinds = {"string", "object", "integer", "boolean"}
+    kinds = {"string", "object", "integer", "boolean", "array"}
     for tool in TOOLS.values():
         for described in tool["inputSchema"]["properties"].values():
             assert described["type"] in kinds

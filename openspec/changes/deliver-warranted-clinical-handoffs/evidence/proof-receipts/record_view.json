@@ -1,0 +1,236 @@
+{
+  "adoption_limit": "The canonical-owner characterization remains incomplete. No completed replacement pin or line completeness is claimed after retirement of the preserved obsolete alias characterization.",
+  "completed_pin": false,
+  "completion": "INCOMPLETE",
+  "counterexample_or_falsifier": "A changed source/function or external evidence hash invalidates the corresponding identity or historical-report claim; a future complete run supersedes this outcome without retroactively completing it.",
+  "eligible_for_completed_pin_adoption": false,
+  "explicit_two_sign": true,
+  "external_full_log": {
+    "bytes": 6374,
+    "path": "/tmp/trialledger-final-two-sign-20261104-record-owner/two-sign-prescribed-wall.log",
+    "read_complete": true,
+    "sha256": "a05b414e060ddb39b0cc05872ddc460aa6b02ebbd4e677b11d69afaf7dd5f7fa"
+  },
+  "external_full_report": {
+    "bytes": 40288,
+    "path": "/tmp/trialledger-final-two-sign-20261104-record-owner/.detective/reports/converge_record_view.txt",
+    "read_complete": true,
+    "sha256": "a4d9eb39172f82c9f97983e596d12d9c7e920042e8ded3f41d33d07b44f2a6c2"
+  },
+  "external_ledger": {
+    "bytes": 2306,
+    "path": "/tmp/trialledger-final-two-sign-20261104-record-owner/.detective/ledger.jsonl",
+    "sha256": "2eedce631b05ef020b0e2715d3b61b742e39f29f6aa52abef28c03ccdbafc960"
+  },
+  "instrument": "Complete existing Detective report, console log, structured invocation ledger and SHA256/AST identity computation.",
+  "invocation": {
+    "arguments": [
+      "converge",
+      "TrialLedger/evidence_access.py::record_view",
+      "--two-sign",
+      "--deadline",
+      "900"
+    ],
+    "cwd": "/tmp/trialledger-final-two-sign-20261104-record-owner",
+    "environment": {
+      "PYTHONPATH": "/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker"
+    },
+    "ledger_event": {
+      "args": {
+        "deadline": 900.0,
+        "max_iterations": 3,
+        "trace_budget": 50.0,
+        "trace_session_budget": 1800.0,
+        "two_sign": true,
+        "write_dir": "tests/detective"
+      },
+      "dur_ms": 479550,
+      "env": {
+        "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+        "interpreter": "/private/tmp/trialledger-final-two-sign-20261104-record-owner/.venv/bin/python",
+        "project_root": "/private/tmp/trialledger-final-two-sign-20261104-record-owner",
+        "version": "1.2.2",
+        "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+      },
+      "exit": 0,
+      "outcome": [
+        [
+          "outcome",
+          "converge",
+          "close_the_gap"
+        ]
+      ],
+      "plan": {
+        "digest": "sha256:81907ba4e2dae67537b27a75aed31477",
+        "kind": "lines"
+      },
+      "refusal": null,
+      "state": {
+        "equivalents": "",
+        "inputs": "",
+        "suite": "sha256:543edb4ceaf77cba3d5bda610eef914f",
+        "target_src": "sha256:b503521f98043d24b2a71cd708ba5e66"
+      },
+      "target": "TrialLedger/evidence_access.py::record_view",
+      "ts": "2026-11-04T05:55:56Z",
+      "v": 1,
+      "verb": "converge"
+    },
+    "program": ".venv/bin/detective",
+    "wrapper": "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "wrapper_label": "final-record-owner-prescribed-wall"
+  },
+  "kind": "external_tool_report_with_computed_source_identity",
+  "new_proof_runs_during_capsule_completion": false,
+  "policy": "9+neg.f5a15364c11d",
+  "prescribed_next_actions": {
+    "additional_lines_from_full_report": [
+      199,
+      200,
+      203
+    ],
+    "conditional_flag_guidance": "The full report also offers flags only for survivors that can be proved equivalent; no flag was executed for this target.",
+    "named_conditions": [
+      {
+        "condition": "part == 'study' and nct is None",
+        "line": 154
+      },
+      {
+        "condition": "part == 'study' and nct not in held",
+        "line": 159
+      },
+      {
+        "condition": "part == 'manifest'",
+        "line": 163
+      },
+      {
+        "condition": "not (part == 'manifest') and part == 'statuses'",
+        "line": 165
+      },
+      {
+        "condition": "not (part == 'manifest') and not (part == 'statuses') and not (part == 'study') and not (part == 'studies') and not (part == 'fields') and part == 'address' and 'address' not in arguments",
+        "line": 177
+      },
+      {
+        "condition": "not (part == 'manifest') and not (part == 'statuses') and not (part == 'study') and not (part == 'studies') and not (part == 'fields') and part == 'address' and code != 'ok'",
+        "line": 180
+      },
+      {
+        "condition": "'text_offset' in arguments or 'text_limit' in arguments",
+        "line": 188
+      },
+      {
+        "condition": "code != 'ok'",
+        "line": 193
+      },
+      {
+        "condition": "reach it",
+        "line": 197
+      },
+      {
+        "condition": "reach it",
+        "line": 198
+      }
+    ],
+    "status": "not_executed",
+    "task_verbatim": "Author 10 call(s) \u2014 one per line below \u2014 each as its own --input. Detective derives every test from them.",
+    "template": "--input \"(<record>, <arguments>)\"",
+    "then_run_verbatim": "detective converge 'TrialLedger/evidence_access.py::record_view' --two-sign"
+  },
+  "prescribed_next_actions_executed": false,
+  "prior_invocation_events": [
+    {
+      "args": {
+        "deadline": 300.0,
+        "max_iterations": 3,
+        "trace_budget": 50.0,
+        "trace_session_budget": 1800.0,
+        "two_sign": true,
+        "write_dir": "tests/detective"
+      },
+      "dur_ms": 320012,
+      "env": {
+        "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+        "interpreter": "/private/tmp/trialledger-final-two-sign-20261104-record-owner/.venv/bin/python",
+        "project_root": "/private/tmp/trialledger-final-two-sign-20261104-record-owner",
+        "version": "1.2.2",
+        "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+      },
+      "exit": 3,
+      "outcome": [
+        [
+          "outcome",
+          "converge",
+          "repair_measurement"
+        ]
+      ],
+      "refusal": null,
+      "state": {
+        "equivalents": "",
+        "inputs": "",
+        "suite": "sha256:ba1e9079cc2cd92d8d2c7e5205f4f635",
+        "target_src": "sha256:b503521f98043d24b2a71cd708ba5e66"
+      },
+      "target": "TrialLedger/evidence_access.py::record_view",
+      "ts": "2026-11-04T05:47:23Z",
+      "v": 1,
+      "verb": "converge"
+    }
+  ],
+  "proof_directory": "/tmp/trialledger-final-two-sign-20261104-record-owner",
+  "recorded_at": "2026-11-04T06:01:06.183487+00:00",
+  "reported": {
+    "counts_scope": "Separate quantities reported by the incomplete run; no completed pin is inferred from its zero exit status or its kill counts.",
+    "crash_only_value_gaps": 3,
+    "diagnostic_killed": 252,
+    "diagnostic_scored": 380,
+    "diagnostic_value_pinned": 205,
+    "line_complete": false,
+    "uncovered_lines": [
+      154,
+      159,
+      163,
+      165,
+      177,
+      180,
+      188,
+      193,
+      197,
+      198,
+      199,
+      200,
+      203
+    ],
+    "unproven_equivalent": 172,
+    "verbatim_final": "FINAL TrialLedger/evidence_access.py::record_view: Incomplete: 13-line gap \u00b7 252/380 killed \u00b7 1 test(s) \u2192 tests/detective/test_TrialLedger_evidence_access_record_view_f3ba0c5ea9_synth.py \u00b7 policy 9+neg.f5a15364c11d"
+  },
+  "schema_version": 1,
+  "scope": "Historical explicit two-sign attempt for this named target; no completed pin or project-wide guarantee is established.",
+  "source": {
+    "current_at_receipt_creation": {
+      "bytes": 10413,
+      "function_ast_hash_scope": "ast.dump of the whole function with include_attributes=False, UTF-8.",
+      "function_ast_sha256": "95f696bd1e7f6ede80a1f064cad0d8e9a466a84624df8e014744419a439583c0",
+      "function_source_hash_scope": "Exact UTF-8 ast.get_source_segment for the whole function, excluding a terminal newline outside its AST span.",
+      "function_source_sha256": "d5481f0a2d52be2b344540f3684f2df9e367e8b33e347ed1fce739413c229e38",
+      "path": "/Users/rohanvinaik/tools/TrialLedger/TrialLedger/evidence_access.py",
+      "sha256": "b503521f98043d24b2a71cd708ba5e66200560ad20294c25e7d79502c367cce5"
+    },
+    "frozen": {
+      "bytes": 10413,
+      "function_ast_hash_scope": "ast.dump of the whole function with include_attributes=False, UTF-8.",
+      "function_ast_sha256": "95f696bd1e7f6ede80a1f064cad0d8e9a466a84624df8e014744419a439583c0",
+      "function_source_hash_scope": "Exact UTF-8 ast.get_source_segment for the whole function, excluding a terminal newline outside its AST span.",
+      "function_source_sha256": "d5481f0a2d52be2b344540f3684f2df9e367e8b33e347ed1fce739413c229e38",
+      "path": "/tmp/trialledger-final-two-sign-20261104-record-owner/TrialLedger/evidence_access.py",
+      "sha256": "b503521f98043d24b2a71cd708ba5e66200560ad20294c25e7d79502c367cce5"
+    },
+    "function_ast_equal_to_current": true,
+    "function_source_equal_to_current": true,
+    "module_byte_equal_to_current": true,
+    "relative_path": "TrialLedger/evidence_access.py"
+  },
+  "specimen": "The frozen target function and its reported operator-universe observation.",
+  "target": "TrialLedger/evidence_access.py::record_view",
+  "test_or_certificate_changes_during_capsule_completion": false
+}

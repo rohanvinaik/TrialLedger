@@ -1,4 +1,951 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "source_assertions",
+    "findings": 9,
+    "dispositions": {
+      "conditional": 4,
+      "open": 1,
+      "settled": 4
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "source_assertions",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "frame-consistency",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ],
+        "canonical_ref": "/result/analyses/0/result/fixed/consistency"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "registered-adult-age"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "registry-age-minimumAge",
+            "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/fixed/queries/0"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "outcome": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "randomization-anchored",
+          "label": "Apply each 42-day assessment tolerance around nominal days measured from randomization"
+        },
+        "support": {
+          "warrant": {
+            "rule": "interpretations.compatibility:1",
+            "guarantee": "conditional_on_fixed_and_interpretation_premises",
+            "fixed_status": "known",
+            "status": "proposed",
+            "fixed_premises": [],
+            "assumptions": [],
+            "bindings": [],
+            "basis": [
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "intrinsic_consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "signal_rules": [
+              {
+                "id": "scheduled-assessments",
+                "rule": "graph.temporal:1"
+              }
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [
+          {
+            "origin": "assistant"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/interpretations/0"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "registered-adult-age"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "registry-age-minimumAge",
+            "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/interpretations/0/queries/0"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "outcome": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "scheduled-assessments",
+          "value": {
+            "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "first_nominal_target",
+                "lower": 42,
+                "upper": 42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "randomization",
+                "after": "second_nominal_target",
+                "lower": 84,
+                "upper": 84,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "randomization",
+                "after": "first_permitted_assessment",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "randomization",
+                "after": "second_permitted_assessment",
+                "lower": 77,
+                "upper": 91,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "randomization",
+                "lower": -42,
+                "upper": -42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "second_nominal_target",
+                "lower": 42,
+                "upper": 42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "first_permitted_assessment",
+                "lower": -7,
+                "upper": 7,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "second_permitted_assessment",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "randomization",
+                "lower": -84,
+                "upper": -84,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "first_nominal_target",
+                "lower": -42,
+                "upper": -42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "first_permitted_assessment",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "second_permitted_assessment",
+                "lower": -7,
+                "upper": 7,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "randomization",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "first_nominal_target",
+                "lower": -7,
+                "upper": 7,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "second_nominal_target",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "second_permitted_assessment",
+                "lower": 28,
+                "upper": 56,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "randomization",
+                "lower": -91,
+                "upper": -77,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "first_nominal_target",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "second_nominal_target",
+                "lower": -7,
+                "upper": 7,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "first_permitted_assessment",
+                "lower": -56,
+                "upper": -28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+            "hypothesis:source-location-is-not-semantic-warrant"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "randomization-anchored-schedule-reading",
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          },
+          "guarantee": "conditional_on_interpretation"
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/interpretations/0/signals/0"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1",
+        "kind": "interpretation",
+        "outcome": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "successive-gaps",
+          "label": "Apply each 42-day assessment tolerance as a gap after the preceding assessment"
+        },
+        "support": {
+          "warrant": {
+            "rule": "interpretations.compatibility:1",
+            "guarantee": "conditional_on_fixed_and_interpretation_premises",
+            "fixed_status": "known",
+            "status": "proposed",
+            "fixed_premises": [],
+            "assumptions": [],
+            "bindings": [],
+            "basis": [
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "intrinsic_consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "signal_rules": [
+              {
+                "id": "scheduled-assessments",
+                "rule": "graph.temporal:1"
+              }
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [
+          {
+            "origin": "assistant"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/interpretations/1"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "registered-adult-age"
+        },
+        "support": {
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "conditional_on_interpretation",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "registry-age-minimumAge",
+            "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/interpretations/1/queries/0"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/signals/0",
+        "kind": "signal",
+        "outcome": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "scheduled-assessments",
+          "value": {
+            "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "first_nominal_target",
+                "lower": 42,
+                "upper": 42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "randomization",
+                "after": "second_nominal_target",
+                "lower": 84,
+                "upper": 84,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "randomization",
+                "after": "first_permitted_assessment",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "randomization",
+                "after": "second_permitted_assessment",
+                "lower": 70,
+                "upper": 98,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "randomization",
+                "lower": -42,
+                "upper": -42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "second_nominal_target",
+                "lower": 42,
+                "upper": 42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "first_permitted_assessment",
+                "lower": -7,
+                "upper": 7,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_nominal_target",
+                "after": "second_permitted_assessment",
+                "lower": 28,
+                "upper": 56,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "randomization",
+                "lower": -84,
+                "upper": -84,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "first_nominal_target",
+                "lower": -42,
+                "upper": -42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "first_permitted_assessment",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_nominal_target",
+                "after": "second_permitted_assessment",
+                "lower": -14,
+                "upper": 14,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "randomization",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "first_nominal_target",
+                "lower": -7,
+                "upper": 7,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "second_nominal_target",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_permitted_assessment",
+                "after": "second_permitted_assessment",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "randomization",
+                "lower": -98,
+                "upper": -70,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "first_nominal_target",
+                "lower": -56,
+                "upper": -28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "second_nominal_target",
+                "lower": -14,
+                "upper": 14,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "second_permitted_assessment",
+                "after": "first_permitted_assessment",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        },
+        "support": {
+          "basis": [
+            "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+            "hypothesis:source-location-is-not-semantic-warrant"
+          ],
+          "rule": "graph.temporal:1",
+          "support": [
+            {
+              "id": "successive-gaps-schedule-reading",
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            }
+          ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          },
+          "guarantee": "conditional_on_interpretation"
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/interpretations/1/signals/0"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        },
+        "values": {
+          "id": "registered-adult-age"
+        },
+        "support": {
+          "basis": "fixed_floor",
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "declared_support": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "registry-age-minimumAge",
+            "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/analyses/0/result/consequences/0"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "source_assertions",
   "result": {
@@ -827,6 +1774,953 @@
     ],
     "analyses": [
       {
+        "summary": {
+          "kind": "reasoning",
+          "code": "complete",
+          "operation": "interpretations",
+          "findings": 9,
+          "dispositions": {
+            "conditional": 4,
+            "open": 1,
+            "settled": 4
+          },
+          "problems": []
+        },
+        "clinical": {
+          "version": 1,
+          "operation": "interpretations",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "outcome": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "disposition": "open",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+                "query": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "frame-consistency",
+                    "kind": "demographic"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              },
+              "values": {},
+              "support": {
+                "proof": []
+              },
+              "origins": [],
+              "conditions": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ],
+              "canonical_ref": "/result/fixed/consistency"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "outcome": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "disposition": "settled",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+                "query": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                }
+              },
+              "values": {
+                "id": "registered-adult-age"
+              },
+              "support": {
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "declared_support": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "explanation_blockers": []
+              },
+              "origins": [
+                {
+                  "premise": "registry-age-minimumAge",
+                  "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/fixed/queries/0"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "outcome": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "disposition": "conditional",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+              },
+              "values": {
+                "id": "randomization-anchored",
+                "label": "Apply each 42-day assessment tolerance around nominal days measured from randomization"
+              },
+              "support": {
+                "warrant": {
+                  "rule": "interpretations.compatibility:1",
+                  "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                  "fixed_status": "known",
+                  "status": "proposed",
+                  "fixed_premises": [],
+                  "assumptions": [],
+                  "bindings": [],
+                  "basis": [
+                    "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ],
+                  "consistency": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "intrinsic_consistency": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "signal_rules": [
+                    {
+                      "id": "scheduled-assessments",
+                      "rule": "graph.temporal:1"
+                    }
+                  ],
+                  "blockers": []
+                }
+              },
+              "origins": [
+                {
+                  "origin": "assistant"
+                }
+              ],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/interpretations/0"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "outcome": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "disposition": "settled",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+                "query": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                }
+              },
+              "values": {
+                "id": "registered-adult-age"
+              },
+              "support": {
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "conditional_on_interpretation",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "declared_support": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "conditional_on_interpretation",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "explanation_blockers": []
+              },
+              "origins": [
+                {
+                  "premise": "registry-age-minimumAge",
+                  "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/interpretations/0/queries/0"
+            },
+            {
+              "path": "/result/interpretations/0/signals/0",
+              "kind": "signal",
+              "outcome": "consistent",
+              "standing": "proposed",
+              "completion": "complete",
+              "disposition": "conditional",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+              },
+              "values": {
+                "id": "scheduled-assessments",
+                "value": {
+                  "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                  "unit": "day",
+                  "origin": "randomization",
+                  "bounds": [
+                    {
+                      "before": "randomization",
+                      "after": "first_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "second_nominal_target",
+                      "lower": 84,
+                      "upper": 84,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "first_permitted_assessment",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "second_permitted_assessment",
+                      "lower": 77,
+                      "upper": 91,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "randomization",
+                      "lower": -42,
+                      "upper": -42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "second_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "first_permitted_assessment",
+                      "lower": -7,
+                      "upper": 7,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "second_permitted_assessment",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "randomization",
+                      "lower": -84,
+                      "upper": -84,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "first_nominal_target",
+                      "lower": -42,
+                      "upper": -42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "first_permitted_assessment",
+                      "lower": -49,
+                      "upper": -35,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "second_permitted_assessment",
+                      "lower": -7,
+                      "upper": 7,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "randomization",
+                      "lower": -49,
+                      "upper": -35,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "first_nominal_target",
+                      "lower": -7,
+                      "upper": 7,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "second_nominal_target",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "second_permitted_assessment",
+                      "lower": 28,
+                      "upper": 56,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "randomization",
+                      "lower": -91,
+                      "upper": -77,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "first_nominal_target",
+                      "lower": -49,
+                      "upper": -35,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "second_nominal_target",
+                      "lower": -7,
+                      "upper": 7,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "first_permitted_assessment",
+                      "lower": -56,
+                      "upper": -28,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    }
+                  ]
+                }
+              },
+              "support": {
+                "basis": [
+                  "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "rule": "graph.temporal:1",
+                "support": [
+                  {
+                    "id": "randomization-anchored-schedule-reading",
+                    "status": "proposed",
+                    "resolution": "resolved",
+                    "basis": [
+                      "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                      "hypothesis:source-location-is-not-semantic-warrant"
+                    ]
+                  }
+                ],
+                "admission": {
+                  "code": "accepted",
+                  "application_blockers": []
+                },
+                "guarantee": "conditional_on_interpretation"
+              },
+              "origins": [],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/interpretations/0/signals/0"
+            },
+            {
+              "path": "/result/interpretations/1",
+              "kind": "interpretation",
+              "outcome": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "disposition": "conditional",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+              },
+              "values": {
+                "id": "successive-gaps",
+                "label": "Apply each 42-day assessment tolerance as a gap after the preceding assessment"
+              },
+              "support": {
+                "warrant": {
+                  "rule": "interpretations.compatibility:1",
+                  "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                  "fixed_status": "known",
+                  "status": "proposed",
+                  "fixed_premises": [],
+                  "assumptions": [],
+                  "bindings": [],
+                  "basis": [
+                    "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ],
+                  "consistency": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "intrinsic_consistency": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "signal_rules": [
+                    {
+                      "id": "scheduled-assessments",
+                      "rule": "graph.temporal:1"
+                    }
+                  ],
+                  "blockers": []
+                }
+              },
+              "origins": [
+                {
+                  "origin": "assistant"
+                }
+              ],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/interpretations/1"
+            },
+            {
+              "path": "/result/interpretations/1/queries/0",
+              "kind": "logical",
+              "outcome": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "disposition": "settled",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+                "query": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                }
+              },
+              "values": {
+                "id": "registered-adult-age"
+              },
+              "support": {
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "conditional_on_interpretation",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "declared_support": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "conditional_on_interpretation",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "explanation_blockers": []
+              },
+              "origins": [
+                {
+                  "premise": "registry-age-minimumAge",
+                  "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/interpretations/1/queries/0"
+            },
+            {
+              "path": "/result/interpretations/1/signals/0",
+              "kind": "signal",
+              "outcome": "consistent",
+              "standing": "proposed",
+              "completion": "complete",
+              "disposition": "conditional",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+              },
+              "values": {
+                "id": "scheduled-assessments",
+                "value": {
+                  "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                  "unit": "day",
+                  "origin": "randomization",
+                  "bounds": [
+                    {
+                      "before": "randomization",
+                      "after": "first_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "second_nominal_target",
+                      "lower": 84,
+                      "upper": 84,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "first_permitted_assessment",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "second_permitted_assessment",
+                      "lower": 70,
+                      "upper": 98,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "randomization",
+                      "lower": -42,
+                      "upper": -42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "second_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "first_permitted_assessment",
+                      "lower": -7,
+                      "upper": 7,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "second_permitted_assessment",
+                      "lower": 28,
+                      "upper": 56,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "randomization",
+                      "lower": -84,
+                      "upper": -84,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "first_nominal_target",
+                      "lower": -42,
+                      "upper": -42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "first_permitted_assessment",
+                      "lower": -49,
+                      "upper": -35,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_nominal_target",
+                      "after": "second_permitted_assessment",
+                      "lower": -14,
+                      "upper": 14,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "randomization",
+                      "lower": -49,
+                      "upper": -35,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "first_nominal_target",
+                      "lower": -7,
+                      "upper": 7,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "second_nominal_target",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "second_permitted_assessment",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "randomization",
+                      "lower": -98,
+                      "upper": -70,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "first_nominal_target",
+                      "lower": -56,
+                      "upper": -28,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "second_nominal_target",
+                      "lower": -14,
+                      "upper": 14,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "second_permitted_assessment",
+                      "after": "first_permitted_assessment",
+                      "lower": -49,
+                      "upper": -35,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    }
+                  ]
+                }
+              },
+              "support": {
+                "basis": [
+                  "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "rule": "graph.temporal:1",
+                "support": [
+                  {
+                    "id": "successive-gaps-schedule-reading",
+                    "status": "proposed",
+                    "resolution": "resolved",
+                    "basis": [
+                      "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                      "hypothesis:source-location-is-not-semantic-warrant"
+                    ]
+                  }
+                ],
+                "admission": {
+                  "code": "accepted",
+                  "application_blockers": []
+                },
+                "guarantee": "conditional_on_interpretation"
+              },
+              "origins": [],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/interpretations/1/signals/0"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "outcome": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "disposition": "settled",
+              "scope": {
+                "study_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+                "query": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                }
+              },
+              "values": {
+                "id": "registered-adult-age"
+              },
+              "support": {
+                "basis": "fixed_floor",
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "declared_support": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "explanation_blockers": []
+              },
+              "origins": [
+                {
+                  "premise": "registry-age-minimumAge",
+                  "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "conditions": [],
+              "blockers": [],
+              "canonical_ref": "/result/consequences/0"
+            }
+          ]
+        },
         "code": "complete",
         "operation": "interpretations",
         "result": {
@@ -952,6 +2846,18 @@
                     "registry-age-minimumAge"
                   ],
                   "blockers": []
+                },
+                "explanations": {
+                  "permissions": [],
+                  "conditions": [],
+                  "blockers": [],
+                  "checks": {
+                    "code": "not_open",
+                    "decisions": 0,
+                    "intrinsic_queries": 0,
+                    "planned": 0,
+                    "limit": 8
+                  }
                 },
                 "warrant": {
                   "rule": "entail.decide:1",
@@ -1294,6 +3200,18 @@
                       "registry-age-minimumAge"
                     ],
                     "blockers": []
+                  },
+                  "explanations": {
+                    "permissions": [],
+                    "conditions": [],
+                    "blockers": [],
+                    "checks": {
+                      "code": "not_open",
+                      "decisions": 0,
+                      "intrinsic_queries": 0,
+                      "planned": 0,
+                      "limit": 8
+                    }
                   },
                   "warrant": {
                     "rule": "entail.decide:1",
@@ -1671,6 +3589,18 @@
                     ],
                     "blockers": []
                   },
+                  "explanations": {
+                    "permissions": [],
+                    "conditions": [],
+                    "blockers": [],
+                    "checks": {
+                      "code": "not_open",
+                      "decisions": 0,
+                      "intrinsic_queries": 0,
+                      "planned": 0,
+                      "limit": 8
+                    }
+                  },
                   "warrant": {
                     "rule": "entail.decide:1",
                     "guarantee": "conditional_on_interpretation",
@@ -1776,6 +3706,18 @@
                   "registry-age-minimumAge"
                 ],
                 "blockers": []
+              },
+              "explanations": {
+                "permissions": [],
+                "conditions": [],
+                "blockers": [],
+                "checks": {
+                  "code": "not_open",
+                  "decisions": 0,
+                  "intrinsic_queries": 0,
+                  "planned": 0,
+                  "limit": 8
+                }
               },
               "warrant": {
                 "rule": "entail.decide:1",
@@ -1889,7 +3831,9 @@
               "support_path": "/result/consequences/0/warrant"
             }
           ]
-        }
+        },
+        "result_digest": "40fd69e133ed0aeb817e56bbc3ef703d326f00b78dfd0e0f340dee2d424c0f5c",
+        "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
       }
     ]
   },
@@ -1989,5 +3933,7 @@
         "support_path": "/result/analyses/0/result/consequences/0/warrant"
       }
     ]
-  }
+  },
+  "result_digest": "7c489f0f1120fc92e64a43ff1930bf20b32732dc77b532ba8da898890cbc30c4",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

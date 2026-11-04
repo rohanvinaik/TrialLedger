@@ -639,7 +639,7 @@ def test_hidden_record_pointer_does_not_inflate_the_visible_row_height():
 INTERNAL = re.compile(r"\b(atoms?|packs?|rule pack|unnarrowed|coordinates?|interpolated_|not_stated)\b", re.I)
 # The contract's blank-by-construction columns, by sheet (the Safety G columns and the empty listing's line
 # are checked apart).
-BLANK_ALLOWED: dict[str, set[str]] = {}
+BLANK_ALLOWED: dict[str, set[str]] = {contract.SAFETY: {"Notes"}}
 for (_sheet, _kind), _columns in contract.BLANK_BY_CONSTRUCTION.items():
     BLANK_ALLOWED.setdefault(_sheet, set()).update(_columns)
 

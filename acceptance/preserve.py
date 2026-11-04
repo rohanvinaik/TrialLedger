@@ -1127,6 +1127,15 @@ def row_findings(
             want = Expected([t for t in want.texts if t != group], want.counts, want.words)
         verdict = judge(cell, want, column.header in blank)
         if (
+            sheet.name == contract.SAFETY
+            and column.header == "Notes"
+            and not (want.texts or want.counts or want.words)
+            and _plain(cell) is None
+        ):
+            # Notes are optional annotations, not missing clinical values. This
+            # exception cannot hide a source note: those populate `want` above.
+            verdict = "blank_by_construction"
+        if (
             column.header == "Spread or limits"
             and len(want.texts) == 1
             and want.texts[0].endswith(": " + status_words("not_stated"))

@@ -1,4 +1,75 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "entailment",
+    "findings": 1,
+    "dispositions": {
+      "settled": 1
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "entailment",
+    "findings": [
+      {
+        "path": "/result/decision",
+        "kind": "logical",
+        "outcome": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "draft-PS"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [
+          {
+            "premise": "draft-PS",
+            "criterion_ref": "invented:user-chosen-brief"
+          }
+        ],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/decision"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "entailment",
   "result": {
@@ -199,7 +270,19 @@
         "span": [],
         "status": "known"
       }
-    ]
+    ],
+    "explanations": {
+      "permissions": [],
+      "conditions": [],
+      "blockers": [],
+      "checks": {
+        "code": "not_open",
+        "decisions": 0,
+        "intrinsic_queries": 0,
+        "planned": 0,
+        "limit": 8
+      }
+    }
   },
   "problems": [],
   "metadata": {
@@ -216,5 +299,7 @@
         "disposition": "settled"
       }
     ]
-  }
+  },
+  "result_digest": "ee53f9c3e42a4d1e951c06f9310702651b05d58e577da3f8842c475ef0aaba1f",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

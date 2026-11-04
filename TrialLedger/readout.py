@@ -1242,7 +1242,7 @@ def stat_cell(count: Any, key: str) -> Any:
     return held if held_kind(held) == "plain" else NOT_REPORTED
 
 
-def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
+def safety_rows(study: dict[str, Any], number: int, n: int, *, legacy_notes: bool = False) -> list[tuple]:
     """One Safety row per event and source count or group in this trial's adverse-events module.
 
     Group IDs are resolved within that module; no group is matched across studies or results modules. A
@@ -1275,7 +1275,7 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
                 group_description = value_words(group.get("description"))
             risk = stat_cell(count if isinstance(count, dict) else None, "at_risk")
             risk_source, risk_rule, risk_inputs = address, "", ""
-            notes = value_words(event.get("notes"))
+            notes = value_words(event.get("notes")) if legacy_notes or stated(event.get("notes")) else None
             risk_key = {"serious": "serious_at_risk", "other": "other_at_risk"}.get(event.get("table"))
             if (
                 isinstance(count, dict)
@@ -1698,12 +1698,17 @@ def provenance_words(record: dict[str, Any]) -> str:
     manifest = record["manifest"]
     held = manifest.get("rule_versions")
     versions = held if isinstance(held, dict) else {}
+    display = (
+        versions["display"]
+        if retained_format(versions) in {"legacy_source_passages_v1", "legacy_source_context_v2"}
+        else contract.DISPLAY_VERSION
+    )
     lines = [
         f"Registry: ClinicalTrials.gov API {manifest.get('api_version', NOT_STATED)}; data as of "
         f"{date_text(manifest.get('data_timestamp'))}",
         f"Record: landscape.json schema {record.get('schema_version', NOT_STATED)}; code commit "
         f"{manifest.get('code_commit', NOT_STATED)}",
-        f"Workbook: {BOOK_VERSION}; clinical words {contract.DISPLAY_VERSION}; TrialLedger {__version__}",
+        f"Workbook: {BOOK_VERSION}; clinical words {display}; TrialLedger {__version__}",
     ]
     lines += [
         f"Rule version, {name.replace('_', ' ')}: {version_words(value)}" for name, value in versions.items()
@@ -2184,6 +2189,10 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
     the index links to each trial's dossier and its publications band, and each band with a listing to the
     trial's first row there; each trial's dossier starts a printed page."""
     studies = record["studies"]
+    legacy_notes = retained_format((record.get("manifest") or {}).get("rule_versions")) in (
+        "legacy_source_passages_v1",
+        "legacy_source_context_v2",
+    )
     n = safety_groups(record)
     listings = {
         contract.ELIGIBILITY: criterion_rows,
@@ -2202,7 +2211,7 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
             first[(name, i)] = len(rows[name])
             rows[name] += rows_of(study, i)
         first[(contract.SAFETY, i)] = len(rows[contract.SAFETY])
-        rows[contract.SAFETY] += safety_rows(study, i, n)
+        rows[contract.SAFETY] += safety_rows(study, i, n, legacy_notes=legacy_notes)
     review: list[tuple] = []
     starts, links_ = [], []
     for i, study in enumerate(studies):

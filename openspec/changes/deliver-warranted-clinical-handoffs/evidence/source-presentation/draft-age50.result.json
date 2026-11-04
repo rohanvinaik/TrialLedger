@@ -1,0 +1,178 @@
+{
+ "summary": {
+  "kind": "reasoning",
+  "code": "complete",
+  "operation": "entailment",
+  "findings": 1,
+  "dispositions": {
+   "settled": 1
+  },
+  "problems": []
+ },
+ "clinical": {
+  "version": 1,
+  "operation": "entailment",
+  "findings": [
+   {
+    "path": "/result/decision",
+    "kind": "logical",
+    "outcome": "REFUTED",
+    "standing": "known",
+    "completion": "complete",
+    "disposition": "settled",
+    "scope": {
+     "query": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "eq",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 60.0,
+       "unit": "Years",
+       "upper": null
+      }
+     }
+    },
+    "values": {},
+    "support": {
+     "proof": [
+      "simulated-draft-age"
+     ],
+     "explanation_blockers": []
+    },
+    "origins": [
+     {
+      "premise": "simulated-draft-age",
+      "criterion_ref": "simulated:operator-choice-not-registry"
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/decision"
+   }
+  ]
+ },
+ "code": "complete",
+ "operation": "entailment",
+ "result": {
+  "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+  "decision": {
+   "result": "REFUTED",
+   "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":60.0,\"unit\":\"Years\",\"upper\":null}}",
+   "status": "known",
+   "proof": [
+    "simulated-draft-age"
+   ],
+   "blockers": []
+  },
+  "premises": [
+   {
+    "applicability": {
+     "class": "Always"
+    },
+    "body": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "age",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": null,
+     "value": {
+      "class": "Value",
+      "kind": "interval",
+      "comparison": "in",
+      "number": 18,
+      "upper": 50,
+      "unit": "Years",
+      "inclusivity": "inclusive"
+     }
+    },
+    "branch": {
+     "class": "Branch",
+     "node": "unresolved",
+     "path": []
+    },
+    "class": "ScopedAssertion",
+    "cohort": {
+     "class": "Scope",
+     "kind": "all_participants",
+     "parts": [],
+     "ref": ""
+    },
+    "criterion_ref": "simulated:operator-choice-not-registry",
+    "id": "simulated-draft-age",
+    "modality": "required",
+    "resolution": "resolved",
+    "rule": {
+     "class": "Rule",
+     "id": "simulated-design-choice",
+     "version": "1",
+     "warrants": [
+      "simulated:operator-choice-not-human-confirmation"
+     ]
+    },
+    "span": [],
+    "status": "known"
+   }
+  ],
+  "explanations": {
+   "permissions": [],
+   "conditions": [],
+   "blockers": [],
+   "checks": {
+    "code": "not_open",
+    "decisions": 0,
+    "intrinsic_queries": 0,
+    "planned": 0,
+    "limit": 8
+   }
+  }
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/decision",
+    "kind": "logical",
+    "logical_result": "REFUTED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled"
+   }
+  ]
+ },
+ "result_digest": "d664db990b768eaf7090f16f5ad41cd21834bda5da97f48659b326d5a0f7a985",
+ "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
+}

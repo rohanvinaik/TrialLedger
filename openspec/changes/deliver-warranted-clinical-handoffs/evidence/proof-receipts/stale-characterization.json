@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "obsolete_alias_characterization_retired; fresh_owner_generation_pending",
+  "old_path": "tests/detective/test_TrialLedger_mcp_server_record_view_e2e7b64d3c_synth.py",
+  "old_sha256": "cee0b5473848144538b3ae48685fcc62bba228cb19a201b5ea8dd38db3be172c",
+  "preserved_copy": "/tmp/trialledger-final-proof-packets-20261104/stale-record-view-characterization/test_TrialLedger_mcp_server_record_view_e2e7b64d3c_synth.py",
+  "authorized_new_fields": [
+    "brief_title",
+    "acronym",
+    "official_title"
+  ],
+  "other_actual_diff": [],
+  "authored_checks_passed": 6,
+  "lead_reference_probe": "Fresh Serena find_referencing_symbols for test_record_view_golden returned no code consumers.",
+  "initial_owner_walk": {
+    "path": "/tmp/trialledger-record-owner-two-sign-20261104-v1",
+    "report_sha256": "d694768a07d6447ea3fc012e81af197fdb17f68fd6da13abb62ab03b4124dc45",
+    "verdict": "FAILING NOW; certificate withheld"
+  },
+  "fresh_owner_path": "/tmp/trialledger-final-two-sign-20261104-record-owner",
+  "manual_generated_assertion_edits": false,
+  "shared_certificate_edits": false
+}

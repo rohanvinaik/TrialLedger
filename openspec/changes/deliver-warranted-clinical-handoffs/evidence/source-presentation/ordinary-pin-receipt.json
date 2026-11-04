@@ -1,0 +1,39 @@
+{
+  "mode": "ordinary converge, NOT --two-sign",
+  "packets": "/tmp/trialledger-source-proof-packets-20261104",
+  "source_copies": "/tmp/trialledger-source-proof-20261104{,-split,-group,-context,-retained}",
+  "standing": "Every named ordinary converge walk ended DONE; residual counts below are not equivalence proofs. No two-sign certification is claimed.",
+  "targets": [
+    {
+      "target": "TrialLedger/eligibility.py::heading_kind",
+      "killed_reported": "35/38",
+      "unproven_equivalent": 3,
+      "crash_only_value_gaps": 2
+    },
+    {
+      "target": "TrialLedger/eligibility.py::split_eligibility",
+      "killed_reported": "60/63",
+      "unproven_equivalent": 4,
+      "crash_only_value_gaps": 5
+    },
+    {
+      "target": "TrialLedger/baseline_view.py::group_code",
+      "killed_reported": "35/35",
+      "unproven_equivalent": 1,
+      "crash_only_value_gaps": 1
+    },
+    {
+      "target": "TrialLedger/landscape.py::literal_context_kind",
+      "killed_reported": "48/58",
+      "unproven_equivalent": 11,
+      "crash_only_value_gaps": 3
+    },
+    {
+      "target": "TrialLedger/landscape_warrants.py::retained_format",
+      "killed_reported": "21/23",
+      "unproven_equivalent": 2,
+      "crash_only_value_gaps": 3
+    }
+  ],
+  "remaining_required": "Explicit fresh two-sign proof walks and final parent integration verification."
+}

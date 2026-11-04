@@ -1,4 +1,774 @@
 {
+  "summary": {
+    "kind": "reasoning",
+    "code": "complete",
+    "operation": "design_bounds",
+    "findings": 19,
+    "dispositions": {
+      "conditional": 4,
+      "open": 12,
+      "settled": 3
+    },
+    "problems": []
+  },
+  "clinical": {
+    "version": 1,
+    "operation": "design_bounds",
+    "findings": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "outcome": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "upper_0"
+        },
+        "support": {
+          "elimination_status": "interpolated"
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/0"
+      },
+      {
+        "path": "/result/candidates/0/query_decision",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "WHO_PS",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "WHO_PS",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "upper_0"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/0/query_decision"
+      },
+      {
+        "path": "/result/candidates/0/observations/0",
+        "kind": "witness",
+        "outcome": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 126,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 0,
+          "count_kind": "exact",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "witness",
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "upper_0"
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/0/observations/0"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "outcome": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "upper_1"
+        },
+        "support": {
+          "elimination_status": "interpolated"
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/1"
+      },
+      {
+        "path": "/result/candidates/1/query_decision",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "WHO_PS",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "WHO_PS",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "upper_1"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/1/query_decision"
+      },
+      {
+        "path": "/result/candidates/1/observations/0",
+        "kind": "witness",
+        "outcome": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "conditional",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 126,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 0,
+          "count_kind": "exact",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "witness",
+          "decision": {
+            "result": "REFUTED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "upper_1"
+            ],
+            "blockers": []
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/1/observations/0"
+      },
+      {
+        "path": "/result/candidates/2",
+        "kind": "candidate",
+        "outcome": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "upper_2"
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/2"
+      },
+      {
+        "path": "/result/candidates/2/query_decision",
+        "kind": "logical",
+        "outcome": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "disposition": "settled",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "WHO_PS",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "WHO_PS",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "upper_2"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/2/query_decision"
+      },
+      {
+        "path": "/result/candidates/2/observations/0",
+        "kind": "witness",
+        "outcome": "not_ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 126,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 0,
+          "count_kind": "exact",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "witness",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "upper_2"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/candidates/2/observations/0"
+      },
+      {
+        "path": "/result/candidates/3",
+        "kind": "candidate",
+        "outcome": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "upper_3"
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/3"
+      },
+      {
+        "path": "/result/candidates/3/query_decision",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "WHO_PS",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "WHO_PS",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "upper_3"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/candidates/3/query_decision"
+      },
+      {
+        "path": "/result/candidates/3/observations/0",
+        "kind": "witness",
+        "outcome": "not_ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 126,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 0,
+          "count_kind": "exact",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "witness",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "upper_3"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/candidates/3/observations/0"
+      },
+      {
+        "path": "/result/candidates/4",
+        "kind": "candidate",
+        "outcome": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "upper_4"
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/4"
+      },
+      {
+        "path": "/result/candidates/4/query_decision",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "WHO_PS",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "WHO_PS",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [
+            "upper_4"
+          ],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/candidates/4/query_decision"
+      },
+      {
+        "path": "/result/candidates/4/observations/0",
+        "kind": "witness",
+        "outcome": "not_ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 126,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 0,
+          "count_kind": "exact",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "witness",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "upper_4"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/candidates/4/observations/0"
+      },
+      {
+        "path": "/result/candidates/5",
+        "kind": "candidate",
+        "outcome": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "id": "no_ps_restriction"
+        },
+        "support": {},
+        "origins": [],
+        "conditions": [],
+        "blockers": [],
+        "canonical_ref": "/result/candidates/5"
+      },
+      {
+        "path": "/result/candidates/5/query_decision",
+        "kind": "logical",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "WHO_PS",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "WHO_PS",
+              "upper": null
+            }
+          }
+        },
+        "values": {},
+        "support": {
+          "proof": [],
+          "explanation_blockers": []
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ],
+        "canonical_ref": "/result/candidates/5/query_decision"
+      },
+      {
+        "path": "/result/candidates/5/observations/0",
+        "kind": "witness",
+        "outcome": "not_ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "population": "NCT00322452:baseline:BG002",
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {
+          "count_lower": 126,
+          "count_upper": 126,
+          "denominator": 1217,
+          "max_exceptions": 0,
+          "count_kind": "exact",
+          "direction": "accepted"
+        },
+        "support": {
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+            "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+          ],
+          "support": "witness",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          }
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ],
+        "canonical_ref": "/result/candidates/5/observations/0"
+      },
+      {
+        "path": "/result/consequence",
+        "kind": "candidate_family_consequence",
+        "outcome": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "disposition": "open",
+        "scope": {
+          "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
+        "values": {},
+        "support": {
+          "basis": "All remaining declared candidate designs; includes the support of eliminations."
+        },
+        "origins": [],
+        "conditions": [],
+        "blockers": [
+          "no_constraint_mentions_query",
+          "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/consequence"
+      }
+    ]
+  },
   "code": "complete",
   "operation": "design_bounds",
   "result": {
@@ -456,7 +1226,19 @@
                 "upper_0"
               ],
               "blockers": []
-            }
+            },
+            "count_lower": 126,
+            "count_upper": 126,
+            "count_kind": "exact",
+            "denominator": 1217,
+            "max_exceptions": 0,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted"
           }
         ],
         "query_decision": {
@@ -467,6 +1249,18 @@
             "upper_0"
           ],
           "blockers": []
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "not_open",
+            "decisions": 0,
+            "intrinsic_queries": 0,
+            "planned": 0,
+            "limit": 8
+          }
         },
         "elimination_status": "interpolated"
       },
@@ -494,7 +1288,19 @@
                 "upper_1"
               ],
               "blockers": []
-            }
+            },
+            "count_lower": 126,
+            "count_upper": 126,
+            "count_kind": "exact",
+            "denominator": 1217,
+            "max_exceptions": 0,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted"
           }
         ],
         "query_decision": {
@@ -505,6 +1311,18 @@
             "upper_1"
           ],
           "blockers": []
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "not_open",
+            "decisions": 0,
+            "intrinsic_queries": 0,
+            "planned": 0,
+            "limit": 8
+          }
         },
         "elimination_status": "interpolated"
       },
@@ -534,7 +1352,19 @@
               "blockers": [
                 "undecided_by_constraints"
               ]
-            }
+            },
+            "count_lower": 126,
+            "count_upper": 126,
+            "count_kind": "exact",
+            "denominator": 1217,
+            "max_exceptions": 0,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted"
           }
         ],
         "query_decision": {
@@ -545,6 +1375,18 @@
             "upper_2"
           ],
           "blockers": []
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "not_open",
+            "decisions": 0,
+            "intrinsic_queries": 0,
+            "planned": 0,
+            "limit": 8
+          }
         }
       },
       {
@@ -573,7 +1415,19 @@
               "blockers": [
                 "undecided_by_constraints"
               ]
-            }
+            },
+            "count_lower": 126,
+            "count_upper": 126,
+            "count_kind": "exact",
+            "denominator": 1217,
+            "max_exceptions": 0,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted"
           }
         ],
         "query_decision": {
@@ -586,6 +1440,18 @@
           "blockers": [
             "undecided_by_constraints"
           ]
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "complete",
+            "decisions": 0,
+            "intrinsic_queries": 1,
+            "planned": 0,
+            "limit": 8
+          }
         }
       },
       {
@@ -614,7 +1480,19 @@
               "blockers": [
                 "undecided_by_constraints"
               ]
-            }
+            },
+            "count_lower": 126,
+            "count_upper": 126,
+            "count_kind": "exact",
+            "denominator": 1217,
+            "max_exceptions": 0,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted"
           }
         ],
         "query_decision": {
@@ -627,6 +1505,18 @@
           "blockers": [
             "undecided_by_constraints"
           ]
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "complete",
+            "decisions": 0,
+            "intrinsic_queries": 1,
+            "planned": 0,
+            "limit": 8
+          }
         }
       },
       {
@@ -653,7 +1543,19 @@
               "blockers": [
                 "no_constraint_mentions_query"
               ]
-            }
+            },
+            "count_lower": 126,
+            "count_upper": 126,
+            "count_kind": "exact",
+            "denominator": 1217,
+            "max_exceptions": 0,
+            "population": "NCT00322452:baseline:BG002",
+            "context": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "direction": "accepted"
           }
         ],
         "query_decision": {
@@ -664,6 +1566,18 @@
           "blockers": [
             "no_constraint_mentions_query"
           ]
+        },
+        "query_explanations": {
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+            "code": "complete",
+            "decisions": 0,
+            "intrinsic_queries": 1,
+            "planned": 0,
+            "limit": 8
+          }
         }
       }
     ],
@@ -901,5 +1815,7 @@
         "disposition": "open"
       }
     ]
-  }
+  },
+  "result_digest": "8a4011086e5d260cef744142ad0418970b61bd4ed2aebc7f83939b4807a3776a",
+  "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

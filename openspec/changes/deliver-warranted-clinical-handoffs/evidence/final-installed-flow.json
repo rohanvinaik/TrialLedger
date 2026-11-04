@@ -1,0 +1,178 @@
+{
+  "scope": "Reinstalled final frozen source in isolated Python3.12; real executable CLI outside checkout, no PYTHONPATH. Draft choices explicitly simulated; source values unchanged.",
+  "calls": [
+    {
+      "step": "baseline",
+      "exit": 0,
+      "code": "complete",
+      "stdout_sha256": "c60594081c9f6abfb04d165123865141fe322a284ae32e3aed3ef9297f3c730c"
+    },
+    {
+      "step": "read-decisions",
+      "exit": 0,
+      "code": "complete",
+      "stdout_sha256": "21b031071e421bf6b1e115c9dd6d33b4becdc90c8a49099bed2828803baa6f16"
+    },
+    {
+      "step": "prepare",
+      "exit": 0,
+      "code": "prepared",
+      "stdout_sha256": "eba2cad39b87e549943fed2b9fc38b719495113bfb7e948ed6eac0858b3ff19f"
+    },
+    {
+      "step": "revision",
+      "exit": 0,
+      "code": "complete",
+      "stdout_sha256": "2c7426ca97a0c653916fde435b5f1bb4b402dfb515e81daeafee6c84c20fe3cc"
+    },
+    {
+      "step": "export",
+      "exit": 0,
+      "code": "complete",
+      "stdout_sha256": "cae54b16ab08a247cc623ae61ff08bbe8a6d33503192a0d72c656f92b2331a74"
+    },
+    {
+      "step": "read-changes",
+      "exit": 0,
+      "code": "complete",
+      "stdout_sha256": "1eea8bfef8bf881928128de72772dc896349809be33dde734e4d465162ff9df2"
+    }
+  ],
+  "module_hashes": {
+    "TrialLedger/reasoning_artifacts.py": "74e2a292302b885aba265073654725e263c384bd70648d02c510d2ea6a2d981e",
+    "TrialLedger/steps.py": "04adf787833356a44616643749d3ab1691a534699c7bd12591c0f3dc22a1c910",
+    "TrialLedger/preview.py": "75dd2dce00b221793d32e9579d936386f46702faeb0203c4bc83f4205dafdcf9",
+    "TrialLedger/workbook.py": "8b9aec5306825fd8eb4e841246b0f0a6cb06d19a6267951d9360643b978f0158",
+    "TrialLedger/ingest.py": "6ddcf6e5bd60656cce7389696a4080018bea4f328f1b09b33d7373a089af1879",
+    "TrialLedger/clinical_delivery.py": "edbb2b724113ea4fc607623b50ffecd4a2770b381a901062b02fd0761e2f7a22",
+    "TrialLedger/registry.py": "1b412ae4fd7d6be8ce04d10764d45b3e30b2d2c1a2f00a45898308fd9e5b9c4f",
+    "TrialLedger/date_possibilities.py": "8b046e95b870fe889e97cf8dae886d7c479e5065ac369b0d5cd4ef44125be2b4",
+    "TrialLedger/reasoning_delivery.py": "15982f7df725a373ce324f3c271dd43bcbf10d959b2a99930a9592dcb34d468e",
+    "TrialLedger/checks.py": "c39e1a9c267086af5bc2b84a820516060519f4139a75035a9df1cc6c5598b8cf",
+    "TrialLedger/reasoning_cards.py": "1890cb22baf1ec3e7733cf96d012c72d5e2949a0ca2dccd2a884045f44f39e2b",
+    "TrialLedger/ledger.py": "e4eca8644903cc3cc916fd81a94ee614d77da02e12f2e2758d74664c9d56d868",
+    "TrialLedger/request.py": "93ef4870c0a4e19a47f725887b4cf75d646dda7491c580c1c6b4d6dad910c4b2",
+    "TrialLedger/__init__.py": "305d43b0263ae0a9d69760cca3613a9b4ae585a64bdc7b721a7543a8963286cc",
+    "TrialLedger/links.py": "8178c714e612b5bd6f5f29bb621b4f2d5f4649c00a913145d725c081425eb079",
+    "TrialLedger/baseline_view.py": "b83e640396f00aea1279b01a9a9de513685de7407093ce8317399cac83c70f6f",
+    "TrialLedger/landscape_warrants.py": "3ca24675269e7917483fe90fc21b3bf5ec578786e46cc5a94d95cb9005b0c7f8",
+    "TrialLedger/evidence_access.py": "b503521f98043d24b2a71cd708ba5e66200560ad20294c25e7d79502c367cce5",
+    "TrialLedger/reasoning_cli.py": "33ca47f25e22a22ac5275c03f40277fa3b98cec42e2fd424bb0d6b1d6e7fe8e9",
+    "TrialLedger/reasoning_mcp.py": "0dd6291d3c16da21c68616f22900d7e76d6f9de000dfafab4618e9489662a935",
+    "TrialLedger/operate.py": "d7c5171d94310c716f30b772d5f5b00ba36bb26787a04db69d6a13edacf087cb",
+    "TrialLedger/clinical_export.py": "24d55d12595285bf602d0d320e3f6835b817859a916370e6ec68602ca9355842",
+    "TrialLedger/cli.py": "ffc7568e35284041f93d3aca4ceceb4c95a7fcbcf8528129d350e146d948c10d",
+    "TrialLedger/capabilities.py": "e269ae7ec0826f8591d13a9a41e08371f8c0ada67468afd99ec9dc04b9754193",
+    "TrialLedger/record_access.py": "3b8f571ed4d96da1c8a3695928940697114583ad2da309f192333ff1c4ad3c83",
+    "TrialLedger/record.py": "a3f45bc20eb54af9be2fc963df37e4259d247b8850e01bc5d9d6edccdd4275b0",
+    "TrialLedger/readout.py": "1d4a400ea28a2f2bf8cc044eb8bb858f8a696b2c790099f04d1c560645833bc1",
+    "TrialLedger/acquisition.py": "64544c30c753b3d96af0f212eb4c0651ccc6da74e2966569020463905f927889",
+    "TrialLedger/warrants.py": "03a2669ff257aaed33ec10e21669917c88d982837094b52876bd2523787d622a",
+    "TrialLedger/classes.py": "4071acc68299c07208248bb1ce30bccf81511095816647351eadea3591dfbf6b",
+    "TrialLedger/cells.py": "d386ea59cd71ff9102e689f5e97f6ebf33c9a1e2822b1d766702fcf253865f85",
+    "TrialLedger/landscape_verify.py": "640f56c72644652d3aae94d4996c41e43c1cd20543ad006fd0c7b7e6098a1886",
+    "TrialLedger/contract.py": "487ba3c5b6815aef37c115320e0f377ba781980c6ba121ecdeb124d6cf26de12",
+    "TrialLedger/landscape.py": "81b4f51bba14a022be1732e3cd264307f5b5346000de5e374a6a788a4f451a83",
+    "TrialLedger/doctor.py": "37620b6414f3a03696348bdcbc4c9c43b4c502529227dec5f9f0349e24285e83",
+    "TrialLedger/__main__.py": "b9f9fb94dcdf99efb4f14c36d4b4e100bbe459d1d38aa78ea6d055b13ad9cd6d",
+    "TrialLedger/mcp_server.py": "7f07f869f75447d3980c19417e23c865404f76d1667636584b6a135ddb68b84d",
+    "TrialLedger/eligibility.py": "a4f62d53053f7132a8168f2ccd862d13231375175dadfc8949546db9f1fe9f4a",
+    "TrialLedger/layer2/evidence_requests_guide.py": "606085e5979235f6b06e04aab77e8bcb720f03855cc508047bcd8ac275d39939",
+    "TrialLedger/layer2/bounds_guide.py": "d3cdf03630450e4a9a8c9114ddc5bbd8017431b8d354dfb8d50a5f75bd2ee696",
+    "TrialLedger/layer2/guide.py": "7d2b5a166616ad3047201be2f4238d10c6e52ff7e04077a3b11621f90a6aed90",
+    "TrialLedger/layer2/signals.py": "cb6c6d5cefec14f241ffb67ebf04d7be1730cf6e37a6b7394fdfb8eacf16d2b2",
+    "TrialLedger/layer2/service.py": "24e3f991bd9c90de2d2802a1ecaebf473d5778d83b1ad3ba88440e49b201445a",
+    "TrialLedger/layer2/predicates.py": "dec087c582a07c25d6c8cd89eed5d1b651f2a5ef7ec9de527414a9affcde0b0a",
+    "TrialLedger/layer2/session_state.py": "b5cefe2c47691b51a130e9b3554a6c94d4838fd745ca802ecd806ba70b8cf948",
+    "TrialLedger/layer2/universes.py": "c92b80fc78fd116eca683a0b2b547d94e1ce79958b6dab2666da595320beab7a",
+    "TrialLedger/layer2/stage_evidence.py": "1d00ad113fd6b5ea2c98fcb30eb1e8f7487d0c477d402b690473884324242add",
+    "TrialLedger/layer2/construction.py": "c1e4a2a0b8c1c43442b7355c103fad14a7e4b15982a8222febd6254d08e8f42f",
+    "TrialLedger/layer2/source_evidence.py": "0cd06238c3a1b578ec873dc15e90745f684f6c4818522727e99ad9d494456bf0",
+    "TrialLedger/layer2/solver_work.py": "970bed61b064365de74e7fe5f7c83f83fe6578963f89edcecb5d0a8e15a50bd9",
+    "TrialLedger/layer2/interpretation_bindings.py": "ecb353c932964ad7011b6e8e504a540b22b001ee270b1c064bbb33514d488949",
+    "TrialLedger/layer2/coherence.py": "b1ecdbbc7f8f71747031fa6bf5dbb48de6a0e891c9253a3c0a1bb25a841b546e",
+    "TrialLedger/layer2/entail.py": "c6792e82514686a5e6af14e28b79b2a995e68750d15782cd8b86b3e1f5e06ab8",
+    "TrialLedger/layer2/nearmiss.py": "a0e61b4100cd203b0897f427f8299edb09ae406a2df10285addd23a58a17e0e3",
+    "TrialLedger/layer2/evaluation.py": "9604a77e0744a4555609d8476414947ff121d56613d84dbf75859254d1d65d85",
+    "TrialLedger/layer2/profile.py": "5e96e2cfd6cca1603d26320d9bd6be5c38131ea4c02f156d9500616d0e6359d6",
+    "TrialLedger/layer2/domains.py": "5446208c616e143740331a51ef7e380473a8fd9477dcbf25a88a847430ba869e",
+    "TrialLedger/layer2/corpus_admission.py": "41f8c9b3749cd0d9e3e9b017d378961874c1f8e50da5ac52e0beee9ba4853699",
+    "TrialLedger/layer2/decision_tables.py": "0db593d983a38cee865677f02e6b1f65c709907537a4876f48850bfebbdd3c46",
+    "TrialLedger/layer2/exception_guide.py": "83ca1accbb4c3b31afdf01b8b19dbcd68a8ffed67d0d992ed1ef1831b6a87c95",
+    "TrialLedger/layer2/reasoning_explanations.py": "f2d40afa1e60c72282e774cd180917f8b1a86a0a6f0edf18c8bc34ede8a0a017",
+    "TrialLedger/layer2/__init__.py": "1db71d610f1646b21eb018ee534b4170c4933f33337e802cd74a719c983206f4",
+    "TrialLedger/layer2/source_assertions_guide.py": "3f898156ba601e4d3821f94ff01c74f7face05807e19cce4231578850fb131f6",
+    "TrialLedger/layer2/graph_evidence.py": "5023e232f9909ad7b4f9edbe414355e319331ed36347a40a3bad1c11b55bd8df",
+    "TrialLedger/layer2/assertions.py": "9fc3de9086fb8d37cc9a1492657ff78e73c98ea40ea7d46170a5fdb61916000e",
+    "TrialLedger/layer2/review.py": "cc1275be5d694509784e6e29531e01a51ebaf3cdb31794254edf334dc6c0121f",
+    "TrialLedger/layer2/signals_guide.py": "e17da6593b35921ce11680896b0f793136ea193ba4a07ee55adaa89d8d4bae81",
+    "TrialLedger/layer2/interpretations_guide.py": "45e256ad1d90e7b86bf399d1bb3109d2ee7e7ef11e00039be1cf67b53fc8304f",
+    "TrialLedger/layer2/clinical_answers.py": "7e6a4022f29ae5bc66f401444b08cda7a1d7a3312e24a691b799fedb50a32d67",
+    "TrialLedger/layer2/typematrix.py": "0e54f497ae32e3b2870392e24a621f352a8cddc3dc1bfd59c76fed60894dce5a",
+    "TrialLedger/layer2/indications.py": "dffe45ab4d1e8763f518e9c7969bc791f370eb1b7c1cfaac70798eefa30ca4a3",
+    "TrialLedger/layer2/estimand_evidence.py": "fd09356187df1b6aa3e74ef897a622f80e4d97e254b497a700dcc45a397466bf",
+    "TrialLedger/layer2/design_session.py": "f7b8b81d6bde950b7ec8e4e90e66e346ad38c769b4f377407ac0af9a588fdd2b",
+    "TrialLedger/layer2/expectations.py": "ba12c687a40473eccf7bd1d7b9e243a55838e31ee7b72cee8f9fae3c574903d0",
+    "TrialLedger/layer2/design_session_guide.py": "346d640b70b567055a86d0837fa72afcfa7bd05059ea240ade4cf5980519a96c",
+    "TrialLedger/layer2/interpretations.py": "67641d298759b16ad07fbef3e69b0f993631ee441024b1fd6a59e1b94e557a05",
+    "TrialLedger/layer2/evidence_requests.py": "ef0e57b3767dc58107848edc9822f8940fdc848194c88355bcea8e5f1d5041e5",
+    "TrialLedger/layer2/session_projections.py": "5d5ac9feb105f4ff955fe3069129cc5c753490ebcd8bf5f4cd93c2f1f37d2a1c",
+    "TrialLedger/layer2/result_semantics.py": "734085efe7ec08ce84dacb8b0d0c99db99c6a342c66ba348b64e91849b1d2a19",
+    "TrialLedger/layer2/signal_binding_gate.py": "902615d1d57540abcf444585b194495277eaf31c4f194425d8a0b36e8737f23e",
+    "TrialLedger/layer2/admission.py": "269f896c1dd403334d1cb5ede13eac2b392fbb67162d04c5d82341983b5bea5f",
+    "TrialLedger/layer2/provenance.py": "ec190c405c58a70d0dc5a9181f1226c8051ffefa77bc19b15d8999d0ccf26046",
+    "TrialLedger/layer2/numeric_evidence.py": "ba85ff9b672c03d8cfdce0e4a483cbffd254ad1f0abef3d64e0c23cea0f42e2a",
+    "TrialLedger/layer2/translation_diagnostics.py": "e55eff2cc7c0542017f29497d61cabbd7552b32a095eecc40760399a640c62a2",
+    "TrialLedger/layer2/design_bounds.py": "5157d5aa72f443a524b0d3bd9e6b4d311e0ce0378f2ad09f00f9badb6004dcc7",
+    "TrialLedger/layer2/exception_bounds.py": "f01877917c7f3dbad17c447fd42930516b7ae268276af1915e9e838e5c6c639c",
+    "TrialLedger/layer2/dependency_evidence.py": "8dbc3986a0c3dd024ece0f5e05caf3d0affd63b6aa10ff9ae5a8c843d7d8e5cc",
+    "TrialLedger/layer2/entail_explanations.py": "0b1ff48798c5499c9dd46a3de3a52024c9b1a89aa1a09eac1b6ec277b74818e5",
+    "TrialLedger/layer2/source_assertions.py": "8c2783ddc8044feff2de25c387460292edca46876a536f5cd39a625bb079d7bc",
+    "TrialLedger/layer2/coordinate_admission.py": "b13d1c23b435e8f247872d0262a4e516f2082fbc716a2f25e1449af5bd4b8b35",
+    "TrialLedger/layer2/semantics/__init__.py": "cec98d0db5fd2272b9e142d6d40579d1741b9bf175469707f4edf75262bf484f",
+    "TrialLedger/layer2/semantics/parsers.py": "d1a0106d520cd1b4eddb681bc073bc0d9d3449edf791f72baf0fa7cba5589f5d",
+    "TrialLedger/layer2/semantics/loader.py": "826b8bafd40d4441818fb2ef19c9a514256020bb55415197f367dee87ba539f7",
+    "TrialLedger/layer2/semantics/contracts.py": "8458e1764a201a17a5cc8b794df0ff98320cd51d15a9ae04fee98d51c8dfa620",
+    "TrialLedger/layer2/semantics/vocabulary.py": "97258c79b26e342ae745c0d3b0008acf43586e70b9fdf1dd99db223b64fa73b4",
+    "TrialLedger/layer2/semantics/fragments/nsclc_legacy.py": "3674cd1b257ea83fba0c44aae2b78eb0ecd4aa14f9ca4962f93163c546924136"
+  },
+  "baseline_artifact": "b9f166ddbac62f11b75f88b72ec63102491f712a5697d51f16459a7fcdfb84c7",
+  "revision_artifact": "7bee6baa2f20a61777a049b8569dae4012b6a00808890f5dc308a17af0f4bbac",
+  "answer_diff_summary": {
+    "checked": 7,
+    "answer_changed": 2
+  },
+  "export": {
+    "code": "complete",
+    "artifact": "7bee6baa2f20a61777a049b8569dae4012b6a00808890f5dc308a17af0f4bbac",
+    "folder": "/tmp/trialledger-installed-delivery-20261104/final-delivery/colleague-review/review",
+    "workbook": "/tmp/trialledger-installed-delivery-20261104/final-delivery/colleague-review/review/design-review.xlsx",
+    "decision_list": "/tmp/trialledger-installed-delivery-20261104/final-delivery/colleague-review/review/decision-list.md",
+    "manifest": "/tmp/trialledger-installed-delivery-20261104/final-delivery/colleague-review/review/export-manifest.json",
+    "files": {
+      "artifacts/7bee6baa2f20a61777a049b8569dae4012b6a00808890f5dc308a17af0f4bbac.json": {
+        "sha256": "7bee6baa2f20a61777a049b8569dae4012b6a00808890f5dc308a17af0f4bbac",
+        "bytes": 976416
+      },
+      "decision-list.md": {
+        "sha256": "b04d62bf2b011e090df5e2fd6e3a478143cd8cb56b8f2a8b1f2826ddd4d1fc05",
+        "bytes": 3915
+      },
+      "design-review.xlsx": {
+        "sha256": "462df93cc6bbe3562309738acf8003229b0fcc9d74f3aa4e6b76d2782cbc28cc",
+        "bytes": 41176
+      },
+      "landscape.json": {
+        "sha256": "c8633b2d2aacb33e7df5bf26b7da691ff801f9b8eb149dcd91bd85a2ed620866",
+        "bytes": 1849591
+      },
+      "landscape.xlsx": {
+        "sha256": "188e62469cbc3546d7d42349d6ef3db182d0ec58c8c97c48fae2ebe18c985c1a",
+        "bytes": 267588
+      }
+    },
+    "problems": []
+  },
+  "source_copies_equal": true,
+  "all_export_files_verified": true
+}

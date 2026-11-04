@@ -1,0 +1,57 @@
+{
+  "scenario": "Phase1 malaria; mixed adult/child comparator versus adult challenge vaccine; simulated adult draft age-cap revision",
+  "selection": {
+    "seed": 202611041738,
+    "pool_count": 35,
+    "pages": [
+      {
+        "file": "pool-1.json",
+        "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=AREA%5BPhase%5DPHASE1+AND+AREA%5BStartDate%5DRANGE%5B2024-01-01%2CMAX%5D&query.cond=Malaria&format=json&pageSize=1000&countTotal=true&fields=NCTId%2CBriefTitle",
+        "fetched_utc": "2026-11-04T05:38:15.038369+00:00",
+        "total": 35
+      }
+    ],
+    "ids": [
+      "NCT06413108",
+      "NCT07730177"
+    ]
+  },
+  "clinical_cli_mcp_pairs": 7,
+  "bounded_artifact_reads": 4,
+  "source_unchanged": true,
+  "source_copies_byte_equal": true,
+  "cli_mcp_export_files_byte_equal": true,
+  "manifest_files_verified": 5,
+  "workbook_cells_checked_for_formula": 309,
+  "workbook_links_checked": 17,
+  "workbook_sheets": [
+    "Read me",
+    "Decision list",
+    "Options",
+    "Findings",
+    "Changes",
+    "Sources and origins",
+    "Baseline values",
+    "Baseline tables"
+  ],
+  "historical_age12_answers": {
+    "NCT06413108": "UNDETERMINED",
+    "NCT07730177": "REFUTED"
+  },
+  "adult_safety_reading": {
+    "answer": "REFUTED",
+    "standing": "proposed"
+  },
+  "draft_age55_revision": [
+    "REFUTED",
+    "UNDETERMINED"
+  ],
+  "baseline_artifact": "500a5d19723b78489b39161432985345dffc88b277af7a57a011b341711fa8fe",
+  "revised_artifact": "52ad4d6cbbedebca128233f3bdf201a94cf5f5556e5c862da7fb28b6f23927db",
+  "limits": [
+    "Human choices were simulated, not authenticated.",
+    "No source published results were posted in the sampled records.",
+    "Clinical comparison-set suitability and complete eligibility are not computed.",
+    "This check independently verifies exported file hashes, source preservation, all formula cell types, artifact-link targets, decision labels, selected query outcomes and CLI/MCP parity; exporter-owned tests cover broader cell-value conservation."
+  ]
+}

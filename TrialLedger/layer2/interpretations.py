@@ -11,7 +11,7 @@ import dataclasses
 import json
 
 from TrialLedger.layer2 import assertions as a
-from TrialLedger.layer2 import entail
+from TrialLedger.layer2 import entail, entail_explanations
 from TrialLedger.layer2 import interpretation_bindings as binding_engine
 from TrialLedger.layer2 import signals as signal_engine
 from TrialLedger.layer2.design_bounds import common_result
@@ -197,12 +197,33 @@ def _query_rows(
         raised = list(blockers)
         if state != "compatible":
             raised.append("interpretation_" + state)
+        explanations = (
+            entail_explanations.explain(assertions, query.body, context, decision, bound)
+            if state == "compatible"
+            else {
+                "permissions": [],
+                "conditions": [],
+                "blockers": sorted(set(raised)),
+                "checks": {"code": "interpretation_withheld", "decisions": 0, "intrinsic_queries": 0},
+            }
+        )
+        for row in (*explanations["permissions"], *explanations["conditions"]):
+            row["status"] = entail.weakest_status(
+                (row["status"] or "known", *(item.status for item in assumptions))
+            )
+            row["guarantee"] = guarantee
+            if assumptions and row.get("code") == "explicit_permission":
+                row["code"] = "conditional_permission"
+            if "warrant" in row:
+                row["warrant"]["status"] = row["status"]
+                row["warrant"]["guarantee"] = guarantee
         rows.append(
             {
                 "id": query.id,
                 "body": _plain(query.body),
                 "result": admissible,
                 "decision": dataclasses.asdict(decision),
+                "explanations": explanations,
                 "warrant": {
                     "rule": "entail.decide:1",
                     "guarantee": guarantee,

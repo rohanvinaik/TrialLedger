@@ -1,0 +1,343 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "simulated-malaria-adult-draft",
+    "revision": "adult-cap50",
+    "parent_digest": null,
+    "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+      }
+    },
+    "sources": [],
+    "premises": [
+      {
+        "id": "draft-age",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 50,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:new-trial-age-choice",
+          "id": "draft-age",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user-explicit",
+            "premises": [],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:adult-malaria-draft-age18-50; no real human confirmation",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "older",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "draft",
+          "scope": {
+            "study": "draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 55,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "bound": 128
+        },
+        "uses": [
+          {
+            "premise": "draft-age",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "younger",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "draft",
+          "scope": {
+            "study": "draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Not",
+            "part": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 55,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          "bound": 128
+        },
+        "uses": [
+          {
+            "premise": "draft-age",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "age-policy",
+        "question": "Should our represented adult age restriction allow age55?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "draft",
+          "scope": {
+            "study": "draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "older",
+            "label": "Age55",
+            "analysis": "older",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 55,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "younger",
+            "label": "Not age55",
+            "analysis": "younger",
+            "query": {
+              "class": "Not",
+              "part": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 55,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "selected": null
+      }
+    ],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    }
+  },
+  "previous": null
+}

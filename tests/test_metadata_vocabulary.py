@@ -51,7 +51,7 @@ def _guide_requests():
         for index, step in enumerate(full["worked_session"]["steps"])
     )
     for operation in OPERATIONS:
-        focused = run({"operation": "describe", "view": operation})
+        focused = run({"operation": "describe", "view": operation, "detail": "full"})
         assert focused["code"] == "complete"
         cases.append(("focused/" + operation, focused["result"]["example"]))
         for name in ("exception_example", "binding_example"):
@@ -97,9 +97,9 @@ def test_candidate_elimination_uses_its_deciding_signal_not_known_query_or_unrel
     request["observations"][0]["bridge"]["status"] = "known"
     request["signals"][0]["support"][1]["status"] = signal_status
     unrelated = copy.deepcopy(
-        run({"operation": "describe", "view": "signals"})["result"]["signal_examples"]["overlap"]["signals"][
-            0
-        ]
+        run({"operation": "describe", "view": "signals", "detail": "full"})["result"]["signal_examples"][
+            "overlap"
+        ]["signals"][0]
     )
     unrelated["id"] = "unrelated-known-signal"
     request["signals"].append(unrelated)
@@ -185,7 +185,7 @@ def test_removed_candidate_disposition_preserves_its_declared_support(standing, 
 
 
 def test_exact_corpus_counts_are_descriptions_and_never_clinically_settled_obligations():
-    request = run({"operation": "describe", "view": "corpus"})["result"]["example"]
+    request = run({"operation": "describe", "view": "corpus", "detail": "full"})["result"]["example"]
     response = run(request)
     assert response["code"] == "complete"
     assert response["result"]["frequency"]

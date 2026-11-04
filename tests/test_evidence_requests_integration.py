@@ -48,7 +48,7 @@ def session_request():
 
 
 def test_discovery_lists_exact_result_fields_and_hypothetical_rows():
-    description = run({"operation": "describe", "view": "evidence_requests"})["result"]
+    description = run({"operation": "describe", "view": "evidence_requests", "detail": "full"})["result"]
     request = description["example"]
     before = deepcopy(request)
     response = run(request)

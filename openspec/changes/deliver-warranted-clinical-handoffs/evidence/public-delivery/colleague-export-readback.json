@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "artifact": "c7242e9f2b61233a5cb715877cc642f0303c22332c1760d54dd4c29a2fa24615",
+  "source_unchanged": true,
+  "source_baseline_measurements": 126,
+  "exported_baseline_measurements": 126,
+  "nyha_comparative_values": [
+    [
+      "1606",
+      "1597",
+      "3203"
+    ],
+    [
+      "747",
+      "751",
+      "1498"
+    ],
+    [
+      "20",
+      "23",
+      "43"
+    ]
+  ],
+  "clinical_decisions": 2,
+  "declared_options": 4,
+  "included_analyses": 6,
+  "manifest_files_verified": 11,
+  "formula_cells": 0,
+  "wording": "Existing effective outcomes only; raw codes, scope, exact links and simulated origins retained.",
+  "files": {
+    "artifacts/621b4b20f62880e1925f00080a74fb301d8afb0e4b8b16c8e57ecf3d40ecd7bf.json": {
+      "bytes": 19913,
+      "sha256": "621b4b20f62880e1925f00080a74fb301d8afb0e4b8b16c8e57ecf3d40ecd7bf"
+    },
+    "artifacts/8128c621b73d2af4c155ab4312c88adfa7a708ec11c9a0afdc6fdb822b21b31e.json": {
+      "bytes": 59144,
+      "sha256": "8128c621b73d2af4c155ab4312c88adfa7a708ec11c9a0afdc6fdb822b21b31e"
+    },
+    "artifacts/8cd1a821cf4a028f7d3787ca441d03bd2506a6f51534ae88361d259fca39ca5d.json": {
+      "bytes": 59206,
+      "sha256": "8cd1a821cf4a028f7d3787ca441d03bd2506a6f51534ae88361d259fca39ca5d"
+    },
+    "artifacts/8e38cafc542a5c272edef99f7241135285c3f1fb05ba9e8b2633a6ef3d04416f.json": {
+      "bytes": 5552,
+      "sha256": "8e38cafc542a5c272edef99f7241135285c3f1fb05ba9e8b2633a6ef3d04416f"
+    },
+    "artifacts/c7242e9f2b61233a5cb715877cc642f0303c22332c1760d54dd4c29a2fa24615.json": {
+      "bytes": 976420,
+      "sha256": "c7242e9f2b61233a5cb715877cc642f0303c22332c1760d54dd4c29a2fa24615"
+    },
+    "artifacts/d1ece5b3f41e2cf585eea3c8e975eb0e569ea549fd771c60582264007e54b9f9.json": {
+      "bytes": 18150,
+      "sha256": "d1ece5b3f41e2cf585eea3c8e975eb0e569ea549fd771c60582264007e54b9f9"
+    },
+    "artifacts/e3782ffa7b5f737b526dd9d7b82f1f8f4014dbeb7462ebc952111bedeceeae94.json": {
+      "bytes": 59176,
+      "sha256": "e3782ffa7b5f737b526dd9d7b82f1f8f4014dbeb7462ebc952111bedeceeae94"
+    },
+    "decision-list.md": {
+      "bytes": 3917,
+      "sha256": "b4529e12fdd02a4d89966ea370aa930f3c1d7b0e43fd8519782f75333534546e"
+    },
+    "design-review.xlsx": {
+      "bytes": 50760,
+      "sha256": "c66be6209b8057b0dd1071c03f931898e0b1249f0781ee19ee107d412ea767df"
+    },
+    "landscape.json": {
+      "bytes": 1849591,
+      "sha256": "c8633b2d2aacb33e7df5bf26b7da691ff801f9b8eb149dcd91bd85a2ed620866"
+    },
+    "landscape.xlsx": {
+      "bytes": 267588,
+      "sha256": "188e62469cbc3546d7d42349d6ef3db182d0ec58c8c97c48fae2ebe18c985c1a"
+    }
+  }
+}

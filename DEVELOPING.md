@@ -13,10 +13,12 @@ while gathering. Layer two: explicit typed premises/evidence -> scoped symbolic 
 -> the separately designed automated trial writer. Correct partial logic is preserved independently of
 missing source compilation or final orchestration.
 
-The current public commands are doctor, landscape, record, pull, verify, mcp and reason. MCP serves doctor, scope,
-landscape, save_fetch, record and reason. `reason --request FILE`/`reason(request)` is separate and does not
-mutate a report. There is no complete design/edits command or automatic annotation import. Retired raw-reader,
-model-audit, sample and pilot routes are not compatibility fallbacks.
+The public commands are doctor, landscape, record, pull, verify, mcp, reason, reason-result,
+reason-revise and reason-export. MCP serves doctor, scope, landscape, save_fetch, record, reason,
+reason_result, reason_revise and reason_export. Reasoning is separate from the source report. Optional
+retention and export use a separate immutable artifact store and review folder. There is no complete
+protocol-writing command or automatic annotation import. Retired raw-reader, model-audit, sample and
+pilot routes are not compatibility fallbacks.
 
 ## Reporting ownership and invariants
 
@@ -117,7 +119,10 @@ pipeline wiring or claim an integrated writer from unit tests.
 The public discovery request is `{"operation":"describe"}` through reason; it returns an overview. Add
 `"view":"entailment"`, `coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or
 `source_assertions`, `evidence_requests` or `design_session` for focused formats, vocabulary,
-result meanings and an example; `worked_session` and `full` retain the complete demonstration and manual. Its input descriptions and
+small task cards and runnable examples. Add `"detail":"schema"` for structural machine shapes or
+`"detail":"full"` for the detailed operation guide; `worked_session` and `full` retain the complete
+demonstration and manual. The `delivery` card describes retained results, public revisions and export.
+Its input descriptions and
 examples must stay tied to actual validators, and its capability/result descriptions must reflect what an
 agent can invoke. User-facing surfaces should explain clinical explorations as well as operation names:
 population/temporal consequences, possible NSCLC settings, documented patterns and uncertainty, gaps and
@@ -142,8 +147,9 @@ long strings. Navigation/chunks are explicitly different from complete source va
 alter saved evidence, requested scope, retrieval completion or solver outcomes. They bound conversation
 output, not whole-process memory: record loading and some corpus calculations still materialize their
 inputs. Reuse retained files and retrieval checkpoints; do not add a resource scheduler to solve a display
-budget. Reasoning replies remain complete; large analyses are best run through the file-based CLI and saved
-separately rather than repeatedly echoed into a conversation.
+budget. Full reasoning replies remain available. Compact delivery retains the complete canonical request
+and response, returning their identity and clinical projection; bounded reason-result/reason_result
+retrieval follows the same exact pointer/page/text owners as source records.
 
 `capabilities` is the import-light public operation/view inventory shared by service discovery and emitted
 MCP schemas. Dispatch coverage remains explicitly tested. `layer2.construction` provides small strict Python
@@ -184,6 +190,29 @@ computes genuinely distinct feasible alternatives and replays both snapshots for
 Complete children, origins and projection ledgers remain in the returned result. It writes no files.
 `design_session_guide` exposes executable baseline/revision and strict shapes. The observational-diabetes
 walkthrough retains proposed Ontario scope separately from an invented new-trial choice.
+
+`entail_explanations` preserves accepted scoped permissions and proves bounded necessary conditions
+through the existing solver. It adds no constraint and never changes the original verdict. Permission
+does not establish presence or override an exclusion; impossible or unresolved profiles cannot yield
+vacuous clinical conditions. Standalone entailment, hypothetical frames and candidate-design queries
+consume this one owner. Count witnesses retain their count interval, denominator, population and exception
+allowance at every elimination.
+
+`clinical_answers` projects the existing metadata owner into findings with canonical addresses, scope,
+values, support, origins, conditions and blockers. `clinical_delivery` uses that projection for full and
+compact responses. Refusal problems reach the same projection; unknown outcomes remain unclassified.
+`design_session.answer_diff` compares independent answer/support/origin axes alongside unchanged audit
+differences. `solver_work` bounds the represented finite partitions conservatively, including explanation
+checks and fresh old/current replay; numeric refusals remain separate from clinical unknowns.
+
+`reasoning_delivery` shares public revision execution between CLI and MCP. `prepare_revision` fills only
+mechanical integrity fields. Explicit replacement edits require attribution for changed premises and
+refuse rewriting a compiled source snapshot. Attribution is caller-declared, never authenticated consent.
+`reasoning_artifacts` owns strict identifiers, immutable atomic retention and bounded verified access.
+`clinical_export` writes a separate decision workbook/list with complete artifacts and an input/output
+manifest. The optional source record/workbook is copied unchanged and remains a caller association,
+not a population binding. `baseline_view` retains every measurement and matching denominator; the compact
+matrix pivots only unique local group identifiers and keeps unresolved values separately.
 
 `evidence_requests` owns bounded comparison-cell enumeration over declared survivors. Existing
 `entail.eligibility_witness` and `design_bounds.witness_verdict` own the decisions, including their sign.

@@ -1,0 +1,96 @@
+{
+  "adopted_into_main_at_receipt_creation": false,
+  "authored_intent_witness": "tests/test_reasoning_artifacts.py::test_artifact_identity_cannot_select_a_path_or_partial_fingerprint",
+  "certificate": {
+    "cut_reasons": [],
+    "function_digest": "276de3776e381b7f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "counterexample_or_falsifier": "Changed decision/dependency, new distinguishing witness, unrouted authored negative, or failure after main adoption.",
+  "crosshair": {
+    "log": "/tmp/trialledger-final-two-sign-20261104-artifact-id/crosshair.log",
+    "report_all": true,
+    "sha256": "48ab9002132e5470a6fe40515fcd2675ae9aafd535a2fd00fb386039f6f29b7e",
+    "status": "Not confirmed"
+  },
+  "explicit_two_sign": true,
+  "external_packet": "/tmp/trialledger-final-proof-packets-20261104/artifact_id_code",
+  "generated_suites": [
+    {
+      "external_packet": "/tmp/trialledger-final-proof-packets-20261104/artifact_id_code/test_TrialLedger_reasoning_artifacts_artifact_id_code_cf9eb1de6b_synth.py",
+      "path": "/tmp/trialledger-final-two-sign-20261104-artifact-id/tests/detective/test_TrialLedger_reasoning_artifacts_artifact_id_code_cf9eb1de6b_synth.py",
+      "sha256": "cdcdd3d43b3f3cfe28677bd0758d6215ad6f52bd46df963943e9ac543ad6ecf1"
+    }
+  ],
+  "invocation_event": {
+    "args": {
+      "deadline": 300.0,
+      "max_iterations": 3,
+      "trace_budget": 50.0,
+      "trace_session_budget": 1800.0,
+      "two_sign": true,
+      "write_dir": "tests/detective"
+    },
+    "dur_ms": 229115,
+    "env": {
+      "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+      "interpreter": "/private/tmp/trialledger-final-two-sign-20261104-artifact-id/.venv/bin/python",
+      "project_root": "/private/tmp/trialledger-final-two-sign-20261104-artifact-id",
+      "version": "1.2.2",
+      "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+    },
+    "exit": 0,
+    "outcome": [
+      [
+        "outcome",
+        "converge",
+        "settled"
+      ]
+    ],
+    "refusal": null,
+    "state": {
+      "equivalents": "",
+      "inputs": "",
+      "suite": "sha256:11c70cb7e92407d99141947627cbe64a",
+      "target_src": "sha256:74e2a292302b885aba265073654725e2"
+    },
+    "target": "TrialLedger/reasoning_artifacts.py::artifact_id_code",
+    "ts": "2026-11-04T05:45:52Z",
+    "v": 1,
+    "verb": "converge"
+  },
+  "kind": "external_tool_report_with_source_identity_check",
+  "ledger": {
+    "path": "/tmp/trialledger-final-two-sign-20261104-artifact-id/.detective/ledger.jsonl",
+    "sha256": "b5497c7bbb68bfd8e7c675a1d03df913b96e178fe2864c8ab06bb68ca988b595"
+  },
+  "policy": "9+neg.f5a15364c11d",
+  "proof_directory": "/tmp/trialledger-final-two-sign-20261104-artifact-id",
+  "recorded_at": "2026-11-04T05:47:17.832764+00:00",
+  "report": {
+    "path": "/tmp/trialledger-final-two-sign-20261104-artifact-id/.detective/reports/converge_artifact_id_code.txt",
+    "read_complete": true,
+    "sha256": "30ee0acdf531cf6edf796558093a88e3020dff781f8bbd4cec1d5bada31fbdf1"
+  },
+  "reported": {
+    "completion": "COMPLETE",
+    "crash_only_value_gaps": 2,
+    "flagged_equivalent": 0,
+    "killed": 34,
+    "scored": 34,
+    "unproven_equivalent": 0
+  },
+  "schema_version": 1,
+  "scope": "One named pure decision and its reported operator universe; no project-wide or source-truth proof.",
+  "source": {
+    "byte_equal_to_current": true,
+    "current_sha256": "74e2a292302b885aba265073654725e263c384bd70648d02c510d2ea6a2d981e",
+    "function_ast_equal_to_current": true,
+    "function_ast_sha256": "276de3776e381b7f4e7c1e2f54d21021214a45934bc872a251ff8807179aeaed",
+    "path": "TrialLedger/reasoning_artifacts.py",
+    "sha256": "74e2a292302b885aba265073654725e263c384bd70648d02c510d2ea6a2d981e"
+  },
+  "style": "Advisory module plan funds zero; load/read/save excluded as unpinned. No unrelated module rewrite or blanket style pass claimed.",
+  "target": "TrialLedger/reasoning_artifacts.py::artifact_id_code"
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "scope": "Historical invalid preflight snapshots only. No generated suite/certificate is eligible for adoption from these runs. Restart in fresh coherent copies.",
+  "runs": [
+    {
+      "target_name": "artifact_id_code",
+      "proof_directory": "/tmp/trialledger-delivery-two-sign-20261104-artifact-id",
+      "status": "UNGATEABLE; diagnostic counts only; no certified bound or verdict",
+      "reason": "tests/test_reasoning_invariants.py collection KeyError signal_examples during concurrent discovery integration",
+      "additional_failure": null,
+      "report_sha256": "8504cf34978f9ec776f62033398349dafdb81398bb9be1a73b536c2db2dc65c2",
+      "crosshair": "Not confirmed"
+    },
+    {
+      "target_name": "artifact_size_code",
+      "proof_directory": "/tmp/trialledger-delivery-two-sign-20261104-artifact-size",
+      "status": "UNGATEABLE; diagnostic counts only; no certified bound or verdict",
+      "reason": "tests/test_reasoning_invariants.py collection KeyError signal_examples during concurrent discovery integration",
+      "additional_failure": null,
+      "report_sha256": "738c62cdeede92cec501681f8ab2896bea9845696c099bdb543d23df45260cb3",
+      "crosshair": "Confirmed over all paths"
+    },
+    {
+      "target_name": "edit_path_code",
+      "proof_directory": "/tmp/trialledger-delivery-two-sign-20261104-edit-path",
+      "status": "UNGATEABLE; diagnostic counts only; no certified bound or verdict",
+      "reason": "tests/test_reasoning_invariants.py collection KeyError signal_examples during concurrent discovery integration",
+      "additional_failure": null,
+      "report_sha256": "9724c6a4fd41ab5fbaf6652b95c565bbcdb0d37fdd53a668d39283353c218151",
+      "crosshair": "Contract syntax error: '(' was never closed"
+    },
+    {
+      "target_name": "argument_problems",
+      "proof_directory": "/tmp/trialledger-delivery-two-sign-20261104-mcp-arguments",
+      "status": "UNGATEABLE; diagnostic counts only; no certified bound or verdict",
+      "reason": "tests/test_reasoning_invariants.py collection KeyError signal_examples during concurrent discovery integration",
+      "additional_failure": "tests/test_partial_evidence_demo.py::test_readme_partial_evidence_session_is_reproducible_and_revisable[mcp]",
+      "report_sha256": "2d2871b815a534156628a653858f79de641904bb00c65f55cac969659fd7dc9d",
+      "crosshair": "Targets found, but contain no checkable functions"
+    }
+  ],
+  "contract_repair": "Root corrected edit_path_code multiline post to one-line EDIT_CODES reference after the failure; it requires a fresh run.",
+  "external_full_outputs": "/tmp/trialledger-final-proof-packets-20261104/preflight-invalid"
+}

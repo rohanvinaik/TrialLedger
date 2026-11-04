@@ -16,19 +16,32 @@ LEGACY_SOURCE_PASSAGES_VERSIONS = {
     "eligibility_sections": "registry-headings-source-passages/1",
     "registry_checks": 3,
 }
+LEGACY_SOURCE_CONTEXT_VERSIONS = {
+    "landscape_schema": 4,
+    "contract": "4.2",
+    "trialledger": "0.1.0",
+    "derivation_code_root": "c0b8717beb61efc003456a1eb9f4c3ea92176553650a9527a0c5eeeedc7880d6",
+    "display": "display-1",
+    "eligibility_sections": "registry-headings-source-context/2",
+    "registry_checks": 3,
+}
 
 
 def retained_format(versions: object) -> str:
-    """Identify the one explicitly supported old writing format, never unknown historical code."""
-    if (
-        isinstance(versions, dict)
-        and versions.keys() == LEGACY_SOURCE_PASSAGES_VERSIONS.keys()
-        and all(
-            type(versions[key]) is type(value) and versions[key] == value
-            for key, value in LEGACY_SOURCE_PASSAGES_VERSIONS.items()
-        )
+    """Identify explicitly supported writing identities, never unknown historical code."""
+    for code, expected in (
+        ("legacy_source_passages_v1", LEGACY_SOURCE_PASSAGES_VERSIONS),
+        ("legacy_source_context_v2", LEGACY_SOURCE_CONTEXT_VERSIONS),
     ):
-        return "legacy_source_passages_v1"
+        if (
+            isinstance(versions, dict)
+            and versions.keys() == expected.keys()
+            and all(
+                type(versions[key]) is type(value) and versions[key] == value
+                for key, value in expected.items()
+            )
+        ):
+            return code
     return "current"
 
 

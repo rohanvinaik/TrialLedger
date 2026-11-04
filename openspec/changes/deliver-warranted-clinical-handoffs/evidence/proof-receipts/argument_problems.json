@@ -1,0 +1,172 @@
+{
+  "adoption_limit": "No diagnostic certificate or generated characterization from this invalid verification is represented as a completed pin.",
+  "completed_pin": false,
+  "completion": "UNGATEABLE",
+  "counterexample_or_falsifier": "A changed source/function or external evidence hash invalidates the corresponding identity or historical-report claim; a future complete run supersedes this outcome without retroactively completing it.",
+  "eligible_for_completed_pin_adoption": false,
+  "explicit_two_sign": true,
+  "external_full_log": {
+    "bytes": 18844,
+    "path": "/tmp/trialledger-final-two-sign-20261104-mcp-arguments/two-sign-prescribed-wall.log",
+    "read_complete": true,
+    "sha256": "6c1d59d827e04e8e05c96c3cb811a579aa7a60fa0b964c37a313090d6b0bcd91"
+  },
+  "external_full_report": {
+    "bytes": 12102,
+    "path": "/tmp/trialledger-final-two-sign-20261104-mcp-arguments/.detective/reports/converge_argument_problems.txt",
+    "read_complete": true,
+    "sha256": "b91e462a0bbd10e673fdfa168dfd26bb07a716122d894dcbee05ec31a2ccd1c5"
+  },
+  "external_ledger": {
+    "bytes": 2244,
+    "path": "/tmp/trialledger-final-two-sign-20261104-mcp-arguments/.detective/ledger.jsonl",
+    "sha256": "8bd31de446690132426ae9face73c01be3558c72a4f49d5a669d370af9260a55"
+  },
+  "instrument": "Complete existing Detective report, console log, structured invocation ledger and SHA256/AST identity computation.",
+  "invocation": {
+    "arguments": [
+      "converge",
+      "TrialLedger/mcp_server.py::argument_problems",
+      "--two-sign",
+      "--deadline",
+      "900"
+    ],
+    "cwd": "/tmp/trialledger-final-two-sign-20261104-mcp-arguments",
+    "environment": {
+      "PYTHONPATH": "/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker"
+    },
+    "ledger_event": {
+      "args": {
+        "deadline": 900.0,
+        "max_iterations": 3,
+        "trace_budget": 50.0,
+        "trace_session_budget": 1800.0,
+        "two_sign": true,
+        "write_dir": "tests/detective"
+      },
+      "dur_ms": 457176,
+      "env": {
+        "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+        "interpreter": "/private/tmp/trialledger-final-two-sign-20261104-mcp-arguments/.venv/bin/python",
+        "project_root": "/private/tmp/trialledger-final-two-sign-20261104-mcp-arguments",
+        "version": "1.2.2",
+        "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+      },
+      "exit": 3,
+      "outcome": [
+        [
+          "outcome",
+          "converge",
+          "repair_measurement"
+        ]
+      ],
+      "refusal": null,
+      "state": {
+        "equivalents": "",
+        "inputs": "",
+        "suite": "sha256:64933150b715f2865b0fc8450bb5bca6",
+        "target_src": "sha256:7f07f869f75447d3980c19417e23c865"
+      },
+      "target": "TrialLedger/mcp_server.py::argument_problems",
+      "ts": "2026-11-04T05:55:35Z",
+      "v": 1,
+      "verb": "converge"
+    },
+    "program": ".venv/bin/detective",
+    "wrapper": "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "wrapper_label": "final-mcp-arguments-prescribed-wall"
+  },
+  "kind": "external_tool_report_with_computed_source_identity",
+  "new_proof_runs_during_capsule_completion": false,
+  "policy": "9+neg.f5a15364c11d",
+  "prescribed_next_actions": {
+    "additional_deferred_shaped_guidance": "One isolation-hazardous test was held out of widening; the log offers --include-shaped to trace it. This was not executed.",
+    "conditional_flag_guidance": "The full report offers equivalence flags only when proved; no flag, execution-allowance change, diagnosis or further measurement was performed.",
+    "required_verification_verbatim": "the required verification measurement was invalid; resolve its reported reasons",
+    "resolve_verbatim": "inspect the execution and its allowance before re-measuring",
+    "status": "not_executed"
+  },
+  "prescribed_next_actions_executed": false,
+  "prior_invocation_events": [
+    {
+      "args": {
+        "deadline": 300.0,
+        "max_iterations": 3,
+        "trace_budget": 50.0,
+        "trace_session_budget": 1800.0,
+        "two_sign": true,
+        "write_dir": "tests/detective"
+      },
+      "dur_ms": 318268,
+      "env": {
+        "detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+        "interpreter": "/private/tmp/trialledger-final-two-sign-20261104-mcp-arguments/.venv/bin/python",
+        "project_root": "/private/tmp/trialledger-final-two-sign-20261104-mcp-arguments",
+        "version": "1.2.2",
+        "wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py"
+      },
+      "exit": 3,
+      "outcome": [
+        [
+          "outcome",
+          "converge",
+          "repair_measurement"
+        ]
+      ],
+      "refusal": null,
+      "state": {
+        "equivalents": "",
+        "inputs": "",
+        "suite": "sha256:475a59cd57c520995202efd030e8673a",
+        "target_src": "sha256:7f07f869f75447d3980c19417e23c865"
+      },
+      "target": "TrialLedger/mcp_server.py::argument_problems",
+      "ts": "2026-11-04T05:47:21Z",
+      "v": 1,
+      "verb": "converge"
+    }
+  ],
+  "proof_directory": "/tmp/trialledger-final-two-sign-20261104-mcp-arguments",
+  "recorded_at": "2026-11-04T06:01:06.194207+00:00",
+  "reported": {
+    "counts_scope": "Diagnostic counts only: the required verification measurement was invalid and establishes neither kill nor survival evidence for executions that reached a bound.",
+    "diagnostic_crash_only_value_gaps": 1,
+    "diagnostic_killed": 135,
+    "diagnostic_scored": 137,
+    "diagnostic_unproven_equivalent": 16,
+    "diagnostic_value_pinned": 120,
+    "report_header_every_killable_killed": false,
+    "report_header_line_complete": true,
+    "verbatim_final": "FINAL TrialLedger/mcp_server.py::argument_problems: \u26a0 UNGATEABLE \u2014 one or more mutants reached a wall-clock execution bound without a verdict; this is neither a kill nor survival evidence \u2014 inspect the execution and its allowance before re-measuring; the required verification measurement was invalid; resolve its reported reasons; diagnostic counts; no certified bound or verdict established \u00b7 policy 9+neg.f5a15364c11d",
+    "verification_established_certificate": false
+  },
+  "schema_version": 1,
+  "scope": "Historical explicit two-sign attempt for this named target; no completed pin or project-wide guarantee is established.",
+  "source": {
+    "current_at_receipt_creation": {
+      "bytes": 55126,
+      "function_ast_hash_scope": "ast.dump of the whole function with include_attributes=False, UTF-8.",
+      "function_ast_sha256": "b583ae3684108e3602b73a3d331e94f9cf0ce8fa2e9a0541ddfa15c159a29bec",
+      "function_source_hash_scope": "Exact UTF-8 ast.get_source_segment for the whole function, excluding a terminal newline outside its AST span.",
+      "function_source_sha256": "d35e6c4a8e291bc9b4a2e556cae76842474265df1e6d6b322f6d7b72c878a66a",
+      "path": "/Users/rohanvinaik/tools/TrialLedger/TrialLedger/mcp_server.py",
+      "sha256": "7f07f869f75447d3980c19417e23c865404f76d1667636584b6a135ddb68b84d"
+    },
+    "frozen": {
+      "bytes": 55126,
+      "function_ast_hash_scope": "ast.dump of the whole function with include_attributes=False, UTF-8.",
+      "function_ast_sha256": "b583ae3684108e3602b73a3d331e94f9cf0ce8fa2e9a0541ddfa15c159a29bec",
+      "function_source_hash_scope": "Exact UTF-8 ast.get_source_segment for the whole function, excluding a terminal newline outside its AST span.",
+      "function_source_sha256": "d35e6c4a8e291bc9b4a2e556cae76842474265df1e6d6b322f6d7b72c878a66a",
+      "path": "/tmp/trialledger-final-two-sign-20261104-mcp-arguments/TrialLedger/mcp_server.py",
+      "sha256": "7f07f869f75447d3980c19417e23c865404f76d1667636584b6a135ddb68b84d"
+    },
+    "function_ast_equal_to_current": true,
+    "function_source_equal_to_current": true,
+    "module_byte_equal_to_current": true,
+    "relative_path": "TrialLedger/mcp_server.py"
+  },
+  "specimen": "The frozen target function and its reported operator-universe observation.",
+  "target": "TrialLedger/mcp_server.py::argument_problems",
+  "test_or_certificate_changes_during_capsule_completion": false
+}

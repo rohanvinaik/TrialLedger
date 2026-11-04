@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "scope": "Saved historical pair only; not a fresh transport run after root integration.",
+  "cli": {
+    "path": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/fev65-copd-cli-result.json",
+    "sha256": "746de22cb4e4c45ec429077ebab3e1c7473950fced67c5592557bd6c119f9a26"
+  },
+  "mcp": {
+    "path": "/Users/rohanvinaik/trialledger-runs/clinical-projection-phase4-20261104/checks/fev65-copd-mcp-result.json",
+    "sha256": "dcf9195e3147a629b26b6e83b39945f9cffec36a52a78bdb8a77d8858a69250c"
+  },
+  "differences": [
+    {
+      "path": "/presentation",
+      "cli": {
+        "intent": "unspecified",
+        "question": "",
+        "origin": "caller_declared_question; not authenticated confirmation"
+      },
+      "mcp": "absent"
+    }
+  ],
+  "clinical_core_equal": true,
+  "only_ignored_path_for_equality": "/presentation",
+  "normalizations": [],
+  "tool_tag": "Saved MCP file already contains the operation envelope without a tool tag."
+}

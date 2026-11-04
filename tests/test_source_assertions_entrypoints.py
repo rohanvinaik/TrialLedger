@@ -121,7 +121,7 @@ def rebind(request):
 
 
 def test_discovery_example_runs_with_source_and_hypotheses_separate(invoke):
-    description = invoke({"operation": "describe", "view": "source_assertions"})
+    description = invoke({"operation": "describe", "view": "source_assertions", "detail": "full"})
     assert description["code"] == "complete"
     guide = description["result"]
     envelope = invoke(guide["example"])
@@ -347,7 +347,7 @@ def test_inspection_only_does_not_pretend_to_run_a_design_check(invoke):
 )
 @pytest.mark.parametrize("resolution", ["resolved", "unresolved"])
 def test_every_signal_channel_preserves_structure_and_proposed_admission(invoke, kind, resolution):
-    discovered = invoke({"operation": "describe", "view": "signals"})["result"]
+    discovered = invoke({"operation": "describe", "view": "signals", "detail": "full"})["result"]
     original = copy.deepcopy(discovered["signal_examples"][kind]["signals"][0])
     assert original["support"][0]["status"] == "known"
     original["support"][0]["resolution"] = resolution

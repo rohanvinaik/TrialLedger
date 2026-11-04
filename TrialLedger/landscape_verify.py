@@ -86,7 +86,8 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
             return "changed", ["manifest_mismatch: standalone manifest differs from the record"]
         versions = manifest.get("rule_versions")
         current_root = derivation_root(Path(landscape.__file__).parent)
-        legacy = retained_format(versions) == "legacy_source_passages_v1"
+        writing_format = retained_format(versions)
+        legacy = writing_format in ("legacy_source_passages_v1", "legacy_source_context_v2")
         if not legacy and (
             not isinstance(versions, dict) or versions.get("derivation_code_root") != current_root
         ):
@@ -190,7 +191,7 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
             answers if mode == "direct" else None,
         )
         if legacy:
-            rebuilt = landscape.legacy_record_projection(rebuilt)
+            rebuilt = landscape.legacy_record_projection(rebuilt, writing_format)
         # Production writes the JSON-decoded record, including tuple-to-list normalization.
         rebuilt = strict_json(json.dumps(rebuilt, ensure_ascii=False))
         if not _same(rebuilt, record):
@@ -206,14 +207,17 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
                 return "changed", details or [
                     "workbook_bytes: workbook formatting, links or file parts differ"
                 ]
-        return "verified", (
-            [
+        if writing_format == "legacy_source_passages_v1":
+            return "verified", [
                 "legacy_format: source-passages-v1 replay; "
                 "local source context was not part of this retained format"
             ]
-            if legacy
-            else []
-        )
+        if writing_format == "legacy_source_context_v2":
+            return "verified", [
+                "legacy_format: source-context-v2 replay; "
+                "case-sensitive headings and optional-note display retain their writing contract"
+            ]
+        return "verified", []
     except DuplicateKey as error:
         return "unreadable", [f"duplicate_key: {error}"]
     except FileNotFoundError as error:

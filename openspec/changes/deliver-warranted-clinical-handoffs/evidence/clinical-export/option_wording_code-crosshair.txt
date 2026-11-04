@@ -1,0 +1,4 @@
+/private/tmp/trialledger-export-wording-current-two-sign-20261104/TrialLedger/clinical_export.py:218: info: Confirmed over all paths.
+/private/tmp/trialledger-export-wording-current-two-sign-20261104/TrialLedger/clinical_export.py:219: info: Confirmed over all paths.
+/private/tmp/trialledger-export-wording-current-two-sign-20261104/TrialLedger/clinical_export.py:220: info: Confirmed over all paths.
+/private/tmp/trialledger-export-wording-current-two-sign-20261104/TrialLedger/clinical_export.py:221: info: Confirmed over all paths.
