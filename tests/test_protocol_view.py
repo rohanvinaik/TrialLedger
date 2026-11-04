@@ -70,7 +70,17 @@ def test_exact_keys_and_all_eight_sections_in_order(name):
     assert out["schema_version"] == 1
     assert [s["id"] for s in out["sections"]] == ALL_SECTIONS
     for s in out["sections"]:
-        assert set(s) == {"id", "declared", "coverage", "reasons", "objects", "checks"}
+        assert set(s) == {
+            "id",
+            "declared",
+            "coverage",
+            "findings",
+            "findings_text",
+            "findings_detail",
+            "reasons",
+            "objects",
+            "checks",
+        }
 
 
 @pytest.mark.parametrize("name", NAMES)
@@ -428,3 +438,42 @@ def test_an_undetermined_claim_reads_as_not_determined_never_as_refused():
     claims = protocol_view.view(result)["checks"][0]["claims"]
     assert claims[0]["wording"] == "Not determined: an input this claim needs is not declared."
     assert "Not applied" not in claims[0]["wording"]
+
+
+def _sections(name: str) -> dict:
+    import json as _json
+    from pathlib import Path as _Path
+
+    path = _Path(__file__).resolve().parents[1] / (
+        f"openspec/changes/connect-protocol-design-workflow/interface/fixtures/results/{name}.json"
+    )
+    result = _json.loads(path.read_text())["result"]
+    return {s["id"]: s for s in protocol_view.view(result)["sections"]}
+
+
+def test_a_known_prohibited_dose_never_reads_as_specified_alone():
+    safety = _sections("policy-violation-known")["safety"]
+    assert safety["coverage"] == "specified"
+    assert safety["findings"] == "conflict_found"
+    assert safety["findings_detail"][0]["outcome"] == "violation"
+    assert safety["findings"] != "none_found_in_declared_checks"
+
+
+def test_a_schedule_gap_is_a_repair_choice_beside_open_coverage():
+    assessments = _sections("schedule-refuted-and-conditional")["assessments"]
+    assert assessments["findings"] == "repair_choice_open"
+    assert {d["outcome"] for d in assessments["findings_detail"]} == {"outside_window"}
+
+
+def test_refused_or_uncomputed_findings_are_not_counted_as_known():
+    assert _sections("policy-violation-proposed")["safety"]["findings"] == "not_checked"
+    assert _sections("policy-work-limit")["safety"]["findings"] == "not_checked"
+    assert _sections("schedule-refuted-and-conditional")["exploratory"]["findings"] == "not_checked"
+
+
+def test_section_findings_precedence():
+    assert protocol_view.section_findings("specified", 1, 1) == "conflict_found"
+    assert protocol_view.section_findings("open", 0, 2) == "repair_choice_open"
+    assert protocol_view.section_findings("specified", 0, 0) == "none_found_in_declared_checks"
+    assert protocol_view.section_findings("open", 0, 0) == "not_checked"
+    assert protocol_view.section_findings("not_computed", 0, 0) == "not_checked"

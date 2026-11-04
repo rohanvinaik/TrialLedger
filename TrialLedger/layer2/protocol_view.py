@@ -454,6 +454,79 @@ def _schedule_numbers(child: dict | None, codes: list, row: dict) -> dict:
     }
 
 
+# Section findings (Rohan, 2026-11-04): a separate label always shown beside C3 coverage, from admitted
+# results only, by a fixed outcome table. Policy failures are conflicts; schedule gaps and unmet binomial
+# targets are repair choices (the same split as the clinical metadata labels). No reasoning happens here.
+CONFLICT_OUTCOMES = frozenset({"gap", "competing", "violation", "not_established", "inconsistent_domain"})
+REPAIR_OUTCOMES = frozenset(
+    {"no_feasible_time", "no_permitted_time", "outside_window", "not_collected", "uncovered", "not_satisfied"}
+)
+CONFLICT_CODES = frozenset({"conflict", "inconsistent", "violated"})
+FINDINGS_TEXT = {
+    "conflict_found": "Conflict found in the declared checks.",
+    "repair_choice_open": "A repair choice is open in the declared checks.",
+    "none_found_in_declared_checks": "No conflict or open repair choice found in the declared checks.",
+    "not_checked": "Not fully checked (see coverage).",
+}
+
+
+def section_findings(coverage: str, conflicts: int, repairs: int) -> str:
+    """One findings label beside coverage; a known problem always outranks coverage wording (pure).
+
+    pre: conflicts >= 0 and repairs >= 0
+    post: __return__ in FINDINGS_TEXT
+    post: conflicts == 0 or __return__ == "conflict_found"
+    post: __return__ != "none_found_in_declared_checks" or coverage == "specified"
+    post: __return__ != "none_found_in_declared_checks" or conflicts == repairs == 0
+    """
+    if conflicts:
+        return "conflict_found"
+    if repairs:
+        return "repair_choice_open"
+    if coverage == "specified":
+        return "none_found_in_declared_checks"
+    return "not_checked"
+
+
+def _section_detail(consuming: list[dict]) -> list[dict]:
+    detail = []
+    for check in consuming:
+        for row, _ in _claim_rows(check):
+            outcome = row.get("outcome")
+            if row.get("admission") != "accepted":
+                continue
+            if outcome in CONFLICT_OUTCOMES or outcome in REPAIR_OUTCOMES:
+                detail.append(
+                    {
+                        "check": check["id"],
+                        "claim": row.get("id"),
+                        "outcome": outcome,
+                        "kind": "conflict" if outcome in CONFLICT_OUTCOMES else "repair_choice",
+                        "application": row.get("application"),
+                    }
+                )
+        for _, signal in _plain_signals(check):
+            if (signal.get("admission") or {}).get("code") != "accepted":
+                continue
+            codes = signal_finding_codes(signal)
+            if signal.get("calculation_code") in CONFLICT_CODES:
+                kind = "conflict"
+            elif any("collection_plan_mismatch" in code for code in codes):
+                kind = "repair_choice"
+            else:
+                continue
+            detail.append(
+                {
+                    "check": check["id"],
+                    "claim": None,
+                    "outcome": signal.get("calculation_code"),
+                    "kind": kind,
+                    "application": "unconditional",
+                }
+            )
+    return detail
+
+
 def _section_rows(protocol: dict, check_rows: list[dict], checks: list[dict]) -> list[dict]:
     rows = []
     for sid in SECTION_IDS:
@@ -467,11 +540,20 @@ def _section_rows(protocol: dict, check_rows: list[dict], checks: list[dict]) ->
         coverage, reasons = section_coverage(
             declared["state"], declared.get("basis") or [], objects, consuming
         )
+        detail = _section_detail(consuming) if declared["state"] == "requested" else []
+        findings = section_findings(
+            coverage,
+            sum(1 for d in detail if d["kind"] == "conflict"),
+            sum(1 for d in detail if d["kind"] == "repair_choice"),
+        )
         rows.append(
             {
                 "id": sid,
                 "declared": declared["state"],
                 "coverage": coverage,
+                "findings": findings,
+                "findings_text": FINDINGS_TEXT[findings],
+                "findings_detail": detail,
                 "reasons": reasons,
                 "objects": objects,
                 "checks": [c["id"] for c in consuming],

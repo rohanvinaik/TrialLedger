@@ -194,3 +194,16 @@ Every test body calls `protocol_view.view(...)` directly, by name.
    - Each code adds a `signal_finding` open item, and a section reason `signal:<check>:<code>`, so the
      section is `open`.
    - Previously an estimand collection-plan mismatch disappeared from the view.
+3. **Section `findings`** (Rohan, 2026-11-04: "add a findings column"). Each section row adds `findings`,
+   `findings_text` and `findings_detail` beside the unchanged C3 `coverage`. Only admitted rows count:
+
+   | Label | When |
+   |---|---|
+   | `conflict_found` | Any admitted policy failure (gap, competing, violation, not_established, inconsistent_domain), or an admitted existing-operator code of conflict, inconsistent or violated |
+   | `repair_choice_open` | Otherwise, any admitted schedule gap or unmet binomial target, or an admitted collection-plan mismatch |
+   | `none_found_in_declared_checks` | Otherwise, when coverage is `specified` |
+   | `not_checked` | Everything else |
+
+   - A known prohibited-dose violation therefore reads "specified" **and** "conflict found", never "specified"
+     alone.
+   - Downstream outputs (the decision list and the workbook) must always show `findings` beside `coverage`.
