@@ -3,6 +3,34 @@
 - `ci_local.sh`: relevant local code/test gate; see DEVELOPING.md, Verification.
 - `push_checks.py`: pre-push checks and the local gate stamp.
 - `release_check.py`: installation and first-use walk in a fresh directory, using the current candidate.
+- `quality_metrics.py`: archived-commit coverage, mutation census and scoped badge publication.
+
+## Quality snapshots and badges
+
+The quality workflow first runs `quality_metrics.py --coverage-only --incremental BASELINE --out _site`
+and publishes passing test counts and coverage. That publication keeps the previous mutation census's
+commit, date, records and incomplete scope. It does not run mutants or update their measurement date.
+The normal incremental census then uses `_site/metrics.json` as its baseline and publishes if it finishes.
+Its change detection uses `mutation_commit`, never the newer coverage commit. A new push may cancel the
+slow stage without withholding the early publication. A failed coverage run publishes nothing new.
+
+Each numeric test/coverage badge names its commit. The mutation badge names its own commit and says
+Measured, Partial, Historical or Not measured. Partial/Historical badges list stale and unmeasured targets
+and unavailable selected-test baselines; their neutral color avoids implying a current pass. The linked
+published `quality.md` gives the census date and exact scope. Measured describes the recorded incremental
+census, whose reuse checks cover function bodies and selected tests, not all transitive dependencies.
+Recorded Detective certificate counts do not establish current two-sign completion; publishing badges
+does not rerun or freshness-validate those audits.
+
+The CLI integration tests require the same coverage overlay as the workflow:
+
+```bash
+uv run --no-sync --with coverage --with pytest-cov pytest tests/test_quality_metrics.py
+```
+
+These tests exercise a real archived miniature repository through early publication, a changed-test
+incremental census and first publication without a prior census. They skip explicitly when the optional
+coverage tools are absent. `--render FILE` changes presentation only; it never refreshes measurements.
 
 ## Installation and first-use check
 

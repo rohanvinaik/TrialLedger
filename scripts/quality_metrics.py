@@ -20,6 +20,7 @@ import ast
 import copy
 import datetime
 import hashlib
+import html
 import json
 import os
 import random
@@ -229,7 +230,7 @@ def coverage(root: Path) -> dict:
     ]
     done = run([*argv, f"--cov-report=json:{report}"], root, env=env)
     if done.returncode != 0:
-        raise SystemExit("the suite failed under coverage:\n" + done.stdout[-3000:])
+        raise SystemExit("the suite failed under coverage:\n" + done.stdout + done.stderr)
     totals = json.loads(report.read_text())["totals"]
     summary = re.search(r"(\d+) passed(?:, (\d+) deselected)?", done.stdout)
     if summary is None:
@@ -277,6 +278,53 @@ def rate(tallied: dict) -> str:
     return "not measured" if tallied["kill_rate"] is None else f"{tallied['kill_rate']}%"
 
 
+def mutation_basis(metrics: dict) -> dict:
+    """Describe the census basis, never treating carried results as a new measurement (pure).
+
+    Legacy snapshots use their original commit/date. Explicit null means no census exists.
+    Even a measured snapshot is a bounded census, not a fresh Detective audit.
+    """
+    commit = metrics.get("mutation_commit", metrics["commit"])
+    stale = metrics.get("functions_stale", 0)
+    pending = metrics.get("functions_not_yet_measured", 0)
+    pin = metrics["mutation_pinned"]
+    unavailable = pin.get("functions_without_selected_tests", 0) + pin.get(
+        "functions_with_failing_baseline", 0
+    )
+    if commit is None or pin["kill_rate"] is None:
+        status = "unmeasured"
+    elif commit != metrics["commit"]:
+        status = "historical"
+    elif stale or pending or unavailable:
+        status = "partial"
+    else:
+        status = "measured"
+    return {
+        "status": status,
+        "commit": commit,
+        "measured": metrics.get("mutation_measured", metrics["measured"]),
+        "stale_functions": stale,
+        "unmeasured_functions": pending,
+        "unavailable_pinned_functions": unavailable,
+    }
+
+
+def mutation_message(metrics: dict) -> str:
+    """Keep the census score, commit and incomplete scope together in the visible badge (pure)."""
+    basis = mutation_basis(metrics)
+    if basis["status"] == "unmeasured":
+        return "Not measured"
+    message = f"{rate(metrics['mutation_pinned'])} · {basis['commit'][:7]} · {basis['status'].capitalize()}"
+    for key, label in (
+        ("stale_functions", "stale"),
+        ("unmeasured_functions", "unmeasured"),
+        ("unavailable_pinned_functions", "without passing baseline"),
+    ):
+        if basis[key]:
+            message += f" · {basis[key]} {label}"
+    return message
+
+
 METHOD = """## How it is measured
 
 [`scripts/quality_metrics.py`](scripts/quality_metrics.py) measures one commit in throwaway `git archive`
@@ -295,12 +343,21 @@ uv run --with coverage --with pytest-cov python scripts/quality_metrics.py --wor
   lower bound: tests elsewhere that catch a bug indirectly are not run, and equivalent mutants (changes
   that cannot alter behavior) are not removed. Every survivor is listed in
   [`quality/survivors.md`](quality/survivors.md).
-- **On each push** the quality workflow re-runs the suite under coverage in full, and re-measures mutants
+- **On each push** the quality workflow publishes tests and coverage before starting mutation work, then
+  publishes the completed census if that run finishes. The first publication preserves the prior census's
+  own commit and date; it never relabels it as a measurement of the new code. A newer push can cancel the
+  slow run without withholding already-published tests. The separate Actions badge reports suite status.
+  The census re-measures mutants
   only for functions whose code, or whose selected test files, changed since the last published measurement
   (or this committed baseline). A 30-minute budget bounds each run; a function not reached keeps its previous
-  result, marked stale, and is re-measured on the next run. The tests badge comes from a separate workflow.
+  result, marked stale, and is re-measured on the next run. Stale results remain in the historical aggregate;
+  the badge names their count and says Partial (or Historical when its commit differs from coverage).
+  Unmeasured targets and pinned functions without a passing selected-test baseline also remain visible.
+  Reuse checks function bodies and selected tests, not the entire transitive dependency graph; Measured
+  describes that census basis, not proof of every path at the current commit. See the published
+  [snapshot report](https://rohanvinaik.github.io/TrialLedger/quality.md) for its exact basis and date.
 - **Detective certificates** are read from `tests/detective/certificates.json`, as recorded by Detective's
-  two-sign audit; this report does not re-run that audit.
+  two-sign audit; this report does not re-run that audit or certify that its recorded basis is still current.
 
 These numbers describe how thoroughly the code is specified and tested. They are not a clinical validation
 of any trial interpretation.
@@ -309,6 +366,7 @@ of any trial interpretation.
 
 def quality_md(m: dict) -> str:
     pin, sample, cert = m["mutation_pinned"], m["mutation_unpinned_sample"], m["detective_certificates"]
+    basis = mutation_basis(m)
     deps = ", ".join(re.split(r"[<>=!~ ]", d)[0] for d in m["runtime_dependencies"])
     rows = [
         (
@@ -319,9 +377,16 @@ def quality_md(m: dict) -> str:
         ("Branch coverage", f"{m['branch_coverage']}% of {m['branches']:,} branches"),
         (
             "Mutation score, pinned decisions",
-            f"{rate(pin)} of {pin['mutants']:,} planted bugs caught, across all {pin['functions']} functions "
+            f"{rate(pin)} of {pin['mutants']:,} planted bugs caught, "
+            f"across {pin['functions']} recorded functions "
             f'marked "pure — pinned" ({pin["killed"]:,} failed a test, {pin["timeouts"]} timed out, '
             f"{pin['survived']} survived)",
+        ),
+        (
+            "Mutation measurement basis",
+            f"{mutation_message(m)}; census date: {basis['measured'] or 'not measured'}. "
+            "Scope counts include the pinned decisions and the separate sampled functions; "
+            "unavailable-baseline count refers to pinned decisions only.",
         ),
         (
             "Mutation score, other functions",
@@ -332,15 +397,19 @@ def quality_md(m: dict) -> str:
         ),
         (
             "Detective certificates",
-            f"{cert['complete']} of {cert['pinned_decisions']} pinned decisions recorded complete",
+            f"{cert['complete']} of {cert['pinned_decisions']} pinned decisions recorded complete at "
+            f"`{m.get('detective_certificates_commit', m['commit'])[:7]}`; "
+            "audit not rerun or freshness-validated",
         ),
         ("Runtime dependencies", f"{len(m['runtime_dependencies'])} ({deps})"),
         ("Package", f"{m['package_functions']} functions, {m['package_nonblank_lines']:,} non-blank lines"),
     ]
     table = "\n".join(f"| {name} | {value} |" for name, value in rows)
     intro = (
-        f"Measured at commit `{m['commit'][:7]}` on {m['measured']} with Python {m['python']}. The README\n"
-        "badges show the same measures for the latest commit, refreshed on every push to `main` by the\n"
+        f"Tests and coverage measured at commit `{m['commit'][:7]}` on {m['measured']} "
+        f"with Python {m['python']}.\n"
+        "Mutation results have the separate basis below. This file is a retained snapshot; live README\n"
+        "badges show the latest successful publication, which may lag main. They are published by the\n"
         f"[quality workflow](.github/workflows/quality.yml) and published to {PAGES}."
     )
     return f"# Quality\n\n{intro}\n\n| Measure | Value |\n|---|---|\n{table}\n\n{METHOD}"
@@ -362,6 +431,7 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
     """Write metrics.json, survivors.md and the badge files to `out`, and QUALITY.md when asked."""
     out.mkdir(parents=True, exist_ok=True)
     metrics = {**metrics, "records": slim(metrics["records"])}
+    metrics["mutation_basis"] = mutation_basis(metrics)
     (out / "metrics.json").write_text(json.dumps(metrics, indent=1) + "\n", encoding="utf-8")
     survivors = [
         f"| `{r['file']}::{r['name']}` | {o['kind']} | `{o['before']}` | `{o['after']}` |"
@@ -370,7 +440,8 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
         if o["outcome"] == "survived"
     ]
     (out / "survivors.md").write_text(
-        f"# Surviving mutants at {metrics['commit'][:7]}\n\nEach row is a planted bug the selected tests "
+        f"# Surviving mutants\n\nCensus basis: {mutation_message(metrics)}.\n\n"
+        "Each row is a planted bug the selected tests "
         "did not catch. Some are equivalent (they cannot change behavior) and some are real gaps; none has "
         "been classified here.\n\n| Function | Kind | Original | Mutant |\n|---|---|---|---|\n"
         + "\n".join(survivors)
@@ -380,29 +451,98 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
     badges = out / "badges"
     badges.mkdir(exist_ok=True)
     pin = metrics["mutation_pinned"]
+    basis = metrics["mutation_basis"]
+    commit = metrics["commit"][:7]
     for name, data in {
-        "tests": badge("test suite", f"{metrics['tests_passed']:,} tests", "blue"),
-        "coverage": badge("coverage", f"{metrics['line_coverage']}%", color(metrics["line_coverage"])),
-        "branches": badge(
-            "branch coverage", f"{metrics['branch_coverage']}%", color(metrics["branch_coverage"])
+        "tests": badge("Test Suite", f"{metrics['tests_passed']:,} passed · {commit}", "blue"),
+        "coverage": badge(
+            "Line Coverage", f"{metrics['line_coverage']}% · {commit}", color(metrics["line_coverage"])
         ),
-        "mutation": badge("mutation score (decision logic)", rate(pin), color(pin["kill_rate"] or 0)),
-        "dependencies": badge("runtime deps", str(len(metrics["runtime_dependencies"])), "brightgreen"),
+        "branches": badge(
+            "Branch Coverage", f"{metrics['branch_coverage']}% · {commit}", color(metrics["branch_coverage"])
+        ),
+        "mutation": badge(
+            "Mutation Census (Decision Logic)",
+            mutation_message(metrics),
+            color(pin["kill_rate"]) if basis["status"] == "measured" else "lightgrey",
+        ),
+        "dependencies": badge(
+            "Runtime Dependencies", str(len(metrics["runtime_dependencies"])), "brightgreen"
+        ),
     }.items():
         (badges / f"{name}.json").write_text(json.dumps(data) + "\n", encoding="utf-8")
     (out / "index.html").write_text(
-        f'<!doctype html><meta charset="utf-8"><title>TrialLedger quality</title><p>TrialLedger quality at '
-        f'<code>{metrics["commit"][:7]}</code>: <a href="metrics.json">metrics.json</a>, '
+        '<!doctype html><meta charset="utf-8"><title>TrialLedger Quality</title><h1>TrialLedger Quality</h1>'
+        f"<p>Tests and coverage: <code>{commit}</code>, measured {html.escape(metrics['measured'])}.</p>"
+        f"<p>Mutation census: {html.escape(mutation_message(metrics))}. "
+        f"Census date: {html.escape(str(basis['measured'] or 'not measured'))}.</p>"
+        "<p>Latest successful publication; it may lag main. "
+        '<a href="quality.md">Measurement report</a>, <a href="metrics.json">metrics.json</a>, '
         f'<a href="survivors.md">survivors.md</a>, '
         f'<a href="https://github.com/rohanvinaik/TrialLedger">repository</a>. '
-        f"Functions carried over pending re-measurement: {metrics.get('functions_stale', 0)}.\n",
+        "Detective certificates are recorded statuses, not a rerun or freshness validation.</p>\n",
         encoding="utf-8",
     )
+    report = quality_md(metrics)
+    (out / "quality.md").write_text(report, encoding="utf-8")
     if quality is not None:
-        quality.write_text(quality_md(metrics), encoding="utf-8")
+        quality.write_text(report, encoding="utf-8")
 
 
 PAGES = "https://rohanvinaik.github.io/TrialLedger/"
+
+
+def inventory(root: Path, everything: list[dict]) -> dict:
+    """Read package size, dependencies and recorded certificates from the same archived commit."""
+    pinned = {f"{f['file']}::{f['name']}" for f in everything if f["pinned"]}
+    certificates = json.loads((root / "tests/detective/certificates.json").read_text())
+    return {
+        "package_functions": len(everything),
+        "package_nonblank_lines": sum(
+            1
+            for p in (root / "TrialLedger").glob("**/*.py")
+            for line in p.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ),
+        "runtime_dependencies": tomllib.loads((root / "pyproject.toml").read_text())["project"][
+            "dependencies"
+        ],
+        "detective_certificates": {
+            "pinned_decisions": len(pinned),
+            "complete": sum(
+                key in pinned and c.get("standing") == "complete" for key, c in certificates.items()
+            ),
+        },
+    }
+
+
+def publish_coverage(repo: Path, commit: str, baseline: dict | None, out: Path, quality: Path | None):
+    """Publish passing coverage without doing or redating any mutation work."""
+    with tempfile.TemporaryDirectory(prefix="trialledger-coverage-") as temporary:
+        root = Path(temporary).resolve() / "base"
+        archive(repo, commit, root)
+        check_isolated(root)
+        covered = coverage(root)
+        package = inventory(root, functions(root))
+    prior = baseline or {}
+    metrics = {
+        **prior,
+        **package,
+        **covered,
+        "commit": commit,
+        "measured": datetime.date.today().isoformat(),
+        "python": sys.version.split()[0],
+        "mutation_commit": prior.get("mutation_commit", prior.get("commit")),
+        "mutation_measured": prior.get("mutation_measured", prior.get("measured")),
+        "functions_remeasured": 0,
+        "functions_stale": prior.get("functions_stale", 0),
+        "functions_not_yet_measured": prior.get("functions_not_yet_measured", 0),
+        "mutation_pinned": prior.get("mutation_pinned", tally([])),
+        "mutation_unpinned_sample": prior.get("mutation_unpinned_sample", tally([])),
+        "detective_certificates_commit": commit,
+        "records": prior.get("records", []),
+    }
+    render(metrics, out, quality)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -420,6 +560,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--render", type=Path, help="render an existing metrics.json without measuring")
     parser.add_argument("--quality-md", type=Path, help="also write the QUALITY.md report here")
     parser.add_argument(
+        "--coverage-only",
+        action="store_true",
+        help="publish tests and coverage now, preserving the prior mutation census and its own basis",
+    )
+    parser.add_argument(
         "--budget-minutes",
         type=float,
         default=0,
@@ -436,6 +581,9 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("run from the TrialLedger repository root")
     commit = run(["git", "rev-parse", args.commit], repo).stdout.strip()
     baseline = json.loads(args.incremental.read_text()) if args.incremental else None
+    if args.coverage_only:
+        publish_coverage(repo, commit, baseline, args.out, args.quality_md)
+        return 0
     with tempfile.TemporaryDirectory(prefix="trialledger-quality-") as temporary:
         scratch = Path(temporary).resolve()  # macOS temp paths are symlinks; tests compare resolved paths
         base = scratch / "base"
@@ -444,7 +592,8 @@ def main(argv: list[str] | None = None) -> int:
         everything = functions(base)
         pinned = [f for f in everything if f["pinned"]]
         reused: list[dict] = []
-        if baseline is None:
+        mutation_commit = baseline.get("mutation_commit", baseline["commit"]) if baseline else None
+        if baseline is None or mutation_commit is None:
             others = [f for f in everything if not f["pinned"] and f["mutants"]]
             sample = random.Random(args.seed).sample(others, min(args.unpinned_sample, len(others)))
             targets = pinned + sample
@@ -455,7 +604,7 @@ def main(argv: list[str] | None = None) -> int:
                 [],
                 [f for f in everything if (f["file"], f["name"]) in kept and not f["pinned"]],
             )
-            diff = run(["git", "diff", "--name-only", baseline["commit"], commit], repo).stdout.split()
+            diff = run(["git", "diff", "--name-only", mutation_commit, commit], repo).stdout.split()
             for f in pinned + sample:
                 record = old.get((f["file"], f["name"]))
                 tests, _ = select_tests(base, f["file"], f["name"])
@@ -478,6 +627,7 @@ def main(argv: list[str] | None = None) -> int:
         print("measuring coverage", flush=True)
         covered = coverage(base)
         targets = sorted(targets, key=lambda f: -f["mutants"])
+        omitted = max(0, len(targets) - args.limit) if args.limit else 0
         if args.limit:
             targets = targets[-args.limit :]
         records = list(reused)
@@ -495,7 +645,7 @@ def main(argv: list[str] | None = None) -> int:
                 for share in pool.map(census, jobs):
                     records.extend(share)
         previous = {(r["file"], r["name"]): r for r in (baseline or {}).get("records", [])}
-        stale, unmeasured = 0, 0
+        stale, unmeasured = 0, omitted
         for index, record in enumerate(records):
             if record.get("skipped"):
                 old = previous.get((record["file"], record["name"]))
@@ -505,33 +655,22 @@ def main(argv: list[str] | None = None) -> int:
                     unmeasured += 1
         records = [r for r in records if not r.get("skipped")]
         print("mutation census done", flush=True)
-        package_lines = sum(
-            1
-            for p in (base / "TrialLedger").glob("**/*.py")
-            for line in p.read_text(encoding="utf-8").splitlines()
-            if line.strip()
-        )
-        dependencies = tomllib.loads((base / "pyproject.toml").read_text())["project"]["dependencies"]
-        certificates = json.loads((base / "tests/detective/certificates.json").read_text())
-    pinned_keys = {f"{f['file']}::{f['name']}" for f in pinned}
-    certified = sum(
-        1 for key, c in certificates.items() if key in pinned_keys and c.get("standing") == "complete"
-    )
+        package = inventory(base, everything)
     metrics = {
         "commit": commit,
         "measured": datetime.date.today().isoformat(),
         "python": sys.version.split()[0],
-        "baseline_commit": baseline["commit"] if baseline else commit,
-        "functions_remeasured": len(targets) - stale - unmeasured,
+        "baseline_commit": mutation_commit or commit,
+        "mutation_commit": commit,
+        "mutation_measured": datetime.date.today().isoformat(),
+        "functions_remeasured": len(targets) - stale - (unmeasured - omitted),
         "functions_stale": stale,
         "functions_not_yet_measured": unmeasured,
-        "package_functions": len(everything),
-        "package_nonblank_lines": package_lines,
-        "runtime_dependencies": dependencies,
+        **package,
         **covered,
         "mutation_pinned": tally([r for r in records if r["pinned"]]),
         "mutation_unpinned_sample": {**tally([r for r in records if not r["pinned"]]), "seed": args.seed},
-        "detective_certificates": {"pinned_decisions": len(pinned), "complete": certified},
+        "detective_certificates_commit": commit,
         "records": sorted(records, key=lambda r: (r["file"], r["name"])),
     }
     render(metrics, args.out, args.quality_md)

@@ -1,13 +1,13 @@
 # TrialLedger
 
-[![tests](https://img.shields.io/github/actions/workflow/status/rohanvinaik/TrialLedger/tests.yml?branch=main&label=tests&logo=github)](https://github.com/rohanvinaik/TrialLedger/actions/workflows/tests.yml)
-[![test suite](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Ftests.json)](QUALITY.md)
-[![coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fcoverage.json)](QUALITY.md)
-[![branch coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fbranches.json)](QUALITY.md)
-[![mutation score](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fmutation.json)](QUALITY.md)
-[![runtime dependencies](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fdependencies.json)](pyproject.toml)
-[![python](https://img.shields.io/badge/python-3.12%2B-blue?logo=python&logoColor=white)](pyproject.toml)
-[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Tests](https://img.shields.io/github/actions/workflow/status/rohanvinaik/TrialLedger/tests.yml?branch=main&label=Tests&logo=github)](https://github.com/rohanvinaik/TrialLedger/actions/workflows/tests.yml)
+[![Test Suite](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Ftests.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
+[![Line Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fcoverage.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
+[![Branch Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fbranches.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
+[![Mutation Census](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fmutation.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
+[![Runtime Dependencies](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fdependencies.json)](pyproject.toml)
+[![Python](https://img.shields.io/badge/Python-3.12%2B-blue?logo=python&logoColor=white)](pyproject.toml)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
 **Clinical trial evidence you can trace. Design consequences you can check.**
 
