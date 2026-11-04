@@ -77,3 +77,9 @@ No whole-project mutation-completeness claim is made.
 The cold check's reply-budget discoverability gap was fixed in CLI help and the workflow guide. Detailed
 Findings cells still expose exact codes/typed values; the primary Decision list, Options and Markdown
 provide the clinical reading surface. This remaining presentation detail changes no computed answer.
+
+## Delivery
+
+[Publication receipt](publication.json) records the implementation/review commits observed on remote
+main, the clean pre-closeout state and passed push checks. The subsequent documentation commit records
+this completed checklist; it introduces no runtime change.

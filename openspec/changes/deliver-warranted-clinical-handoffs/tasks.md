@@ -33,7 +33,7 @@
 
 - [x] 5.1 Refresh the actual producer/consumer trace, current example results and protected-payload conservation receipts; execute current examples and new workflows through real CLI/MCP and emitted schemas.
 - [x] 5.2 Complete the scoped Detective two-sign and CrossHair walks, preserving exact generated tests/reports and explicit limitations; run the stable-tree local gate and applicable live controls without claiming historical whole-project proof.
-- [ ] 5.3 Sync specs, reconcile all tracked work against current evidence, inspect staged paths/bytes and no AD entries, then commit and push verified coherent changes on main through normal gates.
+- [x] 5.3 Sync specs, reconcile all tracked work against current evidence, inspect staged paths/bytes and no AD entries, then commit and push verified coherent changes on main through normal gates.
 
 ## Workflow follow-up
 

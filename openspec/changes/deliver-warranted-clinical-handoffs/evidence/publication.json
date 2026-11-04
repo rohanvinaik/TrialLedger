@@ -1,0 +1,23 @@
+{
+  "scope": "Implementation and exact scanner reviews delivered to main before this documentation closeout. Historical artifacts keep their actual writing stamps; no whole-project mutation pass or clinical-source-truth certification is inferred.",
+  "verified_at_utc": "2026-11-04T06:23:31.427275+00:00",
+  "implementation_commit": "fc4c45a677dcf68d75961edf309c02a6ff674270",
+  "published_commit": "b292f8d0e572a593fa977901be98b8a527560d29",
+  "remote_main_observed": "b292f8d0e572a593fa977901be98b8a527560d29",
+  "clean_before_closeout": true,
+  "ordinary_tests_passed": 6372,
+  "live_tests_passed_separately": 10,
+  "completed_scoped_two_sign_targets": 15,
+  "incomplete_or_ungateable_targets": [
+    "artifact_size_code",
+    "argument_problems",
+    "evidence_access.record_view"
+  ],
+  "push_gate": "PASSED",
+  "unresolved_secret_findings": 0,
+  "exact_reviewed_non_secret_findings": 14,
+  "lockfile_audit": "no_known_flaws",
+  "review_registry_sha256": "fe93db384fa639fdcc9dcb315331aecb3a34c6182dca22f758f6e6d15cd25771",
+  "push_log_sha256": "655ae99eea3ff0e8296d9489ebe38403dd6400ab180d7ee469ec519579a46a92",
+  "gate_log_sha256": "5bf3ab3d43ae1db9e91f8193aaaadd7118ae1925abced4f63911403f991ba42b"
+}
