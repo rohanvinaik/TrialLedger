@@ -136,3 +136,7 @@ check-wide didn't even change the request digest.
 The paired regression in `tests/test_protocol_review_repairs.py` covers both sides:
 - collection-only proposed support leaves a known outside-window finding admitted;
 - the same premise declared check-wide withholds it, and the request digest changes.
+
+**The applicability binding is separate from operation bindings** (third external review). Temporal and
+decision-table projectors count only non-`condition_applicability` bindings toward their single operation
+binding. The managed session validates the applicability binding (task 2.9), so the two coexist.

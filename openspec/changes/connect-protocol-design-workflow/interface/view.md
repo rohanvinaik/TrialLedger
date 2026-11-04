@@ -214,3 +214,11 @@ Every test body calls `protocol_view.view(...)` directly, by name.
      "Not applicable: the declared condition does not hold in this scope." It is excluded from section findings.
    - Applicability is decided upstream by a check's explicit `condition_applicability` binding (task 2.9). It is
      never inferred.
+5. **Applicability standing** (third external review).
+   - Claim rows from the managed session carry `application_status` and `application_refs`: the weakest
+     standing and deciding premise references of the applicability proof.
+   - They also carry `finding_status`, the weakest of the arithmetic standing and the applicability proof.
+   - The view's `standing` is `finding_status`. `arithmetic_standing` and `application_standing` stay separate,
+     and `determining_ids` includes the applicability references.
+   - When applicability rests on interpolated support, wording (including "Not applicable…") ends with
+     "Applicability rests on interpolated support."

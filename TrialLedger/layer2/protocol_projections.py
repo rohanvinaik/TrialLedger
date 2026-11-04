@@ -141,6 +141,9 @@ def _unresolved(code: str, objects: list[str], premises: list[str] | None = None
     return {"code": "projection_" + code, "objects": list(objects), "premises": list(premises or [])}
 
 
+APPLICABILITY = "condition_applicability"
+
+
 class _Build:
     """Accumulates one check's consumed objects and role support."""
 
@@ -323,13 +326,16 @@ def _project_dependencies(build: _Build, name: str, version: str) -> dict:
 def _project_binding(kind: str):
     def project(build: _Build, name: str, version: str) -> dict:
         check = build.check
-        if binding_shape_state(check["bindings"], name) != "binding_ok":
+        # The applicability binding is validated separately by the managed session (task 2.9); only the
+        # operation binding counts here, so the two can coexist (external review).
+        operation = [b for b in check["bindings"] if b.get("projection") != APPLICABILITY]
+        if binding_shape_state(operation, name) != "binding_ok":
             return _result(check, name, version, unresolved=[_unresolved("binding_shape", check["objects"])])
         _, issue = _scope_string(build, False)
         if issue:
             return _result(check, name, version, unresolved=[issue])
         build.role("data", list(check["objects"]))
-        data = copy.deepcopy(check["bindings"][0]["data"])
+        data = copy.deepcopy(operation[0]["data"])
         return _result(check, name, version, [build.child(name, version, kind, data)])
 
     return project

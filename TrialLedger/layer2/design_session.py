@@ -12,7 +12,7 @@ from copy import deepcopy
 from itertools import combinations
 from typing import Any, cast
 
-from TrialLedger.layer2 import admission, signals, solver_work, source_evidence
+from TrialLedger.layer2 import admission, entail, signals, solver_work, source_evidence
 from TrialLedger.layer2 import assertions as a
 from TrialLedger.layer2 import session_projections as projections
 from TrialLedger.layer2 import session_state as state
@@ -704,12 +704,16 @@ def _applicability_premises(declared: dict, prepared: dict) -> list[str] | None:
 
 def _applicability(
     conditions: list[dict], premises: list[str] | None, declared: dict, values: dict, run_child: Callable
-) -> tuple[str, list[dict]]:
-    """Decide each declared condition by ordinary budgeted entailment over the declared premises."""
+) -> tuple[str, list[dict], str | None, list[str]]:
+    """Decide each declared condition by ordinary budgeted entailment over the declared premises.
+
+    Returns the application, the retained decisions, and, when a proof decided the application, its weakest
+    standing and deciding premise references. These travel with every affected finding (external review).
+    """
     if not conditions:
-        return "unconditional", []
+        return "unconditional", [], None, []
     if premises is None:
-        return "conditional", []
+        return "conditional", [], None, []
     context = {k: v for k, v in declared["scope"]["context"].items() if v is not None}
     rows = []
     for item in conditions:
@@ -734,14 +738,17 @@ def _applicability(
                 "request_digest": state.digest(request),
                 "result_digest": state.digest(result),
                 "code": applicability_code(decision.get("result", ""), admitted),
+                "status": decision.get("status"),
+                "proof": list(decision.get("proof") or []),
             }
         )
     codes = {row["code"] for row in rows}
-    if "does_not_apply" in codes:
-        return "not_applicable", rows
-    if codes == {"applies"}:
-        return "unconditional", rows
-    return "conditional", rows
+    deciding = [row for row in rows if row["code"] == "does_not_apply"] if "does_not_apply" in codes else rows
+    if "does_not_apply" not in codes and codes != {"applies"}:
+        return "conditional", rows, None, []
+    status = entail.weakest_status(tuple(row["status"] for row in deciding))
+    refs = sorted({ref for row in deciding for ref in row["proof"]})
+    return ("not_applicable" if "does_not_apply" in codes else "unconditional"), rows, status, refs
 
 
 def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], dict], budget: dict) -> dict:
@@ -765,7 +772,7 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
         declared = index["checks"][check_id]
         deciding = _applicability_premises(declared, prepared)
         for child in projected["children"]:
-            application, applicability = _applicability(
+            application, applicability, applied_status, applied_refs = _applicability(
                 child["receipt"].get("conditions", []),
                 deciding,
                 declared,
@@ -801,7 +808,19 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
                         | {
                             "claim_admission": [
                                 # C4: a declared assessment condition is never applied unconditionally.
-                                {**deepcopy(row), "application": application}
+                                {
+                                    **deepcopy(row),
+                                    "application": application,
+                                    "application_status": applied_status,
+                                    "application_refs": list(applied_refs),
+                                    # The finding is no stronger than its applicability proof; the
+                                    # arithmetic keeps its own independent standing in "status".
+                                    "finding_status": entail.weakest_status(
+                                        tuple(v for v in (row.get("status"), applied_status) if v)
+                                    )
+                                    if row.get("status") or applied_status
+                                    else None,
+                                }
                                 for row in signal.get("claim_admission", [])
                             ]
                         }

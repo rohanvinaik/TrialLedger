@@ -4245,7 +4245,10 @@
             "object:interim-rule",
             "premise:adult"
            ],
-           "application": "unconditional"
+           "application": "unconditional",
+           "application_status": null,
+           "application_refs": [],
+           "finding_status": "known"
           },
           {
            "admission": "accepted",
@@ -4259,7 +4262,10 @@
             "object:interim-rule",
             "premise:adult"
            ],
-           "application": "unconditional"
+           "application": "unconditional",
+           "application_status": null,
+           "application_refs": [],
+           "finding_status": "known"
           },
           {
            "admission": "proposed_refused",
@@ -4275,7 +4281,10 @@
             "object:interim-rule",
             "premise:adult"
            ],
-           "application": "unconditional"
+           "application": "unconditional",
+           "application_status": null,
+           "application_refs": [],
+           "finding_status": "proposed"
           },
           {
            "admission": "accepted",
@@ -4289,7 +4298,10 @@
             "object:interim-rule",
             "premise:adult"
            ],
-           "application": "unconditional"
+           "application": "unconditional",
+           "application_status": null,
+           "application_refs": [],
+           "finding_status": "known"
           }
          ]
         }

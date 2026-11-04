@@ -153,10 +153,15 @@ def claim_wording(row: dict, child: dict) -> str:
     post: isinstance(__return__, str)
     post: row.get("application") != "conditional" or __return__.startswith(CONDITIONAL_PREFIX)
     """
+    suffix = (
+        " Applicability rests on interpolated support."
+        if row.get("application_status") == "interpolated"
+        else ""
+    )
     if row.get("application") == "not_applicable":
-        return "Not applicable: the declared condition does not hold in this scope."
+        return "Not applicable: the declared condition does not hold in this scope." + suffix
     text = _template(row, child)
-    return CONDITIONAL_PREFIX + text if row.get("application") == "conditional" else text
+    return (CONDITIONAL_PREFIX + text if row.get("application") == "conditional" else text) + suffix
 
 
 def _template(row: dict, child: dict) -> str:
@@ -317,8 +322,17 @@ def _check_row(index: int, check: dict) -> dict:
                         "admission": row.get("admission"),
                         "application": row.get("application"),
                         "standing_support": copy.deepcopy(row.get("support")),
-                        "standing": row.get("status"),
-                        "determining_ids": copy.deepcopy(row.get("determining_ids") or []),
+                        # The clinical finding is no stronger than its applicability proof; the arithmetic's
+                        # own standing stays visible separately (external review).
+                        "standing": row.get("finding_status") or row.get("status"),
+                        "arithmetic_standing": row.get("status"),
+                        "application_standing": row.get("application_status"),
+                        "determining_ids": copy.deepcopy(row.get("determining_ids") or [])
+                        + [
+                            r
+                            for r in row.get("application_refs") or []
+                            if r not in (row.get("determining_ids") or [])
+                        ],
                         "wording": claim_wording(row, child),
                     }
                 )

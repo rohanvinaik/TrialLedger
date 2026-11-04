@@ -3524,7 +3524,10 @@
             "object:week12",
             "premise:adult"
            ],
-           "application": "conditional"
+           "application": "conditional",
+           "application_status": null,
+           "application_refs": [],
+           "finding_status": "known"
           },
           {
            "admission": "accepted",
@@ -3539,7 +3542,10 @@
             "object:week12",
             "premise:adult"
            ],
-           "application": "conditional"
+           "application": "conditional",
+           "application_status": null,
+           "application_refs": [],
+           "finding_status": "known"
           },
           {
            "admission": "accepted",
@@ -3554,7 +3560,10 @@
             "object:week12",
             "premise:adult"
            ],
-           "application": "conditional"
+           "application": "conditional",
+           "application_status": null,
+           "application_refs": [],
+           "finding_status": "known"
           }
          ]
         }

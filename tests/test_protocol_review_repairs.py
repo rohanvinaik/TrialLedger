@@ -183,3 +183,80 @@ def test_declaring_a_premise_check_wide_changes_the_child_request():
     assert digest(run(_outside_window_with_collection_premise(False))) != digest(
         run(_outside_window_with_collection_premise(True))
     )
+
+
+# 5. Applicability carries its own weakest standing and deciding references (third review).
+def _with_interpolated_deciding_premise(negate: bool) -> dict:
+    from tests.test_protocol_session_replay import _with_condition
+
+    base = _session("84")
+    body = copy.deepcopy(base["session"]["premises"][0]["payload"]["body"])
+    condition = {"class": "Not", "part": body} if negate else body
+    request = _with_condition(condition, ["adult-interpolated"])
+    premise = copy.deepcopy(request["session"]["premises"][0])
+    premise["id"] = premise["payload"]["id"] = "adult-interpolated"
+    premise["payload"]["status"] = "interpolated"
+    request["session"]["premises"].append(premise)
+    return request
+
+
+def _first_claim(reply: dict) -> tuple[dict, dict]:
+    child = reply["result"]["protocol"]["checks"][0]["children"][0]
+    return child["signals"][0]["claim_admission"][0], protocol_view.view(reply["result"])["checks"][0][
+        "claims"
+    ][0]
+
+
+def test_an_interpolated_applicability_proof_qualifies_the_unconditional_finding():
+    row, clinical = _first_claim(run(_with_interpolated_deciding_premise(negate=False)))
+    assert row["application"] == "unconditional"
+    assert (row["status"], row["application_status"], row["finding_status"]) == (
+        "known",
+        "interpolated",
+        "interpolated",
+    )
+    assert "adult-interpolated" in row["application_refs"]
+    assert clinical["standing"] == "interpolated" and clinical["arithmetic_standing"] == "known"
+    assert "adult-interpolated" in clinical["determining_ids"]
+    assert clinical["wording"].endswith("Applicability rests on interpolated support.")
+
+
+def test_an_interpolated_refutation_is_a_qualified_not_applicable():
+    row, clinical = _first_claim(run(_with_interpolated_deciding_premise(negate=True)))
+    assert (row["application"], row["application_status"]) == ("not_applicable", "interpolated")
+    assert clinical["wording"] == (
+        "Not applicable: the declared condition does not hold in this scope. "
+        "Applicability rests on interpolated support."
+    )
+    assert clinical["standing"] == "interpolated"
+
+
+def test_a_known_applicability_proof_adds_no_qualification():
+    from tests.test_protocol_session_replay import _with_condition
+
+    base = _session("84")
+    request = _with_condition(copy.deepcopy(base["session"]["premises"][0]["payload"]["body"]), ["adult"])
+    row, clinical = _first_claim(run(request))
+    assert (row["application_status"], row["finding_status"]) == ("known", "known")
+    assert "Applicability rests" not in clinical["wording"]
+
+
+# 6. The applicability binding coexists with an operation binding (third review).
+def _temporal_request(with_applicability: bool) -> dict:
+    example = run({"operation": "describe", "view": "signals", "detail": "full"})["result"]["signal_examples"]
+    data = copy.deepcopy(example["temporal"]["signals"][0]["data"])
+    request = _session("84", collection_status="known")
+    check = copy.deepcopy(request["session"]["protocol"]["checks"][0])
+    bindings = [{"projection": "temporal_request", "data": data}]
+    if with_applicability:
+        bindings.append({"projection": "condition_applicability", "premises": ["adult"]})
+    check.update(id="timeline", kind="temporal", objects=[], claims=[], bindings=bindings)
+    request["session"]["protocol"]["checks"] = [check]
+    return request
+
+
+def test_a_temporal_check_keeps_its_child_when_an_applicability_binding_is_added():
+    for with_applicability in (False, True):
+        check = run(_temporal_request(with_applicability))["result"]["protocol"]["checks"][0]
+        assert len(check["children"]) == 1, with_applicability
+        assert check["unresolved"] == [], with_applicability
