@@ -294,6 +294,17 @@ def _origin(raw: object, frame: _Frame) -> None:
         raise _fail("origin_pointer") from error
 
 
+def origin_standing_state(origin_kind: str, status: str) -> str:
+    """A hypothesis-origin object may only be proposed (pure).
+
+    post: __return__ in ("ok", "hypothesis_cannot_supply_fact")
+    post: __return__ == "ok" or (origin_kind == "hypothesis" and status != "proposed")
+    """
+    if origin_kind == "hypothesis" and status != "proposed":
+        return "hypothesis_cannot_supply_fact"
+    return "ok"
+
+
 def _envelope(raw: object, frame: _Frame) -> dict:
     """The object's own envelope, without anything that needs the rest of the graph."""
     item = _object(raw, OBJECT_FIELDS, "object_fields")
@@ -308,6 +319,10 @@ def _envelope(raw: object, frame: _Frame) -> dict:
         raise _fail("invalid_version")
     _origin(item["origin"], frame)
     _standing(item["standing"])
+    if origin_standing_state(item["origin"]["kind"], item["standing"]["status"]) != "ok":
+        # Mirrors the premise path (session_projections.effective): a hypothesis never supplies a fact.
+        # Explicit hypothetical frames for unchosen alternatives are a separate path (C8).
+        raise _fail("hypothesis_cannot_supply_fact")
     _unique_ids(item["support"], frame.premises, "unknown_premise", "duplicate_support")
     _rows(item["depends_on"])
     return item

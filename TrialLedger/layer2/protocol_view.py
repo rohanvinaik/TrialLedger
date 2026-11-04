@@ -245,8 +245,40 @@ def _is_not_computed(check: dict) -> bool:
     )
 
 
+def signal_finding_codes(signal: dict) -> list[str]:
+    """Findings of an existing-operator signal with no claim rows, read from its own fields (pure).
+
+    A signal is clean only when admitted, unchanged by the gate and without blockers; otherwise each
+    blocker (or its code, when it names none) is retained verbatim. The view never reinterprets them.
+
+    pre: isinstance(signal, dict)
+    post: isinstance(__return__, list)
+    post: all(isinstance(code, str) and code for code in __return__)
+    """
+    admission = (signal.get("admission") or {}).get("code")
+    blockers = [str(b) for b in signal.get("blockers") or [] if b]
+    clean = admission == "accepted" and signal.get("code") == signal.get("calculation_code") and not blockers
+    if clean:
+        return []
+    return blockers or [f"code:{signal.get('code')}"]
+
+
+def _plain_signals(check: dict) -> list[tuple[int, dict]]:
+    return [
+        (j, signal)
+        for j, child in enumerate(check.get("children") or [])
+        for signal in child.get("signals") or []
+        if not signal.get("claim_admission")
+    ]
+
+
 def _open_reasons(check: dict) -> list[str]:
     out = [f"unresolved:{check['id']}:{entry.get('code')}" for entry in check.get("unresolved") or []]
+    out += [
+        f"signal:{check['id']}:{code}"
+        for _, sig in _plain_signals(check)
+        for code in signal_finding_codes(sig)
+    ]
     rows = _claim_rows(check)
     out += [
         f"claim_unresolved:{check['id']}:{r.get('id')}"
@@ -283,6 +315,8 @@ def _check_row(index: int, check: dict) -> dict:
                         "admission": row.get("admission"),
                         "application": row.get("application"),
                         "standing_support": copy.deepcopy(row.get("support")),
+                        "standing": row.get("status"),
+                        "determining_ids": copy.deepcopy(row.get("determining_ids") or []),
                         "wording": claim_wording(row, child),
                     }
                 )
@@ -299,6 +333,18 @@ def _check_row(index: int, check: dict) -> dict:
             "admission": copy.deepcopy(first.get("admission")),
         },
         "claims": claims,
+        "findings": [
+            {
+                "signal": sig.get("id"),
+                "kind": sig.get("kind"),
+                "code": sig.get("code"),
+                "calculation_code": sig.get("calculation_code"),
+                "admission": (sig.get("admission") or {}).get("code"),
+                "codes": signal_finding_codes(sig),
+                "ref": _child_ref(index, j),
+            }
+            for j, sig in _plain_signals(check)
+        ],
         "unresolved": copy.deepcopy(check.get("unresolved") or []),
         "not_computed": copy.deepcopy(check.get("not_computed")),
         "conditions": [copy.deepcopy(c) for child in children for c in child.get("conditions") or []],
@@ -479,6 +525,18 @@ def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]
                     _check_ref(i),
                 )
             )
+    for i, check in enumerate(checks):
+        for j, signal in _plain_signals(check):
+            for code in signal_finding_codes(signal):
+                items.append(
+                    item(
+                        "signal_finding",
+                        check_rows[i]["id"],
+                        None,
+                        f"Finding from the {signal.get('kind')} check: {code}.",
+                        _child_ref(i, j),
+                    )
+                )
     items += claim_items("claim_unsettled", lambda r: r["effective_outcome"] in UNSETTLED)
     items += claim_items("claim_conditional", lambda r: r["application"] == "conditional")
     items += claim_items("claim_failure", lambda r: r["effective_outcome"] in FAILURES)

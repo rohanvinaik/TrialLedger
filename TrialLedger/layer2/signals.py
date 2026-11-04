@@ -120,27 +120,36 @@ def claim_admission_state(decided: bool, blocked: bool, inner: str, outer: str) 
 
 
 def _claim_admissions(signal: Signal, calculation: dict) -> list[dict]:
-    """Per-claim admission rows over the same gate; the whole-signal code remains the conservative summary."""
+    """Per-claim admission rows over the same gate; the whole-signal code remains the conservative summary.
+
+    Role-bound support narrows only the support a role contributes. Support bound to no role (for example a
+    check-level premise) applies to every claim, so it can never be bypassed per claim. Each row retains its
+    own effective standing (outer and operator-internal) and determining references for every consumer.
+    """
     value = calculation["value"]
     rows = value.get("claims") if isinstance(value, dict) else None
     if not isinstance(rows, list):
         return []
     support = {p.id: p for p in signal.support}
     roles = getattr(signal, "role_support", None) or {}
+    bound = {i for ids in roles.values() for i in ids}
+    unbound = [i for i in support if i not in bound]
     envelope_status = calculation.get("support_status")
     envelope_resolution = calculation.get("support_resolution") or "resolved"
+    envelope_ids = list(calculation.get("determining_ids") or [])
     output = []
     for row in rows:
         named = row.get("determined_by")
         decided = row.get("outcome") not in ("unresolved", "unknown_target", "not_executed", "limit")
         if isinstance(named, list) and named:
-            ids = sorted({i for role in named for i in roles.get(role, tuple(support))})
+            ids = sorted({i for role in named for i in roles.get(role, tuple(support))} | set(unbound))
         else:
             ids = sorted(support)
         statuses = [support[i].status for i in ids]
         resolutions = [support[i].resolution for i in ids]
         inner = "none"
         standing = row.get("standing")
+        determining = list(row.get("determining_ids") or [])
         if isinstance(standing, str):
             inner = (
                 "accepted"
@@ -152,9 +161,13 @@ def _claim_admissions(signal: Signal, calculation: dict) -> list[dict]:
             if standing in ("known", "interpolated"):
                 statuses.append(standing)
                 resolutions.append("resolved")
+            elif standing == "proposed_refused":
+                statuses.append("proposed")
+                resolutions.append("resolved")
         elif envelope_status is not None:
             statuses.append(envelope_status)
             resolutions.append(envelope_resolution)
+            determining = envelope_ids
         state = claim_admission_state(
             decided, bool(signal.application_blockers), inner, support_state(statuses, resolutions)
         )
@@ -164,6 +177,8 @@ def _claim_admissions(signal: Signal, calculation: dict) -> list[dict]:
                 "claim": row.get("claim", row.get("quantity")),
                 "outcome": row["outcome"],
                 "support": ids,
+                "status": entail.weakest_status(tuple(statuses)) if statuses else None,
+                "determining_ids": determining,
                 "admission": state,
                 "effective_outcome": row["outcome"]
                 if state in ("accepted", "undetermined")

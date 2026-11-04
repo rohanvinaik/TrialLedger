@@ -443,12 +443,18 @@ def _protocol_claim_findings(row: dict, path: str) -> list[dict]:
     statuses = {premise["id"]: premise["status"] for premise in row.get("support", ())}
     for index, claim in enumerate(row["claim_admission"]):
         claim_path = _path(_path(path, "claim_admission"), index)
-        own = tuple(statuses[i] for i in claim.get("support", ()) if i in statuses)
-        standing = weakest_status(own) if own else row.get("status")
+        # The gate's row carries the claim's effective standing, including operator-internal rules.
+        # Reconstructing it from outer support alone would turn an interpolated rule into "known".
+        if "status" in claim:
+            standing = claim["status"]
+        else:
+            own = tuple(statuses[i] for i in claim.get("support", ()) if i in statuses)
+            standing = weakest_status(own) if own else row.get("status")
         admitted = claim["admission"] in ("accepted", "undetermined")
         causes = [] if admitted else [claim["admission"] + ":" + str(claim["id"])]
         finding = _row(claim_path, "protocol_claim", claim["effective_outcome"], standing, causes)
         finding["support_path"] = _path(claim_path, "support")
+        finding["determining_ids"] = list(claim.get("determining_ids", ()))
         if not admitted:
             finding["raw_result"] = claim["outcome"]
             finding["raw_path"] = _path(claim_path, "outcome")

@@ -64,8 +64,8 @@ complete, safe, valid, adequate or approved.
 
 ### `checks`
 
-One row per check, in check order: `{id, kind, required, projection, summary, claims, unresolved, not_computed,
-conditions, refs}`.
+One row per check, in check order: `{id, kind, required, projection, summary, claims, findings, unresolved,
+not_computed, conditions, refs}`.
 - `summary` is `{code, calculation_code, admission}`, taken from the child signal. With no child signal it is
   null.
 - `claims` holds one row per `claim_admission` row:
@@ -182,3 +182,15 @@ Every test body calls `protocol_view.view(...)` directly, by name.
 - The input result is not mutated (deepcopy compare).
 - Calling `view` twice gives an identical value.
 - Display decimals never decide anything; every comparison text uses the canonical rational.
+
+## Integration corrections (coordinator, after the external review on 2026-11-04)
+
+1. **Claim rows** also carry `standing` and `determining_ids`, taken from the gate's per-claim row. The view
+   never reconstructs standing.
+2. **Signals without claim rows** (estimand, dependencies, temporal, decision_table): `findings` holds
+   `{signal, kind, code, calculation_code, admission, codes, ref}` per signal.
+   - `codes` comes from `signal_finding_codes`: empty only when the signal is admitted, unchanged by the gate
+     and blocker-free; otherwise every blocker, verbatim, or `code:<code>`.
+   - Each code adds a `signal_finding` open item, and a section reason `signal:<check>:<code>`, so the
+     section is `open`.
+   - Previously an estimand collection-plan mismatch disappeared from the view.
