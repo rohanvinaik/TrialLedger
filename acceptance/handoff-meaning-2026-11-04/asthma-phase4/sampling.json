@@ -1,0 +1,25 @@
+{
+  "seed": 2026110452,
+  "question": "Which concomitant-treatment permissions, conditioning requirements and distinct screening/assessment decisions should a new trial retain, and what changes when a chosen restriction is revised?",
+  "selection": "Sample two IDs from sorted complete pool before reading clinical details; keep awkward samples.",
+  "retention": "Keep raw/source workbooks locally. Commit compact walkthrough, complete reasoning pairs actually used and fingerprint receipt.",
+  "pool": [
+    "NCT05667727",
+    "NCT05977699",
+    "NCT06272370",
+    "NCT06288516",
+    "NCT06448585",
+    "NCT06563102",
+    "NCT06590740",
+    "NCT06725641",
+    "NCT06869382",
+    "NCT06918418",
+    "NCT07533565",
+    "NCT07633223",
+    "NCT07731217"
+  ],
+  "sample": [
+    "NCT06918418",
+    "NCT06590740"
+  ]
+}

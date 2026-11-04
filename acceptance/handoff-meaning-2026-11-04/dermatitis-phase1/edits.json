@@ -1,0 +1,13 @@
+[
+  {
+    "op": "replace",
+    "path": "/premises/0/payload/body/value/number",
+    "value": 4,
+    "origin": {
+      "kind": "user_choice",
+      "ref": "simulated:exchange2:stability-four",
+      "source": null,
+      "analysis": null
+    }
+  }
+]

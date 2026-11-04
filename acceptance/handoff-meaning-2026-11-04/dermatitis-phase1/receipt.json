@@ -1,0 +1,258 @@
+{
+  "case": "dermatitis-phase1",
+  "source": {
+    "nct": "NCT05729074",
+    "digest": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+    "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+    "version": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+    "last_update": {
+      "date": "2026-09-14",
+      "type": "ACTUAL"
+    }
+  },
+  "source_raw_sha256": "af1151d8efbdc5f0c90de5b11c85650db270b27e8a275c5bd485642712645a8e",
+  "cli_mcp_parity": true,
+  "export_equal_bytes": true,
+  "workbook_rows": {
+    "Read me": 14,
+    "Decision list": 2,
+    "Options": 4,
+    "Requirements": 1,
+    "Decision evidence": 53,
+    "Permissions": 4,
+    "Findings": 12,
+    "Changes": 5,
+    "Sources and origins": 6
+  },
+  "baseline": {
+    "continuation-two": "REFUTED",
+    "continuation-three": "UNDETERMINED",
+    "continuation-none": "UNDETERMINED"
+  },
+  "revision": {
+    "continuation-two": "REFUTED",
+    "continuation-three": "REFUTED",
+    "continuation-none": "UNDETERMINED"
+  },
+  "origin": {
+    "kind": "user_choice",
+    "ref": "simulated:exchange2:stability-four",
+    "source": null,
+    "analysis": null
+  },
+  "criterion_ref": "simulated:exchange2:stability-four",
+  "permissions": [
+    [
+      {
+        "id": "conditional-continuation",
+        "code": "related_permission",
+        "statement": {
+          "code": "displayed",
+          "text": "participant: \"inhaled_or_nasal_corticosteroid\"",
+          "canonical_ref": "/result/analyses/0/result/result/explanations/permissions/0/body",
+          "origin": "typed_representation; predicate names are caller-declared"
+        },
+        "standing": "known",
+        "applicability": {
+          "code": "displayed",
+          "text": "participant: \"stable_months_before_entry\" ≥ 3.0 months",
+          "canonical_ref": "",
+          "origin": "typed_representation; predicate names are caller-declared"
+        },
+        "scope": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "blockers": [],
+        "criterion_ref": "simulated:exchange1:conditional-continuation",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "simulated-user-choice",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "simulated:exchange1:conditional-continuation"
+          ]
+        },
+        "canonical_ref": "/result/analyses/0/result/result/explanations/permissions/0"
+      }
+    ],
+    [
+      {
+        "id": "conditional-continuation",
+        "code": "related_permission",
+        "statement": {
+          "code": "displayed",
+          "text": "participant: \"inhaled_or_nasal_corticosteroid\"",
+          "canonical_ref": "/result/analyses/1/result/result/explanations/permissions/0/body",
+          "origin": "typed_representation; predicate names are caller-declared"
+        },
+        "standing": "known",
+        "applicability": {
+          "code": "displayed",
+          "text": "participant: \"stable_months_before_entry\" ≥ 3.0 months",
+          "canonical_ref": "",
+          "origin": "typed_representation; predicate names are caller-declared"
+        },
+        "scope": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "blockers": [],
+        "criterion_ref": "simulated:exchange1:conditional-continuation",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "simulated-user-choice",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "simulated:exchange1:conditional-continuation"
+          ]
+        },
+        "canonical_ref": "/result/analyses/1/result/result/explanations/permissions/0"
+      }
+    ],
+    [
+      {
+        "id": "conditional-continuation",
+        "code": "related_permission",
+        "statement": {
+          "code": "displayed",
+          "text": "participant: \"inhaled_or_nasal_corticosteroid\"",
+          "canonical_ref": "/result/analyses/2/result/result/explanations/permissions/0/body",
+          "origin": "typed_representation; predicate names are caller-declared"
+        },
+        "standing": "known",
+        "applicability": {
+          "code": "displayed",
+          "text": "participant: \"stable_months_before_entry\" ≥ 3.0 months",
+          "canonical_ref": "",
+          "origin": "typed_representation; predicate names are caller-declared"
+        },
+        "scope": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "blockers": [],
+        "criterion_ref": "simulated:exchange1:conditional-continuation",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "simulated-user-choice",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "simulated:exchange1:conditional-continuation"
+          ]
+        },
+        "canonical_ref": "/result/analyses/2/result/result/explanations/permissions/0"
+      }
+    ]
+  ],
+  "export": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/dermatitis-phase1-check/cli-export/review/design-review.xlsx",
+  "simulation": "All new-trial choices simulated; exact source readings remain proposed; comparisons not declared a clinical standard.",
+  "final_export": {
+    "case": "dermatitis-phase1-check",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/dermatitis-phase1-check/final-export-check/cli/review/design-review.xlsx",
+    "same_cli_mcp_bytes": true,
+    "permission_summary_links": [
+      "J2"
+    ],
+    "freeze": [
+      "B2",
+      "C2"
+    ],
+    "sha256": "0503bf58fc010970e8552f7625c6cb42053733efbd9d0797a1c99776e72ee61c"
+  },
+  "all_sample_source_files": [
+    {
+      "nct": "NCT06193434",
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/NCT06193434-raw.json",
+      "sha256": "8dda83ed6a4d7e99b5c33554efb2385a2bb96da5197ed83b841196824af24ece",
+      "bytes": 12268
+    },
+    {
+      "nct": "NCT05729074",
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/NCT05729074-raw.json",
+      "sha256": "af1151d8efbdc5f0c90de5b11c85650db270b27e8a275c5bd485642712645a8e",
+      "bytes": 28877
+    }
+  ],
+  "registry_raw_bodies": [
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/dermatitis-phase1/bodies/ids-001.json",
+      "sha256": "7853d09b8f4fb26106598a641d33fb4ea0d9d97509a6a61a629143a1f2b07f47",
+      "bytes": 5070,
+      "file_written_utc": "2026-11-04T14:42:45.610828+00:00"
+    },
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/dermatitis-phase1/bodies/studies-001.json",
+      "sha256": "c013df7da788d17c5e5e929f6f9d7b7e0a5b539a20457da05a3410cb01619d78",
+      "bytes": 1590272,
+      "file_written_utc": "2026-11-04T14:42:47.066613+00:00"
+    },
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/dermatitis-phase1/bodies/version-end.json",
+      "sha256": "29b8e1fbd54e9b21d495c417ef10237e908fcfd1b0683b5d82dfbf6bc7489066",
+      "bytes": 71,
+      "file_written_utc": "2026-11-04T14:42:48.068589+00:00"
+    },
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/dermatitis-phase1/bodies/version-start.json",
+      "sha256": "29b8e1fbd54e9b21d495c417ef10237e908fcfd1b0683b5d82dfbf6bc7489066",
+      "bytes": 71,
+      "file_written_utc": "2026-11-04T14:42:44.430767+00:00"
+    }
+  ],
+  "code_files": {
+    "TrialLedger/clinical_export.py": "978c9f86728e1844a0899a20bf2ab01fae8e084558242e9760ac50b00639f508",
+    "TrialLedger/clinical_view.py": "37f93450e0185a1773087ffb709e62ddced9edb1cdc1bae3bf02ed52fe941b13",
+    "TrialLedger/reasoning_delivery.py": "e64fb4f96dbe10d9221dc5a27a36f828c512e8e08df6830a6dd3649491f76b09"
+  },
+  "retained_files": {
+    "baseline-request.json": {
+      "bytes": 60822,
+      "sha256": "3defe0627a3728b3e64139bcf39f9d50c233957ea67e990c28ca7650b7b60cae"
+    },
+    "baseline-result.json": {
+      "bytes": 238795,
+      "sha256": "dd8966e625a2eaf57bd806a8e7b59824dfa260c3deebfe6d9835bdf6c9130530"
+    },
+    "edits.json": {
+      "bytes": 249,
+      "sha256": "faf6e0d3054120837b80566b98b9302b3778d1b7d383ff22f5f566a04a75b8d8"
+    },
+    "registry-request.json": {
+      "bytes": 242,
+      "sha256": "88053fc5f37e3956b1b6df231d1fff3627790b61ee38e5f1a16d605767da039b"
+    },
+    "revision-request.json": {
+      "bytes": 346665,
+      "sha256": "379369b0049cc0522d76d6b5953a7cfe21b560845623b0aacf451fb3cb5fd4d3"
+    },
+    "revision-result.json": {
+      "bytes": 496578,
+      "sha256": "ad8c5f59ff86e15cdd25cee0e0925a2581c33122ae90d5bf44cae6b41baf7c5f"
+    },
+    "sampling.json": {
+      "bytes": 1933,
+      "sha256": "46caaf323fc588fbff5aa3339d6953f1f2d96ebcbb22c4d2cf59b1fbaa092ad3"
+    },
+    "source-readings-request.json": {
+      "bytes": 49589,
+      "sha256": "fbb2bd426baf016f9504c7e1d97954e2d8433a25fd3e02264c85b56222c8e9cf"
+    },
+    "source-readings-result.json": {
+      "bytes": 157964,
+      "sha256": "90315251329ef6d3f2c98ac5f0141feed9f3495440780d0fa8d770cbe6977953"
+    }
+  }
+}

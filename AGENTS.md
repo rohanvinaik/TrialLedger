@@ -85,6 +85,11 @@ Neither asserts actual absence. Keep a required disjunction intact. Read explana
 completed bounded discovery is not complete screening. `decision_view` joins profiles, deciding criteria,
 conditions, source context and open items; prefer it to repeated generic directory reads.
 
+The primary review and Permissions sheet retain permission mentions with applicability, scope, standing,
+blockers and references. Read all of them before saying a permission applies. A proposed mention is an
+unconfirmed reading; a missing mention is not prohibition. Decision open items identify their caller-labelled
+option: an exact query's feasible negation is not proof that another declared option fits.
+
 Optional decision `evidence` entries bind exact source anchors with quote/reading/gap roles. They are context,
 not solver premises. Copied text is known as a copy only; notes and declared scope remain caller-attributed
 and proposed. A confirmed interpretation or adoption still needs an ordinary admitted premise. Caller
@@ -143,6 +148,8 @@ continuation retain omitted detail. Full replies stay full. `result_digest` cove
   `replace` edits and a revision label. Changed premises require explicit attribution; copied source snapshots
   cannot be edited through the shortcut. The program fills integrity fingerprints and freshly replays both
   snapshots. `prepare_only` returns the valid request without computing it.
+  Changed user-choice assertions also rebind references identifying the prior adoption exchange, with those
+  mechanical edits recorded. Independent source references and immutable prior artifacts remain unchanged.
 - `reason_export` / `reason-export` writes a separate review workbook, readable list, manifest and canonical
   inputs. The output parent must be new; publication is inside its `review` child. Deliver actual returned paths. Source reports remain unchanged. Included standalone analyses stay
   separate unless explicitly linked by the session. Export does not authenticate caller-declared choices.

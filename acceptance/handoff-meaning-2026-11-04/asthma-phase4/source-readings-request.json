@@ -1,0 +1,483 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT06918418",
+        "orgStudyIdInfo": {
+          "id": "U1111-1321-1030"
+        },
+        "organization": {
+          "fullName": "Children's Hospital and Institute of Child Health, Multan",
+          "class": "OTHER_GOV"
+        },
+        "briefTitle": "A Comparative Study of Adding Ipratropium to Salbutamol for the Treatment of Asthma Attack in Children",
+        "officialTitle": "Comparison of Salbutamol Alone and Salbutamol in Combination With Ipratropium Bromide in Treatment of Acute Asthma in Children"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2025-04",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2024-01-01",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2024-06-30",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2024-07-15",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2025-04-02",
+        "studyFirstSubmitQcDate": "2025-04-02",
+        "studyFirstPostDateStruct": {
+          "date": "2025-04-09",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2025-04-02",
+        "lastUpdatePostDateStruct": {
+          "date": "2025-04-09",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "PRINCIPAL_INVESTIGATOR",
+          "investigatorFullName": "Muhammad Umair",
+          "investigatorTitle": "Principal Investigator",
+          "investigatorAffiliation": "Children's Hospital and Institute of Child Health, Multan"
+        },
+        "leadSponsor": {
+          "name": "Children's Hospital and Institute of Child Health, Multan",
+          "class": "OTHER_GOV"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": false,
+        "isFdaRegulatedDrug": false,
+        "isFdaRegulatedDevice": false,
+        "isUsExport": false
+      },
+      "descriptionModule": {
+        "briefSummary": "The goal of this clinical trial was to determine if adding ipratropium bromide to salbutamol improves asthma treatment in children.\n\nThe main question this study aimed to answer was:\n\nDoes combining ipratropium with salbutamol improve asthma symptoms more effectively than salbutamol alone?\n\nResearchers compared salbutamol alone to a combination of salbutamol and ipratropium in children with acute asthma.\n\nParticipants:\n\n(i) Received either salbutamol alone or salbutamol with ipratropium via nebulization for 4 hours\n\n(ii) Had their asthma symptoms assessed before and after treatment\n\n(iii) Were discharged with continued treatment and counseling if stable\n\nThis study was conducted in the Department of Pediatric Medicine, Children's Hospital Multan, over six months. A total of 60 children with acute asthma were included.",
+        "detailedDescription": "Children presenting with asthma exacerbation were assessed for eligibility. Eligible participants had their baseline characteristics recorded including age, gender, history of parental asthma, duration of asthma diagnosis, use of asthma controllers (inhaled corticosteroids, Long Acting Beta Agonist (LABA), Montelukast) \\& baseline pulmonary asthma score. Through lottery method using sequentially numbered sealed opaque envelopes children were assigned to group A and group B treatments. At the end of 4-hours of therapy, pulmonary asthma score was re-assessed by pediatrician not aware of treatment assigned. Once stabilized, the children were discharged on regular nebulization therapy with controller medication after proper counseling."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Asthma Exacerbation",
+          "Children"
+        ],
+        "keywords": [
+          "Asthma",
+          "Salbutamol",
+          "Ipratropium Bromide",
+          "Pulmonary Asthma Score"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE4"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "SINGLE",
+            "whoMasked": [
+              "OUTCOMES_ASSESSOR"
+            ]
+          }
+        },
+        "enrollmentInfo": {
+          "count": 60,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Combined Nebulization",
+            "type": "EXPERIMENTAL",
+            "description": "Combined Salbutamol and Ipratropium Bromide",
+            "interventionNames": [
+              "Drug: salbutamol + ipratropium bromide nebules"
+            ]
+          },
+          {
+            "label": "Single Nebulization",
+            "type": "ACTIVE_COMPARATOR",
+            "description": "Salbutamol Nebulization alone",
+            "interventionNames": [
+              "Drug: Salbutamol (Ventolin®)"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Salbutamol (Ventolin®)",
+            "description": "Children were given 0.5% salbutamol aerosol solution (0.15 mg/kg weight, up to a maximum of 5 mg) in 5mL of normal saline solution for 7 min every 20 min for 2 h, and then every 30 min for two more hours. Aerosol were generated by nebulizer powered by compressed-air (5 L/min) with Y-connection with oxygen (3 L/min) and delivered via a face mask.",
+            "armGroupLabels": [
+              "Single Nebulization"
+            ],
+            "otherNames": [
+              "Albuterol"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "salbutamol + ipratropium bromide nebules",
+            "description": "In addition to Salbutamol nebulization, children received ipratropium bromide nebulization. Ipratropium bromide solution (250 mcg in children \\<20 kg weight or 500 mcg in children \\>=20 kg) every 20 min for the first 2 hours then every 30 min for 2 hours more will be given in between the salbutamol nebulization. Aerosol were generated by nebulizer powered by compressed-air (5 L/min) with Y-connection with oxygen (3 L/min) and delivered via a face mask.",
+            "armGroupLabels": [
+              "Combined Nebulization"
+            ],
+            "otherNames": [
+              "Albuterol",
+              "Atrovent"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Pulmonary Asthma Score (PAS)",
+            "description": "Asthma severity was assessed using Pulmonary Asthma score. It uses respiratory rate, wheezing, inspiration to expiration ratio (I:E) and use of accessory muscles graded 0 - 3 with total score of 12.",
+            "timeFrame": "On presentation and four hours after treatment."
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Children with acute asthma exacerbation (presenting with wheeze, labored breathing with ronchi audible on auscultation)\n* Within 12 hours of symptom onset\n\nExclusion Criteria:\n\n* Children with known pulmonary and/or cardiac congenital malformations\n* Bronchopulmonary dysplasia\n* Cystic fibrosis\n* Post infectious bronchiolitis obliterans\n* Altered mental status on presentation with imminent respiratory failure (pulmonary asthma score ≥ 10, cases needing PICU care)",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "genderBased": false,
+        "minimumAge": "2 Years",
+        "maximumAge": "15 Years",
+        "stdAges": [
+          "CHILD"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Dr. Muhammad Aslam Sheikh, FCPS",
+            "affiliation": "Children's Hospital and Institute of Child Health, Multan",
+            "role": "STUDY_CHAIR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Children's Hospital and Institute of Child Health",
+            "city": "Multan",
+            "state": "Punjab Province",
+            "zip": "60000",
+            "country": "Pakistan",
+            "geoPoint": {
+              "lat": 30.19679,
+              "lon": 71.47824
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "21332430",
+            "type": "BACKGROUND",
+            "citation": "Iramain R, Lopez-Herce J, Coronel J, Spitters C, Guggiari J, Bogado N. Inhaled salbutamol plus ipratropium in moderate and severe asthma crises in children. J Asthma. 2011 Apr;48(3):298-303. doi: 10.3109/02770903.2011.555037. Epub 2011 Feb 21."
+          },
+          {
+            "pmid": "26968269",
+            "type": "BACKGROUND",
+            "citation": "Memon BN, Parkash A, Ahmed Khan KM, Gowa MA, Bai C. Response to nebulized salbutamol versus combination with ipratropium bromide in children with acute severe asthma. J Pak Med Assoc. 2016 Mar;66(3):243-6."
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO",
+        "description": "Since the study involves children, there are strict ethical guidelines regarding data privacy and protection of minors' health information. Sharing detailed IPD may risk re-identification."
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-04"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D001249",
+            "term": "Asthma"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D001982",
+            "term": "Bronchial Diseases"
+          },
+          {
+            "id": "D012140",
+            "term": "Respiratory Tract Diseases"
+          },
+          {
+            "id": "D008173",
+            "term": "Lung Diseases, Obstructive"
+          },
+          {
+            "id": "D008171",
+            "term": "Lung Diseases"
+          },
+          {
+            "id": "D012130",
+            "term": "Respiratory Hypersensitivity"
+          },
+          {
+            "id": "D006969",
+            "term": "Hypersensitivity, Immediate"
+          },
+          {
+            "id": "D006967",
+            "term": "Hypersensitivity"
+          },
+          {
+            "id": "D007154",
+            "term": "Immune System Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000420",
+            "term": "Albuterol"
+          },
+          {
+            "id": "D009241",
+            "term": "Ipratropium"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D004983",
+            "term": "Ethanolamines"
+          },
+          {
+            "id": "D000605",
+            "term": "Amino Alcohols"
+          },
+          {
+            "id": "D000438",
+            "term": "Alcohols"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D000588",
+            "term": "Amines"
+          },
+          {
+            "id": "D010627",
+            "term": "Phenethylamines"
+          },
+          {
+            "id": "D005021",
+            "term": "Ethylamines"
+          },
+          {
+            "id": "D001286",
+            "term": "Atropine Derivatives"
+          },
+          {
+            "id": "D014326",
+            "term": "Tropanes"
+          },
+          {
+            "id": "D053961",
+            "term": "Azabicyclo Compounds"
+          },
+          {
+            "id": "D001372",
+            "term": "Aza Compounds"
+          },
+          {
+            "id": "D001533",
+            "term": "Belladonna Alkaloids"
+          },
+          {
+            "id": "D012991",
+            "term": "Solanaceous Alkaloids"
+          },
+          {
+            "id": "D000470",
+            "term": "Alkaloids"
+          },
+          {
+            "id": "D006571",
+            "term": "Heterocyclic Compounds"
+          },
+          {
+            "id": "D019086",
+            "term": "Bridged Bicyclo Compounds, Heterocyclic"
+          },
+          {
+            "id": "D006572",
+            "term": "Heterocyclic Compounds, Bridged-Ring"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+      "expected": "Inclusion Criteria:\n\n* Children with acute asthma exacerbation (presenting with wheeze, labored breathing with ronchi audible on auscultation)\n* Within 12 hours of symptom onset\n\nExclusion Criteria:\n\n* Children with known pulmonary and/or cardiac congenital malformations\n* Bronchopulmonary dysplasia\n* Cystic fibrosis\n* Post infectious bronchiolitis obliterans\n* Altered mental status on presentation with imminent respiratory failure (pulmonary asthma score ≥ 10, cases needing PICU care)"
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "entry-reading",
+      "label": "entry-reading",
+      "origin": "assistant",
+      "basis": [
+        "unconfirmed source reading; alternate scope is a control"
+      ],
+      "anchors": [
+        "eligibility"
+      ],
+      "assumptions": [
+        {
+          "class": "ScopedAssertion",
+          "id": "onset",
+          "criterion_ref": "simulated:exchange1:onset",
+          "modality": "required",
+          "body": {
+            "class": "Literal",
+            "subject": {
+              "class": "Subject",
+              "kind": "participant"
+            },
+            "predicate": {
+              "class": "Predicate",
+              "kind": "measurement",
+              "key": "hours_since_symptom_onset_at_entry"
+            },
+            "value": {
+              "class": "Value",
+              "kind": "quantity",
+              "comparison": "le",
+              "number": 12,
+              "unit": "hours"
+            }
+          },
+          "applicability": {
+            "class": "Always"
+          },
+          "rule": {
+            "class": "Rule",
+            "id": "simulated-user-choice",
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:onset"
+            ]
+          },
+          "status": "proposed",
+          "resolution": "resolved"
+        }
+      ]
+    },
+    {
+      "id": "other-cohort-control",
+      "label": "other-cohort-control",
+      "origin": "assistant",
+      "basis": [
+        "unconfirmed source reading; alternate scope is a control"
+      ],
+      "anchors": [
+        "eligibility"
+      ],
+      "assumptions": [
+        {
+          "class": "ScopedAssertion",
+          "id": "onset",
+          "criterion_ref": "simulated:exchange1:onset",
+          "modality": "required",
+          "body": {
+            "class": "Literal",
+            "subject": {
+              "class": "Subject",
+              "kind": "participant"
+            },
+            "predicate": {
+              "class": "Predicate",
+              "kind": "measurement",
+              "key": "hours_since_symptom_onset_at_entry"
+            },
+            "value": {
+              "class": "Value",
+              "kind": "quantity",
+              "comparison": "le",
+              "number": 12,
+              "unit": "hours"
+            }
+          },
+          "applicability": {
+            "class": "Always"
+          },
+          "rule": {
+            "class": "Rule",
+            "id": "simulated-user-choice",
+            "version": "1",
+            "warrants": [
+              "simulated:exchange1:onset"
+            ]
+          },
+          "status": "proposed",
+          "resolution": "resolved",
+          "cohort": {
+            "class": "Scope",
+            "kind": "cohort_ref",
+            "ref": "other-cohort"
+          }
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "id": "profile",
+      "body": {
+        "class": "Literal",
+        "subject": {
+          "class": "Subject",
+          "kind": "participant"
+        },
+        "predicate": {
+          "class": "Predicate",
+          "kind": "measurement",
+          "key": "hours_since_symptom_onset_at_entry"
+        },
+        "value": {
+          "class": "Value",
+          "kind": "quantity",
+          "comparison": "eq",
+          "number": 10,
+          "unit": "hours"
+        }
+      }
+    }
+  ],
+  "context": {
+    "cohort": "entry"
+  }
+}

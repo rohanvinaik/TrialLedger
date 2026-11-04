@@ -1,0 +1,151 @@
+{
+  "case": "asthma-phase4",
+  "source": {
+    "nct": "NCT06918418",
+    "digest": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+    "study_ref": "ctg:NCT06918418:a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+    "version": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+    "last_update": {
+      "date": "2025-04-09",
+      "type": "ACTUAL"
+    }
+  },
+  "source_raw_sha256": "9c8990e8ed0a612524ad50c773f3d23737dd6ba0edaccafa7408c30988e373cb",
+  "cli_mcp_parity": true,
+  "export_equal_bytes": true,
+  "workbook_rows": {
+    "Read me": 14,
+    "Decision list": 3,
+    "Options": 6,
+    "Requirements": 5,
+    "Decision evidence": 11,
+    "Permissions": 1,
+    "Findings": 17,
+    "Changes": 8,
+    "Sources and origins": 6
+  },
+  "baseline": {
+    "onset-ten": "UNDETERMINED",
+    "onset-thirteen": "REFUTED",
+    "presentation-both": "REFUTED",
+    "presentation-mental-only": "UNDETERMINED",
+    "presentation-failure-only": "UNDETERMINED"
+  },
+  "revision": {
+    "onset-ten": "UNDETERMINED",
+    "onset-thirteen": "UNDETERMINED",
+    "presentation-both": "REFUTED",
+    "presentation-mental-only": "UNDETERMINED",
+    "presentation-failure-only": "UNDETERMINED"
+  },
+  "origin": {
+    "kind": "user_choice",
+    "ref": "simulated:exchange2:onset-eighteen",
+    "source": null,
+    "analysis": null
+  },
+  "criterion_ref": "simulated:exchange2:onset-eighteen",
+  "permissions": [
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "export": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/asthma-phase4-check/cli-export/review/design-review.xlsx",
+  "simulation": "All new-trial choices simulated; exact source readings remain proposed; comparisons not declared a clinical standard.",
+  "final_export": {
+    "case": "asthma-phase4-check",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/asthma-phase4-check/final-export-check/cli/review/design-review.xlsx",
+    "same_cli_mcp_bytes": true,
+    "permission_summary_links": [],
+    "freeze": [
+      "B2",
+      "C2"
+    ],
+    "sha256": "63513402e7e64430adb4e2e95bbfb68d75f0d4ffb57dc18d5d2bb80a500d6791"
+  },
+  "all_sample_source_files": [
+    {
+      "nct": "NCT06918418",
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/NCT06918418-raw.json",
+      "sha256": "9c8990e8ed0a612524ad50c773f3d23737dd6ba0edaccafa7408c30988e373cb",
+      "bytes": 11951
+    },
+    {
+      "nct": "NCT06590740",
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/NCT06590740-raw.json",
+      "sha256": "7ec910cdab20b7f22638357624323f8a1f43c72d8cec00b180ceb8a359646dfe",
+      "bytes": 27316
+    }
+  ],
+  "registry_raw_bodies": [
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/asthma-phase4/bodies/ids-001.json",
+      "sha256": "071f4b2a75261a3bfbf34e8e4407a1cf589348a0ee70613f4da851ba1cbda68a",
+      "bytes": 940,
+      "file_written_utc": "2026-11-04T14:42:45.643413+00:00"
+    },
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/asthma-phase4/bodies/studies-001.json",
+      "sha256": "aa9010f9c3f74d2f5ec264714744cb107e98df3309b92e7b53619f237946f6f2",
+      "bytes": 215350,
+      "file_written_utc": "2026-11-04T14:42:46.975908+00:00"
+    },
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/asthma-phase4/bodies/version-end.json",
+      "sha256": "29b8e1fbd54e9b21d495c417ef10237e908fcfd1b0683b5d82dfbf6bc7489066",
+      "bytes": 71,
+      "file_written_utc": "2026-11-04T14:42:48.125471+00:00"
+    },
+    {
+      "local": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/asthma-phase4/bodies/version-start.json",
+      "sha256": "29b8e1fbd54e9b21d495c417ef10237e908fcfd1b0683b5d82dfbf6bc7489066",
+      "bytes": 71,
+      "file_written_utc": "2026-11-04T14:42:44.471228+00:00"
+    }
+  ],
+  "code_files": {
+    "TrialLedger/clinical_export.py": "978c9f86728e1844a0899a20bf2ab01fae8e084558242e9760ac50b00639f508",
+    "TrialLedger/clinical_view.py": "37f93450e0185a1773087ffb709e62ddced9edb1cdc1bae3bf02ed52fe941b13",
+    "TrialLedger/reasoning_delivery.py": "e64fb4f96dbe10d9221dc5a27a36f828c512e8e08df6830a6dd3649491f76b09"
+  },
+  "retained_files": {
+    "baseline-request.json": {
+      "bytes": 35801,
+      "sha256": "464266c5071f6c3690b1e900d65024141846bad5d223289022c864447bbc0a4e"
+    },
+    "baseline-result.json": {
+      "bytes": 236321,
+      "sha256": "be48b967820931fe184dc036902897f05fa48798f68ed229ff817733245154f8"
+    },
+    "edits.json": {
+      "bytes": 250,
+      "sha256": "bb580fa54d616160d8624aeda5bbb480d815ec63a8fe7c41a1129234ea7dd414"
+    },
+    "registry-request.json": {
+      "bytes": 231,
+      "sha256": "9c249f34cc2fac3d7571caf341b822ec524a4ce82f8f8809cd71398d3b0052df"
+    },
+    "revision-request.json": {
+      "bytes": 301689,
+      "sha256": "99149bce015f85bff5ff2d24eacf419b07ddbbf4aea59aeed8fa40c7b0133ad1"
+    },
+    "revision-result.json": {
+      "bytes": 615451,
+      "sha256": "87524775d5269c1df509829358c5ab03c182c60ec76fdd383b67760b28486bfd"
+    },
+    "sampling.json": {
+      "bytes": 812,
+      "sha256": "8f6a86dd0457e9106e64765c9a298dcc472cb2206db71b1fd52a45ea56160e5d"
+    },
+    "source-readings-request.json": {
+      "bytes": 16835,
+      "sha256": "0ade5836b132e764fa95929d302d5a6088f1bd075f9d7dd2def78a72c559e45a"
+    },
+    "source-readings-result.json": {
+      "bytes": 123090,
+      "sha256": "f919cc7a337ca2f869fcce9a023371e29a4848c248001da2a9d87fe22f15fac5"
+    }
+  }
+}

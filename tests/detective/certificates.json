@@ -395,6 +395,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/clinical_export.py::finding_owner_code": {
+    "cut_reasons": [],
+    "function_digest": "ce677ca3035e9d6a",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/clinical_export.py::option_wording_code": {
     "cut_reasons": [],
     "function_digest": "2ea505ab13f636b8",
@@ -1609,6 +1615,12 @@
   "TrialLedger/reasoning_artifacts.py::artifact_id_code": {
     "cut_reasons": [],
     "function_digest": "276de3776e381b7f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/reasoning_delivery.py::adoption_reference_code": {
+    "cut_reasons": [],
+    "function_digest": "6fdc6201036bed08",
     "refusal": "",
     "standing": "complete"
   },

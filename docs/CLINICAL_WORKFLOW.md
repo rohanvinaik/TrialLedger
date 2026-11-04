@@ -138,3 +138,22 @@ wording and material gaps for the next conversation.
 
 Complete protocol writing remains unintegrated. These operations are the working evidence and reasoning
 core supporting the person's clinical design process now.
+
+## Keep permission, requirement and choice separate in the review
+
+The main decision and option sheets include permission mentions, with their applicability, scope, standing
+and references; the Permissions sheet keeps each mention inspectable. A proposed mention stays unconfirmed,
+and a missing mention is not a prohibition. A permission never overrides a separate exclusion or certifies
+entry eligibility. For example, permitting stable inhaled treatment and requiring adequate stability are
+two information channels, even when they inform one clinical choice.
+
+Open items name the caller-labelled option they concern. “This exact query is allowed but not required”
+means the represented proposition and its negation fit. It does not say that every option listed for the
+decision fits: a two-week minimum permits exactly two weeks and longer intervals while ruling out one week.
+The wide decision/option sheets keep identifying columns visible during horizontal scrolling.
+
+Related source-bound competing readings can be included in the export as separate findings. Their original
+scope and conditional warrants remain intact; inclusion does not adopt a reading or assign it to a decision.
+When an assertion's content is revised as a user choice, the shortcut updates references to the old adoption
+exchange and records those mechanical edits. Independent source citations and prior artifacts stay intact.
+This is consistent attribution of a declared choice, not authentication of the person's confirmation.

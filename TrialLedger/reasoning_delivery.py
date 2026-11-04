@@ -47,6 +47,60 @@ def _replace(session: dict, patch: dict) -> None:
     parent[int(key) if isinstance(parent, list) else key] = deepcopy(patch["value"])
 
 
+def adoption_reference_code(
+    kind: str,
+    previous_kind: str,
+    current_kind: str,
+    previous_ref: str,
+    current_ref: str,
+    reference: str,
+) -> str:
+    """Retarget only an identified prior user adoption (pure — pinned).
+
+    post: _ in ('preserve_reference', 'rebind_adoption')
+    post: _ != 'rebind_adoption' or kind == 'assertion'
+    post: _ != 'rebind_adoption' or (previous_kind == 'user_choice' and current_kind == 'user_choice')
+    post: _ != 'rebind_adoption' or (bool(previous_ref) and bool(current_ref) and reference == previous_ref)
+    """
+    if kind != "assertion" or previous_kind != "user_choice" or current_kind != "user_choice":
+        return "preserve_reference"
+    if not previous_ref or not current_ref or reference != previous_ref:
+        return "preserve_reference"
+    return "rebind_adoption"
+
+
+def _rebind_adoption(before: dict, item: dict, index: int) -> list[dict]:
+    """Record mechanical reference edits separately; independent citations stay unchanged."""
+    old, new = before.get("origin") or {}, item.get("origin") or {}
+    if not isinstance(new, dict) or not isinstance(new.get("ref"), str):
+        return []
+    payload = item["payload"]
+    if not isinstance(payload, dict):
+        return []
+    locations = [(payload, "criterion_ref", f"/premises/{index}/payload/criterion_ref")]
+    rule = payload.get("rule")
+    if isinstance(rule, dict) and isinstance(rule.get("warrants"), list):
+        locations.extend(
+            (rule["warrants"], j, f"/premises/{index}/payload/rule/warrants/{j}")
+            for j in range(len(rule["warrants"]))
+        )
+    changes = []
+    for owner, key, path in locations:
+        reference = owner.get(key) if isinstance(owner, dict) else owner[key]
+        code = adoption_reference_code(
+            item.get("kind", ""),
+            old.get("kind", ""),
+            new.get("kind", ""),
+            old.get("ref", ""),
+            new["ref"],
+            reference,
+        )
+        if code == "rebind_adoption" and reference != new["ref"]:
+            owner[key] = new["ref"]
+            changes.append({"path": path, "before": reference, "after": new["ref"]})
+    return changes
+
+
 def edited_session(previous: dict, revision: str, edits: list) -> tuple[dict, list]:
     """Apply bounded explicit edits; changed premises need an explicitly supplied attribution."""
     from TrialLedger.layer2 import source_evidence
@@ -100,6 +154,8 @@ def edited_session(previous: dict, revision: str, edits: list) -> tuple[dict, li
             raise ValueError("changed_premise_origin_required")
         if before is not None and before.get("kind") == "source_assertion" and changed:
             raise ValueError("source_premise_requires_new_binding")
+        if changed and before is not None:
+            reviewed.extend(_rebind_adoption(before, item, index))
     session["revision"] = revision
     session["parent_digest"] = None
     return session, reviewed

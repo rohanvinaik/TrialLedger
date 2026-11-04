@@ -1,0 +1,15 @@
+{
+  "condition": "Asthma",
+  "phase": [
+    "PHASE4"
+  ],
+  "status": [
+    "COMPLETED"
+  ],
+  "start_from": "2023-01-01",
+  "start_to": "2025-12-31",
+  "acquisition": {
+    "max_studies": 100,
+    "max_registry_requests": 30
+  }
+}

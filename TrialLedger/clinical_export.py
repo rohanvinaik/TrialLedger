@@ -149,6 +149,8 @@ def _sheet(book: Workbook, name: str, headers: list[str]):
 
 
 def _finish(sheet) -> None:
+    if sheet.title in ("Decision list", "Options"):
+        sheet.freeze_panes = "C2" if sheet.title == "Options" else "B2"
     if sheet.title != "Baseline tables":
         sheet.auto_filter.ref = sheet.dimensions
     sheet.print_title_rows = "1:1"
@@ -248,6 +250,8 @@ def _blocker_text(codes: list) -> str:
             words = "Which cohort, arm or phase applies remains open"
         elif isinstance(code, str) and code.startswith("conflicting:"):
             words = "The criterion has conflicting readings"
+        elif code == "undecided_by_constraints":
+            words = "This exact query is allowed but not required; its negation also fits"
         else:
             words = BLOCKER_WORDS.get(str(code), "Unclassified open item")
         parts.append(f"{words} ({code})")
@@ -307,6 +311,17 @@ def _condition_text(conditions: list[dict]) -> str:
             f"[standing: {row.get('standing')}; proof: {', '.join(row.get('proof', []))}]."
             for row in conditions
         )
+    )
+
+
+def _permission_text(permissions: list[dict]) -> str:
+    """Render existing permission mentions, never infer permission from silence."""
+    return "\n".join(
+        f"{p['id']}: {p['statement']['text']}; applies when {p['applicability']['text']}; "
+        f"scope: {_json(p.get('scope'))}; standing: {p.get('standing')}; "
+        f"basis: {p.get('criterion_ref')}; {_blocker_text(p.get('blockers', []))}. "
+        "Permission mention only: neither a requirement nor complete entry eligibility."
+        for p in permissions
     )
 
 
@@ -425,6 +440,7 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             "Coverage",
             "Exact result",
             "Comparator evidence and context",
+            "Permission mentions",
         ],
     )
     options = _sheet(
@@ -444,6 +460,7 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             "Remaining requirements",
             "Comparator evidence and context",
             "Actual analysis context",
+            "Permission mentions",
         ],
     )
     lines = [
@@ -474,6 +491,23 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
         ],
     )
     context_starts = _evidence_rows(book, views, identity)
+    permissions = _sheet(
+        book,
+        "Permissions",
+        [
+            "Your question (caller wording)",
+            "Option (caller wording)",
+            "Represented profile",
+            "Permission",
+            "Applies when",
+            "Scope",
+            "Standing",
+            "Criterion reference",
+            "Rule and warrants",
+            "Open items",
+            "Exact result",
+        ],
+    )
     raw = result.get("decisions", [])
     for i, view in enumerate(views):
         decision = raw[i]
@@ -486,7 +520,19 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
         origin = _origin_text(view["origin"])
         premises = {row["id"]: row for option in view["options"] for row in option["deciding_premises"]}
         deciding = _premise_text(list(premises.values()))
-        open_items = "\n".join(_blocker_text(o["open_items"]) for o in view["options"])
+        open_items = "\n".join(
+            f"Caller-labelled option {o['caller_label']['text']}: {_blocker_text(o['open_items'])}"
+            for o in view["options"]
+        )
+        permission_count = sum(len(o["permissions"]) for o in view["options"])
+        permission_summary = (
+            f"{permission_count} permission mentions: open Permissions for statements, applicability, "
+            "scope, standing and basis. Mentions neither require action nor certify entry eligibility."
+            if permission_count
+            else "No related permission returned"
+        )
+        if permission_count:
+            outcome += "; permission mentions and their conditions are shown separately"
         context = _context_text(view["evidence"])
         context_summary = (
             (
@@ -498,11 +544,24 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
         )
         _write(
             sheet,
-            [question, outcome, label, deciding, open_items, origin, view["coverage"], ref, context_summary],
+            [
+                question,
+                outcome,
+                label,
+                deciding,
+                open_items,
+                origin,
+                view["coverage"],
+                ref,
+                context_summary,
+                permission_summary,
+            ],
             ref,
         )
         if view["evidence"]:
             sheet.cell(sheet.max_row, 9).hyperlink = f"#'Decision evidence'!A{context_starts[view['id']]}"
+        if permission_count:
+            sheet.cell(sheet.max_row, 10).hyperlink = f"#'Permissions'!A{permissions.max_row + 1}"
         lines.extend(
             [
                 f"## {question}",
@@ -521,7 +580,27 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             logical = _logical_text(original)
             premise_text = _premise_text(option["deciding_premises"])
             conditions = _condition_text(option["conditions"])
+            permission_text = _permission_text(option["permissions"])
             profile = option["profile"]["text"]
+            for permission in option["permissions"]:
+                permission_ref = _reference(identity, "/response" + permission["canonical_ref"])
+                _write(
+                    permissions,
+                    [
+                        question,
+                        option["caller_label"]["text"],
+                        profile,
+                        permission["statement"]["text"],
+                        permission["applicability"]["text"],
+                        _json(permission.get("scope")),
+                        permission.get("standing"),
+                        permission.get("criterion_ref"),
+                        _json(permission.get("rule")),
+                        _blocker_text(permission.get("blockers", [])),
+                        permission_ref,
+                    ],
+                    permission_ref,
+                )
             for condition in option["conditions"]:
                 condition_ref = _reference(identity, "/response" + condition["canonical_ref"])
                 _write(
@@ -558,6 +637,7 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                     _detail_text(option["context"], option_ref)
                     if option["context"]
                     else "No context supplied; cohort/phase/arm remain open",
+                    permission_text,
                 ],
                 option_ref,
             )
@@ -578,6 +658,7 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                     premise_text,
                     "Remaining requirements:",
                     conditions,
+                    *(["Permission mentions:", permission_text] if permission_text else []),
                     "Open items: " + _blocker_text(option["open_items"]),
                     f"Exact result: `{option_ref}`",
                     "",
@@ -595,14 +676,23 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
     return lines
 
 
+def finding_owner_code(operation: str, address: str, count: int) -> str:
+    """Discriminate identically named paths by their owning schema (pure — pinned)."""
+    if operation != "design_session":
+        return "operation_result"
+    parts = address.split("/")
+    if len(parts) < 4 or parts[:3] != ["", "result", "analyses"] or not parts[3].isdecimal():
+        return "operation_result"
+    return "managed_analysis" if int(parts[3]) < count else "operation_result"
+
+
 def _finding_name(response: dict, address: str, index: int) -> str:
     """Name a managed analysis only from its exact structural result path."""
     parts = address.split("/")
-    if parts[1:3] == ["result", "analyses"] and len(parts) > 3 and parts[3].isdigit():
-        analyses = (response.get("result") or {}).get("analyses", [])
+    analyses = (response.get("result") or {}).get("analyses", [])
+    if finding_owner_code(response.get("operation") or "", address, len(analyses)) == "managed_analysis":
         position = int(parts[3])
-        if position < len(analyses):
-            return str(analyses[position]["id"])
+        return str(analyses[position]["id"])
     return "Main" if index == 0 else "Related analysis"
 
 

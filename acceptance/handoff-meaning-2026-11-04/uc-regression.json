@@ -1,0 +1,15 @@
+{
+  "cli_mcp_parity": true,
+  "export_identical_bytes": true,
+  "source_readings_included": true,
+  "permission_rows": 2,
+  "baseline_values_preserved": 42,
+  "origin_consistent": true,
+  "reference_snapshot_unchanged": true,
+  "workbook": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/uc-replay/export/review/design-review.xlsx",
+  "source_requests": [
+    "/Users/rohanvinaik/trialledger-runs/uc-phase2-cold-20261104/session-r1-request.json",
+    "/Users/rohanvinaik/trialledger-runs/uc-phase2-cold-20261104/checks/source-readings-request.json"
+  ],
+  "revised_id": "d674cee6770fd00156368f55682e724354c4c124bdd3a1672dc37066caed3da9"
+}

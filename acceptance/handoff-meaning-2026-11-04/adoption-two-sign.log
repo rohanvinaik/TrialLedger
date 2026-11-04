@@ -1,0 +1,28 @@
+  … adoption_reference_code: tracing 8 function-routed tests
+  … adoption_reference_code: baseline traced · 8 tests · 0.0s
+  … adoption_reference_code: 1/53 mutants · 23.5/s · ETA estimating… (heartbeat)
+  … adoption_reference_code: 53/53 mutants · 332.2/s · done in 0.2s
+  ▸ pass 0: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the existing suite (no test written this run)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … adoption_reference_code: tracing 8 function-routed tests
+  … adoption_reference_code: baseline traced · 8 tests · 0.0s
+  … adoption_reference_code: tracing 13 function-routed tests
+  … adoption_reference_code: baseline traced · 13 tests · 0.3s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/reasoning_delivery.py::adoption_reference_code — converge · 53 behaviours · 53 pinned
+
+  · not consulted      5613 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_adoption_reference_code.txt
+
+DONE:  the suite pins every behaviour this function makes.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/reasoning_delivery.py'
+         detective decompose 'TrialLedger/reasoning_delivery.py::adoption_reference_code' --apply --two-sign
+         detective survey 'TrialLedger/reasoning_delivery.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/reasoning_delivery.py::adoption_reference_code: ✓ COMPLETE (operator universe) · 53/53 killed · minimal cover 6 test(s) · policy 9+neg.f5a15364c11d

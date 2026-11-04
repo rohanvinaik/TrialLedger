@@ -67,6 +67,7 @@ def build(response: dict) -> list[dict]:
             warrant = option.get("warrant") or {}
             analysis_index, analysis = analyses.get(option.get("analysis"), (None, {}))
             explanations = analysis.get("result", {}).get("result", {}).get("explanations", {})
+            explanation_ref = f"/result/analyses/{analysis_index}/result/result/explanations"
             options.append(
                 {
                     "id": option["id"],
@@ -84,21 +85,22 @@ def build(response: dict) -> list[dict]:
                     "logical_standing": warrant.get("status"),
                     "deciding_premises": _premises(result, warrant.get("proof", [])),
                     "condition_coverage": explanations.get("coverage"),
-                    "conditions": _conditions(
-                        explanations, f"/result/analyses/{analysis_index}/result/result/explanations"
-                    ),
+                    "conditions": _conditions(explanations, explanation_ref),
                     "permissions": [
                         {
                             "id": p.get("id"),
                             "code": p.get("code"),
                             "statement": clinical_display.proposition(
                                 p.get("body"),
-                                f"/result/analyses/{analysis_index}/result/result/explanations/permissions/{k}/body",
+                                f"{explanation_ref}/permissions/{k}/body",
                             ),
                             "standing": p.get("status"),
                             "applicability": clinical_display.proposition(p.get("applicability")),
                             "scope": deepcopy(p.get("scope")),
                             "blockers": deepcopy(p.get("blockers", [])),
+                            "criterion_ref": p.get("criterion_ref"),
+                            "rule": deepcopy(p.get("rule")),
+                            "canonical_ref": f"{explanation_ref}/permissions/{k}",
                         }
                         for k, p in enumerate(explanations.get("permissions", []))
                     ],

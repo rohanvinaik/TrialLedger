@@ -1,0 +1,15 @@
+{
+  "condition": "Atopic Dermatitis",
+  "phase": [
+    "PHASE1"
+  ],
+  "status": [
+    "COMPLETED"
+  ],
+  "start_from": "2020-01-01",
+  "start_to": "2025-12-31",
+  "acquisition": {
+    "max_studies": 100,
+    "max_registry_requests": 30
+  }
+}

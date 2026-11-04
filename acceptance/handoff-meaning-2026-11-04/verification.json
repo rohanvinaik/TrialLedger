@@ -1,0 +1,110 @@
+{
+  "base_commit": "419528964540674446496e5fcb1b2623cca6840c",
+  "scope": "Four handoff defects, no changed solver or source rules",
+  "source_hashes": {
+    "TrialLedger/clinical_export.py": "978c9f86728e1844a0899a20bf2ab01fae8e084558242e9760ac50b00639f508",
+    "TrialLedger/clinical_view.py": "37f93450e0185a1773087ffb709e62ddced9edb1cdc1bae3bf02ed52fe941b13",
+    "TrialLedger/reasoning_delivery.py": "e64fb4f96dbe10d9221dc5a27a36f828c512e8e08df6830a6dd3649491f76b09",
+    "tests/test_handoff_meaning.py": "016e59e0a053fe68c3c64a496189d5050aadbb089c200892ca4eb7d7a9f0660b"
+  },
+  "local_gate": {
+    "command": "bash scripts/ci_local.sh",
+    "result": "passed",
+    "tests_passed": 6549,
+    "live_deselected": 10,
+    "ruff": "passed",
+    "format": "passed",
+    "ty": "passed",
+    "log": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/ci-current.log",
+    "log_sha256": "e42bc9dec8c1e25d82e99b1e19edaf23e93e9341dde98bbbeb9c7a2b740f2027"
+  },
+  "pins": {
+    "adoption_reference_code": {
+      "two_sign": true,
+      "operator_total": 53,
+      "killed": 53,
+      "qualification": null,
+      "report": "adoption-two-sign.log"
+    },
+    "finding_owner_code": {
+      "two_sign": true,
+      "isolated": true,
+      "operator_total": 69,
+      "value_pinned": 63,
+      "unproven_equivalent": 5,
+      "crash_only_value_gap": 1,
+      "qualification": "COMPLETE operator universe modulo five unproven-equivalent and one crash-only value gap; not proof of equivalence",
+      "report": "finding-owner-two-sign.log"
+    }
+  },
+  "crosshair": {
+    "command": "uv run --with crosshair-tool crosshair check acceptance/handoff-meaning-2026-11-04/contracts.py --report_all --per_condition_timeout 5",
+    "result": "not_confirmed",
+    "properties": 5,
+    "report": "crosshair.log"
+  },
+  "workflows": [
+    "Phase 1 dermatitis conditional medication/cohort scope",
+    "Phase 4 asthma acute interval and qualified exclusion",
+    "Original Phase 2 UC regression"
+  ],
+  "consumer_trace": {
+    "runs": 90,
+    "observed_modules": 54,
+    "report": "../reasoning-consumer-trace.json",
+    "sha256": "2302253136ae684d086842303b0c8f58dfc26016fc11c9a2d8d74966b8208a8c"
+  },
+  "exports": [
+    {
+      "case": "dermatitis-phase1-check",
+      "workbook": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/dermatitis-phase1-check/final-export-check/cli/review/design-review.xlsx",
+      "same_cli_mcp_bytes": true,
+      "permission_summary_links": [
+        "J2"
+      ],
+      "freeze": [
+        "B2",
+        "C2"
+      ],
+      "sha256": "0503bf58fc010970e8552f7625c6cb42053733efbd9d0797a1c99776e72ee61c"
+    },
+    {
+      "case": "asthma-phase4-check",
+      "workbook": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/asthma-phase4-check/final-export-check/cli/review/design-review.xlsx",
+      "same_cli_mcp_bytes": true,
+      "permission_summary_links": [],
+      "freeze": [
+        "B2",
+        "C2"
+      ],
+      "sha256": "63513402e7e64430adb4e2e95bbfb68d75f0d4ffb57dc18d5d2bb80a500d6791"
+    },
+    {
+      "case": "uc-replay",
+      "workbook": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/uc-replay/final-export-check/cli/review/design-review.xlsx",
+      "same_cli_mcp_bytes": true,
+      "permission_summary_links": [
+        "J2"
+      ],
+      "freeze": [
+        "B2",
+        "C2"
+      ],
+      "sha256": "84e47e8f7104df71148ef671bc21dcc0de224838e39dfc7adb3393e0ed091da9"
+    }
+  ],
+  "limits": [
+    "Simulated clinician, not authenticated confirmation",
+    "Proposed source readings never become adopted by export",
+    "No claim of complete trial writing or phase-independent validation",
+    "Existing extended deep-audit waiver unchanged"
+  ],
+  "live": {
+    "result": "passed",
+    "tests_passed": 10,
+    "command": ".venv/bin/pytest -m live",
+    "log": "/Users/rohanvinaik/trialledger-runs/handoff-meaning-20261104/live.log",
+    "sha256": "00143a1638ebc35b96291b7d9f849426857abc726fb85199e2d4f80d88367d65"
+  },
+  "lockfile_audit": "no_known_flaws"
+}

@@ -1,0 +1,3938 @@
+{
+ "summary": {
+  "kind": "reasoning",
+  "code": "complete",
+  "operation": "source_assertions",
+  "findings": 7,
+  "dispositions": {
+   "conditional": 3,
+   "open": 4
+  },
+  "problems": []
+ },
+ "clinical": {
+  "version": 1,
+  "operation": "source_assertions",
+  "findings": [
+   {
+    "path": "/result/analyses/0/result/fixed/consistency",
+    "kind": "consistency",
+    "outcome": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "disposition": "open",
+    "scope": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "query": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "frame-consistency",
+       "kind": "demographic"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "eq",
+       "inclusivity": "unspecified",
+       "kind": "boolean",
+       "members": [],
+       "number": null,
+       "unit": "",
+       "upper": null
+      }
+     }
+    },
+    "values": {},
+    "support": {
+     "proof": []
+    },
+    "origins": [],
+    "conditions": [],
+    "blockers": [
+     "no_constraint_mentions_query"
+    ],
+    "canonical_ref": "/result/analyses/0/result/fixed/consistency"
+   },
+   {
+    "path": "/result/analyses/0/result/fixed/queries/0",
+    "kind": "logical",
+    "outcome": "UNDETERMINED",
+    "standing": "known",
+    "completion": "complete",
+    "disposition": "open",
+    "scope": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "query": {
+      "class": "AllOf",
+      "parts": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "inhaled_or_nasal_corticosteroid",
+         "kind": "condition_status"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "stable_months_before_entry",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 2.0,
+         "unit": "months",
+         "upper": null
+        }
+       }
+      ]
+     }
+    },
+    "values": {
+     "id": "profile"
+    },
+    "support": {
+     "warrant": {
+      "rule": "entail.decide:1",
+      "guarantee": "fixed_floor",
+      "status": "known",
+      "assumptions": [],
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "decision": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "declared_support": {
+      "rule": "entail.decide:1",
+      "guarantee": "fixed_floor",
+      "status": "known",
+      "assumptions": [],
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "explanation_blockers": []
+    },
+    "origins": [
+     {
+      "premise": "registry-age-maximumAge",
+      "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+     },
+     {
+      "premise": "registry-age-minimumAge",
+      "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+     }
+    ],
+    "conditions": [
+     {
+      "relation": "required_by_criteria",
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "le",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 65.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "status": "known",
+      "warrant": {
+       "result": "ENTAILED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+       "status": "known",
+       "proof": [
+        "registry-age-maximumAge"
+       ],
+       "blockers": [],
+       "guarantee": "fixed_floor"
+      },
+      "scope": {
+       "cohort": "entry",
+       "phase": null,
+       "arm": null
+      },
+      "profile_check": {
+       "code": "not_established_by_query",
+       "basis": "query_alone"
+      },
+      "guarantee": "fixed_floor"
+     },
+     {
+      "relation": "required_by_criteria",
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 19.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "status": "known",
+      "warrant": {
+       "result": "ENTAILED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":19.0,\"unit\":\"Years\",\"upper\":null}}",
+       "status": "known",
+       "proof": [
+        "registry-age-minimumAge"
+       ],
+       "blockers": [],
+       "guarantee": "fixed_floor"
+      },
+      "scope": {
+       "cohort": "entry",
+       "phase": null,
+       "arm": null
+      },
+      "profile_check": {
+       "code": "not_established_by_query",
+       "basis": "query_alone"
+      },
+      "guarantee": "fixed_floor"
+     }
+    ],
+    "blockers": [
+     "no_constraint_mentions_query"
+    ],
+    "canonical_ref": "/result/analyses/0/result/fixed/queries/0"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0",
+    "kind": "interpretation",
+    "outcome": "compatible",
+    "standing": "proposed",
+    "completion": "complete",
+    "disposition": "conditional",
+    "scope": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5"
+    },
+    "values": {
+     "id": "entry-reading",
+     "label": "entry-reading"
+    },
+    "support": {
+     "warrant": {
+      "rule": "interpretations.compatibility:1",
+      "guarantee": "conditional_on_fixed_and_interpretation_premises",
+      "fixed_status": "known",
+      "status": "proposed",
+      "fixed_premises": [],
+      "assumptions": [
+       "stability"
+      ],
+      "bindings": [],
+      "basis": [
+       "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "intrinsic_consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "signal_rules": [],
+      "blockers": []
+     }
+    },
+    "origins": [
+     {
+      "origin": "assistant"
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/analyses/0/result/interpretations/0"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0/queries/0",
+    "kind": "logical",
+    "outcome": "REFUTED",
+    "standing": "proposed",
+    "completion": "complete",
+    "disposition": "conditional",
+    "scope": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "query": {
+      "class": "AllOf",
+      "parts": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "inhaled_or_nasal_corticosteroid",
+         "kind": "condition_status"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "stable_months_before_entry",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 2.0,
+         "unit": "months",
+         "upper": null
+        }
+       }
+      ]
+     }
+    },
+    "values": {
+     "id": "profile"
+    },
+    "support": {
+     "warrant": {
+      "rule": "entail.decide:1",
+      "guarantee": "conditional_on_interpretation",
+      "status": "proposed",
+      "assumptions": [
+       "stability"
+      ],
+      "proof": [
+       "stability"
+      ],
+      "blockers": []
+     },
+     "decision": {
+      "result": "REFUTED",
+      "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+      "status": "interpolated",
+      "proof": [
+       "stability"
+      ],
+      "blockers": []
+     },
+     "declared_support": {
+      "rule": "entail.decide:1",
+      "guarantee": "conditional_on_interpretation",
+      "status": "proposed",
+      "assumptions": [
+       "stability"
+      ],
+      "proof": [
+       "stability"
+      ],
+      "blockers": []
+     },
+     "explanation_blockers": []
+    },
+    "origins": [
+     {
+      "premise": "stability",
+      "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/analyses/0/result/interpretations/0/queries/0"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/1",
+    "kind": "interpretation",
+    "outcome": "compatible",
+    "standing": "proposed",
+    "completion": "complete",
+    "disposition": "conditional",
+    "scope": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5"
+    },
+    "values": {
+     "id": "other-cohort-control",
+     "label": "other-cohort-control"
+    },
+    "support": {
+     "warrant": {
+      "rule": "interpretations.compatibility:1",
+      "guarantee": "conditional_on_fixed_and_interpretation_premises",
+      "fixed_status": "known",
+      "status": "proposed",
+      "fixed_premises": [],
+      "assumptions": [
+       "stability"
+      ],
+      "bindings": [],
+      "basis": [
+       "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "intrinsic_consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "signal_rules": [],
+      "blockers": []
+     }
+    },
+    "origins": [
+     {
+      "origin": "assistant"
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/analyses/0/result/interpretations/1"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/1/queries/0",
+    "kind": "logical",
+    "outcome": "OUT_OF_SCOPE",
+    "standing": "proposed",
+    "completion": "complete",
+    "disposition": "open",
+    "scope": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "query": {
+      "class": "AllOf",
+      "parts": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "inhaled_or_nasal_corticosteroid",
+         "kind": "condition_status"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "stable_months_before_entry",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 2.0,
+         "unit": "months",
+         "upper": null
+        }
+       }
+      ]
+     }
+    },
+    "values": {
+     "id": "profile"
+    },
+    "support": {
+     "warrant": {
+      "rule": "entail.decide:1",
+      "guarantee": "conditional_on_interpretation",
+      "status": "proposed",
+      "assumptions": [
+       "stability"
+      ],
+      "proof": [
+       "stability"
+      ],
+      "blockers": []
+     },
+     "decision": {
+      "result": "OUT_OF_SCOPE",
+      "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+      "status": null,
+      "proof": [
+       "stability"
+      ],
+      "blockers": []
+     },
+     "declared_support": {
+      "rule": "entail.decide:1",
+      "guarantee": "conditional_on_interpretation",
+      "status": "proposed",
+      "assumptions": [
+       "stability"
+      ],
+      "proof": [
+       "stability"
+      ],
+      "blockers": []
+     },
+     "explanation_blockers": []
+    },
+    "origins": [
+     {
+      "premise": "stability",
+      "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+     }
+    ],
+    "conditions": [],
+    "blockers": [],
+    "canonical_ref": "/result/analyses/0/result/interpretations/1/queries/0"
+   },
+   {
+    "path": "/result/analyses/0/result/consequences/0",
+    "kind": "logical",
+    "outcome": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "disposition": "open",
+    "scope": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "query": {
+      "class": "AllOf",
+      "parts": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "inhaled_or_nasal_corticosteroid",
+         "kind": "condition_status"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "stable_months_before_entry",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 2.0,
+         "unit": "months",
+         "upper": null
+        }
+       }
+      ]
+     }
+    },
+    "values": {
+     "id": "profile"
+    },
+    "support": {
+     "basis": "declared_interpretation_family",
+     "warrant": {
+      "rule": "interpretations.common:1",
+      "guarantee": "conditional_on_declared_family_not_exhaustive",
+      "status": "proposed",
+      "blockers": [
+       "interpretation_scope_contrast"
+      ]
+     },
+     "declared_support": {
+      "rule": "interpretations.common:1",
+      "guarantee": "conditional_on_declared_family_not_exhaustive",
+      "status": "proposed",
+      "blockers": [
+       "interpretation_scope_contrast"
+      ]
+     }
+    },
+    "origins": [],
+    "conditions": [],
+    "blockers": [
+     "interpretation_scope_contrast"
+    ],
+    "canonical_ref": "/result/analyses/0/result/consequences/0"
+   }
+  ]
+ },
+ "code": "complete",
+ "operation": "source_assertions",
+ "result": {
+  "source": {
+   "nct": "NCT05729074",
+   "digest": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+   "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+   "version": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+   "last_update": {
+    "date": "2026-09-14",
+    "type": "ACTUAL"
+   }
+  },
+  "anchors": [
+   {
+    "id": "eligibility",
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "digest": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+    "value": "\\[Part A\\] 1a study\n\nInclusion Criteria:\n\n* Healthy adult male volunteers aged 19 years or older when the informed consent is obtained.\n* Those whose body weight is above 50.0 kg, with body mass index (BMI) BMI ≥ 18.0 and ≤ 30.0 kg/m2 at screening.\n* Those who have no skin disorder or damage (including scars, tattoos, heavy freckle) that may affect the absorption of investigational product, or have no heavy hair in the drug application area.\n* Those who have no congenital or chronic disease, or pathological symptoms or findings in the result of medical examination.\n* Those who are judged eligible for this study upon judgment of the investigator in screening tests established depending on the characteristics of investigational product (examinations by interview, clinical laboratory test, vital signs, physical examinations, 12-lead electrocardiogram (ECG)).\n* Those who have fully understood this clinical trial via detailed explanation, were willing to voluntarily participate in this study, and agreed to give written informed consent prior to the screening procedure.\n\nExclusion Criteria:\n\n* Subjects who have the following prior/current history in addition to experience or history of clinically significant hepatic, renal, neurological, psychiatric, respiratory, endocrine, hematological, malignancy, urogenital, cardiovascular, digestive, or musculoskeletal disease:\n\n  ① Atopic dermatitis ② Psoriasis ③ Eczema ④ Contact dermatitis ⑤Thrombocytopenia ⑥ Anemia ⑦ Neutropenia ⑧ Latent or active tuberculosis\n* Subjects who have history of hypersensitivity (e.g., anaphylactic reaction or angioedema) to the drugs, including Janus kinase inhibitors and excipients, and other drugs (aspirin, penicillin antibiotics, macrolide antibiotics), or subjects who have history of clinically significant hypersensitivity.\n* Suspected acute viral or bacterial infection within 2 weeks prior to the expected initial application date, or fever (body temperature in the tympanic membrane ≥ 38.0ºC) at the time of screening.\n* The following clinically significant findings on 12-lead ECG at screening:\n\n  * QTc \\> 450 ms\n  * PR interval \\> 200 ms\n  * QRS duration \\> 120 ms\n* Any of the following abnormalities in clinical laboratory tests at screening:\n\n  * Blood count (platelet or ANC level \\< 0.5 x lower limit of normal);\n  * Liver function test (AST, ALT, ALP, γ-GTP, or total bilirubin level is ≥ 2 x upper limit of normal);\n  * Serum creatinine level that is outside the reference range, or an estimated glomerular filtration rate (eGFR) \\< 60 mL/min/1.73m2 as determined by the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration) Equation;\n  * Positive anti-HCV, HBs Ag, HIV Ag/Ab, Syphilis-RPR, or IGRA test.\n* Subjects who received live vaccines within 3 months prior to the expected initial application date, or subjects who have a plan to receive live vaccines over a period from the informed consent to post-study visit (PSV).\n* Subjects who have history of drug abuse, or who have a positive urine test for drugs of abuse.\n* Subjects who have shown the following vital signs at screening when measured after at least 3-min rest:\n\n  * Sitting systolic blood pressure ≥ 150 mmHg or ≤ 90 mmHg.\n  * Sitting diastolic blood pressure ≥ 100 mmHg or ≤ 60 mmHg.\n  * Sitting pulse rate ≤ 40 bpm or ≥ 100 bpm.\n* Subjects who cannot continuously abstain from sunbath or artificial suntan over a period from 2 weeks prior to the expected initial application date to PSV.\n* Subjects who have taken prescription drugs or oriental medicines that may affect the characteristics of investigational product within 2 weeks prior to the expected initial application date, or subjects who have taken OTC drugs or vitamin preparations within 10 days prior to the expected initial application date, or subjects who are expected to take the above drugs over a period from the informed consent to PSV (however, if the drug is judged not to affect the evaluation of investigational product by the investigator, the subject may participate in the clinical trial.).\n* Subjects who have taken any drugs known to significantly induce (e.g., barbiturates) or inhibit drug-metabolizing enzymes within 1 month prior to the expected initial application date.\n* Subjects who have participated in other clinical trials within 6 months prior to the expected initial application date (however, for the completion date of other clinical trials, the next date is calculated as 1 day on the basis of the last application date.).\n* Subjects who have donated whole blood within 2 months prior to the expected initial application date or apheresis within 1 month, or received blood transfusion within 1 month prior to the expected initial application date, or subjects who cannot continuously abstain from blood donation over a period from the informed consent to PSV.\n* Subjects who have history of regular alcohol consumption exceeding 21 units/week (1 unit = 10 g = 12.5 mL of pure alcohol) within 6 months prior to the expected initial application date, or subjects who cannot continuously abstain from alcohol consumption over a period from the informed consent to PSV.\n\n  ☞The amount of alcohol (g) = alcohol consumption (mL) x alcohol content (%) x 0.8\n* Subjects who have history of average use of 10 cigarettes daily within 3 months prior to the expected initial application date, and subjects who cannot cease smoking over a period from 24 hours prior to the expected initial application date to the last blood sampling point.\n* Subjects who consumed grapefruit-containing food from 48 hours prior to the expected initial application date to PSV, or subjects who cannot avoid taking grapefruit-containing food during this period.\n* Subjects who consumed caffeine-containing food (coffee, green tea, black tea, carbonated beverage, coffee-flavored milk, tonics, etc.) from 24 hours prior to the expected initial application date to the last blood sampling point, or subjects who cannot avoid drinking caffeine-containing food during this period.\n* Subjects participating in regular strenuous exercise greater than daily physical activity from 48 hours prior to the expected initial application date to PSV, or subjects who cannot abstain from strenuous exercise during this period.\n* Subjects or spouses (or partners) who have a plan for pregnancy or although unplanned pregnancy, are unable to use a highly effective method of contraception (e.g., use/implant of hormonal contraceptive or correctly placed intrauterine device, sterilization surgery (vasectomy, tubal ligation, etc.), barrier method (spermicide and condom, a concomitant use of contraceptive diaphragm, vaginal sponge or cervical cap)), over a period from the informed consent to 90 days after the last dose of investigational product.\n* Subjects who are judged ineligible for the clinical study by the investigator due to reasons other than the above inclusion/exclusion criteria.\n\n\\[Part B\\] 1b Study\n\nInclusion Criteria:\n\n* Adult male volunteers aged ≥ 19 years and ≤ 65 years when the informed consent is obtained.\n* BMI ≥ 18.0 and ≤ 30.0 kg/m2 at screening.\n* Subjects who have fully understood this clinical trial via detailed explanation, were willing to voluntarily participate in this study, and agreed to give written informed consent prior to the screening procedure.\n* Confirmed diagnosis of AD according the criteria of Hanifin and Rajka (1980).\n* AD lesions that can be applied by investigational product, with a minimum of 5% to a maximum of 30% BSA involvement at screening.\n* AD diagnosed by EASI score of mild (EASI \\< 16) or moderate (16 ≤ EASI \\< 23) at screening.\n* Blood vessels whose blood sample collection may be available for PK analysis.\n* Subjects who are judged eligible for this study upon judgment of the investigator in screening tests established depending on the characteristics of investigational product (examinations by interview, clinical laboratory test, vital signs, physical examinations, 12-lead ECG).\n\nExclusion Criteria:\n\n* Subjects who have the following prior/current history in addition to evidence or history of clinically significant skin disorders other than AD (however, the patients with skin disorders that may not affect the AD treatment), hepatic, renal, neurological, psychiatric, respiratory, endocrine, hematological, malignancy, urogenital, cardiovascular, digestive, or musculoskeletal disease:\n\n  ① Thrombocytopenia ② Anemia ③ Neutropenia ④ Erythroderma ⑤ Latent or active tuberculosis\n* Clinically significant systemic or topical skin infection at screening.\n* Subjects who have taken systemic corticosteroids or immunosuppressive agents that can affect AD-related signs and symptoms within 4 weeks prior to the expected initial application date; subjects who have taken systemic anti-inflammatory or immunomodulatory drugs and systemic antibiotics that can affect AD-related signs and symptoms within 2 weeks prior to the expected initial application date; subjects who have received an UV light therapy to mitigate AD-related symptoms; subjects who are expected to take the above drugs or therapy within the study duration (however, the subject taking a corticosteroid inhaler or nasal spray with a stable dose for at least 3 months may participate in the clinical trial).\n* Treatment with oral antihistamines or topical drugs (topical corticosteroid or calcineurin inhibitor, topical antihistamine, topical antimicrobial medication) that can affect AD-related signs and symptoms prior to the expected initial application date or within 5 life-lives, or subjects who are expected to take the above drugs within the study duration (however, the subject taking a nasal antihistamine spray for the treatment of allergic rhinitis may participate in the clinical trial).\n* Subjects whose hair in the drug application site may be unavailable from 2 weeks prior to the expected initial application date to PSV.\n* Subjects who have history of hypersensitivity (e.g., anaphylactic reaction or angioedema) to the drugs, including Janus kinase inhibitors and excipients, and other drugs (aspirin, penicillin antibiotics, macrolide antibiotics), or subjects who have history of clinically significant hypersensitivity.\n* Suspected acute viral or bacterial infection within 2 weeks prior to the expected initial application date, or fever (body temperature in the tympanic membrane ≥ 38.0ºC) at the time of screening.\n* The following clinically significant findings on 12-lead ECG at screening:\n\n  * QTc \\> 450 ms\n  * PR interval \\> 200 ms\n  * QRS duration \\> 120 ms\n* Any of the following abnormalities in clinical laboratory tests at the the time of screening:\n\n  * Platelet or ANC level \\< 0.5 x lower limit of normal;\n  * AST, ALT, ALP, γ-GTP, or total bilirubin level is ≥ 2 x upper limit of normal;\n  * Serum creatinine level that is outside the reference range, or an eGFR \\< 60 mL/min/1.73m2 as determined by the CKD-EPI Equation;\n  * Positive anti-HCV, HBs Ag, HIV Ag/Ab, Syphilis-RPR, or IGRA test.\n* Subjects who received live vaccines within 3 months prior to the expected initial application date, or subjects who have a plan to receive live vaccines over a period from the informed consent to PSV.\n* Subjects who have history of drug abuse, or who have a positive urine test for drugs of abuse.\n* Subjects who have shown the following vital signs at screening when measured after at least 3-min rest:\n\n  * Sitting systolic blood pressure ≥ 150 mmHg or ≤ 90 mmHg.\n  * Sitting diastolic blood pressure ≥ 100 mmHg or ≤ 60 mmHg.\n  * Sitting pulse rate ≤ 40 bpm or ≥ 100 bpm.\n* Subjects who have taken prescription drugs or oriental medicines that may affect the characteristics of investigational product within 2 weeks prior to the expected initial application date, or subjects who have taken OTC drugs or vitamin preparations within 10 days prior to the expected initial application date, or subjects who are expected to take the above drugs over a period from the informed consent to PSV (however, if the drug is judged not to affect the PK profile of investigational product by the investigator, the subject may participate in the clinical trial.).\n* Subjects who have participated in other clinical trials within 6 months prior to the expected initial application date (however, for the completion date of other clinical trials, the next date is calculated as 1 day on the basis of the last application date.).\n* Subjects who have donated whole blood within 2 months prior to the expected initial application date or apheresis within 1 month, or received blood transfusion within 1 month prior to the expected initial application date, or subjects who cannot continuously abstain from blood donation over a period from the informed consent to PSV.\n* Subjects who have history of regular alcohol consumption exceeding 21 units/week (1 unit = 10 g = 12.5 mL of pure alcohol) within 6 months prior to the expected initial application date, or subjects who cannot continuously abstain from alcohol consumption over a period from the informed consent to PSV.\n\n  ☞The amount of alcohol (g) = alcohol consumption (mL) x alcohol content (%) x 0.8\n* Subjects who have history of average use of 10 cigarettes daily within 3 months prior to the expected initial application date, and subjects who cannot cease smoking over a period from 24 hours prior to the expected initial application date to the last blood sampling point.\n* Subjects who consumed grapefruit-containing food from 48 hours prior to the expected initial application date to PSV, or subjects who cannot avoid taking grapefruit-containing food during this period.\n* Subjects who consumed caffeine-containing food (coffee, green tea, black tea, carbonated beverage, coffee-flavored milk, tonics, etc.) from 24 hours prior to the expected initial application date to the last blood sampling point, or subjects who cannot avoid drinking caffeine-containing food during this period.\n* Subjects participating in regular strenuous exercise greater than daily physical activity from 48 hours prior to the expected initial application date to PSV, or subjects who cannot abstain from strenuous exercise during this period.\n* Subjects or spouses (or partners) who have a plan for pregnancy or although unplanned pregnancy, are unable to use a highly effective method of contraception (e.g., use/implant of hormonal contraceptive or correctly placed intrauterine device, sterilization surgery (vasectomy, tubal ligation, etc.), barrier method (spermicide and condom, a concomitant use of contraceptive diaphragm, vaginal sponge or cervical cap)), over a period from the informed consent to 90 days after the last dose of investigational product.\n* Subjects who are judged ineligible for the clinical study by the investigator due to reasons other than the above inclusion/exclusion criteria.",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+    "source": {
+     "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "version": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+     "digest": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5"
+    },
+    "code": "located"
+   }
+  ],
+  "fixed": {
+   "assertions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 19.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge",
+     "id": "registry-age-minimumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    },
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "le",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 65.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge",
+     "id": "registry-age-maximumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    }
+   ],
+   "signals": []
+  },
+  "interpretations": [
+   {
+    "id": "entry-reading",
+    "label": "entry-reading",
+    "origin": "assistant",
+    "basis": [
+     "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+     "hypothesis:source-location-is-not-semantic-warrant"
+    ],
+    "assumptions": [
+     {
+      "applicability": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "inhaled_or_nasal_corticosteroid",
+        "kind": "condition_status"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "stable_months_before_entry",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 3.0,
+        "unit": "months",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+      "id": "stability",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "source-anchored-hypothesis",
+       "premises": [
+        "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+       ],
+       "version": "1",
+       "warrants": [
+        "hypothesis:source-location-is-not-semantic-warrant"
+       ]
+      },
+      "span": [],
+      "status": "proposed"
+     }
+    ],
+    "signals": [],
+    "signal_claims": [],
+    "binding_uses": []
+   },
+   {
+    "id": "other-cohort-control",
+    "label": "other-cohort-control",
+    "origin": "assistant",
+    "basis": [
+     "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+     "hypothesis:source-location-is-not-semantic-warrant"
+    ],
+    "assumptions": [
+     {
+      "applicability": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "inhaled_or_nasal_corticosteroid",
+        "kind": "condition_status"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "stable_months_before_entry",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 3.0,
+        "unit": "months",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "cohort_ref",
+       "parts": [],
+       "ref": "other-cohort"
+      },
+      "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+      "id": "stability",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "source-anchored-hypothesis",
+       "premises": [
+        "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+       ],
+       "version": "1",
+       "warrants": [
+        "hypothesis:source-location-is-not-semantic-warrant"
+       ]
+      },
+      "span": [],
+      "status": "proposed"
+     }
+    ],
+    "signals": [],
+    "signal_claims": [],
+    "binding_uses": []
+   }
+  ],
+  "bindings": [],
+  "coverage": [
+   {
+    "address": "/protocolSection/eligibilityModule/minimumAge",
+    "code": "compiled",
+    "value": "19 Years",
+    "assertion": "registry-age-minimumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/maximumAge",
+    "code": "compiled",
+    "value": "65 Years",
+    "assertion": "registry-age-maximumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "code": "unresolved_retained",
+    "value": "\\[Part A\\] 1a study\n\nInclusion Criteria:\n\n* Healthy adult male volunteers aged 19 years or older when the informed consent is obtained.\n* Those whose body weight is above 50.0 kg, with body mass index (BMI) BMI ≥ 18.0 and ≤ 30.0 kg/m2 at screening.\n* Those who have no skin disorder or damage (including scars, tattoos, heavy freckle) that may affect the absorption of investigational product, or have no heavy hair in the drug application area.\n* Those who have no congenital or chronic disease, or pathological symptoms or findings in the result of medical examination.\n* Those who are judged eligible for this study upon judgment of the investigator in screening tests established depending on the characteristics of investigational product (examinations by interview, clinical laboratory test, vital signs, physical examinations, 12-lead electrocardiogram (ECG)).\n* Those who have fully understood this clinical trial via detailed explanation, were willing to voluntarily participate in this study, and agreed to give written informed consent prior to the screening procedure.\n\nExclusion Criteria:\n\n* Subjects who have the following prior/current history in addition to experience or history of clinically significant hepatic, renal, neurological, psychiatric, respiratory, endocrine, hematological, malignancy, urogenital, cardiovascular, digestive, or musculoskeletal disease:\n\n  ① Atopic dermatitis ② Psoriasis ③ Eczema ④ Contact dermatitis ⑤Thrombocytopenia ⑥ Anemia ⑦ Neutropenia ⑧ Latent or active tuberculosis\n* Subjects who have history of hypersensitivity (e.g., anaphylactic reaction or angioedema) to the drugs, including Janus kinase inhibitors and excipients, and other drugs (aspirin, penicillin antibiotics, macrolide antibiotics), or subjects who have history of clinically significant hypersensitivity.\n* Suspected acute viral or bacterial infection within 2 weeks prior to the expected initial application date, or fever (body temperature in the tympanic membrane ≥ 38.0ºC) at the time of screening.\n* The following clinically significant findings on 12-lead ECG at screening:\n\n  * QTc \\> 450 ms\n  * PR interval \\> 200 ms\n  * QRS duration \\> 120 ms\n* Any of the following abnormalities in clinical laboratory tests at screening:\n\n  * Blood count (platelet or ANC level \\< 0.5 x lower limit of normal);\n  * Liver function test (AST, ALT, ALP, γ-GTP, or total bilirubin level is ≥ 2 x upper limit of normal);\n  * Serum creatinine level that is outside the reference range, or an estimated glomerular filtration rate (eGFR) \\< 60 mL/min/1.73m2 as determined by the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration) Equation;\n  * Positive anti-HCV, HBs Ag, HIV Ag/Ab, Syphilis-RPR, or IGRA test.\n* Subjects who received live vaccines within 3 months prior to the expected initial application date, or subjects who have a plan to receive live vaccines over a period from the informed consent to post-study visit (PSV).\n* Subjects who have history of drug abuse, or who have a positive urine test for drugs of abuse.\n* Subjects who have shown the following vital signs at screening when measured after at least 3-min rest:\n\n  * Sitting systolic blood pressure ≥ 150 mmHg or ≤ 90 mmHg.\n  * Sitting diastolic blood pressure ≥ 100 mmHg or ≤ 60 mmHg.\n  * Sitting pulse rate ≤ 40 bpm or ≥ 100 bpm.\n* Subjects who cannot continuously abstain from sunbath or artificial suntan over a period from 2 weeks prior to the expected initial application date to PSV.\n* Subjects who have taken prescription drugs or oriental medicines that may affect the characteristics of investigational product within 2 weeks prior to the expected initial application date, or subjects who have taken OTC drugs or vitamin preparations within 10 days prior to the expected initial application date, or subjects who are expected to take the above drugs over a period from the informed consent to PSV (however, if the drug is judged not to affect the evaluation of investigational product by the investigator, the subject may participate in the clinical trial.).\n* Subjects who have taken any drugs known to significantly induce (e.g., barbiturates) or inhibit drug-metabolizing enzymes within 1 month prior to the expected initial application date.\n* Subjects who have participated in other clinical trials within 6 months prior to the expected initial application date (however, for the completion date of other clinical trials, the next date is calculated as 1 day on the basis of the last application date.).\n* Subjects who have donated whole blood within 2 months prior to the expected initial application date or apheresis within 1 month, or received blood transfusion within 1 month prior to the expected initial application date, or subjects who cannot continuously abstain from blood donation over a period from the informed consent to PSV.\n* Subjects who have history of regular alcohol consumption exceeding 21 units/week (1 unit = 10 g = 12.5 mL of pure alcohol) within 6 months prior to the expected initial application date, or subjects who cannot continuously abstain from alcohol consumption over a period from the informed consent to PSV.\n\n  ☞The amount of alcohol (g) = alcohol consumption (mL) x alcohol content (%) x 0.8\n* Subjects who have history of average use of 10 cigarettes daily within 3 months prior to the expected initial application date, and subjects who cannot cease smoking over a period from 24 hours prior to the expected initial application date to the last blood sampling point.\n* Subjects who consumed grapefruit-containing food from 48 hours prior to the expected initial application date to PSV, or subjects who cannot avoid taking grapefruit-containing food during this period.\n* Subjects who consumed caffeine-containing food (coffee, green tea, black tea, carbonated beverage, coffee-flavored milk, tonics, etc.) from 24 hours prior to the expected initial application date to the last blood sampling point, or subjects who cannot avoid drinking caffeine-containing food during this period.\n* Subjects participating in regular strenuous exercise greater than daily physical activity from 48 hours prior to the expected initial application date to PSV, or subjects who cannot abstain from strenuous exercise during this period.\n* Subjects or spouses (or partners) who have a plan for pregnancy or although unplanned pregnancy, are unable to use a highly effective method of contraception (e.g., use/implant of hormonal contraceptive or correctly placed intrauterine device, sterilization surgery (vasectomy, tubal ligation, etc.), barrier method (spermicide and condom, a concomitant use of contraceptive diaphragm, vaginal sponge or cervical cap)), over a period from the informed consent to 90 days after the last dose of investigational product.\n* Subjects who are judged ineligible for the clinical study by the investigator due to reasons other than the above inclusion/exclusion criteria.\n\n\\[Part B\\] 1b Study\n\nInclusion Criteria:\n\n* Adult male volunteers aged ≥ 19 years and ≤ 65 years when the informed consent is obtained.\n* BMI ≥ 18.0 and ≤ 30.0 kg/m2 at screening.\n* Subjects who have fully understood this clinical trial via detailed explanation, were willing to voluntarily participate in this study, and agreed to give written informed consent prior to the screening procedure.\n* Confirmed diagnosis of AD according the criteria of Hanifin and Rajka (1980).\n* AD lesions that can be applied by investigational product, with a minimum of 5% to a maximum of 30% BSA involvement at screening.\n* AD diagnosed by EASI score of mild (EASI \\< 16) or moderate (16 ≤ EASI \\< 23) at screening.\n* Blood vessels whose blood sample collection may be available for PK analysis.\n* Subjects who are judged eligible for this study upon judgment of the investigator in screening tests established depending on the characteristics of investigational product (examinations by interview, clinical laboratory test, vital signs, physical examinations, 12-lead ECG).\n\nExclusion Criteria:\n\n* Subjects who have the following prior/current history in addition to evidence or history of clinically significant skin disorders other than AD (however, the patients with skin disorders that may not affect the AD treatment), hepatic, renal, neurological, psychiatric, respiratory, endocrine, hematological, malignancy, urogenital, cardiovascular, digestive, or musculoskeletal disease:\n\n  ① Thrombocytopenia ② Anemia ③ Neutropenia ④ Erythroderma ⑤ Latent or active tuberculosis\n* Clinically significant systemic or topical skin infection at screening.\n* Subjects who have taken systemic corticosteroids or immunosuppressive agents that can affect AD-related signs and symptoms within 4 weeks prior to the expected initial application date; subjects who have taken systemic anti-inflammatory or immunomodulatory drugs and systemic antibiotics that can affect AD-related signs and symptoms within 2 weeks prior to the expected initial application date; subjects who have received an UV light therapy to mitigate AD-related symptoms; subjects who are expected to take the above drugs or therapy within the study duration (however, the subject taking a corticosteroid inhaler or nasal spray with a stable dose for at least 3 months may participate in the clinical trial).\n* Treatment with oral antihistamines or topical drugs (topical corticosteroid or calcineurin inhibitor, topical antihistamine, topical antimicrobial medication) that can affect AD-related signs and symptoms prior to the expected initial application date or within 5 life-lives, or subjects who are expected to take the above drugs within the study duration (however, the subject taking a nasal antihistamine spray for the treatment of allergic rhinitis may participate in the clinical trial).\n* Subjects whose hair in the drug application site may be unavailable from 2 weeks prior to the expected initial application date to PSV.\n* Subjects who have history of hypersensitivity (e.g., anaphylactic reaction or angioedema) to the drugs, including Janus kinase inhibitors and excipients, and other drugs (aspirin, penicillin antibiotics, macrolide antibiotics), or subjects who have history of clinically significant hypersensitivity.\n* Suspected acute viral or bacterial infection within 2 weeks prior to the expected initial application date, or fever (body temperature in the tympanic membrane ≥ 38.0ºC) at the time of screening.\n* The following clinically significant findings on 12-lead ECG at screening:\n\n  * QTc \\> 450 ms\n  * PR interval \\> 200 ms\n  * QRS duration \\> 120 ms\n* Any of the following abnormalities in clinical laboratory tests at the the time of screening:\n\n  * Platelet or ANC level \\< 0.5 x lower limit of normal;\n  * AST, ALT, ALP, γ-GTP, or total bilirubin level is ≥ 2 x upper limit of normal;\n  * Serum creatinine level that is outside the reference range, or an eGFR \\< 60 mL/min/1.73m2 as determined by the CKD-EPI Equation;\n  * Positive anti-HCV, HBs Ag, HIV Ag/Ab, Syphilis-RPR, or IGRA test.\n* Subjects who received live vaccines within 3 months prior to the expected initial application date, or subjects who have a plan to receive live vaccines over a period from the informed consent to PSV.\n* Subjects who have history of drug abuse, or who have a positive urine test for drugs of abuse.\n* Subjects who have shown the following vital signs at screening when measured after at least 3-min rest:\n\n  * Sitting systolic blood pressure ≥ 150 mmHg or ≤ 90 mmHg.\n  * Sitting diastolic blood pressure ≥ 100 mmHg or ≤ 60 mmHg.\n  * Sitting pulse rate ≤ 40 bpm or ≥ 100 bpm.\n* Subjects who have taken prescription drugs or oriental medicines that may affect the characteristics of investigational product within 2 weeks prior to the expected initial application date, or subjects who have taken OTC drugs or vitamin preparations within 10 days prior to the expected initial application date, or subjects who are expected to take the above drugs over a period from the informed consent to PSV (however, if the drug is judged not to affect the PK profile of investigational product by the investigator, the subject may participate in the clinical trial.).\n* Subjects who have participated in other clinical trials within 6 months prior to the expected initial application date (however, for the completion date of other clinical trials, the next date is calculated as 1 day on the basis of the last application date.).\n* Subjects who have donated whole blood within 2 months prior to the expected initial application date or apheresis within 1 month, or received blood transfusion within 1 month prior to the expected initial application date, or subjects who cannot continuously abstain from blood donation over a period from the informed consent to PSV.\n* Subjects who have history of regular alcohol consumption exceeding 21 units/week (1 unit = 10 g = 12.5 mL of pure alcohol) within 6 months prior to the expected initial application date, or subjects who cannot continuously abstain from alcohol consumption over a period from the informed consent to PSV.\n\n  ☞The amount of alcohol (g) = alcohol consumption (mL) x alcohol content (%) x 0.8\n* Subjects who have history of average use of 10 cigarettes daily within 3 months prior to the expected initial application date, and subjects who cannot cease smoking over a period from 24 hours prior to the expected initial application date to the last blood sampling point.\n* Subjects who consumed grapefruit-containing food from 48 hours prior to the expected initial application date to PSV, or subjects who cannot avoid taking grapefruit-containing food during this period.\n* Subjects who consumed caffeine-containing food (coffee, green tea, black tea, carbonated beverage, coffee-flavored milk, tonics, etc.) from 24 hours prior to the expected initial application date to the last blood sampling point, or subjects who cannot avoid drinking caffeine-containing food during this period.\n* Subjects participating in regular strenuous exercise greater than daily physical activity from 48 hours prior to the expected initial application date to PSV, or subjects who cannot abstain from strenuous exercise during this period.\n* Subjects or spouses (or partners) who have a plan for pregnancy or although unplanned pregnancy, are unable to use a highly effective method of contraception (e.g., use/implant of hormonal contraceptive or correctly placed intrauterine device, sterilization surgery (vasectomy, tubal ligation, etc.), barrier method (spermicide and condom, a concomitant use of contraceptive diaphragm, vaginal sponge or cervical cap)), over a period from the informed consent to 90 days after the last dose of investigational product.\n* Subjects who are judged ineligible for the clinical study by the investigator due to reasons other than the above inclusion/exclusion criteria."
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+    "code": "unresolved_retained",
+    "value": true
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/sex",
+    "code": "unresolved_retained",
+    "value": "MALE"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/genderBased",
+    "code": "unresolved_retained",
+    "value": true
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/stdAges",
+    "code": "unresolved_retained",
+    "value": [
+     "ADULT",
+     "OLDER_ADULT"
+    ]
+   },
+   {
+    "address": "/derivedSection",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/derivedSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/hasResults",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/hasResults",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/armsInterventionsModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/armsInterventionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/conditionsModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/conditionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/contactsLocationsModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/contactsLocationsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/descriptionModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/descriptionModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/designModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/designModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/identificationModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/identificationModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/outcomesModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/outcomesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/oversightModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/oversightModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/sponsorCollaboratorsModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/sponsorCollaboratorsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/statusModule",
+    "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/statusModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   }
+  ],
+  "submitted": {
+   "interpretations": [
+    {
+     "id": "entry-reading",
+     "label": "entry-reading",
+     "origin": "assistant",
+     "basis": [
+      "unconfirmed source reading; alternate scope is a control"
+     ],
+     "anchors": [
+      "eligibility"
+     ],
+     "assumptions": [
+      {
+       "class": "ScopedAssertion",
+       "id": "stability",
+       "criterion_ref": "simulated:exchange1:stability",
+       "modality": "required",
+       "body": {
+        "class": "Literal",
+        "subject": {
+         "class": "Subject",
+         "kind": "participant"
+        },
+        "predicate": {
+         "class": "Predicate",
+         "kind": "measurement",
+         "key": "stable_months_before_entry"
+        },
+        "value": {
+         "class": "Value",
+         "kind": "quantity",
+         "comparison": "ge",
+         "number": 3,
+         "unit": "months"
+        }
+       },
+       "applicability": {
+        "class": "Literal",
+        "subject": {
+         "class": "Subject",
+         "kind": "participant"
+        },
+        "predicate": {
+         "class": "Predicate",
+         "kind": "condition_status",
+         "key": "inhaled_or_nasal_corticosteroid"
+        },
+        "value": {
+         "class": "Value",
+         "kind": "boolean"
+        }
+       },
+       "rule": {
+        "class": "Rule",
+        "id": "simulated-user-choice",
+        "version": "1",
+        "warrants": [
+         "simulated:exchange1:stability"
+        ]
+       },
+       "status": "proposed",
+       "resolution": "resolved"
+      }
+     ]
+    },
+    {
+     "id": "other-cohort-control",
+     "label": "other-cohort-control",
+     "origin": "assistant",
+     "basis": [
+      "unconfirmed source reading; alternate scope is a control"
+     ],
+     "anchors": [
+      "eligibility"
+     ],
+     "assumptions": [
+      {
+       "class": "ScopedAssertion",
+       "id": "stability",
+       "criterion_ref": "simulated:exchange1:stability",
+       "modality": "required",
+       "body": {
+        "class": "Literal",
+        "subject": {
+         "class": "Subject",
+         "kind": "participant"
+        },
+        "predicate": {
+         "class": "Predicate",
+         "kind": "measurement",
+         "key": "stable_months_before_entry"
+        },
+        "value": {
+         "class": "Value",
+         "kind": "quantity",
+         "comparison": "ge",
+         "number": 3,
+         "unit": "months"
+        }
+       },
+       "applicability": {
+        "class": "Literal",
+        "subject": {
+         "class": "Subject",
+         "kind": "participant"
+        },
+        "predicate": {
+         "class": "Predicate",
+         "kind": "condition_status",
+         "key": "inhaled_or_nasal_corticosteroid"
+        },
+        "value": {
+         "class": "Value",
+         "kind": "boolean"
+        }
+       },
+       "rule": {
+        "class": "Rule",
+        "id": "simulated-user-choice",
+        "version": "1",
+        "warrants": [
+         "simulated:exchange1:stability"
+        ]
+       },
+       "status": "proposed",
+       "resolution": "resolved",
+       "cohort": {
+        "class": "Scope",
+        "kind": "cohort_ref",
+        "ref": "other-cohort"
+       }
+      }
+     ]
+    }
+   ],
+   "bindings": []
+  },
+  "requests": [
+   {
+    "operation": "interpretations",
+    "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+    "fixed": {
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 19.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge",
+       "id": "registry-age-minimumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "le",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 65.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge",
+       "id": "registry-age-maximumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ],
+     "signals": []
+    },
+    "bindings": [],
+    "interpretations": [
+     {
+      "id": "entry-reading",
+      "label": "entry-reading",
+      "origin": "assistant",
+      "basis": [
+       "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "assumptions": [
+       {
+        "applicability": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "inhaled_or_nasal_corticosteroid",
+          "kind": "condition_status"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "stable_months_before_entry",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 3.0,
+          "unit": "months",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "id": "stability",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "source-anchored-hypothesis",
+         "premises": [
+          "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+         ],
+         "version": "1",
+         "warrants": [
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ]
+        },
+        "span": [],
+        "status": "proposed"
+       }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+     },
+     {
+      "id": "other-cohort-control",
+      "label": "other-cohort-control",
+      "origin": "assistant",
+      "basis": [
+       "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "assumptions": [
+       {
+        "applicability": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "inhaled_or_nasal_corticosteroid",
+          "kind": "condition_status"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "stable_months_before_entry",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 3.0,
+          "unit": "months",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "cohort_ref",
+         "parts": [],
+         "ref": "other-cohort"
+        },
+        "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "id": "stability",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "source-anchored-hypothesis",
+         "premises": [
+          "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+         ],
+         "version": "1",
+         "warrants": [
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ]
+        },
+        "span": [],
+        "status": "proposed"
+       }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+     }
+    ],
+    "queries": [
+     {
+      "id": "profile",
+      "body": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "subject": {
+          "class": "Subject",
+          "kind": "participant"
+         },
+         "predicate": {
+          "class": "Predicate",
+          "kind": "condition_status",
+          "key": "inhaled_or_nasal_corticosteroid"
+         },
+         "value": {
+          "class": "Value",
+          "kind": "boolean"
+         }
+        },
+        {
+         "class": "Literal",
+         "subject": {
+          "class": "Subject",
+          "kind": "participant"
+         },
+         "predicate": {
+          "class": "Predicate",
+          "kind": "measurement",
+          "key": "stable_months_before_entry"
+         },
+         "value": {
+          "class": "Value",
+          "kind": "quantity",
+          "comparison": "eq",
+          "number": 2,
+          "unit": "months"
+         }
+        }
+       ]
+      }
+     }
+    ],
+    "context": {
+     "cohort": "entry"
+    }
+   }
+  ],
+  "limits": [
+   "Structured ages describe registry general eligibility, not verified actual protocol.",
+   "A located quotation proves quotation only; clinical readings remain hypothetical.",
+   "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+  ],
+  "analyses": [
+   {
+    "summary": {
+     "kind": "reasoning",
+     "code": "complete",
+     "operation": "interpretations",
+     "findings": 7,
+     "dispositions": {
+      "conditional": 3,
+      "open": 4
+     },
+     "problems": []
+    },
+    "clinical": {
+     "version": 1,
+     "operation": "interpretations",
+     "findings": [
+      {
+       "path": "/result/fixed/consistency",
+       "kind": "consistency",
+       "outcome": "UNDETERMINED",
+       "standing": null,
+       "completion": "complete",
+       "disposition": "open",
+       "scope": {
+        "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+        "query": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "frame-consistency",
+          "kind": "demographic"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        }
+       },
+       "values": {},
+       "support": {
+        "proof": []
+       },
+       "origins": [],
+       "conditions": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ],
+       "canonical_ref": "/result/fixed/consistency"
+      },
+      {
+       "path": "/result/fixed/queries/0",
+       "kind": "logical",
+       "outcome": "UNDETERMINED",
+       "standing": "known",
+       "completion": "complete",
+       "disposition": "open",
+       "scope": {
+        "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+        "query": {
+         "class": "AllOf",
+         "parts": [
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "inhaled_or_nasal_corticosteroid",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "stable_months_before_entry",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 2.0,
+            "unit": "months",
+            "upper": null
+           }
+          }
+         ]
+        }
+       },
+       "values": {
+        "id": "profile"
+       },
+       "support": {
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "declared_support": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "explanation_blockers": []
+       },
+       "origins": [
+        {
+         "premise": "registry-age-maximumAge",
+         "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+        },
+        {
+         "premise": "registry-age-minimumAge",
+         "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+        }
+       ],
+       "conditions": [
+        {
+         "relation": "required_by_criteria",
+         "body": {
+          "class": "Literal",
+          "evidence": [
+           {
+            "class": "Evidence",
+            "kind": "record_field",
+            "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+           }
+          ],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "le",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 65.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "status": "known",
+         "warrant": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+           "registry-age-maximumAge"
+          ],
+          "blockers": [],
+          "guarantee": "fixed_floor"
+         },
+         "scope": {
+          "cohort": "entry",
+          "phase": null,
+          "arm": null
+         },
+         "profile_check": {
+          "code": "not_established_by_query",
+          "basis": "query_alone"
+         },
+         "guarantee": "fixed_floor"
+        },
+        {
+         "relation": "required_by_criteria",
+         "body": {
+          "class": "Literal",
+          "evidence": [
+           {
+            "class": "Evidence",
+            "kind": "record_field",
+            "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+           }
+          ],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 19.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "status": "known",
+         "warrant": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":19.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+           "registry-age-minimumAge"
+          ],
+          "blockers": [],
+          "guarantee": "fixed_floor"
+         },
+         "scope": {
+          "cohort": "entry",
+          "phase": null,
+          "arm": null
+         },
+         "profile_check": {
+          "code": "not_established_by_query",
+          "basis": "query_alone"
+         },
+         "guarantee": "fixed_floor"
+        }
+       ],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ],
+       "canonical_ref": "/result/fixed/queries/0"
+      },
+      {
+       "path": "/result/interpretations/0",
+       "kind": "interpretation",
+       "outcome": "compatible",
+       "standing": "proposed",
+       "completion": "complete",
+       "disposition": "conditional",
+       "scope": {
+        "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5"
+       },
+       "values": {
+        "id": "entry-reading",
+        "label": "entry-reading"
+       },
+       "support": {
+        "warrant": {
+         "rule": "interpretations.compatibility:1",
+         "guarantee": "conditional_on_fixed_and_interpretation_premises",
+         "fixed_status": "known",
+         "status": "proposed",
+         "fixed_premises": [],
+         "assumptions": [
+          "stability"
+         ],
+         "bindings": [],
+         "basis": [
+          "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ],
+         "consistency": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+           "no_constraint_mentions_query"
+          ]
+         },
+         "intrinsic_consistency": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+           "no_constraint_mentions_query"
+          ]
+         },
+         "signal_rules": [],
+         "blockers": []
+        }
+       },
+       "origins": [
+        {
+         "origin": "assistant"
+        }
+       ],
+       "conditions": [],
+       "blockers": [],
+       "canonical_ref": "/result/interpretations/0"
+      },
+      {
+       "path": "/result/interpretations/0/queries/0",
+       "kind": "logical",
+       "outcome": "REFUTED",
+       "standing": "proposed",
+       "completion": "complete",
+       "disposition": "conditional",
+       "scope": {
+        "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+        "query": {
+         "class": "AllOf",
+         "parts": [
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "inhaled_or_nasal_corticosteroid",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "stable_months_before_entry",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 2.0,
+            "unit": "months",
+            "upper": null
+           }
+          }
+         ]
+        }
+       },
+       "values": {
+        "id": "profile"
+       },
+       "support": {
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "conditional_on_interpretation",
+         "status": "proposed",
+         "assumptions": [
+          "stability"
+         ],
+         "proof": [
+          "stability"
+         ],
+         "blockers": []
+        },
+        "decision": {
+         "result": "REFUTED",
+         "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+         "status": "interpolated",
+         "proof": [
+          "stability"
+         ],
+         "blockers": []
+        },
+        "declared_support": {
+         "rule": "entail.decide:1",
+         "guarantee": "conditional_on_interpretation",
+         "status": "proposed",
+         "assumptions": [
+          "stability"
+         ],
+         "proof": [
+          "stability"
+         ],
+         "blockers": []
+        },
+        "explanation_blockers": []
+       },
+       "origins": [
+        {
+         "premise": "stability",
+         "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "conditions": [],
+       "blockers": [],
+       "canonical_ref": "/result/interpretations/0/queries/0"
+      },
+      {
+       "path": "/result/interpretations/1",
+       "kind": "interpretation",
+       "outcome": "compatible",
+       "standing": "proposed",
+       "completion": "complete",
+       "disposition": "conditional",
+       "scope": {
+        "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5"
+       },
+       "values": {
+        "id": "other-cohort-control",
+        "label": "other-cohort-control"
+       },
+       "support": {
+        "warrant": {
+         "rule": "interpretations.compatibility:1",
+         "guarantee": "conditional_on_fixed_and_interpretation_premises",
+         "fixed_status": "known",
+         "status": "proposed",
+         "fixed_premises": [],
+         "assumptions": [
+          "stability"
+         ],
+         "bindings": [],
+         "basis": [
+          "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ],
+         "consistency": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+           "no_constraint_mentions_query"
+          ]
+         },
+         "intrinsic_consistency": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+           "no_constraint_mentions_query"
+          ]
+         },
+         "signal_rules": [],
+         "blockers": []
+        }
+       },
+       "origins": [
+        {
+         "origin": "assistant"
+        }
+       ],
+       "conditions": [],
+       "blockers": [],
+       "canonical_ref": "/result/interpretations/1"
+      },
+      {
+       "path": "/result/interpretations/1/queries/0",
+       "kind": "logical",
+       "outcome": "OUT_OF_SCOPE",
+       "standing": "proposed",
+       "completion": "complete",
+       "disposition": "open",
+       "scope": {
+        "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+        "query": {
+         "class": "AllOf",
+         "parts": [
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "inhaled_or_nasal_corticosteroid",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "stable_months_before_entry",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 2.0,
+            "unit": "months",
+            "upper": null
+           }
+          }
+         ]
+        }
+       },
+       "values": {
+        "id": "profile"
+       },
+       "support": {
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "conditional_on_interpretation",
+         "status": "proposed",
+         "assumptions": [
+          "stability"
+         ],
+         "proof": [
+          "stability"
+         ],
+         "blockers": []
+        },
+        "decision": {
+         "result": "OUT_OF_SCOPE",
+         "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+         "status": null,
+         "proof": [
+          "stability"
+         ],
+         "blockers": []
+        },
+        "declared_support": {
+         "rule": "entail.decide:1",
+         "guarantee": "conditional_on_interpretation",
+         "status": "proposed",
+         "assumptions": [
+          "stability"
+         ],
+         "proof": [
+          "stability"
+         ],
+         "blockers": []
+        },
+        "explanation_blockers": []
+       },
+       "origins": [
+        {
+         "premise": "stability",
+         "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "conditions": [],
+       "blockers": [],
+       "canonical_ref": "/result/interpretations/1/queries/0"
+      },
+      {
+       "path": "/result/consequences/0",
+       "kind": "logical",
+       "outcome": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "complete",
+       "disposition": "open",
+       "scope": {
+        "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+        "query": {
+         "class": "AllOf",
+         "parts": [
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "inhaled_or_nasal_corticosteroid",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "stable_months_before_entry",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 2.0,
+            "unit": "months",
+            "upper": null
+           }
+          }
+         ]
+        }
+       },
+       "values": {
+        "id": "profile"
+       },
+       "support": {
+        "basis": "declared_interpretation_family",
+        "warrant": {
+         "rule": "interpretations.common:1",
+         "guarantee": "conditional_on_declared_family_not_exhaustive",
+         "status": "proposed",
+         "blockers": [
+          "interpretation_scope_contrast"
+         ]
+        },
+        "declared_support": {
+         "rule": "interpretations.common:1",
+         "guarantee": "conditional_on_declared_family_not_exhaustive",
+         "status": "proposed",
+         "blockers": [
+          "interpretation_scope_contrast"
+         ]
+        }
+       },
+       "origins": [],
+       "conditions": [],
+       "blockers": [
+        "interpretation_scope_contrast"
+       ],
+       "canonical_ref": "/result/consequences/0"
+      }
+     ]
+    },
+    "code": "complete",
+    "operation": "interpretations",
+    "result": {
+     "study_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+     "fixed": {
+      "assertions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 19.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge",
+        "id": "registry-age-minimumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "ctg-structured-general-eligibility-age",
+         "premises": [
+          "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+         ],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       },
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 65.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge",
+        "id": "registry-age-maximumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "ctg-structured-general-eligibility-age",
+         "premises": [
+          "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+         ],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       }
+      ],
+      "consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "queries": [
+       {
+        "id": "profile",
+        "body": {
+         "class": "AllOf",
+         "parts": [
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "inhaled_or_nasal_corticosteroid",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "stable_months_before_entry",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 2.0,
+            "unit": "months",
+            "upper": null
+           }
+          }
+         ]
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "explanations": {
+         "coverage": "bounded_candidate_discovery_not_complete_screening",
+         "permissions": [],
+         "conditions": [
+          {
+           "relation": "required_by_criteria",
+           "body": {
+            "class": "Literal",
+            "evidence": [
+             {
+              "class": "Evidence",
+              "kind": "record_field",
+              "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge"
+             }
+            ],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "age",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "le",
+             "inclusivity": "unspecified",
+             "kind": "quantity",
+             "members": [],
+             "number": 65.0,
+             "unit": "Years",
+             "upper": null
+            }
+           },
+           "status": "known",
+           "warrant": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/maximumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+             "registry-age-maximumAge"
+            ],
+            "blockers": [],
+            "guarantee": "fixed_floor"
+           },
+           "scope": {
+            "cohort": "entry",
+            "phase": null,
+            "arm": null
+           },
+           "profile_check": {
+            "code": "not_established_by_query",
+            "basis": "query_alone"
+           },
+           "guarantee": "fixed_floor"
+          },
+          {
+           "relation": "required_by_criteria",
+           "body": {
+            "class": "Literal",
+            "evidence": [
+             {
+              "class": "Evidence",
+              "kind": "record_field",
+              "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge"
+             }
+            ],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "age",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "ge",
+             "inclusivity": "unspecified",
+             "kind": "quantity",
+             "members": [],
+             "number": 19.0,
+             "unit": "Years",
+             "upper": null
+            }
+           },
+           "status": "known",
+           "warrant": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":19.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+             "registry-age-minimumAge"
+            ],
+            "blockers": [],
+            "guarantee": "fixed_floor"
+           },
+           "scope": {
+            "cohort": "entry",
+            "phase": null,
+            "arm": null
+           },
+           "profile_check": {
+            "code": "not_established_by_query",
+            "basis": "query_alone"
+           },
+           "guarantee": "fixed_floor"
+          }
+         ],
+         "blockers": [],
+         "checks": {
+          "code": "complete",
+          "decisions": 2,
+          "intrinsic_queries": 1,
+          "profile_queries": 4,
+          "planned": 2,
+          "limit": 32,
+          "profile_probes": 0,
+          "planning_nodes": 0
+         }
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        }
+       }
+      ],
+      "signals": [],
+      "blockers": []
+     },
+     "bindings": [],
+     "interpretations": [
+      {
+       "id": "entry-reading",
+       "label": "entry-reading",
+       "origin": "assistant",
+       "state": "compatible",
+       "premises": {
+        "basis": [
+         "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+         {
+          "applicability": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "inhaled_or_nasal_corticosteroid",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          "body": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "stable_months_before_entry",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 3.0,
+            "unit": "months",
+            "upper": null
+           }
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "all_participants",
+           "parts": [],
+           "ref": ""
+          },
+          "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "id": "stability",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "source-anchored-hypothesis",
+           "premises": [
+            "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+           ],
+           "version": "1",
+           "warrants": [
+            "hypothesis:source-location-is-not-semantic-warrant"
+           ]
+          },
+          "span": [],
+          "status": "proposed"
+         }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+       },
+       "bindings": [],
+       "signals": [],
+       "signal_checks": [],
+       "queries": [
+        {
+         "id": "profile",
+         "body": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "inhaled_or_nasal_corticosteroid",
+             "kind": "condition_status"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "stable_months_before_entry",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "quantity",
+             "members": [],
+             "number": 2.0,
+             "unit": "months",
+             "upper": null
+            }
+           }
+          ]
+         },
+         "result": "REFUTED",
+         "decision": {
+          "result": "REFUTED",
+          "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+          "status": "interpolated",
+          "proof": [
+           "stability"
+          ],
+          "blockers": []
+         },
+         "explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+           "code": "not_open",
+           "decisions": 0,
+           "intrinsic_queries": 0,
+           "profile_queries": 0,
+           "planned": 0,
+           "limit": 32
+          }
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "stability"
+          ],
+          "proof": [
+           "stability"
+          ],
+          "blockers": []
+         }
+        }
+       ],
+       "warrant": {
+        "rule": "interpretations.compatibility:1",
+        "guarantee": "conditional_on_fixed_and_interpretation_premises",
+        "fixed_status": "known",
+        "status": "proposed",
+        "fixed_premises": [],
+        "assumptions": [
+         "stability"
+        ],
+        "bindings": [],
+        "basis": [
+         "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "intrinsic_consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "signal_rules": [],
+        "blockers": []
+       }
+      },
+      {
+       "id": "other-cohort-control",
+       "label": "other-cohort-control",
+       "origin": "assistant",
+       "state": "compatible",
+       "premises": {
+        "basis": [
+         "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+         {
+          "applicability": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "inhaled_or_nasal_corticosteroid",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          "body": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "stable_months_before_entry",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 3.0,
+            "unit": "months",
+            "upper": null
+           }
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "cohort_ref",
+           "parts": [],
+           "ref": "other-cohort"
+          },
+          "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "id": "stability",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "source-anchored-hypothesis",
+           "premises": [
+            "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria"
+           ],
+           "version": "1",
+           "warrants": [
+            "hypothesis:source-location-is-not-semantic-warrant"
+           ]
+          },
+          "span": [],
+          "status": "proposed"
+         }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+       },
+       "bindings": [],
+       "signals": [],
+       "signal_checks": [],
+       "queries": [
+        {
+         "id": "profile",
+         "body": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "inhaled_or_nasal_corticosteroid",
+             "kind": "condition_status"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "stable_months_before_entry",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "quantity",
+             "members": [],
+             "number": 2.0,
+             "unit": "months",
+             "upper": null
+            }
+           }
+          ]
+         },
+         "result": "OUT_OF_SCOPE",
+         "decision": {
+          "result": "OUT_OF_SCOPE",
+          "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"inhaled_or_nasal_corticosteroid\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"stable_months_before_entry\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"months\",\"upper\":null}}]}",
+          "status": null,
+          "proof": [
+           "stability"
+          ],
+          "blockers": []
+         },
+         "explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
+          "permissions": [],
+          "conditions": [],
+          "blockers": [],
+          "checks": {
+           "code": "not_open",
+           "decisions": 0,
+           "intrinsic_queries": 0,
+           "profile_queries": 0,
+           "planned": 0,
+           "limit": 32
+          }
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "stability"
+          ],
+          "proof": [
+           "stability"
+          ],
+          "blockers": []
+         }
+        }
+       ],
+       "warrant": {
+        "rule": "interpretations.compatibility:1",
+        "guarantee": "conditional_on_fixed_and_interpretation_premises",
+        "fixed_status": "known",
+        "status": "proposed",
+        "fixed_premises": [],
+        "assumptions": [
+         "stability"
+        ],
+        "bindings": [],
+        "basis": [
+         "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "intrinsic_consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "signal_rules": [],
+        "blockers": []
+       }
+      }
+     ],
+     "remaining": [
+      "entry-reading",
+      "other-cohort-control"
+     ],
+     "refuted": [],
+     "incoherent": [],
+     "unresolved": [],
+     "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+     },
+     "consequences": [
+      {
+       "id": "profile",
+       "body": {
+        "class": "AllOf",
+        "parts": [
+         {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "inhaled_or_nasal_corticosteroid",
+           "kind": "condition_status"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         },
+         {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "stable_months_before_entry",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 2.0,
+           "unit": "months",
+           "upper": null
+          }
+         }
+        ]
+       },
+       "result": "UNDETERMINED",
+       "contrast": {
+        "code": "interpretation_scope_contrast",
+        "context": {
+         "cohort": "entry",
+         "phase": null,
+         "arm": null
+        },
+        "answers": [
+         {
+          "frame": "entry-reading",
+          "origin": "assistant",
+          "frame_state": "compatible",
+          "query": "profile",
+          "result": "REFUTED",
+          "query_path": "/result/interpretations/0/queries/0",
+          "warrant_path": "/result/interpretations/0/queries/0/warrant",
+          "standing": "proposed",
+          "blockers": [],
+          "deciding_premises": [
+           {
+            "id": "stability",
+            "path": "/result/interpretations/0/premises/assumptions/0",
+            "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+            "cohort": {
+             "class": "Scope",
+             "kind": "all_participants",
+             "parts": [],
+             "ref": ""
+            },
+            "branch": {
+             "class": "Branch",
+             "node": "unresolved",
+             "path": []
+            },
+            "standing": "proposed"
+           }
+          ]
+         },
+         {
+          "frame": "other-cohort-control",
+          "origin": "assistant",
+          "frame_state": "compatible",
+          "query": "profile",
+          "result": "OUT_OF_SCOPE",
+          "query_path": "/result/interpretations/1/queries/0",
+          "warrant_path": "/result/interpretations/1/queries/0/warrant",
+          "standing": "proposed",
+          "blockers": [],
+          "deciding_premises": [
+           {
+            "id": "stability",
+            "path": "/result/interpretations/1/premises/assumptions/0",
+            "criterion_ref": "ctg:NCT05729074:ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5#/protocolSection/eligibilityModule/eligibilityCriteria",
+            "cohort": {
+             "class": "Scope",
+             "kind": "cohort_ref",
+             "parts": [],
+             "ref": "other-cohort"
+            },
+            "branch": {
+             "class": "Branch",
+             "node": "unresolved",
+             "path": []
+            },
+            "standing": "proposed"
+           }
+          ]
+         }
+        ],
+        "path_basis": "relative_to_this_reason_envelope"
+       },
+       "frames": [
+        "entry-reading",
+        "other-cohort-control"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": [
+         "interpretation_scope_contrast"
+        ]
+       }
+      }
+     ],
+     "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+    },
+    "problems": [],
+    "metadata": {
+     "version": 1,
+     "kind": "reasoning",
+     "findings": [
+      {
+       "path": "/result/fixed/consistency",
+       "kind": "consistency",
+       "logical_result": "UNDETERMINED",
+       "standing": null,
+       "completion": "complete",
+       "causes": [
+        {
+         "code": "no_constraint_mentions_query",
+         "kind": "coverage"
+        }
+       ],
+       "disposition": "open"
+      },
+      {
+       "path": "/result/fixed/queries/0",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "known",
+       "completion": "complete",
+       "causes": [
+        {
+         "code": "no_constraint_mentions_query",
+         "kind": "coverage"
+        }
+       ],
+       "disposition": "open",
+       "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+       "path": "/result/interpretations/0",
+       "kind": "interpretation",
+       "logical_result": "compatible",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional"
+      },
+      {
+       "path": "/result/interpretations/0/queries/0",
+       "kind": "logical",
+       "logical_result": "REFUTED",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional",
+       "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+       "path": "/result/interpretations/1",
+       "kind": "interpretation",
+       "logical_result": "compatible",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional"
+      },
+      {
+       "path": "/result/interpretations/1/queries/0",
+       "kind": "logical",
+       "logical_result": "OUT_OF_SCOPE",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "open",
+       "support_path": "/result/interpretations/1/queries/0/warrant"
+      },
+      {
+       "path": "/result/consequences/0",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [
+        {
+         "code": "interpretation_scope_contrast",
+         "kind": "translation"
+        }
+       ],
+       "disposition": "open",
+       "support_path": "/result/consequences/0/warrant",
+       "contrast_code": "interpretation_scope_contrast",
+       "contrast_path": "/result/consequences/0/contrast",
+       "answer_paths": [
+        "/result/interpretations/0/queries/0",
+        "/result/interpretations/1/queries/0"
+       ]
+      }
+     ]
+    },
+    "result_digest": "dc51e8e9a60942313b512d29c134cf02c8d71f9e39700fed8d3474164d90e75d",
+    "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
+   }
+  ]
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/analyses/0/result/fixed/consistency",
+    "kind": "consistency",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/analyses/0/result/fixed/queries/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0",
+    "kind": "interpretation",
+    "logical_result": "compatible",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0/queries/0",
+    "kind": "logical",
+    "logical_result": "REFUTED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional",
+    "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/1",
+    "kind": "interpretation",
+    "logical_result": "compatible",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/1/queries/0",
+    "kind": "logical",
+    "logical_result": "OUT_OF_SCOPE",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "open",
+    "support_path": "/result/analyses/0/result/interpretations/1/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/consequences/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "interpretation_scope_contrast",
+      "kind": "translation"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/analyses/0/result/consequences/0/warrant",
+    "contrast_code": "interpretation_scope_contrast",
+    "contrast_path": "/result/analyses/0/result/consequences/0/contrast",
+    "answer_paths": [
+     "/result/analyses/0/result/interpretations/0/queries/0",
+     "/result/analyses/0/result/interpretations/1/queries/0"
+    ]
+   }
+  ]
+ },
+ "result_digest": "55a4e995c5f93e26546f4a52f7b3158369f4ebd7f96817798c22f1af5f913c05",
+ "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+ "artifact": {
+  "id": "e4a22fc84bf61fa0e4414592e6066dfc584ddadad68983d586dd678a8f4cdd0d",
+  "bytes": 161977,
+  "schema_version": 1,
+  "identity_scope": "SHA256 of complete canonical request/response payload bytes",
+  "parts": [
+   "manifest",
+   "request",
+   "response",
+   "result",
+   "clinical",
+   "summary",
+   "session",
+   "decisions",
+   "decision_view",
+   "changes",
+   "address"
+  ]
+ }
+}

@@ -1,0 +1,46 @@
+  ▸ recalled 1 pinned test(s) from a previous run
+  … finding_owner_code: tracing 13 function-routed tests
+  … finding_owner_code: baseline traced · 13 tests · 0.0s
+  … finding_owner_code: tracing 45 function-routed tests
+  … finding_owner_code: baseline traced · 45 tests · 6.3s
+  … finding_owner_code: 1/69 mutants · 15.4s/mutant · ETA estimating… (heartbeat)
+  … finding_owner_code: 69/69 mutants · 2.5/s · done in 27.9s
+  ▸ pass 0: 6 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: no new killing test for the remaining survivor(s) — at ceiling
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … finding_owner_code: tracing 51 function-routed tests
+  … finding_owner_code: baseline traced · 51 tests · 0.1s
+  … finding_owner_code: tracing 7 function-routed tests
+  … finding_owner_code: baseline traced · 7 tests · 0.0s
+  … finding_owner_code: 18/69 mutants · 2.5s/mutant · ETA ~88s (heartbeat)
+  … finding_owner_code: 32/69 mutants · 1.9s/mutant · ETA ~55s (heartbeat)
+  … finding_owner_code: 46/69 mutants · 1.7s/mutant · ETA ~32s (heartbeat)
+  … finding_owner_code: 57/69 mutants · 1.7s/mutant · ETA ~17s (heartbeat)
+  … finding_owner_code: 63/69 mutants · 1.8s/mutant · ETA ~9s (heartbeat)
+  … finding_owner_code: 69/69 mutants · 1.7s/mutant · done in 119.3s
+  ▸ 6 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/clinical_export.py::finding_owner_code — converge · 69 behaviours · 63 pinned · 5 candidate-equivalent · 1 crash-only
+
+  ✓ wrote              1 test(s) → tests/detective/test_TrialLedger_clinical_export_finding_owner_code_93a1cf1780_synth.py
+  · unproven-equiv     5 — the search found no distinguishing input
+  · crash-only-equiv   1 — detected by crash; no value pins them
+  ⚠ structural         a survivor above may be KILLABLE, not equivalent — confirm over a nested/cross-referential --input (or a branch no input reached) before you `flag` (full report)
+  · not consulted      5576 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_finding_owner_code.txt
+
+DONE:  every killable behaviour Detective found is pinned.
+       What remains was not distinguished by any input Detective TRIED — and it
+       probed this signature's boundaries (both sides of every comparison edge,
+       the None of every Optional). Still a bounded search, not a proof:
+       equivalence is undecidable in general, so the engine will not claim it.
+       If you can PROVE one equivalent: detective flag 'TrialLedger/clinical_export.py::finding_owner_code' BOUNDARY_5490716c --two-sign --note "why"  (4 more in the report)
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/clinical_export.py'
+         detective decompose 'TrialLedger/clinical_export.py::finding_owner_code' --apply --two-sign
+         detective survey 'TrialLedger/clinical_export.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/clinical_export.py::finding_owner_code: ✓ COMPLETE (operator universe · modulo 5 unproven-equivalent · 1 crash-only value gap) · 69/69 killed · 1 test(s) → tests/detective/test_TrialLedger_clinical_export_finding_owner_code_93a1cf1780_synth.py · policy 9+neg.f5a15364c11d

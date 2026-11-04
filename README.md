@@ -178,6 +178,13 @@ passages can be attached to a decision without becoming its criteria. A note int
 calling something a gap, remains a proposed caller annotation; an adopted restriction needs its own premise.
 The coherent decision view keeps those channels together for your assistant and the exported review.
 
+Permission is another channel worth keeping. An invented draft can permit stable inhaled treatment without
+requiring anyone to take it, while a separate rule requires three months of stability for those who do.
+The review shows the permission, its condition and its origin beside the remaining eligibility checks.
+Tightening stability to four months changes the three-month profile's answer without making treatment
+mandatory. Proposed readings remain unconfirmed; including their results in a review does not adopt them.
+Open items name the option they concern: allowing exactly two weeks and longer does not also allow one week.
+
 The design review is a separate handoff. Your reference workbook and registry evidence remain unchanged.
 With a source record supplied, the review also lays out baseline values by their local groups, preserving
 population, unit and denominator context. An arm and a total are never silently added together.
