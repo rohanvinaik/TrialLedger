@@ -1297,6 +1297,74 @@ def _claims_of(check: dict) -> dict:
     }
 
 
+WARRANT_FIELDS = (
+    "status",
+    "finding_status",
+    "application_status",
+    "application_refs",
+    "support",
+    "determining_ids",
+)
+
+
+def _semantic_record(check: dict) -> dict:
+    """Typed per-check record for revision: claim rows and every non-claim operator's computed result.
+
+    Verdict, admission and warrant (arithmetic, applicability and finding standing, applicability proofs,
+    deciding references, role support) stay separate axes; a request digest never stands in for them.
+    """
+    claims = _claims_of(check)
+    plain = {
+        (child.get("id"), signal.get("id")): signal
+        for child in check.get("children", [])
+        for signal in child.get("signals", [])
+        if not signal.get("claim_admission")
+    }
+    return {
+        "verdict": {
+            **{("claim", k): (v.get("effective_outcome"), v.get("application")) for k, v in claims.items()},
+            **{
+                ("signal", k): (s.get("code"), s.get("calculation_code"), tuple(s.get("blockers") or ()))
+                for k, s in plain.items()
+            },
+            ("projection",): (
+                tuple(u.get("code") for u in check.get("unresolved") or ()),
+                check.get("not_computed") is not None,
+            ),
+        },
+        "requirements": {
+            **{("claim", k): v.get("admission") for k, v in claims.items()},
+            **{("signal", k): (s.get("admission") or {}).get("code") for k, s in plain.items()},
+        },
+        "warrant": {
+            **{
+                ("claim", k): tuple(json.dumps(v.get(f), sort_keys=True) for f in WARRANT_FIELDS)
+                for k, v in claims.items()
+            },
+            ("roles",): json.dumps(
+                [
+                    s.get("role_support")
+                    for ch in check.get("children", [])
+                    for s in ch.get("request", {}).get("signals", [])
+                ],
+                sort_keys=True,
+            ),
+            ("applicability",): json.dumps(
+                [
+                    (a.get("code"), a.get("status"), a.get("proof"))
+                    for ch in check.get("children", [])
+                    for a in ch.get("applicability") or []
+                ],
+                sort_keys=True,
+            ),
+        },
+    }
+
+
+def _record_changed(left: dict, right: dict) -> bool:
+    return left.keys() != right.keys() or any(left[k] != right[k] for k in left)
+
+
 def _protocol_answer_diff(before: dict, after: dict) -> dict:
     """Protocol consequences per check and decision, beside (never instead of) the audit diff (C9, REV-1)."""
     objects = [{o["id"]: o for o in snapshot.get("objects", [])} for snapshot in (before, after)]
@@ -1317,38 +1385,18 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
                 }
             )
             continue
-        lc, rc = _claims_of(left), _claims_of(right)
-        both = lc.keys() & rc.keys()
         same = source_evidence.exact_json_equal
+        lr, rr = _semantic_record(left), _semantic_record(right)
+        verdict = _record_changed(lr["verdict"], rr["verdict"])
         changed = {
-            "verdict": lc.keys() != rc.keys()
-            or any(
-                (lc[c]["effective_outcome"], lc[c].get("application"))
-                != (rc[c]["effective_outcome"], rc[c].get("application"))
-                for c in both
-            ),
+            "verdict": verdict,
+            # Admission changed where the computed verdict did not (residual requirement).
             "requirements": any(
-                lc[c]["admission"] != rc[c]["admission"]
-                and lc[c]["effective_outcome"] == rc[c]["effective_outcome"]
-                for c in both
+                lr["requirements"].get(k) != rr["requirements"].get(k)
+                and lr["verdict"].get(k) == rr["verdict"].get(k)
+                for k in lr["requirements"].keys() | rr["requirements"].keys()
             ),
-            "support": any(
-                not same(lc[c].get("support"), rc[c].get("support"))
-                or not same(lc[c].get("determining_ids"), rc[c].get("determining_ids"))
-                for c in both
-            )
-            or not same(
-                [
-                    s.get("role_support")
-                    for ch in left.get("children", [])
-                    for s in ch.get("request", {}).get("signals", [])
-                ],
-                [
-                    s.get("role_support")
-                    for ch in right.get("children", [])
-                    for s in ch.get("request", {}).get("signals", [])
-                ],
-            ),
+            "support": _record_changed(lr["warrant"], rr["warrant"]),
             "origin": not same(involved(left, 0, "origin"), involved(right, 1, "origin")),
             "scope_model": not same(involved(left, 0, "scope"), involved(right, 1, "scope"))
             or not same(involved(left, 0, "version"), involved(right, 1, "version"))

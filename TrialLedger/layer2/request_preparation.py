@@ -662,6 +662,16 @@ def _protocol(raw: object, target: dict, defaults: list) -> dict:
     return {"schema_version": 1, "objects": objects, "checks": checks, "sections": sections}
 
 
+RETAINED_STUDY_MARKER = "$retained_study"  # the transport's typed source handle (retained_sources.MARKER)
+
+
+def _has_retained_handles(sources: list) -> bool:
+    return any(
+        isinstance(source.get("study"), dict) and RETAINED_STUDY_MARKER in source["study"]
+        for source in sources
+    )
+
+
 def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
     session_state.target(raw["target"])
     target = deepcopy(raw["target"])
@@ -733,8 +743,11 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
     if "protocol" in raw:
         session["schema_version"] = 2
         session["protocol"] = _protocol(raw["protocol"], target, defaults)
-        # Validation only (no solver): the expansion must already be an admissible v2 session.
-        session_state.prepare(session)
+        # Validation only (no solver): the expansion must already be an admissible v2 session. Digest-bound
+        # retained-study handles are hydrated by the transport at execution, so a session carrying them is
+        # validated there instead; prepare() discloses that deferral (PAH cold audit).
+        if not _has_retained_handles(sources):
+            session_state.prepare(session)
     return {"operation": "design_session", "session": session, "previous": None}
 
 
@@ -799,6 +812,9 @@ def prepare(request: object) -> dict:
         "origins": origins,
         "limits_of_claim": list(LIMITS_OF_CLAIM),
     }
+    session_out = expanded.get("session") if isinstance(expanded.get("session"), dict) else {}
+    if "protocol" in session_out and _has_retained_handles(session_out.get("sources", [])):
+        result["validation"] = "deferred_until_execution:retained_study"
     for entry in defaults:
         parts = entry["path"].split("/")
         if mode == "design_session" and parts[1:3] == ["request", "assertions"]:

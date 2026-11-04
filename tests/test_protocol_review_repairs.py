@@ -260,3 +260,64 @@ def test_a_temporal_check_keeps_its_child_when_an_applicability_binding_is_added
         check = run(_temporal_request(with_applicability))["result"]["protocol"]["checks"][0]
         assert len(check["children"]) == 1, with_applicability
         assert check["unresolved"] == [], with_applicability
+
+
+# 7. Revision sees warrant strength and non-claim operator outcomes (PAH cold audit).
+def _revise(first: dict, edit) -> dict:
+    from TrialLedger.layer2 import session_state
+
+    initial = run(first)
+    assert initial["code"] == "complete", initial["problems"]
+    nxt = copy.deepcopy(first)
+    session = nxt["session"]
+    session["revision"] = "two"
+    session["parent_digest"] = session_state.digest(first["session"])
+    edit(session)
+    nxt["previous"] = {
+        "session": first["session"],
+        "result": initial["result"],
+        "expected_result_digest": initial["result_digest"],
+    }
+    reply = run(nxt)
+    assert reply["code"] == "complete", reply["problems"]
+    return reply
+
+
+def test_strengthening_applicability_from_interpolated_to_known_is_a_warrant_change():
+    first = _with_interpolated_deciding_premise(negate=False)
+
+    def strengthen(session):
+        premise = next(p for p in session["premises"] if p["id"] == "adult-interpolated")
+        premise["payload"]["status"] = "known"
+
+    row = _revise(first, strengthen)["answer_diff"]["protocol_checks"][0]
+    assert row["code"] == "changed"
+    assert "support" in row["axes"]
+    assert "verdict" not in row["axes"]
+
+
+def _estimand_session() -> dict:
+    example = run({"operation": "describe", "view": "signals", "detail": "full"})["result"]["signal_examples"]
+    estimand = copy.deepcopy(example["estimand"]["signals"][0]["data"])
+    for plan in estimand["collection_plan"]:
+        plan["action"] = "stop"
+    request = _session("84", collection_status="known")
+    protocol = request["session"]["protocol"]
+    template = copy.deepcopy(protocol["objects"][0])
+    template.update(id="estimand", kind="estimand", depends_on=[], data=estimand)
+    protocol["objects"].append(template)
+    check = copy.deepcopy(protocol["checks"][0])
+    check.update(id="estimand-check", kind="estimand", objects=["estimand"], claims=[])
+    protocol["checks"] = [check]
+    return request
+
+
+def test_repairing_an_estimand_collection_plan_is_a_verdict_change():
+    def collect(session):
+        estimand = next(o for o in session["protocol"]["objects"] if o["id"] == "estimand")
+        for plan in estimand["data"]["collection_plan"]:
+            plan["action"] = "collect"
+
+    row = _revise(_estimand_session(), collect)["answer_diff"]["protocol_checks"][0]
+    assert row["code"] == "changed"
+    assert "verdict" in row["axes"]

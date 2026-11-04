@@ -110,3 +110,17 @@ def test_a_version_one_preparation_without_questions_keeps_its_refusal():
     request = _example()
     del request["questions"], request["protocol"]
     assert run(request)["problems"] == ["missing_field:prepare.design_session"]
+
+
+def test_a_retained_study_handle_is_kept_and_validation_is_deferred_not_failed():
+    request = _example()
+    handle = {"$retained_study": {"run": "reference", "nct": "NCT00000000", "digest": "0" * 64}}
+    request["sources"] = [{"id": "reference-study", "study": handle, "expected_digest": "0" * 64}]
+    prepared = run(request)
+    assert prepared["code"] == "complete", prepared["problems"]
+    assert prepared["result"]["validation"] == "deferred_until_execution:retained_study"
+    assert prepared["result"]["request"]["session"]["sources"][0]["study"] == handle
+
+
+def test_inline_sources_are_still_validated_at_preparation():
+    assert "validation" not in run(_example())["result"]
