@@ -1,0 +1,19 @@
+HEAD 25c6bb5c29513f2159751d29c309620522e32425
+--status
+ M pyproject.toml
+ M uv.lock
+?? openspec/changes/connect-protocol-design-workflow/
+--
+Python 3.14.7
+uv 0.12.13 (0ebbd9274 2026-09-10 aarch64-apple-darwin)
+ruff 0.17.3
+pytest 9.2.0
+usage: crosshair [-h] {check,search,watch,diffbehavior,cover,server} ...
+crosshair: error: unrecognized arguments: --version
+detective 1.2.2 (Wesker 1.2.2)
+  Detective  /Users/rohanvinaik/tools/TrialLedger/.venv/lib/python3.14/site-packages/Detective/__init__.py
+  Wesker     /Users/rohanvinaik/tools/TrialLedger/.venv/lib/python3.14/site-packages/Wesker/__init__.py
+Detective ce2a500 2026-10-26T12:14:57-04:00
+Wesker 2fbd029 2026-10-25T21:20:18-04:00
+1.14.1
+crosshair-tool 0.0.112

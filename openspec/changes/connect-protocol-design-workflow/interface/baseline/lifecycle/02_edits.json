@@ -1,0 +1,1 @@
+[{"op":"replace","path":"/premises/0/payload/body/value/number","value":21.0,"origin":{"kind":"user_choice","ref":"user:adult-21-baseline-check","source":null,"analysis":null}}]

@@ -1,0 +1,220 @@
+{
+ "operation": "source_assertions",
+ "study": {
+  "protocolSection": {
+   "identificationModule": {
+    "nctId": "NCT00000001"
+   },
+   "eligibilityModule": {
+    "minimumAge": "18 Years",
+    "eligibilityCriteria": "Participants must be adults. Performance status is not specified here."
+   }
+  }
+ },
+ "expected_digest": "d931783115dbb2feacfac3836e12a43b48a52426c8cc526316aea73c8b8518f2",
+ "anchors": [
+  {
+   "id": "eligibility-passage",
+   "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+   "digest": "d931783115dbb2feacfac3836e12a43b48a52426c8cc526316aea73c8b8518f2",
+   "expected": "Participants must be adults. Performance status is not specified here.",
+   "span": {
+    "start": 0,
+    "end": 70,
+    "text": "Participants must be adults. Performance status is not specified here."
+   }
+  }
+ ],
+ "interpretations": [
+  {
+   "id": "adults",
+   "label": "Read this as requiring adults",
+   "origin": "assistant",
+   "basis": [
+    "invented:teaching-reading-not-established-protocol"
+   ],
+   "assumptions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+     "id": "adult-reading",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "invented-session-premise",
+      "premises": [],
+      "version": "1",
+      "warrants": [
+       "invented:explicit-teaching-premise"
+      ]
+     },
+     "span": [],
+     "status": "proposed"
+    }
+   ],
+   "signals": [],
+   "signal_claims": [],
+   "binding_uses": [],
+   "anchors": [
+    "eligibility-passage"
+   ]
+  },
+  {
+   "id": "under-18",
+   "label": "Hypothetically require everyone to be under 18",
+   "origin": "assistant",
+   "basis": [
+    "invented:teaching-reading-not-established-protocol"
+   ],
+   "assumptions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "lt",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+     "id": "child-reading",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "invented-session-premise",
+      "premises": [],
+      "version": "1",
+      "warrants": [
+       "invented:explicit-teaching-premise"
+      ]
+     },
+     "span": [],
+     "status": "proposed"
+    }
+   ],
+   "signals": [],
+   "signal_claims": [],
+   "binding_uses": [],
+   "anchors": [
+    "eligibility-passage"
+   ]
+  }
+ ],
+ "queries": [
+  {
+   "id": "adult",
+   "body": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+     "class": "Predicate",
+     "key": "age",
+     "kind": "measurement"
+    },
+    "qualifiers": {
+     "class": "Always"
+    },
+    "subject": {
+     "class": "Subject",
+     "kind": "participant",
+     "referent": ""
+    },
+    "time": null,
+    "value": {
+     "class": "Value",
+     "comparison": "ge",
+     "inclusivity": "unspecified",
+     "kind": "quantity",
+     "members": [],
+     "number": 18.0,
+     "unit": "Years",
+     "upper": null
+    }
+   }
+  }
+ ]
+}

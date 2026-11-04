@@ -1,0 +1,81 @@
+# Tasks
+
+All tasks start unchecked. `contracts.md`, `verification.md` and `parallel-work.md` are normative. A checked task requires a current linked evidence receipt, not a worker's assurance. Proof limitations keep their proof task open unless Rohan explicitly accepts that particular limitation; mark the exception accurately rather than invent a completed pin.
+
+Groups are integration order. After group 1, disjoint mathematical packets B/C/D can build concurrently while A/E are scheduled within available slots. Their integration still follows the order below. The coordinator alone edits shared paths. Every code task includes its named positive/MUST-NOT tests and consumer trace; each group's pin task records the current frozen target basis and must be refreshed if later relevant edits invalidate it.
+
+## 1. Freeze implementation interfaces and baseline
+
+- [ ] 1.1 Read the theory, full founding design and this change's normative documents; deliver a pass brief separating existing logic, missing wiring and deferred methods, with the TIM-1 and exact-query refusal reproduced through the current public CLI.
+- [ ] 1.2 Record current main/status, relevant tool versions and v1 canonical public request/result fingerprints; verify old eligibility, supporting-analysis, revision and export paths before editing without overwriting concurrent changes.
+- [ ] 1.3 Produce fresh Serena references for the projection, preparation, both decision guards, support, budget, compact/revision/export consumers; deliver a symbolic producer/consumer map naming duplicate paths and actual production owners.
+- [ ] 1.4 Publish exact versioned JSON Schemas, module signatures and valid/malformed canonical fixtures mechanically instantiating C2–C8, including full reused origin/reference/proposition/context/domain shapes; verify strict parsing and expected fixture results in a schema-only test.
+- [ ] 1.5 Publish conservative reservation formulas with explicit charged units for interval, finite-state, exact arithmetic, candidate and old/new replay work; verify formulas against independently counted small workloads and all ceiling boundaries.
+- [ ] 1.6 Publish the P2/P3 ownership/import packet, required named-code/consumer matrix and acceptance retention policy; verify all writable paths are disjoint, all semantic requirements have test IDs and no worker needs an unspecified clinical decision before dispatch.
+
+## 2. Protocol objects and first endpoint/schedule bridge
+
+- [ ] 2.1 Implement packet A pure detached object validation/indexing under C3; verify duplicate/dangling/cyclic/null/malformed inputs, version pinning, scope, source immutability and no solver side effects with authored tests.
+- [ ] 2.2 Implement packet E named endpoint/dependency/estimand/assessment adapters with C4 receipts; verify END-1/2/3, EPI-1/2/3 and exact projected-request equivalence to existing operators without clinical name matching.
+- [ ] 2.3 Add coordinator-owned explicit v2 session admission/replay and new graph dependencies while preserving v1; verify CMP-1 and fresh child digests, source bindings, hypothesis gates and both administration/evaluation paths.
+- [ ] 2.4 Implement packet B exact interval/coverage operator and conservative bounds; verify TIM-1 through TIM-6 against the independent endpoint-cell oracle, rational/open-endpoint boundaries and metamorphic properties.
+- [ ] 2.5 Register schedule_coverage through the fixed signal/support owner and integrate per-claim support into managed checks; verify a known outside-window fact survives unknown collection, and conditional/proposed gaps cannot become fixed refutations.
+- [ ] 2.6 Add public v2 preparation/discovery for this slice and concise endpoint/schedule clinical rows; run documented CLI and initialized MCP fixtures, confirm full canonical results/receipts are retrievable and update the affected guide's built/unbuilt boundary.
+- [ ] 2.7 Freeze and pin changed/new pure object/projection/schedule/admission decisions under V4 with direct authored signs; run genuine CrossHair contracts with --report_all and retain exact target-specific outcomes and any open limitations.
+- [ ] 2.8 Run the V6 Phase 2 neurological walkthrough with a fresh bounded real pull, a wrong collection plan and its repair; retain source fingerprints, canonical request/results and a producer-to-clinical-output trace, with simulated choices labelled.
+
+## 3. Finite-state safety and treatment policy
+
+- [ ] 3.1 Implement packet C finite-policy validation and reachability over reused finite predicates, explicit scopes/states/actions and external-input semantics; verify POL-2/3/7, invalid refs/domains, empty feasible initial models, infeasible transition targets and terminal/outgoing-transition rules.
+- [ ] 3.2 Implement independent reachable coverage, competing-transition, prohibition and invariant checks with bounded traces; verify POL-1/4/6 against the small graph oracle and show prohibition constraints never erase a violating assignment.
+- [ ] 3.3 Implement the explicit finite all-path termination claim and not-declared outcome; verify POL-5 for cycles, dead ends and terminal paths without assumed fairness or patient-outcome claims.
+- [ ] 3.4 Register finite_policy through the shared support gate, managed projections and clinical metadata; verify EPI/SCP cases, raw conditional versus admitted results, no implicit follow-up termination and exact work/display-limit behavior.
+- [ ] 3.5 Add public typed preparation and focused runnable policy guide plus clinical action/trace summaries; verify CLI/MCP parity, action scopes and all current code mappings, and document declared-variable coverage in the same change.
+- [ ] 3.6 Freeze and pin new/changed pure policy and consumer decisions under V4, with authored unsafe-dose and transition-scope MUST-NOT tests; retain actual current proof/contract statuses.
+- [ ] 3.7 Run the V6 Phase 1 haematology walkthrough on real source records, distinguish the DLT window from longer safety follow-up and repair a deliberately incomplete policy; verify useful findings reach the clinical summary without an invented source definition.
+
+## 4. Conditional exact efficacy design
+
+- [ ] 4.1 Implement packet D exact fixed-n one-sided binomial arithmetic, closed input shape and work/bit bounds; verify STA-1/2 with full tiny outcome-vector enumeration, integer/rational boundaries and no rounded comparison basis.
+- [ ] 4.2 Implement supported model-assumption admission and explicit probability/threshold claims; verify STA-3/4, unsupported families, missing alignment and distinction between computed type-I rejection probability and a supplied alpha bound.
+- [ ] 4.3 Register binomial_design and external-method handling into shared replay, projections, budgets and clinical metadata; verify no source result becomes a new planning target and no unsupported adaptive/cluster/survival calculation is implied.
+- [ ] 4.4 Add public typed preparation, focused examples and clinical statistical summaries; exercise CLI/MCP exact output parity, retain unsupported-method input declarations and document the implemented family and non-optimizer boundary.
+- [ ] 4.5 Freeze and pin new/changed pure statistical and applicability decisions under V4, with independent tail/direction/boundary MUST-NOT tests and genuine CrossHair outcomes where contracts are checkable.
+- [ ] 4.6 Run the V6 Phase 2 infectious-disease binary-response walkthrough, compare two explicitly simulated choices and revise one planning input; verify probabilities, model assumptions and open clinical choices propagate without claiming clinical validity.
+
+## 5. General protocol alternatives and cross-operation relations
+
+- [ ] 5.1 Implement C8 tagged protocol_options validation in both shared decision paths; verify v1 exact-query guard remains intact and protocol alternatives reference only existing objects/checks with compatible kinds/targets.
+- [ ] 5.2 Implement simultaneous detached object replacements, explicit local hypothetical frames and fresh candidate replay with protected source/required-check sets; verify OPT-1/4/5 and budget accounting across every option and old/new snapshot, including stale-result, source-edit, omitted-check and conditional-leakage attempts.
+- [ ] 5.3 Implement per-check compatibility aggregation, applicable fixed-floor consistency and independent disposition/support; verify OPT-2/3/4 and SCP/EPI cases without voting, forged confirmation, vacuity, whole-session uncertainty poisoning or safe/complete labels.
+- [ ] 5.4 Connect definition relations to actual protocol child requests/results using the existing meaning-check owner; verify DEF-1/2 with distinct thresholds/visits, earlier-screening versus equivalence, unresolved population/edition and both CLI/MCP representations.
+- [ ] 5.5 Extend short preparation and discovery for protocol questions/options, external methods and common check bindings; a cold operator must prepare and run two non-entailment options by retained IDs without private builder scripts or expanded response copying.
+- [ ] 5.6 Extend revision semantics for verdict, residual requirements, support, origin, scope/model and wording; verify REV-1 across both decision-level and option-level requirements, selection changes and caller-origin changes with both snapshots freshly replayed.
+- [ ] 5.7 Update this slice's answer guides and examples, run every newly runnable request through CLI/MCP, freeze/pin new pure decisions under V4 and retain the actual support/compatibility consumer trace.
+- [ ] 5.8 Run the V6 Phase 3 renal outcomes walkthrough with unsupported survival calculation explicitly retained; revise an assessment/collection plan and verify alternatives distinguish feasible design choices from evidence/translation questions.
+
+## 6. Shareable protocol delivery and bounded conversation
+
+- [ ] 6.1 Implement packet F pure clinical protocol view from canonical results; verify OUT-1/2, independent claim standing, model boundary and requested/not-requested/not-applicable/open/not-computed sections without hidden reasoning in rendering.
+- [ ] 6.2 Integrate the view into compact/pageable public results and the readable decision list; verify material endpoint/schedule/policy/statistical and existing stages/funnel findings survive, byte/entry limits work and every continuation is retrievable.
+- [ ] 6.3 Extend the separate review workbook with Protocol synopsis and Schedule of assessments; verify every C9 clinical column, source/profile/result link, conditionality and numeric context, with no raw-JSON clinical cells or source-workbook mutation.
+- [ ] 6.4 Wire the new revision axes and caller-label attribution consistently into compact replies, Changes, decision-list markdown and workbook; verify residual-only/wording-only edits do not claim changed clinical verdicts and support changes remain visible.
+- [ ] 6.5 Run the complete public prepare -> retained-ID execute -> bounded read -> revise -> export chain through CLI and initialized MCP; compare canonical identities and clinical rows, open/render the workbook and correct actual legibility or missing-context defects.
+- [ ] 6.6 Update README worked conversation, AGENTS assistant guidance at its authoritative project source, SKILL, DEVELOPING and discovery/component maps in this slice; run all examples as written and clearly distinguish working checks, encoded assumptions and deferred full writer/statistical families.
+- [ ] 6.7 Freeze and pin newly changed pure clinical/result/revision classification functions under V4, then run a new V6 clinical walkthrough after export integration; verify usable colleague-facing delivery and document wrong/abstained/identified classes separately.
+
+## 7. Final cross-family verification and handoff
+
+- [ ] 7.1 Refresh fresh symbolic references and executed producer-to-consumer traces for every new claim family and both public transports; compare source/code/test hashes and reject defined-but-unconsumed outputs or stale fingerprints.
+- [ ] 7.2 Run every committed runnable example and discovery example, all new named-code mappings, affected generic signal consumers and unknown-code fallbacks; verify no current finding is accidentally unclassified or promoted by a family summary.
+- [ ] 7.3 Run current local CI/import contracts, all affected tests/property oracles, relevant opt-in live checks and a fresh isolated install if packaging changed; record actual versions/results and investigate failures without weakening gates or rewriting old expectations.
+- [ ] 7.4 Freeze the final relevant code/test/import basis and serialize refreshed Detective/CrossHair evidence for all invalidated targets; deliver the proof index with exact statuses, generated/authored test refs and separately listed unaccepted limitations.
+- [ ] 7.5 Perform the final V6 cold handoff walkthrough in an additional disease/design structure using only public discovery/CLI/MCP and spreadsheet export; retain random-pool accounting and one useful wrong-design/repair pair without source or clinician-confirmation invention.
+- [ ] 7.6 Reconcile docs/spec/contracts/task evidence against the demonstrated capability, retain requested clinical unknowns, and validate this OpenSpec change strictly; verify no general protocol-writer or universal clinical-generalization claim has crept in.
+- [ ] 7.7 Review retained/staged artifacts for replay sufficiency, size, opaque archives, accidental source duplication and added-then-deleted index entries; verify actual diff contains only intended coherent changes and privacy/security gates required for publishing pass.
+- [ ] 7.8 Under implementation authorization and repository gates, commit coherent changes on main and push; verify remote identity, clean intended status and a final delivered decision-list/workbook example with explicit remaining engineering/proof limitations.
+
+## Workflow follow-up
+
+- Archive/sync this change only after its reviewed evidence and any explicitly accepted target-specific limitations satisfy the project's completion rules; archiving is separate from implementing it.
+- Keep general statistical design, automatic clinical encoding, significance/ranking and complete autonomous writer work visibly deferred in their owning plans.

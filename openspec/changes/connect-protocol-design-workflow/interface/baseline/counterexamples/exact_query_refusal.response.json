@@ -1,0 +1,63 @@
+{
+ "summary": {
+  "kind": "refusal",
+  "code": "refused",
+  "operation": "design_session",
+  "findings": 1,
+  "dispositions": {
+   "translation_question": 1
+  },
+  "problems": [
+   "alternative_requires_exact_entailment_query"
+  ]
+ },
+ "clinical": {
+  "version": 1,
+  "operation": "design_session",
+  "findings": [
+   {
+    "path": "/problems/0",
+    "kind": "request",
+    "outcome": "REFUSED",
+    "standing": null,
+    "completion": "invalid",
+    "disposition": "translation_question",
+    "scope": {},
+    "values": {},
+    "support": {},
+    "origins": [],
+    "conditions": [],
+    "blockers": [
+     "alternative_requires_exact_entailment_query"
+    ],
+    "canonical_ref": "/problems/0"
+   }
+  ]
+ },
+ "code": "refused",
+ "operation": "design_session",
+ "result": null,
+ "problems": [
+  "alternative_requires_exact_entailment_query"
+ ],
+ "metadata": {
+  "version": 1,
+  "kind": "refusal",
+  "findings": [
+   {
+    "path": "/problems/0",
+    "kind": "request",
+    "logical_result": "REFUSED",
+    "standing": null,
+    "completion": "invalid",
+    "causes": [
+     {
+      "code": "alternative_requires_exact_entailment_query",
+      "kind": "translation"
+     }
+    ],
+    "disposition": "translation_question"
+   }
+  ]
+ }
+}

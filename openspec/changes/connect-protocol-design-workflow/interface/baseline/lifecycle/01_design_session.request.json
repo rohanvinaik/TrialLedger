@@ -1,0 +1,309 @@
+{
+ "operation": "design_session",
+ "session": {
+  "schema_version": 1,
+  "id": "design",
+  "revision": "one",
+  "parent_digest": null,
+  "target": {
+   "kind": "new_trial",
+   "ref": "draft",
+   "scope": {
+    "study": "draft",
+    "population": "general",
+    "arm": "all",
+    "time": "entry",
+    "version": "v1"
+   }
+  },
+  "sources": [],
+  "premises": [
+   {
+    "id": "adult",
+    "kind": "assertion",
+    "payload": {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "user:adult",
+     "id": "adult",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "user-explicit",
+      "premises": [],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   }
+  ],
+  "analyses": [
+   {
+    "id": "older",
+    "operation": "entailment",
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "study": "draft",
+      "population": "general",
+      "arm": "all",
+      "time": "entry",
+      "version": "v1"
+     }
+    },
+    "parameters": {
+     "query": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 65.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "bound": 128
+    },
+    "uses": [
+     {
+      "premise": "adult",
+      "slot": "assertions",
+      "projection": "identity"
+     }
+    ]
+   },
+   {
+    "id": "younger",
+    "operation": "entailment",
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "study": "draft",
+      "population": "general",
+      "arm": "all",
+      "time": "entry",
+      "version": "v1"
+     }
+    },
+    "parameters": {
+     "query": {
+      "class": "Not",
+      "part": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 65.0,
+        "unit": "Years",
+        "upper": null
+       }
+      }
+     },
+     "bound": 128
+    },
+    "uses": [
+     {
+      "premise": "adult",
+      "slot": "assertions",
+      "projection": "identity"
+     }
+    ]
+   }
+  ],
+  "decisions": [
+   {
+    "id": "age-policy",
+    "question": "Should the represented age restriction require age 65?",
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "study": "draft",
+      "population": "general",
+      "arm": "all",
+      "time": "entry",
+      "version": "v1"
+     }
+    },
+    "coverage": "represented_restriction",
+    "alternatives": [
+     {
+      "id": "older",
+      "label": "65 or older",
+      "analysis": "older",
+      "query": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 65.0,
+        "unit": "Years",
+        "upper": null
+       }
+      }
+     },
+     {
+      "id": "younger",
+      "label": "Below 65",
+      "analysis": "younger",
+      "query": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 65.0,
+         "unit": "Years",
+         "upper": null
+        }
+       }
+      }
+     }
+    ],
+    "selected": null
+   }
+  ],
+  "limits": {
+   "max_analyses": 128,
+   "max_premises": 1000,
+   "max_sources": 64,
+   "max_decisions": 128,
+   "max_expanded_items": 10000,
+   "max_solver_work": 10000000,
+   "max_output_bytes": 16000000
+  }
+ },
+ "previous": null
+}

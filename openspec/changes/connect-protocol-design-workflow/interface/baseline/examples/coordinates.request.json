@@ -1,0 +1,38 @@
+{
+ "operation": "coordinates",
+ "domain": "nsclc",
+ "evidence": [
+  {
+   "section": "inclusion",
+   "concept": "prior_lines",
+   "values": [
+    "0"
+   ],
+   "scope": "advanced",
+   "ref": "user:example-no-prior",
+   "standing": {
+    "status": "known",
+    "resolution": "resolved",
+    "basis": [
+     "user:example-no-prior"
+    ]
+   }
+  },
+  {
+   "section": "inclusion",
+   "concept": "extent",
+   "values": [
+    "advanced"
+   ],
+   "scope": "",
+   "ref": "user:example-advanced",
+   "standing": {
+    "status": "known",
+    "resolution": "resolved",
+    "basis": [
+     "user:example-advanced"
+    ]
+   }
+  }
+ ]
+}

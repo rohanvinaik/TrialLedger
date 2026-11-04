@@ -1,0 +1,1453 @@
+{
+ "interface_version": 1,
+ "kind": "binomial_design",
+ "cases": [
+  {
+   "id": "STA-1-k2",
+   "acceptance": [
+    "STA-1"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "1/4",
+    "power": "9/16",
+    "display": {
+     "null_rejection_probability": "0.2500",
+     "power": "0.5625",
+     "rounding": "half_even_4dp"
+    },
+    "support_status": "known"
+   }
+  },
+  {
+   "id": "STA-1-k1",
+   "acceptance": [
+    "STA-1"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 1,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "3/4",
+    "power": "15/16",
+    "display": {
+     "null_rejection_probability": "0.7500",
+     "power": "0.9375",
+     "rounding": "half_even_4dp"
+    }
+   }
+  },
+  {
+   "id": "STA-2-k0-always-rejects",
+   "acceptance": [
+    "STA-2"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 3,
+    "critical_count": 0,
+    "p0": "0",
+    "p1": "1",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "1",
+    "power": "1",
+    "display": {
+     "null_rejection_probability": "1.0000",
+     "power": "1.0000",
+     "rounding": "half_even_4dp"
+    }
+   }
+  },
+  {
+   "id": "STA-2-k-n-plus-1-never-rejects",
+   "acceptance": [
+    "STA-2"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 3,
+    "critical_count": 4,
+    "p0": "0",
+    "p1": "1",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "0",
+    "power": "0",
+    "display": {
+     "null_rejection_probability": "0.0000",
+     "power": "0.0000",
+     "rounding": "half_even_4dp"
+    }
+   }
+  },
+  {
+   "id": "STA-2-p0-zero-p1-one",
+   "acceptance": [
+    "STA-2"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 3,
+    "critical_count": 3,
+    "p0": "0",
+    "p1": "1",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "0",
+    "power": "1",
+    "display": {
+     "null_rejection_probability": "0.0000",
+     "power": "1.0000",
+     "rounding": "half_even_4dp"
+    }
+   }
+  },
+  {
+   "id": "n10-k7",
+   "acceptance": [
+    "STA-1"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 10,
+    "critical_count": 7,
+    "p0": "1/2",
+    "p1": "7/10",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "11/64",
+    "power": "406006699/625000000",
+    "display": {
+     "null_rejection_probability": "0.1719",
+     "power": "0.6496",
+     "rounding": "half_even_4dp"
+    }
+   }
+  },
+  {
+   "id": "claims-alpha-bound-and-power",
+   "acceptance": [
+    "STA-1"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [
+    {
+     "id": "alpha",
+     "quantity": "null_rejection_probability",
+     "comparison": "<=",
+     "value": "1/4"
+    },
+    {
+     "id": "power-target",
+     "quantity": "power",
+     "comparison": ">=",
+     "value": "3/5"
+    }
+   ],
+   "expect": {
+    "code": "not_satisfied",
+    "null_rejection_probability": "1/4",
+    "power": "9/16",
+    "display": {
+     "null_rejection_probability": "0.2500",
+     "power": "0.5625",
+     "rounding": "half_even_4dp"
+    },
+    "claim_outcomes": {
+     "alpha": "satisfied",
+     "power-target": "not_satisfied"
+    },
+    "blockers_include": [
+     "binomial_claim_not_satisfied:power-target"
+    ]
+   }
+  },
+  {
+   "id": "STA-3-survival-model-unsupported",
+   "acceptance": [
+    "STA-3"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "exponential_time_to_event",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "unsupported_method",
+    "computed": false,
+    "blockers_include": [
+     "binomial_unsupported_method"
+    ]
+   }
+  },
+  {
+   "id": "STA-3-less-direction-unsupported",
+   "acceptance": [
+    "STA-3"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "less",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "unsupported_method",
+    "computed": false
+   }
+  },
+  {
+   "id": "STA-4-missing-alignment-keeps-arithmetic",
+   "acceptance": [
+    "STA-4"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "1/4",
+    "power": "9/16",
+    "display": {
+     "null_rejection_probability": "0.2500",
+     "power": "0.5625",
+     "rounding": "half_even_4dp"
+    },
+    "assumption_coverage": {
+     "fixed_n": "declared",
+     "iid_binary": "declared",
+     "alignment": "missing"
+    },
+    "blockers_include": [
+     "binomial_assumption_missing:alignment"
+    ]
+   }
+  },
+  {
+   "id": "STA-4-proposed-alignment",
+   "acceptance": [
+    "STA-4",
+    "EPI-1"
+   ],
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "proposed",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "expect": {
+    "code": "computed",
+    "null_rejection_probability": "1/4",
+    "power": "9/16",
+    "display": {
+     "null_rejection_probability": "0.2500",
+     "power": "0.5625",
+     "rounding": "half_even_4dp"
+    },
+    "support_status": null
+   }
+  }
+ ],
+ "malformed": [
+  {
+   "id": "n-zero",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 0,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_n"
+  },
+  {
+   "id": "n-bool",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": true,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_n"
+  },
+  {
+   "id": "n-ceiling",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 513,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_n_ceiling"
+  },
+  {
+   "id": "k-negative",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": -1,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_critical_count"
+  },
+  {
+   "id": "k-too-large",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 4,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_critical_count"
+  },
+  {
+   "id": "p-equal",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "1/2",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_probabilities"
+  },
+  {
+   "id": "p-reversed",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "3/4",
+    "p1": "1/2",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_probabilities"
+  },
+  {
+   "id": "p-above-one",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/2",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_probabilities"
+  },
+  {
+   "id": "p-float",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": 0.5,
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_rational"
+  },
+  {
+   "id": "p-decimal",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "0.5",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_rational"
+  },
+  {
+   "id": "p-bits",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_rational_bit_limit"
+  },
+  {
+   "id": "no-assumptions",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": []
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_assumption"
+  },
+  {
+   "id": "bad-role",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "normality",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_invalid_assumption"
+  },
+  {
+   "id": "duplicate-assumption",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [],
+   "refusal": "binomial_duplicate_assumption"
+  },
+  {
+   "id": "extra-field",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ],
+    "alpha": "1/20"
+   },
+   "claims": [],
+   "refusal": "binomial_data_fields"
+  },
+  {
+   "id": "claim-value-out-of-range",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [
+    {
+     "id": "a",
+     "quantity": "power",
+     "comparison": ">=",
+     "value": "2"
+    }
+   ],
+   "refusal": "binomial_invalid_claims"
+  },
+  {
+   "id": "claim-strict-comparison",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [
+    {
+     "id": "a",
+     "quantity": "power",
+     "comparison": ">",
+     "value": "1/2"
+    }
+   ],
+   "refusal": "binomial_invalid_claims"
+  },
+  {
+   "id": "duplicate-claim-id",
+   "data": {
+    "scope": "draft:phase2-response",
+    "model": "fixed_n_iid_bernoulli",
+    "direction": "greater",
+    "n": 2,
+    "critical_count": 2,
+    "p0": "1/2",
+    "p1": "3/4",
+    "assumptions": [
+     {
+      "role": "fixed_n",
+      "ref": "user:fixed_n assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "iid_binary",
+      "ref": "user:iid_binary assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     },
+     {
+      "role": "alignment",
+      "ref": "user:alignment assumption (interface fixture)",
+      "version": "1",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated planning choice (interface fixture)"
+      ]
+     }
+    ]
+   },
+   "claims": [
+    {
+     "id": "a",
+     "quantity": "power",
+     "comparison": ">=",
+     "value": "1/2"
+    },
+    {
+     "id": "a",
+     "quantity": "power",
+     "comparison": "<=",
+     "value": "1"
+    }
+   ],
+   "refusal": "binomial_duplicate_claim"
+  }
+ ]
+}

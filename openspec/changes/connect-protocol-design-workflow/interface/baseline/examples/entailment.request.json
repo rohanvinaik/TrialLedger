@@ -1,0 +1,100 @@
+{
+ "operation": "entailment",
+ "assertions": [
+  {
+   "applicability": {
+    "class": "Always"
+   },
+   "body": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+     "class": "Predicate",
+     "key": "eligible_sex",
+     "kind": "demographic"
+    },
+    "qualifiers": {
+     "class": "Always"
+    },
+    "subject": {
+     "class": "Subject",
+     "kind": "participant",
+     "referent": ""
+    },
+    "time": null,
+    "value": {
+     "class": "Value",
+     "comparison": "eq",
+     "inclusivity": "unspecified",
+     "kind": "enum",
+     "members": [
+      "female"
+     ],
+     "number": null,
+     "unit": "",
+     "upper": null
+    }
+   },
+   "branch": {
+    "class": "Branch",
+    "node": "unresolved",
+    "path": []
+   },
+   "class": "ScopedAssertion",
+   "cohort": {
+    "class": "Scope",
+    "kind": "all_participants",
+    "parts": [],
+    "ref": ""
+   },
+   "criterion_ref": "user:example-brief",
+   "id": "population",
+   "modality": "required",
+   "resolution": "resolved",
+   "rule": {
+    "answers": [],
+    "class": "Rule",
+    "id": "user-choice",
+    "premises": [],
+    "version": "1",
+    "warrants": [
+     "user:example-brief"
+    ]
+   },
+   "span": [],
+   "status": "known"
+  }
+ ],
+ "query": {
+  "class": "Literal",
+  "evidence": [],
+  "polarity": "positive",
+  "predicate": {
+   "class": "Predicate",
+   "key": "eligible_sex",
+   "kind": "demographic"
+  },
+  "qualifiers": {
+   "class": "Always"
+  },
+  "subject": {
+   "class": "Subject",
+   "kind": "participant",
+   "referent": ""
+  },
+  "time": null,
+  "value": {
+   "class": "Value",
+   "comparison": "eq",
+   "inclusivity": "unspecified",
+   "kind": "enum",
+   "members": [
+    "male"
+   ],
+   "number": null,
+   "unit": "",
+   "upper": null
+  }
+ }
+}

@@ -1,0 +1,1487 @@
+{
+ "interface_version": 1,
+ "kind": "schedule_coverage",
+ "cases": [
+  {
+   "id": "TIM-1",
+   "acceptance": [
+    "TIM-1"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": [
+     {
+      "lower": null,
+      "upper": "80",
+      "lower_inclusive": false,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "existence": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [
+       {
+        "lower": "77",
+        "upper": "80",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "not_collected",
+      "determined_by": [
+       "available",
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "uncovered",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": [
+       {
+        "lower": "80",
+        "upper": "91",
+        "lower_inclusive": false,
+        "upper_inclusive": true
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "TIM-2-open-boundary",
+   "acceptance": [
+    "TIM-2"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": [
+     {
+      "lower": null,
+      "upper": "91",
+      "lower_inclusive": false,
+      "upper_inclusive": false
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "existence": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [
+       {
+        "lower": "77",
+        "upper": "91",
+        "lower_inclusive": true,
+        "upper_inclusive": false
+       }
+      ],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "uncovered",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": [
+       {
+        "lower": "91",
+        "upper": "91",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "TIM-3-unknown-availability",
+   "acceptance": [
+    "TIM-3"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "expect": {
+    "code": "unresolved",
+    "claims": {
+     "existence": {
+      "outcome": "unresolved",
+      "determined_by": [],
+      "missing": [
+       "available"
+      ],
+      "feasible": null,
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "unresolved",
+      "determined_by": [],
+      "missing": [
+       "available"
+      ],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "unresolved",
+      "determined_by": [],
+      "missing": [
+       "available"
+      ],
+      "feasible": null,
+      "uncovered": null
+     }
+    }
+   }
+  },
+  {
+   "id": "TIM-3-explicitly-none",
+   "acceptance": [
+    "TIM-3"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": []
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "existence": {
+      "outcome": "no_feasible_time",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "not_collected",
+      "determined_by": [
+       "available",
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "uncovered",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": [
+       {
+        "lower": "77",
+        "upper": "91",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "TIM-3-no-permitted-time",
+   "acceptance": [
+    "TIM-3"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [],
+    "available": [
+     {
+      "lower": null,
+      "upper": "80",
+      "lower_inclusive": false,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "existence": {
+      "outcome": "no_permitted_time",
+      "determined_by": [
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "outside_window",
+      "determined_by": [
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "no_permitted_time",
+      "determined_by": [
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": []
+     }
+    }
+   }
+  },
+  {
+   "id": "TIM-4-no-nominal",
+   "acceptance": [
+    "TIM-4"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": null,
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": [
+     {
+      "lower": null,
+      "upper": "80",
+      "lower_inclusive": false,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "existence": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [
+       {
+        "lower": "77",
+        "upper": "80",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "unknown_target",
+      "determined_by": [
+       "nominal"
+      ],
+      "missing": [
+       "nominal"
+      ],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "uncovered",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": [
+       {
+        "lower": "80",
+        "upper": "91",
+        "lower_inclusive": false,
+        "upper_inclusive": true
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "TIM-4-outside-window-survives-unknown-collection",
+   "acceptance": [
+    "TIM-4",
+    "EPI-2"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "100",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "existence": {
+      "outcome": "unresolved",
+      "determined_by": [],
+      "missing": [
+       "available"
+      ],
+      "feasible": null,
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "outside_window",
+      "determined_by": [
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "unresolved",
+      "determined_by": [],
+      "missing": [
+       "available"
+      ],
+      "feasible": null,
+      "uncovered": null
+     }
+    }
+   }
+  },
+  {
+   "id": "TIM-6-repeated-visits",
+   "acceptance": [
+    "TIM-6"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "56",
+    "permitted": [
+     {
+      "lower": "27",
+      "upper": "29",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "55",
+      "upper": "57",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "83",
+      "upper": "85",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": [
+     {
+      "lower": "0",
+      "upper": "56",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "existence": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [
+       {
+        "lower": "27",
+        "upper": "29",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       },
+       {
+        "lower": "55",
+        "upper": "56",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "uncovered",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": [
+       {
+        "lower": "56",
+        "upper": "57",
+        "lower_inclusive": false,
+        "upper_inclusive": true
+       },
+       {
+        "lower": "83",
+        "upper": "85",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "rational-endpoints-and-canonical-output",
+   "acceptance": [
+    "TIM-2"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "2/4",
+    "permitted": [
+     {
+      "lower": "1/3",
+      "upper": "7/2",
+      "lower_inclusive": true,
+      "upper_inclusive": false
+     }
+    ],
+    "available": [
+     {
+      "lower": "0",
+      "upper": "14/4",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "satisfied",
+    "nominal": "1/2",
+    "permitted": [
+     {
+      "lower": "1/3",
+      "upper": "7/2",
+      "lower_inclusive": true,
+      "upper_inclusive": false
+     }
+    ],
+    "available": [
+     {
+      "lower": "0",
+      "upper": "7/2",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "claims": {
+     "existence": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [
+       {
+        "lower": "1/3",
+        "upper": "7/2",
+        "lower_inclusive": true,
+        "upper_inclusive": false
+       }
+      ],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": []
+     }
+    }
+   }
+  },
+  {
+   "id": "touching-intervals-merge",
+   "acceptance": [
+    "TIM-2"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "2",
+    "permitted": [
+     {
+      "lower": "2",
+      "upper": "3",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "1",
+      "upper": "2",
+      "lower_inclusive": true,
+      "upper_inclusive": false
+     }
+    ],
+    "available": [
+     {
+      "lower": "1",
+      "upper": "3",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "satisfied",
+    "permitted": [
+     {
+      "lower": "1",
+      "upper": "3",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "claims": {
+     "existence": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [
+       {
+        "lower": "1",
+        "upper": "3",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": []
+     }
+    }
+   }
+  },
+  {
+   "id": "punctured-window-never-filled",
+   "acceptance": [
+    "TIM-2"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "2",
+    "permitted": [
+     {
+      "lower": "1",
+      "upper": "2",
+      "lower_inclusive": true,
+      "upper_inclusive": false
+     },
+     {
+      "lower": "2",
+      "upper": "3",
+      "lower_inclusive": false,
+      "upper_inclusive": true
+     }
+    ],
+    "available": [
+     {
+      "lower": "2",
+      "upper": "2",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "permitted": [
+     {
+      "lower": "1",
+      "upper": "2",
+      "lower_inclusive": true,
+      "upper_inclusive": false
+     },
+     {
+      "lower": "2",
+      "upper": "3",
+      "lower_inclusive": false,
+      "upper_inclusive": true
+     }
+    ],
+    "claims": {
+     "existence": {
+      "outcome": "no_feasible_time",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [],
+      "uncovered": null
+     },
+     "nominal": {
+      "outcome": "outside_window",
+      "determined_by": [
+       "nominal",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": null
+     },
+     "full_window": {
+      "outcome": "uncovered",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": null,
+      "uncovered": [
+       {
+        "lower": "1",
+        "upper": "2",
+        "lower_inclusive": true,
+        "upper_inclusive": false
+       },
+       {
+        "lower": "2",
+        "upper": "3",
+        "lower_inclusive": false,
+        "upper_inclusive": true
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "subset-of-claims",
+   "acceptance": [
+    "TIM-1"
+   ],
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": [
+     {
+      "lower": null,
+      "upper": "80",
+      "lower_inclusive": false,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": [
+    {
+     "id": "visit-feasible",
+     "claim": "existence"
+    }
+   ],
+   "expect": {
+    "code": "satisfied",
+    "claims": {
+     "visit-feasible": {
+      "outcome": "satisfied",
+      "determined_by": [
+       "available",
+       "permitted"
+      ],
+      "missing": [],
+      "feasible": [
+       {
+        "lower": "77",
+        "upper": "80",
+        "lower_inclusive": true,
+        "upper_inclusive": true
+       }
+      ],
+      "uncovered": null
+     }
+    }
+   }
+  }
+ ],
+ "malformed": [
+  {
+   "id": "float-bound",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": 77.0,
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_rational"
+  },
+  {
+   "id": "decimal-string",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84.5",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_rational"
+  },
+  {
+   "id": "zero-denominator",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "1/0",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_rational"
+  },
+  {
+   "id": "whitespace",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": " 84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_rational"
+  },
+  {
+   "id": "plus-sign",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "+84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_rational"
+  },
+  {
+   "id": "int-not-string",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": 84,
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_rational"
+  },
+  {
+   "id": "bit-limit",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "115792089237316195423570985008687907853269984665640564039457584007913129639936",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_rational_bit_limit"
+  },
+  {
+   "id": "reversed",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "91",
+      "upper": "77",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_empty_interval"
+  },
+  {
+   "id": "open-singleton",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "80",
+      "upper": "80",
+      "lower_inclusive": true,
+      "upper_inclusive": false
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_empty_interval"
+  },
+  {
+   "id": "inclusive-infinity",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": null,
+      "upper": "80",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_infinite_inclusive"
+  },
+  {
+   "id": "bool-as-flag",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "1",
+      "upper": "2",
+      "lower_inclusive": 1,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_interval"
+  },
+  {
+   "id": "too-many-intervals",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "0",
+      "upper": "1",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "2",
+      "upper": "3",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "4",
+      "upper": "5",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "6",
+      "upper": "7",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "8",
+      "upper": "9",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "10",
+      "upper": "11",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "12",
+      "upper": "13",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "14",
+      "upper": "15",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "16",
+      "upper": "17",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "18",
+      "upper": "19",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "20",
+      "upper": "21",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "22",
+      "upper": "23",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "24",
+      "upper": "25",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "26",
+      "upper": "27",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "28",
+      "upper": "29",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "30",
+      "upper": "31",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "32",
+      "upper": "33",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "34",
+      "upper": "35",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "36",
+      "upper": "37",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "38",
+      "upper": "39",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "40",
+      "upper": "41",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "42",
+      "upper": "43",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "44",
+      "upper": "45",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "46",
+      "upper": "47",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "48",
+      "upper": "49",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "50",
+      "upper": "51",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "52",
+      "upper": "53",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "54",
+      "upper": "55",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "56",
+      "upper": "57",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "58",
+      "upper": "59",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "60",
+      "upper": "61",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "62",
+      "upper": "63",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     },
+     {
+      "lower": "64",
+      "upper": "65",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_union_limit"
+  },
+  {
+   "id": "union-not-list",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": {
+     "lower": "1"
+    },
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_union"
+  },
+  {
+   "id": "extra-field",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null,
+    "window_label": "week 12"
+   },
+   "claims": null,
+   "refusal": "schedule_data_fields"
+  },
+  {
+   "id": "missing-field",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ]
+   },
+   "claims": null,
+   "refusal": "schedule_data_fields"
+  },
+  {
+   "id": "empty-anchor",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": null,
+   "refusal": "schedule_invalid_anchor"
+  },
+  {
+   "id": "empty-claims",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": [],
+   "refusal": "schedule_invalid_claims"
+  },
+  {
+   "id": "unknown-claim",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": [
+    {
+     "id": "x",
+     "claim": "coverage"
+    }
+   ],
+   "refusal": "schedule_invalid_claims"
+  },
+  {
+   "id": "duplicate-claim",
+   "data": {
+    "scope": "draft:week-12-assessment",
+    "anchor": "randomization",
+    "unit": "day",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "upper": "91",
+      "lower_inclusive": true,
+      "upper_inclusive": true
+     }
+    ],
+    "available": null
+   },
+   "claims": [
+    {
+     "id": "a",
+     "claim": "nominal"
+    },
+    {
+     "id": "b",
+     "claim": "nominal"
+    }
+   ],
+   "refusal": "schedule_duplicate_claim"
+  }
+ ]
+}

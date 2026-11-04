@@ -1,0 +1,8035 @@
+{
+ "interface_version": 1,
+ "kind": "finite_policy",
+ "cases": [
+  {
+   "id": "POL-1-covered-but-unsafe",
+   "acceptance": [
+    "POL-1"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "high_eff",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "low_eff",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "high_safety",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "low_safety",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "interim",
+     "selected"
+    ],
+    "initial": [
+     "interim"
+    ],
+    "terminal": [
+     "selected"
+    ],
+    "actions": [
+     {
+      "id": "select_high_dose",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "select high dose"
+     },
+     {
+      "id": "select_low_dose",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "select low dose"
+     },
+     {
+      "id": "stop_for_futility",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "stop for futility"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "t-high",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "high_dose_efficacy_superior",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "high_dose_safety_concern",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "select_high_dose"
+      ]
+     },
+     {
+      "id": "t-low",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "low_dose_efficacy_superior",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "high_dose_efficacy_superior",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "study_procedure",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "high_dose_safety_concern",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           }
+          ]
+         }
+        }
+       ]
+      },
+      "actions": [
+       "select_low_dose"
+      ]
+     },
+     {
+      "id": "t-stop",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "low_dose_efficacy_superior",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "high_dose_efficacy_superior",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "study_procedure",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "high_dose_safety_concern",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           }
+          ]
+         }
+        }
+       ]
+      },
+      "actions": [
+       "stop_for_futility"
+      ]
+     }
+    ],
+    "prohibitions": [
+     {
+      "id": "no-low-dose-with-low-dose-signal",
+      "state": null,
+      "condition": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "low_dose_safety_concern",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "select_low_dose"
+      ],
+      "rule": {
+       "ref": "user:low-dose safety prohibition",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     }
+    ],
+    "invariants": []
+   },
+   "claims": null,
+   "expect": {
+    "code": "violated",
+    "reachability": {
+     "reachable_states": [
+      "interim",
+      "selected"
+     ],
+     "unreachable_states": [],
+     "initial_nodes": 16,
+     "reachable_nodes": 32
+    },
+    "claims": {
+     "coverage": {
+      "outcome": "covered",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "exclusivity": {
+      "outcome": "exclusive",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "prohibition": {
+      "outcome": "violation",
+      "violations_found": 3,
+      "witnesses_returned": 3,
+      "reasons": [],
+      "standing": "known"
+     },
+     "invariant": {
+      "outcome": "not_declared",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-1-proposed-prohibition-keeps-raw-violation",
+   "acceptance": [
+    "POL-1",
+    "EPI-1"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "high_eff",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "low_eff",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "high_safety",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "low_safety",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "interim",
+     "selected"
+    ],
+    "initial": [
+     "interim"
+    ],
+    "terminal": [
+     "selected"
+    ],
+    "actions": [
+     {
+      "id": "select_high_dose",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "select high dose"
+     },
+     {
+      "id": "select_low_dose",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "select low dose"
+     },
+     {
+      "id": "stop_for_futility",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "stop for futility"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "t-high",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "high_dose_efficacy_superior",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "high_dose_safety_concern",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "select_high_dose"
+      ]
+     },
+     {
+      "id": "t-low",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "low_dose_efficacy_superior",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "high_dose_efficacy_superior",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "study_procedure",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "high_dose_safety_concern",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           }
+          ]
+         }
+        }
+       ]
+      },
+      "actions": [
+       "select_low_dose"
+      ]
+     },
+     {
+      "id": "t-stop",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "low_dose_efficacy_superior",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "high_dose_efficacy_superior",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "study_procedure",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "high_dose_safety_concern",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           }
+          ]
+         }
+        }
+       ]
+      },
+      "actions": [
+       "stop_for_futility"
+      ]
+     }
+    ],
+    "prohibitions": [
+     {
+      "id": "no-low-dose-with-low-dose-signal",
+      "state": null,
+      "condition": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "low_dose_safety_concern",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "select_low_dose"
+      ],
+      "rule": {
+       "ref": "proposed reading",
+       "version": "1",
+       "status": "proposed",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     }
+    ],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "prohibition",
+     "claim": "prohibition",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "prohibition": {
+      "outcome": "violation",
+      "violations_found": 3,
+      "witnesses_returned": 3,
+      "reasons": [],
+      "standing": "proposed_refused"
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-6-witness-cap-zero",
+   "acceptance": [
+    "POL-6"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "high_eff",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "low_eff",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_efficacy_superior",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "high_safety",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "high_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "low_safety",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_safety_concern",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "interim",
+     "selected"
+    ],
+    "initial": [
+     "interim"
+    ],
+    "terminal": [
+     "selected"
+    ],
+    "actions": [
+     {
+      "id": "select_high_dose",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "select high dose"
+     },
+     {
+      "id": "select_low_dose",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "select low dose"
+     },
+     {
+      "id": "stop_for_futility",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "stop for futility"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "t-high",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "high_dose_efficacy_superior",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "high_dose_safety_concern",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "select_high_dose"
+      ]
+     },
+     {
+      "id": "t-low",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "low_dose_efficacy_superior",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "high_dose_efficacy_superior",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "study_procedure",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "high_dose_safety_concern",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           }
+          ]
+         }
+        }
+       ]
+      },
+      "actions": [
+       "select_low_dose"
+      ]
+     },
+     {
+      "id": "t-stop",
+      "from": "interim",
+      "to": "selected",
+      "guard": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "low_dose_efficacy_superior",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "high_dose_efficacy_superior",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "study_procedure",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "high_dose_safety_concern",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           }
+          ]
+         }
+        }
+       ]
+      },
+      "actions": [
+       "stop_for_futility"
+      ]
+     }
+    ],
+    "prohibitions": [
+     {
+      "id": "no-low-dose-with-low-dose-signal",
+      "state": null,
+      "condition": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "low_dose_safety_concern",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "select_low_dose"
+      ],
+      "rule": {
+       "ref": "user:low-dose safety prohibition",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     }
+    ],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "prohibition",
+     "claim": "prohibition",
+     "witness_limit": 0
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "prohibition": {
+      "outcome": "violation",
+      "violations_found": 3,
+      "witnesses_returned": 0,
+      "reasons": []
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-2-inputs-vary-between-steps",
+   "acceptance": [
+    "POL-2"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "a",
+     "b",
+     "c",
+     "d",
+     "z"
+    ],
+    "initial": [
+     "a"
+    ],
+    "terminal": [
+     "b",
+     "d"
+    ],
+    "actions": [
+     {
+      "id": "go",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "go"
+     },
+     {
+      "id": "stop",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "stop"
+     },
+     {
+      "id": "wait",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "wait"
+     },
+     {
+      "id": "switch",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "switch"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "a-c",
+      "from": "a",
+      "to": "c",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "go"
+      ]
+     },
+     {
+      "id": "a-b",
+      "from": "a",
+      "to": "b",
+      "guard": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      },
+      "actions": [
+       "stop"
+      ]
+     },
+     {
+      "id": "c-c",
+      "from": "c",
+      "to": "c",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "wait"
+      ]
+     },
+     {
+      "id": "c-d",
+      "from": "c",
+      "to": "d",
+      "guard": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      },
+      "actions": [
+       "switch"
+      ]
+     },
+     {
+      "id": "z-b",
+      "from": "z",
+      "to": "b",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "stop"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": 64
+    },
+    {
+     "id": "exclusivity",
+     "claim": "exclusivity",
+     "witness_limit": 64
+    },
+    {
+     "id": "termination",
+     "claim": "termination",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "reachability": {
+     "reachable_states": [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "unreachable_states": [
+      "z"
+     ],
+     "initial_nodes": 2,
+     "reachable_nodes": 8
+    },
+    "claims": {
+     "coverage": {
+      "outcome": "covered",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "exclusivity": {
+      "outcome": "exclusive",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "termination": {
+      "outcome": "not_established",
+      "violations_found": 1,
+      "witnesses_returned": 1,
+      "reasons": [
+       "reachable_cycle"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-3-same-actions-different-targets",
+   "acceptance": [
+    "POL-3"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "t1",
+     "t2"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "t1",
+     "t2"
+    ],
+    "actions": [
+     {
+      "id": "act",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "act"
+     },
+     {
+      "id": "other",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "other"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-t1",
+      "from": "s",
+      "to": "t1",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "act"
+      ]
+     },
+     {
+      "id": "s-t2",
+      "from": "s",
+      "to": "t2",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "act"
+      ]
+     },
+     {
+      "id": "s-t1-not",
+      "from": "s",
+      "to": "t1",
+      "guard": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      },
+      "actions": [
+       "other"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": 64
+    },
+    {
+     "id": "exclusivity",
+     "claim": "exclusivity",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "coverage": {
+      "outcome": "covered",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "exclusivity": {
+      "outcome": "competing",
+      "violations_found": 1,
+      "witnesses_returned": 1,
+      "reasons": []
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-3-identical-duplicate-rows-not-deduplicated",
+   "acceptance": [
+    "POL-3"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "t1"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "t1"
+    ],
+    "actions": [
+     {
+      "id": "act",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "act"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "r1",
+      "from": "s",
+      "to": "t1",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "act"
+      ]
+     },
+     {
+      "id": "r2",
+      "from": "s",
+      "to": "t1",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "act"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "exclusivity",
+     "claim": "exclusivity",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "exclusivity": {
+      "outcome": "competing",
+      "violations_found": 2,
+      "witnesses_returned": 2,
+      "reasons": []
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-4-terminal-exempt-from-coverage-not-invariants",
+   "acceptance": [
+    "POL-4"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": [
+     {
+      "id": "x-at-end",
+      "state": "end",
+      "condition": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [],
+      "rule": {
+       "ref": "user:end-state requirement",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     }
+    ]
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": 64
+    },
+    {
+     "id": "invariant",
+     "claim": "invariant",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "coverage": {
+      "outcome": "covered",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "invariant": {
+      "outcome": "violation",
+      "violations_found": 1,
+      "witnesses_returned": 1,
+      "reasons": [],
+      "standing": "known"
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-5-acyclic-dead-end-is-not-termination",
+   "acceptance": [
+    "POL-5"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "m",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "go",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "go"
+     },
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-m",
+      "from": "s",
+      "to": "m",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "go"
+      ]
+     },
+     {
+      "id": "m-end",
+      "from": "m",
+      "to": "end",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": 64
+    },
+    {
+     "id": "termination",
+     "claim": "termination",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "claims": {
+     "coverage": {
+      "outcome": "gap",
+      "violations_found": 1,
+      "witnesses_returned": 1,
+      "reasons": []
+     },
+     "termination": {
+      "outcome": "not_established",
+      "violations_found": 1,
+      "witnesses_returned": 1,
+      "reasons": [
+       "dead_end"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-5-terminating-policy",
+   "acceptance": [
+    "POL-5"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": 64
+    },
+    {
+     "id": "exclusivity",
+     "claim": "exclusivity",
+     "witness_limit": 64
+    },
+    {
+     "id": "termination",
+     "claim": "termination",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "satisfied",
+    "claims": {
+     "coverage": {
+      "outcome": "covered",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "exclusivity": {
+      "outcome": "exclusive",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "termination": {
+      "outcome": "all_paths_terminate",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-7-empty-feasible-initial-model",
+   "acceptance": [
+    "POL-7"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [
+     {
+      "id": "contradiction",
+      "condition": {
+       "class": "AllOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "rule": {
+       "ref": "user:constraint",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     }
+    ],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "expect": {
+    "code": "inconsistent_domain",
+    "claims": {
+     "coverage": {
+      "outcome": "inconsistent_domain",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "exclusivity": {
+      "outcome": "inconsistent_domain",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "prohibition": {
+      "outcome": "inconsistent_domain",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "invariant": {
+      "outcome": "inconsistent_domain",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     }
+    }
+   }
+  },
+  {
+   "id": "POL-7-transition-into-infeasible-target",
+   "acceptance": [
+    "POL-7"
+   ],
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [
+     {
+      "id": "t-needs-x",
+      "condition": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "policy_state",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "enum",
+           "members": [
+            "t"
+           ],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        },
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        }
+       ]
+      },
+      "rule": {
+       "ref": "user:constraint",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     },
+     {
+      "id": "t-needs-not-x",
+      "condition": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "policy_state",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "enum",
+           "members": [
+            "t"
+           ],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "rule": {
+       "ref": "user:constraint",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     }
+    ],
+    "states": [
+     "s",
+     "t",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "go",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "go"
+     },
+     {
+      "id": "stop",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "stop"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-t",
+      "from": "s",
+      "to": "t",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "go"
+      ]
+     },
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      },
+      "actions": [
+       "stop"
+      ]
+     },
+     {
+      "id": "t-end",
+      "from": "t",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "stop"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": 64
+    },
+    {
+     "id": "termination",
+     "claim": "termination",
+     "witness_limit": 64
+    }
+   ],
+   "expect": {
+    "code": "violated",
+    "transition_target_conflicts": [
+     "s-t"
+    ],
+    "reachability": {
+     "reachable_states": [
+      "s",
+      "end"
+     ],
+     "unreachable_states": [
+      "t"
+     ],
+     "initial_nodes": 2,
+     "reachable_nodes": 4
+    },
+    "claims": {
+     "coverage": {
+      "outcome": "covered",
+      "violations_found": 0,
+      "witnesses_returned": 0,
+      "reasons": []
+     },
+     "termination": {
+      "outcome": "not_established",
+      "violations_found": 1,
+      "witnesses_returned": 1,
+      "reasons": [
+       "transition_target_infeasible"
+      ]
+     }
+    }
+   }
+  }
+ ],
+ "malformed": [
+  {
+   "id": "reserved-variable",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "ps",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "policy_state",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "policy_state",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_reserved_variable"
+  },
+  {
+   "id": "undeclared-variable-in-guard",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "y",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_undeclared_variable"
+  },
+  {
+   "id": "terminal-outgoing",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     },
+     {
+      "id": "end-s",
+      "from": "end",
+      "to": "s",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_terminal_outgoing"
+  },
+  {
+   "id": "invariant-with-actions",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": [
+     {
+      "id": "i",
+      "state": null,
+      "condition": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "finish"
+      ],
+      "rule": {
+       "ref": "r",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated policy choice (interface fixture)"
+       ]
+      }
+     }
+    ]
+   },
+   "claims": null,
+   "refusal": "policy_invariant_actions"
+  },
+  {
+   "id": "unknown-action",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "dose_escalate"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_unknown_action"
+  },
+  {
+   "id": "unknown-state-in-transition",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-q",
+      "from": "s",
+      "to": "q",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_unknown_state"
+  },
+  {
+   "id": "unknown-state-literal",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "policy_state",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "enum",
+        "members": [
+         "q"
+        ],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_unknown_state"
+  },
+  {
+   "id": "no-initial",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_invalid_initial"
+  },
+  {
+   "id": "duplicate-transition-id",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [
+       "finish"
+      ]
+     },
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_duplicate_id"
+  },
+  {
+   "id": "bad-action-scope",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "site",
+       "ref": "x"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_invalid_action"
+  },
+  {
+   "id": "proposed-rule-missing-basis",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": [
+     {
+      "id": "i",
+      "state": null,
+      "condition": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "x",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "study_procedure",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "actions": [],
+      "rule": {
+       "ref": "r",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": []
+      }
+     }
+    ]
+   },
+   "claims": null,
+   "refusal": "policy_invalid_rule"
+  },
+  {
+   "id": "extra-field",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": [],
+    "priority": "row_order"
+   },
+   "claims": null,
+   "refusal": "policy_data_fields"
+  },
+  {
+   "id": "witness-limit-too-large",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": 65
+    }
+   ],
+   "refusal": "policy_invalid_claims"
+  },
+  {
+   "id": "witness-limit-bool",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "coverage",
+     "claim": "coverage",
+     "witness_limit": true
+    }
+   ],
+   "refusal": "policy_invalid_claims"
+  },
+  {
+   "id": "duplicate-claim",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "x",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "negative",
+        "predicate": {
+         "class": "Predicate",
+         "key": "x",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": [
+    {
+     "id": "a",
+     "claim": "coverage",
+     "witness_limit": 1
+    },
+    {
+     "id": "b",
+     "claim": "coverage",
+     "witness_limit": 1
+    }
+   ],
+   "refusal": "policy_duplicate_claim"
+  },
+  {
+   "id": "valuation-limit",
+   "data": {
+    "scope": "draft:policy-fixture",
+    "version": "interface-v1",
+    "variables": [
+     {
+      "id": "v0",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v0",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v0",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v0",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "v1",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v1",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v1",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v1",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "v2",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v2",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v2",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v2",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "v3",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v3",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v3",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v3",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "v4",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v4",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v4",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v4",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "v5",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v5",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v5",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v5",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "v6",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v6",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v6",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v6",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     },
+     {
+      "id": "v7",
+      "values": [
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v7",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "a"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v7",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "b"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "v7",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "enum",
+         "members": [
+          "c"
+         ],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       }
+      ]
+     }
+    ],
+    "constraints": [],
+    "states": [
+     "s",
+     "end"
+    ],
+    "initial": [
+     "s"
+    ],
+    "terminal": [
+     "end"
+    ],
+    "actions": [
+     {
+      "id": "finish",
+      "scope": {
+       "level": "cohort",
+       "ref": "draft:stage-a"
+      },
+      "description": "finish"
+     }
+    ],
+    "transitions": [
+     {
+      "id": "s-end",
+      "from": "s",
+      "to": "end",
+      "guard": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "x",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Not",
+         "part": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "x",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         }
+        }
+       ]
+      },
+      "actions": [
+       "finish"
+      ]
+     }
+    ],
+    "prohibitions": [],
+    "invariants": []
+   },
+   "claims": null,
+   "refusal": "policy_valuation_limit"
+  }
+ ]
+}

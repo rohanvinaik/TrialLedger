@@ -1,0 +1,40 @@
+{
+ "operation": "corpus",
+ "trials": [
+  {
+   "id": "example-a",
+   "sponsor": "example-sponsor-a",
+   "stratum": "user-declared-example-set",
+   "elements": [
+    "inclusion:ecog_ps=0|1"
+   ],
+   "typed": true,
+   "basis": [
+    "user:example-typed-premises"
+   ],
+   "standing": {
+    "status": "known",
+    "resolution": "resolved",
+    "basis": [
+     "user:example-typed-premises"
+    ]
+   }
+  },
+  {
+   "id": "example-b",
+   "sponsor": "example-sponsor-b",
+   "stratum": "user-declared-example-set",
+   "elements": [],
+   "basis": [
+    "user:example-typed-premises"
+   ],
+   "standing": {
+    "status": "known",
+    "resolution": "resolved",
+    "basis": [
+     "user:example-typed-premises"
+    ]
+   }
+  }
+ ]
+}

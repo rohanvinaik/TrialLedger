@@ -1,0 +1,190 @@
+{
+ "commands": [
+  "trialledger reason --request lifecycle/01_design_session.request.json --store /tmp/tl-baseline/store --compact",
+  "trialledger reason-result --store STORE --id V1 --part summary  (page total 7, next_offset null)",
+  "trialledger reason-result --store STORE --id V1 --part decisions (page total 1, next_offset null; 24429 bytes)",
+  "trialledger reason-revise --store STORE --id V1 --edits lifecycle/02_edits.json --revision two --prepare-only",
+  "trialledger reason-revise --store STORE --id V1 --edits lifecycle/02_edits.json --revision two",
+  "trialledger reason-export --store STORE --id V2 --out /tmp/tl-baseline/export"
+ ],
+ "note": "first attempt with edits wrapped as {\"edits\":[...]} refused: invalid_revision_edits; the edits file must be a bare JSON list",
+ "v1": {
+  "artifact_id": "9b4a5bfaf2fef0da73abae92b43ca5e78436b02c0b5dc4048b0baf65869054f1",
+  "artifact_bytes": 52319,
+  "result_digest": "40233c6a4d463e2fe8820c4dbab623fd275d7a56ba0e219034c31cd2d80648e9",
+  "code": "complete",
+  "summary": {
+   "kind": "reasoning",
+   "code": "complete",
+   "operation": "design_session",
+   "findings": 4,
+   "dispositions": {
+    "open": 3,
+    "settled": 1
+   },
+   "problems": [],
+   "changes": null
+  }
+ },
+ "revise_prepare_only": {
+  "code": "prepared",
+  "keys": [
+   "code",
+   "request",
+   "previous_artifact",
+   "edits"
+  ],
+  "response_bytes": 69472,
+  "previous_artifact": "9b4a5bfaf2fef0da73abae92b43ca5e78436b02c0b5dc4048b0baf65869054f1"
+ },
+ "v2": {
+  "artifact_id": "f74fe87db6c40c13be5f5d6518ac1b43a615bda6a91836377ce3c8b074769cc0",
+  "artifact_bytes": 151901,
+  "result_digest": "62edc4aa3ee8bc9318537b3e4dce157c0a58fc504055229b3b0085d00992aa0f",
+  "code": "complete",
+  "summary": {
+   "kind": "reasoning",
+   "code": "complete",
+   "operation": "design_session",
+   "findings": 4,
+   "dispositions": {
+    "open": 3,
+    "settled": 1
+   },
+   "problems": [],
+   "changes": {
+    "analyses": {
+     "support_changed": 1,
+     "requirements_changed": 1
+    },
+    "decisions": {
+     "requirements_changed": 1
+    }
+   }
+  },
+  "delivery": {
+   "previous_artifact": "9b4a5bfaf2fef0da73abae92b43ca5e78436b02c0b5dc4048b0baf65869054f1",
+   "edits": [
+    {
+     "path": "/premises/0/payload/body/value/number",
+     "before_digest": "566afbb607a8f17b7cdf2d7f1632a2a810c06b128e8b81b6c6a8780eb9955dd1",
+     "after_digest": "e4658389f3e9af055d9d349c5e68122e26dbce056fe0daa559511cd19931191c",
+     "canonical_ref": "/response/delivery/edits/0"
+    },
+    {
+     "path": "/premises/0/payload/criterion_ref",
+     "before_digest": "a38ef50b90e0194be3ea972b1f26a54ccb38a118807971f79b48aa83218988b5",
+     "after_digest": "1b7725cdd4feca9cc6a9e90d3298bc4d819d62b6d07a9580189dc65801eda46c",
+     "canonical_ref": "/response/delivery/edits/1"
+    }
+   ],
+   "page": {
+    "offset": 0,
+    "returned": 2,
+    "total": 2,
+    "next_offset": null
+   },
+   "canonical_ref": "/response/delivery/edits"
+  }
+ },
+ "answer_diff": {
+  "canonical_ref": "/response/answer_diff",
+  "pages": {
+   "analyses": {
+    "offset": 0,
+    "returned": 2,
+    "total": 2,
+    "next_offset": null
+   },
+   "decisions": {
+    "offset": 0,
+    "returned": 1,
+    "total": 1,
+    "next_offset": null
+   }
+  },
+  "analyses": [
+   {
+    "id": "older",
+    "code": "support_changed",
+    "changes": [
+     "support",
+     "origin"
+    ],
+    "axes": {
+     "question": "unchanged",
+     "wording": "unchanged",
+     "answer": "unchanged",
+     "support": "changed",
+     "origin": "changed",
+     "context": "unchanged",
+     "requirements": "unchanged"
+    },
+    "canonical_ref": "/response/answer_diff/analyses/0"
+   },
+   {
+    "id": "younger",
+    "code": "requirements_changed",
+    "changes": [
+     "support",
+     "origin",
+     "requirements"
+    ],
+    "axes": {
+     "question": "unchanged",
+     "wording": "unchanged",
+     "answer": "unchanged",
+     "support": "changed",
+     "origin": "changed",
+     "context": "unchanged",
+     "requirements": "changed"
+    },
+    "canonical_ref": "/response/answer_diff/analyses/1"
+   }
+  ],
+  "decisions": [
+   {
+    "id": "age-policy",
+    "code": "requirements_changed",
+    "changes": [
+     "support",
+     "origin",
+     "requirements"
+    ],
+    "axes": {
+     "question": "unchanged",
+     "wording": "unchanged",
+     "answer": "unchanged",
+     "support": "changed",
+     "origin": "changed",
+     "context": "unchanged",
+     "requirements": "changed"
+    },
+    "canonical_ref": "/response/answer_diff/decisions/0"
+   }
+  ]
+ },
+ "export": {
+  "code": "complete",
+  "folder": "/tmp/tl-baseline/export/review",
+  "problems": [],
+  "files_sha256_size_on_disk": {
+   "review/design-review.xlsx": {
+    "sha256": "9ca74b8b6d50c1b72752d78e59ca3607b92e4d4bac44b4ec5cd2f32d9b6c8c54",
+    "bytes": 21116
+   },
+   "review/decision-list.md": {
+    "sha256": "0789bcae7739b8121633d2c64e3721c6493ab99fdeea2aaa437687bab0925d04",
+    "bytes": 3561
+   },
+   "review/export-manifest.json": {
+    "sha256": "ca015109cbb6c621534004abba07f67394007d1fc4052db3ba810ac1a60fc8c8",
+    "bytes": 648
+   },
+   "review/artifacts/f74fe87db6c40c13be5f5d6518ac1b43a615bda6a91836377ce3c8b074769cc0.json": {
+    "sha256": "f74fe87db6c40c13be5f5d6518ac1b43a615bda6a91836377ce3c8b074769cc0",
+    "bytes": 151901
+   }
+  }
+ }
+}

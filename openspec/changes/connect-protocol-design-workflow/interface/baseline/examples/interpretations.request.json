@@ -1,0 +1,427 @@
+{
+ "operation": "interpretations",
+ "study_ref": "invented:adult-NSCLC-draft:v1",
+ "fixed": {
+  "assertions": [
+   {
+    "applicability": {
+     "class": "Always"
+    },
+    "body": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "age",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": null,
+     "value": {
+      "class": "Value",
+      "comparison": "ge",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 18.0,
+      "unit": "Years",
+      "upper": null
+     }
+    },
+    "branch": {
+     "class": "Branch",
+     "node": "unresolved",
+     "path": []
+    },
+    "class": "ScopedAssertion",
+    "cohort": {
+     "class": "Scope",
+     "kind": "all_participants",
+     "parts": [],
+     "ref": ""
+    },
+    "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+    "id": "draft-adults",
+    "modality": "required",
+    "resolution": "resolved",
+    "rule": {
+     "answers": [],
+     "class": "Rule",
+     "id": "invented-session-premise",
+     "premises": [],
+     "version": "1",
+     "warrants": [
+      "invented:explicit-teaching-premise"
+     ]
+    },
+    "span": [],
+    "status": "known"
+   },
+   {
+    "applicability": {
+     "class": "Always"
+    },
+    "body": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "ECOG",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": null,
+     "value": {
+      "class": "Value",
+      "comparison": "ge",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 0.0,
+      "unit": "ECOG",
+      "upper": null
+     }
+    },
+    "branch": {
+     "class": "Branch",
+     "node": "unresolved",
+     "path": []
+    },
+    "class": "ScopedAssertion",
+    "cohort": {
+     "class": "Scope",
+     "kind": "all_participants",
+     "parts": [],
+     "ref": ""
+    },
+    "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+    "id": "draft-PS-min",
+    "modality": "required",
+    "resolution": "resolved",
+    "rule": {
+     "answers": [],
+     "class": "Rule",
+     "id": "invented-session-premise",
+     "premises": [],
+     "version": "1",
+     "warrants": [
+      "invented:explicit-teaching-premise"
+     ]
+    },
+    "span": [],
+    "status": "known"
+   }
+  ],
+  "signals": []
+ },
+ "bindings": [],
+ "interpretations": [
+  {
+   "id": "PS0-2",
+   "label": "Adults with ECOG 0\u20132",
+   "origin": "assistant",
+   "basis": [
+    "invented:hypothesis-to-discuss-not-an-established-protocol"
+   ],
+   "assumptions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "ECOG",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "le",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 2.0,
+       "unit": "ECOG",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+     "id": "PS-upper-2",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "invented-session-premise",
+      "premises": [],
+      "version": "1",
+      "warrants": [
+       "invented:explicit-teaching-premise"
+      ]
+     },
+     "span": [],
+     "status": "proposed"
+    }
+   ],
+   "signals": [],
+   "signal_claims": [],
+   "binding_uses": []
+  },
+  {
+   "id": "PS0-3",
+   "label": "Adults with ECOG 0\u20133",
+   "origin": "assistant",
+   "basis": [
+    "invented:hypothesis-to-discuss-not-an-established-protocol"
+   ],
+   "assumptions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "ECOG",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "le",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 3.0,
+       "unit": "ECOG",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+     "id": "PS-upper-3",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "invented-session-premise",
+      "premises": [],
+      "version": "1",
+      "warrants": [
+       "invented:explicit-teaching-premise"
+      ]
+     },
+     "span": [],
+     "status": "proposed"
+    }
+   ],
+   "signals": [],
+   "signal_claims": [],
+   "binding_uses": []
+  },
+  {
+   "id": "under-18",
+   "label": "Every participant is under 18",
+   "origin": "assistant",
+   "basis": [
+    "invented:hypothesis-to-discuss-not-an-established-protocol"
+   ],
+   "assumptions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "lt",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+     "id": "children",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "invented-session-premise",
+      "premises": [],
+      "version": "1",
+      "warrants": [
+       "invented:explicit-teaching-premise"
+      ]
+     },
+     "span": [],
+     "status": "proposed"
+    }
+   ],
+   "signals": [],
+   "signal_claims": [],
+   "binding_uses": []
+  }
+ ],
+ "queries": [
+  {
+   "id": "adult",
+   "body": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+     "class": "Predicate",
+     "key": "age",
+     "kind": "measurement"
+    },
+    "qualifiers": {
+     "class": "Always"
+    },
+    "subject": {
+     "class": "Subject",
+     "kind": "participant",
+     "referent": ""
+    },
+    "time": null,
+    "value": {
+     "class": "Value",
+     "comparison": "ge",
+     "inclusivity": "unspecified",
+     "kind": "quantity",
+     "members": [],
+     "number": 18.0,
+     "unit": "Years",
+     "upper": null
+    }
+   }
+  },
+  {
+   "id": "PS3",
+   "body": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+     "class": "Predicate",
+     "key": "ECOG",
+     "kind": "measurement"
+    },
+    "qualifiers": {
+     "class": "Always"
+    },
+    "subject": {
+     "class": "Subject",
+     "kind": "participant",
+     "referent": ""
+    },
+    "time": null,
+    "value": {
+     "class": "Value",
+     "comparison": "eq",
+     "inclusivity": "unspecified",
+     "kind": "quantity",
+     "members": [],
+     "number": 3.0,
+     "unit": "ECOG",
+     "upper": null
+    }
+   }
+  }
+ ]
+}

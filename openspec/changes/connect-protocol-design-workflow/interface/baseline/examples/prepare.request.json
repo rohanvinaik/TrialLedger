@@ -1,0 +1,38 @@
+{
+ "operation": "prepare",
+ "for": "entailment",
+ "criteria": [
+  {
+   "id": "age",
+   "modality": "required",
+   "body": {
+    "kind": "quantity",
+    "predicate": {
+     "kind": "demographic",
+     "key": "age"
+    },
+    "comparison": "ge",
+    "number": 18,
+    "unit": "years",
+    "inclusivity": "inclusive"
+   },
+   "origin": {
+    "kind": "user_choice",
+    "ref": "invented:brief"
+   },
+   "status": "known",
+   "resolution": "resolved"
+  }
+ ],
+ "query": {
+  "kind": "quantity",
+  "predicate": {
+   "kind": "demographic",
+   "key": "age"
+  },
+  "comparison": "eq",
+  "number": 17,
+  "unit": "years",
+  "inclusivity": "inclusive"
+ }
+}

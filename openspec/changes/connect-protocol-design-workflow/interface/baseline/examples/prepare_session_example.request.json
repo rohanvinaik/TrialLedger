@@ -1,0 +1,77 @@
+{
+ "operation": "prepare",
+ "for": "design_session",
+ "id": "invented-session",
+ "target": {
+  "kind": "new_trial",
+  "ref": "invented-draft",
+  "scope": {
+   "study": "invented-draft",
+   "population": "adults",
+   "arm": "all",
+   "time": "entry",
+   "version": "draft-1"
+  }
+ },
+ "criteria": [
+  {
+   "id": "age",
+   "modality": "required",
+   "body": {
+    "kind": "quantity",
+    "predicate": {
+     "kind": "demographic",
+     "key": "age"
+    },
+    "comparison": "ge",
+    "number": 18,
+    "unit": "years",
+    "inclusivity": "inclusive"
+   },
+   "origin": {
+    "kind": "user_choice",
+    "ref": "invented:brief"
+   },
+   "status": "known",
+   "resolution": "resolved"
+  }
+ ],
+ "questions": [
+  {
+   "id": "age-choice",
+   "question": "Which represented ages fit?",
+   "options": [
+    {
+     "id": "seventeen",
+     "label": "Age 17",
+     "query": {
+      "kind": "quantity",
+      "predicate": {
+       "kind": "demographic",
+       "key": "age"
+      },
+      "comparison": "eq",
+      "number": 17,
+      "unit": "years",
+      "inclusivity": "inclusive"
+     }
+    },
+    {
+     "id": "eighteen",
+     "label": "Age 18",
+     "query": {
+      "kind": "quantity",
+      "predicate": {
+       "kind": "demographic",
+       "key": "age"
+      },
+      "comparison": "eq",
+      "number": 18,
+      "unit": "years",
+      "inclusivity": "inclusive"
+     }
+    }
+   ]
+  }
+ ]
+}

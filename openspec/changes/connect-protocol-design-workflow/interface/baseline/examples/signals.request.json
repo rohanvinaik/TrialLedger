@@ -1,0 +1,38 @@
+{
+ "operation": "signals",
+ "signals": [
+  {
+   "id": "invented-overlap",
+   "kind": "overlap",
+   "data": {
+    "universe": "invented:baseline",
+    "alignment": "confirmed",
+    "total": 100,
+    "marginals": [
+     {
+      "ref": "a",
+      "universe": "invented:baseline",
+      "lower": 70,
+      "upper": 70
+     },
+     {
+      "ref": "b",
+      "universe": "invented:baseline",
+      "lower": 60,
+      "upper": 60
+     }
+    ]
+   },
+   "support": [
+    {
+     "id": "invented-inputs",
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:invented-typed-demonstration-not-clinical-evidence"
+     ]
+    }
+   ]
+  }
+ ]
+}
