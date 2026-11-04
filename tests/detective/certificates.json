@@ -1138,6 +1138,96 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/protocol_numbers.py::interval_order": {
+    "cut_reasons": [],
+    "function_digest": "dab6b1863e422fc8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_numbers.py::interval_shape": {
+    "cut_reasons": [],
+    "function_digest": "ddcab1f73521e49f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_numbers.py::rational_syntax": {
+    "cut_reasons": [],
+    "function_digest": "ae10f20871221c48",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_objects.py::binding_state": {
+    "cut_reasons": [],
+    "function_digest": "e83da72cc2b8809b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_objects.py::ceiling_state": {
+    "cut_reasons": [],
+    "function_digest": "bb9db956684e1905",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_objects.py::identity_state": {
+    "cut_reasons": [],
+    "function_digest": "07a7b5d728cdeede",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_objects.py::origin_standing_state": {
+    "cut_reasons": [],
+    "function_digest": "e9f0631657838593",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_objects.py::section_state": {
+    "cut_reasons": [],
+    "function_digest": "e08b832334f45aba",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_schedule.py::determined_by": {
+    "cut_reasons": [],
+    "function_digest": "ba79b957fefa9751",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_schedule.py::existence_outcome": {
+    "cut_reasons": [],
+    "function_digest": "69d9b39ecf0ca01f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_schedule.py::full_window_outcome": {
+    "cut_reasons": [],
+    "function_digest": "44348e7998dcca4e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_schedule.py::missing_inputs": {
+    "cut_reasons": [],
+    "function_digest": "03a6fdad13089117",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_schedule.py::nominal_outcome": {
+    "cut_reasons": [],
+    "function_digest": "909d18eb9d202fc9",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_schedule.py::outcome_class": {
+    "cut_reasons": [],
+    "function_digest": "55cf99cd89e01c52",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/protocol_schedule.py::schedule_code": {
+    "cut_reasons": [],
+    "function_digest": "45a6e78225db82cf",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code": {
     "cut_reasons": [],
     "function_digest": "d106cb4141025794",

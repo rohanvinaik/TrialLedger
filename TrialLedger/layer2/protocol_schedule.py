@@ -71,6 +71,8 @@ class _Work:
     def cmp(self, x: tuple, y: tuple) -> int:
         """Compare two endpoint keys (kind -1 for -inf, 0 finite, 1 for +inf) and charge one comparison.
 
+        pre: len(x) == 2 and len(y) == 2
+        pre: (x[0] != 0 or isinstance(x[1], Fraction)) and (y[0] != 0 or isinstance(y[1], Fraction))
         pre: x[0] in (-1, 0, 1) and y[0] in (-1, 0, 1)
         post: __return__ in (-1, 0, 1)
         post: __return__ == 0 or x != y
@@ -121,7 +123,7 @@ def nominal_outcome(n_known: bool, w_known: bool, in_w: bool, c_known: bool, in_
 
 
 def full_window_outcome(w_known: bool, w_empty: bool, c_known: bool, covered: bool) -> str:
-    """Classify full-window coverage; an empty permitted window is never vacuous success.
+    """Classify full-window coverage; an empty permitted window is never vacuous success (pure — pinned).
 
     pre: not w_empty or w_known
     pre: not covered or (w_known and c_known and not w_empty)
@@ -140,8 +142,7 @@ def determined_by(claim: str, outcome: str) -> list[str]:
     """Name the minimal input roles a row's outcome depends on, sorted.
 
     pre: claim in ('existence', 'nominal', 'full_window')
-    pre: outcome in ('satisfied', 'no_feasible_time', 'no_permitted_time', 'uncovered', 'not_collected',
-         'outside_window', 'unknown_target', 'unresolved')
+    pre: outcome in ('satisfied',) + VIOLATED_OUTCOMES + UNRESOLVED_OUTCOMES
     post: __return__ == sorted(__return__)
     post: outcome != 'unresolved' or __return__ == []
     """
@@ -161,8 +162,7 @@ def determined_by(claim: str, outcome: str) -> list[str]:
 def missing_inputs(outcome: str, w_known: bool, c_known: bool) -> list[str]:
     """Name the unknown inputs that prevent a row from being decided, sorted.
 
-    pre: outcome in ('satisfied', 'no_feasible_time', 'no_permitted_time', 'uncovered', 'not_collected',
-         'outside_window', 'unknown_target', 'unresolved')
+    pre: outcome in ('satisfied',) + VIOLATED_OUTCOMES + UNRESOLVED_OUTCOMES
     post: __return__ == sorted(__return__)
     post: outcome != 'unresolved' or __return__ != []
     post: outcome == 'unknown_target' or outcome == 'unresolved' or __return__ == []
@@ -182,12 +182,10 @@ def missing_inputs(outcome: str, w_known: bool, c_known: bool) -> list[str]:
 def outcome_class(outcome: str) -> str:
     """Group a row outcome into the aggregate classes used by the code and blockers (pure).
 
-    pre: outcome in ('satisfied', 'no_feasible_time', 'no_permitted_time', 'uncovered', 'not_collected',
-         'outside_window', 'unknown_target', 'unresolved')
+    pre: outcome in ('satisfied',) + VIOLATED_OUTCOMES + UNRESOLVED_OUTCOMES
     post: __return__ in ('violated', 'unresolved', 'satisfied')
     post: (__return__ == 'satisfied') == (outcome == 'satisfied')
-    post: __return__ != 'violated' or outcome in ('no_permitted_time', 'no_feasible_time', 'outside_window',
-          'not_collected', 'uncovered')
+    post: __return__ != 'violated' or outcome in VIOLATED_OUTCOMES
     """
     if outcome == "satisfied":
         return "satisfied"
@@ -197,7 +195,7 @@ def outcome_class(outcome: str) -> str:
 
 
 def schedule_code(classes: list[str]) -> str:
-    """Aggregate row classes: any violation wins, then any unresolved row, else satisfied (pure).
+    """Aggregate row classes: any violation wins, then any unresolved row, else satisfied (pure — pinned).
 
     pre: all(c in ('violated', 'unresolved', 'satisfied') for c in classes)
     post: __return__ in ('violated', 'unresolved', 'satisfied')
@@ -416,10 +414,7 @@ def _blocker(row: dict) -> str | None:
 def work_reservation(data: dict) -> int:
     """Reserved endpoint comparisons: 4*(w+c)**2 + 6*(w+c) + 8, where w and c are interval counts.
 
-    pre: data is a dict with exactly the schedule_coverage data fields
-    post: __return__ >= 8
-    post: __return__ == 4 * (len(data['permitted'] or []) + len(data['available'] or [])) ** 2 + 6 * (
-          len(data['permitted'] or []) + len(data['available'] or [])) + 8 when data is valid
+    Raises the same named refusals as check() for invalid data; the formula is tested against counted work.
     """
     return _reservation(_parse(data))
 
@@ -427,10 +422,8 @@ def work_reservation(data: dict) -> int:
 def check(kind: str, data: dict, claims: list[dict]) -> dict:
     """Evaluate the named schedule claims exactly and return the plain result envelope.
 
-    pre: kind == 'schedule_coverage'
-    post: set(__return__) == {'code', 'value', 'blockers', 'rule'}
-    post: __return__['value']['work']['used'] <= __return__['value']['work']['reserved']
-    post: __return__['blockers'] == sorted(set(__return__['blockers']))
+    Malformed input raises a named ValueError refusal. The envelope has exactly code/value/blockers/rule,
+    used work never exceeds the reservation, and blockers are sorted and unique (all tested directly).
     """
     if kind != KIND:
         raise ValueError("unsupported_schedule_kind")

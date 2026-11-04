@@ -107,7 +107,7 @@ PATTERN_ROLES = (
 
 
 def identity_state(value: object) -> str:
-    """Classify an object, check or section identity by its own text only.
+    """Classify an object, check or section identity by its own text only (pure — pinned).
 
     pre: True
     post: __return__ in ("ok", "invalid_id")
@@ -119,7 +119,7 @@ def identity_state(value: object) -> str:
 
 
 def ceiling_state(count: int, limit: int) -> str:
-    """Classify a declared list length against its ceiling; on the ceiling is inside it.
+    """Classify a declared list length against its ceiling; on the ceiling is inside it (pure — pinned).
 
     pre: count >= 0 and limit > 0
     post: __return__ in ("ok", "over_limit")
@@ -129,7 +129,7 @@ def ceiling_state(count: int, limit: int) -> str:
 
 
 def binding_state(has_object: bool, has_premise: bool) -> str:
-    """Classify a policy binding target: exactly one of an object id or a premise id.
+    """Classify a policy binding target: exactly one of an object id or a premise id (pure — pinned).
 
     pre: True
     post: __return__ in ("ok", "invalid_binding")
@@ -139,7 +139,7 @@ def binding_state(has_object: bool, has_premise: bool) -> str:
 
 
 def section_state(state: str, basis_size: int) -> str:
-    """Classify a section's state against its basis: not_applicable needs a nonempty basis.
+    """Classify a section's state against its basis: not_applicable needs a nonempty basis (pure — pinned).
 
     pre: basis_size >= 0
     post: __return__ in ("ok", "invalid_state", "not_applicable_basis")
@@ -295,7 +295,7 @@ def _origin(raw: object, frame: _Frame) -> None:
 
 
 def origin_standing_state(origin_kind: str, status: str) -> str:
-    """A hypothesis-origin object may only be proposed (pure).
+    """A hypothesis-origin object may only be proposed (pure — pinned).
 
     post: __return__ in ("ok", "hypothesis_cannot_supply_fact")
     post: __return__ == "ok" or (origin_kind == "hypothesis" and status != "proposed")

@@ -751,22 +751,31 @@ def _applicability(
     return ("not_applicable" if "does_not_apply" in codes else "unconditional"), rows, status, refs
 
 
-def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], dict], budget: dict) -> dict:
-    """Run every declared protocol check through its named projection and the ordinary budgeted child path.
+def _run_protocol_checks(
+    prepared: dict,
+    values: dict,
+    execute: Callable[[object], dict],
+    budget: dict,
+    index: dict,
+    check_ids: list[str],
+    assumed: frozenset[str] = frozenset(),
+    frame_ref: str | None = None,
+) -> list[dict]:
+    """Run declared protocol checks through their named projections and the ordinary budgeted child path.
 
     Projection supplies requests and receipts only; operators compute; the signal gate admits each claim from
-    its own deciding support. Nothing here interprets a label or promotes standing (interface R1, C4).
+    its own deciding support. Nothing here interprets a label or promotes standing (interface R1, C4). In a
+    hypothetical candidate frame only replaced objects' own entries are assumed (C8); premises keep theirs.
     """
-    from TrialLedger.layer2 import protocol_projections
+    from TrialLedger.layer2 import protocol_decisions, protocol_projections
 
-    index = prepared["protocol"]
     limits = prepared["session"]["limits"]
     standing = {
         key: {k: value["standing"][k] for k in ("status", "resolution", "basis")}
         for key, value in values.items()
     }
     checks = []
-    for check_id in index["check_order"]:
+    for check_id in check_ids:
         projected = protocol_projections.project(index, check_id, premise_standing=standing)
         children = []
         declared = index["checks"][check_id]
@@ -779,7 +788,12 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
                 values,
                 lambda request: _child(request, execute, budget, limits)["result"],
             )
-            checked = _child(child["request"], execute, budget, limits)
+            executed = (
+                protocol_decisions.frame_request(child["request"], set(assumed), frame_ref or "frame")
+                if assumed
+                else child["request"]
+            )
+            checked = _child(executed, execute, budget, limits)
             result = checked["result"]
             signals_out = (
                 (result.get("result") or {}).get("signals", []) if result.get("code") == "complete" else []
@@ -788,9 +802,9 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
                 {
                     "id": child["id"],
                     "receipt": deepcopy(child["receipt"]),
-                    "request": child["request"],
+                    "request": executed,
                     "result": deepcopy(result),
-                    "request_digest": state.digest(child["request"]),
+                    "request_digest": state.digest(executed),
                     "result_digest": state.digest(result),
                     "signals": [
                         {
@@ -845,11 +859,124 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
                 "not_computed": deepcopy(projected["not_computed"]),
             }
         )
+    return checks
+
+
+def _frame_claim(claim: dict, lifted: set[str]) -> dict:
+    """A claim inside a candidate frame; one resting on a local assumption is never reported as known (C8)."""
+    row = {
+        key: claim.get(key)
+        for key in ("id", "claim", "outcome", "admission", "application", "finding_status")
+    }
+    assumed = sorted(set(claim.get("support") or []) & lifted)
+    row["assumed"] = assumed
+    if assumed:
+        row["finding_status"] = "proposed"
+    return row
+
+
+def _protocol_decision_rows(
+    prepared: dict, values: dict, execute: Callable[[object], dict], budget: dict
+) -> list[dict]:
+    """Evaluate every protocol alternative freshly on its own detached candidate (C8)."""
+    from TrialLedger.layer2 import protocol_decisions
+
+    out = []
+    for item in prepared.get("protocol_decisions", []):
+        alternatives = []
+        for alternative, held in zip(item["alternatives"], item["candidates"], strict=True):
+            assumed = frozenset(o["id"] for o in alternative["replace_objects"])
+            frame = "hypothetical" if assumed else "fixed"
+            checks = _run_protocol_checks(
+                prepared,
+                values,
+                execute,
+                budget,
+                held["index"],
+                list(alternative["checks"]),
+                assumed,
+                f"frame:{frame}:{item['id']}:{alternative['id']}",
+            )
+            lifted = protocol_decisions.assumed_entry_ids(set(assumed))
+            rows, required = [], []
+            for check in checks:
+                code = protocol_decisions.classify(check)
+                if check["required"]:
+                    required.append(code)
+                rows.append(
+                    {
+                        "id": check["id"],
+                        "required": check["required"],
+                        "check_code": code,
+                        "conditional_claims": [
+                            claim["id"]
+                            for child in check["children"]
+                            for signal in child["signals"]
+                            for claim in signal["claim_admission"]
+                            if claim.get("application") == "conditional"
+                        ],
+                        "claims": [
+                            _frame_claim(claim, lifted)
+                            for child in check["children"]
+                            for signal in child["signals"]
+                            for claim in signal["claim_admission"]
+                        ],
+                        "children": [
+                            {"request_digest": c["request_digest"], "result_digest": c["result_digest"]}
+                            for c in check["children"]
+                        ],
+                    }
+                )
+            compatibility = protocol_decisions.compatibility(required)
+            alternatives.append(
+                {
+                    "id": alternative["id"],
+                    "label": alternative["label"],
+                    "frame": frame,
+                    "assumption_refs": sorted(assumed),
+                    "unconditional_application": "admitted"
+                    if frame == "fixed" and compatibility == "compatible_under_declared_checks"
+                    else "withheld",
+                    "compatibility": compatibility,
+                    "conditional_checks": [row["id"] for row in rows if row["conditional_claims"]],
+                    "checks": rows,
+                    "candidate_digest": state.digest(held["raw"]),
+                }
+            )
+        selected = item["selected"]
+        chosen = next(
+            (a["compatibility"] for a in alternatives if selected and a["id"] == selected["alternative"]),
+            None,
+        )
+        out.append(
+            {
+                "id": item["id"],
+                "kind": item["kind"],
+                "question": item["question"],
+                "target": deepcopy(item["target"]),
+                "coverage": item["coverage"],
+                "selected": deepcopy(selected),
+                "selection": deepcopy(selected),
+                "alternatives": alternatives,
+                "disposition": protocol_decisions.disposition(
+                    [(a["compatibility"], a["candidate_digest"]) for a in alternatives], chosen
+                ),
+                **({"evidence": deepcopy(item["evidence"])} if "evidence" in item else {}),
+            }
+        )
+    return out
+
+
+def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], dict], budget: dict) -> dict:
+    """The baseline protocol checks, then every protocol alternative on its detached candidate."""
+    index = prepared["protocol"]
+    checks = _run_protocol_checks(prepared, values, execute, budget, index, list(index["check_order"]))
     return {
         "schema_version": 1,
         "objects": [deepcopy(index["objects"][key]) for key in index["order"]],
         "sections": deepcopy(index["sections"]),
         "checks": checks,
+        "decisions": _protocol_decision_rows(prepared, values, execute, budget),
         "limits_of_claim": [
             "Each check covers only its declared objects, claims and variables; not medical completeness.",
             "Projection receipts record consumed objects and premises; they do not establish meaning.",
@@ -1144,6 +1271,125 @@ def _definition_answer(row: dict, snapshot: dict) -> dict:
     return {"state": "comparable", **axes}
 
 
+PROTOCOL_AXES = ("verdict", "requirements", "support", "origin", "scope_model", "wording", "input")
+
+
+def protocol_axes(changed: dict) -> list[str]:
+    """Name changed protocol axes; a digest change alone is only input (pure).
+
+    pre: all(isinstance(v, bool) for v in changed.values())
+    post: all(axis in PROTOCOL_AXES for axis in __return__)
+    post: "input" not in __return__ or __return__ == ["input"]
+    post: "verdict" in __return__ or not changed.get("verdict")
+    """
+    named = [axis for axis in PROTOCOL_AXES[:-1] if changed.get(axis)]
+    if not named and changed.get("input"):
+        return ["input"]
+    return named
+
+
+def _claims_of(check: dict) -> dict:
+    return {
+        row["id"]: row
+        for child in check.get("children", [])
+        for signal in child.get("signals", [])
+        for row in signal.get("claim_admission", [])
+    }
+
+
+def _protocol_answer_diff(before: dict, after: dict) -> dict:
+    """Protocol consequences per check and decision, beside (never instead of) the audit diff (C9, REV-1)."""
+    objects = [{o["id"]: o for o in snapshot.get("objects", [])} for snapshot in (before, after)]
+
+    def involved(check: dict, side: int, field: str) -> list:
+        return [objects[side].get(i, {}).get(field) for i in check.get("objects", [])]
+
+    out: dict = {"checks": [], "decisions": []}
+    old, new = ({c["id"]: c for c in snapshot.get("checks", [])} for snapshot in (before, after))
+    for key in sorted(old.keys() | new.keys()):
+        left, right = old.get(key), new.get(key)
+        if left is None or right is None:
+            out["checks"].append(
+                {
+                    "id": key,
+                    "change": state.change_code(left is not None, right is not None, False),
+                    "axes": [],
+                }
+            )
+            continue
+        lc, rc = _claims_of(left), _claims_of(right)
+        both = lc.keys() & rc.keys()
+        same = source_evidence.exact_json_equal
+        changed = {
+            "verdict": lc.keys() != rc.keys()
+            or any(
+                (lc[c]["effective_outcome"], lc[c].get("application"))
+                != (rc[c]["effective_outcome"], rc[c].get("application"))
+                for c in both
+            ),
+            "requirements": any(
+                lc[c]["admission"] != rc[c]["admission"]
+                and lc[c]["effective_outcome"] == rc[c]["effective_outcome"]
+                for c in both
+            ),
+            "support": any(
+                not same(lc[c].get("support"), rc[c].get("support"))
+                or not same(lc[c].get("determining_ids"), rc[c].get("determining_ids"))
+                for c in both
+            )
+            or not same(
+                [
+                    s.get("role_support")
+                    for ch in left.get("children", [])
+                    for s in ch.get("request", {}).get("signals", [])
+                ],
+                [
+                    s.get("role_support")
+                    for ch in right.get("children", [])
+                    for s in ch.get("request", {}).get("signals", [])
+                ],
+            ),
+            "origin": not same(involved(left, 0, "origin"), involved(right, 1, "origin")),
+            "scope_model": not same(involved(left, 0, "scope"), involved(right, 1, "scope"))
+            or not same(involved(left, 0, "version"), involved(right, 1, "version"))
+            or not same(left.get("scope"), right.get("scope")),
+            "input": [c.get("request_digest") for c in left.get("children", [])]
+            != [c.get("request_digest") for c in right.get("children", [])],
+        }
+        axes = protocol_axes(changed)
+        out["checks"].append({"id": key, "code": state.change_code(True, True, not axes), "axes": axes})
+    old, new = ({d["id"]: d for d in snapshot.get("decisions", [])} for snapshot in (before, after))
+    for key in sorted(old.keys() | new.keys()):
+        left, right = old.get(key), new.get(key)
+        if left is None or right is None:
+            out["decisions"].append(
+                {
+                    "id": key,
+                    "change": state.change_code(left is not None, right is not None, False),
+                    "axes": [],
+                }
+            )
+            continue
+        la, ra = ({a["id"]: a for a in d["alternatives"]} for d in (left, right))
+        common = la.keys() & ra.keys()
+        changed = {
+            "verdict": left["disposition"] != right["disposition"]
+            or la.keys() != ra.keys()
+            or any(la[i]["compatibility"] != ra[i]["compatibility"] for i in common),
+            "requirements": any(
+                [(x["id"], x["admission"]) for c in la[i]["checks"] for x in c["claims"]]
+                != [(x["id"], x["admission"]) for c in ra[i]["checks"] for x in c["claims"]]
+                for i in common
+            ),
+            "wording": left["question"] != right["question"]
+            or any(la[i]["label"] != ra[i]["label"] for i in common),
+            "input": any(la[i]["candidate_digest"] != ra[i]["candidate_digest"] for i in common),
+        }
+        axes = protocol_axes(changed)
+        out["decisions"].append({"id": key, "code": state.change_code(True, True, not axes), "axes": axes})
+    return out
+
+
 def _answer_diff(before: dict, after: dict) -> dict:
     """Clinical consequences alongside, never in place of, full canonical audit changes."""
     out = {}
@@ -1209,6 +1455,11 @@ def _answer_diff(before: dict, after: dict) -> dict:
                 }
             )
         out[field] = rows
+    if "protocol" in before or "protocol" in after:
+        # Flat fields with {id, code, axes} rows, the established answer_diff row shape for every consumer.
+        protocol = _protocol_answer_diff(before.get("protocol") or {}, after.get("protocol") or {})
+        out["protocol_checks"] = protocol["checks"]
+        out["protocol_decisions"] = protocol["decisions"]
     return out
 
 

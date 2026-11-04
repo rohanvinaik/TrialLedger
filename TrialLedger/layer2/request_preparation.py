@@ -33,6 +33,8 @@ INPUTS: dict[str, dict[str, Any]] = {
             "analyses": "optional existing canonical additional analyses; no analysis is executed",
             "limits": "optional partial existing session limits; missing limits are disclosed defaults",
             "definition_checks": "optional canonical session definition-link declarations; copied unchanged",
+            "protocol": "optional design_session protocol {objects,checks,sections}; makes schema_version "
+            "2; shapes and a runnable example: describe view protocol",
         },
     },
     "compact_proposition": {
@@ -64,6 +66,97 @@ INPUTS: dict[str, dict[str, Any]] = {
             "rule": "existing Rule; default explicitly identifies caller declaration, not source deduction",
             "branch": "existing Branch; default unresolved",
             "span": "existing Span objects; default []",
+        },
+    },
+}
+PROTOCOL_DATA = {
+    "standing_ref": "{ref,version,status,resolution,basis}: an attributed versioned reference, not "
+    "verified truth",
+    "measurement": "{definition:standing_ref, unit:string|null, mode:observed|imputed|derived, "
+    "baseline:measurement id|null}",
+    "endpoint": "{variable:measurement id, definition:standing_ref, estimand:estimand id|null, "
+    "dependencies:null|the dependencies operator data (see operator_inputs)}",
+    "estimand": "exactly the estimand operator data (see operator_inputs.estimand)",
+    "assessment": "{measurement:measurement id, anchor:event id, unit:string, nominal:rational string|null, "
+    "permitted:interval union|null, condition:proposition|null}",
+    "collection": "{assessment:assessment id, mode:observed|imputed|derived, availability:interval "
+    "union|null (null unknown, [] none planned), event_handling:null|{estimand:estimand id, "
+    "requirement:that estimand's requirement id}}",
+    "efficacy": "{endpoint:endpoint id, method:binomial_design|external_method, parameters:"
+    "{model,direction,n,critical_count,p0,p1}|external_method id, assumptions:[{role:fixed_n|iid_binary|"
+    "alignment, premise:premise id}]}",
+    "policy": "{model:the finite_policy operator data (see operator_inputs.finite_policy), bindings:"
+    "[{variable:model variable id, object:object id|null, premise:premise id|null}] (exactly one non-null)}. "
+    "External variables are re-chosen at every step from the feasible valuations: an invariant over them can "
+    "only hold if it follows from the constraints for that state; keep memory in states",
+    "external_method": "{definition:standing_ref, inputs:[{name,value:string|null,unit:string|null,"
+    "ref:object or premise id|null}], missing:[input names]}",
+    "interval_union": "[{lower,upper,lower_inclusive,upper_inclusive}]; rational strings or null (infinite, "
+    "never inclusive)",
+}
+PROTOCOL_CHECKS = {
+    "schedule": "objects: exactly one assessment and its collection; claims [{id,claim:existence|nominal|"
+    "full_window}]",
+    "finite_policy": "objects: exactly one policy; claims [{id,claim:coverage|exclusivity|prohibition|"
+    "invariant|termination,witness_limit:0-64}]",
+    "binomial_design": "objects: one binomial_design efficacy and its endpoint; claims [{id,quantity:"
+    "null_rejection_probability|power,comparison:<=|>=,value}] or []",
+    "estimand": "objects: exactly one estimand; claims []",
+    "dependencies": "objects: one endpoint with non-null dependencies; claims []",
+    "external_method": "objects: an external_method efficacy and its external_method, or the external_method "
+    "alone; claims []",
+    "temporal / decision_table": "bindings: exactly one {projection:temporal_request|decision_table_request, "
+    "data:<that operator's data>}; objects optional",
+    "condition_applicability binding": "{projection:condition_applicability, premises:[assertion premise "
+    "ids]}; decides a declared assessment condition (otherwise findings stay conditional)",
+}
+PROTOCOL_ADMISSION = (
+    "An object's own standing and its adoption support are conjunctive (C3): support premises record "
+    "adoption, "
+    "and the object's own standing (default proposed/unresolved) must also be declared known (or "
+    "interpolated) and resolved before its findings are admitted. Check-wide support applies to every claim."
+)
+PROTOCOL_INPUTS = {
+    "compact_protocol_object": {
+        "required": ("id", "kind", "version", "origin", "data"),
+        "fields": {
+            "id": "unique protocol object id",
+            "kind": "measurement, endpoint, estimand, assessment, collection, efficacy, policy or "
+            "external_method",
+            "version": "declared definition edition; never inferred from the draft revision",
+            "origin": "{kind,ref,source?}; user_choice, hypothesis or source_interpretation; never defaulted",
+            "data": "the kind's closed canonical payload (operator reference); an assessment condition "
+            "may be a compact or canonical proposition",
+            "standing": "{status,resolution,basis}; default proposed/unresolved/[origin.ref] (disclosed)",
+            "support": "premise ids adopting this object; default [] (adoption stays unresolved)",
+            "depends_on": "default: exactly the object ids named inside data (mechanical, disclosed)",
+            "scope": "{target,context}; default the session target with an open cohort/phase/arm (disclosed)",
+        },
+    },
+    "compact_protocol_check": {
+        "required": ("id", "kind", "objects", "required"),
+        "fields": {
+            "id": "unique check id",
+            "kind": "schedule, finite_policy, binomial_design, estimand, dependencies, temporal, "
+            "decision_table, definition or external_method",
+            "objects": "declared object ids this check consumes",
+            "required": "explicit boolean; never defaulted (it decides which alternatives must include it)",
+            "claims": "the check's explicit obligations (operator reference); required for schedule and "
+            "finite_policy; default [] for others (disclosed)",
+            "bindings": "named projection records, e.g. {projection:condition_applicability,premises:[...]}; "
+            "default []",
+            "support": "check-wide premise ids; default []",
+            "scope": "default the session target with an open cohort/phase/arm (disclosed)",
+        },
+    },
+    "compact_protocol_section": {
+        "required": ("id", "state"),
+        "fields": {
+            "id": "population, eligibility, interventions, endpoints, assessments, efficacy, safety or "
+            "exploratory",
+            "state": "requested or not_applicable; omitted sections are not_requested",
+            "objects": "relevant object ids; default []",
+            "basis": "attributed references; required nonempty for not_applicable; default []",
         },
     },
 }
@@ -458,6 +551,117 @@ def _definition_checks(raw: object, defaults: list) -> list:
     return checks
 
 
+# Object references inside closed protocol data, exactly as frozen in interface/ledger.md. Preparation uses
+# them only to fill an omitted depends_on mechanically; protocol_objects re-validates every reference.
+def _data_references(kind: str, data: dict, ids: set[str]) -> list[str]:
+    found: list[object] = []
+    if kind == "measurement":
+        found = [data.get("baseline")]
+    elif kind == "endpoint":
+        found = [data.get("variable"), data.get("estimand")]
+    elif kind == "assessment":
+        found = [data.get("measurement")]
+    elif kind == "collection":
+        handling = data.get("event_handling")
+        found = [data.get("assessment"), handling.get("estimand") if isinstance(handling, dict) else None]
+    elif kind == "efficacy":
+        found = [
+            data.get("endpoint"),
+            data.get("parameters") if data.get("method") == "external_method" else None,
+        ]
+    elif kind == "policy":
+        found = [b.get("object") for b in data.get("bindings") or [] if isinstance(b, dict)]
+    elif kind == "external_method":
+        found = [i.get("ref") for i in data.get("inputs") or [] if isinstance(i, dict)]
+    return list(dict.fromkeys(ref for ref in found if isinstance(ref, str) and ref in ids))
+
+
+def _protocol_scope(raw: dict, target: dict, path: str, defaults: list) -> dict:
+    open_context = {"cohort": None, "phase": None, "arm": None}
+    return deepcopy(
+        _take(raw, "scope", {"target": deepcopy(target), "context": open_context}, path, defaults)
+    )
+
+
+def _protocol(raw: object, target: dict, defaults: list) -> dict:
+    """Mechanical expansion of a compact protocol; every administrative default is disclosed."""
+    held = _fields(raw, {"objects", "checks", "sections"}, {"objects", "checks", "sections"}, "protocol")
+    base = "/request/session/protocol"
+    rows = _rows(held["objects"], 256, "protocol.objects")
+    ids = {row.get("id") for row in rows if isinstance(row, dict)}
+    objects = []
+    for index, item in enumerate(rows):
+        path = f"{base}/objects/{index}"
+        row = _fields(
+            item,
+            {"id", "kind", "version", "origin", "data", "standing", "support", "depends_on", "scope"},
+            {"id", "kind", "version", "origin", "data"},
+            "protocol.object",
+        )
+        origin = _origin(row["origin"], path + "/origin", defaults)
+        data = deepcopy(row["data"])
+        if row["kind"] == "assessment" and isinstance(data, dict) and isinstance(data.get("condition"), dict):
+            data["condition"] = proposition(data["condition"], path + "/data/condition", defaults)
+        standing = {"status": "proposed", "resolution": "unresolved", "basis": [origin["ref"]]}
+        objects.append(
+            {
+                "id": row["id"],
+                "kind": row["kind"],
+                "scope": _protocol_scope(row, target, path, defaults),
+                "version": row["version"],
+                "origin": origin,
+                "standing": deepcopy(_take(row, "standing", standing, path, defaults)),
+                "support": deepcopy(_take(row, "support", [], path, defaults)),
+                "depends_on": deepcopy(
+                    _take(
+                        row,
+                        "depends_on",
+                        _data_references(row["kind"], data, ids) if isinstance(data, dict) else [],
+                        path,
+                        defaults,
+                    )
+                ),
+                "data": data,
+            }
+        )
+    checks = []
+    for index, item in enumerate(_rows(held["checks"], 128, "protocol.checks")):
+        path = f"{base}/checks/{index}"
+        row = _fields(
+            item,
+            {"id", "kind", "objects", "required", "claims", "bindings", "support", "scope"},
+            {"id", "kind", "objects", "required"},
+            "protocol.check",
+        )
+        if row["kind"] in ("schedule", "finite_policy") and "claims" not in row:
+            raise ValueError("protocol_check_claims_required:" + str(row["id"]))
+        checks.append(
+            {
+                "id": row["id"],
+                "kind": row["kind"],
+                "scope": _protocol_scope(row, target, path, defaults),
+                "objects": deepcopy(row["objects"]),
+                "bindings": deepcopy(_take(row, "bindings", [], path, defaults)),
+                "claims": deepcopy(_take(row, "claims", [], path, defaults)),
+                "required": row["required"],
+                "support": deepcopy(_take(row, "support", [], path, defaults)),
+            }
+        )
+    sections = []
+    for index, item in enumerate(_rows(held["sections"], 8, "protocol.sections")):
+        path = f"{base}/sections/{index}"
+        row = _fields(item, {"id", "state", "objects", "basis"}, {"id", "state"}, "protocol.section")
+        sections.append(
+            {
+                "id": row["id"],
+                "state": row["state"],
+                "objects": deepcopy(_take(row, "objects", [], path, defaults)),
+                "basis": deepcopy(_take(row, "basis", [], path, defaults)),
+            }
+        )
+    return {"schema_version": 1, "objects": objects, "checks": checks, "sections": sections}
+
+
 def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
     session_state.target(raw["target"])
     target = deepcopy(raw["target"])
@@ -470,7 +674,12 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
             raise ValueError("unknown_source:origin")
     ids = [criterion["id"] for criterion in criteria]
     analyses = _analyses(raw.get("analyses", []), set(ids), source_ids)
-    decisions, generated = _questions(raw["questions"], target, ids, defaults, len(analyses))
+    if "questions" not in raw and "protocol" not in raw:
+        # Version 1 preparation keeps its existing refusal exactly.
+        raise ValueError("missing_field:prepare.design_session")
+    # A protocol-only session has no questions; the default is disclosed where it lands (session decisions).
+    questions = raw["questions"] if "questions" in raw else _default(defaults, path + "/decisions", [])
+    decisions, generated = _questions(questions, target, ids, defaults, len(analyses))
     analyses.extend(generated)
     by_analysis = {}
     for analysis in analyses:
@@ -521,6 +730,11 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
         session["definition_checks"] = prepare_definitions(
             _definition_checks(raw["definition_checks"], defaults), by_analysis
         )
+    if "protocol" in raw:
+        session["schema_version"] = 2
+        session["protocol"] = _protocol(raw["protocol"], target, defaults)
+        # Validation only (no solver): the expansion must already be an admissible v2 session.
+        session_state.prepare(session)
     return {"operation": "design_session", "session": session, "previous": None}
 
 
@@ -556,8 +770,9 @@ def prepare(request: object) -> dict:
                 "analyses",
                 "limits",
                 "definition_checks",
+                "protocol",
             },
-            {"operation", "for", "criteria", "id", "target", "questions"},
+            {"operation", "for", "criteria", "id", "target"},
             "prepare.design_session",
         )
     defaults, criteria, origins, ids = [], [], [], set()
@@ -691,3 +906,93 @@ def card(*, schema: bool = False) -> dict:
             input_shapes=deepcopy(INPUTS),
         )
     return result
+
+
+def protocol_example() -> dict:
+    """An invented week-12 visit, its collection plan and a required schedule check (teaching only)."""
+    request = session_example()
+    interval = {"lower": "77", "upper": "91", "lower_inclusive": True, "upper_inclusive": True}
+    through_80 = {"lower": None, "upper": "80", "lower_inclusive": False, "upper_inclusive": True}
+    origin = {"kind": "user_choice", "ref": "user:invented week-12 plan (teaching example)"}
+    reference = {
+        "ref": "invented:score definition",
+        "version": "1",
+        "status": "proposed",
+        "resolution": "unresolved",
+        "basis": ["user:invented week-12 plan (teaching example)"],
+    }
+    request["protocol"] = {
+        "objects": [
+            {
+                "id": "score",
+                "kind": "measurement",
+                "version": "invented-v1",
+                "origin": origin,
+                "data": {"definition": reference, "unit": "points", "mode": "observed", "baseline": None},
+            },
+            {
+                "id": "week12",
+                "kind": "assessment",
+                "version": "invented-v1",
+                "origin": origin,
+                "data": {
+                    "measurement": "score",
+                    "anchor": "randomization",
+                    "unit": "day",
+                    "nominal": "84",
+                    "permitted": [interval],
+                    "condition": None,
+                },
+            },
+            {
+                "id": "collection",
+                "kind": "collection",
+                "version": "invented-v1",
+                "origin": origin,
+                "data": {
+                    "assessment": "week12",
+                    "mode": "observed",
+                    "availability": [through_80],
+                    "event_handling": None,
+                },
+            },
+        ],
+        "checks": [
+            {
+                "id": "week12-schedule",
+                "kind": "schedule",
+                "objects": ["week12", "collection"],
+                "required": True,
+                "claims": [
+                    {"id": "visit", "claim": "existence"},
+                    {"id": "target", "claim": "nominal"},
+                    {"id": "window", "claim": "full_window"},
+                ],
+            }
+        ],
+        "sections": [{"id": "assessments", "state": "requested", "objects": ["week12", "collection"]}],
+    }
+    return request
+
+
+def protocol_card(*, schema: bool = False) -> dict:
+    return {
+        "detail": "schema" if schema else "card",
+        "operation": "prepare",
+        "question": "Declare protocol objects, checks and sections for a version-2 design session.",
+        "procedure": "Add a protocol {objects,checks,sections} to a design_session preparation; inspect "
+        "defaults/origins (scope, standing, support and depends_on defaults are disclosed), then run the "
+        "returned request. Read result.protocol: per-check children, per-claim admission and receipts.",
+        "boundary": "No clinical value, claim, required flag, origin or adoption is defaulted; unspecified "
+        "standing stays proposed/unresolved, so findings stay unadmitted until adoption support is declared.",
+        "input_shapes": deepcopy(PROTOCOL_INPUTS),
+        "object_data": deepcopy(PROTOCOL_DATA),
+        "check_patterns": deepcopy(PROTOCOL_CHECKS),
+        "admission": PROTOCOL_ADMISSION,
+        "operator_inputs": {"operation": "describe", "view": "signals", "detail": "full"},
+        "example_basis": "Invented teaching choices, not a real trial or human confirmation.",
+        "example": protocol_example(),
+        "next": "Run the example through prepare, then reason; the schedule check reports a feasible visit, "
+        "an uncollected nominal day and an uncovered (80, 91] part of the window, all unadmitted "
+        "until the objects are adopted.",
+    }

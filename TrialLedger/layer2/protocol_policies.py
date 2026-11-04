@@ -67,7 +67,9 @@ INPUTS = {
             "actions": "[{id, scope:{level: participant|cohort|study, ref}, description}]; wording unread",
             "transitions": "[{id, from, to, guard, actions}]; guard is a tagged proposition",
             "prohibitions": "[{id, state|null, condition, actions, rule}]: forbidden action selections",
-            "invariants": "[{id, state|null, condition, actions: [], rule}]: required at every reached node",
+            "invariants": "[{id, state|null, condition, actions: [], rule}]: required at every reached node. "
+            "External variables are re-chosen at every step from the state's feasible valuations, so an "
+            "invariant over them holds only if the constraints imply it; represent memory in states",
         },
         "reserved": "policy_state is an equality literal on the current state; callers never declare it",
         "claims": "nonempty [{id, claim, witness_limit 0..64}], claim in coverage|exclusivity|prohibition|"

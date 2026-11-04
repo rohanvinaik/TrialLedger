@@ -20,6 +20,7 @@ OPERATIONS = ("describe", *PREPARATION_OPERATIONS, *REASONING_OPERATIONS)
 DISCOVERY_VIEWS = (
     "overview",
     *PREPARATION_OPERATIONS,
+    "protocol",
     *REASONING_OPERATIONS,
     "delivery",
     "worked_session",

@@ -296,12 +296,19 @@ def prepare(value: object) -> dict:
     analyses = _index(
         rows(session["analyses"], "analyses"), {"id", "operation", "target", "parameters", "uses"}, "analysis"
     )
-    decisions = _decision_index(session["decisions"])
+    raw_decisions = rows(session["decisions"], "decisions")
+    # Version 2 separates tagged protocol decisions; version 1 admission and its error codes are unchanged.
+    protocol_raw = (
+        [d for d in raw_decisions if type(d) is dict and "kind" in d]
+        if session["schema_version"] == 2
+        else []
+    )
+    decisions = _decision_index([d for d in raw_decisions if not any(d is p for p in protocol_raw)])
     for name, entries in (
         ("sources", sources_raw),
         ("premises", premises),
         ("analyses", analyses),
-        ("decisions", decisions),
+        ("decisions", [*decisions, *protocol_raw]),
     ):
         if len(entries) > limits["max_" + name]:
             raise ValueError("resource_bound:" + name)
@@ -377,6 +384,28 @@ def prepare(value: object) -> dict:
         protocol = protocol_objects.validate_protocol(
             session["protocol"], target=session["target"], premises=premises, sources=sources
         )
+    protocol_decisions_out = []
+    if protocol is not None:
+        from TrialLedger.layer2 import protocol_decisions, protocol_objects
+
+        for raw_decision in protocol_raw:
+            item = protocol_decisions.validate(raw_decision, protocol, session["target"])
+            if item["id"] in decisions or any(d["id"] == item["id"] for d in protocol_decisions_out):
+                raise ValueError("duplicate_id:decision:" + item["id"])
+            candidates = []
+            for alternative in item["alternatives"]:
+                raw_candidate = protocol_decisions.candidate(
+                    session["protocol"], alternative["replace_objects"]
+                )
+                candidates.append(
+                    {
+                        "raw": raw_candidate,
+                        "index": protocol_objects.validate_protocol(
+                            raw_candidate, target=session["target"], premises=premises, sources=sources
+                        ),
+                    }
+                )
+            protocol_decisions_out.append({**item, "candidates": candidates})
     order = _ordered(graph)
     return {
         "session": session,
@@ -389,5 +418,9 @@ def prepare(value: object) -> dict:
         "definition_checks": related_definitions,
         "graph": graph,
         "order": order,
-        **({"protocol": protocol} if protocol is not None else {}),
+        **(
+            {"protocol": protocol, "protocol_decisions": protocol_decisions_out}
+            if protocol is not None
+            else {}
+        ),
     }
