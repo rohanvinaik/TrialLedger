@@ -96,7 +96,8 @@ conditions, refs}`.
 | invariant | holds / violation / not_declared | "Every declared invariant holds in reachable declared situations." / "{n} declared invariant failure(s)." / "No invariant is declared." |
 | termination | all_paths_terminate / not_established | "Every permitted path in the declared model reaches a terminal state." / "Termination is not established in the declared model: {reasons}." |
 | null_rejection_probability / power | satisfied / not_satisfied | "The exact {quantity} {computed} meets the declared bound {comparison} {value}." / "...does not meet..." |
-| any | unresolved (a refused row) | "Not applied: the deciding support is {admission}." |
+| any | unresolved, with admission `undetermined` | "Not determined: an input this claim needs is not declared." (added at integration; an undecided row is not a refusal) |
+| any | unresolved, with any other admission (a refused row) | "Not applied: the deciding support is {admission}." |
 | any | not_executed | "Not computed within the declared work limit." |
 
 - `{n}` is the claim row's `violations_found`. Read it from the child `result` at the result address of the
