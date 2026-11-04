@@ -161,3 +161,35 @@ Every consumer (summary counts, compact paging) reads `code`. This was corrected
    `settled_within_declared_alternatives`.
 4. **Schedule gaps.** `uncovered`, `not_collected`, `outside_window`, `no_feasible_time` and `no_permitted_time`
    are the schedule failure outcomes that make a check `violated`.
+
+## Repair choices in comparisons (Rohan, 2026-11-04: "new 'repair choice' result")
+
+Schedule gaps (`no_feasible_time`, `no_permitted_time`, `outside_window`, `not_collected`, `uncovered`) and an
+unmet binomial target (`not_satisfied`) are the person's repair choice in comparisons too, as in the clinical
+labels.
+
+**Precedence.** These supersede the earlier tables where they differ.
+
+- **`check_code`**, first match:
+  1. `not_applicable`
+  2. `violated`: an admitted policy failure (gap, competing, violation, not_established, inconsistent_domain), or
+     an admitted conflict/inconsistent/violated code from an existing operator
+  3. `undetermined`
+  4. `repair_choice`: an admitted schedule gap or unmet binomial target
+  5. `satisfied`
+- **`compatibility`** over the required checks, first match:
+  1. `incompatible_under_declared_checks` (any violated)
+  2. `undetermined` (any undetermined). Missing knowledge outranks a known repair
+  3. `repair_choice_open_under_declared_checks` (any repair_choice)
+  4. `compatible_under_declared_checks` (at least one satisfied)
+- **`disposition`**, first match:
+  1. `blocker`: the selected alternative is incompatible
+  2. `repair_choice`: the selected alternative is repair_choice_open
+  3. `design_choice`
+  4. `evidence_question`
+  5. `settled_within_declared_alternatives`
+  6. `repair_choice`: no compatible alternative, but at least one repair_choice_open
+  7. `no_compatible_alternative`
+
+A selected plan with a visit-window gap therefore reads "repair choice", never "blocker". A selected plan whose
+admitted dosing policy violates its own prohibition is still a blocker.

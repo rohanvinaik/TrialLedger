@@ -191,8 +191,8 @@ def test_opt2_all_required_checks_satisfied_gives_only_declared_check_compatibil
     assert _check(row, "week12-schedule")["check_code"] == "satisfied"
 
 
-def test_opt2_a_violated_optional_context_check_does_not_change_compatibility():
-    """OPT-2: an optional context check that fails is reported beside compatibility without altering it."""
+def test_opt2_a_failing_optional_context_check_does_not_change_compatibility():
+    """OPT-2: an optional context check that finds a gap is reported beside compatibility, unchanged."""
     base = _base(required=("visit",), optional=True)
     checks = ("week12-schedule", "week12-window")
     alternatives = [
@@ -203,7 +203,8 @@ def test_opt2_a_violated_optional_context_check_does_not_change_compatibility():
 
     baseline = _row(decision, "baseline-as-declared")
     assert _check(baseline, "week12-window")["required"] is False
-    assert _check(baseline, "week12-window")["check_code"] == "violated"
+    # A schedule gap is a repair choice (Rohan, 2026-11-04), reported but not deciding an optional check.
+    assert _check(baseline, "week12-window")["check_code"] == "repair_choice"
     assert baseline["compatibility"] == "compatible_under_declared_checks"
     assert _check(baseline, "week12-schedule")["check_code"] == "satisfied"
 
@@ -223,8 +224,8 @@ def test_opt2_no_alternative_is_ever_described_as_safe_effective_optimal_or_comp
         assert not FORBIDDEN_WORDS.search(value), value
 
 
-def test_opt3_a_selected_incompatible_alternative_stays_selected_and_blocks_the_decision():
-    """OPT-3: selection is retained verbatim, and an incompatible selected alternative is a blocker."""
+def test_opt3_a_selected_schedule_gap_is_a_repair_choice_not_a_blocker():
+    """OPT-3 (decided 2026-11-04): a selected plan with a schedule gap stays selected; repair_choice."""
     base = _base()
     selection = {"alternative": "through-80-edit", "origin": "user", "basis": ["user:invented choice"]}
     alternatives = [
@@ -234,7 +235,48 @@ def test_opt3_a_selected_incompatible_alternative_stays_selected_and_blocks_the_
     decision = _decision(_complete(_with_decision(base, alternatives, selected=selection)))
 
     assert decision["selection"] == selection
-    assert _row(decision, "through-80-edit")["compatibility"] == "incompatible_under_declared_checks"
+    assert _row(decision, "through-80-edit")["compatibility"] == "repair_choice_open_under_declared_checks"
+    assert decision["disposition"] == "repair_choice"
+    assert decision["disposition"] != "blocker"
+
+
+def _policy_session(prohibition_status: str = "known") -> dict:
+    guide = run({"operation": "describe", "view": "signals", "detail": "full"})["result"]
+    model = copy.deepcopy(guide["signal_examples"]["finite_policy"]["signals"][0]["data"])
+    for rule in model["prohibitions"]:
+        rule["rule"]["status"] = prohibition_status
+    request = _base()
+    protocol = request["session"]["protocol"]
+    policy = copy.deepcopy(protocol["objects"][0])
+    policy.update(id="interim-rule", kind="policy", depends_on=[], data={"model": model, "bindings": []})
+    protocol["objects"].append(policy)
+    protocol["checks"] = [
+        {
+            **copy.deepcopy(protocol["checks"][0]),
+            "id": "interim-safety",
+            "kind": "finite_policy",
+            "objects": ["interim-rule"],
+            "claims": [{"id": "prohibition", "claim": "prohibition", "witness_limit": 1}],
+        }
+    ]
+    return request
+
+
+def test_opt3_a_selected_policy_violation_is_incompatible_and_blocks_the_decision():
+    """OPT-3: a selected plan whose admitted policy forbids its own action stays selected and is a blocker."""
+    base = _policy_session()
+    other = copy.deepcopy(
+        next(o for o in base["session"]["protocol"]["objects"] if o["id"] == "interim-rule")
+    )
+    other["data"]["model"]["prohibitions"] = []
+    selection = {"alternative": "as-drafted", "origin": "user", "basis": ["user:invented choice"]}
+    alternatives = [
+        _alt("as-drafted", [], ("interim-safety",)),
+        _alt("no-prohibition", [other], ("interim-safety",)),
+    ]
+    decision = _decision(_complete(_with_decision(base, alternatives, selected=selection)))
+    assert decision["selection"] == selection
+    assert _row(decision, "as-drafted")["compatibility"] == "incompatible_under_declared_checks"
     assert decision["disposition"] == "blocker"
 
 
