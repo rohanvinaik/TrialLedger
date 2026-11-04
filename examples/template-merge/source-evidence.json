@@ -1,0 +1,45 @@
+{
+  "retrieved_at": "2026-11-04T19:48:27.221391+00:00",
+  "role": "Complete eligibility-module excerpts from a public reference run; interpretation and draft adoption are separate.",
+  "sources": [
+    {
+      "snapshot": {
+        "nct": "NCT03653546",
+        "digest": "6a3bf8d1d54f074fd7152202b31454fc454b32ac3bb153cc6315d5d0f516beaf",
+        "study_ref": "ctg:NCT03653546:6a3bf8d1d54f074fd7152202b31454fc454b32ac3bb153cc6315d5d0f516beaf"
+      },
+      "link": "https://clinicaltrials.gov/study/NCT03653546",
+      "address": "/protocolSection/eligibilityModule",
+      "value": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n1. Properly completed patient informed consent\n2. Male or female aged at least 18 years\n3. Histologically or cytologically confirmed diagnosis of NSCLC with activating EGFR mutations including L858R and/or Exon19Del. EGFR mutation status will be determined by local or central laboratory testing on tumour tissue or plasma utilizing a validated methodology which has been approved by the regulatory authority.\n4. No prior treatment with chemotherapy, EGFR-TKIs, or biological therapies that are considered first line treatment for advanced NSCLC.\n5. All patients must have a documented diagnosis of advanced (Stage IV) NSCLC with Magnetic Resonance Imaging (MRI) documented CNS metastases that include brain metastases (BM). BM + patients with co- existent leptomeningeal involvement are eligible for the study.\n6. Eligible patients are not candidates for definitive surgical resection or radiation of all lesions in the opinion of the treating physician.\n7. All patients must be stable without any systemic (oral or parenteral) corticosteroid or anticonvulsant therapy for at least 2 weeks prior to study treatment. Inhaled non-absorbable and topical corticosteroid use are permitted as indicated.\n8. Patients may have prior placement of a properly functioning CNS shunt or Ommaya reservoir.\n9. Eastern Cooperative Oncology Group (ECOG) performance status 0 to 1 with no deterioration over the previous 2 weeks.\n10. Women of child-bearing potential and male subjects shall agree to take medically acceptable contraception measures while on study treatment and for 3 months following completion of study treatment. All women of child-bearing potential must have a negative blood pregnancy test at screening.\n11. (a) For Patients with measurable CNS lesions must have AT LEAST ONE site of CNS lesion, which was not previously irradiated, that can be accurately measured at baseline as ≥ 10 mm in the longest diameter by MRI and which is suitable for accurate repeated measurements. Measurable extracranial disease is not required. (b) For Patients with non-measurable CNS lesions must have AT LEAST ONE extracranial lesion, which has not been previously irradiated, within the screening period that can be accurately measured at baseline as ≥ 10 mm in the longest diameter (except lymph nodes which must have short axis ≥ 15 mm) by CT/MRI and are suitable for accurate repeated measurement.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    {
+      "snapshot": {
+        "nct": "NCT01774721",
+        "digest": "a95b219553157b48b2fd5d5829ae0eb222e3697ad0987f5b8c5a2b7c1e5cdbb2",
+        "study_ref": "ctg:NCT01774721:a95b219553157b48b2fd5d5829ae0eb222e3697ad0987f5b8c5a2b7c1e5cdbb2"
+      },
+      "link": "https://clinicaltrials.gov/study/NCT01774721",
+      "address": "/protocolSection/eligibilityModule",
+      "value": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Evidence of histo or cytopathology confirmed, advanced NSCLC (with known histology) with the presence of EGFR-activating mutation (exon 19 deletion or the L858R mutation in exon 21).\n* It is acceptable for subjects with the presence of the exon 20 T790M mutation together with either EGFR-activating mutation (exon 19 deletion or the L858R mutation in exon 21) to be included in this study\n* No prior treatment with systemic therapy for locally advanced or metastatic NSCLC. Minimum of 12 months disease free interval between completion of neoadjuvant/adjuvant systemic therapy and recurrence of NSCLC\n* Adequate tissue sample must be available for central analyses.\n* Adequate renal, hematologic, liver function.\n* ECOG PS of 0-1.\n* Radiologically measurable disease.\n\nExclusion Criteria:\n\n* Any evidence of mixed histology that includes elements of small cell or carcinoid lung cancer.\n* Any other mutation other than exon 19 deletion or L858R in exon 21, with or without the presence of the exon 20 T790M mutation.\n* Any history of brain metastases or leptomeningeal metastases.\n* Any previous anti-cancer systemic treatment of early, locally advanced, or metastatic NSCLC.\n* Any surgery(not including minor procedures such as lymph node biopsy), palliative radiotherapy or pleurodesis within 2 weeks of baseline assessments\n* Any clinically significant gastrointestinal abnormalities that may impair intake, transit or absorption of the study drug.\n* Current enrollment in another therapeutic clinical study.\n* History of, or currently suspected, diffuse non-infectious pneumonitis or interstitial lung disease\n* Uncontrolled medical disorders.\n* Prior malignancy and concurrent malignancy except for non melanoma skin cancer or in-situ cervical cancer with no evidence of active disease.\n* Use of narrow therapeutic index drugs that are CYP2D6 substrates from screening to randomization.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "99 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    }
+  ]
+}

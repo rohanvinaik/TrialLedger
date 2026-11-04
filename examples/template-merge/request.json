@@ -1,0 +1,226 @@
+{
+  "operation": "entailment",
+  "assertions": [
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "brain_metastases_present",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "simulated-draft:requires-brain-metastases",
+      "id": "requires-brain-metastases",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "typed-request-declaration",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "simulated-draft:requires-brain-metastases"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    },
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "brain_metastases_present",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "simulated-draft:excludes-brain-metastases",
+      "id": "excludes-brain-metastases",
+      "modality": "excluded",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "typed-request-declaration",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "simulated-draft:excludes-brain-metastases"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    },
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "ECOG",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "inclusive",
+          "kind": "quantity",
+          "members": [],
+          "number": 1.0,
+          "unit": "ECOG",
+          "upper": null
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "simulated-draft:performance-status",
+      "id": "performance-status",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "typed-request-declaration",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "simulated-draft:performance-status"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    }
+  ],
+  "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+      "class": "Predicate",
+      "key": "brain_metastases_present",
+      "kind": "measurement"
+    },
+    "qualifiers": {
+      "class": "Always"
+    },
+    "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+    },
+    "time": null,
+    "value": {
+      "class": "Value",
+      "comparison": "eq",
+      "inclusivity": "unspecified",
+      "kind": "boolean",
+      "members": [],
+      "number": null,
+      "unit": "",
+      "upper": null
+    }
+  },
+  "context": {
+    "cohort": null,
+    "phase": null,
+    "arm": null
+  },
+  "bound": 65536
+}

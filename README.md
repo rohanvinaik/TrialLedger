@@ -9,32 +9,127 @@
 [![python](https://img.shields.io/badge/python-3.12%2B-blue?logo=python&logoColor=white)](pyproject.toml)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**TrialLedger doesn't make your clinical decisions. It finds them.**
+**Clinical trial evidence you can trace. Design consequences you can check.**
 
-Much of designing a trial is documentary and logical work: finding what comparable trials did, copying it out
-accurately, and working out what a draft restriction does and doesn't allow. TrialLedger, run by your AI
-assistant, does that work. It hands you the choices that genuinely need clinical judgment, each with its
-evidence and its consequences worked out.
+Tell your AI assistant which trials interest you. TrialLedger gathers their ClinicalTrials.gov records into
+a reference workbook, preserves the source wording and checks the records against the registry's own rules.
+Then use the same conversation to work through your design: who could enroll, which criteria conflict,
+what the evidence leaves open and what changes when you revise a choice.
 
-For a draft lung cancer trial compared with IPASS and ARCHER 1050, one decision looks like this:
+You receive a decision list and a spreadsheet you can share with colleagues. Each choice has its evidence,
+computed consequences and remaining questions. You make the clinical decisions; the program makes their
+logical consequences inspectable.
 
-- **Evidence:** ARCHER 1050 requires ECOG performance status 0–1. IPASS's registered eligibility gives no
-  cutoff; its baseline nevertheless reports 126 of 1,217 participants at WHO PS 2. WHO PS and ECOG are kept
-  as separate scales.
-- **Your decision:** What performance-status range do you intend?
-- **Consequence:** Widening your draft from ECOG 0–1 to 0–2 moves ECOG 2 patients from excluded to allowed.
-- **Still open:** Your draft says nothing about brain metastases. ARCHER 1050 excludes any history of them.
+## Two reasonable criteria. No possible patient.
 
-You talk to your assistant in ordinary clinical language. Behind the conversation, every answer is either
-copied from the registry, calculated by TrialLedger from statements you have confirmed, or plainly marked as
-a reading or as your choice. This page explains how that works, what you can ask, and how far to trust each
-kind of answer.
+Suppose you build a lung-cancer trial by borrowing entry restrictions from two real studies:
+
+| Borrowed restriction | Source |
+|---|---|
+| Require brain metastases | The [AZD3759 study, NCT03653546](https://clinicaltrials.gov/study/NCT03653546), requires MRI-documented CNS metastases that include brain metastases |
+| Exclude brain metastases | [ARCHER 1050](https://clinicaltrials.gov/study/NCT01774721) excludes any history of brain or leptomeningeal metastases |
+| Require ECOG performance status at most 1 | A separate restriction in your draft |
+
+For this simulated draft, we explicitly encode the first two choices as requiring and excluding brain
+metastases in the same entry population. TrialLedger returns:
+
+```text
+INCONSISTENT
+Deciding premises: excludes-brain-metastases, requires-brain-metastases
+```
+
+The ECOG premise is not implicated. Remove either conflicting restriction and the remaining criteria admit
+a possible patient. The program identifies the pair that makes enrollment impossible and leaves the choice
+of repair to you. It does not use the contradiction to claim that any arbitrary conclusion is true.
+
+The source records are real; the merged draft is deliberately simulated. Translating their wording into
+these draft premises is an explicit step, not an automatic reading certified by the solver. The AZD3759
+record also distinguishes measurable and non-measurable CNS lesions; this example does not turn that into
+a universal measurable-lesion requirement. [Run the check and inspect its sources](examples/template-merge/).
+
+## Useful information can exist without a reported answer
+
+IPASS reports 607 safety-evaluable participants and 590 quality-of-life-evaluable participants in a
+609-person treatment cohort. It does not report their overlap. **If those two subsets refer to the same
+609 people, at least 588 and at most 590 must be in both.** Only two people are outside the safety subset,
+so at most two of the 590 can be outside it.
+
+That is new information obtained from the relationship between the reported values. No patient-level data
+or assumption about correlation is needed. The population correspondence remains an explicit premise; the
+exact overlap remains unknown. [The source-bound calculation and its warrants](docs/POWERFUL_QUESTIONS.md#the-joint-table-is-missing-can-we-still-know-who-must-overlap)
+are inspectable.
+
+This is the project's information-theoretic thesis in practical form: **keep the information the evidence
+actually supplies, including the possibilities it rules out.** Missing detail can leave a precise range.
+Conflicting requirements can identify a precise repair. The remaining freedom becomes a clinical decision.
+Your assistant handles the conversation; the symbolic engine checks the explicit relationships and names
+what decided each answer.
+
+## An assistant's reading stays a reading
+
+Suppose one of two selected trials documents an exclusion and the other remains unresolved. TrialLedger
+can report **1 of 2 documented, with a possible full-criteria range of 50–100%**. It cannot call the silent
+trial a trial without that exclusion. A proposed reading of the second trial stays pending until accepted;
+it does not quietly enter the accepted count. [Execute that distinction](examples/reasoning-admission/).
+
+If your assistant misses a criterion **and leaves the trial unresolved**, the result loses precision rather
+than inventing absence. That protection depends on retaining the unresolved status; a mistaken claim that
+a record is completely encoded can still mislead. Likewise, an exact quotation proves where the words came
+from, not that the reading has the right population, negation or meaning. Material readings are shown to
+you as premises, and their consequences remain conditional on those premises being right.
+
+You can therefore ask both “What follows if we adopt this reading?” and “What can we establish without
+adopting it?” Defaults stay labelled and overridable. WHO PS and ECOG stay separate unless an explicit
+equivalence premise connects them. A common practice remains a description, not a rule your trial must follow.
+
+## The reference workbook is a deliverable on its own
+
+Ask for named trials, or a subset by drug/class, condition, phase and status. A source-backed class search
+expands to its documented members and names; the preview shows what will be searched. The workbook gives
+you a dossier per trial and shared listings for eligibility, interventions, endpoints, baseline, results,
+participant flow and safety.
+
+| What you can inspect | What TrialLedger preserves |
+|---|---|
+| The actual criterion | Verbatim wording, source headings and addresses, including awkward or contradictory source entries |
+| The meaning of a number | Its population, local group, denominator, unit and reporting period |
+| Missing information | “Not stated,” “not posted” and “not applicable” remain different; planned outcomes remain separate from results |
+| The registry's internal consistency | 17 structured checks, with the fields, rule and outcome for each |
+| The workbook's derivation | Retained source responses; `verify` checks that the record and workbook reproduce from them |
+
+The consistency checks can expose a completed study with estimated completion dates, an arm naming an
+undeclared intervention, affected participants exceeding those at risk, or non-completion reasons that
+do not account for the reported total. Their rules cite registry definitions or direct consequences of
+them. **“Not checkable” stays visible; it is never counted as a pass.** These checks establish consistency
+within the record, not whether the registry matches events in the real world.
+
+Your assistant answers from `landscape.json`; your colleagues receive `landscape.xlsx`. You can stop here,
+or continue into a design review. TrialLedger is [MIT-licensed](LICENSE).
+
+## From a question to a shareable design review
+
+1. **Gather and inspect.** Choose the comparison set and get the reference workbook. Your assistant brings
+   you the exact passages and values relevant to the design.
+2. **Choose and check.** Make the intended restriction precise. Check its consequences, compare readings
+   or leave an unresolved question open. “Allowed by this restriction” is different from “all eligibility
+   requirements have been checked.”
+3. **Revise and share.** Change a premise and rerun. Export `decision-list.md` and `design-review.xlsx`, with
+   evidence, alternatives, consequences and origins. An ECOG edit can change a remaining requirement beside
+   a brain-metastasis answer without changing that answer's verdict; the review distinguishes the two.
+
+The working core also checks declared endpoint prerequisites, assessment timing, finite action rules and
+collection requirements after treatment discontinuation. The broader protocol workflow is being connected
+in the [current implementation plan](openspec/changes/connect-protocol-design-workflow/HANDOFF.md).
+Complete automatic protocol writing remains unfinished.
+
+<details>
+<summary>How the reasoning works, larger worked sessions and precise trust boundaries</summary>
 
 ## How it thinks
 
-Many AI tools fill the gaps in a clinical record with what is probably true. TrialLedger does the opposite.
-It works out exactly what the evidence settles, keeps everything else open, and brings the open parts to you
-as questions. Five ideas explain nearly everything it does.
+Published definitions, explicit premises and relationships between observations can settle questions that
+no individual field answers. TrialLedger keeps the rest open and brings consequential choices to you.
+Five ideas explain how.
 
 ### 1. Every answer carries its source
 
@@ -123,7 +218,7 @@ choices kept distinct. Their complete checks and revisions remain available besi
 
 | Stage | What happens | Who does it | Why it can be trusted |
 |---|---|---|---|
-| **Gathering** (bookkeeping) | Registry records are retrieved, preserved and laid out in a reference workbook. The registry's own published rules are applied, such as date-order checks. | TrialLedger, operated by your assistant | Values are faithful copies, and checks follow published registry rules. The workbook can be rebuilt from the saved records. Nothing is interpreted. |
+| **Gathering** | Registry records are retrieved, preserved and laid out in a reference workbook. The registry's own published rules are applied, such as date-order checks. | TrialLedger, operated by your assistant | Values are faithful copies, and checks follow published registry rules. The workbook can be rebuilt from the saved records. No clinical reading is supplied. |
 | **Translation** | Your criteria, your questions and readings of trial text become precise premises. | Your assistant, with you | Registry values are used as recorded. Every reading, sameness claim and choice is restated to you in clinical words before it is relied on. This is the only stage where an AI's reading enters the reasoning. |
 | **Computation** (inference) | Confirmed premises and evidence are combined to rule possibilities out. The result says what follows, what conflicts and what stays open. | TrialLedger | The calculation is exact and gives the same answer every time. Each result names what decided it. |
 
@@ -206,16 +301,16 @@ population, unit and denominator context. An arm and a total are never silently 
 
 ### Why a casual conversation can carry exact reasoning
 
-Your assistant does not do the reasoning. It translates between your words and TrialLedger's premises.
+Your assistant translates between clinical language and explicit premises; TrialLedger performs the declared checks.
 Registry values are used as recorded; every reading, sameness claim and choice is restated to you in clinical
 words, taken from the check actually being run, before anything relies on it. TrialLedger does the
 calculation, the same way every time. The question of trust therefore shifts from "do I trust the AI?" to "are
 these statements about my trial right?", which you are qualified to answer. When you change a premise, the
 checks are rerun; an old answer is never relabelled as if it had checked the new one.
 
-Two limits matter. First, TrialLedger supplies logic, not medical knowledge. It knows only what the registry
-records and what you have confirmed: nothing about pharmacology, biology or today's standard of care. Second,
-translation can go wrong. A misread criterion yields an exact answer to the wrong question, which is why you
+Two limits matter. First, TrialLedger reasons from the evidence, definitions and rules actually represented.
+A registry record cannot supply a missing biological relationship or establish today's standard of care.
+Second, translation can go wrong. A misread criterion yields an exact answer to the wrong question, which is why you
 always see the premises restated. Each check is also saved as a file that a technical colleague can audit, and
 at any point you can ask which premise decided an answer.
 
@@ -451,6 +546,8 @@ audit objects change because their inputs changed. The review shows both facts s
 can see the actual consequences without mistaking bookkeeping changes for seven new clinical findings.
 The [implementation evidence](openspec/changes/deliver-warranted-clinical-handoffs/evidence/session-revisions/wiring-and-work.md)
 records the executed checks and their scope.
+
+</details>
 
 ## What isn't built yet
 
