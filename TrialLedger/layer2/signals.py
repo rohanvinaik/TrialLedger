@@ -20,6 +20,20 @@ MODULES = {
     "stages": "stage_evidence",
     "decision_table": "decision_tables",
     "estimand": "estimand_evidence",
+    "schedule_coverage": "protocol_schedule",
+    "finite_policy": "protocol_policies",
+    "binomial_design": "protocol_statistics",
+}
+# Kinds whose explicit obligations travel as per-signal claims in the public request. Existing kinds keep
+# their established claim semantics (candidate claims inside design_bounds/interpretations frames only).
+CLAIM_KINDS = frozenset({"schedule_coverage", "finite_policy", "binomial_design"})
+# Input roles a caller may bind to subsets of a claim-kind signal's support (interface R1). A claim row that
+# names its deciding roles (`determined_by`) is gated only by those roles' support; an unbound role, or a row
+# naming none, is gated by all of the signal's support.
+ROLES = {
+    "schedule_coverage": ("available", "nominal", "permitted"),
+    "finite_policy": ("model",),
+    "binomial_design": ("assumptions", "parameters"),
 }
 
 
@@ -39,6 +53,17 @@ class Signal:
     support: tuple[Support, ...]
     bindings: dict[str, a.Proposition]
     application_blockers: tuple[str, ...] = ()
+
+
+@dataclasses.dataclass(frozen=True)
+class ClaimSignal(Signal):
+    """A protocol-kind signal with explicit claims and role-bound support.
+
+    A separate class, so existing Signal serializations and v1 canonical results stay byte-identical.
+    """
+
+    claims: tuple[dict, ...] | None = None
+    role_support: dict[str, tuple[str, ...]] | None = None
 
 
 def operator(kind: str):
@@ -63,6 +88,89 @@ def support_state(statuses: list[str], resolutions: list[str]) -> str:
     if any(value != "resolved" for value in resolutions):
         return "binding_unresolved"
     return "accepted"
+
+
+CLAIM_ADMISSIONS = (
+    "undetermined",
+    "application_blocked",
+    "missing_support",
+    "proposed_refused",
+    "binding_unresolved",
+    "accepted",
+)
+
+
+def claim_admission_state(decided: bool, blocked: bool, inner: str, outer: str) -> str:
+    """Admit one claim row from its own deciding support; never from another row's (pure).
+
+    pre: inner in ("accepted", "none", "missing_support", "proposed_refused", "binding_unresolved")
+    pre: outer in ("missing_support", "proposed_refused", "binding_unresolved", "accepted")
+    post: __return__ in CLAIM_ADMISSIONS
+    post: __return__ != "accepted" or (decided and not blocked and outer == "accepted")
+    post: __return__ != "accepted" or inner in ("accepted", "none")
+    post: decided or __return__ == "undetermined"
+    """
+    if not decided:
+        return "undetermined"
+    if blocked:
+        return "application_blocked"
+    if inner not in ("accepted", "none"):
+        return inner
+    return outer
+
+
+def _claim_admissions(signal: Signal, calculation: dict) -> list[dict]:
+    """Per-claim admission rows over the same gate; the whole-signal code remains the conservative summary."""
+    value = calculation["value"]
+    rows = value.get("claims") if isinstance(value, dict) else None
+    if not isinstance(rows, list):
+        return []
+    support = {p.id: p for p in signal.support}
+    roles = getattr(signal, "role_support", None) or {}
+    envelope_status = calculation.get("support_status")
+    envelope_resolution = calculation.get("support_resolution") or "resolved"
+    output = []
+    for row in rows:
+        named = row.get("determined_by")
+        decided = row.get("outcome") not in ("unresolved", "unknown_target", "not_executed", "limit")
+        if isinstance(named, list) and named:
+            ids = sorted({i for role in named for i in roles.get(role, tuple(support))})
+        else:
+            ids = sorted(support)
+        statuses = [support[i].status for i in ids]
+        resolutions = [support[i].resolution for i in ids]
+        inner = "none"
+        standing = row.get("standing")
+        if isinstance(standing, str):
+            inner = (
+                "accepted"
+                if standing in ("known", "interpolated")
+                else "none"
+                if standing == "no_rule_support"
+                else standing
+            )
+            if standing in ("known", "interpolated"):
+                statuses.append(standing)
+                resolutions.append("resolved")
+        elif envelope_status is not None:
+            statuses.append(envelope_status)
+            resolutions.append(envelope_resolution)
+        state = claim_admission_state(
+            decided, bool(signal.application_blockers), inner, support_state(statuses, resolutions)
+        )
+        output.append(
+            {
+                "id": row["id"],
+                "claim": row.get("claim", row.get("quantity")),
+                "outcome": row["outcome"],
+                "support": ids,
+                "admission": state,
+                "effective_outcome": row["outcome"]
+                if state in ("accepted", "undetermined")
+                else "unresolved",
+            }
+        )
+    return output
 
 
 def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
@@ -130,6 +238,11 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
         }
         if set(calculation) == resolved_form:
             result["operator_support"]["resolution"] = calculation["support_resolution"]
+    if signal.kind in CLAIM_KINDS:
+        result["claim_admission"] = _claim_admissions(signal, calculation)
+        bound = getattr(signal, "role_support", None)
+        if bound is not None:
+            result["role_support"] = {role: list(ids) for role, ids in sorted(bound.items())}
     return result
 
 

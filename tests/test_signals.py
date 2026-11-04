@@ -35,13 +35,21 @@ def test_all_discovered_operator_examples_run_without_mutating_inputs(kind):
     before = copy.deepcopy(request)
     reply = run(request)
     assert reply["code"] == "complete", reply
-    assert reply["result"]["signals"][0]["code"] == (
+    # The invented protocol examples deliberately show a finding: the TIM-1 window gap and a witnessed
+    # prohibition violation. The binomial example computes the STA-1 probabilities.
+    protocol_codes = {
+        "schedule_coverage": "violated",
+        "finite_policy": "violated",
+        "binomial_design": "computed",
+    }
+    existing = (
         "unresolved"
         if kind in ("dependencies", "estimand")
         else "bounded"
         if kind in ("overlap", "partition", "summary", "population")
         else "consistent"
     )
+    assert reply["result"]["signals"][0]["code"] == protocol_codes.get(kind, existing)
     assert request == before
     assert reply["result"]["premises"] == request["signals"]
     assert guide["operator_inputs"][kind] == signals.operator(kind).INPUTS[kind]

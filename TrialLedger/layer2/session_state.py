@@ -270,15 +270,16 @@ def _decision_index(items: object) -> dict[str, dict]:
 def prepare(value: object) -> dict:
     """Detach and validate ledgers and complete replay dependencies before any child call."""
     held = source_evidence._json_copy(value, "design_session")
-    if (
-        type(held) is not dict
-        or set(held) - (SESSION_FIELDS | {"definition_checks"})
-        or SESSION_FIELDS - set(held)
-    ):
+    if type(held) is not dict:
+        raise ValueError("invalid_fields:session")
+    version = held.get("schema_version")
+    if type(version) is not int or version not in (1, 2):
+        raise ValueError("unsupported_session_version")
+    # Version 2 adds exactly one required ledger; version 1 is admitted exactly as before (CMP-1).
+    required = SESSION_FIELDS | ({"protocol"} if version == 2 else set())
+    if set(held) - (required | {"definition_checks"}) or required - set(held):
         raise ValueError("invalid_fields:session")
     session = held
-    if type(session["schema_version"]) is not int or session["schema_version"] != 1:
-        raise ValueError("unsupported_session_version")
     for key in ("id", "revision"):
         text(session[key], key)
     if session["parent_digest"] is not None:
@@ -369,6 +370,13 @@ def prepare(value: object) -> dict:
     context = {
         key: decision_evidence.locate(item.get("evidence", []), sources) for key, item in decisions.items()
     }
+    protocol = None
+    if session["schema_version"] == 2:
+        from TrialLedger.layer2 import protocol_objects
+
+        protocol = protocol_objects.validate_protocol(
+            session["protocol"], target=session["target"], premises=premises, sources=sources
+        )
     order = _ordered(graph)
     return {
         "session": session,
@@ -381,4 +389,5 @@ def prepare(value: object) -> dict:
         "definition_checks": related_definitions,
         "graph": graph,
         "order": order,
+        **({"protocol": protocol} if protocol is not None else {}),
     }

@@ -94,6 +94,15 @@ above, then check premises.
   later work.
 - **Request shape.** Each signals request is exactly `{"operation": "signals", "signals": [signal]}`. The child
   id and the signal id are `"<check id>:<projection name>"`.
+- **Role support on the child (added after Rohan's R1 decision).**
+  - Each claim-kind child signal (schedule_coverage, finite_policy, binomial_design) also carries
+    `"role_support": {role: [support entry ids]}`, built from the receipt's `role_support` entries.
+  - The keys are the operator's roles: schedule `permitted`/`nominal`/`available`; policy `model`; binomial
+    `parameters`/`assumptions`.
+  - Each list holds the unique `id`s of that role's entries, in entry order. Every id must also appear in the
+    signal's `support`.
+  - estimand, dependencies, temporal and decision_table children carry no `role_support`. The public request
+    refuses it for those kinds.
 
 ## Acceptance for packet E (direct-call tests in `tests/test_protocol_projections.py`)
 

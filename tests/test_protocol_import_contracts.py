@@ -39,6 +39,7 @@ RULES = {
     "TrialLedger.layer2.protocol_policies": SESSION_AND_TRANSPORT,
     "TrialLedger.layer2.protocol_statistics": SESSION_AND_TRANSPORT,
     "TrialLedger.layer2.protocol_objects": SESSION_AND_TRANSPORT | OPERATORS,
+    "TrialLedger.layer2.protocol_projections": SESSION_AND_TRANSPORT | OPERATORS,
 }
 
 

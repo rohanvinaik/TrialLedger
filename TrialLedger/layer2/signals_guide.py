@@ -24,6 +24,16 @@ INPUTS = {
             "data": "kind-specific typed input; see operator_inputs",
             "support": "nonempty array of independently identified support objects",
             "bindings": "optional object mapping mathematical ref ids to tagged participant propositions",
+            "claims": (
+                "optional; schedule_coverage, finite_policy and binomial_design only: the explicit "
+                "obligations to check, per operator_inputs; omitted computes the operator's default claims"
+            ),
+            "role_support": (
+                "optional; claim kinds only: {role: [support ids]}, the support behind each input role "
+                "(schedule_coverage: permitted/nominal/available; finite_policy: model; binomial_design: "
+                "parameters/assumptions). claim_admission then gates each claim by its deciding roles only; "
+                "unbound roles use all support. The whole-signal code stays the conservative summary."
+            ),
         },
     },
     "support": {

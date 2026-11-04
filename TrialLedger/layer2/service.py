@@ -334,7 +334,44 @@ def _prepared_signals(raw: Any) -> list[signals.Signal]:
             if not isinstance(body, assertions.PROPOSITIONS):
                 raise RequestError("signal_binding_not_proposition")
             bound[_text(ref, "binding:ref")] = body
-        prepared.append(signals.Signal(identity, kind, row["data"], tuple(support), bound))
+        claims = None
+        if "claims" in row:
+            if kind not in signals.CLAIM_KINDS:
+                raise RequestError("unsupported_signal_claims")
+            raw_claims = _list(row["claims"], "signal:claims")
+            if any(not isinstance(item, dict) for item in raw_claims):
+                raise RequestError("signal_claim_not_object")
+            claims = tuple(deepcopy(item) for item in raw_claims)
+        role_support = None
+        if "role_support" in row:
+            if kind not in signals.CLAIM_KINDS:
+                raise RequestError("unsupported_signal_role_support")
+            raw_roles = row["role_support"]
+            if not isinstance(raw_roles, dict) or not raw_roles:
+                raise RequestError("invalid_signal_role_support")
+            known_ids = {p.id for p in support}
+            role_support = {}
+            for role, ids in raw_roles.items():
+                if role not in signals.ROLES[kind]:
+                    raise RequestError("unknown_signal_role")
+                listed = _list(ids, "signal:role_support")
+                if not listed or len(set(listed)) != len(listed) or any(i not in known_ids for i in listed):
+                    raise RequestError("invalid_signal_role_support")
+                role_support[role] = tuple(listed)
+        if kind in signals.CLAIM_KINDS:
+            prepared.append(
+                signals.ClaimSignal(
+                    identity,
+                    kind,
+                    row["data"],
+                    tuple(support),
+                    bound,
+                    claims=claims,
+                    role_support=role_support,
+                )
+            )
+        else:
+            prepared.append(signals.Signal(identity, kind, row["data"], tuple(support), bound))
     if len({signal.id for signal in prepared}) != len(prepared):
         raise RequestError("duplicate_signal_id")
     return prepared
@@ -354,7 +391,15 @@ def _signals(request: dict[str, Any]) -> dict[str, Any]:
     response = {
         "basis": BASIS,
         "premises": request["signals"],
-        "signals": [signals.evaluate(signal) for signal in prepared],
+        "signals": [
+            signals.evaluate(
+                signal,
+                list(signal.claims)
+                if isinstance(signal, signals.ClaimSignal) and signal.claims is not None
+                else None,
+            )
+            for signal in prepared
+        ],
         "limits": (
             "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
         ),

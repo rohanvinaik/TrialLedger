@@ -46,6 +46,27 @@ CAUSE_KINDS = {
     "table_uncovered_case": "conflict",
     "table_conflicting_actions": "conflict",
     "table_forbidden_action": "conflict",
+    # Protocol operators (connect-protocol-design-workflow): a failed declared obligation is a conflict
+    # under the declared claims; an undeclared input is missing evidence; bounds are computation limits.
+    "schedule_no_permitted_time": "conflict",
+    "schedule_no_feasible_time": "conflict",
+    "schedule_outside_window": "conflict",
+    "schedule_not_collected": "conflict",
+    "schedule_uncovered": "conflict",
+    "schedule_unresolved": "evidence",
+    "policy_gap": "conflict",
+    "policy_competing": "conflict",
+    "policy_violation": "conflict",
+    "policy_not_established": "conflict",
+    "policy_transition_target_infeasible": "conflict",
+    "policy_inconsistent_domain": "conflict",
+    "policy_work_limit": "computation",
+    "binomial_unsupported_method": "unsupported",
+    "binomial_assumption_missing": "translation",
+    "binomial_claim_not_satisfied": "conflict",
+    "binomial_bit_limit": "computation",
+    "missing_support": "premise",
+    "application_blocked": "translation",
     "definition_analysis_refused": "translation",
     "definition_computation_refused": "computation",
     "definition_empty_antecedent": "translation",
@@ -199,6 +220,26 @@ RESULTS = frozenset(
         "cell",
         "parent",
         "abstain",
+        # Protocol operator and claim outcomes (interface operators.md).
+        "violated",
+        "satisfied",
+        "not_satisfied",
+        "unsupported_method",
+        "limit",
+        "inconsistent_domain",
+        "no_feasible_time",
+        "no_permitted_time",
+        "outside_window",
+        "not_collected",
+        "unknown_target",
+        "uncovered",
+        "exclusive",
+        "competing",
+        "not_declared",
+        "holds",
+        "all_paths_terminate",
+        "not_established",
+        "not_executed",
     )
 )
 DISPOSITIONS = frozenset(
@@ -261,8 +302,20 @@ def disposition_code(logical_result: str, standing: str, completion: str) -> str
         "gap",
         "domain_conflict",
         "violation",
+        "violated",
+        "not_satisfied",
+        "inconsistent_domain",
+        "no_feasible_time",
+        "no_permitted_time",
+        "outside_window",
+        "not_collected",
+        "uncovered",
+        "competing",
+        "not_established",
     ):
         return "conflict" if standing in ("known", "interpolated", "proposed") else "unclassified"
+    if logical_result in ("not_declared", "not_executed", "unsupported_method", "limit"):
+        return "not_computed"
     if logical_result in ("ENTAILED", "REFUTED", "ruled_out"):
         if standing == "known":
             return "settled"
@@ -348,6 +401,8 @@ def _signal_findings(row: dict, path: str) -> list[dict]:
         return _table_findings(row, path)
     if row.get("kind") == "estimand":
         return _estimand_findings(row, path)
+    if "claim_admission" in row:
+        return _protocol_claim_findings(row, path)
     if row.get("kind") != "stages":
         return [_signal(row, path)]
     transitions = row.get("value", {}).get("transitions", [])
@@ -370,6 +425,28 @@ def _signal_findings(row: dict, path: str) -> list[dict]:
             finding["raw_path"] = _path(edge_path, "code")
         elif edge["code"] == "permitted_only" and status == "known":
             finding["disposition"] = "descriptive"
+        findings.append(finding)
+    return findings
+
+
+def _protocol_claim_findings(row: dict, path: str) -> list[dict]:
+    """One finding per declared protocol claim, admitted on that claim's own deciding support (R1).
+
+    Consumers read these rows, not only the conservative signal summary. A refused row keeps its raw outcome.
+    """
+    findings = [_signal(row, path)]
+    statuses = {premise["id"]: premise["status"] for premise in row.get("support", ())}
+    for index, claim in enumerate(row["claim_admission"]):
+        claim_path = _path(_path(path, "claim_admission"), index)
+        own = tuple(statuses[i] for i in claim.get("support", ()) if i in statuses)
+        standing = weakest_status(own) if own else row.get("status")
+        admitted = claim["admission"] in ("accepted", "undetermined")
+        causes = [] if admitted else [claim["admission"] + ":" + str(claim["id"])]
+        finding = _row(claim_path, "protocol_claim", claim["effective_outcome"], standing, causes)
+        finding["support_path"] = _path(claim_path, "support")
+        if not admitted:
+            finding["raw_result"] = claim["outcome"]
+            finding["raw_path"] = _path(claim_path, "outcome")
         findings.append(finding)
     return findings
 

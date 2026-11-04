@@ -60,13 +60,29 @@ it but never edit it. Report a gap as a factual case instead.
 
 ## Wave-0 resolutions (clerical; no clinical meaning changed)
 
-**R1. Per-claim support gating (C4's "retain equivalent per-claim admission records").**
-- Operators return per-claim rows naming the inputs or rules that decided each row: `determined_by` for
-  schedules, and `determining_ids`/`standing` for policies.
-- The coordinator applies the existing `signals.support_state` gate per claim, over only those inputs'
-  supports.
-- The public `signals` operation still uses its single conservative whole-signal gate.
-- This is how a known `outside_window` survives an unknown or proposed collection plan (TIM-4, EPI-2).
+**R1. Per-claim support gating, confirmed by Rohan on 2026-11-04 ("per-claim on public path too").**
+- Operators return per-claim rows naming what decided each row: `determined_by` roles for schedules, and
+  `standing`/`determining_ids` for policies.
+- The gate owner, `signals.evaluate`, adds a `claim_admission` row per claim, with fields `id`, `claim`,
+  `outcome`, `support`, `admission` and `effective_outcome`.
+- A claim-kind signal may carry `role_support`, `{role: [support ids]}`, in the public request.
+  - A row is gated only by its deciding roles' support. An unbound role, or a row naming no roles, uses all of
+    the signal's support.
+  - A policy row's own rule standing also gates it, so a proposed prohibition doesn't hide known coverage.
+  - An undecided row is `undetermined`.
+- The whole-signal code remains the conservative summary.
+- Managed sessions use exactly this path, because packet E emits `role_support` on each child signal. There
+  is one gate, not two.
+- A known `outside_window` is therefore admitted while a proposed collection plan stays unresolved (TIM-4,
+  EPI-2).
+- The pure decision `signals.claim_admission_state`: CrossHair `--report_all` reports "Not confirmed" for its
+  contracts. It found no counterexample but proved nothing over all paths. It is not yet pinned.
+
+**R3 and C6 readings confirmed by Rohan (2026-11-04).**
+- R3: all three binomial assumptions are required for application; the arithmetic is always shown.
+- C6: terminal states are exempt from coverage and exclusivity only; two or more enabled transitions are
+  always competing; inputs are re-chosen freely at each step; `policy_state` may be used in guards and
+  constraints.
 
 **R2. C6 field naming and the reserved state.**
 - C6's `variables` keeps its name, and each entry uses the decision-table domain shape.

@@ -12,7 +12,7 @@ from copy import deepcopy
 from itertools import combinations
 from typing import Any, cast
 
-from TrialLedger.layer2 import admission, solver_work, source_evidence
+from TrialLedger.layer2 import admission, signals, solver_work, source_evidence
 from TrialLedger.layer2 import assertions as a
 from TrialLedger.layer2 import session_projections as projections
 from TrialLedger.layer2 import session_state as state
@@ -345,6 +345,10 @@ def _nested_table_work(node: object) -> int:
         from TrialLedger.layer2.decision_tables import work_reservation
 
         cost = work_reservation(data)
+    elif node.get("kind") in signals.CLAIM_KINDS and isinstance(node.get("data"), dict):
+        # Protocol operators publish their own conservative formulas (interface operators.md, C10);
+        # a malformed declaration refuses here with the operator's named translation code.
+        cost = signals.operator(node["kind"]).work_reservation(node["data"])
     return cost + sum(_nested_table_work(v) for v in node.values())
 
 
@@ -658,6 +662,84 @@ def _decisions(
     return sorted(out, key=lambda v: (priority[v["code"]], v["id"]))
 
 
+def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], dict], budget: dict) -> dict:
+    """Run every declared protocol check through its named projection and the ordinary budgeted child path.
+
+    Projection supplies requests and receipts only; operators compute; the signal gate admits each claim from
+    its own deciding support. Nothing here interprets a label or promotes standing (interface R1, C4).
+    """
+    from TrialLedger.layer2 import protocol_projections
+
+    index = prepared["protocol"]
+    limits = prepared["session"]["limits"]
+    standing = {
+        key: {k: value["standing"][k] for k in ("status", "resolution", "basis")}
+        for key, value in values.items()
+    }
+    checks = []
+    for check_id in index["check_order"]:
+        projected = protocol_projections.project(index, check_id, premise_standing=standing)
+        children = []
+        for child in projected["children"]:
+            checked = _child(child["request"], execute, budget, limits)
+            result = checked["result"]
+            signals_out = (
+                (result.get("result") or {}).get("signals", []) if result.get("code") == "complete" else []
+            )
+            children.append(
+                {
+                    "id": child["id"],
+                    "receipt": deepcopy(child["receipt"]),
+                    "request": child["request"],
+                    "result": deepcopy(result),
+                    "request_digest": state.digest(child["request"]),
+                    "result_digest": state.digest(result),
+                    "signals": [
+                        {
+                            key: deepcopy(signal[key])
+                            for key in (
+                                "id",
+                                "kind",
+                                "code",
+                                "calculation_code",
+                                "status",
+                                "admission",
+                                "blockers",
+                            )
+                        }
+                        | {"claim_admission": deepcopy(signal.get("claim_admission", []))}
+                        for signal in signals_out
+                    ],
+                    "refusal": None if result.get("code") == "complete" else list(result.get("problems", [])),
+                }
+            )
+        declared = index["checks"][check_id]
+        checks.append(
+            {
+                "id": check_id,
+                "kind": declared["kind"],
+                "required": declared["required"],
+                "scope": deepcopy(declared["scope"]),
+                "objects": list(declared["objects"]),
+                "projection": projected["projection"],
+                "children": children,
+                "unresolved": deepcopy(projected["unresolved"]),
+                "not_computed": deepcopy(projected["not_computed"]),
+            }
+        )
+    return {
+        "schema_version": 1,
+        "objects": [deepcopy(index["objects"][key]) for key in index["order"]],
+        "sections": deepcopy(index["sections"]),
+        "checks": checks,
+        "limits_of_claim": [
+            "Each check covers only its declared objects, claims and variables; not medical completeness.",
+            "Projection receipts record consumed objects and premises; they do not establish meaning.",
+            "Each claim is admitted on its own deciding support; the signal code is a conservative summary.",
+        ],
+    }
+
+
 def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> dict:
     """Execute every child afresh; full graph is replay dependence, not global support."""
     values, analyses, ledger = {}, {}, []
@@ -691,7 +773,7 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
         lambda request: _child(request, execute, budget, limits),
     )
     return {
-        "schema_version": 1,
+        "schema_version": prepared["session"]["schema_version"],
         "session_id": prepared["session"]["id"],
         "revision": prepared["session"]["revision"],
         "session_digest": prepared["digest"],
@@ -711,6 +793,11 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
         "analyses": list(analyses.values()),
         "projection_ledger": ledger,
         "decisions": _decisions(prepared, analyses, values, execute, budget),
+        **(
+            {"protocol": _protocol_checks(prepared, values, execute, budget)}
+            if "protocol" in prepared
+            else {}
+        ),
         **({"definition_checks": related_definitions} if "definition_checks" in prepared["session"] else {}),
         "limits": deepcopy(limits),
         "limit_semantics": {
@@ -1033,6 +1120,9 @@ def run(request: object, execute: Callable[[object], dict] | None = None) -> dic
         if type(previous["result"]) is not dict:
             raise ValueError("invalid_previous_result")
         old = state.prepare(previous["session"])
+        if old["session"]["schema_version"] != current["session"]["schema_version"]:
+            # No implicit migration between representation versions (C2).
+            raise ValueError("mixed_session_version_revision")
         if (
             old["session"]["id"] != current["session"]["id"]
             or old["session"]["revision"] == current["session"]["revision"]
