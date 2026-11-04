@@ -1,0 +1,182 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/layer2/coherence.py::close",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (6422 characters). You can adjust your query or raise the max_answer_chars parameter.\nReference counts per file:\n{\"TrialLedger/layer2/coherence.py\": 3, \"tests/test_coherence.py\": 11, \"tests/detective/test_TrialLedger_coherence_close_91fbe6d1e5_synth.py\": 2, \"TrialLedger/layer2/coordinate_admission.py\": 2}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/layer2/coherence.py::narrow_by_evidence",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (4378 characters). You can adjust your query or raise the max_answer_chars parameter.\nReferences without surrounding lines:\n{\"TrialLedger/layer2/coherence.py\": {\"Variable\": [{\"name_path\": \"resolve/stated\", \"reference_line\": 322}]}, \"tests/test_coherence.py\": {\"File\": [{\"name_path\": \"test_coherence\", \"reference_line\": 33}], \"Variable\": [{\"name_path\": \"test_silence_never_narrows/domains\", \"reference_line\": 69}, {\"name_path\": \"test_inclusion_keeps_and_exclusion_removes_with_causes/domains\", \"reference_line\": 75}, {\"name_path\": \"test_contradictory_evidence_is_a_named_conflict/domains\", \"reference_line\": 101}, {\"name_path\": \"setting_after/domains\", \"reference_line\": 395}, {\"name_path\": \"test_closure_is_order_independent/domains\", \"reference_line\": 437}, {\"name_path\": \"test_a_relation_without_its_facts_never_applies/domains\", \"reference_line\": 444}, {\"name_path\": \"test_relations_that_disagree_empty_the_domain_with_both_named/domains\", \"reference_line\": 451}], \"Function\": [{\"name_path\": \"test_atoms_that_state_no_coordinate_never_narrow\", \"reference_line\": 97}]}, \"tests/detective/test_TrialLedger_coherence_narrow_by_evidence_9cbc937c6a_synth.py\": {\"File\": [{\"name_path\": \"test_TrialLedger_coherence_narrow_by_evidence_9cbc937c6a_synth\", \"reference_line\": 9}], \"Function\": [{\"name_path\": \"test_narrow_by_evidence_golden\", \"reference_line\": 83}]}, \"TrialLedger/layer2/coordinate_admission.py\": {\"Variable\": [{\"name_path\": \"_narrow_from/removals\", \"reference_line\": 20}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/layer2/result_semantics.py::_coordinates",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/layer2/result_semantics.py\": {\"Function\": [{\"name_path\": \"metadata\", \"body_location\": {\"start_line\": 807, \"end_line\": 860}, \"content_around_reference\": \"... 829:    adapters = {\\n  > 830:        \\\"coordinates\\\": _coordinates,\\n... 831:        \\\"corpus\\\": _corpus,\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/layer2/result_semantics.py::_interpretations",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/layer2/result_semantics.py\": {\"Function\": [{\"name_path\": \"metadata\", \"body_location\": {\"start_line\": 807, \"end_line\": 860}, \"content_around_reference\": \"... 832:        \\\"design_bounds\\\": _design_bounds,\\n  > 833:        \\\"interpretations\\\": _interpretations,\\n... 834:        \\\"source_assertions\\\": _source_assertions,\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/layer2/result_semantics.py::_query",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/layer2/result_semantics.py\": {\"Function\": [{\"name_path\": \"_interpretations\", \"body_location\": {\"start_line\": 628, \"end_line\": 679}, \"content_around_reference\": \"... 634:    findings.extend(\\n  > 635:        _query(row, _path(_path(fixed_path, \\\"queries\\\"), index))\\n... 636:        for index, row in enumerate(fixed.get(\\\"queries\\\", ()))\"}, {\"name_path\": \"_interpretations\", \"body_location\": {\"start_line\": 628, \"end_line\": 679}, \"content_around_reference\": \"... 655:        findings.extend(\\n  > 656:            _query(row, _path(_path(path, \\\"queries\\\"), query_index))\\n... 657:            for query_index, row in enumerate(frame.get(\\\"queries\\\", ()))\"}, {\"name_path\": \"_interpretations\", \"body_location\": {\"start_line\": 628, \"end_line\": 679}, \"content_around_reference\": \"... 675:    findings.extend(\\n  > 676:        _query(row, _path(_path(base, \\\"consequences\\\"), index))\\n... 677:        for index, row in enumerate(result.get(\\\"consequences\\\", ()))\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/layer2/result_semantics.py::_session_findings",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/layer2/result_semantics.py\": {\"Function\": [{\"name_path\": \"metadata\", \"body_location\": {\"start_line\": 807, \"end_line\": 860}, \"content_around_reference\": \"... 834:        \\\"source_assertions\\\": _source_assertions,\\n  > 835:        \\\"design_session\\\": _session_findings,\\n... 836:        \\\"evidence_requests\\\": _evidence_findings,\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/landscape.py::schema_problems",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (2840 characters). You can adjust your query or raise the max_answer_chars parameter.\nReferences without surrounding lines:\n{\"TrialLedger/operate.py\": {\"File\": [{\"name_path\": \"operate\", \"reference_line\": 55}], \"Variable\": [{\"name_path\": \"run/problems\", \"reference_line\": 690}]}, \"tests/test_landscape.py\": {\"Function\": [{\"name_path\": \"test_a_record_of_the_saved_bodies_validates\", \"reference_line\": 50}, {\"name_path\": \"test_the_validator_names_each_departure\", \"reference_line\": 295}, {\"name_path\": \"test_a_record_that_is_not_an_object_is_refused\", \"reference_line\": 299}]}, \"tests/test_source_bound_report.py\": {\"Function\": [{\"name_path\": \"test_results_submission_context_is_source_bound_and_visible_in_the_dossier\", \"reference_line\": 69}, {\"name_path\": \"test_the_record_validator_does_not_accept_a_noninteger_enrollment\", \"reference_line\": 80}, {\"name_path\": \"test_valid_zero_false_and_numeric_result_strings_keep_their_source_types\", \"reference_line\": 87}]}, \"tests/test_reporting_information_handoffs.py\": {\"Function\": [{\"name_path\": \"report\", \"reference_line\": 50}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/landscape.py::study_problems",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/landscape.py\": {\"Function\": [{\"name_path\": \"schema_problems\", \"body_location\": {\"start_line\": 638, \"end_line\": 681}, \"content_around_reference\": \"... 666:    for index, study in enumerate(studies):\\n  > 667:        found += study_problems(study, f\\\"studies[{index}]\\\")\\n... 668:    manifest = record.get(\\\"manifest\\\")\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/readout.py::sheet_headers",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (7572 characters). You can adjust your query or raise the max_answer_chars parameter.\nReference counts per file:\n{\"TrialLedger/readout.py\": 7, \"tests/test_clinical_readout.py\": 5, \"tests/test_readout_schema3.py\": 8}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/readout.py::dictionary_rows",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/readout.py\": {\"Function\": [{\"name_path\": \"book_plan\", \"body_location\": {\"start_line\": 2160, \"end_line\": 2246}, \"content_around_reference\": \"...2237:    rows[contract.REVIEW] = review\\n  >2238:    rows[contract.DICTIONARY] = dictionary_rows(n, record)\\n...2239:    plan = []\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/landscape_verify.py::verify_landscape",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (8267 characters). You can adjust your query or raise the max_answer_chars parameter.\nReference counts per file:\n{\"TrialLedger/cli.py\": 2, \"tests/test_landscape_verify.py\": 22}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/landscape_warrants.py::derivation_root",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (6947 characters). You can adjust your query or raise the max_answer_chars parameter.\nReference counts per file:\n{\"TrialLedger/landscape.py\": 2, \"TrialLedger/landscape_verify.py\": 2, \"tests/test_landscape_verify.py\": 16}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  }
+]

@@ -45,6 +45,7 @@ def extend(description: dict) -> None:
             "projection_ledger": "Named transformations and their precise warrant boundaries",
             "decisions": "Declared questions, actual alternative checks and their local support",
             "limits": "Declared aggregate work and output bounds",
+            "limit_semantics": "Operative solver/output bounds and legacy diagnostic-only fields",
             "limits_of_claim": "Represented scope and remaining epistemic boundaries",
         },
     }
@@ -110,7 +111,11 @@ INPUTS = {
         "fields": {
             "kind": ["new_trial", "historical"],
             "ref": "nonempty identity",
-            "scope": "exact {study,population,arm,time,version}, each nonempty string",
+            "scope": (
+                "exact {study,population,arm,time,version}, each nonempty string. For a historical "
+                "source_study analysis, copy study from source_assertions /result/source/study_ref "
+                "for this exact snapshot, not the NCT ID alone; do not reconstruct the identity."
+            ),
         },
     },
     "source": {
@@ -169,7 +174,11 @@ INPUTS = {
                 "source_assertions",
             ],
             "target": "exact target object",
-            "parameters": ("existing operation fields excluding operation, fixed and owned slots"),
+            "parameters": (
+                "existing operation fields excluding operation, fixed and owned slots. source_study "
+                "owns study AND expected_digest: omit both here. Its use.premise is the local source ID; "
+                "its historical target.scope.study is the exact returned snapshot study_ref."
+            ),
             "uses": "use[]",
         },
     },
@@ -333,15 +342,14 @@ GUIDE: dict[str, Any] = {
             "hanged or unchanged."
         ),
         "work": (
-            "Cumulative child calls, expanded JSON items a"
-            "nd conservative solver assignment reservation"
-            "s, not observed CPU time."
+            "Cumulative child calls and conservative solver assignment reservations; expanded JSON "
+            "items are diagnostic, not an acquisition budget or observed CPU time."
         ),
         "limits": (
             "Underlying strict finite JSON caps the entire"
             " request at 4 MiB/depth64/100000 nodes before"
-            " preparation. Declared lower aggregate limits"
-            " and final output limit also apply. An empty "
+            " preparation. Solver/analysis and final output limits apply. Legacy max_expanded_items "
+            "is accepted but nonoperative; retained source size is not new NIH acquisition. An empty "
             "session is zero-check inspection."
         ),
         "standing": (

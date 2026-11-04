@@ -1,0 +1,275 @@
+{
+  "statements": [
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "AnyOf",
+        "parts": [
+          {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "hypertension_history",
+              "kind": "treatment_history"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "enum",
+              "members": [
+                "treatment-naive"
+              ],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "hypertension_history",
+                  "kind": "treatment_history"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "enum",
+                  "members": [
+                    "previously-treated"
+                  ],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "prior_antihypertensive_agents",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "agents",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "antihypertensive_washout",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "enrollment",
+                  "anchor_ref": "",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "before",
+                  "unit": "days",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 7.0,
+                  "unit": "days",
+                  "upper": null
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "simulated:user-choice/draft-history",
+      "id": "draft-history",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "simulated-user-adoption",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "simulated:hypertension-draft-not-source-fact"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    },
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "AnyOf",
+        "parts": [
+          {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "type2_diabetes",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "inclusive",
+              "kind": "quantity",
+              "members": [],
+              "number": 65.0,
+              "unit": "Years",
+              "upper": null
+            }
+          }
+        ]
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "simulated:user-choice/draft-risk-population",
+      "id": "draft-risk-population",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "simulated-user-adoption",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "simulated:hypertension-draft-not-source-fact"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    }
+  ],
+  "labels": "simulated accepted user choices, not actual confirmation or registry facts"
+}

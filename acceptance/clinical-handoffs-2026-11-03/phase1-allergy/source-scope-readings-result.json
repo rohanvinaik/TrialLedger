@@ -1,0 +1,2210 @@
+{
+ "code": "complete",
+ "operation": "source_assertions",
+ "result": {
+  "source": {
+   "nct": "NCT01380327",
+   "digest": "53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+   "study_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+   "version": "53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+   "last_update": {
+    "date": "2014-06-11",
+    "type": "ESTIMATED"
+   }
+  },
+  "anchors": [
+   {
+    "id": "eligibility",
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "digest": "53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+    "value": "Inclusion Criteria:\n\n* Have a history of perennial allergic rhinitis, asthma, or both, before study entry. For those with asthma:\n\n  1. a diagnosis of asthma will be defined as a report by the participant that they have had a clinical diagnosis of asthma made by a physician over a year ago\n  2. the participant's asthma must be well controlled as defined by: ii. a forced expiratory volume at one second (FEV1) greater than or equal to 80% predicted value with or without controller medication ii. albuterol use for no more than 3 days per week in each of the previous 2 weeks for asthma symptoms (not including exercise prophylaxis)\n* Are sensitive to German cockroach (Blattella germanica) as documented by a positive (\\>/=3 mm greater than negative control) skin prick test result and detectable German cockroach specific IgE (\\>/=0.35 kUA/L)\n* Have no known contraindications to therapy with glycerinated German cockroach allergenic extract or placebo\n* Parent or legally authorized representative (LAR) of child is willing to sign the written Informed Consent prior to initiation of any study procedure\n\nExclusion Criteria:\n\n* Are pregnant or lactating. Females must be abstinent or use a medically acceptable birth control method throughout the study (e.g. oral, subcutaneous, mechanical, or surgical contraception)\n* Cannot perform spirometry or peak flow at screening\n* Have an asthma severity classification at recruitment of severe persistent, using the National Asthma Education and Prevention Program (NAEPP) classification, as evidenced by at least one of the following:\n\n  1. requires a dose of greater than 500 mcg of fluticasone per day or the equivalent of another inhaled corticosteroid\n  2. have received more than 2 courses of oral or parenteral corticosteroids within the last 12 months\n  3. have been treated with depot steroids within the last 12 months\n  4. have been hospitalized for asthma within the 6 months prior to recruitment\n  5. have had a life-threatening asthma exacerbation that required intubation, mechanical ventilation, or that resulted in a hypoxic seizure within 2 years prior to recruitment\n* Do not have access to a phone (needed for scheduling appointments)\n* Have received allergen immunotherapy in the last 12 months prior to recruitment or who plan to initiate or resume allergen immunotherapy during the study\n* Have previously been treated with anti-IgE therapy within 1 year of recruitment\n* Have received an investigational drug in the 30 days prior to recruitment or who plan to use an investigational drug during the study\n* Have in the last 3 months prior to recruitment experienced on average \\>/=1 day per week any of the symptoms below:\n\n  1. nausea or vomiting\n  2. abdominal pain or cramps severe enough to interfere with daily activities (excluding those associated with menstruation).\n  3. diarrhea\n* Refuse to sign the Epinephrine Auto-injector Training Form\n\nParticipants who meet any of the following criteria are not eligible for enrollment and may not be reassessed. Participants are ineligible if they:\n\n* Do not primarily speak English\n* Plan to move from the area during the study period\n* Have a history of idiopathic anaphylaxis or anaphylaxis grade 2 or higher\n* Have unstable angina, significant arrhythmia, uncontrolled hypertension, history of autoimmune disease, or other chronic or immunological diseases that in the opinion of the investigator might interfere with the evaluation of the investigational agent or pose additional risk to the patient (e.g., gastrointestinal disease, gastroesophageal reflux disease, chronic infections, scleroderma, hepatic, and gallbladder disease)\n* Are using tricyclic antidepressants or beta-adrenergic blocker drugs (either oral and/or topical route\\[s\\] of administration)",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+    "source": {
+     "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+     "version": "53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+     "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+     "digest": "53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498"
+    },
+    "code": "located"
+   }
+  ],
+  "fixed": {
+   "assertions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 5.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge",
+     "id": "registry-age-minimumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    },
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "le",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 17.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge",
+     "id": "registry-age-maximumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    }
+   ],
+   "signals": []
+  },
+  "interpretations": [
+   {
+    "id": "asthma-only",
+    "label": "FEV1 requirement applies only to participants with asthma",
+    "origin": "assistant",
+    "basis": [
+     "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+     "hypothesis:source-location-is-not-semantic-warrant"
+    ],
+    "assumptions": [
+     {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "FEV1_percent_predicted",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "inclusive",
+        "kind": "quantity",
+        "members": [],
+        "number": 80.0,
+        "unit": "% predicted",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "cohort_ref",
+       "parts": [],
+       "ref": "asthma"
+      },
+      "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+      "id": "FEV1-asthma-only",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "source-anchored-hypothesis",
+       "premises": [
+        "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+       ],
+       "version": "1",
+       "warrants": [
+        "hypothesis:source-location-is-not-semantic-warrant"
+       ]
+      },
+      "span": [],
+      "status": "proposed"
+     }
+    ],
+    "signals": [],
+    "signal_claims": [],
+    "binding_uses": []
+   },
+   {
+    "id": "universal",
+    "label": "Counterreading: FEV1 requirement applies to everyone",
+    "origin": "assistant",
+    "basis": [
+     "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+     "hypothesis:source-location-is-not-semantic-warrant"
+    ],
+    "assumptions": [
+     {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "FEV1_percent_predicted",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "inclusive",
+        "kind": "quantity",
+        "members": [],
+        "number": 80.0,
+        "unit": "% predicted",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+      "id": "FEV1-universal",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "source-anchored-hypothesis",
+       "premises": [
+        "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+       ],
+       "version": "1",
+       "warrants": [
+        "hypothesis:source-location-is-not-semantic-warrant"
+       ]
+      },
+      "span": [],
+      "status": "proposed"
+     }
+    ],
+    "signals": [],
+    "signal_claims": [],
+    "binding_uses": []
+   }
+  ],
+  "bindings": [],
+  "coverage": [
+   {
+    "address": "/protocolSection/eligibilityModule/minimumAge",
+    "code": "compiled",
+    "value": "5 Years",
+    "assertion": "registry-age-minimumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/maximumAge",
+    "code": "compiled",
+    "value": "17 Years",
+    "assertion": "registry-age-maximumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "code": "unresolved_retained",
+    "value": "Inclusion Criteria:\n\n* Have a history of perennial allergic rhinitis, asthma, or both, before study entry. For those with asthma:\n\n  1. a diagnosis of asthma will be defined as a report by the participant that they have had a clinical diagnosis of asthma made by a physician over a year ago\n  2. the participant's asthma must be well controlled as defined by: ii. a forced expiratory volume at one second (FEV1) greater than or equal to 80% predicted value with or without controller medication ii. albuterol use for no more than 3 days per week in each of the previous 2 weeks for asthma symptoms (not including exercise prophylaxis)\n* Are sensitive to German cockroach (Blattella germanica) as documented by a positive (\\>/=3 mm greater than negative control) skin prick test result and detectable German cockroach specific IgE (\\>/=0.35 kUA/L)\n* Have no known contraindications to therapy with glycerinated German cockroach allergenic extract or placebo\n* Parent or legally authorized representative (LAR) of child is willing to sign the written Informed Consent prior to initiation of any study procedure\n\nExclusion Criteria:\n\n* Are pregnant or lactating. Females must be abstinent or use a medically acceptable birth control method throughout the study (e.g. oral, subcutaneous, mechanical, or surgical contraception)\n* Cannot perform spirometry or peak flow at screening\n* Have an asthma severity classification at recruitment of severe persistent, using the National Asthma Education and Prevention Program (NAEPP) classification, as evidenced by at least one of the following:\n\n  1. requires a dose of greater than 500 mcg of fluticasone per day or the equivalent of another inhaled corticosteroid\n  2. have received more than 2 courses of oral or parenteral corticosteroids within the last 12 months\n  3. have been treated with depot steroids within the last 12 months\n  4. have been hospitalized for asthma within the 6 months prior to recruitment\n  5. have had a life-threatening asthma exacerbation that required intubation, mechanical ventilation, or that resulted in a hypoxic seizure within 2 years prior to recruitment\n* Do not have access to a phone (needed for scheduling appointments)\n* Have received allergen immunotherapy in the last 12 months prior to recruitment or who plan to initiate or resume allergen immunotherapy during the study\n* Have previously been treated with anti-IgE therapy within 1 year of recruitment\n* Have received an investigational drug in the 30 days prior to recruitment or who plan to use an investigational drug during the study\n* Have in the last 3 months prior to recruitment experienced on average \\>/=1 day per week any of the symptoms below:\n\n  1. nausea or vomiting\n  2. abdominal pain or cramps severe enough to interfere with daily activities (excluding those associated with menstruation).\n  3. diarrhea\n* Refuse to sign the Epinephrine Auto-injector Training Form\n\nParticipants who meet any of the following criteria are not eligible for enrollment and may not be reassessed. Participants are ineligible if they:\n\n* Do not primarily speak English\n* Plan to move from the area during the study period\n* Have a history of idiopathic anaphylaxis or anaphylaxis grade 2 or higher\n* Have unstable angina, significant arrhythmia, uncontrolled hypertension, history of autoimmune disease, or other chronic or immunological diseases that in the opinion of the investigator might interfere with the evaluation of the investigational agent or pose additional risk to the patient (e.g., gastrointestinal disease, gastroesophageal reflux disease, chronic infections, scleroderma, hepatic, and gallbladder disease)\n* Are using tricyclic antidepressants or beta-adrenergic blocker drugs (either oral and/or topical route\\[s\\] of administration)"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+    "code": "unresolved_retained",
+    "value": false
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/sex",
+    "code": "unresolved_retained",
+    "value": "ALL"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/stdAges",
+    "code": "unresolved_retained",
+    "value": [
+     "CHILD"
+    ]
+   },
+   {
+    "address": "/resultsSection",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/resultsSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/derivedSection",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/derivedSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/hasResults",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/hasResults",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/identificationModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/identificationModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/statusModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/statusModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/sponsorCollaboratorsModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/sponsorCollaboratorsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/oversightModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/oversightModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/descriptionModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/descriptionModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/conditionsModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/conditionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/designModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/designModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/armsInterventionsModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/armsInterventionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/outcomesModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/outcomesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/contactsLocationsModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/contactsLocationsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/referencesModule",
+    "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/referencesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   }
+  ],
+  "submitted": {
+   "interpretations": [
+    {
+     "id": "asthma-only",
+     "label": "FEV1 requirement applies only to participants with asthma",
+     "origin": "assistant",
+     "basis": [
+      "simulated:source-reading-not-established-protocol"
+     ],
+     "anchors": [
+      "eligibility"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "FEV1_percent_predicted",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "inclusive",
+         "kind": "quantity",
+         "members": [],
+         "number": 80.0,
+         "unit": "% predicted",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "cohort_ref",
+        "parts": [],
+        "ref": "asthma"
+       },
+       "criterion_ref": "simulated:user-choice/FEV1-asthma-only",
+       "id": "FEV1-asthma-only",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "simulated-user-choice",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "simulated:clinical-design-walkthrough"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ]
+    },
+    {
+     "id": "universal",
+     "label": "Counterreading: FEV1 requirement applies to everyone",
+     "origin": "assistant",
+     "basis": [
+      "simulated:source-reading-not-established-protocol"
+     ],
+     "anchors": [
+      "eligibility"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "FEV1_percent_predicted",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "inclusive",
+         "kind": "quantity",
+         "members": [],
+         "number": 80.0,
+         "unit": "% predicted",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "simulated:user-choice/FEV1-universal",
+       "id": "FEV1-universal",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "simulated-user-choice",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "simulated:clinical-design-walkthrough"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ]
+    }
+   ],
+   "bindings": []
+  },
+  "requests": [
+   {
+    "operation": "interpretations",
+    "study_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+    "fixed": {
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 5.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge",
+       "id": "registry-age-minimumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "le",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 17.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge",
+       "id": "registry-age-maximumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ],
+     "signals": []
+    },
+    "bindings": [],
+    "interpretations": [
+     {
+      "id": "asthma-only",
+      "label": "FEV1 requirement applies only to participants with asthma",
+      "origin": "assistant",
+      "basis": [
+       "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "assumptions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "FEV1_percent_predicted",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "inclusive",
+          "kind": "quantity",
+          "members": [],
+          "number": 80.0,
+          "unit": "% predicted",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "cohort_ref",
+         "parts": [],
+         "ref": "asthma"
+        },
+        "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "id": "FEV1-asthma-only",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "source-anchored-hypothesis",
+         "premises": [
+          "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+         ],
+         "version": "1",
+         "warrants": [
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ]
+        },
+        "span": [],
+        "status": "proposed"
+       }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+     },
+     {
+      "id": "universal",
+      "label": "Counterreading: FEV1 requirement applies to everyone",
+      "origin": "assistant",
+      "basis": [
+       "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "assumptions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "FEV1_percent_predicted",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "inclusive",
+          "kind": "quantity",
+          "members": [],
+          "number": 80.0,
+          "unit": "% predicted",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "id": "FEV1-universal",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "source-anchored-hypothesis",
+         "premises": [
+          "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+         ],
+         "version": "1",
+         "warrants": [
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ]
+        },
+        "span": [],
+        "status": "proposed"
+       }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+     }
+    ],
+    "queries": [
+     {
+      "id": "FEV1-70-rhinitis-only",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "FEV1_percent_predicted",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "inclusive",
+        "kind": "quantity",
+        "members": [],
+        "number": 70.0,
+        "unit": "% predicted",
+        "upper": null
+       }
+      }
+     },
+     {
+      "id": "age18",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "inclusive",
+        "kind": "quantity",
+        "members": [],
+        "number": 18.0,
+        "unit": "Years",
+        "upper": null
+       }
+      }
+     }
+    ],
+    "context": {
+     "cohort": "rhinitis-only"
+    }
+   }
+  ],
+  "limits": [
+   "Structured ages describe registry general eligibility, not verified actual protocol.",
+   "A located quotation proves quotation only; clinical readings remain hypothetical.",
+   "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+  ],
+  "analyses": [
+   {
+    "code": "complete",
+    "operation": "interpretations",
+    "result": {
+     "study_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498",
+     "fixed": {
+      "assertions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 5.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge",
+        "id": "registry-age-minimumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "ctg-structured-general-eligibility-age",
+         "premises": [
+          "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/minimumAge"
+         ],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       },
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 17.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge",
+        "id": "registry-age-maximumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "ctg-structured-general-eligibility-age",
+         "premises": [
+          "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/maximumAge"
+         ],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       }
+      ],
+      "consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "queries": [
+       {
+        "id": "FEV1-70-rhinitis-only",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "FEV1_percent_predicted",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "inclusive",
+          "kind": "quantity",
+          "members": [],
+          "number": 70.0,
+          "unit": "% predicted",
+          "upper": null
+         }
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"FEV1_percent_predicted\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":70.0,\"unit\":\"% predicted\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        }
+       },
+       {
+        "id": "age18",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "inclusive",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "result": "REFUTED",
+        "decision": {
+         "result": "REFUTED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+         "status": "known",
+         "proof": [
+          "registry-age-maximumAge"
+         ],
+         "blockers": []
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [
+          "registry-age-maximumAge"
+         ],
+         "blockers": []
+        }
+       }
+      ],
+      "signals": [],
+      "blockers": []
+     },
+     "bindings": [],
+     "interpretations": [
+      {
+       "id": "asthma-only",
+       "label": "FEV1 requirement applies only to participants with asthma",
+       "origin": "assistant",
+       "state": "compatible",
+       "premises": {
+        "basis": [
+         "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+         {
+          "applicability": {
+           "class": "Always"
+          },
+          "body": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "FEV1_percent_predicted",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "inclusive",
+            "kind": "quantity",
+            "members": [],
+            "number": 80.0,
+            "unit": "% predicted",
+            "upper": null
+           }
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "cohort_ref",
+           "parts": [],
+           "ref": "asthma"
+          },
+          "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "id": "FEV1-asthma-only",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "source-anchored-hypothesis",
+           "premises": [
+            "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+           ],
+           "version": "1",
+           "warrants": [
+            "hypothesis:source-location-is-not-semantic-warrant"
+           ]
+          },
+          "span": [],
+          "status": "proposed"
+         }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+       },
+       "bindings": [],
+       "signals": [],
+       "signal_checks": [],
+       "queries": [
+        {
+         "id": "FEV1-70-rhinitis-only",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "FEV1_percent_predicted",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "inclusive",
+           "kind": "quantity",
+           "members": [],
+           "number": 70.0,
+           "unit": "% predicted",
+           "upper": null
+          }
+         },
+         "result": "OUT_OF_SCOPE",
+         "decision": {
+          "result": "OUT_OF_SCOPE",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"FEV1_percent_predicted\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":70.0,\"unit\":\"% predicted\",\"upper\":null}}",
+          "status": null,
+          "proof": [
+           "FEV1-asthma-only"
+          ],
+          "blockers": []
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "FEV1-asthma-only"
+          ],
+          "proof": [
+           "FEV1-asthma-only"
+          ],
+          "blockers": []
+         }
+        },
+        {
+         "id": "age18",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "inclusive",
+           "kind": "quantity",
+           "members": [],
+           "number": 18.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "result": "REFUTED",
+         "decision": {
+          "result": "REFUTED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+           "registry-age-maximumAge"
+          ],
+          "blockers": []
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "FEV1-asthma-only"
+          ],
+          "proof": [
+           "registry-age-maximumAge"
+          ],
+          "blockers": []
+         }
+        }
+       ],
+       "warrant": {
+        "rule": "interpretations.compatibility:1",
+        "guarantee": "conditional_on_fixed_and_interpretation_premises",
+        "fixed_status": "known",
+        "status": "proposed",
+        "fixed_premises": [],
+        "assumptions": [
+         "FEV1-asthma-only"
+        ],
+        "bindings": [],
+        "basis": [
+         "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "intrinsic_consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "signal_rules": [],
+        "blockers": []
+       }
+      },
+      {
+       "id": "universal",
+       "label": "Counterreading: FEV1 requirement applies to everyone",
+       "origin": "assistant",
+       "state": "compatible",
+       "premises": {
+        "basis": [
+         "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+         {
+          "applicability": {
+           "class": "Always"
+          },
+          "body": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "FEV1_percent_predicted",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "inclusive",
+            "kind": "quantity",
+            "members": [],
+            "number": 80.0,
+            "unit": "% predicted",
+            "upper": null
+           }
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "all_participants",
+           "parts": [],
+           "ref": ""
+          },
+          "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "id": "FEV1-universal",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "source-anchored-hypothesis",
+           "premises": [
+            "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria"
+           ],
+           "version": "1",
+           "warrants": [
+            "hypothesis:source-location-is-not-semantic-warrant"
+           ]
+          },
+          "span": [],
+          "status": "proposed"
+         }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+       },
+       "bindings": [],
+       "signals": [],
+       "signal_checks": [],
+       "queries": [
+        {
+         "id": "FEV1-70-rhinitis-only",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "FEV1_percent_predicted",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "inclusive",
+           "kind": "quantity",
+           "members": [],
+           "number": 70.0,
+           "unit": "% predicted",
+           "upper": null
+          }
+         },
+         "result": "REFUTED",
+         "decision": {
+          "result": "REFUTED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"FEV1_percent_predicted\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":70.0,\"unit\":\"% predicted\",\"upper\":null}}",
+          "status": "interpolated",
+          "proof": [
+           "FEV1-universal"
+          ],
+          "blockers": []
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "FEV1-universal"
+          ],
+          "proof": [
+           "FEV1-universal"
+          ],
+          "blockers": []
+         }
+        },
+        {
+         "id": "age18",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "inclusive",
+           "kind": "quantity",
+           "members": [],
+           "number": 18.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "result": "REFUTED",
+         "decision": {
+          "result": "REFUTED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+           "registry-age-maximumAge"
+          ],
+          "blockers": []
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "FEV1-universal"
+          ],
+          "proof": [
+           "registry-age-maximumAge"
+          ],
+          "blockers": []
+         }
+        }
+       ],
+       "warrant": {
+        "rule": "interpretations.compatibility:1",
+        "guarantee": "conditional_on_fixed_and_interpretation_premises",
+        "fixed_status": "known",
+        "status": "proposed",
+        "fixed_premises": [],
+        "assumptions": [
+         "FEV1-universal"
+        ],
+        "bindings": [],
+        "basis": [
+         "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "intrinsic_consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "signal_rules": [],
+        "blockers": []
+       }
+      }
+     ],
+     "remaining": [
+      "asthma-only",
+      "universal"
+     ],
+     "refuted": [],
+     "incoherent": [],
+     "unresolved": [],
+     "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+     },
+     "consequences": [
+      {
+       "id": "FEV1-70-rhinitis-only",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "FEV1_percent_predicted",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "inclusive",
+         "kind": "quantity",
+         "members": [],
+         "number": 70.0,
+         "unit": "% predicted",
+         "upper": null
+        }
+       },
+       "result": "UNDETERMINED",
+       "contrast": {
+        "code": "interpretation_scope_contrast",
+        "context": {
+         "cohort": "rhinitis-only",
+         "phase": null,
+         "arm": null
+        },
+        "answers": [
+         {
+          "frame": "asthma-only",
+          "origin": "assistant",
+          "frame_state": "compatible",
+          "query": "FEV1-70-rhinitis-only",
+          "result": "OUT_OF_SCOPE",
+          "query_path": "/result/interpretations/0/queries/0",
+          "warrant_path": "/result/interpretations/0/queries/0/warrant",
+          "standing": "proposed",
+          "blockers": [],
+          "deciding_premises": [
+           {
+            "id": "FEV1-asthma-only",
+            "path": "/result/interpretations/0/premises/assumptions/0",
+            "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+            "cohort": {
+             "class": "Scope",
+             "kind": "cohort_ref",
+             "parts": [],
+             "ref": "asthma"
+            },
+            "branch": {
+             "class": "Branch",
+             "node": "unresolved",
+             "path": []
+            },
+            "standing": "proposed"
+           }
+          ]
+         },
+         {
+          "frame": "universal",
+          "origin": "assistant",
+          "frame_state": "compatible",
+          "query": "FEV1-70-rhinitis-only",
+          "result": "REFUTED",
+          "query_path": "/result/interpretations/1/queries/0",
+          "warrant_path": "/result/interpretations/1/queries/0/warrant",
+          "standing": "proposed",
+          "blockers": [],
+          "deciding_premises": [
+           {
+            "id": "FEV1-universal",
+            "path": "/result/interpretations/1/premises/assumptions/0",
+            "criterion_ref": "ctg:NCT01380327:53d81f3762f4d8b9e74a318bb1bd041d0438fff97671c7b9fdd7bc9b01ef8498#/protocolSection/eligibilityModule/eligibilityCriteria",
+            "cohort": {
+             "class": "Scope",
+             "kind": "all_participants",
+             "parts": [],
+             "ref": ""
+            },
+            "branch": {
+             "class": "Branch",
+             "node": "unresolved",
+             "path": []
+            },
+            "standing": "proposed"
+           }
+          ]
+         }
+        ],
+        "path_basis": "relative_to_this_reason_envelope"
+       },
+       "frames": [
+        "asthma-only",
+        "universal"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": [
+         "interpretation_scope_contrast"
+        ]
+       }
+      },
+      {
+       "id": "age18",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "inclusive",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "result": "REFUTED",
+       "decision": {
+        "result": "REFUTED",
+        "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+        "status": "known",
+        "proof": [
+         "registry-age-maximumAge"
+        ],
+        "blockers": []
+       },
+       "warrant": {
+        "rule": "entail.decide:1",
+        "guarantee": "fixed_floor",
+        "status": "known",
+        "assumptions": [],
+        "proof": [
+         "registry-age-maximumAge"
+        ],
+        "blockers": []
+       },
+       "frames": [],
+       "basis": "fixed_floor"
+      }
+     ],
+     "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+    },
+    "problems": [],
+    "metadata": {
+     "version": 1,
+     "kind": "reasoning",
+     "findings": [
+      {
+       "path": "/result/fixed/consistency",
+       "kind": "consistency",
+       "logical_result": "UNDETERMINED",
+       "standing": null,
+       "completion": "complete",
+       "causes": [
+        {
+         "code": "no_constraint_mentions_query",
+         "kind": "coverage"
+        }
+       ],
+       "disposition": "open"
+      },
+      {
+       "path": "/result/fixed/queries/0",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "known",
+       "completion": "complete",
+       "causes": [
+        {
+         "code": "no_constraint_mentions_query",
+         "kind": "coverage"
+        }
+       ],
+       "disposition": "open",
+       "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+       "path": "/result/fixed/queries/1",
+       "kind": "logical",
+       "logical_result": "REFUTED",
+       "standing": "known",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "settled",
+       "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+       "path": "/result/interpretations/0",
+       "kind": "interpretation",
+       "logical_result": "compatible",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional"
+      },
+      {
+       "path": "/result/interpretations/0/queries/0",
+       "kind": "logical",
+       "logical_result": "OUT_OF_SCOPE",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "open",
+       "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+       "path": "/result/interpretations/0/queries/1",
+       "kind": "logical",
+       "logical_result": "REFUTED",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional",
+       "support_path": "/result/interpretations/0/queries/1/warrant"
+      },
+      {
+       "path": "/result/interpretations/1",
+       "kind": "interpretation",
+       "logical_result": "compatible",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional"
+      },
+      {
+       "path": "/result/interpretations/1/queries/0",
+       "kind": "logical",
+       "logical_result": "REFUTED",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional",
+       "support_path": "/result/interpretations/1/queries/0/warrant"
+      },
+      {
+       "path": "/result/interpretations/1/queries/1",
+       "kind": "logical",
+       "logical_result": "REFUTED",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "conditional",
+       "support_path": "/result/interpretations/1/queries/1/warrant"
+      },
+      {
+       "path": "/result/consequences/0",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "complete",
+       "causes": [
+        {
+         "code": "interpretation_scope_contrast",
+         "kind": "translation"
+        }
+       ],
+       "disposition": "open",
+       "support_path": "/result/consequences/0/warrant",
+       "contrast_code": "interpretation_scope_contrast",
+       "contrast_path": "/result/consequences/0/contrast",
+       "answer_paths": [
+        "/result/interpretations/0/queries/0",
+        "/result/interpretations/1/queries/0"
+       ]
+      },
+      {
+       "path": "/result/consequences/1",
+       "kind": "logical",
+       "logical_result": "REFUTED",
+       "standing": "known",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "settled",
+       "support_path": "/result/consequences/1/warrant"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/analyses/0/result/fixed/consistency",
+    "kind": "consistency",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/analyses/0/result/fixed/queries/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/fixed/queries/1",
+    "kind": "logical",
+    "logical_result": "REFUTED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled",
+    "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0",
+    "kind": "interpretation",
+    "logical_result": "compatible",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0/queries/0",
+    "kind": "logical",
+    "logical_result": "OUT_OF_SCOPE",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "open",
+    "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0/queries/1",
+    "kind": "logical",
+    "logical_result": "REFUTED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional",
+    "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/1",
+    "kind": "interpretation",
+    "logical_result": "compatible",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/1/queries/0",
+    "kind": "logical",
+    "logical_result": "REFUTED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional",
+    "support_path": "/result/analyses/0/result/interpretations/1/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/1/queries/1",
+    "kind": "logical",
+    "logical_result": "REFUTED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional",
+    "support_path": "/result/analyses/0/result/interpretations/1/queries/1/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/consequences/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "interpretation_scope_contrast",
+      "kind": "translation"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/analyses/0/result/consequences/0/warrant",
+    "contrast_code": "interpretation_scope_contrast",
+    "contrast_path": "/result/analyses/0/result/consequences/0/contrast",
+    "answer_paths": [
+     "/result/analyses/0/result/interpretations/0/queries/0",
+     "/result/analyses/0/result/interpretations/1/queries/0"
+    ]
+   },
+   {
+    "path": "/result/analyses/0/result/consequences/1",
+    "kind": "logical",
+    "logical_result": "REFUTED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled",
+    "support_path": "/result/analyses/0/result/consequences/1/warrant"
+   }
+  ]
+ }
+}

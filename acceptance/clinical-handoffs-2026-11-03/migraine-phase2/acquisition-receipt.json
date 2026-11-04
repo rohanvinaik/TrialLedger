@@ -1,0 +1,16 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "trialledger",
+    "landscape",
+    "--run",
+    "/Users/rohanvinaik/trialledger-runs/repair-handoff-walkthroughs-20261104/migraine-phase2/capture-v2/report",
+    "--request",
+    "/Users/rohanvinaik/trialledger-runs/repair-handoff-walkthroughs-20261104/migraine-phase2/gather-request.json",
+    "--mode",
+    "direct"
+  ],
+  "exit": 0,
+  "report": "/Users/rohanvinaik/trialledger-runs/repair-handoff-walkthroughs-20261104/migraine-phase2/capture-v2/report"
+}

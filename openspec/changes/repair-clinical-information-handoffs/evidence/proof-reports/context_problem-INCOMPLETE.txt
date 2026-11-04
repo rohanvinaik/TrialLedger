@@ -1,0 +1,44 @@
+  … context_problem: tracing 6 function-routed tests
+  … context_problem: baseline traced · 6 tests · 0.0s
+  … context_problem: 1/131 mutants · 4.0/s · ETA estimating… (heartbeat)
+  … context_problem: 131/131 mutants · 219.1/s · done in 0.6s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.9s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 1.5s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.4s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.3s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.4s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 6.9s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  … context_problem: tracing 1 function-routed tests
+  … context_problem: baseline traced · 1 tests · 0.0s
+  ▸ pass 0: 16 value-survivor(s) — synthesizing killing tests…
+INCOMPLETE:  property_render_timeout: the remaining execution deadline is exhausted

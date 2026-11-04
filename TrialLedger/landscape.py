@@ -9,6 +9,7 @@ No clinical recognizer, default, proposal or design analysis runs while writing 
 from __future__ import annotations
 
 import copy
+import re
 from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Any
@@ -17,8 +18,8 @@ from TrialLedger import __version__, checks, contract, registry, warrants
 from TrialLedger import classes as rx
 from TrialLedger.contract import FIELDS as CONTRACT_FIELDS
 from TrialLedger.contract import holds_value, template_values
-from TrialLedger.eligibility import split_eligibility
-from TrialLedger.landscape_warrants import derivation_root
+from TrialLedger.eligibility import EXCLUSION_HEADINGS, INCLUSION_HEADINGS, split_eligibility
+from TrialLedger.landscape_warrants import derivation_root, retained_format
 from TrialLedger.ledger import APPLIES_TO, REDACTED_WHEN_WITHHELD, absence_state, get, results_state
 from TrialLedger.links import document_link, study_link
 
@@ -62,7 +63,18 @@ RESULTS_MODULES = {
 }
 RESULTS_TEXT = {"posted": "results posted", "not_posted": "no results posted"}
 ITEMIZED = tuple(
-    f"studies[].criteria[].{name}" for name in ("heading", "number", "text", "source_start", "source_end")
+    f"studies[].criteria[].{name}"
+    for name in (
+        "heading",
+        "number",
+        "text",
+        "source_start",
+        "source_end",
+        "source_context.text",
+        "source_context.kind",
+        "source_context.source_start",
+        "source_context.source_end",
+    )
 )
 MANIFEST_KEYS = (
     "api_version",
@@ -79,7 +91,7 @@ RULE_VERSIONS = {
     "trialledger": __version__,
     "derivation_code_root": derivation_root(Path(__file__).parent),
     "display": contract.DISPLAY_VERSION,
-    "eligibility_sections": "registry-headings-source-passages/1",
+    "eligibility_sections": "registry-headings-source-context/2",
     "registry_checks": checks.CHECKS_VERSION,
 }
 RECORD_KEYS = ("schema_version", "request", "scope", "manifest", "statuses", "envelope", "fields", "studies")
@@ -296,14 +308,37 @@ def collection_presence(study: dict[str, Any], templates: list[str]) -> dict[str
     return states
 
 
-def criterion_entries(text: str) -> list[dict[str, Any]]:
-    """Readable exact source passages, never inferred requirements or clinical categories.
+def literal_context_kind(line: str, isolated: bool) -> str:
+    """Classify literal source structure, never population, timing or clinical force.
 
-    Section names come only from the original unambiguous registry-heading split.
-    Physical lines stay separate; lines exceeding 1,600 characters are continued at a space
-    where possible so their text fits a readable workbook row. Every character is retained.
-    Offsets slice the full source exactly, and joining passages reproduces it character for character.
-    The passage number is a display position, never a numbered clinical requirement.
+    ATX headings use at most three leading spaces. Colon labels require a standalone
+    non-list/non-quote line surrounded by blank lines or source boundaries. Fenced-code
+    exclusion is supplied by the passage walker. Other text establishes no context.
+    """
+    words = line.rstrip("\r\n")
+    stripped = words.strip(" \t")
+    if words.startswith("\t") or len(words) - len(words.lstrip(" ")) > 3:
+        return "unstated"
+    if stripped in INCLUSION_HEADINGS + EXCLUSION_HEADINGS:
+        return "registry_heading"
+    if re.fullmatch(r" {0,3}#{1,6}[ \t]+\S.*", words):
+        return "markdown_heading"
+    if (
+        isolated
+        and stripped.endswith(":")
+        and len(stripped) > 1
+        and not re.match(r"(?:[-+*>#`~]|[0-9]+[.)](?:\s|$))", stripped)
+    ):
+        return "colon_label"
+    return "unstated"
+
+
+def criterion_entries(text: str) -> list[dict[str, Any]]:
+    """Exact passages and nearest literal source context, never clinical scope.
+
+    Context is a copied source line with character offsets. Coarse registry sections
+    retain their old meaning, and local context resets at each coarse section boundary.
+    Every character remains in passage text; continuations retain the same context.
     """
     if not text:
         return []
@@ -313,9 +348,34 @@ def criterion_entries(text: str) -> list[dict[str, Any]]:
         sections = (("unsectioned", text),)
     entries: list[dict[str, Any]] = []
     start = 0
+    fence = ""
     for heading, words in sections:
         number = 0
-        for line in words.splitlines(keepends=True):
+        context: dict[str, Any] | None = None
+        lines = words.splitlines(keepends=True)
+        for index, original in enumerate(lines):
+            line = original
+            literal = line.rstrip("\r\n")
+            stripped = literal.lstrip(" ")
+            marker = re.match(r" {0,3}(`{3,}|~{3,})", literal)
+            in_fence = bool(fence)
+            if marker:
+                token = marker.group(1)
+                if not fence:
+                    fence = token
+                elif token[0] == fence[0] and len(token) >= len(fence) and not stripped[len(token) :].strip():
+                    fence = ""
+            isolated = (index == 0 or not lines[index - 1].strip()) and (
+                index + 1 == len(lines) or not lines[index + 1].strip()
+            )
+            kind = literal_context_kind(line, isolated) if not in_fence and not marker else "unstated"
+            if kind != "unstated":
+                context = {
+                    "text": literal,
+                    "kind": kind,
+                    "source_start": start,
+                    "source_end": start + len(literal),
+                }
             if not line.strip() and entries and entries[-1]["heading"] == heading:
                 entries[-1]["text"] += line
                 entries[-1]["source_end"] += len(line)
@@ -328,18 +388,55 @@ def criterion_entries(text: str) -> list[dict[str, Any]]:
                     if space > 0:
                         end = space + 1
                 number += 1
-                entries.append(
-                    {
-                        "heading": heading,
-                        "number": number,
-                        "text": line[:end],
-                        "source_start": start,
-                        "source_end": start + end,
-                    }
-                )
+                entry = {
+                    "heading": heading,
+                    "number": number,
+                    "text": line[:end],
+                    "source_start": start,
+                    "source_end": start + end,
+                }
+                if context is not None:
+                    entry["source_context"] = dict(context)
+                entries.append(entry)
                 start += end
                 line = line[end:]
     return entries
+
+
+def context_problem(context: Any, text: str, passage_start: Any) -> str:
+    """Validate an optional copied context against its complete source, without interpreting it."""
+    if not isinstance(context, dict) or set(context) != {"text", "kind", "source_start", "source_end"}:
+        return "context_shape"
+    if not isinstance(context["kind"], str) or context["kind"] not in {
+        "registry_heading",
+        "markdown_heading",
+        "colon_label",
+    }:
+        return "context_kind"
+    start, end = context["source_start"], context["source_end"]
+    if (
+        type(start) is not int
+        or type(end) is not int
+        or type(passage_start) is not int
+        or not 0 <= start < end <= len(text)
+        or start > passage_start
+    ):
+        return "context_offsets"
+    if not isinstance(context["text"], str) or context["text"] != text[start:end]:
+        return "context_source_mismatch"
+    return "ok"
+
+
+def legacy_record_projection(record: dict[str, Any]) -> dict[str, Any]:
+    """Explicit source-passages-v1 representation; it makes no claim to contain local context."""
+    projected = copy.deepcopy(record)
+    projected["fields"] = {
+        key: value for key, value in projected["fields"].items() if ".source_context." not in key
+    }
+    for study in projected["studies"]:
+        for passage in study["criteria"]:
+            passage.pop("source_context", None)
+    return projected
 
 
 def drug_class_reading(name: str, aliases: list[str], answers: dict[str, Any] | None) -> dict[str, Any]:
@@ -633,6 +730,18 @@ def study_problems(study: Any, where: str) -> list[tuple[str, str]]:
                     if code != "ok":
                         found.append((code, here))
         frontier = following
+    source = get(study, "eligibility", "text")
+    for index, passage in enumerate(
+        study.get("criteria", []) if isinstance(study.get("criteria"), list) else []
+    ):
+        if isinstance(passage, dict) and "source_context" in passage:
+            code = context_problem(
+                passage["source_context"],
+                source if isinstance(source, str) else "",
+                passage.get("source_start"),
+            )
+            if code != "ok":
+                found.append((code, f"{where}.criteria[{index}].source_context"))
     return found
 
 
@@ -651,10 +760,22 @@ def schema_problems(record: Any) -> tuple[tuple[str, str], ...]:
     found: list[tuple[str, str]] = []
     if record.get("schema_version") != SCHEMA_VERSION:
         found.append(("unknown_schema_version", "schema_version"))
+    manifest = record.get("manifest")
+    legacy = (
+        isinstance(manifest, dict)
+        and retained_format(manifest.get("rule_versions")) == "legacy_source_passages_v1"
+    )
     described = (
         ("statuses", STATUSES),
         ("envelope", ENVELOPE_MEANINGS),
-        ("fields", FIELD_DICTIONARY),
+        (
+            "fields",
+            {
+                key: value
+                for key, value in FIELD_DICTIONARY.items()
+                if not (legacy and ".source_context." in key)
+            },
+        ),
     )
     for name, held in described:
         if record.get(name) != held:

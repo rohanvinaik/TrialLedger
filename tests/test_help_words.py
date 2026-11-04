@@ -13,7 +13,7 @@ from scripts import release_check
 from TrialLedger.cli import USER_COMMANDS, main
 
 INTERNAL = ("digest", "re-derive", "merkle", "code root", "spec/ctg-oas-v2.yaml")
-REPORTING_COMMANDS = ("doctor", "landscape", "pull", "verify", "mcp")
+REPORTING_COMMANDS = ("doctor", "landscape", "record", "pull", "verify", "mcp")
 NAMED_MODE = {"relay"}
 
 

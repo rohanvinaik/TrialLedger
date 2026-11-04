@@ -12,7 +12,7 @@ from typing import Any, NamedTuple
 
 from TrialLedger import checks, registry
 
-CONTRACT_VERSION = "4.1"
+CONTRACT_VERSION = "4.2"
 SCHEMA_VERSION = 4
 
 
@@ -2934,6 +2934,50 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             )
         ),
     ),
+    Field(
+        name="studies[].criteria[].source_context.text",
+        label="Nearest literal source heading or label",
+        kind="reading",
+        source=("landscape.criterion_entries",),
+        consumers=(("sheet", "Eligibility", "Local source context"),),
+        display="",
+        form="as held",
+        reads=("protocolSection.eligibilityModule.eligibilityCriteria",),
+        built_by="",
+    ),
+    Field(
+        name="studies[].criteria[].source_context.kind",
+        label="Literal source context structural kind",
+        kind="reading",
+        source=("landscape.criterion_entries",),
+        consumers=(("sheet", "Eligibility", "Context structure"),),
+        display="",
+        form="as held",
+        reads=("protocolSection.eligibilityModule.eligibilityCriteria",),
+        built_by="",
+    ),
+    Field(
+        name="studies[].criteria[].source_context.source_start",
+        label="Source context start offset (characters)",
+        kind="reading",
+        source=("landscape.criterion_entries",),
+        consumers=(("mcp", "fields"),),
+        display="",
+        form="as held",
+        reads=("protocolSection.eligibilityModule.eligibilityCriteria",),
+        built_by="",
+    ),
+    Field(
+        name="studies[].criteria[].source_context.source_end",
+        label="Source context end offset (characters, exclusive)",
+        kind="reading",
+        source=("landscape.criterion_entries",),
+        consumers=(("mcp", "fields"),),
+        display="",
+        form="as held",
+        reads=("protocolSection.eligibilityModule.eligibilityCriteria",),
+        built_by="",
+    ),
 )
 
 _RECORD_FIELDS: tuple[Field, ...] = (
@@ -3263,6 +3307,16 @@ SHEETS: tuple[Sheet, ...] = (
             Column(
                 header="Source passage",
                 fields=("studies[].criteria[].text",),
+                shows="fields",
+            ),
+            Column(
+                header="Local source context",
+                fields=("studies[].criteria[].source_context.text",),
+                shows="fields",
+            ),
+            Column(
+                header="Context structure",
+                fields=("studies[].criteria[].source_context.kind",),
                 shows="fields",
             ),
         ),

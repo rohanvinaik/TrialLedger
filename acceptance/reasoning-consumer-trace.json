@@ -1,35 +1,34 @@
 {
   "scope": "Executed examples only. Call coverage does not certify clinical source meaning or all paths.",
   "module_hashes": {
-    "TrialLedger/checks.py": "c39e1a9c267086af5bc2b84a820516060519f4139a75035a9df1cc6c5598b8cf",
-    "TrialLedger/cli.py": "ac1ed0851f00864b52b43857d1efbc7b9a8880526d57a0e6cc8540305d7b8e42",
-    "TrialLedger/contract.py": "c6167b72dff3dffcf26680fb6fcf00a6a02218396f26a22bafc74340653f457c",
+    "TrialLedger/cli.py": "e444c499e9e6fcf736cf450fb316ba44301f4538d8810ca966d11fc13b8e250c",
     "TrialLedger/doctor.py": "37620b6414f3a03696348bdcbc4c9c43b4c502529227dec5f9f0349e24285e83",
-    "TrialLedger/landscape.py": "03896b0ff51fe8bd900d0a25def54e5ce4e4f00f2c87fc6554e2e2ae814c400b",
-    "TrialLedger/landscape_verify.py": "036a1096f18c8bd5d672d985945ca800369362ca77fe7111dbd1bbc8aba4ff4a",
-    "TrialLedger/landscape_warrants.py": "eaf1dad96df4fb7b3a01e5b708f58312df6cc08a1e6f087a54708f691a76c62c",
+    "TrialLedger/landscape.py": "33e481d73ff0f0cd9914f6698d8f1f77802e21ba38e6dd20825e87970b50d5ab",
+    "TrialLedger/landscape_verify.py": "2b49bbe6391e480a2f7af903f3e592218fa6f8aefbe2d7f572aedab6845b9ce4",
+    "TrialLedger/landscape_warrants.py": "abe74001a08728ac556b74c705f6a865eb8fa5d4ddbdc414e6a46a28033128ca",
     "TrialLedger/layer2/admission.py": "269f896c1dd403334d1cb5ede13eac2b392fbb67162d04c5d82341983b5bea5f",
     "TrialLedger/layer2/assertions.py": "9fc3de9086fb8d37cc9a1492657ff78e73c98ea40ea7d46170a5fdb61916000e",
-    "TrialLedger/layer2/coherence.py": "143e1ec06441baef0e0968689294f3a4b914ff22bc4893058ccda99db28fd867",
-    "TrialLedger/layer2/coordinate_admission.py": "13ed6a4e48b12cf0ee90372cbddd07fc1ca34cdfefca08d74f8922f14bcbb76c",
+    "TrialLedger/layer2/coherence.py": "b1ecdbbc7f8f71747031fa6bf5dbb48de6a0e891c9253a3c0a1bb25a841b546e",
+    "TrialLedger/layer2/coordinate_admission.py": "b13d1c23b435e8f247872d0262a4e516f2082fbc716a2f25e1449af5bd4b8b35",
     "TrialLedger/layer2/corpus_admission.py": "41f8c9b3749cd0d9e3e9b017d378961874c1f8e50da5ac52e0beee9ba4853699",
     "TrialLedger/layer2/decision_tables.py": "0db593d983a38cee865677f02e6b1f65c709907537a4876f48850bfebbdd3c46",
     "TrialLedger/layer2/dependency_evidence.py": "8dbc3986a0c3dd024ece0f5e05caf3d0affd63b6aa10ff9ae5a8c843d7d8e5cc",
     "TrialLedger/layer2/design_bounds.py": "71aafdae577f82ceb97fef98b1110d2d1a0f8f2ffa7041bd693bb7c109885717",
-    "TrialLedger/layer2/design_session.py": "15ee881bb0c348068379e4f2b503c260db381307a3c5596301324655fcd18b94",
+    "TrialLedger/layer2/design_session.py": "be4342ed7ec82899836603f0caceb6a3ca206d2f60ccf7b79c838c6b6863ce7a",
     "TrialLedger/layer2/entail.py": "c6792e82514686a5e6af14e28b79b2a995e68750d15782cd8b86b3e1f5e06ab8",
     "TrialLedger/layer2/estimand_evidence.py": "fd09356187df1b6aa3e74ef897a622f80e4d97e254b497a700dcc45a397466bf",
     "TrialLedger/layer2/evidence_requests.py": "ef0e57b3767dc58107848edc9822f8940fdc848194c88355bcea8e5f1d5041e5",
     "TrialLedger/layer2/exception_bounds.py": "f01877917c7f3dbad17c447fd42930516b7ae268276af1915e9e838e5c6c639c",
-    "TrialLedger/layer2/expectations.py": "015a5607aea38e7d188bae77525815f4de768bbebd2ad18c5c0495d625bd76cf",
+    "TrialLedger/layer2/expectations.py": "ba12c687a40473eccf7bd1d7b9e243a55838e31ee7b72cee8f9fae3c574903d0",
     "TrialLedger/layer2/graph_evidence.py": "5023e232f9909ad7b4f9edbe414355e319331ed36347a40a3bad1c11b55bd8df",
     "TrialLedger/layer2/interpretation_bindings.py": "ecb353c932964ad7011b6e8e504a540b22b001ee270b1c064bbb33514d488949",
-    "TrialLedger/layer2/interpretations.py": "966fa8fb6827111fca41e3ba6b7ab42d2cd298e436a743f06b9ad67730643bb5",
+    "TrialLedger/layer2/interpretations.py": "76a3d4edce3e65a0e750e0d7457ede26eb0e6468cca55d8b7af1880681b8705d",
     "TrialLedger/layer2/nearmiss.py": "a0e61b4100cd203b0897f427f8299edb09ae406a2df10285addd23a58a17e0e3",
     "TrialLedger/layer2/numeric_evidence.py": "ba85ff9b672c03d8cfdce0e4a483cbffd254ad1f0abef3d64e0c23cea0f42e2a",
     "TrialLedger/layer2/profile.py": "5e96e2cfd6cca1603d26320d9bd6be5c38131ea4c02f156d9500616d0e6359d6",
-    "TrialLedger/layer2/result_semantics.py": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
-    "TrialLedger/layer2/service.py": "86abe668006ef7e90fd0d9336b1d1478a3c571cc7de36d59759ea7cba13bc771",
+    "TrialLedger/layer2/reasoning_explanations.py": "f2d40afa1e60c72282e774cd180917f8b1a86a0a6f0edf18c8bc34ede8a0a017",
+    "TrialLedger/layer2/result_semantics.py": "734085efe7ec08ce84dacb8b0d0c99db99c6a342c66ba348b64e91849b1d2a19",
+    "TrialLedger/layer2/service.py": "6d4b32d795b6132dea735b28dbcf9373775ef2c28fd3727cc278268f8ab3fa6e",
     "TrialLedger/layer2/session_projections.py": "5d5ac9feb105f4ff955fe3069129cc5c753490ebcd8bf5f4cd93c2f1f37d2a1c",
     "TrialLedger/layer2/session_state.py": "b5cefe2c47691b51a130e9b3554a6c94d4838fd745ca802ecd806ba70b8cf948",
     "TrialLedger/layer2/signal_binding_gate.py": "902615d1d57540abcf444585b194495277eaf31c4f194425d8a0b36e8737f23e",
@@ -38,12 +37,11 @@
     "TrialLedger/layer2/source_evidence.py": "0cd06238c3a1b578ec873dc15e90745f684f6c4818522727e99ad9d494456bf0",
     "TrialLedger/layer2/stage_evidence.py": "1d00ad113fd6b5ea2c98fcb30eb1e8f7487d0c477d402b690473884324242add",
     "TrialLedger/layer2/translation_diagnostics.py": "e55eff2cc7c0542017f29497d61cabbd7552b32a095eecc40760399a640c62a2",
-    "TrialLedger/mcp_server.py": "474ba5f5a92bc6f52b784b76fdec1151a8479b91b36d7b99cf002c1282d9ce5b",
-    "TrialLedger/operate.py": "f4b8bdf6fe347bcbc8e311768581ab7fd870d0f84ade2a66ca7b1e3104c0fbaa",
+    "TrialLedger/mcp_server.py": "d50de8442d23fddd1d5a4541cda4d177e78598488fd9db3a1b001bf07c544e58",
+    "TrialLedger/operate.py": "d7c5171d94310c716f30b772d5f5b00ba36bb26787a04db69d6a13edacf087cb",
     "TrialLedger/preview.py": "75dd2dce00b221793d32e9579d936386f46702faeb0203c4bc83f4205dafdcf9",
     "TrialLedger/record.py": "a3f45bc20eb54af9be2fc963df37e4259d247b8850e01bc5d9d6edccdd4275b0",
-    "TrialLedger/record_access.py": "3b8f571ed4d96da1c8a3695928940697114583ad2da309f192333ff1c4ad3c83",
-    "TrialLedger/steps.py": "65a4b9e410cecba34fc78bbd1b00aaa8c2fa9fd44295f5a64d9b366ea9a6eea1",
+    "TrialLedger/steps.py": "04adf787833356a44616643749d3ab1691a534699c7bd12591c0f3dc22a1c910",
     "TrialLedger/warrants.py": "03a2669ff257aaed33ec10e21669917c88d982837094b52876bd2523787d622a"
   },
   "runs": [
@@ -367,14 +365,8 @@
       "request_digest": "7c5553e420c83159e3ecb0869aa1f23ec3c668aabf01e5510a08571897afb5ea",
       "result_digest": "047b98f8b3a50c6ec0fac41feda4a382c5aea924cbafe8bbb060d9c8598fb710",
       "entries": [
-        "TrialLedger/checks.py::Check.approval",
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
-        "TrialLedger/contract.py::<genexpr>",
-        "TrialLedger/contract.py::<module>",
-        "TrialLedger/contract.py::Column",
-        "TrialLedger/contract.py::Field",
-        "TrialLedger/contract.py::Sheet",
         "TrialLedger/doctor.py::<module>",
         "TrialLedger/landscape.py::<genexpr>",
         "TrialLedger/landscape.py::<module>",
@@ -431,12 +423,9 @@
         "TrialLedger/layer2/service.py::_reason_context",
         "TrialLedger/layer2/service.py::_scoped_assertions",
         "TrialLedger/layer2/service.py::run",
-        "TrialLedger/mcp_server.py::<genexpr>",
         "TrialLedger/mcp_server.py::<module>",
         "TrialLedger/mcp_server.py::Context",
         "TrialLedger/mcp_server.py::_reason",
-        "TrialLedger/mcp_server.py::_served",
-        "TrialLedger/mcp_server.py::_served.<locals>.<genexpr>",
         "TrialLedger/mcp_server.py::_text",
         "TrialLedger/mcp_server.py::answer",
         "TrialLedger/mcp_server.py::argument_problems",
@@ -450,7 +439,6 @@
         "TrialLedger/operate.py::<module>",
         "TrialLedger/operate.py::Outcome",
         "TrialLedger/preview.py::<module>",
-        "TrialLedger/record_access.py::<module>",
         "TrialLedger/steps.py::<module>",
         "TrialLedger/steps.py::Step",
         "TrialLedger/steps.py::StepError",
@@ -470,26 +458,6 @@
         [
           "TrialLedger/cli.py::main",
           "TrialLedger/cli.py::_mcp"
-        ],
-        [
-          "TrialLedger/contract.py::<genexpr>",
-          "TrialLedger/checks.py::Check.approval"
-        ],
-        [
-          "TrialLedger/contract.py::<module>",
-          "TrialLedger/contract.py::<genexpr>"
-        ],
-        [
-          "TrialLedger/contract.py::<module>",
-          "TrialLedger/contract.py::Column"
-        ],
-        [
-          "TrialLedger/contract.py::<module>",
-          "TrialLedger/contract.py::Field"
-        ],
-        [
-          "TrialLedger/contract.py::<module>",
-          "TrialLedger/contract.py::Sheet"
         ],
         [
           "TrialLedger/landscape.py::<module>",
@@ -761,23 +729,11 @@
         ],
         [
           "TrialLedger/mcp_server.py::<module>",
-          "TrialLedger/mcp_server.py::<genexpr>"
-        ],
-        [
-          "TrialLedger/mcp_server.py::<module>",
           "TrialLedger/mcp_server.py::Context"
-        ],
-        [
-          "TrialLedger/mcp_server.py::<module>",
-          "TrialLedger/mcp_server.py::_served"
         ],
         [
           "TrialLedger/mcp_server.py::_reason",
           "TrialLedger/layer2/service.py::run"
-        ],
-        [
-          "TrialLedger/mcp_server.py::_served",
-          "TrialLedger/mcp_server.py::_served.<locals>.<genexpr>"
         ],
         [
           "TrialLedger/mcp_server.py::answer",
@@ -862,7 +818,7 @@
       "mode": "cli",
       "operation": "coordinates",
       "request_digest": "60eaf4cd590011851e2c88dba13d6c1f52cd66accda6e916205f12320b66c7d4",
-      "result_digest": "cd2b381d9788f21c31b0cb2b8e00dec1d22b28ddebb08f6cce22f1492bd0becd",
+      "result_digest": "0a990fccf6f84560ba23675d7aa5a01e659acfec91cc337652d12408feef6d87",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -873,18 +829,29 @@
         "TrialLedger/layer2/admission.py::read_standing.<locals>.<genexpr>",
         "TrialLedger/layer2/coherence.py::close",
         "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::direct_coordinate",
         "TrialLedger/layer2/coherence.py::domain_state",
         "TrialLedger/layer2/coherence.py::facts_of",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::relation_applicability",
         "TrialLedger/layer2/coherence.py::resolve",
         "TrialLedger/layer2/coordinate_admission.py::_close_level",
+        "TrialLedger/layer2/coordinate_admission.py::_consumers",
         "TrialLedger/layer2/coordinate_admission.py::_coordinates",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_key",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>",
+        "TrialLedger/layer2/coordinate_admission.py::_effects",
+        "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>",
         "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
         "TrialLedger/layer2/coordinate_admission.py::resolve",
+        "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code",
+        "TrialLedger/layer2/reasoning_explanations.py::relation_application_code",
         "TrialLedger/layer2/result_semantics.py::_coordinates",
         "TrialLedger/layer2/result_semantics.py::_path",
         "TrialLedger/layer2/result_semantics.py::_row",
+        "TrialLedger/layer2/result_semantics.py::cause_kind",
         "TrialLedger/layer2/result_semantics.py::completion_code",
         "TrialLedger/layer2/result_semantics.py::disposition_code",
         "TrialLedger/layer2/result_semantics.py::metadata",
@@ -924,8 +891,20 @@
           "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>"
         ],
         [
+          "TrialLedger/layer2/coherence.py::close",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::narrow_by_evidence",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
           "TrialLedger/layer2/coherence.py::narrow_by_evidence",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::relation_applicability",
+          "TrialLedger/layer2/reasoning_explanations.py::relation_application_code"
         ],
         [
           "TrialLedger/layer2/coherence.py::resolve",
@@ -956,6 +935,18 @@
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_coordinates",
           "TrialLedger/layer2/coherence.py::close"
         ],
@@ -976,6 +967,38 @@
           "TrialLedger/layer2/coordinate_admission.py::_close_level"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_consumers"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_coordinates"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_key"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence"
         ],
@@ -992,6 +1015,10 @@
           "TrialLedger/layer2/coordinate_admission.py::_coordinates"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::resolve",
+          "TrialLedger/layer2/coordinate_admission.py::_effects"
+        ],
+        [
           "TrialLedger/layer2/result_semantics.py::_coordinates",
           "TrialLedger/layer2/result_semantics.py::_path"
         ],
@@ -1001,11 +1028,19 @@
         ],
         [
           "TrialLedger/layer2/result_semantics.py::_row",
+          "TrialLedger/layer2/result_semantics.py::cause_kind"
+        ],
+        [
+          "TrialLedger/layer2/result_semantics.py::_row",
           "TrialLedger/layer2/result_semantics.py::completion_code"
         ],
         [
           "TrialLedger/layer2/result_semantics.py::_row",
           "TrialLedger/layer2/result_semantics.py::disposition_code"
+        ],
+        [
+          "TrialLedger/layer2/result_semantics.py::completion_code",
+          "TrialLedger/layer2/result_semantics.py::cause_kind"
         ],
         [
           "TrialLedger/layer2/result_semantics.py::metadata",
@@ -1062,7 +1097,7 @@
       "mode": "mcp",
       "operation": "coordinates",
       "request_digest": "60eaf4cd590011851e2c88dba13d6c1f52cd66accda6e916205f12320b66c7d4",
-      "result_digest": "cd2b381d9788f21c31b0cb2b8e00dec1d22b28ddebb08f6cce22f1492bd0becd",
+      "result_digest": "0a990fccf6f84560ba23675d7aa5a01e659acfec91cc337652d12408feef6d87",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -1072,18 +1107,29 @@
         "TrialLedger/layer2/admission.py::read_standing.<locals>.<genexpr>",
         "TrialLedger/layer2/coherence.py::close",
         "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::direct_coordinate",
         "TrialLedger/layer2/coherence.py::domain_state",
         "TrialLedger/layer2/coherence.py::facts_of",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::relation_applicability",
         "TrialLedger/layer2/coherence.py::resolve",
         "TrialLedger/layer2/coordinate_admission.py::_close_level",
+        "TrialLedger/layer2/coordinate_admission.py::_consumers",
         "TrialLedger/layer2/coordinate_admission.py::_coordinates",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_key",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>",
+        "TrialLedger/layer2/coordinate_admission.py::_effects",
+        "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>",
         "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
         "TrialLedger/layer2/coordinate_admission.py::resolve",
+        "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code",
+        "TrialLedger/layer2/reasoning_explanations.py::relation_application_code",
         "TrialLedger/layer2/result_semantics.py::_coordinates",
         "TrialLedger/layer2/result_semantics.py::_path",
         "TrialLedger/layer2/result_semantics.py::_row",
+        "TrialLedger/layer2/result_semantics.py::cause_kind",
         "TrialLedger/layer2/result_semantics.py::completion_code",
         "TrialLedger/layer2/result_semantics.py::disposition_code",
         "TrialLedger/layer2/result_semantics.py::metadata",
@@ -1128,8 +1174,20 @@
           "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>"
         ],
         [
+          "TrialLedger/layer2/coherence.py::close",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::narrow_by_evidence",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
           "TrialLedger/layer2/coherence.py::narrow_by_evidence",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::relation_applicability",
+          "TrialLedger/layer2/reasoning_explanations.py::relation_application_code"
         ],
         [
           "TrialLedger/layer2/coherence.py::resolve",
@@ -1160,6 +1218,18 @@
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_coordinates",
           "TrialLedger/layer2/coherence.py::close"
         ],
@@ -1180,6 +1250,38 @@
           "TrialLedger/layer2/coordinate_admission.py::_close_level"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_consumers"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_coordinates"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_key"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence"
         ],
@@ -1196,6 +1298,10 @@
           "TrialLedger/layer2/coordinate_admission.py::_coordinates"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::resolve",
+          "TrialLedger/layer2/coordinate_admission.py::_effects"
+        ],
+        [
           "TrialLedger/layer2/result_semantics.py::_coordinates",
           "TrialLedger/layer2/result_semantics.py::_path"
         ],
@@ -1205,11 +1311,19 @@
         ],
         [
           "TrialLedger/layer2/result_semantics.py::_row",
+          "TrialLedger/layer2/result_semantics.py::cause_kind"
+        ],
+        [
+          "TrialLedger/layer2/result_semantics.py::_row",
           "TrialLedger/layer2/result_semantics.py::completion_code"
         ],
         [
           "TrialLedger/layer2/result_semantics.py::_row",
           "TrialLedger/layer2/result_semantics.py::disposition_code"
+        ],
+        [
+          "TrialLedger/layer2/result_semantics.py::completion_code",
+          "TrialLedger/layer2/result_semantics.py::cause_kind"
         ],
         [
           "TrialLedger/layer2/result_semantics.py::metadata",
@@ -1306,7 +1420,7 @@
       "mode": "cli",
       "operation": "corpus",
       "request_digest": "5e3be024f37c52ebe0f75307ca98fb7e344f47d9f87a03e05bd4ceb3f50440a7",
-      "result_digest": "cf81cb4d110a3b828791ec4017a1abc354eb2101338ce5c496edf220c8915a33",
+      "result_digest": "67b06f6dc6ee65cda65162aeedb6099da446161a080d7237b57c95b9a76cbe47",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -1551,7 +1665,7 @@
       "mode": "mcp",
       "operation": "corpus",
       "request_digest": "5e3be024f37c52ebe0f75307ca98fb7e344f47d9f87a03e05bd4ceb3f50440a7",
-      "result_digest": "cf81cb4d110a3b828791ec4017a1abc354eb2101338ce5c496edf220c8915a33",
+      "result_digest": "67b06f6dc6ee65cda65162aeedb6099da446161a080d7237b57c95b9a76cbe47",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -3464,7 +3578,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "eb7b809eee4be6c1c9077918d2ca4673344dbcd21a93eb8277a1724aa3d3b980",
-      "result_digest": "f2bede64ba40a86f6723db3c5123c0677b04cbaad4b01e61b01e78229eb175e6",
+      "result_digest": "92d9cfadf0278dfac4bd67f9317ad789b3988f3a82742ddf2c995367ff7e96cd",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -3513,6 +3627,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -3529,6 +3644,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -3771,6 +3887,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -3784,7 +3904,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -4077,7 +4205,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "eb7b809eee4be6c1c9077918d2ca4673344dbcd21a93eb8277a1724aa3d3b980",
-      "result_digest": "f2bede64ba40a86f6723db3c5123c0677b04cbaad4b01e61b01e78229eb175e6",
+      "result_digest": "92d9cfadf0278dfac4bd67f9317ad789b3988f3a82742ddf2c995367ff7e96cd",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -4125,6 +4253,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -4141,6 +4270,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -4388,6 +4518,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -4401,7 +4535,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -6678,7 +6820,7 @@
       "mode": "cli",
       "operation": "design_session",
       "request_digest": "95abf37fc7e7d19b753e6428da764922184a76ce71507e09447a69b5a3c4e123",
-      "result_digest": "8e170b581d0b53096e922c4e0d2aeeae0e9b0fc7f69ba8aed9806a628f13da75",
+      "result_digest": "c8f12ce6900f9f5ac39a3915c029ee072007f99521fe06ba8a1367588da42d21",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -6727,6 +6869,7 @@
         "TrialLedger/layer2/design_session.py::alternative_code.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::replay",
         "TrialLedger/layer2/design_session.py::run",
+        "TrialLedger/layer2/design_session.py::session_work_code",
         "TrialLedger/layer2/entail.py::_atoms",
         "TrialLedger/layer2/entail.py::_components",
         "TrialLedger/layer2/entail.py::_components.<locals>.<genexpr>",
@@ -6892,6 +7035,10 @@
         [
           "TrialLedger/layer2/design_session.py::_child",
           "TrialLedger/layer2/design_session.py::_reserve"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::_child",
+          "TrialLedger/layer2/design_session.py::session_work_code"
         ],
         [
           "TrialLedger/layer2/design_session.py::_child",
@@ -7484,7 +7631,7 @@
       "mode": "mcp",
       "operation": "design_session",
       "request_digest": "95abf37fc7e7d19b753e6428da764922184a76ce71507e09447a69b5a3c4e123",
-      "result_digest": "8e170b581d0b53096e922c4e0d2aeeae0e9b0fc7f69ba8aed9806a628f13da75",
+      "result_digest": "c8f12ce6900f9f5ac39a3915c029ee072007f99521fe06ba8a1367588da42d21",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -7532,6 +7679,7 @@
         "TrialLedger/layer2/design_session.py::alternative_code.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::replay",
         "TrialLedger/layer2/design_session.py::run",
+        "TrialLedger/layer2/design_session.py::session_work_code",
         "TrialLedger/layer2/entail.py::_atoms",
         "TrialLedger/layer2/entail.py::_components",
         "TrialLedger/layer2/entail.py::_components.<locals>.<genexpr>",
@@ -7702,6 +7850,10 @@
         [
           "TrialLedger/layer2/design_session.py::_child",
           "TrialLedger/layer2/design_session.py::_reserve"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::_child",
+          "TrialLedger/layer2/design_session.py::session_work_code"
         ],
         [
           "TrialLedger/layer2/design_session.py::_child",
@@ -12546,7 +12698,7 @@
       "mode": "cli",
       "operation": "design_session",
       "request_digest": "c3e86f1196bd06fd2f199aaee50cbdda0b52f7e9d4b34641c971e807de9f0542",
-      "result_digest": "617949e5546fe4288f66e74eb67c5a1da57e7ece2fe62ca93ddaee77d24f4029",
+      "result_digest": "b8d1d7a8e12f182e2bc814e80c22ce2f3ce53b3194de15c5a10e72d1841e8a1d",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -12597,6 +12749,7 @@
         "TrialLedger/layer2/design_session.py::alternative_code.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::replay",
         "TrialLedger/layer2/design_session.py::run",
+        "TrialLedger/layer2/design_session.py::session_work_code",
         "TrialLedger/layer2/entail.py::_atoms",
         "TrialLedger/layer2/entail.py::_components",
         "TrialLedger/layer2/entail.py::_components.<locals>.<genexpr>",
@@ -12763,6 +12916,10 @@
         [
           "TrialLedger/layer2/design_session.py::_child",
           "TrialLedger/layer2/design_session.py::_reserve"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::_child",
+          "TrialLedger/layer2/design_session.py::session_work_code"
         ],
         [
           "TrialLedger/layer2/design_session.py::_child",
@@ -13375,7 +13532,7 @@
       "mode": "mcp",
       "operation": "design_session",
       "request_digest": "c3e86f1196bd06fd2f199aaee50cbdda0b52f7e9d4b34641c971e807de9f0542",
-      "result_digest": "617949e5546fe4288f66e74eb67c5a1da57e7ece2fe62ca93ddaee77d24f4029",
+      "result_digest": "b8d1d7a8e12f182e2bc814e80c22ce2f3ce53b3194de15c5a10e72d1841e8a1d",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -13425,6 +13582,7 @@
         "TrialLedger/layer2/design_session.py::alternative_code.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::replay",
         "TrialLedger/layer2/design_session.py::run",
+        "TrialLedger/layer2/design_session.py::session_work_code",
         "TrialLedger/layer2/entail.py::_atoms",
         "TrialLedger/layer2/entail.py::_components",
         "TrialLedger/layer2/entail.py::_components.<locals>.<genexpr>",
@@ -13596,6 +13754,10 @@
         [
           "TrialLedger/layer2/design_session.py::_child",
           "TrialLedger/layer2/design_session.py::_reserve"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::_child",
+          "TrialLedger/layer2/design_session.py::session_work_code"
         ],
         [
           "TrialLedger/layer2/design_session.py::_child",
@@ -23352,7 +23514,7 @@
       "mode": "cli",
       "operation": "corpus",
       "request_digest": "add41cca99d310b875814b25ce8867b4ff649d62fb88cad6b7ee103a17c8debc",
-      "result_digest": "c55e229431adea4a537b2695c52649d6ffc5c82c0f520a43f54b129ef6bdfbf8",
+      "result_digest": "ae951d746de0dc01f475dcdac0a62e891ad46a2eabb3250af5c4e73518970f96",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -23621,7 +23783,7 @@
       "mode": "mcp",
       "operation": "corpus",
       "request_digest": "add41cca99d310b875814b25ce8867b4ff649d62fb88cad6b7ee103a17c8debc",
-      "result_digest": "c55e229431adea4a537b2695c52649d6ffc5c82c0f520a43f54b129ef6bdfbf8",
+      "result_digest": "ae951d746de0dc01f475dcdac0a62e891ad46a2eabb3250af5c4e73518970f96",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -25248,7 +25410,7 @@
       "mode": "cli",
       "operation": "source_assertions",
       "request_digest": "1076512bc874c63baaf8b45af0600301dc758c8938ee666793ab161bec824e5f",
-      "result_digest": "f7d652a1b421d7977f093cd28e86f5acf03d078d72257f83d8d749fb82726ede",
+      "result_digest": "14746d5af72f057401413e00102f4f14235fa2e3215004df9cd98536f398e1c1",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -25309,6 +25471,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::population_compatibility",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_assume_signal",
@@ -25351,6 +25514,7 @@
         "TrialLedger/layer2/numeric_evidence.py::overlap_bounds",
         "TrialLedger/layer2/numeric_evidence.py::scope_state",
         "TrialLedger/layer2/numeric_evidence.py::scope_state.<locals>.<genexpr>",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -25729,6 +25893,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_member_refs"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -25746,7 +25914,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -26539,7 +26715,7 @@
       "mode": "mcp",
       "operation": "source_assertions",
       "request_digest": "1076512bc874c63baaf8b45af0600301dc758c8938ee666793ab161bec824e5f",
-      "result_digest": "f7d652a1b421d7977f093cd28e86f5acf03d078d72257f83d8d749fb82726ede",
+      "result_digest": "14746d5af72f057401413e00102f4f14235fa2e3215004df9cd98536f398e1c1",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -26599,6 +26775,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::population_compatibility",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_assume_signal",
@@ -26641,6 +26818,7 @@
         "TrialLedger/layer2/numeric_evidence.py::overlap_bounds",
         "TrialLedger/layer2/numeric_evidence.py::scope_state",
         "TrialLedger/layer2/numeric_evidence.py::scope_state.<locals>.<genexpr>",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -27024,6 +27202,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_member_refs"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -27041,7 +27223,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -31364,7 +31554,7 @@
       "mode": "cli",
       "operation": "coordinates",
       "request_digest": "f2be086d5719d50d74b69b8da4ce15e918fc4b7adaebd49140fcc7897efc59ab",
-      "result_digest": "ea6893733f9601815c8fadb2f51ebd5d11bf811c7b925ab8fda6eee4290c1581",
+      "result_digest": "d7b25d7638806bb0b4fde0890dd277736cf3bedac8ba3eb1c7c7fdaaa3619a37",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -31375,16 +31565,26 @@
         "TrialLedger/layer2/admission.py::read_standing.<locals>.<genexpr>",
         "TrialLedger/layer2/coherence.py::close",
         "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::direct_coordinate",
         "TrialLedger/layer2/coherence.py::domain_state",
         "TrialLedger/layer2/coherence.py::facts_of",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::relation_applicability",
         "TrialLedger/layer2/coherence.py::resolve",
         "TrialLedger/layer2/coordinate_admission.py::_close_level",
+        "TrialLedger/layer2/coordinate_admission.py::_consumers",
         "TrialLedger/layer2/coordinate_admission.py::_coordinates",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_key",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>",
+        "TrialLedger/layer2/coordinate_admission.py::_effects",
+        "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>",
         "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
         "TrialLedger/layer2/coordinate_admission.py::_narrow_from.<locals>.<genexpr>",
         "TrialLedger/layer2/coordinate_admission.py::resolve",
+        "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code",
+        "TrialLedger/layer2/reasoning_explanations.py::relation_application_code",
         "TrialLedger/layer2/result_semantics.py::_coordinates",
         "TrialLedger/layer2/result_semantics.py::_path",
         "TrialLedger/layer2/result_semantics.py::_row",
@@ -31428,8 +31628,20 @@
           "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>"
         ],
         [
+          "TrialLedger/layer2/coherence.py::close",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::narrow_by_evidence",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
           "TrialLedger/layer2/coherence.py::narrow_by_evidence",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::relation_applicability",
+          "TrialLedger/layer2/reasoning_explanations.py::relation_application_code"
         ],
         [
           "TrialLedger/layer2/coherence.py::resolve",
@@ -31460,6 +31672,18 @@
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_coordinates",
           "TrialLedger/layer2/coherence.py::close"
         ],
@@ -31480,6 +31704,42 @@
           "TrialLedger/layer2/coordinate_admission.py::_close_level"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coherence.py::narrow_by_evidence"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_consumers"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_coordinates"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_key"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence"
         ],
@@ -31498,6 +31758,10 @@
         [
           "TrialLedger/layer2/coordinate_admission.py::resolve",
           "TrialLedger/layer2/coordinate_admission.py::_coordinates"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::resolve",
+          "TrialLedger/layer2/coordinate_admission.py::_effects"
         ],
         [
           "TrialLedger/layer2/result_semantics.py::_coordinates",
@@ -31578,7 +31842,7 @@
       "mode": "mcp",
       "operation": "coordinates",
       "request_digest": "f2be086d5719d50d74b69b8da4ce15e918fc4b7adaebd49140fcc7897efc59ab",
-      "result_digest": "ea6893733f9601815c8fadb2f51ebd5d11bf811c7b925ab8fda6eee4290c1581",
+      "result_digest": "d7b25d7638806bb0b4fde0890dd277736cf3bedac8ba3eb1c7c7fdaaa3619a37",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -31588,16 +31852,26 @@
         "TrialLedger/layer2/admission.py::read_standing.<locals>.<genexpr>",
         "TrialLedger/layer2/coherence.py::close",
         "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::direct_coordinate",
         "TrialLedger/layer2/coherence.py::domain_state",
         "TrialLedger/layer2/coherence.py::facts_of",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence",
         "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>",
+        "TrialLedger/layer2/coherence.py::relation_applicability",
         "TrialLedger/layer2/coherence.py::resolve",
         "TrialLedger/layer2/coordinate_admission.py::_close_level",
+        "TrialLedger/layer2/coordinate_admission.py::_consumers",
         "TrialLedger/layer2/coordinate_admission.py::_coordinates",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_key",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+        "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>",
+        "TrialLedger/layer2/coordinate_admission.py::_effects",
+        "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>",
         "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
         "TrialLedger/layer2/coordinate_admission.py::_narrow_from.<locals>.<genexpr>",
         "TrialLedger/layer2/coordinate_admission.py::resolve",
+        "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code",
+        "TrialLedger/layer2/reasoning_explanations.py::relation_application_code",
         "TrialLedger/layer2/result_semantics.py::_coordinates",
         "TrialLedger/layer2/result_semantics.py::_path",
         "TrialLedger/layer2/result_semantics.py::_row",
@@ -31646,8 +31920,20 @@
           "TrialLedger/layer2/coherence.py::close.<locals>.<genexpr>"
         ],
         [
+          "TrialLedger/layer2/coherence.py::close",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::narrow_by_evidence",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
           "TrialLedger/layer2/coherence.py::narrow_by_evidence",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coherence.py::relation_applicability",
+          "TrialLedger/layer2/reasoning_explanations.py::relation_application_code"
         ],
         [
           "TrialLedger/layer2/coherence.py::resolve",
@@ -31678,6 +31964,18 @@
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::direct_coordinate"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_consumers",
+          "TrialLedger/layer2/coherence.py::relation_applicability"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_coordinates",
           "TrialLedger/layer2/coherence.py::close"
         ],
@@ -31698,6 +31996,42 @@
           "TrialLedger/layer2/coordinate_admission.py::_close_level"
         ],
         [
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coherence.py::facts_of"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coherence.py::narrow_by_evidence"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_consumers"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_coordinates"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_key"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_domain_levels"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/coordinate_admission.py::_effects.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::_effects",
+          "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code"
+        ],
+        [
           "TrialLedger/layer2/coordinate_admission.py::_narrow_from",
           "TrialLedger/layer2/coherence.py::narrow_by_evidence"
         ],
@@ -31716,6 +32050,10 @@
         [
           "TrialLedger/layer2/coordinate_admission.py::resolve",
           "TrialLedger/layer2/coordinate_admission.py::_coordinates"
+        ],
+        [
+          "TrialLedger/layer2/coordinate_admission.py::resolve",
+          "TrialLedger/layer2/coordinate_admission.py::_effects"
         ],
         [
           "TrialLedger/layer2/result_semantics.py::_coordinates",
@@ -32576,7 +32914,7 @@
       "mode": "cli",
       "operation": "corpus",
       "request_digest": "8a3e57e252455ed02297ed6922914adff2fc62d9004f406831f699bfd1278e55",
-      "result_digest": "457d8b0c05bb0d97e48287f3a2ca4e3ae2eac44080ef6e9f5472560749e32265",
+      "result_digest": "2d7f6cc65ba33d3a50be32a60ab686add36624629384433c578ade3e0661c70b",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -32844,7 +33182,7 @@
       "mode": "mcp",
       "operation": "corpus",
       "request_digest": "8a3e57e252455ed02297ed6922914adff2fc62d9004f406831f699bfd1278e55",
-      "result_digest": "457d8b0c05bb0d97e48287f3a2ca4e3ae2eac44080ef6e9f5472560749e32265",
+      "result_digest": "2d7f6cc65ba33d3a50be32a60ab686add36624629384433c578ade3e0661c70b",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -37134,7 +37472,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "b5e037b876bf78a4a07e511526482e5d2114b8c02d1f388232c5373afc053ebe",
-      "result_digest": "0c18586b98e34f06be5ae9eb4b65ff68533e9ad46951af284220a3b1e582d8a2",
+      "result_digest": "59ed6d9735231a5cf959d7b4aa3b8e2df4c0a84b836c5d3b4e09bfaa748c612b",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -37200,6 +37538,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -37217,6 +37556,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -37559,6 +37899,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -37580,7 +37924,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -37933,7 +38285,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "b5e037b876bf78a4a07e511526482e5d2114b8c02d1f388232c5373afc053ebe",
-      "result_digest": "0c18586b98e34f06be5ae9eb4b65ff68533e9ad46951af284220a3b1e582d8a2",
+      "result_digest": "59ed6d9735231a5cf959d7b4aa3b8e2df4c0a84b836c5d3b4e09bfaa748c612b",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -37998,6 +38350,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -38015,6 +38368,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -38362,6 +38716,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -38383,7 +38741,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -38776,7 +39142,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "eb7b809eee4be6c1c9077918d2ca4673344dbcd21a93eb8277a1724aa3d3b980",
-      "result_digest": "f2bede64ba40a86f6723db3c5123c0677b04cbaad4b01e61b01e78229eb175e6",
+      "result_digest": "92d9cfadf0278dfac4bd67f9317ad789b3988f3a82742ddf2c995367ff7e96cd",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -38825,6 +39191,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -38841,6 +39208,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -39083,6 +39451,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -39096,7 +39468,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -39389,7 +39769,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "eb7b809eee4be6c1c9077918d2ca4673344dbcd21a93eb8277a1724aa3d3b980",
-      "result_digest": "f2bede64ba40a86f6723db3c5123c0677b04cbaad4b01e61b01e78229eb175e6",
+      "result_digest": "92d9cfadf0278dfac4bd67f9317ad789b3988f3a82742ddf2c995367ff7e96cd",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -39437,6 +39817,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -39453,6 +39834,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -39700,6 +40082,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -39713,7 +40099,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -40046,7 +40440,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "45006ab4707705ed90801bb8e921e3f5a12bc4a5e6c7fa643192631e6b9ace51",
-      "result_digest": "c090e4e9aa8b30df5ff25e784841ec95d2dc385d996c6bfa1119ba1ac615a746",
+      "result_digest": "22aa340832923cea0de85ba2c0913c9b03d25685e35a095a1430590e8dbdc064",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -40095,6 +40489,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -40111,6 +40506,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -40353,6 +40749,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -40366,7 +40766,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -40659,7 +41067,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "45006ab4707705ed90801bb8e921e3f5a12bc4a5e6c7fa643192631e6b9ace51",
-      "result_digest": "c090e4e9aa8b30df5ff25e784841ec95d2dc385d996c6bfa1119ba1ac615a746",
+      "result_digest": "22aa340832923cea0de85ba2c0913c9b03d25685e35a095a1430590e8dbdc064",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -40707,6 +41115,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -40723,6 +41132,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -40970,6 +41380,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -40983,7 +41397,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -41316,7 +41738,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "e8c08697df1e3af3085920ab864210769a0ea856dfbfb0a0ce481d121d6298c3",
-      "result_digest": "dae1b6a6c276f9b829bd253e86ec7d30e70bdfd277ccb150eee608de3af86fe8",
+      "result_digest": "0c64ec1b336f8cf5013b352bfb611d7696dd90c152b17437a67783441b6cde5d",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -41365,6 +41787,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -41381,6 +41804,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -41623,6 +42047,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -41636,7 +42064,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -41929,7 +42365,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "e8c08697df1e3af3085920ab864210769a0ea856dfbfb0a0ce481d121d6298c3",
-      "result_digest": "dae1b6a6c276f9b829bd253e86ec7d30e70bdfd277ccb150eee608de3af86fe8",
+      "result_digest": "0c64ec1b336f8cf5013b352bfb611d7696dd90c152b17437a67783441b6cde5d",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -41977,6 +42413,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::check_uses",
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -41993,6 +42430,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -42240,6 +42678,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -42253,7 +42695,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -42586,7 +43036,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "f257ba99e9fe1bfe341a8ead416b64f266bd84bb20249d705bfed4166bdfa8a8",
-      "result_digest": "54bc35b96c1bd0a0c3f4079f7e11b500ff4b14d43abd0b477d1ddfe8dd863997",
+      "result_digest": "1134abe399ca677c42dfdfdded29fdf2655c6467db6c7c365c72090e47d7e756",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -42664,6 +43114,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -42682,6 +43133,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -43124,6 +43576,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -43145,7 +43601,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -43514,7 +43978,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "f257ba99e9fe1bfe341a8ead416b64f266bd84bb20249d705bfed4166bdfa8a8",
-      "result_digest": "54bc35b96c1bd0a0c3f4079f7e11b500ff4b14d43abd0b477d1ddfe8dd863997",
+      "result_digest": "1134abe399ca677c42dfdfdded29fdf2655c6467db6c7c365c72090e47d7e756",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -43591,6 +44055,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_bindings",
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -43609,6 +44074,7 @@
         "TrialLedger/layer2/interpretations.py::resolve",
         "TrialLedger/layer2/interpretations.py::resolve.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::selection_state",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -44056,6 +44522,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -44077,7 +44547,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -44486,7 +44964,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "67d21625ac3ce4b5f5a5600c73c3822770df2b97d91c41594c91eb66a67b2df4",
-      "result_digest": "f0aadd998c5932c1bbe0bcb18a5eb7512201d5aa30be3d38b3d066c715f33f6c",
+      "result_digest": "42d4f3b889e543ea72ffe85b9c033b063291a0929391bed62fef6e2b3de3b5c1",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -44545,6 +45023,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::population_compatibility",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -44581,6 +45060,7 @@
         "TrialLedger/layer2/numeric_evidence.py::partition_bounds",
         "TrialLedger/layer2/numeric_evidence.py::scope_state",
         "TrialLedger/layer2/numeric_evidence.py::scope_state.<locals>.<genexpr>",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -44907,6 +45387,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -44928,7 +45412,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -45409,7 +45901,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "67d21625ac3ce4b5f5a5600c73c3822770df2b97d91c41594c91eb66a67b2df4",
-      "result_digest": "f0aadd998c5932c1bbe0bcb18a5eb7512201d5aa30be3d38b3d066c715f33f6c",
+      "result_digest": "42d4f3b889e543ea72ffe85b9c033b063291a0929391bed62fef6e2b3de3b5c1",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -45467,6 +45959,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::population_compatibility",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -45503,6 +45996,7 @@
         "TrialLedger/layer2/numeric_evidence.py::partition_bounds",
         "TrialLedger/layer2/numeric_evidence.py::scope_state",
         "TrialLedger/layer2/numeric_evidence.py::scope_state.<locals>.<genexpr>",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -45834,6 +46328,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -45855,7 +46353,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -46376,7 +46882,7 @@
       "mode": "cli",
       "operation": "interpretations",
       "request_digest": "db7ee60e02f98649f3e26af39d6fdfac56df72bfced08a76dac6c6275c88d448",
-      "result_digest": "65b8c01b04670a9e856ed33722dd096113876f7f0c8ae576174172eb051e0d2d",
+      "result_digest": "7a8749089eb70048fb156b26477f72cf52f02180a002e5dbbcd7b2a09ece49f2",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -46434,6 +46940,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::population_compatibility",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -46470,6 +46977,7 @@
         "TrialLedger/layer2/numeric_evidence.py::partition_bounds",
         "TrialLedger/layer2/numeric_evidence.py::scope_state",
         "TrialLedger/layer2/numeric_evidence.py::scope_state.<locals>.<genexpr>",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -46792,6 +47300,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -46813,7 +47325,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -47298,7 +47818,7 @@
       "mode": "mcp",
       "operation": "interpretations",
       "request_digest": "db7ee60e02f98649f3e26af39d6fdfac56df72bfced08a76dac6c6275c88d448",
-      "result_digest": "65b8c01b04670a9e856ed33722dd096113876f7f0c8ae576174172eb051e0d2d",
+      "result_digest": "7a8749089eb70048fb156b26477f72cf52f02180a002e5dbbcd7b2a09ece49f2",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -47355,6 +47875,7 @@
         "TrialLedger/layer2/interpretation_bindings.py::parse_uses",
         "TrialLedger/layer2/interpretation_bindings.py::population_compatibility",
         "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility",
+        "TrialLedger/layer2/interpretations.py::_answer_links",
         "TrialLedger/layer2/interpretations.py::_assume_assertions",
         "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>",
         "TrialLedger/layer2/interpretations.py::_claim_checks",
@@ -47391,6 +47912,7 @@
         "TrialLedger/layer2/numeric_evidence.py::partition_bounds",
         "TrialLedger/layer2/numeric_evidence.py::scope_state",
         "TrialLedger/layer2/numeric_evidence.py::scope_state.<locals>.<genexpr>",
+        "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
         "TrialLedger/layer2/result_semantics.py::_decision",
         "TrialLedger/layer2/result_semantics.py::_interpretations",
         "TrialLedger/layer2/result_semantics.py::_interpretations.<locals>.<genexpr>",
@@ -47718,6 +48240,10 @@
           "TrialLedger/layer2/interpretation_bindings.py::_text"
         ],
         [
+          "TrialLedger/layer2/interpretations.py::_answer_links",
+          "TrialLedger/layer2/interpretations.py::_plain"
+        ],
+        [
           "TrialLedger/layer2/interpretations.py::_assume_assertions",
           "TrialLedger/layer2/interpretations.py::_assume_assertions.<locals>.<genexpr>"
         ],
@@ -47739,7 +48265,15 @@
         ],
         [
           "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/interpretations.py::_answer_links"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
           "TrialLedger/layer2/interpretations.py::_consequences.<locals>.<genexpr>"
+        ],
+        [
+          "TrialLedger/layer2/interpretations.py::_consequences",
+          "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code"
         ],
         [
           "TrialLedger/layer2/interpretations.py::_frame_row",
@@ -48264,7 +48798,7 @@
       "mode": "cli",
       "operation": "design_session",
       "request_digest": "9df7390be749635492ac588d7159f1a97f28eeb061b687b456a7a4ada75f1898",
-      "result_digest": "faeb94aaefd093636ad0d7ed83f6e5ec7dd68f990b3e8a52c2cf8a224f447b02",
+      "result_digest": "0ce968e94f1935a24f52366b07e9d2419abce1df92c17ae2f7723c8c7732946f",
       "entries": [
         "TrialLedger/cli.py::_reason",
         "TrialLedger/cli.py::main",
@@ -48297,6 +48831,7 @@
         "TrialLedger/layer2/design_session.py::_reserve.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::replay",
         "TrialLedger/layer2/design_session.py::run",
+        "TrialLedger/layer2/design_session.py::session_work_code",
         "TrialLedger/layer2/entail.py::_atoms",
         "TrialLedger/layer2/entail.py::_components",
         "TrialLedger/layer2/entail.py::_components.<locals>.<genexpr>",
@@ -48506,6 +49041,10 @@
         [
           "TrialLedger/layer2/design_session.py::_child",
           "TrialLedger/layer2/design_session.py::_reserve"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::_child",
+          "TrialLedger/layer2/design_session.py::session_work_code"
         ],
         [
           "TrialLedger/layer2/design_session.py::_child",
@@ -49270,7 +49809,7 @@
       "mode": "mcp",
       "operation": "design_session",
       "request_digest": "9df7390be749635492ac588d7159f1a97f28eeb061b687b456a7a4ada75f1898",
-      "result_digest": "faeb94aaefd093636ad0d7ed83f6e5ec7dd68f990b3e8a52c2cf8a224f447b02",
+      "result_digest": "0ce968e94f1935a24f52366b07e9d2419abce1df92c17ae2f7723c8c7732946f",
       "entries": [
         "TrialLedger/cli.py::_mcp",
         "TrialLedger/cli.py::main",
@@ -49302,6 +49841,7 @@
         "TrialLedger/layer2/design_session.py::_reserve.<locals>.<genexpr>",
         "TrialLedger/layer2/design_session.py::replay",
         "TrialLedger/layer2/design_session.py::run",
+        "TrialLedger/layer2/design_session.py::session_work_code",
         "TrialLedger/layer2/entail.py::_atoms",
         "TrialLedger/layer2/entail.py::_components",
         "TrialLedger/layer2/entail.py::_components.<locals>.<genexpr>",
@@ -49516,6 +50056,10 @@
         [
           "TrialLedger/layer2/design_session.py::_child",
           "TrialLedger/layer2/design_session.py::_reserve"
+        ],
+        [
+          "TrialLedger/layer2/design_session.py::_child",
+          "TrialLedger/layer2/design_session.py::session_work_code"
         ],
         [
           "TrialLedger/layer2/design_session.py::_child",

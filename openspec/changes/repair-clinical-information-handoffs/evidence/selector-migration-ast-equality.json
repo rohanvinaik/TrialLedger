@@ -1,0 +1,32 @@
+{
+  "_served": {
+    "ast_equal_including_docstrings_defaults_annotations": true,
+    "old_ast_sha256": "13e7fc82b687023d59aa057a25cfa1f9769ce9c611a2a08d107e50c7626dd84f",
+    "new_ast_sha256": "13e7fc82b687023d59aa057a25cfa1f9769ce9c611a2a08d107e50c7626dd84f",
+    "excluded_only": "AST location attributes; comments/formatting not represented by AST"
+  },
+  "page_window": {
+    "ast_equal_including_docstrings_defaults_annotations": true,
+    "old_ast_sha256": "8ed7fc6711c4aab9182f1cdb5482ae9ffc5c0dd07e8270f92fe67963edfe2878",
+    "new_ast_sha256": "8ed7fc6711c4aab9182f1cdb5482ae9ffc5c0dd07e8270f92fe67963edfe2878",
+    "excluded_only": "AST location attributes; comments/formatting not represented by AST"
+  },
+  "pointer_value": {
+    "ast_equal_including_docstrings_defaults_annotations": true,
+    "old_ast_sha256": "eddb302e32aee197c936c874e21900e1a616dba777077620d9d91297f184274b",
+    "new_ast_sha256": "eddb302e32aee197c936c874e21900e1a616dba777077620d9d91297f184274b",
+    "excluded_only": "AST location attributes; comments/formatting not represented by AST"
+  },
+  "study_line": {
+    "ast_equal_including_docstrings_defaults_annotations": true,
+    "old_ast_sha256": "780bf217b2f30355927851729254ce47977145ed8d77f1a057a4e44f5c231d05",
+    "new_ast_sha256": "780bf217b2f30355927851729254ce47977145ed8d77f1a057a4e44f5c231d05",
+    "excluded_only": "AST location attributes; comments/formatting not represented by AST"
+  },
+  "record_view": {
+    "ast_equal_including_docstrings_defaults_annotations": true,
+    "old_ast_sha256": "95f696bd1e7f6ede80a1f064cad0d8e9a466a84624df8e014744419a439583c0",
+    "new_ast_sha256": "95f696bd1e7f6ede80a1f064cad0d8e9a466a84624df8e014744419a439583c0",
+    "excluded_only": "AST location attributes; comments/formatting not represented by AST"
+  }
+}

@@ -12,6 +12,7 @@ import json
 from copy import deepcopy
 from typing import Any
 
+from TrialLedger.capabilities import DISCOVERY_VIEWS, OPERATIONS
 from TrialLedger.layer2 import (
     assertions,
     bounds_guide,
@@ -42,18 +43,6 @@ from TrialLedger.layer2 import (
     translation_diagnostics,
 )
 
-OPERATIONS = (
-    "describe",
-    "entailment",
-    "coordinates",
-    "corpus",
-    "design_bounds",
-    "evidence_requests",
-    "signals",
-    "interpretations",
-    "source_assertions",
-    "design_session",
-)
 MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
 # The same closed field sets drive request validation and the agent-facing description.
@@ -163,6 +152,7 @@ SECTIONS = ("inclusion", "exclusion", "unsectioned")
 SCOPES = ("advanced", "unspecified", "")
 COVERAGE_STATES = ("abbreviation_stated", "completeness_stated", "unspecified")
 COORDINATE_VALUES = {
+    "setting": coherence.SETTINGS,
     "prior_lines": coherence.PRIOR_LINES,
     "stage": ("I", "II", "III", "IV"),
     "extent": ("metastatic", "recurrent", "advanced", "locally_advanced"),
@@ -815,7 +805,19 @@ def _corpus(request: dict[str, Any]) -> dict[str, Any]:
         "premises": given,
         "admission": prepared["admission"],
         "pending": prepared["pending"],
-        "frequency": prepared["frequency"],
+        "frequency": [
+            {
+                **row,
+                "description": {
+                    "scope": "declared_comparison_set",
+                    "stating": row["stating"],
+                    "trials": row["trials"],
+                    "threshold": profile.STANDARD_SHARE if row["tier"] else None,
+                    "meaning": "descriptive frequency threshold; no clinical standard or recommendation",
+                },
+            }
+            for row in prepared["frequency"]
+        ],
         "associations": [
             dict(zip(ASSOCIATION_FIELDS, row, strict=True))
             for row in profile.mechanism_rows(prepared["association_trials"])
@@ -1243,6 +1245,11 @@ def _full_description() -> dict[str, Any]:
                     "admission": (
                         "per-item standing, admission code and known/interpolated/pending destination"
                     ),
+                    "effects": (
+                        "per-input consumers and marginal domain changes, separately from admission: "
+                        "no_consumer, inactive, redundant, withheld, narrowed or guarded; an explanation "
+                        "of symbolic use, not clinical feasibility or unique causality"
+                    ),
                     "coordinates": "setting, prior_advanced_lines and selection:<gene> for each gene",
                     "relations": (
                         "each actual rule's id, statement, basis, approval, kind, needs, lines_within, "
@@ -1262,8 +1269,12 @@ def _full_description() -> dict[str, Any]:
                     ),
                 },
                 "semantics": (
-                    "Inclusion retains and exclusion removes explicitly supplied prior-line or "
-                    "gene-selection values. Other facts activate the listed NSCLC relations. Current "
+                    "Inclusion retains and exclusion removes explicitly supplied setting, prior-line or "
+                    "gene-selection values. Explicit setting is a finite restriction, distinct from "
+                    "setting_word evidence; neither supplies progression or a clinical equivalence. "
+                    "Other facts activate the listed NSCLC relations. Inspect effects even when an input "
+                    "is admitted: acceptance alone establishes no narrowing. An active negative guard "
+                    "can preserve alternatives; unmet antecedents instead make a rule inactive. Current "
                     "stored relations are defaults or proposals, not strict clinical deductions."
                 ),
             },
@@ -1289,6 +1300,7 @@ def _full_description() -> dict[str, Any]:
                         "pending_stating",
                         "pending_statement_lower",
                         "pending_statement_upper",
+                        "description",
                     ),
                     "meaning": (
                         "Within each declared stratum, stating/trials counts admitted known/resolved "
@@ -1304,6 +1316,11 @@ def _full_description() -> dict[str, Any]:
                     "tier": (
                         "met if the unrounded lower bound reaches the threshold, not_met if the upper is "
                         "below it, otherwise unresolved; this is a corpus setting, not clinical necessity"
+                    ),
+                    "description": (
+                        "names the declared-set scope, stating/trials denominator and descriptive "
+                        "threshold; even two of two is a description, not a clinical standard. Class "
+                        "association has its own distinct support requirement."
                     ),
                 },
                 "associations": {
@@ -1433,11 +1450,18 @@ def _full_description() -> dict[str, Any]:
                         "TrialLedger.layer2.assertions.ScopedAssertion",
                         "TrialLedger.layer2.assertions.canonical",
                         "TrialLedger.layer2.assertions.from_canonical",
+                        "TrialLedger.layer2.construction.quantity",
+                        "TrialLedger.layer2.construction.enum_value",
+                        "TrialLedger.layer2.construction.enum_set_value",
+                        "TrialLedger.layer2.construction.literal",
+                        "TrialLedger.layer2.construction.scoped_assertion",
+                        "TrialLedger.layer2.construction.expanded",
                     ],
                     "precondition": (
                         "Preserve the proposition's referent, Boolean alternatives, modality, "
                         "applicability, cohort/time scope and actual provenance; serialization does not "
-                        "certify them."
+                        "certify them. Construction helpers require explicit scope and origin, default "
+                        "to proposed standing, and expose canonical expanded inputs; they do not read prose."
                     ),
                 },
                 {
@@ -1536,7 +1560,8 @@ def _full_description() -> dict[str, Any]:
                     "precondition": (
                         "deviation_status(status,qualifiers,audit) requires a supplied documented "
                         "observation state, count of supported qualifiers and separate audit outcome. It "
-                        "returns "
+                        "returns named invalid_audit/invalid_status/invalid_qualifiers for malformed "
+                        "inputs, or "
                         "invalid_extraction/not_applicable/scope_unresolved/conforms/omission/explanation_supported/verified_deviation."
                         " It does not read text, discover expectations or explain an unexplained "
                         "deviation. Historical FROZEN expectation metadata is unconfirmed and is not "
@@ -1590,20 +1615,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     """Discover just the next operation, or explicitly request the complete reference guide."""
     _input(request, "describe", "request")
     view = request.get("view", "overview")
-    views = (
-        "overview",
-        "entailment",
-        "coordinates",
-        "corpus",
-        "design_bounds",
-        "evidence_requests",
-        "signals",
-        "interpretations",
-        "source_assertions",
-        "design_session",
-        "worked_session",
-        "full",
-    )
+    views = DISCOVERY_VIEWS
     if not isinstance(view, str) or view not in views:
         raise RequestError("request.view:unsupported_view")
     full = _full_description()

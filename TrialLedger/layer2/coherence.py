@@ -22,6 +22,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from TrialLedger.layer2 import universes
+from TrialLedger.layer2.reasoning_explanations import relation_application_code
 
 SETTINGS = (
     "neoadjuvant",
@@ -188,6 +189,43 @@ RELATIONS = (
 )
 
 
+def direct_coordinate(concept: str, scope: str) -> str:
+    """Return the exact finite coordinate consumer; an unmatched concept has no direct consumer.
+
+    post: __return__ == '' or __return__ in COORDINATES
+    post: concept != 'setting' or __return__ == 'setting'
+    post: concept != 'prior_lines' or ((__return__ == 'prior_advanced_lines') == (scope == 'advanced'))
+    """
+    if concept == "prior_lines":
+        return "prior_advanced_lines" if scope == "advanced" else ""
+    return {
+        "setting": "setting",
+        **{f"biomarker:{gene}": f"selection:{gene}" for gene in SELECTED_GENES},
+    }.get(concept, "")
+
+
+def relation_applicability(relation: Relation, facts: list[str], domains: dict[str, tuple[str, ...]]) -> dict:
+    """The actual closure guard, including exact positive and veto facts and the line-domain test."""
+    missing = [fact for fact in relation.needs if fact not in facts]
+    alternatives = [fact for fact in relation.needs_any if fact in facts]
+    forbidden = [fact for fact in relation.forbids if fact in facts]
+    lines = domains["prior_advanced_lines"]
+    lines_fit = not relation.lines_within or bool(lines and set(lines) <= set(relation.lines_within))
+    return {
+        "code": relation_application_code(
+            bool(missing), bool(relation.needs_any and not alternatives), lines_fit, bool(forbidden)
+        ),
+        "missing_required": missing,
+        "matched_required": [fact for fact in relation.needs if fact in facts],
+        "matched_alternatives": alternatives,
+        "required_alternatives": list(relation.needs_any),
+        "matched_forbidden": forbidden,
+        "prior_advanced_lines": list(lines),
+        "lines_within": list(relation.lines_within),
+        "lines_fit": lines_fit,
+    }
+
+
 def narrow_by_evidence(
     evidence: list[tuple[str, str, tuple[str, ...], str, str]],
 ) -> tuple[dict[str, tuple[str, ...]], list[tuple[str, tuple[str, ...], str]]]:
@@ -196,7 +234,8 @@ def narrow_by_evidence(
     `evidence` holds (section, concept, values, scope, ref): an atom's criterion section, its concept, the
     values it states, its scope ("advanced", "unspecified" or "") and a reference naming its criterion. Only a
     stated coordinate narrows: prior_lines of advanced scope narrows prior_advanced_lines, and a biomarker's
-    states narrow its gene's selection. An inclusion atom keeps its values; an exclusion atom removes them; an
+    states narrow its gene's selection; an explicit setting restriction narrows setting. An inclusion atom
+    keeps its values; an exclusion atom removes them; an
     unsectioned atom, an atom of unspecified scope or one with no values narrows nothing. Returns the domains
     (every coordinate, in COORDINATES order, each a tuple in its coordinate's order) and the causes, each
     (coordinate, values removed, ref), only where a value was removed.
@@ -204,11 +243,8 @@ def narrow_by_evidence(
     domains = {name: values for name, values in COORDINATES.items()}
     causes: list[tuple[str, tuple[str, ...], str]] = []
     for section, concept, values, scope, ref in evidence:
-        if concept == "prior_lines" and scope == "advanced":
-            coordinate = "prior_advanced_lines"
-        elif concept.startswith("biomarker:") and f"selection:{concept[10:]}" in domains:
-            coordinate = f"selection:{concept[10:]}"
-        else:
+        coordinate = direct_coordinate(concept, scope)
+        if not coordinate:
             continue
         if section not in ("inclusion", "exclusion") or not values:
             continue
@@ -248,14 +284,7 @@ def close(
     for _ in range(sum(len(values) for values in current.values()) + 1):
         changed = False
         for relation in chosen:
-            lines = current["prior_advanced_lines"]
-            if any(fact not in facts for fact in relation.needs):
-                continue
-            if relation.needs_any and not any(fact in facts for fact in relation.needs_any):
-                continue
-            if any(fact in facts for fact in relation.forbids):
-                continue
-            if relation.lines_within and not (lines and set(lines) <= set(relation.lines_within)):
+            if relation_applicability(relation, facts, current)["code"] != "applicable":
                 continue
             kept = tuple(v for v in current[relation.narrows] if v in relation.allowed)
             removed = tuple(v for v in current[relation.narrows] if v not in kept)

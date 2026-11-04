@@ -190,6 +190,7 @@ def test_a_relay_run_writes_the_record_a_direct_run_writes(tmp_path):
     assert json.loads((tmp_path / "relay" / "scope.json").read_text(encoding="utf-8")) == {
         "query": scope["query"],
         "rxnav": [],
+        "acquisition": {"max_studies": 1000, "max_registry_requests": 100},
     }
     assert (tmp_path / "direct" / "manifest.json").read_bytes() == (
         json.dumps(record(tmp_path / "direct")["manifest"], ensure_ascii=False, indent=1) + "\n"

@@ -13,7 +13,9 @@ from typing import Any
 
 import httpx
 
+from TrialLedger import acquisition
 from TrialLedger import classes as rx
+from TrialLedger.evidence_access import RECORD_PARTS, read_record
 from TrialLedger.ingest import (
     SPEC_API_VERSION,
     PullError,
@@ -26,7 +28,7 @@ from TrialLedger.request import PHASES, STATUSES, STUDY_TYPES
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
 
 # The public commands the assistant can run, in the same order as the guides and command help.
-USER_COMMANDS = ("doctor", "landscape", "pull", "verify", "mcp", "reason")
+USER_COMMANDS = ("doctor", "landscape", "record", "pull", "verify", "mcp", "reason")
 
 DESCRIPTION = """\
 TrialLedger gathers every ClinicalTrials.gov study that matches a question about clinical trials (a drug, a
@@ -88,6 +90,9 @@ answer a question about trials, run `trialledger landscape`.
 Each search term is one of the registry's own search settings, written name=value, and sent as given (the
 registry refuses a name it does not know): query.cond=asthma (a condition), filter.overallStatus=RECRUITING
 (a status), filter.ids=NCT04852770,NCT01030536 (trials by number). Paging and format are set by TrialLedger.
+Before full records, one identifier page checks the intended acquisition size. Search safeguards default
+to 1000 studies and 100 registry requests; --max-studies and --max-registry-requests explicitly budget
+a larger intended pull. These are operational safeguards, not clinical restrictions.
 Every trial asked for by number is accounted for in studies.json, and each one not found under its own
 number is printed in plain words: another number of a trial the registry holds, not found, asked for twice,
 or not a trial number.
@@ -100,6 +105,24 @@ examples:
 
 exit status: 0 written · 1 the registry could not be read completely, or the folder could not be written;
 nothing was written · 2 the search was refused (the words printed say why)
+"""
+
+RECORD_HELP = """\
+Read a finished landscape folder without contacting a service. Choose its study index (the default),
+one study, source dictionary, status summary, manifest or exact workbook address. The result carries
+the same evidence, named refusals and continuations as the assistant app’s record tool.
+
+Lists and objects are returned in pages: follow page.next_offset with --offset. A list of addresses is
+navigation, not source data; read a named address with --part address --address PATH. Long passages keep
+their exact text and show text_page.next_offset; continue with --text-offset until it is null, joining
+chunks in offset order without normalization. Saved evidence is never shortened or changed.
+
+examples:
+  trialledger record my-trials
+  trialledger record my-trials --part study --nct NCT04852770
+  trialledger record my-trials --part address --address /studies/0/eligibility/text --text-limit 1000
+
+exit status: 0 evidence returned (a page may need continuation) · 2 missing record or named request refusal
 """
 
 VERIFY_HELP = """\
@@ -382,6 +405,27 @@ def main(
         help="resolve the request and show the search in plain words, reading no trial; run again without "
         "it to gather",
     )
+    record_parser = commands.add_parser(
+        "record",
+        help="read a saved trial record in bounded parts or at an exact workbook address",
+        description=RECORD_HELP,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    record_parser.add_argument("folder", type=Path, metavar="FOLDER")
+    record_parser.add_argument("--part", choices=RECORD_PARTS, default="studies")
+    record_parser.add_argument("--nct", help="the NCT identifier for --part study")
+    record_parser.add_argument("--address", help="the exact saved record address for --part address")
+    record_parser.add_argument("--offset", type=int, help="first entry of the next evidence page")
+    record_parser.add_argument("--limit", type=int, help="maximum entries in a page, from 1 to 50")
+    record_parser.add_argument(
+        "--text-offset", type=int, help="character offset of the next exact text chunk"
+    )
+    record_parser.add_argument(
+        "--text-limit", type=int, help="maximum characters in a text chunk, from 1 to 8192"
+    )
+    record_parser.add_argument(
+        "--max-bytes", type=int, help="evidence response budget, from 2048 to 65536 bytes"
+    )
     pull_parser = commands.add_parser(
         "pull",
         help="save the registry's own records for a search, with two checked spreadsheets",
@@ -396,6 +440,14 @@ def main(
         type=Path,
         metavar="FOLDER",
         help="the folder to create, which must not exist yet (default: ./trialledger_<UTC time>)",
+    )
+    pull_parser.add_argument(
+        "--max-studies", type=int, help="explicit positive budget for the intended study count"
+    )
+    pull_parser.add_argument(
+        "--max-registry-requests",
+        type=int,
+        help="explicit positive budget for registry exchanges including retries",
     )
     verify_parser = commands.add_parser(
         "verify",
@@ -447,6 +499,8 @@ def main(
     )
     reason_parser.add_argument("--request", type=Path, required=True, metavar="FILE")
     args = parser.parse_args(argv)
+    if args.command == "record":
+        return _record(args)
     if args.command == "reason":
         return _reason(args.request)
     if args.command == "doctor":
@@ -474,13 +528,29 @@ def main(
         detail = ", ".join(names) or "give at least one NAME=VALUE"
         print(f"trialledger: refused (query.{verdict}): {detail}", file=sys.stderr)
         return 2
+    budget = {
+        key: value
+        for key, value in {
+            "max_studies": args.max_studies,
+            "max_registry_requests": args.max_registry_requests,
+        }.items()
+        if value is not None
+    }
+    problem = acquisition.policy_problem(budget)
+    if problem != "ok":
+        print(f"trialledger: refused (acquisition.{problem})", file=sys.stderr)
+        return 2
     try:
         result = pull(
-            params, http=http, sleep=sleep, progress=lambda message: print(message, file=sys.stderr)
+            params,
+            http=http,
+            sleep=sleep,
+            progress=lambda message: print(message, file=sys.stderr),
+            acquisition=budget or None,
         )
     except PullError as error:
         print(f"trialledger: nothing written — {error}", file=sys.stderr)
-        return 1
+        return 2 if error.code.startswith("acquisition.") else 1
     if result.api_version != SPEC_API_VERSION:
         print(
             f"trialledger: note — the registry reports its interface version {result.api_version}; this "
@@ -592,6 +662,8 @@ def _verify(folder: Path) -> int:
             f"{folder}: verified — the clinical record and workbook reproduce from the retained sources. "
             "This checks derivation, not clinical interpretation."
         )
+        for detail in problems:
+            print(f"trialledger: {detail}")
         return 0
     code, problems = verify_folder(folder)
     if code == "not_a_record":
@@ -609,6 +681,25 @@ def _verify(folder: Path) -> int:
         "both spreadsheets, and each file itself, is what this version of TrialLedger writes from them"
     )
     return 0
+
+
+def _record(args: argparse.Namespace) -> int:
+    """Use the same saved-evidence selector and reply as MCP; do not launch a server."""
+    arguments = {
+        key: value
+        for key, value in vars(args).items()
+        if key in {"part", "nct", "address", "offset", "limit", "text_offset", "text_limit", "max_bytes"}
+        and value is not None
+    }
+    payload, is_error = read_record(args.folder, arguments)
+    print(
+        json.dumps(
+            {"tool": "record", **payload, "run_folder": str(args.folder.resolve())},
+            ensure_ascii=False,
+            indent=1,
+        )
+    )
+    return 2 if is_error else 0
 
 
 def _reason(path: Path) -> int:

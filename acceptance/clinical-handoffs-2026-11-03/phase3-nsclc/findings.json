@@ -1,0 +1,68 @@
+[
+  {
+    "id": "source-identity-discovery",
+    "classification": "input_translation_gap",
+    "status": "guidance_repaired_by_root_during_walk",
+    "request": "reasoning/v2-managed-baseline-request.json",
+    "result": "reasoning/v2-managed-baseline-cli.stdout",
+    "correctness": "Collision refused instead of source identity silently changing. Exact historical source URI required by actual consumer.",
+    "new_model_guidance": "Before patch the focused guide did not name target.scope.study=returned source.study_ref. Final public design_session guide now does, and source_study owns expected_digest.",
+    "clinical_usability": "The assistant repairs source identity behind the scenes; the person is not asked for hashes or JSON.",
+    "plain_language": "I am keeping this historical evidence attached to its exact record while we revise your separate draft."
+  },
+  {
+    "id": "accepted-versus-consumed",
+    "classification": "identified",
+    "status": "demonstrated",
+    "request": "reasoning/final-simulated-label-is-not-a-restriction-request.json",
+    "result": "reasoning/final-simulated-label-is-not-a-restriction-result.json",
+    "correctness": "Known input label is accepted but no_consumer; no invented progression/maintenance rule.",
+    "new_model_guidance": "Read effects separately from admission and inspect the actual known/default domains.",
+    "clinical_usability": "A phrase is not mistaken for an encoded design choice.",
+    "plain_language": "At least one previous line does not choose between later treatment and maintenance. Let us state the intended setting explicitly."
+  },
+  {
+    "id": "crossover-scope-contrast",
+    "classification": "identified",
+    "status": "demonstrated",
+    "request": "reasoning/final-source-crossover-readings-request.json",
+    "result": "reasoning/final-source-crossover-readings-result.json",
+    "correctness": "OUT_OF_SCOPE and conditional REFUTED remain separate, with actual phase/scoped-premise/warrant links; neither reading becomes source truth.",
+    "new_model_guidance": "Use the contrast and effective standing; selection does not strengthen proposed status.",
+    "clinical_usability": "The next question is whether the entry condition is reassessed at crossover, not whether the solver failed.",
+    "plain_language": "The entry-only reading does not answer the crossover question. The other reading would exclude ECOG2 at crossover, if that reading were right."
+  },
+  {
+    "id": "independent-known-information",
+    "classification": "identified",
+    "status": "demonstrated",
+    "request": "reasoning/final-managed-revision-request.json",
+    "result": "reasoning/final-managed-revision-result.json",
+    "correctness": "Independent new-trial age child identical; source age consequence identical; complete earlier result reproduced separately.",
+    "new_model_guidance": "Distinguish full replay dependencies from actual local deciding support.",
+    "clinical_usability": "No request to reconfirm the unchanged adult criterion.",
+    "plain_language": "Your adult restriction has not changed; these new choices affect setting and the crossover question."
+  },
+  {
+    "id": "post-induction-reference-context",
+    "classification": "source_evidence_gap",
+    "status": "held",
+    "request": "reasoning/final-source-coordinate-readings-withheld-request.json",
+    "result": "reasoning/final-source-coordinate-readings-withheld-result.json",
+    "correctness": "Post-first-line radiotherapy reading remains proposed. Stable/responding disease and progression exclusion are retained; source P.S is not silently mapped to ECOG.",
+    "new_model_guidance": "Previously-treated/maintenance is an overridable stored default, not an exhaustive clinical setting identification; preserve all uncompiled source context.",
+    "clinical_usability": "The two references should not be presented as interchangeable later-line systemic comparators.",
+    "plain_language": "This reference is local radiotherapy after first-line treatment without progression; that is a different clinical question from a later-systemic study."
+  },
+  {
+    "id": "full-design-limit",
+    "classification": "not_implemented",
+    "status": "identified",
+    "request": "reasoning/final-unsupported-write_protocol-request.json",
+    "result": "reasoning/final-unsupported-write_protocol-result.json",
+    "correctness": "No complete protocol, sample-size, power, causal or estimator claim is attributed to the tool.",
+    "new_model_guidance": "Supported pieces do not equal a whole warranted design.",
+    "clinical_usability": "The handoff names the remaining clinical/statistical choices, not an apparently finished protocol.",
+    "plain_language": "We have useful constraints and evidence, but the regimen, estimand, schedules, safety rules and statistical plan still need decisions."
+  }
+]

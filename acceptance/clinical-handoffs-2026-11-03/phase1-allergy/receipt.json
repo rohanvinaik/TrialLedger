@@ -1,0 +1,75 @@
+{
+  "case": "phase1-allergy",
+  "retained_complete_packet": "/Users/rohanvinaik/trialledger-runs/repair-context-preparation-walkthroughs-20261104/phase1-allergy",
+  "scope": "Complete chosen reasoning inputs/results and decision brief; duplicate wires/workbooks/search bodies retained externally. Layer-one replay requires that external packet. Re-fetch is a new observation.",
+  "files": [
+    {
+      "path": "working-brief.md",
+      "bytes": 5842,
+      "sha256": "f0d5531f596d3d24b80ba4ce59050f0acc552ed1e530adf48f96d056fc8f2f2e"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 2707,
+      "sha256": "ac85aad35b2682843f0e1f4bb0ec53f8ea38c0c522dd4f18bafcbbe1b40156dd"
+    },
+    {
+      "path": "selection-before-acquisition.json",
+      "bytes": 532,
+      "sha256": "7c9451db4ccdd0c9cfdd136d819d05ee362bb2a6a45da2f524445161100152b7"
+    },
+    {
+      "path": "acquisition-request.json",
+      "bytes": 143,
+      "sha256": "6fb79d3df5359df2f9b86f491a71b4cc2847c2f8da139c05d891d36141a8e75c"
+    },
+    {
+      "path": "filtered-context-row.json",
+      "bytes": 550,
+      "sha256": "4b51eaac4abaed1162dd8f14ba60c50b4ec885fe6ce6d0744a347fa9aeee3279"
+    },
+    {
+      "path": "session-baseline-request.json",
+      "bytes": 149242,
+      "sha256": "b04c79e7ffaf9c2a7f3f7dcb15db496c1766f2b8eeacf9ab29f90fed9dd0041d"
+    },
+    {
+      "path": "session-baseline-result.json",
+      "bytes": 446083,
+      "sha256": "277a3d2162dd797d446e3e624e53aa47346352b5a7b6429067e7d80fa88ea5f9"
+    },
+    {
+      "path": "session-revision-request.json",
+      "bytes": 895106,
+      "sha256": "cc2af39b2fd3c791cf4b3211467c36e8d90422a50868cc8dbf39e96d9f2312ad"
+    },
+    {
+      "path": "session-revision-result.json",
+      "bytes": 857379,
+      "sha256": "15c88d6f408e2feb6ca4993f7e6b6c43071c0614ff450d112b2af3153fdcb02e"
+    },
+    {
+      "path": "source-scope-readings-request.json",
+      "bytes": 97694,
+      "sha256": "9347416b74f04ca4d208ab02fbf847187d14eb64f8550818b98836d61e29db3d"
+    },
+    {
+      "path": "source-scope-readings-result.json",
+      "bytes": 76365,
+      "sha256": "70ee96d2a8e5f3a6391789413b88830eea79bdd32ddb5c2fd0afa8921cc69349"
+    },
+    {
+      "path": "probe-selected-reading-request.json",
+      "bytes": 97723,
+      "sha256": "e46da6a5594c4c5c2fae318e25444663f4a4f6d42819d6e54e711cbc17369486"
+    },
+    {
+      "path": "probe-selected-reading-result.json",
+      "bytes": 75163,
+      "sha256": "0d15e1c33339650bfaf8dc9b4467fdf4ae506d4f902c68ad7f156541e5ff4bde"
+    }
+  ],
+  "file_count": 13,
+  "bytes": 2704529,
+  "original_packet_location": "/tmp/trialledger-fresh-context-preparation-20261103-v1/phase1-allergy"
+}

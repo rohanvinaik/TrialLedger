@@ -1,0 +1,144 @@
+[
+  {
+    "workbook": "/Users/rohanvinaik/trialledger-runs/repair-context-preparation-walkthroughs-20261104/phase1-allergy/run/landscape.xlsx",
+    "sha256": "a0c793617feffaf2db980be556e06865a24e60636865eeed2a5a9738b6cb2ab1",
+    "headers": [
+      "Trial ID",
+      "Address in the record",
+      "Source section",
+      "Passage",
+      "Source passage",
+      "Local source context",
+      "Context structure"
+    ],
+    "widths": {
+      "A": 13.0,
+      "B": 22.0,
+      "C": 16.0,
+      "D": 12.0,
+      "E": 100.0,
+      "F": 36.0,
+      "G": 20.0
+    },
+    "freeze": "C2",
+    "filter": "A1:G57",
+    "inspected_rows": [
+      {
+        "row": 2,
+        "values": [
+          "NCT07345442",
+          "/studies/0/criteria/0",
+          "Inclusion",
+          1,
+          "Inclusion Criteria:\n\n",
+          "Inclusion Criteria:",
+          "registry_heading"
+        ],
+        "height": 38.25,
+        "wrapped": [
+          true,
+          true,
+          true,
+          null,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "row": 56,
+        "values": [
+          "NCT01380327",
+          "/studies/1/criteria/29",
+          "Exclusion",
+          23,
+          "* Have unstable angina, significant arrhythmia, uncontrolled hypertension, history of autoimmune disease, or other chronic or immunological diseases that in the opinion of the investigator might interfere with the evaluation of the investigational agent or pose additional risk to the patient (e.g., gastrointestinal disease, gastroesophageal reflux disease, chronic infections, scleroderma, hepatic, and gallbladder disease)\n",
+          "Participants who meet any of the following criteria are not eligible for enrollment and may not be reassessed. Participants are ineligible if they:",
+          "colon_label"
+        ],
+        "height": 76.5,
+        "wrapped": [
+          true,
+          true,
+          true,
+          null,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "scope": "Actual read-back of sparse and long rows/context, display dimensions, wrapping and source addresses; no visual rendering claim."
+  },
+  {
+    "workbook": "/Users/rohanvinaik/trialledger-runs/repair-handoff-walkthroughs-20261104/migraine-phase2/capture-v2/report/landscape.xlsx",
+    "sha256": "82c7b459195fb56a867aac6a9bb8b5816a2ace03cbded80beee1dee6264f8516",
+    "headers": [
+      "Trial ID",
+      "Address in the record",
+      "Source section",
+      "Passage",
+      "Source passage",
+      "Local source context",
+      "Context structure"
+    ],
+    "widths": {
+      "A": 13.0,
+      "B": 22.0,
+      "C": 16.0,
+      "D": 12.0,
+      "E": 100.0,
+      "F": 36.0,
+      "G": 20.0
+    },
+    "freeze": "C2",
+    "filter": "A1:G60",
+    "inspected_rows": [
+      {
+        "row": 2,
+        "values": [
+          "NCT02266329",
+          "/studies/0/criteria/0",
+          "Inclusion",
+          1,
+          "Inclusion Criteria:\n\n",
+          "Inclusion Criteria:",
+          "registry_heading"
+        ],
+        "height": 38.25,
+        "wrapped": [
+          true,
+          true,
+          true,
+          null,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "row": 22,
+        "values": [
+          "NCT02266329",
+          "/studies/0/criteria/20",
+          "Exclusion",
+          7,
+          "* Acute or unstable chronic medical illness (e.g., unstable angina, myocardial infarction within 6 months, congestive heart failure, symptomatic or concerning cardiac arrhythmias; pre-existing hypotension (systolic BP\\<110) or orthostatic hypotension (systolic drop \\>20 mm mercury (Hg) after 2 min standing accompanied by lightheadedness). Also exclusionary are chronic renal or hepatic failure, Meniere's disease, insulin-dependent diabetes, diagnosed but untreated sleep apnea, history of epilepsy, stroke, dementia, active psychosis or psychotic disorder, severe depression, severe psychiatric instability or severe situational life crises, including evidence of being actively suicidal or homicidal, dementia, delirium within the prior 3 months. Other conditions will be evaluated on a case-by-case basis.\n",
+          "Exclusion Criteria:",
+          "registry_heading"
+        ],
+        "height": 127.5,
+        "wrapped": [
+          true,
+          true,
+          true,
+          null,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "scope": "Actual read-back of sparse and long rows/context, display dimensions, wrapping and source addresses; no visual rendering claim."
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "clinical_question": "How should we scope the stages/cohorts of an early allergy immunotherapy design?",
+  "query": {
+    "query.cond": "Allergic Rhinitis",
+    "filter.advanced": "AREA[Phase]PHASE1 AND AREA[OverallStatus]COMPLETED"
+  },
+  "fields": "NCTId",
+  "pageSize": 1000,
+  "seed": 202611031,
+  "sample_size": 2,
+  "budget": {
+    "max_studies": 2,
+    "max_registry_requests": 5
+  },
+  "selection_rule": "sorted unique complete IDpool then random.Random(seed).sample(pool,2); no study content read before persistence"
+}

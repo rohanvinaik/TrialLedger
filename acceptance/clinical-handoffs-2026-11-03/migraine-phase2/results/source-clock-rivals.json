@@ -1,0 +1,3070 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT02266329",
+      "digest": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+      "study_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+      "version": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+      "last_update": {
+        "date": "2026-03-30",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "description",
+        "address": "/protocolSection/descriptionModule/detailedDescription",
+        "digest": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+        "value": "Headaches following combat-related post-concussive injury are common, and in some patients can increase in frequency and severity to become very debilitating. Posttraumatic headaches (PTHAs), particularly those following blast-related head injury, can be resistant to standard headache therapies. The objective of this study is to evaluate the effectiveness of the medication prazosin as a prophylactic (preventive) agent in treating combat-related PTHAs. Prazosin is a generic drug originally marketed over 30 years ago as a treatment for high blood pressure. It has subsequently been found to be safe and effective for treating other problems, including most recently posttraumatic stress disorder (PTSD) and disrupted sleep in active duty Iraq/Afghanistan Service Members and Veterans. In preliminary studies, prazosin has also been found to substantially reduce the intensity and frequency of PTHAs in this population. This finding is the motivation behind this study.\n\nThe investigators' hypotheses are (1) that prazosin will be more effective than placebo in easing the effects of chronic PTHAs, including headache frequency, duration, severity, use of abortive/analgesic medications, and disability caused, and (2) that improvement in headache parameters will be associated with improvement in sleep quality, PTSD symptom severity, mood, cognition, health-related quality of life, and global clinical status, and with moderation of alcohol consumption.\n\nThe total trial length is 22 - 24 weeks. Following an initial clinic visit to determine preliminary study eligibility, there will be a 4-week pre-treatment preliminary screening period, during which participants will keep a daily headache diary. The purpose of this is to confirm eligibility for randomization per inclusion/exclusion criteria and to collect baseline data for headache-related outcome measures. Participants confirmed to be eligible to continue in the study will then have a one-week sleep evaluation including actigraphy and keeping a daily sleep diary. This will be followed by a baseline study visit, during which baseline data for secondary outcome measures will be collected using validated structured self-reports and clinician interviews. Participants will be randomized 2:1 to prazosin or placebo, and the study drug dose will be gradually titrated over a 5 to 7-week period to 5 mg in the morning and 20 mg in the evening or the maximum tolerated dose. The dose titration will be followed by 12 weeks at steady-dose. For the last week of the steady-dose phase, participants will repeat the sleep evaluation. Participants will keep a headache log through the duration of the study. Results will be analyzed using standard statistical techniques.",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+        "source": {
+          "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+          "version": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+          "address": "/protocolSection/descriptionModule/detailedDescription",
+          "digest": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2"
+        },
+        "code": "located"
+      },
+      {
+        "id": "primary",
+        "address": "/protocolSection/outcomesModule/primaryOutcomes/0",
+        "digest": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+        "value": {
+          "measure": "Headache Diary",
+          "description": "Change from baseline (pre-treatment) to Week 12 (i.e., following 12 weeks of drug treatment) of either 1) Headaches that last 4 or more hours a day and reach a moderate to severe intensity at any point or 2) Headaches of any intensity if a medication or other treatment is used in an effort to stop the Headaches, as determined from Headache Log data.",
+          "timeFrame": "Baseline to 12 weeks"
+        },
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+        "source": {
+          "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+          "version": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+          "address": "/protocolSection/outcomesModule/primaryOutcomes/0",
+          "digest": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [
+      {
+        "id": "first-dose",
+        "label": "12 weeks after first treatment dose",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+          "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "endpoint_elapsed",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                  }
+                ],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "after",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 12.0,
+                "unit": "week",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+            "id": "reading-first-dose",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+      },
+      {
+        "id": "steady-dose-start",
+        "label": "12 weeks after reaching steady dose",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+          "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "endpoint_elapsed",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                  }
+                ],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "after",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 12.0,
+                "unit": "week",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+            "id": "reading-steady-dose-start",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+      }
+    ],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Veterans or active duty service members aged 18 or older of either gender\n* Good general health\n* History of blast and/or impact head/neck trauma meeting DVBIC criteria for mild TBI, i.e., injury as manifested by at least one of the following:\n\n  * 1\\) any period of loss of consciousness\n  * 2\\) any loss of memory for events immediately before or after the accident\n  * 3\\) any alteration in mental status at the time of the accident (e.g., feeling dazed, disoriented, or confused)\n  * 4\\) focal neurological deficit(s) that may or may not be transient, with severity of injury not exceeding loss of consciousness 30 minutes, Glasgow Coma Scale \\<13-15 after 30 minutes, or posttraumatic amnesia \\>24 hrs,\n* Headaches that started within 3 months of a head/neck injury or pre-existing headaches that markedly worsened (by a two-fold or greater increase in frequency and/or severity) within 3 months of a head/neck injury. Headaches must either 1) last 4 or more hours a day and reach a moderate to severe intensity at any point during the headache or 2) may be of any severity or duration if the participant uses a medication or other agent in an effort to stop the headache. Headaches meeting these criteria must have been present on average at least 8 days per 4-week period over the 3 months preceding study enrollment.\n* Comorbid PTSD or other anxiety disorder is not exclusionary.\n* Fluency in English is required.\n* Persons of all races and ethnicities are eligible.\n* Female participants must agree to abstain from sexual relations that could result in pregnancy or use a reliable form of birth control during the study.\n* Continued use of prophylactic migraine medication other than the study drug is permissible if the participant has been on a stable dose for at least 4 weeks prior to the preliminary screening period and intends to continue the medication for the duration of the trial.\n\nExclusion Criteria:\n\n* Participation in other interventional research.\n* History of TBI more severe than that classified as mild by DVBIC criteria\n* A primary non migraine and/or tension-type headache disorder that accounts for the majority of current symptoms\n* History of penetrating head injury\n* Headaches of any kind of moderate or severe intensity on an average of more than 4 days per month preceding the concussive trauma\n* Acute or unstable chronic medical illness (e.g., unstable angina, myocardial infarction within 6 months, congestive heart failure, symptomatic or concerning cardiac arrhythmias; pre-existing hypotension (systolic BP\\<110) or orthostatic hypotension (systolic drop \\>20 mm mercury (Hg) after 2 min standing accompanied by lightheadedness). Also exclusionary are chronic renal or hepatic failure, Meniere's disease, insulin-dependent diabetes, diagnosed but untreated sleep apnea, history of epilepsy, stroke, dementia, active psychosis or psychotic disorder, severe depression, severe psychiatric instability or severe situational life crises, including evidence of being actively suicidal or homicidal, dementia, delirium within the prior 3 months. Other conditions will be evaluated on a case-by-case basis.\n* Current substance use disorder per DSM-V criteria except caffeine- or tobacco-related disorders.\n* Structural brain abnormalities on any prior imaging with associated clinically evident manifestations.\n* Current participation in transcranial magnetic stimulation studies.\n* Unable to reliably keep the headache log on a minimum of 80% of recordable days\n* Women of childbearing potential must not be pregnant, planning to become pregnant during the study period, or nursing.\n* Participation in a headache support group or other activity such as meditation or yoga intended to mitigate headache or other chronic pain must be stable for at least 4 weeks prior to beginning the preliminary screening period and should be intended to be continued for the duration of the trial. Participants will be encouraged to defer enrolling in such activities until they have completed the treatment trial.\n\nMedication Exclusions:\n\nPlease note that the following two exclusions related to prazosin use had been changed in the study protocol as of September 2021 but were inadvertently not updated on the ClinicalTrials.gov website. The previous exclusion related to prazosin use prior to study enrollment was for a dose up to 2 mg. The change allows a dose up to 4 mg. This change, made based on clinical experience for the purpose of facilitating recruitment, did not adversely affect patient safety or data integrity.\n\n* Past use of prazosin at a dose \\>4 mg is exclusionary.\n* Current use of prazosin at a dose of 4 mg or less is not excluded, however requires a 2-week wash-out period prior to beginning the baseline headache log-keeping period.\n* Current use of an alpha-1 antagonist for any purpose is exclusionary unless discontinued for at least 2 weeks prior to study entry and for the duration of a participant's study enrollment.\n* Allergy or previous adverse reaction to prazosin or other alpha-1 antagonist\n* Subjects must be on a stable dose of the following medications/treatments for at least 4 weeks prior to the preliminary screening period, and must intend to continue the medication for the duration of the trial: psychoactive drugs, for example anticonvulsants, benzodiazepines, antidepressants, sedative/hypnotics; antihypertensive medications, including beta blockers, calcium channel blockers, angiotensin converting enzyme inhibitors, and angiotensin receptor blockers; magnesium prescribed specifically for headache.\n* Potential participants who have been taking trazodone will undergo a 2-week washout period before beginning the preliminary screening period. Because combining prazosin and trazodone may increase risk of priapism, trazodone is not allowed during the study.\n* Sildenafil (Viagra), tadalafil (Cialis), vardenafil (Levitra), and avanafil (Stendra) will not be permitted during the dose titration period, because of increased risk of hypotension in combination with alpha-1 blockers, but will be allowed at half the usual starting dose following the study drug dose titration period, per VA prescribing guidelines.\n* Use of butalbital within 4 weeks of beginning the preliminary screening period through the end of study involvement.\n* Use of supplements containing nitrates and supplements containing stimulants (such as ephedra) within 2 weeks of beginning the preliminary screening period through the end of study involvement.\n* Use of prescribed stimulants (such as amphetamine or dextroamphetamine containing medications) within 2 weeks of beginning the preliminary screening period through the end of study involvement."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/documentSection",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/documentSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/ipdSharingStatementModule",
+        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/ipdSharingStatementModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [
+        {
+          "id": "first-dose",
+          "label": "12 weeks after first treatment dose",
+          "origin": "assistant",
+          "basis": [
+            "assistant:competing-clock-reading-not-confirmed",
+            "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2"
+          ],
+          "anchors": [
+            "description",
+            "primary"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "endpoint_elapsed",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "after",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                  "certainty": "explicit"
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 12,
+                  "unit": "week",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+              "id": "reading-first-dose",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "assistant-clock-reading",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ]
+        },
+        {
+          "id": "steady-dose-start",
+          "label": "12 weeks after reaching steady dose",
+          "origin": "assistant",
+          "basis": [
+            "assistant:competing-clock-reading-not-confirmed",
+            "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2"
+          ],
+          "anchors": [
+            "description",
+            "primary"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "endpoint_elapsed",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "after",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                  "certainty": "explicit"
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 12,
+                  "unit": "week",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+              "id": "reading-steady-dose-start",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "assistant-clock-reading",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ]
+        }
+      ],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "interpretations",
+        "study_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+        "fixed": {
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ],
+          "signals": []
+        },
+        "bindings": [],
+        "interpretations": [
+          {
+            "id": "first-dose",
+            "label": "12 weeks after first treatment dose",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+              "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "endpoint_elapsed",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                      },
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                      }
+                    ],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "after",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 12.0,
+                    "unit": "week",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                "id": "reading-first-dose",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                    "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [],
+                "status": "proposed"
+              }
+            ],
+            "signals": [],
+            "signal_claims": [],
+            "binding_uses": []
+          },
+          {
+            "id": "steady-dose-start",
+            "label": "12 weeks after reaching steady dose",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+              "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "endpoint_elapsed",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                      },
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                      }
+                    ],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "after",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 12.0,
+                    "unit": "week",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                "id": "reading-steady-dose-start",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                    "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [],
+                "status": "proposed"
+              }
+            ],
+            "signals": [],
+            "signal_claims": [],
+            "binding_uses": []
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "age17",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 17,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "first-dose-week12",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "endpoint_elapsed",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "class": "TemporalScope",
+                "orientation": "after",
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                "certainty": "explicit"
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 12,
+                "unit": "week",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "steady-dose-week12",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "endpoint_elapsed",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "class": "TemporalScope",
+                "orientation": "after",
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                "certainty": "explicit"
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 12,
+                "unit": "week",
+                "upper": null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "interpretations",
+        "result": {
+          "study_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+          "fixed": {
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge",
+                "id": "registry-age-minimumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/eligibilityModule/minimumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              }
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "queries": [
+              {
+                "id": "adult",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "ENTAILED",
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                }
+              },
+              {
+                "id": "age17",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 17.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "REFUTED",
+                "decision": {
+                  "result": "REFUTED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":17.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                }
+              },
+              {
+                "id": "first-dose-week12",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "endpoint_elapsed",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "after",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 12.0,
+                    "unit": "week",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"endpoint_elapsed\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"after\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"week\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              },
+              {
+                "id": "steady-dose-week12",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "endpoint_elapsed",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "after",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 12.0,
+                    "unit": "week",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"endpoint_elapsed\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"after\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"week\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              }
+            ],
+            "signals": [],
+            "blockers": []
+          },
+          "bindings": [],
+          "interpretations": [
+            {
+              "id": "first-dose",
+              "label": "12 weeks after first treatment dose",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "endpoint_elapsed",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                          },
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                          }
+                        ],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "after",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 12.0,
+                        "unit": "week",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                    "id": "reading-first-dose",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                        "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "adult",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-first-dose"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "age17",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 17.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "REFUTED",
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":17.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-first-dose"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "first-dose-week12",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "endpoint_elapsed",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "after",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 12.0,
+                      "unit": "week",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"endpoint_elapsed\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"after\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"week\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "reading-first-dose"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-first-dose"
+                    ],
+                    "proof": [
+                      "reading-first-dose"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "steady-dose-week12",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "endpoint_elapsed",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "after",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 12.0,
+                      "unit": "week",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"endpoint_elapsed\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"after\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"week\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-first-dose"
+                    ],
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "reading-first-dose"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [],
+                "blockers": []
+              }
+            },
+            {
+              "id": "steady-dose-start",
+              "label": "12 weeks after reaching steady dose",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "endpoint_elapsed",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription"
+                          },
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                          }
+                        ],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "after",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 12.0,
+                        "unit": "week",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                    "id": "reading-steady-dose-start",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                        "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "adult",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-steady-dose-start"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "age17",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 17.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "REFUTED",
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":17.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-steady-dose-start"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "first-dose-week12",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "endpoint_elapsed",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "after",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 12.0,
+                      "unit": "week",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"endpoint_elapsed\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"after\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"week\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-steady-dose-start"
+                    ],
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                },
+                {
+                  "id": "steady-dose-week12",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "endpoint_elapsed",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "after",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 12.0,
+                      "unit": "week",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"endpoint_elapsed\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"after\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"week\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "reading-steady-dose-start"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "reading-steady-dose-start"
+                    ],
+                    "proof": [
+                      "reading-steady-dose-start"
+                    ],
+                    "blockers": []
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "reading-steady-dose-start"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription",
+                  "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [],
+                "blockers": []
+              }
+            }
+          ],
+          "remaining": [
+            "first-dose",
+            "steady-dose-start"
+          ],
+          "refuted": [],
+          "incoherent": [],
+          "unresolved": [],
+          "selection": {
+            "id": null,
+            "state": "none",
+            "origin": null
+          },
+          "consequences": [
+            {
+              "id": "adult",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "ENTAILED",
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            },
+            {
+              "id": "age17",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 17.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "REFUTED",
+              "decision": {
+                "result": "REFUTED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":17.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            },
+            {
+              "id": "first-dose-week12",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "endpoint_elapsed",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:first-dose",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "after",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 12.0,
+                  "unit": "week",
+                  "upper": null
+                }
+              },
+              "result": "UNDETERMINED",
+              "contrast": {
+                "code": "interpretation_answer_contrast",
+                "context": {
+                  "cohort": null,
+                  "phase": null,
+                  "arm": null
+                },
+                "answers": [
+                  {
+                    "frame": "first-dose",
+                    "origin": "assistant",
+                    "frame_state": "compatible",
+                    "query": "first-dose-week12",
+                    "result": "ENTAILED",
+                    "query_path": "/result/interpretations/0/queries/2",
+                    "warrant_path": "/result/interpretations/0/queries/2/warrant",
+                    "standing": "proposed",
+                    "blockers": [],
+                    "deciding_premises": [
+                      {
+                        "id": "reading-first-dose",
+                        "path": "/result/interpretations/0/premises/assumptions/0",
+                        "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                        "cohort": {
+                          "class": "Scope",
+                          "kind": "all_participants",
+                          "parts": [],
+                          "ref": ""
+                        },
+                        "branch": {
+                          "class": "Branch",
+                          "node": "unresolved",
+                          "path": []
+                        },
+                        "standing": "proposed"
+                      }
+                    ]
+                  },
+                  {
+                    "frame": "steady-dose-start",
+                    "origin": "assistant",
+                    "frame_state": "compatible",
+                    "query": "first-dose-week12",
+                    "result": "UNDETERMINED",
+                    "query_path": "/result/interpretations/1/queries/2",
+                    "warrant_path": "/result/interpretations/1/queries/2/warrant",
+                    "standing": "proposed",
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ],
+                    "deciding_premises": []
+                  }
+                ],
+                "path_basis": "relative_to_this_reason_envelope"
+              },
+              "frames": [
+                "first-dose",
+                "steady-dose-start"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": [
+                  "interpretation_answer_contrast",
+                  "no_constraint_mentions_query"
+                ]
+              }
+            },
+            {
+              "id": "steady-dose-week12",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "endpoint_elapsed",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2:steady-dose-start",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "after",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 12.0,
+                  "unit": "week",
+                  "upper": null
+                }
+              },
+              "result": "UNDETERMINED",
+              "contrast": {
+                "code": "interpretation_answer_contrast",
+                "context": {
+                  "cohort": null,
+                  "phase": null,
+                  "arm": null
+                },
+                "answers": [
+                  {
+                    "frame": "first-dose",
+                    "origin": "assistant",
+                    "frame_state": "compatible",
+                    "query": "steady-dose-week12",
+                    "result": "UNDETERMINED",
+                    "query_path": "/result/interpretations/0/queries/3",
+                    "warrant_path": "/result/interpretations/0/queries/3/warrant",
+                    "standing": "proposed",
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ],
+                    "deciding_premises": []
+                  },
+                  {
+                    "frame": "steady-dose-start",
+                    "origin": "assistant",
+                    "frame_state": "compatible",
+                    "query": "steady-dose-week12",
+                    "result": "ENTAILED",
+                    "query_path": "/result/interpretations/1/queries/3",
+                    "warrant_path": "/result/interpretations/1/queries/3/warrant",
+                    "standing": "proposed",
+                    "blockers": [],
+                    "deciding_premises": [
+                      {
+                        "id": "reading-steady-dose-start",
+                        "path": "/result/interpretations/1/premises/assumptions/0",
+                        "criterion_ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/descriptionModule/detailedDescription|ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2#/protocolSection/outcomesModule/primaryOutcomes/0",
+                        "cohort": {
+                          "class": "Scope",
+                          "kind": "all_participants",
+                          "parts": [],
+                          "ref": ""
+                        },
+                        "branch": {
+                          "class": "Branch",
+                          "node": "unresolved",
+                          "path": []
+                        },
+                        "standing": "proposed"
+                      }
+                    ]
+                  }
+                ],
+                "path_basis": "relative_to_this_reason_envelope"
+              },
+              "frames": [
+                "first-dose",
+                "steady-dose-start"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": [
+                  "interpretation_answer_contrast",
+                  "no_constraint_mentions_query"
+                ]
+              }
+            }
+          ],
+          "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/1",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/1/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/2/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/3",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/3/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/1",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/2",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/2/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/3",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/3/warrant"
+            },
+            {
+              "path": "/result/interpretations/1",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/1/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/1/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/1",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/1/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/1/queries/2/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/3",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/1/queries/3/warrant"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            },
+            {
+              "path": "/result/consequences/1",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/1/warrant"
+            },
+            {
+              "path": "/result/consequences/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "interpretation_answer_contrast",
+                  "kind": "premise"
+                },
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/2/warrant",
+              "contrast_code": "interpretation_answer_contrast",
+              "contrast_path": "/result/consequences/2/contrast",
+              "answer_paths": [
+                "/result/interpretations/0/queries/2",
+                "/result/interpretations/1/queries/2"
+              ]
+            },
+            {
+              "path": "/result/consequences/3",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "interpretation_answer_contrast",
+                  "kind": "premise"
+                },
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/3/warrant",
+              "contrast_code": "interpretation_answer_contrast",
+              "contrast_path": "/result/consequences/3/contrast",
+              "answer_paths": [
+                "/result/interpretations/0/queries/3",
+                "/result/interpretations/1/queries/3"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/3",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/3/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/2",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/3",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/3/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/3",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/3/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_answer_contrast",
+            "kind": "premise"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/2/warrant",
+        "contrast_code": "interpretation_answer_contrast",
+        "contrast_path": "/result/analyses/0/result/consequences/2/contrast",
+        "answer_paths": [
+          "/result/analyses/0/result/interpretations/0/queries/2",
+          "/result/analyses/0/result/interpretations/1/queries/2"
+        ]
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/3",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_answer_contrast",
+            "kind": "premise"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/3/warrant",
+        "contrast_code": "interpretation_answer_contrast",
+        "contrast_path": "/result/analyses/0/result/consequences/3/contrast",
+        "answer_paths": [
+          "/result/analyses/0/result/interpretations/0/queries/3",
+          "/result/analyses/0/result/interpretations/1/queries/3"
+        ]
+      }
+    ]
+  }
+}

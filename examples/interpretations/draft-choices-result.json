@@ -1048,6 +1048,96 @@
           }
         },
         "result": "UNDETERMINED",
+        "contrast": {
+          "code": "interpretation_answer_contrast",
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "answers": [
+            {
+              "frame": "PS0-2",
+              "origin": "assistant",
+              "frame_state": "compatible",
+              "query": "PS3",
+              "result": "REFUTED",
+              "query_path": "/result/interpretations/0/queries/1",
+              "warrant_path": "/result/interpretations/0/queries/1/warrant",
+              "standing": "proposed",
+              "blockers": [],
+              "deciding_premises": [
+                {
+                  "id": "PS-upper-2",
+                  "path": "/result/interpretations/0/premises/assumptions/0",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "proposed"
+                }
+              ]
+            },
+            {
+              "frame": "PS0-3",
+              "origin": "assistant",
+              "frame_state": "compatible",
+              "query": "PS3",
+              "result": "UNDETERMINED",
+              "query_path": "/result/interpretations/1/queries/1",
+              "warrant_path": "/result/interpretations/1/queries/1/warrant",
+              "standing": "proposed",
+              "blockers": [
+                "undecided_by_constraints"
+              ],
+              "deciding_premises": [
+                {
+                  "id": "draft-PS-min",
+                  "path": "/result/fixed/assertions/1",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "known"
+                },
+                {
+                  "id": "PS-upper-3",
+                  "path": "/result/interpretations/1/premises/assumptions/0",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "proposed"
+                }
+              ]
+            }
+          ],
+          "path_basis": "relative_to_this_reason_envelope"
+        },
         "frames": [
           "PS0-2",
           "PS0-3"
@@ -1058,6 +1148,7 @@
           "guarantee": "conditional_on_declared_family_not_exhaustive",
           "status": "proposed",
           "blockers": [
+            "interpretation_answer_contrast",
             "undecided_by_constraints"
           ]
         }
@@ -1233,12 +1324,22 @@
         "completion": "complete",
         "causes": [
           {
+            "code": "interpretation_answer_contrast",
+            "kind": "premise"
+          },
+          {
             "code": "undecided_by_constraints",
             "kind": "constraint"
           }
         ],
         "disposition": "open",
-        "support_path": "/result/consequences/1/warrant"
+        "support_path": "/result/consequences/1/warrant",
+        "contrast_code": "interpretation_answer_contrast",
+        "contrast_path": "/result/consequences/1/contrast",
+        "answer_paths": [
+          "/result/interpretations/0/queries/1",
+          "/result/interpretations/1/queries/1"
+        ]
       }
     ]
   }

@@ -1,0 +1,106 @@
+[
+  {
+    "request": "examples/interpretations/assessment-roles-request.json",
+    "request_sha256": "6d767c0bfcc031b524f1c93c45a5deb9b21fb70b6722dc9d94fcd6b228b3d6eb",
+    "result": "examples/interpretations/assessment-roles-result.json",
+    "before_sha256": "9495c8baece7218088721ca0567f1db81e4366bbcc1f624dcb21370d87f391b3",
+    "after_sha256": "ac73594db0952fcce682497b66aa52565d0555efac5eb8868e569f7f50ae74d3",
+    "protected_payload_equal_excluding_new_explanation": true,
+    "changed_paths": [
+      "/metadata/findings/22/answer_paths",
+      "/metadata/findings/22/causes",
+      "/metadata/findings/22/contrast_code",
+      "/metadata/findings/22/contrast_path",
+      "/result/consequences/1/contrast",
+      "/result/consequences/1/warrant/blockers"
+    ]
+  },
+  {
+    "request": "examples/interpretations/draft-choices-request.json",
+    "request_sha256": "15c80b45815d727203842836b88d888eea7b92c336aefc23bb3b3e47e8d84d21",
+    "result": "examples/interpretations/draft-choices-result.json",
+    "before_sha256": "b8b664e2c43070d456c38f92f94baf7b009649a09b59fba89786edd826a516ad",
+    "after_sha256": "63330c070e034027c4c83c0df2988da5e81e4c7d6a5bc49e31a234e73424ded1",
+    "protected_payload_equal_excluding_new_explanation": true,
+    "changed_paths": [
+      "/metadata/findings/13/answer_paths",
+      "/metadata/findings/13/causes",
+      "/metadata/findings/13/contrast_code",
+      "/metadata/findings/13/contrast_path",
+      "/result/consequences/1/contrast",
+      "/result/consequences/1/warrant/blockers"
+    ]
+  },
+  {
+    "request": "examples/interpretations/draft-revised-PS0-3-request.json",
+    "request_sha256": "ac5b80d9526e5383cca64fda1ae3293e236d54eebdf3393c693bb7f5d5b97fa3",
+    "result": "examples/interpretations/draft-revised-PS0-3-result.json",
+    "before_sha256": "37df5d98c1f689e57ee3d13467ed3396ce693dc23ba6c2b620e8037768a8ef2d",
+    "after_sha256": "cbb84ce449b39540a89e0371b028136973e801fc9e10b4b2cf5b137396aa8aa8",
+    "protected_payload_equal_excluding_new_explanation": true,
+    "changed_paths": [
+      "/metadata/findings/13/answer_paths",
+      "/metadata/findings/13/contrast_code",
+      "/metadata/findings/13/contrast_path",
+      "/result/consequences/1/contrast"
+    ]
+  },
+  {
+    "request": "examples/interpretations/draft-selected-PS0-2-request.json",
+    "request_sha256": "5367498dda95a4276343bb2bbf22e722c4ce1779255d14d87b68443a51d1c31e",
+    "result": "examples/interpretations/draft-selected-PS0-2-result.json",
+    "before_sha256": "000e87de9d2a232c0eb0cea631b208963968b6a6d076912bd50fcb0d9c0fc8cd",
+    "after_sha256": "640cc290b2c2486a5eac05794ff3ea802236a46eea2b01b296448d7edc41d5c6",
+    "protected_payload_equal_excluding_new_explanation": true,
+    "changed_paths": [
+      "/metadata/findings/13/answer_paths",
+      "/metadata/findings/13/contrast_code",
+      "/metadata/findings/13/contrast_path",
+      "/result/consequences/1/contrast"
+    ]
+  },
+  {
+    "request": "examples/interpretations/endpoint-inputs-request.json",
+    "request_sha256": "7e340d6600105f02b6068f6a0308b1dbb5984cedf983e0410e78974e043eeeff",
+    "result": "examples/interpretations/endpoint-inputs-result.json",
+    "before_sha256": "894d9b1ef6a29f4295cbef3b4c1187e03afed5d5646eea74d1c4f6860369903e",
+    "after_sha256": "e5382dfe6946a9d2f6b42970f5d8244ca8e34458bb4ec5a51d44aed4bab95027",
+    "protected_payload_equal_excluding_new_explanation": true,
+    "changed_paths": [
+      "/metadata/findings/23/answer_paths",
+      "/metadata/findings/23/causes",
+      "/metadata/findings/23/contrast_code",
+      "/metadata/findings/23/contrast_path",
+      "/result/consequences/1/contrast",
+      "/result/consequences/1/warrant/blockers"
+    ]
+  },
+  {
+    "request": "examples/interpretations/population-resolved-request.json",
+    "request_sha256": "cea57b0807453fcb4dd480d746fd2781c4d07b95e47092d0ce93a4750a7d16c6",
+    "result": "examples/interpretations/population-resolved-result.json",
+    "before_sha256": "8fb220400f66fc89398aa4800ca3b5a9301593873840aea5312abb8de2f3ce61",
+    "after_sha256": "8fd858075f6b7a0fa676e67a8539626676f2b8a32486a214b780d432e5f29bc4",
+    "protected_payload_equal_excluding_new_explanation": true,
+    "changed_paths": [
+      "/metadata/findings/16/answer_paths",
+      "/metadata/findings/16/contrast_code",
+      "/metadata/findings/16/contrast_path",
+      "/result/consequences/1/contrast"
+    ]
+  },
+  {
+    "request": "examples/interpretations/population-unresolved-request.json",
+    "request_sha256": "c9ff25a308c65edd5638a2619ad042bab5dad2a331bb3ebb8829f6d9061bea1b",
+    "result": "examples/interpretations/population-unresolved-result.json",
+    "before_sha256": "3f6e9da3c6f70acf8b36034c7fc0dabc4fc8cf4d46eaa55e13862d3a670ddae5",
+    "after_sha256": "79fd3cb3c49864a62273c39ed2e271fe97ffad04d9461d2f068568d88eee2c83",
+    "protected_payload_equal_excluding_new_explanation": true,
+    "changed_paths": [
+      "/metadata/findings/16/answer_paths",
+      "/metadata/findings/16/contrast_code",
+      "/metadata/findings/16/contrast_path",
+      "/result/consequences/1/contrast"
+    ]
+  }
+]

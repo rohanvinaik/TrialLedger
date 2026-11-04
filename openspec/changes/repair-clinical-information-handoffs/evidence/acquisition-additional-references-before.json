@@ -1,0 +1,152 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/request.py::slot_value_ok",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (3992 characters). You can adjust your query or raise the max_answer_chars parameter.\nReferences without surrounding lines:\n{\"TrialLedger/request.py\": {\"Variable\": [{\"name_path\": \"request_problems/malformed\", \"reference_line\": 207}]}, \"tests/test_mcp_server.py\": {\"File\": [{\"name_path\": \"test_mcp_server\", \"reference_line\": 63}], \"Function\": [{\"name_path\": \"test_the_request_schema_admits_every_drug_class_key_the_request_admits\", \"reference_line\": 465}, {\"name_path\": \"test_the_request_schema_admits_every_drug_class_key_the_request_admits\", \"reference_line\": 467}, {\"name_path\": \"test_the_request_schema_admits_every_drug_class_key_the_request_admits\", \"reference_line\": 468}]}, \"tests/test_request.py\": {\"File\": [{\"name_path\": \"test_request\", \"reference_line\": 53}], \"Function\": [{\"name_path\": \"test_a_slot_of_its_form_is_well_formed\", \"reference_line\": 146}, {\"name_path\": \"test_a_slot_not_of_its_form_is_malformed\", \"reference_line\": 210}]}, \"tests/detective/test_TrialLedger_request_slot_value_ok_56dd86fa2b_synth.py\": {\"File\": [{\"name_path\": \"test_TrialLedger_request_slot_value_ok_56dd86fa2b_synth\", \"reference_line\": 9}], \"Variable\": [{\"name_path\": \"test_slot_value_ok_value_0/result\", \"reference_line\": 15}, {\"name_path\": \"test_slot_value_ok_value_1/result\", \"reference_line\": 22}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/request.py::resolve_scope",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (23048 characters). You can adjust your query or raise the max_answer_chars parameter.\nReference counts per file:\n{\"TrialLedger/operate.py\": 2, \"TrialLedger/request.py\": 1, \"tests/test_preview.py\": 2, \"tests/test_request.py\": 47, \"tests/test_request_live.py\": 2, \"tests/detective/test_TrialLedger_request_resolve_scope_ec1c50b523_synth.py\": 6}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/ingest.py::Session/__init__",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/ingest.py::Session/get",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/ingest.py\": {\"Variable\": [{\"name_path\": \"fetch_version/response\", \"body_location\": {\"start_line\": 437, \"end_line\": 437}, \"content_around_reference\": \"... 436:    \\\"\\\"\\\"The API version and the registry's data timestamp, from /version.\\\"\\\"\\\"\\n  > 437:    response = session.get(\\\"/version\\\", {}, JSON_TYPE)\\n... 438:    payload = _decode_json(response, \\\"version\\\")\"}, {\"name_path\": \"fetch_json_pages/response\", \"body_location\": {\"start_line\": 474, \"end_line\": 474}, \"content_around_reference\": \"... 473:        page_params = params if token is None else {**params, \\\"pageToken\\\": token}\\n  > 474:        response = session.get(\\\"/studies\\\", page_params, JSON_TYPE)\\n... 475:        payload = _decode_json(response, \\\"json\\\")\"}, {\"name_path\": \"fetch_csv_pages/response\", \"body_location\": {\"start_line\": 518, \"end_line\": 518}, \"content_around_reference\": \"... 517:        page_params = params if first_page else {**params, \\\"pageToken\\\": token}\\n  > 518:        response = session.get(\\\"/studies\\\", page_params, CSV_TYPE)\\n... 519:        try:\"}]}, \"TrialLedger/steps.py\": {\"Function\": [{\"name_path\": \"_fetch\", \"body_location\": {\"start_line\": 418, \"end_line\": 427}, \"content_around_reference\": \"... 422:    try:\\n  > 423:        return session.get(fetch[\\\"url\\\"], fetch[\\\"params\\\"], JSON_TYPE).content\\n... 424:    except PullError as error:\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/ingest.py::query_studies",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"tests/test_steps.py\": {\"File\": [{\"name_path\": \"test_steps\", \"body_location\": {\"start_line\": 0, \"end_line\": 465}, \"content_around_reference\": \"...  28:from TrialLedger.classes import rxnorm_ids\\n  >  29:from TrialLedger.ingest import API_BASE, PAGE_SIZE, PullError, query_ids, query_studies\\n...  30:from TrialLedger.steps import (\"}], \"Variable\": [{\"name_path\": \"test_a_relay_round_trip_holds_the_direct_pulls_records/expected\", \"body_location\": {\"start_line\": 99, \"end_line\": 99}, \"content_around_reference\": \"...  98:    whole = FakeAPI(json_pages=[json_page([A, B], total=3, token=\\\"t1\\\"), json_page([C])])\\n  >  99:    expected = query_studies(QUERY, http=whole.client(), sleep=whole.sleep, monotonic=no_clock)\\n... 100:    assert records(folder) == records(other) == expected\"}, {\"name_path\": \"test_a_live_run_holds_what_query_studies_returns/expected\", \"body_location\": {\"start_line\": 461, \"end_line\": 461}, \"content_around_reference\": \"... 460:    held = records(folder)\\n  > 461:    expected = query_studies(query)\\n... 462:    assert len(held[0]) > PAGE_SIZE\"}], \"Function\": [{\"name_path\": \"test_the_relayed_urls_are_the_requests_the_direct_path_sends\", \"body_location\": {\"start_line\": 105, \"end_line\": 132}, \"content_around_reference\": \"... 128:    batch_api = FakeAPI(json_pages=[json_page([B, A], total=2)])\\n  > 129:    query_studies(\\n... 130:        {\\\"filter.ids\\\": f\\\"{A},{B}\\\"}, http=batch_api.client(), sleep=batch_api.sleep, monotonic=no_clock\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/ingest.py::query_ids",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"tests/test_steps.py\": {\"File\": [{\"name_path\": \"test_steps\", \"body_location\": {\"start_line\": 0, \"end_line\": 465}, \"content_around_reference\": \"...  28:from TrialLedger.classes import rxnorm_ids\\n  >  29:from TrialLedger.ingest import API_BASE, PAGE_SIZE, PullError, query_ids, query_studies\\n...  30:from TrialLedger.steps import (\"}], \"Function\": [{\"name_path\": \"test_the_relayed_urls_are_the_requests_the_direct_path_sends\", \"body_location\": {\"start_line\": 105, \"end_line\": 132}, \"content_around_reference\": \"... 125:    ids_api = FakeAPI(json_pages=[json_page([A, B], total=3, token=\\\"t1\\\"), json_page([C])])\\n  > 126:    query_ids(QUERY, http=ids_api.client(), sleep=ids_api.sleep, monotonic=no_clock)\\n... 127:    assert sent[:3] == [str(request.url) for request in ids_api.requests[:3]]\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/ingest.py::fetch_csv_pages",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/ingest.py\": {\"Variable\": [{\"name_path\": \"pull/csv_text\", \"body_location\": {\"start_line\": 666, \"end_line\": 666}, \"content_around_reference\": \"... 665:        total, studies, json_ids = fetch_json_pages(session, query)\\n  > 666:        _, csv_text, csv_ids = fetch_csv_pages(session, query)\\n... 667:        after = fetch_version(session)\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/ingest.py::pull",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (2185 characters). You can adjust your query or raise the max_answer_chars parameter.\nReferences without surrounding lines:\n{\"TrialLedger/cli.py\": {\"File\": [{\"name_path\": \"cli\", \"reference_line\": 20}], \"Variable\": [{\"name_path\": \"main/result\", \"reference_line\": 477}]}, \"tests/test_live.py\": {\"File\": [{\"name_path\": \"test_live\", \"reference_line\": 11}], \"Variable\": [{\"name_path\": \"test_lookup_by_id_and_by_alias_through_the_real_api/result\", \"reference_line\": 20}, {\"name_path\": \"test_a_live_pull_writes_a_certified_folder_whose_links_resolve/result\", \"reference_line\": 29}]}, \"tests/test_pull.py\": {\"File\": [{\"name_path\": \"test_pull\", \"reference_line\": 15}], \"Function\": [{\"name_path\": \"run\", \"reference_line\": 21}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/steps.py::_state",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"TrialLedger/landscape_verify.py\": {\"Variable\": [{\"name_path\": \"verify_landscape/checkpoint\", \"body_location\": {\"start_line\": 111, \"end_line\": 111}, \"content_around_reference\": \"... 110:        studies, api_version, timestamp = steps.records(folder)\\n  > 111:        checkpoint, named, bodies, unreadable = steps._state(folder)\\n... 112:        checkpoint_code, plan, _awaited, detail = steps.next_step(\"}]}, \"TrialLedger/steps.py\": {\"Variable\": [{\"name_path\": \"advance/scope\", \"body_location\": {\"start_line\": 454, \"end_line\": 454}, \"content_around_reference\": \"... 453:        while True:\\n  > 454:            scope, named, bodies, unreadable = _state(folder)\\n... 455:            code, plan, awaited, detail = next_step(scope[\\\"query\\\"], scope[\\\"rxnav\\\"], named, bodies, unreadable)\"}, {\"name_path\": \"records/scope\", \"body_location\": {\"start_line\": 484, \"end_line\": 484}, \"content_around_reference\": \"... 483:    StepError, assembling nothing, unless next_step says the folder is complete.\\\"\\\"\\\"\\n  > 484:    scope, named, bodies, unreadable = _state(folder)\\n... 485:    code, plan, awaited, detail = next_step(scope[\\\"query\\\"], scope[\\\"rxnav\\\"], named, bodies, unreadable)\"}, {\"name_path\": \"rxnav_answers/scope\", \"body_location\": {\"start_line\": 509, \"end_line\": 509}, \"content_around_reference\": \"... 508:    reading nothing, unless next_step says the folder is complete.\\\"\\\"\\\"\\n  > 509:    scope, named, bodies, unreadable = _state(folder)\\n... 510:    code, plan, awaited, detail = next_step(scope[\\\"query\\\"], scope[\\\"rxnav\\\"], named, bodies, unreadable)\"}]}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "symbol": "TrialLedger/steps.py::advance",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is too long (12280 characters). You can adjust your query or raise the max_answer_chars parameter.\nReference counts per file:\n{\"TrialLedger/operate.py\": 2, \"tests/test_steps.py\": 33}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  }
+]

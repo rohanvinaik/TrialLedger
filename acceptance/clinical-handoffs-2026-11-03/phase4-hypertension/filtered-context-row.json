@@ -1,0 +1,23 @@
+{
+  "address": "/studies/0/criteria/2",
+  "headers": [
+    "Trial ID",
+    "Address in the record",
+    "Source section",
+    "Passage",
+    "Source passage",
+    "Local source context",
+    "Context structure"
+  ],
+  "rows": [
+    [
+      "NCT00362258",
+      "/studies/0/criteria/2",
+      "Inclusion",
+      3,
+      "* Newly diagnosed \"na\u00efve\" hypertensive patients (no prior treatment for hypertension). OR,\n",
+      "Inclusion Criteria:",
+      "registry_heading"
+    ]
+  ]
+}

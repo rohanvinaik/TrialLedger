@@ -1,0 +1,27 @@
+[
+  {
+    "case": "migraine-phase2",
+    "file_count": 12,
+    "bytes": 1768418
+  },
+  {
+    "case": "pulmonary-observational",
+    "file_count": 12,
+    "bytes": 1370509
+  },
+  {
+    "case": "phase1-allergy",
+    "file_count": 13,
+    "bytes": 2704529
+  },
+  {
+    "case": "phase4-hypertension",
+    "file_count": 14,
+    "bytes": 1699379
+  },
+  {
+    "case": "phase3-nsclc",
+    "file_count": 16,
+    "bytes": 4218431
+  }
+]

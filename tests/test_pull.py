@@ -34,6 +34,19 @@ def two_page_api(**overrides):
         "csv_pages": [csv_page([A, B], total=3, token="c1", header=True), csv_page([C])],
     }
     script.update(overrides)
+    # Raw full-body acquisition now asks a single ID-only preflight before these exact
+    # full JSON/CSV response scripts. Keep that extra request visible in assertions.
+    total = 3
+    for response in script["json_pages"]:
+        if isinstance(response, httpx.Response) and response.status_code == 200:
+            try:
+                payload = response.json()
+            except ValueError:
+                continue
+            if isinstance(payload, dict) and type(payload.get("totalCount")) is int:
+                total = payload["totalCount"]
+                break
+    script["json_pages"] = [json_page([A], total=total, token="preflight"), *script["json_pages"]]
     return FakeAPI(**script)
 
 
@@ -52,7 +65,10 @@ def test_complete_pull_across_pages(no_clock):
 def test_query_and_tool_parameters_are_sent(no_clock):
     fake = two_page_api()
     run(fake, no_clock, {"query.cond": "asthma", "filter.overallStatus": "RECRUITING"})
-    first_json = dict(fake.studies_requests("json")[0].url.params)
+    preflight, *full_json = fake.studies_requests("json")
+    assert preflight.url.params["fields"] == "NCTId"
+    assert preflight.url.params["pageSize"] == "1000"
+    first_json = dict(full_json[0].url.params)
     first_csv = dict(fake.studies_requests("csv")[0].url.params)
     assert first_json == {
         "query.cond": "asthma",
@@ -75,7 +91,11 @@ def test_later_pages_repeat_the_first_page_parameters(no_clock):
     fake = two_page_api()
     run(fake, no_clock)
     for fmt, token in (("json", "j1"), ("csv", "c1")):
-        first, second = (dict(r.url.params) for r in fake.studies_requests(fmt))
+        requests = fake.studies_requests(fmt)
+        if fmt == "json":
+            assert requests[0].url.params["fields"] == "NCTId"
+            requests = requests[1:]
+        first, second = (dict(r.url.params) for r in requests)
         assert second.pop("pageToken") == token
         assert second == first
 
@@ -142,7 +162,7 @@ def test_400_is_not_retried_and_keeps_the_server_text(no_clock):
         run(fake, no_clock)
     assert raised.value.code == "http.bad_request"
     assert "`query.condition` is unknown parameter" in raised.value.detail
-    assert len(fake.studies_requests("json")) == 1
+    assert len(fake.studies_requests("json")) == 2
 
 
 def test_html_200_is_not_data(no_clock):
@@ -159,7 +179,7 @@ def test_redirect_is_never_followed(no_clock):
     with pytest.raises(PullError) as raised:
         run(fake, no_clock)
     assert raised.value.code == "http.redirect"
-    assert [r.url.path for r in fake.requests] == ["/api/v2/version", "/api/v2/studies"]
+    assert [r.url.path for r in fake.requests] == ["/api/v2/version", "/api/v2/studies", "/api/v2/studies"]
 
 
 def test_malformed_json_body_fails(no_clock):

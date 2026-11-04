@@ -199,6 +199,12 @@ def extend(description: dict) -> None:
             "your_call",
             "Record the user's selected reading; rerun after changes without promoting source standing.",
         ],
+        "contrast": [
+            "by_contrast",
+            "Read the named frame/query links: OUT_OF_SCOPE versus REFUTED asks which population "
+            "the restriction governs. Differing hypothetical answers do not make fixed criteria "
+            "inconsistent; retain independent fixed-floor answers.",
+        ],
     }
     description["result_guides"]["interpretations"] = {
         "fields": {
@@ -225,6 +231,14 @@ def extend(description: dict) -> None:
         "binding": (
             "Population correspondence and adopted definitions retain sources, scope, editions and standing. "
             "A mismatched or unknown application is unresolved, not a clinical refutation."
+        ),
+        "contrast": (
+            "Each common consequence may retain a contrast code, requested context and linked "
+            "frame answers with effective warrants and deciding scopes. selected_out_of_scope and "
+            "interpretation_scope_contrast explain missing scope; interpretation_answer_contrast "
+            "keeps rival answers separate. Paths are relative to the same response envelope and are "
+            "prefixed through source assertions and managed sessions. These explanations do not "
+            "change the common result or promote proposed assumptions."
         ),
         "clinical_use": (
             "Keep fixed facts, consequences under each reading, and the remaining user choice together on "

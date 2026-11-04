@@ -1,0 +1,156 @@
+[
+  {
+    "target": "TrialLedger/layer2/design_session.py::session_work_code",
+    "original_table": "/tmp/trialledger-pin-session-final-20261104/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "4c902a0d77ef1c29",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "dd0c6b88c6d3b2261c29d813b9ebf6b739e57501f31413ca58cac0a7d8ea4ad2",
+    "current_function_source_sha256": "fa8ffd0f458ddca2eaeb2e60054e335203fb4d47f0a401f01618ed60d8b7f705",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/layer2/reasoning_explanations.py::relation_application_code",
+    "original_table": "/tmp/trialledger-pin-explanations-final-20261104/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "2b9d5207964a2cc4",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "d7974b5db3117a202e467985bae7abcda4102994cd651f255dcef5f6917455a8",
+    "current_function_source_sha256": "69f08be800071b24015ec7e989000056d182fb08fe74151b2338515b53f0cc64",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code",
+    "original_table": "/tmp/trialledger-pin-effect-20261104/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "d106cb4141025794",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "f3f968a553f37c12e10fe912892700e539b905c66f7bd0894c58ecdc36c56cf9",
+    "current_function_source_sha256": "44c68edcdb70f815488d3ba0cfa8cc23807fa902867a1f98ab921b3e30ccfa0c",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/layer2/reasoning_explanations.py::interpretation_contrast_code",
+    "original_table": "/tmp/trialledger-final-contrast-current-two-sign-20261103-v1/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "5618f21ff6528958",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "dc28245e03732dd0dfc747f40e4a35f1ed1cf643a72a67ba0a36cd5c1ef1c873",
+    "current_function_source_sha256": "029003d0f2a23971edc461062efbb4ba77c4b11991cd53eec30ccc3425153f33",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/layer2/coherence.py::direct_coordinate",
+    "original_table": "/tmp/trialledger-coordinate-metadata-current-two-sign-20261103-v1/direct-coordinate/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "1f63bd11aff38858",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "15eb3359706faa8924d4375b8ba93b015cd69292c13b0f08dcae057556e9589c",
+    "current_function_source_sha256": "1a3e214629919714e0c5382a8a4e086cd733690fcfbbbf818b90161d7effb45b",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/layer2/result_semantics.py::cause_kind",
+    "original_table": "/tmp/trialledger-coordinate-metadata-current-two-sign-20261103-v1/cause-kind/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "2b660e587a3b2e50",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "51c29fbfb907a02999f547f650bcaae6613c07613baea59aa23e5400ee9b6149",
+    "current_function_source_sha256": "84e2634f00e58dbabef0780cf20cc5523ef8288bb414a9cb4016025a21a80d3a",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/landscape.py::literal_context_kind",
+    "original_table": "/tmp/trialledger-heading-preparation-pins-20261103-v2/literal_context_kind/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "931ae24178be907f",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "8c03ca4a7e42aaa3f3e97a964813b9acb50a69a45b81f5ba7e84f4919c5da198",
+    "current_function_source_sha256": "0362f492578e5b68d60ea7e6646dc985924c3693983ac250afe46a659991c7a7",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/layer2/expectations.py::deviation_status",
+    "original_table": "/tmp/trialledger-heading-preparation-pins-20261103-v2/deviation_status/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "49d710a1980c5e59",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "e5eadc95207ac6b69eef5fc0b63caad4f1e92166d5bc7739827ebcedca8b25c2",
+    "current_function_source_sha256": "820dc6e451a2df03674cce1e45f41e118d5d87ad187ecfd37352d1ae28b6d9a4",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/acquisition.py::policy_problem",
+    "original_table": "/tmp/trialledger-acquisition-access-pins-20261104/policy_problem/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "2f9c08ce2e0a9b86",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "8921f06adbe0214a4f86f67683bacba6b266b32b084e453935107dd4a939fd46",
+    "current_function_source_sha256": "3328ec8339541b01957fd815322c6398361a12860db1878cc4ce84ff8ec8e512",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/acquisition.py::expansion_code",
+    "original_table": "/tmp/trialledger-acquisition-access-pins-20261104/expansion_code/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "667a48181ce55867",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "96178285cb0d0e00833a3220b2e28bf95baa988aa5e2a9efac7efc9d9b4d4044",
+    "current_function_source_sha256": "9fc561395bf6c540abbb5484141b934246b1fe5da2f0ba098e2842ad8ba26c48",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  },
+  {
+    "target": "TrialLedger/evidence_access.py::page_window",
+    "original_table": "/tmp/trialledger-acquisition-access-pins-20261104/page_window/tests/detective/certificates.json",
+    "entry": {
+      "cut_reasons": [],
+      "function_digest": "8ed7fc6711c4aab9",
+      "refusal": "",
+      "standing": "complete"
+    },
+    "entry_sha256": "a9078f2475c32e63e09714622b0421fa239192ea201e56b4a09835e27ac623cf",
+    "current_function_source_sha256": "a872af1a802e76215dc8bce05ae8daeb6dd249e84fc612a05d489df6559dc94d",
+    "whole_function_source_equal": true,
+    "scope": "Exact generated target entry retained, not whole-project or clinical certification; residuals and actual globals are in full proof reports and exported packets."
+  }
+]

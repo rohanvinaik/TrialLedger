@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0
+rootdir: /Users/rohanvinaik/tools/TrialLedger
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collected 6061 items / 6051 deselected / 10 selected
+
+tests/test_live.py ....                                                  [ 40%]
+tests/test_request_live.py .....                                         [ 90%]
+tests/test_steps.py .                                                    [100%]
+
+=============== 10 passed, 6051 deselected in 171.58s (0:02:51) ================

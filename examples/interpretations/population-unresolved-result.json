@@ -1330,6 +1330,84 @@
           }
         },
         "result": "UNDETERMINED",
+        "contrast": {
+          "code": "none",
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "answers": [
+            {
+              "frame": "aligned-EFQ",
+              "origin": "assistant",
+              "frame_state": "unresolved",
+              "query": "PS3",
+              "result": "UNDETERMINED",
+              "query_path": "/result/interpretations/0/queries/1",
+              "warrant_path": "/result/interpretations/0/queries/1/warrant",
+              "standing": "proposed",
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding",
+                "interpretation_unresolved"
+              ],
+              "deciding_premises": [
+                {
+                  "id": "aligned-EFQ-PS",
+                  "path": "/result/interpretations/0/premises/assumptions/0",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "proposed"
+                }
+              ]
+            },
+            {
+              "frame": "everyone-in-EFQ",
+              "origin": "assistant",
+              "frame_state": "unresolved",
+              "query": "PS3",
+              "result": "UNDETERMINED",
+              "query_path": "/result/interpretations/1/queries/1",
+              "warrant_path": "/result/interpretations/1/queries/1/warrant",
+              "standing": "proposed",
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding",
+                "inconsistent_population_total",
+                "interpretation_unresolved"
+              ],
+              "deciding_premises": [
+                {
+                  "id": "everyone-in-EFQ-PS",
+                  "path": "/result/interpretations/1/premises/assumptions/0",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "proposed"
+                }
+              ]
+            }
+          ],
+          "path_basis": "relative_to_this_reason_envelope"
+        },
         "frames": [
           "aligned-EFQ",
           "everyone-in-EFQ"
@@ -1637,7 +1715,13 @@
           }
         ],
         "disposition": "open",
-        "support_path": "/result/consequences/1/warrant"
+        "support_path": "/result/consequences/1/warrant",
+        "contrast_code": "none",
+        "contrast_path": "/result/consequences/1/contrast",
+        "answer_paths": [
+          "/result/interpretations/0/queries/1",
+          "/result/interpretations/1/queries/1"
+        ]
       }
     ]
   }

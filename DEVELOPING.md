@@ -13,7 +13,7 @@ while gathering. Layer two: explicit typed premises/evidence -> scoped symbolic 
 -> the separately designed automated trial writer. Correct partial logic is preserved independently of
 missing source compilation or final orchestration.
 
-The current public commands are doctor, landscape, pull, verify, mcp and reason. MCP serves doctor, scope,
+The current public commands are doctor, landscape, record, pull, verify, mcp and reason. MCP serves doctor, scope,
 landscape, save_fetch, record and reason. `reason --request FILE`/`reason(request)` is separate and does not
 mutate a report. There is no complete design/edits command or automatic annotation import. Retired raw-reader,
 model-audit, sample and pilot routes are not compatibility fallbacks.
@@ -22,6 +22,9 @@ model-audit, sample and pilot routes are not compatibility fallbacks.
 
 - `request`, `preview`, `steps`, `operate`: resolve/preview scope, retrieve/resume, account for every requested
   identity and release matching record/workbook. Failure cannot appear complete.
+- `acquisition`: shared positive-integer policy and named count/request-budget decisions, consumed by
+  request/ingest/steps/operate. The first identifier count precedes bulk retrieval; search defaults are
+  1,000 studies/100 registry requests, deliberate larger scopes remain possible, and resume retains policy.
 - `classes`: shared canonical source lookup infrastructure. Retain exact identities, related ingredients,
   class subjects, releases and conflicts. PIN is precise ingredient, not universally salt. Never widen a
   biosimilar/product from a name prefix or choose a fact by alias order.
@@ -30,7 +33,8 @@ model-audit, sample and pilot routes are not compatibility fallbacks.
   context. Malformed scalar types refuse the typed report at a named location; raw evidence remains retained.
 - `readout`: projection of the same record, types/precision/scope, exact-text fallback, continuation, source
   links and row addresses. It does not rank clinical significance.
-- `mcp_server`: bounded access to preview, gather, save and read, plus the separate symbolic operation.
+- `evidence_access` / `record_access`: shared CLI/MCP selection and bounded value/page/text views respectively.
+  `mcp_server` retains transport/root isolation and compatibility reexports, not a second record selector.
 - `landscape_verify`, `landscape_warrants`: retained-input replay and actual derivation dependencies.
 - `ingest`, `registry`, `ledger`, `checks`, `eligibility`, `links`, `cells`, `warrants`, `record`, `workbook`:
   source preservation, original direct consistency checks and archival certified outputs.
@@ -112,7 +116,7 @@ pipeline wiring or claim an integrated writer from unit tests.
 
 The public discovery request is `{"operation":"describe"}` through reason; it returns an overview. Add
 `"view":"entailment"`, `coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or
-`source_assertions` for focused formats, vocabulary,
+`source_assertions`, `evidence_requests` or `design_session` for focused formats, vocabulary,
 result meanings and an example; `worked_session` and `full` retain the complete demonstration and manual. Its input descriptions and
 examples must stay tied to actual validators, and its capability/result descriptions must reflect what an
 agent can invoke. User-facing surfaces should explain clinical explorations as well as operation names:
@@ -132,7 +136,7 @@ ties them to the engine's decisions, blockers and states, so a new outcome needs
 corpus rarity and/or a verified unexplained deviation from a declared expectation; "significance" is reserved
 for the founder's derivational significance (design.md section 7, task 8).
 
-`record_access` owns response-size controls, consumed by MCP `record_view`: entry paging plus a conservative
+`record_access` owns response-size controls, consumed by shared `evidence_access.record_view`: entry paging plus a conservative
 serialized-JSON budget, address directories for oversized containers and exact character continuation for
 long strings. Navigation/chunks are explicitly different from complete source values. Response limits never
 alter saved evidence, requested scope, retrieval completion or solver outcomes. They bound conversation
@@ -140,6 +144,11 @@ output, not whole-process memory: record loading and some corpus calculations st
 inputs. Reuse retained files and retrieval checkpoints; do not add a resource scheduler to solve a display
 budget. Reasoning replies remain complete; large analyses are best run through the file-based CLI and saved
 separately rather than repeatedly echoed into a conversation.
+
+`capabilities` is the import-light public operation/view inventory shared by service discovery and emitted
+MCP schemas. Dispatch coverage remains explicitly tested. `layer2.construction` provides small strict Python
+constructors over existing assertion validation/canonical JSON, with explicit scope/force/origin and proposed
+defaults. It is not a second encoder or clinical parser.
 
 | Existing component | Current access and boundary |
 |---|---|
@@ -194,6 +203,19 @@ is pending. Original values, provenance and reasons remain alongside accepted co
 membership and pending readings can withhold associations; independent known dimensions still constrain
 occupancy. Translation diagnostics describe exact typed-identity differences, never clinical aliases.
 See `docs/REASONING_CONSUMERS.md` and the executable `examples/reasoning-admission/` session.
+
+Coordinate effects trace actual direct/rule consumers separately from admission, including inactive
+antecedents and active negative guards. Interpretation contrasts retain scope/outcome differences and
+paths through source and session adapters without changing verdicts. Marginal retraction solves may share
+only exact extensional domain membership; original input order, identity and support remain inspectable.
+Default conflicts remain distinct from known-floor contradictions. Frequency threshold descriptions retain
+denominators and no clinical standard; deviation validation refuses malformed supplied states.
+
+Reporting passages retain optional literal source context and offsets without clinical force/scope inference.
+The workbook appends context columns, preserving old address columns. Retained legacy reporting roots use an
+explicit writing-format projection; unknown roots remain incompatible. A legacy verification detail must be
+visible in the CLI. Copied-source JSON node counts are session diagnostics, never NIH work limits; aggregate
+solver/analysis/output bounds remain operative and revisions still replay complete old and new snapshots.
 
 `scripts/trace_reasoning_consumers.py` runs actual CLI/MCP dispatch for all discovery examples and retained
 source/admission sessions, comparing complete JSON and recording call edges plus source hashes. It is a

@@ -1,0 +1,355 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT00362258",
+        "orgStudyIdInfo": {
+          "id": "PM_L_0256"
+        },
+        "organization": {
+          "fullName": "Sanofi",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "I PREVENT - Irbesartan In Hypertensive Diabetic Patients",
+        "officialTitle": "Irbesartan In Hypertensive Diabetic Patients"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2011-03",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2006-02"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2008-09",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2008-09",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2006-08-08",
+        "studyFirstSubmitQcDate": "2006-08-08",
+        "studyFirstPostDateStruct": {
+          "date": "2006-08-09",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2011-04-01",
+        "lastUpdatePostDateStruct": {
+          "date": "2011-04-04",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "oldNameTitle": "Medical Affairs Study Director",
+          "oldOrganization": "sanofi-aventis"
+        },
+        "leadSponsor": {
+          "name": "Sanofi",
+          "class": "INDUSTRY"
+        },
+        "collaborators": [
+          {
+            "name": "Bristol-Myers Squibb",
+            "class": "INDUSTRY"
+          }
+        ]
+      },
+      "oversightModule": {
+        "oversightHasDmc": false
+      },
+      "descriptionModule": {
+        "briefSummary": "* To evaluate Blood Pressure (BP) reduction to the targeted values (Systolic BP \u2264 130 mmHg and Diastolic BP \u2264 80 mmHg) in hypertensive type 2 diabetic patients.\n* To evaluate the benefit of Irbesartan in the reduction of microalbuminuria from baseline (if any at the inclusion visit) in this population.\n* To demonstrate the safety of Irbesartan in this population."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Hypertension"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE4"
+        ],
+        "designInfo": {
+          "allocation": "NON_RANDOMIZED",
+          "interventionModel": "SINGLE_GROUP",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 797,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Irbesartan (Aprovel)",
+            "description": "Aprovel (150 \\& 300mg) \\& CoAprovel (300/12.5mg hydrochlorothiazide) one tablet/day per os."
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Reach blood pressure target in hypertensive diabetic patients i.e. 130/80 mmHg.",
+            "timeFrame": "During the study conduct"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "The restoration of urinary albumin excretion (UAE) rate in patients with normoalbuminuria (UAE rate < 20\u00b5g / min)",
+            "timeFrame": "During the study conduct"
+          },
+          {
+            "measure": "First detection of overt nephropathy (UAE rate > 200\u00b5g / min), in patients with microalbuminuria or at least 30% higher than at baseline value(on at least two consecutive occasions)",
+            "timeFrame": "During the study conduct"
+          },
+          {
+            "measure": "Occurrence of any side effect leading to treatment discontinuation.",
+            "timeFrame": "During the study conduct"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Proven Hypertensive Type 2 Diabetic Patients with HbA1c \\> 6% and \u2264 10% (with or without microalbuminuria).\n* Newly diagnosed \"na\u00efve\" hypertensive patients (no prior treatment for hypertension). OR,\n* Patients who were receiving antihypertensive agents (maximum two agents, including one diuretic) with blood pressure targets achieved, yet, in the investigator's opinion, those patients would benefit more from switching to the study medication. These patients will undergo a wash out period for not less than 7 days prior to enrollment.\n\nExclusion Criteria:\n\n* Severe hypertension (SBP \u2265 180 mm Hg or DBP \u2265 110 mm Hg).\n* Patients with secondary hypertension.\n* Patients with UAE \\> 200\u00b5g / min.\n* Patients with HbA1c \\< 6% or \\> 10%.\n* Significant chronic renal impairment (Serum creatinine \\> 2.0 mg/dL).\n* Significant liver disease as shown by SGPT/SGOT (ALAT/ASAT) \\> 2.5 times the upper limit of the normal range.\n* Currently pregnant or lactating females.\n* Women of childbearing potential not protected by effective contraceptive method of birth control and/or who are unwilling or unable to be tested for pregnancy.\n* Any patient who is in need for a combination antihypertensive therapy from the start (from the medical point of view of his/her physician).\n* Known hypersensitivity to irbesartan, other ARBs(Angiotensin Receptor Blockers), hydrochlorothiazide, or other thiazide diuretics.\n* Patients with malignancy during the past 5 years, known collagen disease or severe cardiac, cerebrovascular or gastric disease.\n\nThe above information is not intended to contain all considerations relevant to a patient's potential participation in a clinical trial.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "35 Years",
+        "maximumAge": "75 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Mosaad I Morsi, MBBCh, MSc",
+            "affiliation": "Sanofi",
+            "role": "STUDY_DIRECTOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Sanofi-Aventis Administrative Office",
+            "city": "Cairo",
+            "country": "Egypt",
+            "geoPoint": {
+              "lat": 30.06263,
+              "lon": 31.24967
+            }
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D006973",
+            "term": "Hypertension"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D014652",
+            "term": "Vascular Diseases"
+          },
+          {
+            "id": "D002318",
+            "term": "Cardiovascular Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000077405",
+            "term": "Irbesartan"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D001713",
+            "term": "Biphenyl Compounds"
+          },
+          {
+            "id": "D001555",
+            "term": "Benzene Derivatives"
+          },
+          {
+            "id": "D006841",
+            "term": "Hydrocarbons, Aromatic"
+          },
+          {
+            "id": "D006844",
+            "term": "Hydrocarbons, Cyclic"
+          },
+          {
+            "id": "D006838",
+            "term": "Hydrocarbons"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D013141",
+            "term": "Spiro Compounds"
+          },
+          {
+            "id": "D013777",
+            "term": "Tetrazoles"
+          },
+          {
+            "id": "D001393",
+            "term": "Azoles"
+          },
+          {
+            "id": "D006573",
+            "term": "Heterocyclic Compounds, 1-Ring"
+          },
+          {
+            "id": "D006571",
+            "term": "Heterocyclic Compounds"
+          },
+          {
+            "id": "D011083",
+            "term": "Polycyclic Compounds"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "d070abc728c5df2b320cbcdd334571876fd88674da1b2c216f0712936d7a64d1",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "d070abc728c5df2b320cbcdd334571876fd88674da1b2c216f0712936d7a64d1",
+      "expected": "Inclusion Criteria:\n\n* Proven Hypertensive Type 2 Diabetic Patients with HbA1c \\> 6% and \u2264 10% (with or without microalbuminuria).\n* Newly diagnosed \"na\u00efve\" hypertensive patients (no prior treatment for hypertension). OR,\n* Patients who were receiving antihypertensive agents (maximum two agents, including one diuretic) with blood pressure targets achieved, yet, in the investigator's opinion, those patients would benefit more from switching to the study medication. These patients will undergo a wash out period for not less than 7 days prior to enrollment.\n\nExclusion Criteria:\n\n* Severe hypertension (SBP \u2265 180 mm Hg or DBP \u2265 110 mm Hg).\n* Patients with secondary hypertension.\n* Patients with UAE \\> 200\u00b5g / min.\n* Patients with HbA1c \\< 6% or \\> 10%.\n* Significant chronic renal impairment (Serum creatinine \\> 2.0 mg/dL).\n* Significant liver disease as shown by SGPT/SGOT (ALAT/ASAT) \\> 2.5 times the upper limit of the normal range.\n* Currently pregnant or lactating females.\n* Women of childbearing potential not protected by effective contraceptive method of birth control and/or who are unwilling or unable to be tested for pregnancy.\n* Any patient who is in need for a combination antihypertensive therapy from the start (from the medical point of view of his/her physician).\n* Known hypersensitivity to irbesartan, other ARBs(Angiotensin Receptor Blockers), hydrochlorothiazide, or other thiazide diuretics.\n* Patients with malignancy during the past 5 years, known collagen disease or severe cardiac, cerebrovascular or gastric disease.\n\nThe above information is not intended to contain all considerations relevant to a patient's potential participation in a clinical trial."
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "diabetes-population-reading",
+      "label": "Read the diabetes wording as required",
+      "origin": "assistant",
+      "basis": [
+        "assistant:clinical-reading-not-independent-source-fact"
+      ],
+      "anchors": [
+        "eligibility"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "type2_diabetes",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "assistant:reading-not-registry-boolean",
+          "id": "diabetes-reading",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "assistant-reading",
+            "premises": [],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "id": "diabetes",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "type2_diabetes",
+          "kind": "condition_status"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

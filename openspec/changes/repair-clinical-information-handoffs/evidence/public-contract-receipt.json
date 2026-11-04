@@ -1,0 +1,776 @@
+{
+  "validator": "jsonschema Draft202012Validator",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "request": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "enum": [
+              "describe",
+              "entailment",
+              "coordinates",
+              "corpus",
+              "design_bounds",
+              "evidence_requests",
+              "signals",
+              "interpretations",
+              "source_assertions",
+              "design_session"
+            ]
+          },
+          "view": {
+            "type": "string",
+            "enum": [
+              "overview",
+              "entailment",
+              "coordinates",
+              "corpus",
+              "design_bounds",
+              "evidence_requests",
+              "signals",
+              "interpretations",
+              "source_assertions",
+              "design_session",
+              "worked_session",
+              "full"
+            ],
+            "description": "For describe only; default overview."
+          }
+        },
+        "required": [
+          "operation"
+        ],
+        "description": "Start with operation describe for the overview; view entailment, coordinates, corpus, design_bounds, evidence_requests, signals, interpretations, source_assertions, design_session gives formats and example. Views worked_session and full give the complete demonstration/manual. Other operations need typed premises."
+      }
+    },
+    "required": [
+      "request"
+    ],
+    "additionalProperties": false
+  },
+  "runs": [
+    {
+      "case": "discovery:entailment",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "4de48a6f93b74861a7334331f3097cfa001c99cda213c06b5004b3362739d9d9",
+      "result_sha256": "cf427529102a99b438b2def85146ccafb3166464710acdb00ebf07202acdc0a4"
+    },
+    {
+      "case": "discovery:coordinates",
+      "operation": "coordinates",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "f4c653fea76b0edd52f79fdda6f8f68ad0cd2d31fe9b2b1169d6d6efc25ed8f1",
+      "result_sha256": "b32da9ec4053dd776ddc29fe375a9c0144fb4bb21d8b1b7ad89eb7e92b7e88d8"
+    },
+    {
+      "case": "discovery:corpus",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "7cf0f40ddc8a3ceb289bc0ade588748de025c1fc69f8f33deda9b91d762f58f4",
+      "result_sha256": "9ab3d8f2ad913ac27b101fbcfc3744ec2b435979cfdf6d1eaaf184a3a200c58c"
+    },
+    {
+      "case": "discovery:design_bounds",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "28bb81eef91015aa981961dca984ffd6b6ecbc1b4f62be8681d31c84b15c4bb0",
+      "result_sha256": "3f6ed05964720a3823282eeb9fb536c6c788031436622314aa7ba20fbbd1de70"
+    },
+    {
+      "case": "discovery:signals",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "113e50542ac86e1ba63dd679b3f1f38dc1650a16763a4dbac4820b2ab30d4e09",
+      "result_sha256": "7adbb67c70999b5ae726c706ded8098f7a12a65bd9eb05ad60f50584548435f3"
+    },
+    {
+      "case": "discovery:interpretations",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "8f8387460c2ed37a8dd3fe890545ddfa1b05c663eadaf954e13cbf3bec635ff9",
+      "result_sha256": "0ea1620f4f364434261bff7f1faa2c472698315af49008c700ac0832e44e17b1"
+    },
+    {
+      "case": "discovery:source_assertions",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "051fac8600d257633c3fd8bedc4a42199c670e216cce4a9a533f42c386faac9c",
+      "result_sha256": "90d13efdd7d38966f46180cd75fcf6c6f49c14c452fe9a0a6297cd0656ef3e3c"
+    },
+    {
+      "case": "discovery:design_session",
+      "operation": "design_session",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "24bcfea9e5ec209b5e88fd0a66c5262cebf3b7b899d6a3da70ad60b14244b4f1",
+      "result_sha256": "9cf13b5fb0c853720286e5843de36cba299378688d3ede21827112263d698d79"
+    },
+    {
+      "case": "discovery:evidence_requests",
+      "operation": "evidence_requests",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "afb21bf8453558b765baa708147839c8674690b7f0ff7c9d7758918a5d0deec4",
+      "result_sha256": "577a2d7b1a4edfe16eb469fa17c0fb8f6216299cb601e649790b5e20149f937f"
+    },
+    {
+      "case": "discovery:exception_example",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "72f807f4fea03ade602f15d17532a6837c56b3902c38b999eb34431f3ae25b1d",
+      "result_sha256": "d4ef3c5cf8c8cc9e1ab099e8eefc23e82513d13bc5db758fe5f73516cd8696db"
+    },
+    {
+      "case": "discovery:binding_example",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "26ebeb612c331ed768ea7019f28d374a998408d30f9a94da94bb4ce79b47ad6d",
+      "result_sha256": "2baee33f18c2eb6d4725550ea6f18cc67c01f1140cc3dc8c865f1eca71b1f65d"
+    },
+    {
+      "case": "discovery:design_session_revision",
+      "operation": "design_session",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "dd4edbb6d6ee14e71e75d940c8d3d7dceeae05baba0a611e32d6177b70c3b2e0",
+      "result_sha256": "13700223b7494fe7db429a37c77d8e6cf945a3769db3d1f4052181dba1623ab1"
+    },
+    {
+      "case": "binding:design_bounds",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "f659df4bd99f91f7b90fa7f96e5f06a881c4513d2fc4d70a58853edd7e5bd41a",
+      "result_sha256": "9c96cbcb770f245ec6552e682b18ed24ed305f676b702544a4a0af322680c9de"
+    },
+    {
+      "case": "signal:overlap",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "113e50542ac86e1ba63dd679b3f1f38dc1650a16763a4dbac4820b2ab30d4e09",
+      "result_sha256": "7adbb67c70999b5ae726c706ded8098f7a12a65bd9eb05ad60f50584548435f3"
+    },
+    {
+      "case": "signal:partition",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "4591cbe492c202506a6a07bf60cfb7580ac10fecc55f1172fd0605517f3fafe6",
+      "result_sha256": "79ccdbbb555a05a7190ddb436755aee6662f772becfe38ef5efb76f2248b395f"
+    },
+    {
+      "case": "signal:summary",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "f312863d7b815be4d4ccfc8cfdfb55ef0af4e944428953057aefd9a1d1ec128f",
+      "result_sha256": "56ab3ba657f4c09292f026f7e337dc7d1c8de752a72fd3b5a2fac095b008b6e7"
+    },
+    {
+      "case": "signal:population",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "d9d74a7df6fb57a63dd47ead1e60c1a7bd8067a8552c9969787461a3c6dbbe63",
+      "result_sha256": "812b763f0843f8440b6dab2a7103bb659d974114f4c749837277393e47a3c270"
+    },
+    {
+      "case": "signal:temporal",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "f1fb50fc53b1127276324949eef0eadd364cfa0a2b64d5efe888e280f3a36a01",
+      "result_sha256": "0404d213e529c090611bfcbafb9dbb0fffd8025301801646d022251f5aaa1778"
+    },
+    {
+      "case": "signal:regimen",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "5f9043398047298013fd6e3284b236dd485c50457b268a387f180336017279c7",
+      "result_sha256": "2886cf2c39510de83e4aa4c37cde6feceaf7946dcd0d97dcf6f0bd929e908c64"
+    },
+    {
+      "case": "signal:relations",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "f63512372f1f342c2f455c8b3b0f1c3fa7cadbbccc763b8a2fafd250ff4ced22",
+      "result_sha256": "5e7b6e6a02152390d1824c2e4a4776dd7c532e18a0add7f7bd5ddd627800c3f6"
+    },
+    {
+      "case": "signal:dependencies",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "5a106c08d787f5ef158e57ff122802a0e5371660c3002115d0ab651e7e8cf929",
+      "result_sha256": "21ecef942353c779ee96a9f35c4ed8fb2298d5a258104bc70062e272c8ab4b45"
+    },
+    {
+      "case": "signal:stages",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "196af052d664d0496d374a53d63dca2189a0f32bab1073e283b1935534f6c972",
+      "result_sha256": "9062567612b63647c3530e1456a6bf47aa17cd230d5da062b82fe58c8670ca37"
+    },
+    {
+      "case": "signal:decision_table",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "da98096eab3b7015c9c16c30e69c75f6bdffe252b4c701313e58fa124cd941df",
+      "result_sha256": "1fe3d84f8332b3940b8e4ce4f5d4d3e8655972fbb222c5c7343f92e28c3e2165"
+    },
+    {
+      "case": "signal:estimand",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "708f8b45b917647abc76d1c6374c71e67811fd24798f1114cc88a5a8b5e88795",
+      "result_sha256": "ae2f1e51661d5481f53deed3de0a81ade4d170b312337ffa59933b3b5e79ad21"
+    },
+    {
+      "case": "corpus:associations",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "ccd55e629845718d7117699b0d218b8101ea99f4e151ab21f76bb4bb536aee2f",
+      "result_sha256": "e1f042f5404dc58e66d4d2859afd0316f7af1580125da7ee6afce379038d2f28"
+    },
+    {
+      "case": "corpus:near_misses",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "49ea221118862478fadb9af5bcf0242727ae34f6a2271c71ad4deda9501e97ec",
+      "result_sha256": "7ed85c11aebd3cbde92fce31cce78d211218c648d4fafee0d235f5316d8de176"
+    },
+    {
+      "case": "corpus:occupancy",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "471eba1d0351343c6bdbc383226cb0a125664e5680e320d5a52d867295ce5531",
+      "result_sha256": "ee7dc8c43268ecdc79f4fe15a76effe0fd0ef5d3d156994c9f1aff33245ef72b"
+    },
+    {
+      "case": "corpus:expectations",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "dae9d87700f06a94f3bf53b12558dcdc54ab006f8db0a022f5d0e12b273f148b",
+      "result_sha256": "7e54d319358b25a7038c461aec1acf0c36f8c0024fbd3deaa014542cd2d443af"
+    },
+    {
+      "case": "source-bridge:ipass-baseline-overlap-request",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "a061a2a14b99d144a0bc7b382e64486028d1d36a4216b4d951c2cb83d958ced7",
+      "result_sha256": "be3334bc7053abf426c2040efc0470115a1ab47199e57c88caf5821fa88471e4"
+    },
+    {
+      "case": "source-bridge:ipass-registered-age-request",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "0b58586ea0f6d9782f8778284455632906166c8e4305404f685bb13cfe47f3e9",
+      "result_sha256": "edd5767f549b84e8e0ffdb50469ed6dcf8feb2718f0609b378417aa7dcca603c"
+    },
+    {
+      "case": "source-bridge:ipass-schedule-readings-request",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "1bff8fe5f624db4cb1ebd379159c40caa180c397dbeb70239462e956b4229efa",
+      "result_sha256": "c28c5ed085f47c2a01536b5da94c2628dff3a30d4622bfafc67206ed7b40a203"
+    },
+    {
+      "case": "reasoning-admission:coordinate-standing-request",
+      "operation": "coordinates",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "15483f742f073bd45e4a1d81dc8a75059d2d2c03514f8a8925a9250cca0cf530",
+      "result_sha256": "ef36982621a57b6185191770e4525f7197f00eb750d05ac9ee1a7c9b66861e3c"
+    },
+    {
+      "case": "reasoning-admission:declared-proposition-bridge-request",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "c2f94c0868dabdce549d2ce9264484a11a788ae406fda02cd6d0104daffd8c9f",
+      "result_sha256": "1ac4ff58afaba18b232fe586bb5c764a9b1aa04e3b56b8f485cf2072fdfd0570"
+    },
+    {
+      "case": "reasoning-admission:mixed-comparison-request",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "ff9a4b0aea008aadfd90f03779f604160b9defcaa60deb312f946b0deeafa495",
+      "result_sha256": "a30084d3e90a45113f0e73dc4e8952a9174bf9bedd494db4e36db4872b79f876"
+    },
+    {
+      "case": "reasoning-admission:unbound-scale-request",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "3d97b45c1a3d6edb39928c1af86e044394fde7db894e4ce6ab5e351e4cbe7d7e",
+      "result_sha256": "12bc9df1ea6e7ef34ad07569151377e1f4cb550a7ae0332c53bda0ed45ceda39"
+    },
+    {
+      "case": "partial-evidence:design-request",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "b037bd9628b2b3ec1dad3d723d73a83cc3666bce7032b16d73ec009d6ef362ad",
+      "result_sha256": "0b3caa389dc5fe8a0790fd6b335418df2651cddb00201b77b138920226a193c9"
+    },
+    {
+      "case": "partial-evidence:draft-request",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "9afcb20ec002868d4bb9925e3a99c022a190ed51a2d8fdd814aff3996fbd16e6",
+      "result_sha256": "bf97cbbef7eefe6892bbcc1ec3c5582dd06c4986e71d3aa2adb72dba38a16050"
+    },
+    {
+      "case": "interpretations:assessment-roles-request",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "6dd1cee103ea3b058107f2566032513be58a3e5a29a92d5f938f2ec4fa145c63",
+      "result_sha256": "790699320b72b607535abc0aae32fe9d03da833b391546a8e91de623ae473aea"
+    },
+    {
+      "case": "interpretations:draft-choices-request",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "8f8387460c2ed37a8dd3fe890545ddfa1b05c663eadaf954e13cbf3bec635ff9",
+      "result_sha256": "0ea1620f4f364434261bff7f1faa2c472698315af49008c700ac0832e44e17b1"
+    },
+    {
+      "case": "interpretations:draft-revised-PS0-3-request",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "b4acae38996cda583da243fdda1597d1123e7c7920f1554051dbdb1dcea249c1",
+      "result_sha256": "19c3b07722c253ef400c1850245fb22fb0cbbca937fb067a2ebda939c11b49ed"
+    },
+    {
+      "case": "interpretations:draft-selected-PS0-2-request",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "cd81d9d82a1641f1b81c3426ef9767a51ef69cfcf2896e6cfbe63d2e7024e799",
+      "result_sha256": "3b48946ac3935afc975c0027eefcbaddf1d8396f06b480015e001dd8dc56c6d1"
+    },
+    {
+      "case": "interpretations:endpoint-inputs-request",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "7e340d6600105f02b6068f6a0308b1dbb5984cedf983e0410e78974e043eeeff",
+      "result_sha256": "8524aa58b1b5ad0ef70860ae07605f531294bc715e6db46e707fc42ca9b35d6d"
+    },
+    {
+      "case": "interpretations:population-resolved-request",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "cea57b0807453fcb4dd480d746fd2781c4d07b95e47092d0ce93a4750a7d16c6",
+      "result_sha256": "3b1945c1eb09fe5d41949b4e793dc9e04e4de2c843e918e734cd31ad03e73b35"
+    },
+    {
+      "case": "interpretations:population-unresolved-request",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "c9ff25a308c65edd5638a2619ad042bab5dad2a331bb3ebb8829f6d9061bea1b",
+      "result_sha256": "5ec8ebbc7be219170ff3218cce0acec7dc8c9393ee404ec1aa426c0fd2fb6298"
+    },
+    {
+      "case": "design-session:evidence-investigation-request",
+      "operation": "design_session",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "0b2156b0a097c3fff5fe72fddf669d39e4a35fde16f5a9e650a1ac6e2c151fc7",
+      "result_sha256": "1459fbf782c1372ec14153be86bad466bc690397f19c2086cae729f1a95c0d99"
+    },
+    {
+      "case": "focused:entailment",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "4de48a6f93b74861a7334331f3097cfa001c99cda213c06b5004b3362739d9d9",
+      "result_sha256": "cf427529102a99b438b2def85146ccafb3166464710acdb00ebf07202acdc0a4"
+    },
+    {
+      "case": "focused:coordinates",
+      "operation": "coordinates",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "f4c653fea76b0edd52f79fdda6f8f68ad0cd2d31fe9b2b1169d6d6efc25ed8f1",
+      "result_sha256": "b32da9ec4053dd776ddc29fe375a9c0144fb4bb21d8b1b7ad89eb7e92b7e88d8"
+    },
+    {
+      "case": "focused:corpus",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "7cf0f40ddc8a3ceb289bc0ade588748de025c1fc69f8f33deda9b91d762f58f4",
+      "result_sha256": "9ab3d8f2ad913ac27b101fbcfc3744ec2b435979cfdf6d1eaaf184a3a200c58c"
+    },
+    {
+      "case": "focused:design_bounds",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "28bb81eef91015aa981961dca984ffd6b6ecbc1b4f62be8681d31c84b15c4bb0",
+      "result_sha256": "3f6ed05964720a3823282eeb9fb536c6c788031436622314aa7ba20fbbd1de70"
+    },
+    {
+      "case": "focused:evidence_requests",
+      "operation": "evidence_requests",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "afb21bf8453558b765baa708147839c8674690b7f0ff7c9d7758918a5d0deec4",
+      "result_sha256": "577a2d7b1a4edfe16eb469fa17c0fb8f6216299cb601e649790b5e20149f937f"
+    },
+    {
+      "case": "focused:signals",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "113e50542ac86e1ba63dd679b3f1f38dc1650a16763a4dbac4820b2ab30d4e09",
+      "result_sha256": "7adbb67c70999b5ae726c706ded8098f7a12a65bd9eb05ad60f50584548435f3"
+    },
+    {
+      "case": "focused:interpretations",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "8f8387460c2ed37a8dd3fe890545ddfa1b05c663eadaf954e13cbf3bec635ff9",
+      "result_sha256": "0ea1620f4f364434261bff7f1faa2c472698315af49008c700ac0832e44e17b1"
+    },
+    {
+      "case": "focused:source_assertions",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "051fac8600d257633c3fd8bedc4a42199c670e216cce4a9a533f42c386faac9c",
+      "result_sha256": "90d13efdd7d38966f46180cd75fcf6c6f49c14c452fe9a0a6297cd0656ef3e3c"
+    },
+    {
+      "case": "focused:design_session",
+      "operation": "design_session",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "24bcfea9e5ec209b5e88fd0a66c5262cebf3b7b899d6a3da70ad60b14244b4f1",
+      "result_sha256": "9cf13b5fb0c853720286e5843de36cba299378688d3ede21827112263d698d79"
+    },
+    {
+      "case": "committed:examples/design-session/evidence-investigation-request.json",
+      "operation": "design_session",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "0b2156b0a097c3fff5fe72fddf669d39e4a35fde16f5a9e650a1ac6e2c151fc7",
+      "result_sha256": "1459fbf782c1372ec14153be86bad466bc690397f19c2086cae729f1a95c0d99"
+    },
+    {
+      "case": "committed:examples/interpretations/assessment-roles-request.json",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "6dd1cee103ea3b058107f2566032513be58a3e5a29a92d5f938f2ec4fa145c63",
+      "result_sha256": "790699320b72b607535abc0aae32fe9d03da833b391546a8e91de623ae473aea"
+    },
+    {
+      "case": "committed:examples/interpretations/draft-choices-request.json",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "8f8387460c2ed37a8dd3fe890545ddfa1b05c663eadaf954e13cbf3bec635ff9",
+      "result_sha256": "0ea1620f4f364434261bff7f1faa2c472698315af49008c700ac0832e44e17b1"
+    },
+    {
+      "case": "committed:examples/interpretations/draft-revised-PS0-3-request.json",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "b4acae38996cda583da243fdda1597d1123e7c7920f1554051dbdb1dcea249c1",
+      "result_sha256": "19c3b07722c253ef400c1850245fb22fb0cbbca937fb067a2ebda939c11b49ed"
+    },
+    {
+      "case": "committed:examples/interpretations/draft-selected-PS0-2-request.json",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "cd81d9d82a1641f1b81c3426ef9767a51ef69cfcf2896e6cfbe63d2e7024e799",
+      "result_sha256": "3b48946ac3935afc975c0027eefcbaddf1d8396f06b480015e001dd8dc56c6d1"
+    },
+    {
+      "case": "committed:examples/interpretations/endpoint-inputs-request.json",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "7e340d6600105f02b6068f6a0308b1dbb5984cedf983e0410e78974e043eeeff",
+      "result_sha256": "8524aa58b1b5ad0ef70860ae07605f531294bc715e6db46e707fc42ca9b35d6d"
+    },
+    {
+      "case": "committed:examples/interpretations/population-resolved-request.json",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "cea57b0807453fcb4dd480d746fd2781c4d07b95e47092d0ce93a4750a7d16c6",
+      "result_sha256": "3b1945c1eb09fe5d41949b4e793dc9e04e4de2c843e918e734cd31ad03e73b35"
+    },
+    {
+      "case": "committed:examples/interpretations/population-unresolved-request.json",
+      "operation": "interpretations",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "c9ff25a308c65edd5638a2619ad042bab5dad2a331bb3ebb8829f6d9061bea1b",
+      "result_sha256": "5ec8ebbc7be219170ff3218cce0acec7dc8c9393ee404ec1aa426c0fd2fb6298"
+    },
+    {
+      "case": "committed:examples/partial-evidence/design-request.json",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "b037bd9628b2b3ec1dad3d723d73a83cc3666bce7032b16d73ec009d6ef362ad",
+      "result_sha256": "0b3caa389dc5fe8a0790fd6b335418df2651cddb00201b77b138920226a193c9"
+    },
+    {
+      "case": "committed:examples/partial-evidence/draft-request.json",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "9afcb20ec002868d4bb9925e3a99c022a190ed51a2d8fdd814aff3996fbd16e6",
+      "result_sha256": "bf97cbbef7eefe6892bbcc1ec3c5582dd06c4986e71d3aa2adb72dba38a16050"
+    },
+    {
+      "case": "committed:examples/reasoning-admission/coordinate-standing-request.json",
+      "operation": "coordinates",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "15483f742f073bd45e4a1d81dc8a75059d2d2c03514f8a8925a9250cca0cf530",
+      "result_sha256": "ef36982621a57b6185191770e4525f7197f00eb750d05ac9ee1a7c9b66861e3c"
+    },
+    {
+      "case": "committed:examples/reasoning-admission/declared-proposition-bridge-request.json",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "c2f94c0868dabdce549d2ce9264484a11a788ae406fda02cd6d0104daffd8c9f",
+      "result_sha256": "1ac4ff58afaba18b232fe586bb5c764a9b1aa04e3b56b8f485cf2072fdfd0570"
+    },
+    {
+      "case": "committed:examples/reasoning-admission/mixed-comparison-request.json",
+      "operation": "corpus",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "ff9a4b0aea008aadfd90f03779f604160b9defcaa60deb312f946b0deeafa495",
+      "result_sha256": "a30084d3e90a45113f0e73dc4e8952a9174bf9bedd494db4e36db4872b79f876"
+    },
+    {
+      "case": "committed:examples/reasoning-admission/unbound-scale-request.json",
+      "operation": "entailment",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "3d97b45c1a3d6edb39928c1af86e044394fde7db894e4ce6ab5e351e4cbe7d7e",
+      "result_sha256": "12bc9df1ea6e7ef34ad07569151377e1f4cb550a7ae0332c53bda0ed45ceda39"
+    },
+    {
+      "case": "committed:examples/source-bridge/ipass-baseline-overlap-request.json",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "a061a2a14b99d144a0bc7b382e64486028d1d36a4216b4d951c2cb83d958ced7",
+      "result_sha256": "316f6245ec4a091dd030c06c45a1ab4c7ccb2f7568fad556c72e9c28d7062561"
+    },
+    {
+      "case": "committed:examples/source-bridge/ipass-registered-age-request.json",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "0b58586ea0f6d9782f8778284455632906166c8e4305404f685bb13cfe47f3e9",
+      "result_sha256": "edd5767f549b84e8e0ffdb50469ed6dcf8feb2718f0609b378417aa7dcca603c"
+    },
+    {
+      "case": "committed:examples/source-bridge/ipass-schedule-readings-request.json",
+      "operation": "source_assertions",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "1bff8fe5f624db4cb1ebd379159c40caa180c397dbeb70239462e956b4229efa",
+      "result_sha256": "c28c5ed085f47c2a01536b5da94c2628dff3a30d4622bfafc67206ed7b40a203"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-analysis-overlap-request.json",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "54c9e48385fee9f3c59e4d1e8b399a3951a12b97652a0849f42c92544adec483",
+      "result_sha256": "81cd67ba08d57b68dcdff861b262c38cb0a76ee033b79247681490d2ad365fa5"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-analysis-populations-request.json",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "21229676ddd2e3eb3e82216d207e3653eec308c8e35dce0a483de671369d7c95",
+      "result_sha256": "0da245f4e5efde27cd3826dd074a1e214f36b35cdaa80e0875d77be703cb3943"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-assessment-window-request.json",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "64b60f02d53c0f8ce6312e0f8eceda8abe0d79802bc7860bbe9105be1ace5a4e",
+      "result_sha256": "5fcd9f354f95dfc6c66b902acefe4b6841ea37bd0443c6a447c8842c94f203c1"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-assessment-window-unresolved-request.json",
+      "operation": "signals",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "76638e8549974924722c594dc7ec9a0fbafff21d75d9482e09dfbff71ee65741",
+      "result_sha256": "a1e6f9c6d53c598916f7ffac991055d946bbb67fb66f642b97ae495d8bb44e7a"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-joint-exceptions-48-request.json",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "3d2b49d45f08d78157452d5ae0ff01a9a5c434f7a3d2cc7c3386797f921da50f",
+      "result_sha256": "9e7de48683241d373675a64eae1eb9cecd76d4f503bc0028168ac0ae9eaaadd6"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-joint-exceptions-49-request.json",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "1a1257e59c617bfcf18317031c35fd343a5eba63298a3664f4a35a79ba41b998",
+      "result_sha256": "092d7b6b7be380670f994db4dec2755b31392f40fdf785563df8480e2bf850b8"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-joint-request.json",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "88c36a165b615ef32be879c2baa57c5ff320a4adcad7ec32684482946dd45c83",
+      "result_sha256": "52de491f200b78a8f16ff6143d986706bccb5a899eee32d34c71c3b543654243"
+    },
+    {
+      "case": "committed:examples/source-workflows/ipass-performance-status-request.json",
+      "operation": "design_bounds",
+      "code": "complete",
+      "cli_mcp_equal": true,
+      "schema_valid": true,
+      "request_sha256": "587d3299bbc6d7a8f152cda0819a28d0bd14140e55750585bc0bb56ed08cd35b",
+      "result_sha256": "1992380c11bf6731fd3ee5ad6417cdc0e82f70037015c755ba74af068b6b35bb"
+    },
+    {
+      "case": "unsupported:design",
+      "operation": "design",
+      "code": "refused",
+      "cli_mcp_equal": true,
+      "schema_valid": false,
+      "request_sha256": "6ffdf4c577d2e931ee58a2ea07fb7bb23d8164c8b5427ca34874ecc6c23dbf0d",
+      "result_sha256": "8153c66310c7ff7a2a1ae6df0a8f157b6d050c9d8fd417e1f4608d64c2dc1742"
+    }
+  ]
+}

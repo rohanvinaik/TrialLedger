@@ -1,0 +1,442 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT00772499",
+        "orgStudyIdInfo": {
+          "id": "866-432"
+        },
+        "organization": {
+          "fullName": "Daiichi Sankyo",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "Vascular Improvement With Olmesartan Medoxomil Study",
+        "officialTitle": "Vascular Improvement With Olmesartan Medoxomil Study",
+        "acronym": "VIOS"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2008-10",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2002-11"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2005-07",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2005-07",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2008-10-13",
+        "studyFirstSubmitQcDate": "2008-10-14",
+        "studyFirstPostDateStruct": {
+          "date": "2008-10-15",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2008-10-14",
+        "lastUpdatePostDateStruct": {
+          "date": "2008-10-15",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "oldNameTitle": "Director Medical Research",
+          "oldOrganization": "Daiichi Sankyo, Inc."
+        },
+        "leadSponsor": {
+          "name": "Daiichi Sankyo",
+          "class": "INDUSTRY"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": false
+      },
+      "descriptionModule": {
+        "briefSummary": "The purpose of this study is to compare in patients with primary hypertension, the non-blood pressure lowering effects of one-year therapy with olmesartan medoxomil vs. those of atenolol on changes in the vascular structure and function."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Hypertension"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE4"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 100,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "1",
+            "type": "EXPERIMENTAL",
+            "description": "olmesartan medoxomil tablets with added doses of hydrochlorothiazide, amlodipine, or hydralazine, if required to maintain target blood pressure",
+            "interventionNames": [
+              "Drug: olmesartan medoxomil + hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure"
+            ]
+          },
+          {
+            "label": "2",
+            "type": "ACTIVE_COMPARATOR",
+            "description": "Atenolol tablets with added doses of hydrochlorothiazide, amlodipine, or hydralazine, if required to maintain target blood pressure",
+            "interventionNames": [
+              "Drug: atenolol+ hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "olmesartan medoxomil + hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure",
+            "description": "Tablets and capsules for oral administration once or twice daily for up to 52 weeks",
+            "armGroupLabels": [
+              "1"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "atenolol+ hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure",
+            "description": "Tablets and capsules for oral administration once or twice daily for up to 52 weeks",
+            "armGroupLabels": [
+              "2"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Subcutaneous gluteal fat arteriole measurements prior to and after 52 weeks of therapy",
+            "timeFrame": "52 weeks"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Results of vascular function tests",
+            "timeFrame": "12 weeks"
+          },
+          {
+            "measure": "Results of vascular function tests",
+            "timeFrame": "28 weeks"
+          },
+          {
+            "measure": "Results of vascular function tests",
+            "timeFrame": "52 weeks"
+          },
+          {
+            "measure": "Measurement of serum lipid and markers of atherosclerosis",
+            "timeFrame": "12 weeks"
+          },
+          {
+            "measure": "Measurement of serum lipid and markers of atherosclerosis",
+            "timeFrame": "28 weeks"
+          },
+          {
+            "measure": "Measurement of serum lipid and markers of atherosclerosis",
+            "timeFrame": "52 weeks"
+          },
+          {
+            "measure": "Retinal arteriole measurements",
+            "timeFrame": "52 weeks"
+          },
+          {
+            "measure": "Calculation of insulin sensitivity measurement",
+            "timeFrame": "12 Weeks"
+          },
+          {
+            "measure": "Calculation of insulin sensitivity measurement",
+            "timeFrame": "28 weeks"
+          },
+          {
+            "measure": "Calculation of insulin sensitivity measurement",
+            "timeFrame": "52 weeks"
+          },
+          {
+            "measure": "24 hour urine creatinine and thromboxane B2 measurements",
+            "timeFrame": "12 weeks"
+          },
+          {
+            "measure": "Calculation of albumin-to-creatinine ratio and sodium-to-creatinine ratio",
+            "timeFrame": "12 weeks"
+          },
+          {
+            "measure": "Calculation of albumin-to-creatinine ratio and sodium-to-creatinine ratio",
+            "timeFrame": "28 weeks"
+          },
+          {
+            "measure": "Calculation of albumin-to-creatinine ratio and sodium-to-creatinine ratio",
+            "timeFrame": "52 weeks"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Male or female\n* 18-75 years of age\n* Mean seated diastolic BP 90-109 or mean seated systolic BP of 140-179\n\nExclusion Criteria:\n\n* Secondary hypertension\n* Renal disease\n* Diabetes mellitus\n* Serum creatinine \\>3.0 mg/dL\n* Hemoglobin \\<10 mg/dL (males) or \\<9mg/dL (females)\n* WBC count \\<2000 cells/mL\n* Platelet count \\<100,000 cells/mL\n* Either ALT \\& AST \\>2.5 x upper limit of normal\n* BMI \\>35 kg/m2\n* TIA or cerebrovascular attack within 3 months of study entry",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "75 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "locations": [
+          {
+            "facility": "Wake Forest University Baptist Medical Center",
+            "city": "Winston-Salem",
+            "state": "North Carolina",
+            "zip": "27157",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 36.09986,
+              "lon": -80.24422
+            }
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D006973",
+            "term": "Hypertension"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D014652",
+            "term": "Vascular Diseases"
+          },
+          {
+            "id": "D002318",
+            "term": "Cardiovascular Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000068557",
+            "term": "Olmesartan Medoxomil"
+          },
+          {
+            "id": "D006852",
+            "term": "Hydrochlorothiazide"
+          },
+          {
+            "id": "D017311",
+            "term": "Amlodipine"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D007093",
+            "term": "Imidazoles"
+          },
+          {
+            "id": "D001393",
+            "term": "Azoles"
+          },
+          {
+            "id": "D006573",
+            "term": "Heterocyclic Compounds, 1-Ring"
+          },
+          {
+            "id": "D006571",
+            "term": "Heterocyclic Compounds"
+          },
+          {
+            "id": "D013777",
+            "term": "Tetrazoles"
+          },
+          {
+            "id": "D002740",
+            "term": "Chlorothiazide"
+          },
+          {
+            "id": "D001581",
+            "term": "Benzothiadiazines"
+          },
+          {
+            "id": "D013449",
+            "term": "Sulfonamides"
+          },
+          {
+            "id": "D013450",
+            "term": "Sulfones"
+          },
+          {
+            "id": "D013457",
+            "term": "Sulfur Compounds"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D049971",
+            "term": "Thiazides"
+          },
+          {
+            "id": "D006574",
+            "term": "Heterocyclic Compounds, 2-Ring"
+          },
+          {
+            "id": "D000072471",
+            "term": "Heterocyclic Compounds, Fused-Ring"
+          },
+          {
+            "id": "D004095",
+            "term": "Dihydropyridines"
+          },
+          {
+            "id": "D011725",
+            "term": "Pyridines"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "a5b4b05af0947337c7e4fa60bee6ce9918b883b02607328c21533ff0c1b0dc0c",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "a5b4b05af0947337c7e4fa60bee6ce9918b883b02607328c21533ff0c1b0dc0c",
+      "expected": "Inclusion Criteria:\n\n* Male or female\n* 18-75 years of age\n* Mean seated diastolic BP 90-109 or mean seated systolic BP of 140-179\n\nExclusion Criteria:\n\n* Secondary hypertension\n* Renal disease\n* Diabetes mellitus\n* Serum creatinine \\>3.0 mg/dL\n* Hemoglobin \\<10 mg/dL (males) or \\<9mg/dL (females)\n* WBC count \\<2000 cells/mL\n* Platelet count \\<100,000 cells/mL\n* Either ALT \\& AST \\>2.5 x upper limit of normal\n* BMI \\>35 kg/m2\n* TIA or cerebrovascular attack within 3 months of study entry"
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "diabetes-population-reading",
+      "label": "Read the diabetes wording as excluded",
+      "origin": "assistant",
+      "basis": [
+        "assistant:clinical-reading-not-independent-source-fact"
+      ],
+      "anchors": [
+        "eligibility"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "type2_diabetes",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "assistant:reading-not-registry-boolean",
+          "id": "diabetes-reading",
+          "modality": "excluded",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "assistant-reading",
+            "premises": [],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "id": "diabetes",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "type2_diabetes",
+          "kind": "condition_status"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

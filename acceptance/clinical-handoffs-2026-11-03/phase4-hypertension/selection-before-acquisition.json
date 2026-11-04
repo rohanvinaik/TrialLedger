@@ -1,0 +1,16 @@
+{
+  "clinical_question": "Which population and treatment-history choices remain for a Phase4 hypertension design?",
+  "query": {
+    "query.cond": "Hypertension",
+    "filter.advanced": "AREA[Phase]PHASE4 AND AREA[OverallStatus]COMPLETED"
+  },
+  "fields": "NCTId",
+  "pageSize": 1000,
+  "seed": 202611034,
+  "sample_size": 2,
+  "budget": {
+    "max_studies": 2,
+    "max_registry_requests": 5
+  },
+  "selection_rule": "sorted unique complete IDpool then random.Random(seed).sample(pool,2); no study content read before persistence"
+}

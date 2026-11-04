@@ -1,0 +1,44 @@
+[
+  {
+    "request": "examples/source-bridge/ipass-baseline-overlap-request.json",
+    "before_sha256": "d79098ed9d4f41fb3574ce29b24541fec8271b686f06c46ab2d8d47d442dc758",
+    "after_sha256": "d4274d18e1772fe570a6c8cf31286198bcd29926d578531a3827fb0d325fb99e",
+    "clinical_payload_equal_excluding_only_new_explanations": true
+  },
+  {
+    "request": "examples/source-bridge/ipass-registered-age-request.json",
+    "before_sha256": "eae3ce789d56ce2302eedfb6883578ee0c474675c609e598b40c61ccf9769ad7",
+    "after_sha256": "eae3ce789d56ce2302eedfb6883578ee0c474675c609e598b40c61ccf9769ad7",
+    "clinical_payload_equal_excluding_only_new_explanations": true
+  },
+  {
+    "request": "examples/source-bridge/ipass-schedule-readings-request.json",
+    "before_sha256": "65a828e51d6de325bcf1f1f5138b8f5de17e3df81227fcce3457d9ee11ff167d",
+    "after_sha256": "65a828e51d6de325bcf1f1f5138b8f5de17e3df81227fcce3457d9ee11ff167d",
+    "clinical_payload_equal_excluding_only_new_explanations": true
+  },
+  {
+    "request": "examples/reasoning-admission/coordinate-standing-request.json",
+    "before_sha256": "caef19d962e3c68a95748305c66a8efbbcaa7f0d1285d6dfce5a4d74bb8f12b9",
+    "after_sha256": "1e581383645c09646bbe7c998136c014ce911d887e9a5cf41f6ffd9a2ac0bde2",
+    "clinical_payload_equal_excluding_only_new_explanations": true
+  },
+  {
+    "request": "examples/reasoning-admission/declared-proposition-bridge-request.json",
+    "before_sha256": "c33fbad0a45fc3ba0b74d7b801ba4a587307e3ca2bb5e3f10776263d3ae6c7a5",
+    "after_sha256": "c33fbad0a45fc3ba0b74d7b801ba4a587307e3ca2bb5e3f10776263d3ae6c7a5",
+    "clinical_payload_equal_excluding_only_new_explanations": true
+  },
+  {
+    "request": "examples/reasoning-admission/mixed-comparison-request.json",
+    "before_sha256": "4237548d06f2b8a4aab2f5e393a8fb75413c3d3e592d939033b9f45cda6120a5",
+    "after_sha256": "f5fb6f325929e3e230f805f4b3fc9d7cee2fafd23429c8c643f20b2cafcda8a6",
+    "clinical_payload_equal_excluding_only_new_explanations": true
+  },
+  {
+    "request": "examples/reasoning-admission/unbound-scale-request.json",
+    "before_sha256": "6a68279b11e68bd14c98f17cd40729f57fd2d0f76fbcebbfa4f255133530129d",
+    "after_sha256": "6a68279b11e68bd14c98f17cd40729f57fd2d0f76fbcebbfa4f255133530129d",
+    "clinical_payload_equal_excluding_only_new_explanations": true
+  }
+]

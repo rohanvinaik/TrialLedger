@@ -159,7 +159,12 @@ def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict
             return version()
         params = request.url.params
         if params.get("fields") == "NCTId":
-            page = [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in by_id]
+            selected = params["filter.ids"].split(",") if "filter.ids" in params else by_id
+            page = [
+                {"protocolSection": {"identificationModule": {"nctId": nct}}}
+                for nct in selected
+                if nct in by_id
+            ]
             return httpx.Response(200, json={"studies": page, "totalCount": len(page)})
         asked = params["filter.ids"].split(",")
         return httpx.Response(200, json={"studies": [by_id[nct] for nct in asked], "totalCount": len(asked)})
@@ -357,6 +362,13 @@ def main() -> None:
     api = FakeAPI(
         json_pages=[
             httpx.Response(503),
+            httpx.Response(
+                200,
+                json={
+                    "studies": [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in ids],
+                    "totalCount": 2,
+                },
+            ),
             httpx.Response(200, json={"studies": [first], "totalCount": 2, "nextPageToken": "page-2"}),
             httpx.Response(200, json={"studies": [second]}),
         ],

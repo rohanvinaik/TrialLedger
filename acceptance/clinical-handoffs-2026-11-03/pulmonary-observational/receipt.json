@@ -1,0 +1,69 @@
+{
+  "case": "pulmonary-observational",
+  "retained_complete_packet": "/Users/rohanvinaik/trialledger-runs/repair-handoff-walkthroughs-20261104/pulmonary-observational",
+  "scope": "Complete chosen reasoning inputs/results and decision brief; duplicate wires/workbooks/search bodies retained externally. Layer-one replay requires that external packet. Re-fetch is a new observation.",
+  "files": [
+    {
+      "path": "working-brief.md",
+      "bytes": 6797,
+      "sha256": "a9107b10f269cd1215b48cc233b9e19ebc5690ec823dbc7103277852f4c3b63b"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 5243,
+      "sha256": "7bffaa3633bc5ceefda8532eeb35de8db89eaa33d585260be35b60fa2b2c412c"
+    },
+    {
+      "path": "query-request.json",
+      "bytes": 201,
+      "sha256": "a3efc402b3726e6d11e82a9a933afd0b66a1b79a0383a2d66879f06adde5fbdc"
+    },
+    {
+      "path": "acquisition-receipt.json",
+      "bytes": 520,
+      "sha256": "b7e065280abdd27f070f47b7990312931608812aa444f544b8ffa5821e287e21"
+    },
+    {
+      "path": "paging-receipt.json",
+      "bytes": 703,
+      "sha256": "8bbe1dbf39291555f772f63a8e1b243f0e2ea3ee0edc0b4ace1a9389ebee59cd"
+    },
+    {
+      "path": "final-replay-receipt.json",
+      "bytes": 19134,
+      "sha256": "d9ee0610d8fd72298a0340db3d5a5ac163292a05ec85f62c58eec49bd9b75fa8"
+    },
+    {
+      "path": "requests/managed-baseline-final-runtime.json",
+      "bytes": 45827,
+      "sha256": "5dfbeecaf4ab01c9d7eeb35822fb30ff9ee9440555a5b0a524afd6684906aae1"
+    },
+    {
+      "path": "results/managed-baseline-final-runtime.json",
+      "bytes": 272426,
+      "sha256": "bc30b767b7e475aba5e8cf452c57b39957607353b4c4a9d954d67b4b6281e41d"
+    },
+    {
+      "path": "requests/managed-revision-final-runtime.json",
+      "bytes": 376251,
+      "sha256": "12540ddc13949062f6a6f480d7e8a32a392f5e2edeeb48996ee533810f619724"
+    },
+    {
+      "path": "results/managed-revision-final-runtime.json",
+      "bytes": 544670,
+      "sha256": "989776a78f261ae3cdb172d60d4cc8e39113607052c6b08b018b022fd1918803"
+    },
+    {
+      "path": "requests/source-prose-age-boundary.json",
+      "bytes": 16955,
+      "sha256": "2cf39961dc81ccc3cd3da64ad3fdadd88de2f36662b9933a916534db56c91f60"
+    },
+    {
+      "path": "results/source-prose-age-boundary.json",
+      "bytes": 81782,
+      "sha256": "10cd94872baf4d92423d4de57107d019d93a9ecd4949d773b186dc7153ba7eba"
+    }
+  ],
+  "file_count": 12,
+  "bytes": 1370509
+}

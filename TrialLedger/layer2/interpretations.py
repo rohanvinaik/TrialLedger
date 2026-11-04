@@ -15,6 +15,7 @@ from TrialLedger.layer2 import entail
 from TrialLedger.layer2 import interpretation_bindings as binding_engine
 from TrialLedger.layer2 import signals as signal_engine
 from TrialLedger.layer2.design_bounds import common_result
+from TrialLedger.layer2.reasoning_explanations import interpretation_contrast_code
 
 
 @dataclasses.dataclass(frozen=True)
@@ -354,8 +355,61 @@ def _frame_row(
     }
 
 
+def _answer_links(
+    frames: list[dict], chosen: list[dict], index: int, fixed: tuple[a.ScopedAssertion, ...]
+) -> list[dict]:
+    """Link actual answers and deciding premise scopes; labels never supply a scope or warrant."""
+    links = []
+    for frame_index, frame in enumerate(frames):
+        if frame not in chosen:
+            continue
+        query = frame["queries"][index]
+        proof = query["decision"]["proof"]
+        premise_links = []
+        premises = [
+            (_plain(item), "/result/fixed/assertions/" + str(number)) for number, item in enumerate(fixed)
+        ] + [
+            (item, f"/result/interpretations/{frame_index}/premises/assumptions/{number}")
+            for number, item in enumerate(frame["premises"]["assumptions"])
+        ]
+        for premise, path in premises:
+            if premise["id"] in proof:
+                premise_links.append(
+                    {
+                        "id": premise["id"],
+                        "path": path,
+                        "criterion_ref": premise["criterion_ref"],
+                        "cohort": premise["cohort"],
+                        "branch": premise["branch"],
+                        "standing": premise["status"],
+                    }
+                )
+        path = f"/result/interpretations/{frame_index}/queries/{index}"
+        links.append(
+            {
+                "frame": frame["id"],
+                "origin": frame["origin"],
+                "frame_state": frame["state"],
+                "query": query["id"],
+                "result": query["result"],
+                "query_path": path,
+                "warrant_path": path + "/warrant",
+                "standing": query["warrant"]["status"],
+                "blockers": list(query["warrant"]["blockers"]),
+                "deciding_premises": premise_links,
+            }
+        )
+    return links
+
+
 def _consequences(
-    fixed_queries: list[dict], frames: list[dict], floor_conflict: bool, selected: str | None, selection: str
+    fixed_queries: list[dict],
+    frames: list[dict],
+    floor_conflict: bool,
+    selected: str | None,
+    selection: str,
+    context: entail.Context,
+    fixed_assertions: tuple[a.ScopedAssertion, ...],
 ) -> list[dict]:
     surviving = [row for row in frames if row["state"] in ("compatible", "unresolved")]
     chosen = [row for row in surviving if row["id"] == selected] if selected is not None else surviving
@@ -373,11 +427,25 @@ def _consequences(
         )
         if floor_conflict or selection == "refused":
             state = "CONFLICT" if floor_conflict else entail.UNDETERMINED
+        contrast_code = (
+            "none"
+            if floor_conflict or selection == "refused"
+            else interpretation_contrast_code(
+                tuple(row["queries"][index]["result"] for row in chosen), selected is not None
+            )
+        )
+        contrast = {
+            "code": contrast_code,
+            "context": dataclasses.asdict(context),
+            "answers": _answer_links(frames, chosen, index, fixed_assertions),
+            "path_basis": "relative_to_this_reason_envelope",
+        }
         consequences.append(
             {
                 "id": fixed["id"],
                 "body": fixed["body"],
                 "result": state,
+                "contrast": contrast,
                 "frames": [row["id"] for row in chosen],
                 "basis": "selected_interpretation"
                 if selected is not None
@@ -394,6 +462,11 @@ def _consequences(
                         }
                         | ({"fixed_floor_conflict"} if floor_conflict else set())
                         | ({"selected_interpretation_refused"} if selection == "refused" else set())
+                        | (
+                            {contrast_code}
+                            if state == entail.UNDETERMINED and contrast_code != "none"
+                            else set()
+                        )
                     ),
                 },
             }
@@ -482,7 +555,9 @@ def resolve(
         "incoherent": [row["id"] for row in frames if row["state"] == "incoherent"],
         "unresolved": [row["id"] for row in frames if row["state"] == "unresolved"],
         "selection": {"id": selected, "state": choice, "origin": "user_choice" if selected else None},
-        "consequences": _consequences(fixed_queries, frames, floor_conflict, selected, choice),
+        "consequences": _consequences(
+            fixed_queries, frames, floor_conflict, selected, choice, context, fixed_assertions
+        ),
         "limits": (
             "Exact conditional checks over declared readings; compatibility is not source truth or clinical "
             "recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, "

@@ -1,0 +1,23 @@
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/coherence.py:195: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/coherence.py:196: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/coherence.py:197: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/design_session.py:101: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/expectations.py:106: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/expectations.py:107: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/expectations.py:108: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/expectations.py:109: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:19: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:20: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:21: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:22: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:23: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:24: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:25: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:41: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:42: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:43: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:44: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:60: info: Not confirmed.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:61: info: Not confirmed.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:62: info: Not confirmed.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/reasoning_explanations.py:63: info: Not confirmed.

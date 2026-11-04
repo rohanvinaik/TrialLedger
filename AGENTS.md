@@ -64,6 +64,10 @@ design element required, forbidden or admissible. Weighting importance and recom
 person's expert review. The reasoning can be exact because it works with reported counts and stated
 criteria, not estimates of biology.
 
+A frequency `tier: met` means the declared-set lower bound meets its numerical threshold. Report its
+`description.stating`/`trials`, silences and scope, even for two of two; it establishes no clinical standard.
+Association support is a separate requirement, not a minimum sample for reporting an exact frequency.
+
 ## How the work divides, and what bounds each output
 
 | Stage | What happens | Bounded by |
@@ -249,6 +253,11 @@ Keep one entry per consequential choice:
   0–2 allows it").
 - **Status:** open, or chosen by the person (their premise, with its origin).
 
+Retain the literal accepted wording, revision and actual exchange reference when available in the working
+brief and existing provenance fields. A caller-written “confirmed” label does not authenticate a human
+exchange. Label simulated choices explicitly; never invent confirmation. Reuse an unchanged agreement and
+do not request approval for copied registry values.
+
 Something's wrong goes first, as a blocker. Your call becomes an entry. Not knowable becomes an evidence gap
 on the relevant entry; a computation limit becomes a separate computation task. Settled results are context
 cited from the entry they inform. When the person settles a decision, record it as their premise and recompute
@@ -309,6 +318,14 @@ retained. RxNorm PIN means precise ingredient; it does not by itself mean a salt
 product identity from a name prefix. Relay does not enrich gathered drugs: not looked up is not no class.
 Search-vocabulary resolution is separate from clinical interpretation of retrieved studies.
 
+**Name searches and acquisition budgets.** A name need not be in the acronym field. Use a request such as
+`{"params":{"query.term":"\"CodeBreaK 200\""}}`, preview through the ordinary landscape route and check
+returned identity. Search defaults are 1,000 studies and 100 registry requests, checked at the first ID count
+before bulk retrieval. Optional `acquisition.max_studies`/`max_registry_requests` are positive integers;
+declare a larger intended scope explicitly rather than silently broadening it. The effective policy and
+observed work are retained for resume. Raw `pull` has corresponding `--max-studies` and
+`--max-registry-requests` flags. This is acquisition protection, not a limit on copied evidence in local replay.
+
 **Read the record in pages.** Start with the study index or the exact requested address, then retrieve
 relevant sections. Pages are limited by entries and bytes. `navigation: addresses` is a directory, not source
 data; follow the relevant entry's `address` using part `address`. Follow `page.next_offset` to cover all
@@ -318,6 +335,11 @@ page, a directory or a chunk as complete evidence. Limits never authorize omitti
 shortening source text. Full files remain the handoff for complete records. Use bounded batches and keep
 completed work in files rather than copying every response into the conversation. These controls bound
 conversational output, not the process or the solver.
+
+The CLI has the same shared access: `trialledger record FOLDER --part studies`, `--part study --nct NCT...`,
+or `--part address --address /studies/0/criteria`. Use its page/text/byte controls and follow all continuations
+just as in MCP. A passage's optional `source_context` copies the nearest structural heading/label and exact
+offsets; show it beside the passage. It does not establish entry, crossover, arm or cohort scope.
 
 **Answer from evidence.** Use clinical language and quote exact source text when needed. Do not substitute
 your medical knowledge for an absent trial answer or interpret criteria while gathering.
@@ -414,6 +436,14 @@ interpolated layer. Corpus factual calculations admit only known/resolved inputs
 alone never confer standing. Keep the actual origin in `basis` and never mark an unsettled reading known to
 make a calculation run. The [consumer guide](docs/REASONING_CONSUMERS.md) covers migration, per-feature
 overrides, pending counts and consumer-specific abstention.
+
+Coordinates return `effects` separately from `admission`. Inspect each input's consumers and code:
+`no_consumer`, `inactive`, `redundant`, `withheld`, `narrowed` or `guarded`. A veto is guarded only when
+the rule's positive requirements otherwise hold; preserved alternatives can be useful information even
+without removals. Marginal retraction deltas are not unique proofs or clinical causality. An explicit finite
+`setting` restriction represents a separate accepted choice; `setting_word` alone does not supply progression
+or establish a maintenance equivalence. Keep known and default-layer conflicts distinct: an interpolated
+conflict calls for examining the default and premises, not declaring the known floor contradictory.
 
 ### Baseline witnesses: `design_bounds`
 
@@ -539,6 +569,9 @@ premise ledger and use the discovered projection slots. A projection cannot prom
 user choice into a comparator's source statement. Sources/contexts remain exact; new-trial adoption is explicit.
 Evidence searches reserve their bounded child solver work as part of the session's aggregate budget.
 The `source_study` projection owns both `study` and `expected_digest`; include neither in analysis parameters.
+For its historical analysis target, copy `scope.study` from a source inspection's
+`/result/source/study_ref` for this exact snapshot, not an NCT ID or a reconstructed URI. The local source
+ledger ID used by `use.premise` is a separate identity.
 
 Read `session_disposition`, origin and coverage beside the underlying findings. Historical unknowns are
 evidence questions. A design choice needs distinct alternatives actually feasible under the represented
@@ -546,6 +579,11 @@ constraints; two labels or two uncompleted checks do not suffice. A selected opt
 chosen with open checks. Session revisions freshly replay both supplied snapshots and keep full child
 requests/results and consequence diffs. Save these returned objects with the human working brief; the
 operation writes no files, authenticates no clinical confirmation and generates no complete protocol.
+
+Session `work.expanded_items` measures copied structure diagnostically. Its legacy `max_expanded_items`
+limit is nonoperative; complete old/new source replay remains required. Genuine aggregate solver-work,
+analysis-count and output-byte limits still refuse by named codes. Do not trim a source, reuse a stale answer
+or reduce the requested dependency graph to get past a limit.
 
 ### Competing readings: `interpretations`
 
@@ -560,6 +598,12 @@ contradicts this rule. Here is the distinction we still need to settle." Compati
 represented constraints, not that it is the intended protocol or clinically preferable. A sole survivor stays
 conditional on the declared family. Selection is the person's choice and cannot override a fixed
 contradiction. Revise and rerun the complete request, retaining earlier results.
+
+Read each common consequence's `contrast` and linked frame answers. OUT_OF_SCOPE versus REFUTED is a scope
+question, not a contradiction between criteria; a selected crossover-only reading still does not answer an
+entry question. `contrast_path` and `answer_paths` in metadata point to the actual child results, including
+inside source assertions and managed sessions. Explain the remaining distinction without obscuring a settled
+independent fixed-floor answer.
 
 Binding checks are real consumers: population uses check study, population, arm, time, edition and the subset,
 same-universe or partition relation; definitions check adoption and the rule edition. A mismatch is an
@@ -620,6 +664,11 @@ and record. The operation neither writes that file nor alters the report.
 The full discovery reply also names supporting Python building blocks: literal number/unit/time parsers, typed
 registries, indication/applicability, deviation status, review flags and evaluation utilities. They are
 components under documented preconditions, not extra MCP operations and not an automatic reader of trial text.
+Python callers can use `layer2.construction` for strict quantity, enum, literal and scoped-assertion helpers;
+`expanded` exposes their canonical request representation. Scope, force and origin remain explicit, standing
+defaults to proposed, and no prose is interpreted. MCP-only callers use the discovered explicit shapes.
+`deviation_status` refuses unknown audit/status and malformed qualifier counts with named invalid codes;
+only a valid unexplained explicit negation establishes a verified deviation under its supplied premises.
 An MCP-only assistant uses the exposed operations and states any remaining gap. The
 [full design and component map](openspec/changes/add-design-synthesis/design.md) covers the intended source
 binding, significance, evidence, recommendation, human-decision and protocol-writing stages; no automatic

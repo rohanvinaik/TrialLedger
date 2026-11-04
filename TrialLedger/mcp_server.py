@@ -57,9 +57,45 @@ import httpx
 
 from TrialLedger import __version__
 from TrialLedger import classes as rx
+from TrialLedger.capabilities import DISCOVERY_VIEWS, OPERATIONS, REASONING_WORDS
 from TrialLedger.classes import CLASS_SOURCES
-from TrialLedger.contract import FIELDS, SCHEMA_VERSION
 from TrialLedger.doctor import NEXT_STEP, report
+from TrialLedger.evidence_access import (
+    MANIFEST_KEYS as MANIFEST_KEYS,
+)
+from TrialLedger.evidence_access import (
+    RECORD_PAGE_LIMIT as RECORD_PAGE_LIMIT,
+)
+from TrialLedger.evidence_access import (
+    RECORD_PARTS as RECORD_PARTS,
+)
+from TrialLedger.evidence_access import (
+    RECORD_WORDS as RECORD_WORDS,
+)
+from TrialLedger.evidence_access import (
+    STATUS_KEYS as STATUS_KEYS,
+)
+from TrialLedger.evidence_access import (
+    STUDY_LINE as STUDY_LINE,
+)
+from TrialLedger.evidence_access import (
+    _served as _served,
+)
+from TrialLedger.evidence_access import (
+    page_window as page_window,
+)
+from TrialLedger.evidence_access import (
+    pointer_value as pointer_value,
+)
+from TrialLedger.evidence_access import (
+    read_record,
+)
+from TrialLedger.evidence_access import (
+    record_view as record_view,
+)
+from TrialLedger.evidence_access import (
+    study_line as study_line,
+)
 from TrialLedger.landscape import JSON_NAME
 from TrialLedger.operate import BOOK_NAME, RESOLUTION_NAME, Outcome, run, run_exit
 from TrialLedger.preview import PREVIEWED, preview, scope_words
@@ -68,8 +104,6 @@ from TrialLedger.record_access import (
     MAX_BYTES,
     MIN_BYTES,
     TEXT_LIMIT,
-    bounded_view,
-    response_bytes,
 )
 from TrialLedger.request import PHASES, STATUSES, STUDY_TYPES
 from TrialLedger.steps import MODES, NEXT_NAME
@@ -114,8 +148,7 @@ INSTRUCTIONS = (
     "not observed results. Handle paging and retries yourself, keeping complete evidence in files. "
     "The separate reason tool supports design restrictions, contradictions, NSCLC settings and patterns "
     'across a comparison set. Start with {"request":{"operation":"describe"}} for the overview, then '
-    "describe view entailment, coordinates, corpus, design_bounds, signals, interpretations or "
-    "source_assertions for formats and examples; "
+    f"describe view {REASONING_WORDS} for formats and examples; "
     "worked_session and full remain available on demand. Show material premises together in clinical "
     "words, settle ambiguities once and rerun when they change. Confirmation establishes the person's "
     "premise, not a registry fact. Give the answer, deciding basis and material open items naturally; "
@@ -209,52 +242,14 @@ ARGUMENT_WORDS = {
     "name: letters, digits, '.', '_' or '-', starting with a letter or digit; an NCT number: NCT and eight "
     "digits).",
 }
-RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "address")
 # The most entries one call returns of a part that is a list or an object (studies, fields, findings,
 # questions, and a list or object an address names): the rest is read page by page, with offset.
-RECORD_PAGE_LIMIT = 50
-RECORD_WORDS = {
-    "not_a_record": "landscape.json in this run folder is not a record of TrialLedger's form; do not answer "
-    "from it.",
-    "schema_not_4": "landscape.json in this run folder was written under another form of the record (its "
-    "schema_version is not 4), which these tools do not read. Call landscape with a new run name and the "
-    "same request to gather it again.",
-    "nct_needed": "part study needs nct, the study's NCT number (part studies lists them).",
-    "no_such_study": "The record holds no study of that NCT number. held lists available IDs when small; "
-    "otherwise follow next for the paged study index.",
-    "address_needed": "part address needs address, a row's address in the record as the workbook gives it "
-    "(a JSON pointer such as /studies/0/adverse_events/events/3).",
-    "not_a_pointer": "address must be a JSON pointer starting with '/', each step a key or a list position "
-    "written without leading zeros (for example /studies/1/posted_outcomes/0), as the workbook's 'Address in "
-    "the record' column gives it.",
-    "outside_record": "The record holds nothing at that address (a step names a key it does not have, a list "
-    "position past its end, or steps into a single value). Check the address against the workbook's 'Address "
-    "in the record' column.",
-    "offset_out_of_range": "offset must be 0, or a position before the end of the part (page.total gives "
-    "its length).",
-    "limit_out_of_range": f"limit must be between 1 and {RECORD_PAGE_LIMIT}.",
-    "unknown_part": "part must be one of " + ", ".join(RECORD_PARTS) + ".",
-    "max_bytes_out_of_range": f"max_bytes must be an integer from {MIN_BYTES} to {MAX_BYTES}.",
-    "text_offset_out_of_range": "text_offset must be 0 or a character position before the end of the text.",
-    "text_limit_out_of_range": f"text_limit must be an integer from 1 to {TEXT_LIMIT}.",
-    "not_text": "Text offsets apply only to a string. Follow the returned addresses for nested values.",
-    "value_too_large": "The address or scalar cannot fit this response budget. Increase max_bytes up to "
-    f"{MAX_BYTES}, or use the complete landscape.json in this run folder; no source value was shortened.",
-}
-
-
-def _served(part: str) -> tuple[str, ...]:
-    """The names of the contract fields the record tool serves in `part` (contract.FIELDS' consumers)."""
-    return tuple(field.name for field in FIELDS if ("mcp", part) in field.consumers)
 
 
 # What each part serves, from the contract: the study fields of a line of part studies (each a top-level key
 # of the study, or a key within one); the record's top-level sections of parts manifest and statuses; the
 # sections of part findings, each as its path in the record (a list of rows, such as cohort.frequency or
 # recurring_criteria, or one value, such as cohort.reason); and the study field of part questions.
-STUDY_LINE = tuple(name.removeprefix("studies[].") for name in _served("studies"))
-MANIFEST_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("manifest")))
-STATUS_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("statuses")))
 
 # ── the tools: each one's name, description and input schema ──────────────────────────────────────────────
 
@@ -321,6 +316,17 @@ REQUEST = {
             "additionalProperties": {"type": "string"},
             "description": "Raw ClinicalTrials.gov API parameters for anything else (for example "
             '{"filter.ids": "NCT04852770,NCT01030536"} for trials by number).',
+        },
+        "acquisition": {
+            "type": "object",
+            "properties": {
+                "max_studies": {"type": "integer", "minimum": 1},
+                "max_registry_requests": {"type": "integer", "minimum": 1},
+            },
+            "additionalProperties": False,
+            "description": "Expected NIH study and request budget; omitted search limits default to "
+            "1000 studies and 100 requests. Explicit identifiers use their requested scope. "
+            "Larger intended pulls can declare an adequate budget; this is not a clinical restriction.",
         },
     },
     "additionalProperties": False,
@@ -494,12 +500,10 @@ TOOLS: dict[str, dict[str, Any]] = {
         "entailed, refuted, inconsistent or undetermined with named reasons; undetermined is exact "
         "abstention, not failure. You translate: prepare the structured premises from what the person "
         "confirms; they need not know the format. First call with "
-        '{"request":{"operation":"describe"}} for a short overview, then describe with view entailment, '
-        "coordinates, corpus, design_bounds, signals, interpretations or source_assertions for exact "
-        "formats, guides and examples. Views "
+        '{"request":{"operation":"describe"}} for a short overview, then '
+        f"describe with view {REASONING_WORDS} for exact formats, guides and examples. Views "
         "worked_session and full provide the complete demonstration and manual on demand. Reasoning "
-        "requests name operation entailment, coordinates, corpus, design_bounds, signals, interpretations "
-        "or source_assertions. "
+        f"requests name operation {REASONING_WORDS}. "
         "Interpretations keep rival hypotheses and source-bound population/definition applications separate, "
         "with exact conditional consequences and compatibility/refutation warrants. Witnesses bound "
         "declared candidate designs through explicit scoped eligibility bridges and exception allowances. "
@@ -517,38 +521,17 @@ TOOLS: dict[str, dict[str, Any]] = {
                     "properties": {
                         "operation": {
                             "type": "string",
-                            "enum": [
-                                "describe",
-                                "entailment",
-                                "coordinates",
-                                "corpus",
-                                "design_bounds",
-                                "signals",
-                                "interpretations",
-                                "source_assertions",
-                            ],
+                            "enum": list(OPERATIONS),
                         },
                         "view": {
                             "type": "string",
-                            "enum": [
-                                "overview",
-                                "entailment",
-                                "coordinates",
-                                "corpus",
-                                "design_bounds",
-                                "signals",
-                                "interpretations",
-                                "source_assertions",
-                                "worked_session",
-                                "full",
-                            ],
+                            "enum": list(DISCOVERY_VIEWS),
                             "description": "For describe only; default overview.",
                         },
                     },
                     "required": ["operation"],
-                    "description": "Start with operation describe for the overview; view entailment, "
-                    "coordinates, corpus, design_bounds, signals, interpretations or source_assertions "
-                    "gives formats and example. Views "
+                    "description": "Start with operation describe for the overview; "
+                    f"view {REASONING_WORDS} gives formats and example. Views "
                     "worked_session "
                     "and full give the complete demonstration/manual. Other operations need typed premises.",
                 }
@@ -711,143 +694,6 @@ def save_target(save_as: Any, named: list[Any]) -> str:
     return "ok" if save_as in named else "not_named"
 
 
-def page_window(total: int, offset: int, limit: int) -> tuple[str, dict[str, Any]]:
-    """The page of a part `total` entries long that an offset and a limit name (pure — pinned).
-
-    ("ok", page) with page = {offset, limit, returned, total, next_offset}: the entries from offset, at most
-    limit of them; next_offset the position the next page starts at, None on the last page.
-      offset_out_of_range — offset below 0, or not before the end (0 is always a page, the only one of an
-                            empty part);
-      limit_out_of_range  — limit below 1 or above RECORD_PAGE_LIMIT.
-    The refusals carry an empty page.
-    """
-    if limit < 1 or limit > RECORD_PAGE_LIMIT:
-        return "limit_out_of_range", {}
-    if offset < 0 or (offset >= total and offset != 0):
-        return "offset_out_of_range", {}
-    returned = min(limit, total - offset)
-    following = offset + returned
-    page = {"offset": offset, "limit": limit, "returned": returned, "total": total}
-    return "ok", page | {"next_offset": following if following < total else None}
-
-
-def pointer_value(document: Any, pointer: Any) -> tuple[str, Any]:
-    """The value at a JSON pointer (RFC 6901) in a document (pure — pinned).
-
-    A workbook row's address in the record: "/" then each step, "~1" written for "/" and "~0" for "~" within
-    a step. ("ok", the value) when every step is held: a key of an object, or a list position written in
-    decimal without leading zeros. Codes:
-      not_a_pointer  — not a string starting with "/", or a "~" not followed by 0 or 1;
-      outside_record — a step the document does not hold: a key an object lacks, a list position that is
-                       not a number or is past the list's end ("-", the position after the end, among them),
-                       or any step into a value that is neither an object nor a list.
-    """
-    if not isinstance(pointer, str) or not pointer.startswith("/"):
-        return "not_a_pointer", None
-    node = document
-    for raw in pointer[1:].split("/"):
-        if re.search(r"~(?![01])", raw):
-            return "not_a_pointer", None
-        step = raw.replace("~1", "/").replace("~0", "~")
-        if isinstance(node, dict) and step in node:
-            node = node[step]
-        elif isinstance(node, list) and re.fullmatch(r"0|[1-9][0-9]*", step) and int(step) < len(node):
-            node = node[int(step)]
-        else:
-            return "outside_record", None
-    return "ok", node
-
-
-def study_line(study: dict[str, Any]) -> dict[str, Any]:
-    """The contract's source fields for one index line, preserving missing-value objects whole.
-
-    Nested source fields retain their parent object. No derived clinical category is substituted.
-    """
-    line: dict[str, Any] = {}
-    for name in STUDY_LINE:
-        top, _, inner = name.partition(".")
-        top = top.removesuffix("[]")
-        held = study.get(top)
-        if inner and isinstance(held, dict) and "status" not in held:
-            line.setdefault(top, {})[inner] = held.get(inner)
-        else:
-            line[top] = held
-    return line
-
-
-def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, Any]]:
-    """Read a part of the direct source record, with bounded paging and exact JSON addresses.
-
-    Parts: manifest, statuses, fields, studies, study and address. No clinical inference or
-    proposed design findings are part of a layer-one record. A different schema is refused.
-    """
-    if not isinstance(record, dict) or not isinstance(record.get("studies"), list):
-        return "not_a_record", {}
-    studies = record["studies"]
-    if not all(isinstance(study, dict) for study in studies):
-        return "not_a_record", {}
-    if record.get("schema_version") != SCHEMA_VERSION:
-        return "schema_not_4", {}
-    budget = arguments.get("max_bytes", DEFAULT_BYTES)
-    if type(budget) is not int or not MIN_BYTES <= budget <= MAX_BYTES:
-        return "max_bytes_out_of_range", {}
-    part = arguments.get("part")
-    if part == "study":
-        nct = arguments.get("nct")
-        if nct is None:
-            return "nct_needed", {}
-        held = [study.get("nct") for study in studies]
-        if nct not in held:
-            if response_bytes({"held": held}) > budget:
-                return "no_such_study", {"held_count": len(held), "next": {"part": "studies", "offset": 0}}
-            return "no_such_study", {"held": held}
-    whole: Any
-    address = ""
-    if part == "manifest":
-        whole = {key: record.get(key) for key in MANIFEST_KEYS}
-    elif part == "statuses":
-        whole = {key: record.get(key) for key in STATUS_KEYS}
-    elif part == "study":
-        whole = studies[held.index(nct)]
-        address = f"/studies/{held.index(nct)}"
-    elif part == "studies":
-        whole = [study_line(study) for study in studies]
-        address = "/studies"
-    elif part == "fields":
-        whole = record.get("fields")
-        address = "/fields"
-    elif part == "address":
-        if "address" not in arguments:
-            return "address_needed", {}
-        code, whole = pointer_value(record, arguments["address"])
-        if code != "ok":
-            return code, {}
-        address = arguments["address"]
-    else:
-        return "unknown_part", {}
-    key = "value" if part == "address" else part
-    if not isinstance(whole, list | dict):
-        return bounded_view(whole, address, key, None, arguments)
-    if "text_offset" in arguments or "text_limit" in arguments:
-        return "not_text", {}
-    code, page = page_window(
-        len(whole), arguments.get("offset", 0), arguments.get("limit", RECORD_PAGE_LIMIT)
-    )
-    if code != "ok":
-        return code, {}
-    code, view = bounded_view(whole, address, key, page, arguments)
-    if (
-        part in {"manifest", "statuses"}
-        and code == "ok"
-        and "navigation" not in view
-        and page["next_offset"] is None
-        and page["offset"] == 0
-    ):
-        # Preserve these existing compact reply shapes when the complete part fits.
-        view.pop("page", None)
-    return code, view
-
-
 # ── the shell: it reads messages, asks the decisions what they mean, runs the tools and answers ────────────
 
 
@@ -980,13 +826,7 @@ def _scope(context: Context, folder: Path, arguments: dict[str, Any]) -> tuple[d
 
 
 def _record(_context: Context, folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
-    if not (folder / JSON_NAME).is_file():
-        words = "This run has no record yet: call landscape until it reports complete."
-        return {"error": "no_record", "why": words}, True
-    code, view = record_view(_read_json(folder / JSON_NAME), arguments)
-    if code != "ok":
-        return {"error": code, "why": RECORD_WORDS[code], **view}, True
-    return {"part": arguments["part"], **view}, False
+    return read_record(folder, arguments)
 
 
 def _reason(_context: Context, _folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:

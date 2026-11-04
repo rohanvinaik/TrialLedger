@@ -1,0 +1,49 @@
+TrialLedger/layer2/expectations.py::deviation_status: ✓ every killable mutant killed + line-complete — 5 candidate-equivalent (UNPROVEN: `flag` if truly equivalent, or add a distinguishing input); 2 crash-only value gap(s) — detected by crash; no value pins them
+  mutants: 5 → 5 survivors; score 97% → 97% (169/174 killed)
+  value: 7 → 7 unspecified; score 96% → 96% (167/174 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 83 operator mutants · comprehensive — full mutant universe · 167/174 = 96% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 7 survivors, 1 sound tests written
+  pass 1: 7 survivors, 0 sound tests written
+  remaining: 1 BOUNDARY, 1 OUTPUT, 3 SWAP, 2 TYPE
+  ✓ every killable mutant killed — remaining survivors have no distinguishing input (candidate-equivalent, NOT proven)
+  candidate-equivalent — retained, UNPROVEN (5: BOUNDARY, OUTPUT, SWAP, TYPE); no distinguishing input in 136 tried. To KILL: supply an input reaching a mutated branch below (or `flag` what you can PROVE equivalent):
+      boundary-probed: 112 further probe input(s) — both sides of every edge, the None of every Optional — distinguished none of these
+    → mutant BOUNDARY_42a1e69c [BOUNDARY]: - if status == 'explicitly_negated' and qualifiers > 0:  + if True and qualifiers > 0:
+    → mutant OUTPUT_4a8de3a1 [OUTPUT]: - return 'not_applicable'  + return status
+    → mutant SWAP_1c6f4f3a [SWAP]: - if not isinstance(status, str) or status not in STATUSES:  + if not status or status not in STATUSES:
+    → mutant TYPE_1ac72ca9 [TYPE]: - if not isinstance(audit, str) or audit not in ('', 'valid', 'invalid'):  + if not True or audit not in ('', 'valid', 'invalid'):
+    → mutant TYPE_acdd426b [TYPE]: - if not isinstance(status, str) or status not in STATUSES:  + if not True or status not in STATUSES:
+      target:  deviation_status(status: str, qualifiers: int, audit: str)
+      template: --input "(<status>, <qualifiers>, <audit>)"   # replace every <...> slot before running
+  value-equivalent, crash-only-distinguishable (2: SWAP) — the mutant RAISES where the original returns, so no return-value assertion can pin it. Your suite already detects every one by crash — no input is owed for detection; a ↳ line below, where present, names the boundary input that would make the distinction explicit. An input distinguishes each, so none is an equivalence candidate — nothing to `flag`:
+    → mutant SWAP_a60fcd07 [SWAP]: - if not isinstance(audit, str) or audit not in ('', 'valid', 'invalid'):  + if not isinstance(str, audit) or audit not in ('', 'valid', 'invalid'):
+    → mutant SWAP_7006c2db [SWAP]: - if not isinstance(status, str) or status not in STATUSES:  + if not isinstance(str, status) or status not in STATUSES:
+  uncertain — no synthesized input discriminates the remaining survivor(s), and their inputs are expressible as literals — supply the distinguishing value(s) with --input rather than searching the covering suite
+  ▶ boundary-probed and still undistinguished — if you can PROVE one equivalent, record it: `detective flag 'TrialLedger/layer2/expectations.py::deviation_status' BOUNDARY_42a1e69c --two-sign --note why-equivalent`   (repeat for: OUTPUT_4a8de3a1, SWAP_1c6f4f3a, TYPE_1ac72ca9, TYPE_acdd426b)
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 5143 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 12 test(s) cover all kills + lines
+  PROPOSED removals (35, redundant for BOTH kills and lines — confirm to delete, never auto): legacy:tests/detective/test_TrialLedger_layer2_expectations_deviation_status_a7a3971c6d_synth.py::test_deviation_status_value_0, tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[None-0-valid-invalid_status], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[explicitly_negated-0-None-invalid_audit], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[explicitly_negated-0-audit18-invalid_audit], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[explicitly_negated-0-valid-invalid_qualifiers], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[explicitly_negated-0.0-valid-invalid_qualifiers], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[explicitly_negated-False-valid-invalid_qualifiers], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[explicitly_negated-None-valid-invalid_qualifiers], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[explicitly_negated-qualifiers15-valid-invalid_qualifiers], tests/test_deviation_validation.py::test_deviation_contract_returns_named_remedies[status16-0-valid-invalid_status], tests/test_deviation_validation.py::test_exact_integer_qualifier_contract_refuses_int_enum, tests/test_deviation_validation.py::test_invalid_audit_preserves_invalid_extraction_override[None], tests/test_deviation_validation.py::test_invalid_audit_preserves_invalid_extraction_override[explicitly_negated], tests/test_deviation_validation.py::test_invalid_audit_preserves_invalid_extraction_override[not_applicable], tests/test_deviation_validation.py::test_invalid_audit_preserves_invalid_extraction_override[not_documented], tests/test_deviation_validation.py::test_invalid_audit_preserves_invalid_extraction_override[status7], tests/test_deviation_validation.py::test_invalid_audit_preserves_invalid_extraction_override[unknown], tests/test_deviation_validation.py::test_invalid_audit_preserves_invalid_extraction_override[unresolved], tests/test_deviation_validation.py::test_invalid_extraction_override_does_not_certify_malformed_observation[-1], tests/test_deviation_validation.py::test_invalid_extraction_override_does_not_certify_malformed_observation[0], tests/test_deviation_validation.py::test_invalid_extraction_override_does_not_certify_malformed_observation[None], tests/test_deviation_validation.py::test_invalid_extraction_override_does_not_certify_malformed_observation[True], tests/test_deviation_validation.py::test_invalid_extraction_override_does_not_certify_malformed_observation[qualifiers3], tests/test_deviation_validation.py::test_malformed_qualifier_is_not_ignored_for_other_valid_statuses[explicitly_negated], tests/test_deviation_validation.py::test_malformed_qualifier_is_not_ignored_for_other_valid_statuses[not_applicable], tests/test_deviation_validation.py::test_malformed_qualifier_is_not_ignored_for_other_valid_statuses[not_documented], tests/test_deviation_validation.py::test_malformed_qualifier_is_not_ignored_for_other_valid_statuses[present], tests/test_deviation_validation.py::test_malformed_qualifier_is_not_ignored_for_other_valid_statuses[unresolved], tests/test_expectations.py::test_deviation_status[explicitly_negated-0--verified_deviation], tests/test_expectations.py::test_deviation_status[explicitly_negated-1--explanation_supported], tests/test_expectations.py::test_deviation_status[not_applicable-0--not_applicable], tests/test_expectations.py::test_deviation_status[not_documented-0--omission], tests/test_expectations.py::test_deviation_status[present-0--conforms], tests/test_expectations.py::test_deviation_status[present-2-invalid-invalid_extraction], tests/test_expectations.py::test_deviation_status[unresolved-0--scope_unresolved]
+  wrote: tests/detective/test_TrialLedger_layer2_expectations_deviation_status_a7a3971c6d_synth.py
+  pytest wiring: pytest config already declares the marker — nothing to change; verified 1 test(s) pass under pytest
+  ▶ to run these tests: `pytest`   (only the generated ones: `pytest -m detective`; only your own: `pytest -m "not detective"`)
+  ── written to disk (auto-applied) ──
+  │ # detective-content-sha256: 789b0fd7032a673ef680025cdbf31f02308c8397056c20c5b868546fe529de40
+  │ """Auto-generated by Detective — warrant-classed tests for TrialLedger/layer2/expectations.py::deviation_status.
+  │ Function digest: 49d710a1980c5e59.
+  │
+  │ Regenerated wholesale by `detective converge`; hand edits will be
+  │ overwritten. Witness lines carry full fidelity on purpose."""
+  │
+  │ import pytest
+  │
+  │ from TrialLedger.layer2.expectations import deviation_status
+  │
+  │
+  │ @pytest.mark.detective
+  │ def test_deviation_status_value_0():
+  │     """VALUE survivor — golden capture (pure + deterministic)."""
+  │     result = deviation_status(status="abc", qualifiers=1, audit="abc")
+  │     assert result == "invalid_audit"
+FINAL TrialLedger/layer2/expectations.py::deviation_status: ✓ COMPLETE (operator universe · modulo 5 unproven-equivalent · 2 crash-only value gaps) · 169/174 killed · 1 test(s) → tests/detective/test_TrialLedger_layer2_expectations_deviation_status_a7a3971c6d_synth.py · policy 9+neg.f5a15364c11d

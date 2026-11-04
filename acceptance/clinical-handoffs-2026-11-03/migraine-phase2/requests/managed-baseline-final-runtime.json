@@ -1,0 +1,2167 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "migraine-clock",
+    "revision": "first-dose-clock",
+    "parent_digest": null,
+    "target": {
+      "kind": "new_trial",
+      "ref": "simulated-headache-draft",
+      "scope": {
+        "study": "simulated-headache-draft",
+        "population": "simulated-randomized",
+        "arm": "all",
+        "time": "participant-course",
+        "version": "v1"
+      }
+    },
+    "sources": [
+      {
+        "id": "prazosin-source",
+        "study": {
+          "protocolSection": {
+            "identificationModule": {
+              "nctId": "NCT02266329",
+              "orgStudyIdInfo": {
+                "id": "N1136-W"
+              },
+              "secondaryIdInfos": [
+                {
+                  "id": "1IK2RX001136-01A2",
+                  "type": "NIH",
+                  "link": "https://reporter.nih.gov/quickSearch/1IK2RX001136-01A2"
+                }
+              ],
+              "organization": {
+                "fullName": "VA Office of Research and Development",
+                "class": "FED"
+              },
+              "briefTitle": "Chronic Postconcussive Headache: A Placebo-Controlled Treatment Trial of Prazosin",
+              "officialTitle": "Chronic Postconcussive Headache: A Placebo-Controlled Treatment Trial of Prazosin"
+            },
+            "statusModule": {
+              "statusVerifiedDate": "2026-03",
+              "overallStatus": "COMPLETED",
+              "expandedAccessInfo": {
+                "hasExpandedAccess": false
+              },
+              "startDateStruct": {
+                "date": "2016-01-04",
+                "type": "ACTUAL"
+              },
+              "primaryCompletionDateStruct": {
+                "date": "2023-05-31",
+                "type": "ACTUAL"
+              },
+              "completionDateStruct": {
+                "date": "2023-09-30",
+                "type": "ACTUAL"
+              },
+              "studyFirstSubmitDate": "2014-10-10",
+              "studyFirstSubmitQcDate": "2014-10-10",
+              "studyFirstPostDateStruct": {
+                "date": "2014-10-17",
+                "type": "ESTIMATED"
+              },
+              "resultsFirstSubmitDate": "2024-05-23",
+              "resultsFirstSubmitQcDate": "2024-06-24",
+              "resultsFirstPostDateStruct": {
+                "date": "2024-06-26",
+                "type": "ACTUAL"
+              },
+              "lastUpdateSubmitDate": "2026-03-10",
+              "lastUpdatePostDateStruct": {
+                "date": "2026-03-30",
+                "type": "ACTUAL"
+              }
+            },
+            "sponsorCollaboratorsModule": {
+              "responsibleParty": {
+                "type": "SPONSOR"
+              },
+              "leadSponsor": {
+                "name": "VA Office of Research and Development",
+                "class": "FED"
+              }
+            },
+            "oversightModule": {
+              "oversightHasDmc": false,
+              "isFdaRegulatedDrug": true,
+              "isFdaRegulatedDevice": false
+            },
+            "descriptionModule": {
+              "briefSummary": "The purpose of this study is to determine if prazosin is more effective than placebo in decreasing frequency, severity, disability, and other negative effects of headaches related to mild traumatic brain injury in Service Members and Veterans.",
+              "detailedDescription": "Headaches following combat-related post-concussive injury are common, and in some patients can increase in frequency and severity to become very debilitating. Posttraumatic headaches (PTHAs), particularly those following blast-related head injury, can be resistant to standard headache therapies. The objective of this study is to evaluate the effectiveness of the medication prazosin as a prophylactic (preventive) agent in treating combat-related PTHAs. Prazosin is a generic drug originally marketed over 30 years ago as a treatment for high blood pressure. It has subsequently been found to be safe and effective for treating other problems, including most recently posttraumatic stress disorder (PTSD) and disrupted sleep in active duty Iraq/Afghanistan Service Members and Veterans. In preliminary studies, prazosin has also been found to substantially reduce the intensity and frequency of PTHAs in this population. This finding is the motivation behind this study.\n\nThe investigators' hypotheses are (1) that prazosin will be more effective than placebo in easing the effects of chronic PTHAs, including headache frequency, duration, severity, use of abortive/analgesic medications, and disability caused, and (2) that improvement in headache parameters will be associated with improvement in sleep quality, PTSD symptom severity, mood, cognition, health-related quality of life, and global clinical status, and with moderation of alcohol consumption.\n\nThe total trial length is 22 - 24 weeks. Following an initial clinic visit to determine preliminary study eligibility, there will be a 4-week pre-treatment preliminary screening period, during which participants will keep a daily headache diary. The purpose of this is to confirm eligibility for randomization per inclusion/exclusion criteria and to collect baseline data for headache-related outcome measures. Participants confirmed to be eligible to continue in the study will then have a one-week sleep evaluation including actigraphy and keeping a daily sleep diary. This will be followed by a baseline study visit, during which baseline data for secondary outcome measures will be collected using validated structured self-reports and clinician interviews. Participants will be randomized 2:1 to prazosin or placebo, and the study drug dose will be gradually titrated over a 5 to 7-week period to 5 mg in the morning and 20 mg in the evening or the maximum tolerated dose. The dose titration will be followed by 12 weeks at steady-dose. For the last week of the steady-dose phase, participants will repeat the sleep evaluation. Participants will keep a headache log through the duration of the study. Results will be analyzed using standard statistical techniques."
+            },
+            "conditionsModule": {
+              "conditions": [
+                "Posttraumatic Headache",
+                "Combat Disorders",
+                "Post Concussion Syndrome",
+                "Headache",
+                "Mild Traumatic Brain Injury",
+                "Posttraumatic Migraine"
+              ],
+              "keywords": [
+                "controlled clinical trial",
+                "randomized controlled clinical trial"
+              ]
+            },
+            "designModule": {
+              "studyType": "INTERVENTIONAL",
+              "phases": [
+                "PHASE1",
+                "PHASE2"
+              ],
+              "designInfo": {
+                "allocation": "RANDOMIZED",
+                "interventionModel": "PARALLEL",
+                "interventionModelDescription": "Randomized double blind placebo-controlled clinical trial with 2:1 chance of randomization to active drug.",
+                "primaryPurpose": "TREATMENT",
+                "maskingInfo": {
+                  "masking": "QUADRUPLE",
+                  "whoMasked": [
+                    "PARTICIPANT",
+                    "CARE_PROVIDER",
+                    "INVESTIGATOR",
+                    "OUTCOMES_ASSESSOR"
+                  ]
+                }
+              },
+              "enrollmentInfo": {
+                "count": 89,
+                "type": "ACTUAL"
+              }
+            },
+            "armsInterventionsModule": {
+              "armGroups": [
+                {
+                  "label": "prazosin",
+                  "type": "ACTIVE_COMPARATOR",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.",
+                  "interventionNames": [
+                    "Drug: prazosin hydrochloride"
+                  ]
+                },
+                {
+                  "label": "placebo",
+                  "type": "PLACEBO_COMPARATOR",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.",
+                  "interventionNames": [
+                    "Drug: placebo"
+                  ]
+                }
+              ],
+              "interventions": [
+                {
+                  "type": "DRUG",
+                  "name": "prazosin hydrochloride",
+                  "description": "Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.",
+                  "armGroupLabels": [
+                    "prazosin"
+                  ],
+                  "otherNames": [
+                    "Minipress"
+                  ]
+                },
+                {
+                  "type": "DRUG",
+                  "name": "placebo",
+                  "description": "Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin.",
+                  "armGroupLabels": [
+                    "placebo"
+                  ],
+                  "otherNames": [
+                    "inactive drug; sugar pill; dummy pill"
+                  ]
+                }
+              ]
+            },
+            "outcomesModule": {
+              "primaryOutcomes": [
+                {
+                  "measure": "Headache Diary",
+                  "description": "Change from baseline (pre-treatment) to Week 12 (i.e., following 12 weeks of drug treatment) of either 1) Headaches that last 4 or more hours a day and reach a moderate to severe intensity at any point or 2) Headaches of any intensity if a medication or other treatment is used in an effort to stop the Headaches, as determined from Headache Log data.",
+                  "timeFrame": "Baseline to 12 weeks"
+                }
+              ],
+              "secondaryOutcomes": [
+                {
+                  "measure": "Headache Impact Test-6 (HIT-6)",
+                  "description": "The HIT-6 measures the impact that headaches have on a person's ability to function in daily activities, such as work, school, home, and social situations. It assesses the severity and effect of headaches on one's quality of life. The HIT-6 consists of 6 items, each scored on a Likert scale. Never = 6 points, Rarely = 8 points, Sometimes = 10 points, Very Often = 11 points, Always = 13 points. The total score is obtained by summing the individual item scores. Minimum score = 36. Maximum score = 78.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in Headache-Related Disability.\n\nIncreasing Values indicate a worse outcome, representing a higher impact of headaches on daily life.\n\nDecreasing Values indicate a better outcome, representing a lower impact of headaches on daily life.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "PTSD Checklist for DSM-5 (PCL-5)",
+                  "description": "PCL-5 is a self-report measure that assesses the presence and severity of Posttraumatic Stress Disorder (PTSD) symptoms based on the Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition (DSM-5) criteria. The PCL-5 includes 20 items, each corresponding to a PTSD symptom. Each item is rated on a 5-point Likert scale from 0 = not at all to 4 = extremely. The total score is calculated by summing the scores for each of the 20 items. Minimum Score = 0. Maximum Score = 80.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in PTSD symptoms.\n\nIncreasing Values indicate a worse outcome, representing a higher severity of PTSD symptoms.\n\nDecreasing Values indicate a better outcome, representing a lower severity of PTSD symptoms.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "Pittsburgh Sleep Quality Index (PSQI)",
+                  "description": "The PSQI measures the quality and patterns of sleep in adults. It assesses various dimensions of sleep over a one-month time period. The PSQI comprises 19 self-rated questions. The self-rated questions are grouped into seven components, each scoring between 0 and 3:\n\nSleep quality Sleep latency Sleep duration Habitual sleep efficiency Sleep disturbances Use of sleeping medication Daytime dysfunction These seven component scores are summed to yield a global PSQI score. Minimum Score = 0. Maximum Score = 21.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in sleep. Increasing scores indicate worse outcome, representing poorer sleep quality and more severe sleep disturbances. Decreasing scores indicate better outcome representing better sleep quality and fewer sleep disturbances.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "Neurobehavioral Symptom Inventory (NSI)",
+                  "description": "The NSI is a self-report measure used to assess the severity of post-concussive symptoms and neurobehavioral issues often experienced after a traumatic brain injury (TBI). It covers physical, cognitive, and emotional symptoms. The NSI includes 22 items, each rated on a 5-point Likert scale rating symptoms from None = 0 to Very Severe = 4. The total score is obtained by summing the scores for each of the 22 items. Minimum Score = 0. Maximum Score = 88.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in concussion-related symptoms.\n\nIncreasing Values indicate a worse outcome, representing more severe neurobehavioral symptoms. Decreasing Values indicate a better outcome representing less severe neurobehavioral symptoms.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "Patient Health Questionnaire-9 (PHQ-9)",
+                  "description": "The PHQ-9 is a self-administered tool used to screen, diagnose, monitor, and measure the severity of depression. It is based on the nine criteria for major depressive disorder in the DSM-IV (and is also consistent with DSM-5). The PHQ-9 consists of 9 items, each corresponding to a symptom of depression.\n\nEach item is rated on a 4-point Likert scale with None at all = 0 to Nearly every day = 3. The total score is calculated by summing the scores for each of the 9 items. Minimum Score = 0. Maximum Score = 27.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in Depressive Symptoms.\n\nIncreasing Values indicate a worse outcome, representing more severe depression symptoms.\n\nDecreasing Values indicate a better outcome, representing fewer or less severe depression symptoms.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "Alcohol Use Disorders Identification Test - Consumption (AUDIT-C)",
+                  "description": "The AUDIT-C is a brief screening tool used to identify hazardous drinking and alcohol use disorders. It focuses on alcohol consumption behaviors. The AUDIT-C consists of 3 items, each assessing a different aspect of alcohol consumption:\n\nFrequency of drinking alcohol. Quantity of alcohol consumed on a typical drinking day. Frequency of heavy drinking episodes. Each item is scored on a 5-point scale from 0 points = Never or none to 4 points indicating high frequency or quantity.\n\nThe total score is calculated by summing the scores for the three items. Minimum Score = 0. Maximum score = 12.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in alcohol use.\n\nIncreasing Values indicate a worse outcome, representing higher levels of alcohol consumption and an increased risk of alcohol use disorders.\n\nDecreasing Values indicate better outcome, representing lower levels of alcohol consumption and a lower risk of alcohol use disorders.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "Montreal Cognitive Assessment (MoCA)",
+                  "description": "The MoCA is a brief cognitive screening tool designed to assist in the detection of mild cognitive impairment. It evaluates various domains of cognitive function including memory, attention, language, visuospatial skills, and executive functions. The MoCA consists of 12 tasks which together assess multiple cognitive domains. The tasks include:\n\nVisuospatial/Executive, Naming, Memory, Attention, Language, Abstraction, Delayed Recall, Orientation.\n\nThe total score is summed from the individual task scores, with certain sections having specific scoring criteria. Minimum Score = 0. Maximum Score = 30.\n\nIncreasing Values indicate a better cognitive outcome, with higher scores reflecting better cognitive function.\n\nDecreasing Values indicate a worse cognitive outcome, with lower scores suggesting greater cognitive impairment.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "Number of Patients With a 50% or More Decrease in Mean Number of Headache Days Per 4 Weeks",
+                  "description": "Number of patients with a 50% or more decrease in mean number of headache days per 4 weeks, as determined at 4 week treatment intervals using Headache Log data.",
+                  "timeFrame": "Baseline to 12 weeks"
+                },
+                {
+                  "measure": "Photophobia - Utah Photophobia Symptom Impact Scale-12-Modified (UPSIS-12M)",
+                  "description": "UPSIS measures ictal (during headache) and interictal (outside of headache) photophobia and its adverse effects on functioning. 12 items are scored on a 0-5 Likert scale, 0 = no impact, 5 = severe impact. Items are summed. Minimum = 0 (no photophobia-related impact). Maximum = 60 (maximum impact across all items). Higher total scores indicate worse outcomes (greater impact of photophobia on daily life).",
+                  "timeFrame": "Baseline to Week 12"
+                }
+              ],
+              "otherOutcomes": [
+                {
+                  "measure": "Change From Baseline in Pupillary Light Responses",
+                  "description": "An infrared camera to measure the diameter of the pupil both during darkness and following brief pulses of light.",
+                  "timeFrame": "Baseline to 12 Weeks"
+                },
+                {
+                  "measure": "Change From Baseline in Frequency of Use of Abortive/Analgesic Agents",
+                  "description": "Frequency of Use of Abortive/Analgesic Agents at Baseline (average of 4 weeks pre-treatment) to Week 12 (average of 4 weeks following 12 weeks of drug treatment). A higher number indicates more days of abortive/analgesic agent use; a lower number indicates fewer days of use.",
+                  "timeFrame": "Baseline to Week 12"
+                },
+                {
+                  "measure": "Change From Baseline in 4-week Average Total Number of Hours of HA Pain",
+                  "description": "Total Number of Hours of headache pain over 4-weeks prior to Baseline compared to Total Number of Hours of headache pain average over 4-weeks prior to the 12-week visit using headache log data. Score is number of hours of pain. A lower score indicates less pain. A higher score indicates more pain.",
+                  "timeFrame": "Baseline to Week 12"
+                },
+                {
+                  "measure": "Change From Baseline in 4-week Average Peak HA Severity",
+                  "description": "Peak headache severity average over 4-weeks prior to Baseline compared to the peak headache severity average over 4-weeks prior to the 12-week visit using headache log data. Scored in a scale of 0=none, 1= mild, 2=moderate, or 3=severe.",
+                  "timeFrame": "Baseline to Week 12"
+                }
+              ]
+            },
+            "eligibilityModule": {
+              "eligibilityCriteria": "Inclusion Criteria:\n\n* Veterans or active duty service members aged 18 or older of either gender\n* Good general health\n* History of blast and/or impact head/neck trauma meeting DVBIC criteria for mild TBI, i.e., injury as manifested by at least one of the following:\n\n  * 1\\) any period of loss of consciousness\n  * 2\\) any loss of memory for events immediately before or after the accident\n  * 3\\) any alteration in mental status at the time of the accident (e.g., feeling dazed, disoriented, or confused)\n  * 4\\) focal neurological deficit(s) that may or may not be transient, with severity of injury not exceeding loss of consciousness 30 minutes, Glasgow Coma Scale \\<13-15 after 30 minutes, or posttraumatic amnesia \\>24 hrs,\n* Headaches that started within 3 months of a head/neck injury or pre-existing headaches that markedly worsened (by a two-fold or greater increase in frequency and/or severity) within 3 months of a head/neck injury. Headaches must either 1) last 4 or more hours a day and reach a moderate to severe intensity at any point during the headache or 2) may be of any severity or duration if the participant uses a medication or other agent in an effort to stop the headache. Headaches meeting these criteria must have been present on average at least 8 days per 4-week period over the 3 months preceding study enrollment.\n* Comorbid PTSD or other anxiety disorder is not exclusionary.\n* Fluency in English is required.\n* Persons of all races and ethnicities are eligible.\n* Female participants must agree to abstain from sexual relations that could result in pregnancy or use a reliable form of birth control during the study.\n* Continued use of prophylactic migraine medication other than the study drug is permissible if the participant has been on a stable dose for at least 4 weeks prior to the preliminary screening period and intends to continue the medication for the duration of the trial.\n\nExclusion Criteria:\n\n* Participation in other interventional research.\n* History of TBI more severe than that classified as mild by DVBIC criteria\n* A primary non migraine and/or tension-type headache disorder that accounts for the majority of current symptoms\n* History of penetrating head injury\n* Headaches of any kind of moderate or severe intensity on an average of more than 4 days per month preceding the concussive trauma\n* Acute or unstable chronic medical illness (e.g., unstable angina, myocardial infarction within 6 months, congestive heart failure, symptomatic or concerning cardiac arrhythmias; pre-existing hypotension (systolic BP\\<110) or orthostatic hypotension (systolic drop \\>20 mm mercury (Hg) after 2 min standing accompanied by lightheadedness). Also exclusionary are chronic renal or hepatic failure, Meniere's disease, insulin-dependent diabetes, diagnosed but untreated sleep apnea, history of epilepsy, stroke, dementia, active psychosis or psychotic disorder, severe depression, severe psychiatric instability or severe situational life crises, including evidence of being actively suicidal or homicidal, dementia, delirium within the prior 3 months. Other conditions will be evaluated on a case-by-case basis.\n* Current substance use disorder per DSM-V criteria except caffeine- or tobacco-related disorders.\n* Structural brain abnormalities on any prior imaging with associated clinically evident manifestations.\n* Current participation in transcranial magnetic stimulation studies.\n* Unable to reliably keep the headache log on a minimum of 80% of recordable days\n* Women of childbearing potential must not be pregnant, planning to become pregnant during the study period, or nursing.\n* Participation in a headache support group or other activity such as meditation or yoga intended to mitigate headache or other chronic pain must be stable for at least 4 weeks prior to beginning the preliminary screening period and should be intended to be continued for the duration of the trial. Participants will be encouraged to defer enrolling in such activities until they have completed the treatment trial.\n\nMedication Exclusions:\n\nPlease note that the following two exclusions related to prazosin use had been changed in the study protocol as of September 2021 but were inadvertently not updated on the ClinicalTrials.gov website. The previous exclusion related to prazosin use prior to study enrollment was for a dose up to 2 mg. The change allows a dose up to 4 mg. This change, made based on clinical experience for the purpose of facilitating recruitment, did not adversely affect patient safety or data integrity.\n\n* Past use of prazosin at a dose \\>4 mg is exclusionary.\n* Current use of prazosin at a dose of 4 mg or less is not excluded, however requires a 2-week wash-out period prior to beginning the baseline headache log-keeping period.\n* Current use of an alpha-1 antagonist for any purpose is exclusionary unless discontinued for at least 2 weeks prior to study entry and for the duration of a participant's study enrollment.\n* Allergy or previous adverse reaction to prazosin or other alpha-1 antagonist\n* Subjects must be on a stable dose of the following medications/treatments for at least 4 weeks prior to the preliminary screening period, and must intend to continue the medication for the duration of the trial: psychoactive drugs, for example anticonvulsants, benzodiazepines, antidepressants, sedative/hypnotics; antihypertensive medications, including beta blockers, calcium channel blockers, angiotensin converting enzyme inhibitors, and angiotensin receptor blockers; magnesium prescribed specifically for headache.\n* Potential participants who have been taking trazodone will undergo a 2-week washout period before beginning the preliminary screening period. Because combining prazosin and trazodone may increase risk of priapism, trazodone is not allowed during the study.\n* Sildenafil (Viagra), tadalafil (Cialis), vardenafil (Levitra), and avanafil (Stendra) will not be permitted during the dose titration period, because of increased risk of hypotension in combination with alpha-1 blockers, but will be allowed at half the usual starting dose following the study drug dose titration period, per VA prescribing guidelines.\n* Use of butalbital within 4 weeks of beginning the preliminary screening period through the end of study involvement.\n* Use of supplements containing nitrates and supplements containing stimulants (such as ephedra) within 2 weeks of beginning the preliminary screening period through the end of study involvement.\n* Use of prescribed stimulants (such as amphetamine or dextroamphetamine containing medications) within 2 weeks of beginning the preliminary screening period through the end of study involvement.",
+              "healthyVolunteers": false,
+              "sex": "ALL",
+              "minimumAge": "18 Years",
+              "stdAges": [
+                "ADULT",
+                "OLDER_ADULT"
+              ]
+            },
+            "contactsLocationsModule": {
+              "overallOfficials": [
+                {
+                  "name": "Cynthia L Mayer, DO",
+                  "affiliation": "VA Puget Sound Health Care System Seattle Division, Seattle, WA",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                }
+              ],
+              "locations": [
+                {
+                  "facility": "VA Puget Sound Health Care System Seattle Division, Seattle, WA",
+                  "city": "Seattle",
+                  "state": "Washington",
+                  "zip": "98108-1532",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 47.60621,
+                    "lon": -122.33207
+                  }
+                }
+              ]
+            },
+            "ipdSharingStatementModule": {
+              "ipdSharing": "NO"
+            }
+          },
+          "resultsSection": {
+            "participantFlowModule": {
+              "preAssignmentDetails": "166 participants completed the informed consent process, agreeing to participation. 77 of those participants failed the screening process, declined to participate prior to study drug randomization, or were lost to follow-up prior to study drug randomization. 89 participants were randomized to study drug.",
+              "groups": [
+                {
+                  "id": "FG000",
+                  "title": "Prazosin",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                },
+                {
+                  "id": "FG001",
+                  "title": "Placebo",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                }
+              ],
+              "periods": [
+                {
+                  "title": "Overall Study",
+                  "milestones": [
+                    {
+                      "type": "STARTED",
+                      "comment": "Subjects Randomized",
+                      "achievements": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "59"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "30"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "COMPLETED",
+                      "achievements": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "52"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "26"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "NOT COMPLETED",
+                      "achievements": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "7"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "4"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "baselineCharacteristicsModule": {
+              "groups": [
+                {
+                  "id": "BG000",
+                  "title": "Prazosin",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                },
+                {
+                  "id": "BG001",
+                  "title": "Placebo",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                },
+                {
+                  "id": "BG002",
+                  "title": "Total",
+                  "description": "Total of all reporting groups"
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "59"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "30"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "89"
+                    }
+                  ]
+                }
+              ],
+              "measures": [
+                {
+                  "title": "Age, Categorical",
+                  "paramType": "COUNT_OF_PARTICIPANTS",
+                  "unitOfMeasure": "Participants",
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "title": "<=18 years",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "1"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "00"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "1"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Between 18 and 65 years",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "57"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "30"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "87"
+                            }
+                          ]
+                        },
+                        {
+                          "title": ">=65 years",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "1"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "0"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Age, Continuous",
+                  "paramType": "MEAN",
+                  "dispersionType": "STANDARD_DEVIATION",
+                  "unitOfMeasure": "years",
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "38.6",
+                              "spread": "11.9"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "37.6",
+                              "spread": "10.1"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "38.3",
+                              "spread": "11.3"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Sex: Female, Male",
+                  "paramType": "COUNT_OF_PARTICIPANTS",
+                  "unitOfMeasure": "Participants",
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "title": "Female",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "6"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "5"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "11"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Male",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "53"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "25"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "78"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Ethnicity (NIH/OMB)",
+                  "paramType": "COUNT_OF_PARTICIPANTS",
+                  "unitOfMeasure": "Participants",
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "title": "Hispanic or Latino",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "11"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "5"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "16"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Not Hispanic or Latino",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "34"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "20"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "54"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Unknown or Not Reported",
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "14"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "5"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "19"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Race/Ethnicity, Customized",
+                  "paramType": "COUNT_OF_PARTICIPANTS",
+                  "unitOfMeasure": "Participants",
+                  "classes": [
+                    {
+                      "title": "American Indian or Alaskan Native",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "2"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "0"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "2"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Asian",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "2"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "1"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "3"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Black",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "12"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "8"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "20"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "White",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "31"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "18"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "49"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Hawaiian Native or Pacific Islander",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "2"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "0"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "2"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Missing/Unknown",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "3"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "0"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "3"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "More than one race",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "5"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "0"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "5"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Other",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "2"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "3"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "5"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Region of Enrollment",
+                  "paramType": "COUNT_OF_PARTICIPANTS",
+                  "unitOfMeasure": "Participants",
+                  "classes": [
+                    {
+                      "title": "United States",
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "59"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "30"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "89"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Headache frequency",
+                  "description": "Number of headaches in the 4 weeks preceding baseline",
+                  "paramType": "MEAN",
+                  "dispersionType": "STANDARD_DEVIATION",
+                  "unitOfMeasure": "headaches",
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "BG000",
+                              "value": "15.5",
+                              "spread": "6.1"
+                            },
+                            {
+                              "groupId": "BG001",
+                              "value": "17.1",
+                              "spread": "6.0"
+                            },
+                            {
+                              "groupId": "BG002",
+                              "value": "16.0",
+                              "spread": "6.1"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "outcomeMeasuresModule": {
+              "outcomeMeasures": [
+                {
+                  "type": "PRIMARY",
+                  "title": "Headache Diary",
+                  "description": "Change from baseline (pre-treatment) to Week 12 (i.e., following 12 weeks of drug treatment) of either 1) Headaches that last 4 or more hours a day and reach a moderate to severe intensity at any point or 2) Headaches of any intensity if a medication or other treatment is used in an effort to stop the Headaches, as determined from Headache Log data.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "headaches per month",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "59"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "30"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "-10.7",
+                              "spread": "0.9"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-6.9",
+                              "spread": "1.3"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "analyses": [
+                    {
+                      "groupIds": [
+                        "OG000",
+                        "OG001"
+                      ],
+                      "groupDescription": "Change from baseline in headache (HA) frequency (1. Primary Outcome Measure) is based on linear mixed effects regression of outcome on study visit by treatment interaction with study participant as a random effect.",
+                      "nonInferiorityType": "SUPERIORITY",
+                      "pValue": "0.034",
+                      "pValueComment": "The significance of the study visit by treatment interaction with study visit coded as baseline, 4 weeks, 8 weeks, and 12 weeks.",
+                      "statisticalMethod": "Mixed Models Analysis",
+                      "paramType": "Mean Difference (Net)",
+                      "paramValue": "-3.9",
+                      "ciPctValue": "95",
+                      "ciNumSides": "TWO_SIDED",
+                      "ciLowerLimit": "-6.9",
+                      "ciUpperLimit": "-0.8",
+                      "dispersionType": "STANDARD_ERROR_OF_MEAN",
+                      "dispersionValue": "1.6"
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Headache Impact Test-6 (HIT-6)",
+                  "description": "The HIT-6 measures the impact that headaches have on a person's ability to function in daily activities, such as work, school, home, and social situations. It assesses the severity and effect of headaches on one's quality of life. The HIT-6 consists of 6 items, each scored on a Likert scale. Never = 6 points, Rarely = 8 points, Sometimes = 10 points, Very Often = 11 points, Always = 13 points. The total score is obtained by summing the individual item scores. Minimum score = 36. Maximum score = 78.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in Headache-Related Disability.\n\nIncreasing Values indicate a worse outcome, representing a higher impact of headaches on daily life.\n\nDecreasing Values indicate a better outcome, representing a lower impact of headaches on daily life.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "58"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "29"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "-4.9",
+                              "spread": "0.9"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-0.7",
+                              "spread": "1.2"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "PTSD Checklist for DSM-5 (PCL-5)",
+                  "description": "PCL-5 is a self-report measure that assesses the presence and severity of Posttraumatic Stress Disorder (PTSD) symptoms based on the Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition (DSM-5) criteria. The PCL-5 includes 20 items, each corresponding to a PTSD symptom. Each item is rated on a 5-point Likert scale from 0 = not at all to 4 = extremely. The total score is calculated by summing the scores for each of the 20 items. Minimum Score = 0. Maximum Score = 80.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in PTSD symptoms.\n\nIncreasing Values indicate a worse outcome, representing a higher severity of PTSD symptoms.\n\nDecreasing Values indicate a better outcome, representing a lower severity of PTSD symptoms.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "58"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "29"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "-8.2",
+                              "spread": "1.8"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-5.5",
+                              "spread": "2.5"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Pittsburgh Sleep Quality Index (PSQI)",
+                  "description": "The PSQI measures the quality and patterns of sleep in adults. It assesses various dimensions of sleep over a one-month time period. The PSQI comprises 19 self-rated questions. The self-rated questions are grouped into seven components, each scoring between 0 and 3:\n\nSleep quality Sleep latency Sleep duration Habitual sleep efficiency Sleep disturbances Use of sleeping medication Daytime dysfunction These seven component scores are summed to yield a global PSQI score. Minimum Score = 0. Maximum Score = 21.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in sleep. Increasing scores indicate worse outcome, representing poorer sleep quality and more severe sleep disturbances. Decreasing scores indicate better outcome representing better sleep quality and fewer sleep disturbances.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "58"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "30"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "-2.1",
+                              "spread": "0.5"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-0.7",
+                              "spread": "0.7"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Neurobehavioral Symptom Inventory (NSI)",
+                  "description": "The NSI is a self-report measure used to assess the severity of post-concussive symptoms and neurobehavioral issues often experienced after a traumatic brain injury (TBI). It covers physical, cognitive, and emotional symptoms. The NSI includes 22 items, each rated on a 5-point Likert scale rating symptoms from None = 0 to Very Severe = 4. The total score is obtained by summing the scores for each of the 22 items. Minimum Score = 0. Maximum Score = 88.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in concussion-related symptoms.\n\nIncreasing Values indicate a worse outcome, representing more severe neurobehavioral symptoms. Decreasing Values indicate a better outcome representing less severe neurobehavioral symptoms.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "58"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "29"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "-9.0",
+                              "spread": "1.5"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-8.8",
+                              "spread": "2.0"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Patient Health Questionnaire-9 (PHQ-9)",
+                  "description": "The PHQ-9 is a self-administered tool used to screen, diagnose, monitor, and measure the severity of depression. It is based on the nine criteria for major depressive disorder in the DSM-IV (and is also consistent with DSM-5). The PHQ-9 consists of 9 items, each corresponding to a symptom of depression.\n\nEach item is rated on a 4-point Likert scale with None at all = 0 to Nearly every day = 3. The total score is calculated by summing the scores for each of the 9 items. Minimum Score = 0. Maximum Score = 27.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in Depressive Symptoms.\n\nIncreasing Values indicate a worse outcome, representing more severe depression symptoms.\n\nDecreasing Values indicate a better outcome, representing fewer or less severe depression symptoms.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "58"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "29"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "-2.1",
+                              "spread": "0.6"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-0.5",
+                              "spread": "0.8"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Alcohol Use Disorders Identification Test - Consumption (AUDIT-C)",
+                  "description": "The AUDIT-C is a brief screening tool used to identify hazardous drinking and alcohol use disorders. It focuses on alcohol consumption behaviors. The AUDIT-C consists of 3 items, each assessing a different aspect of alcohol consumption:\n\nFrequency of drinking alcohol. Quantity of alcohol consumed on a typical drinking day. Frequency of heavy drinking episodes. Each item is scored on a 5-point scale from 0 points = Never or none to 4 points indicating high frequency or quantity.\n\nThe total score is calculated by summing the scores for the three items. Minimum Score = 0. Maximum score = 12.\n\nThis outcome measure is assessing the change between Baseline scores and 12 week scores in alcohol use.\n\nIncreasing Values indicate a worse outcome, representing higher levels of alcohol consumption and an increased risk of alcohol use disorders.\n\nDecreasing Values indicate better outcome, representing lower levels of alcohol consumption and a lower risk of alcohol use disorders.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "58"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "29"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "0.0",
+                              "spread": "0.2"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-0.6",
+                              "spread": "0.3"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Montreal Cognitive Assessment (MoCA)",
+                  "description": "The MoCA is a brief cognitive screening tool designed to assist in the detection of mild cognitive impairment. It evaluates various domains of cognitive function including memory, attention, language, visuospatial skills, and executive functions. The MoCA consists of 12 tasks which together assess multiple cognitive domains. The tasks include:\n\nVisuospatial/Executive, Naming, Memory, Attention, Language, Abstraction, Delayed Recall, Orientation.\n\nThe total score is summed from the individual task scores, with certain sections having specific scoring criteria. Minimum Score = 0. Maximum Score = 30.\n\nIncreasing Values indicate a better cognitive outcome, with higher scores reflecting better cognitive function.\n\nDecreasing Values indicate a worse cognitive outcome, with lower scores suggesting greater cognitive impairment.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "57"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "29"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "1.5",
+                              "spread": "0.3"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "1.3",
+                              "spread": "0.4"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Number of Patients With a 50% or More Decrease in Mean Number of Headache Days Per 4 Weeks",
+                  "description": "Number of patients with a 50% or more decrease in mean number of headache days per 4 weeks, as determined at 4 week treatment intervals using Headache Log data.",
+                  "reportingStatus": "POSTED",
+                  "paramType": "COUNT_OF_PARTICIPANTS",
+                  "unitOfMeasure": "Participants",
+                  "timeFrame": "Baseline to 12 weeks",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "55"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "28"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "38"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "7"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "SECONDARY",
+                  "title": "Photophobia - Utah Photophobia Symptom Impact Scale-12-Modified (UPSIS-12M)",
+                  "description": "UPSIS measures ictal (during headache) and interictal (outside of headache) photophobia and its adverse effects on functioning. 12 items are scored on a 0-5 Likert scale, 0 = no impact, 5 = severe impact. Items are summed. Minimum = 0 (no photophobia-related impact). Maximum = 60 (maximum impact across all items). Higher total scores indicate worse outcomes (greater impact of photophobia on daily life).",
+                  "reportingStatus": "POSTED",
+                  "paramType": "MEAN",
+                  "dispersionType": "Standard Error",
+                  "unitOfMeasure": "score on a scale",
+                  "timeFrame": "Baseline to Week 12",
+                  "groups": [
+                    {
+                      "id": "OG000",
+                      "title": "Prazosin",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime."
+                    },
+                    {
+                      "id": "OG001",
+                      "title": "Placebo",
+                      "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin."
+                    }
+                  ],
+                  "denoms": [
+                    {
+                      "units": "Participants",
+                      "counts": [
+                        {
+                          "groupId": "OG000",
+                          "value": "30"
+                        },
+                        {
+                          "groupId": "OG001",
+                          "value": "16"
+                        }
+                      ]
+                    }
+                  ],
+                  "classes": [
+                    {
+                      "categories": [
+                        {
+                          "measurements": [
+                            {
+                              "groupId": "OG000",
+                              "value": "-0.2",
+                              "spread": "0.3"
+                            },
+                            {
+                              "groupId": "OG001",
+                              "value": "-0.5",
+                              "spread": "0.4"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "OTHER_PRE_SPECIFIED",
+                  "title": "Change From Baseline in Pupillary Light Responses",
+                  "description": "An infrared camera to measure the diameter of the pupil both during darkness and following brief pulses of light.",
+                  "reportingStatus": "NOT_POSTED",
+                  "timeFrame": "Baseline to 12 Weeks",
+                  "denomUnitsSelected": "Participants"
+                },
+                {
+                  "type": "OTHER_PRE_SPECIFIED",
+                  "title": "Change From Baseline in Frequency of Use of Abortive/Analgesic Agents",
+                  "description": "Frequency of Use of Abortive/Analgesic Agents at Baseline (average of 4 weeks pre-treatment) to Week 12 (average of 4 weeks following 12 weeks of drug treatment). A higher number indicates more days of abortive/analgesic agent use; a lower number indicates fewer days of use.",
+                  "reportingStatus": "NOT_POSTED",
+                  "timeFrame": "Baseline to Week 12",
+                  "denomUnitsSelected": "Participants"
+                },
+                {
+                  "type": "OTHER_PRE_SPECIFIED",
+                  "title": "Change From Baseline in 4-week Average Total Number of Hours of HA Pain",
+                  "description": "Total Number of Hours of headache pain over 4-weeks prior to Baseline compared to Total Number of Hours of headache pain average over 4-weeks prior to the 12-week visit using headache log data. Score is number of hours of pain. A lower score indicates less pain. A higher score indicates more pain.",
+                  "reportingStatus": "NOT_POSTED",
+                  "timeFrame": "Baseline to Week 12",
+                  "denomUnitsSelected": "Participants"
+                },
+                {
+                  "type": "OTHER_PRE_SPECIFIED",
+                  "title": "Change From Baseline in 4-week Average Peak HA Severity",
+                  "description": "Peak headache severity average over 4-weeks prior to Baseline compared to the peak headache severity average over 4-weeks prior to the 12-week visit using headache log data. Scored in a scale of 0=none, 1= mild, 2=moderate, or 3=severe.",
+                  "reportingStatus": "NOT_POSTED",
+                  "timeFrame": "Baseline to Week 12",
+                  "denomUnitsSelected": "Participants"
+                }
+              ]
+            },
+            "adverseEventsModule": {
+              "frequencyThreshold": "0",
+              "timeFrame": "24 weeks",
+              "eventGroups": [
+                {
+                  "id": "EG000",
+                  "title": "Prazosin",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nprazosin hydrochloride: Prazosin as oral capsules titrated to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.",
+                  "deathsNumAffected": 0,
+                  "deathsNumAtRisk": 59,
+                  "seriousNumAffected": 1,
+                  "seriousNumAtRisk": 59,
+                  "otherNumAffected": 52,
+                  "otherNumAtRisk": 59
+                },
+                {
+                  "id": "EG001",
+                  "title": "Placebo",
+                  "description": "Subjects will be gradually titrated up to the maximum dose or the maximum tolerated dose based on a dosing algorithm. The maximum dose to be used in this trial is 5mg in the morning and 20 mg at bedtime.\n\nplacebo: Oral capsules of placebo identical in appearance to prazosin capsules titrated in the same manner as prazosin.",
+                  "deathsNumAffected": 0,
+                  "deathsNumAtRisk": 30,
+                  "seriousNumAffected": 1,
+                  "seriousNumAtRisk": 30,
+                  "otherNumAffected": 22,
+                  "otherNumAtRisk": 30
+                }
+              ],
+              "seriousEvents": [
+                {
+                  "term": "Planned surgical procedure",
+                  "organSystem": "Surgical and medical procedures",
+                  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 1,
+                      "numAffected": 1,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 1,
+                      "numAffected": 1,
+                      "numAtRisk": 30
+                    }
+                  ]
+                }
+              ],
+              "otherEvents": [
+                {
+                  "term": "Palpitations",
+                  "organSystem": "Cardiac disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 23,
+                      "numAffected": 21,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 6,
+                      "numAffected": 6,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Nausea",
+                  "organSystem": "Gastrointestinal disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 25,
+                      "numAffected": 20,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 4,
+                      "numAffected": 4,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Dizziness (any)",
+                  "organSystem": "General disorders",
+                  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 51,
+                      "numAffected": 37,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 7,
+                      "numAffected": 6,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Dizziness on Standing",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 30,
+                      "numAffected": 24,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 1,
+                      "numAffected": 1,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Drowsiness/Lethargy",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 30,
+                      "numAffected": 26,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 5,
+                      "numAffected": 5,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Insomnia",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 10,
+                      "numAffected": 8,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 2,
+                      "numAffected": 2,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Lightheadedness",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 32,
+                      "numAffected": 28,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 11,
+                      "numAffected": 11,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Low Energy",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 17,
+                      "numAffected": 16,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 3,
+                      "numAffected": 3,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Nasal Congestion",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 21,
+                      "numAffected": 19,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 3,
+                      "numAffected": 3,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Peripheral Edemna",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 12,
+                      "numAffected": 11,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 4,
+                      "numAffected": 3,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Vertigo",
+                  "organSystem": "General disorders",
+                  "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 1,
+                      "numAffected": 1,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 1,
+                      "numAffected": 1,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Weakness (generalized)",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 6,
+                      "numAffected": 6,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 1,
+                      "numAffected": 1,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Headache worsening",
+                  "organSystem": "General disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 2,
+                      "numAffected": 2,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 5,
+                      "numAffected": 4,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Depression or depressed mood",
+                  "organSystem": "Psychiatric disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 7,
+                      "numAffected": 7,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 2,
+                      "numAffected": 2,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Suicidal Ideation",
+                  "organSystem": "Psychiatric disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 3,
+                      "numAffected": 3,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 0,
+                      "numAffected": 0,
+                      "numAtRisk": 30
+                    }
+                  ]
+                },
+                {
+                  "term": "Incontinence",
+                  "organSystem": "Renal and urinary disorders",
+                  "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                  "stats": [
+                    {
+                      "groupId": "EG000",
+                      "numEvents": 4,
+                      "numAffected": 4,
+                      "numAtRisk": 59
+                    },
+                    {
+                      "groupId": "EG001",
+                      "numEvents": 0,
+                      "numAffected": 0,
+                      "numAtRisk": 30
+                    }
+                  ]
+                }
+              ]
+            },
+            "moreInfoModule": {
+              "limitationsAndCaveats": {
+                "description": "Change from baseline in headache (HA) frequency (1. Primary Outcome Measure) is based on linear mixed effects regression of outcome on study visit by treatment interaction with study participant as a random effect."
+              },
+              "certainAgreement": {
+                "piSponsorEmployee": true,
+                "restrictiveAgreement": false
+              },
+              "pointOfContact": {
+                "title": "Hollie Holmes",
+                "organization": "VA Puget Sound Health Care System",
+                "email": "Hollie.Holmes@va.gov",
+                "phone": "206-277-6207"
+              }
+            }
+          },
+          "documentSection": {
+            "largeDocumentModule": {
+              "largeDocs": [
+                {
+                  "typeAbbrev": "Prot_SAP",
+                  "hasProtocol": true,
+                  "hasSap": true,
+                  "hasIcf": false,
+                  "label": "Study Protocol and Statistical Analysis Plan",
+                  "date": "2021-11-12",
+                  "uploadDate": "2024-05-20T17:34",
+                  "filename": "Prot_SAP_000.pdf",
+                  "size": 11691002
+                }
+              ]
+            }
+          },
+          "derivedSection": {
+            "miscInfoModule": {
+              "versionHolder": "2026-11-03"
+            },
+            "conditionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D051298",
+                  "term": "Post-Traumatic Headache"
+                },
+                {
+                  "id": "D003130",
+                  "term": "Combat Disorders"
+                },
+                {
+                  "id": "D038223",
+                  "term": "Post-Concussion Syndrome"
+                },
+                {
+                  "id": "D006261",
+                  "term": "Headache"
+                },
+                {
+                  "id": "D001924",
+                  "term": "Brain Concussion"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D051271",
+                  "term": "Headache Disorders, Secondary"
+                },
+                {
+                  "id": "D020773",
+                  "term": "Headache Disorders"
+                },
+                {
+                  "id": "D001927",
+                  "term": "Brain Diseases"
+                },
+                {
+                  "id": "D002493",
+                  "term": "Central Nervous System Diseases"
+                },
+                {
+                  "id": "D009422",
+                  "term": "Nervous System Diseases"
+                },
+                {
+                  "id": "D040921",
+                  "term": "Stress Disorders, Traumatic"
+                },
+                {
+                  "id": "D000068099",
+                  "term": "Trauma and Stressor Related Disorders"
+                },
+                {
+                  "id": "D001523",
+                  "term": "Mental Disorders"
+                },
+                {
+                  "id": "D016489",
+                  "term": "Head Injuries, Closed"
+                },
+                {
+                  "id": "D006259",
+                  "term": "Craniocerebral Trauma"
+                },
+                {
+                  "id": "D020196",
+                  "term": "Trauma, Nervous System"
+                },
+                {
+                  "id": "D014947",
+                  "term": "Wounds and Injuries"
+                },
+                {
+                  "id": "D014949",
+                  "term": "Wounds, Nonpenetrating"
+                },
+                {
+                  "id": "D010146",
+                  "term": "Pain"
+                },
+                {
+                  "id": "D009461",
+                  "term": "Neurologic Manifestations"
+                },
+                {
+                  "id": "D012816",
+                  "term": "Signs and Symptoms"
+                },
+                {
+                  "id": "D013568",
+                  "term": "Pathological Conditions, Signs and Symptoms"
+                },
+                {
+                  "id": "D000070642",
+                  "term": "Brain Injuries, Traumatic"
+                },
+                {
+                  "id": "D001930",
+                  "term": "Brain Injuries"
+                }
+              ]
+            },
+            "interventionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D011224",
+                  "term": "Prazosin"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D011799",
+                  "term": "Quinazolines"
+                },
+                {
+                  "id": "D006574",
+                  "term": "Heterocyclic Compounds, 2-Ring"
+                },
+                {
+                  "id": "D000072471",
+                  "term": "Heterocyclic Compounds, Fused-Ring"
+                },
+                {
+                  "id": "D006571",
+                  "term": "Heterocyclic Compounds"
+                }
+              ]
+            }
+          },
+          "hasResults": true
+        },
+        "expected_digest": "594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2"
+      }
+    ],
+    "premises": [
+      {
+        "id": "course",
+        "kind": "signal",
+        "payload": {
+          "id": "simulated-draft-course",
+          "kind": "temporal",
+          "data": {
+            "scope": "simulated:new-chronic-headache-study:all-randomized:course:v1",
+            "unit": "week",
+            "origin": "first-dose",
+            "resolution": "resolved",
+            "events": [
+              "first-dose",
+              "steady-dose-start",
+              "planned-endpoint",
+              "actual-assessment"
+            ],
+            "constraints": [
+              {
+                "before": "first-dose",
+                "after": "steady-dose-start",
+                "lower": 5,
+                "upper": 7,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first-dose",
+                "after": "planned-endpoint",
+                "lower": 12,
+                "upper": 12,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          },
+          "support": [
+            {
+              "id": "simulated-user-choice",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "simulated_user_choice:invented-draft-titration-and-clock-not-clinical-confirmation"
+              ]
+            }
+          ]
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated_user_choice:invented-clock-choice",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "historical-age",
+        "operation": "source_assertions",
+        "target": {
+          "kind": "historical",
+          "ref": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+          "scope": {
+            "study": "ctg:NCT02266329:594cb28daaf0b7fb24be56907b9bfb5c971c947e0dc78f19bc032a0979043fb2",
+            "population": "all_participants",
+            "arm": "all",
+            "time": "entry",
+            "version": "registry-snapshot"
+          }
+        },
+        "parameters": {
+          "queries": [
+            {
+              "id": "adult",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            },
+            {
+              "id": "age17",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 17,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            }
+          ]
+        },
+        "uses": [
+          {
+            "premise": "prazosin-source",
+            "slot": "study",
+            "projection": "source_study"
+          }
+        ]
+      },
+      {
+        "id": "draft-course",
+        "operation": "signals",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-headache-draft",
+          "scope": {
+            "study": "simulated-headache-draft",
+            "population": "simulated-randomized",
+            "arm": "all",
+            "time": "participant-course",
+            "version": "v1"
+          }
+        },
+        "parameters": {},
+        "uses": [
+          {
+            "premise": "course",
+            "slot": "signals",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    }
+  },
+  "previous": null
+}

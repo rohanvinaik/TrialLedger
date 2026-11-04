@@ -1,0 +1,11 @@
+{
+  "condition": "Idiopathic Pulmonary Fibrosis",
+  "status": [
+    "COMPLETED"
+  ],
+  "study_type": "OBSERVATIONAL",
+  "acquisition": {
+    "max_studies": 1000,
+    "max_registry_requests": 100
+  }
+}

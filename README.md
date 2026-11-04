@@ -103,6 +103,22 @@ This is also why the reasoning can be exact. Once the source values are establis
 for the same population, the overlap bounds follow by arithmetic. The count roles and population binding
 remain premises; the numeric field type alone does not settle them.
 
+The distinctions matter in everyday use. A performance-status statement beneath **“Crossover Inclusion
+Criteria”** is shown with that exact source heading beside it. The heading helps you notice the question;
+it does not decide whether the statement governs initial entry. If one reading applies at entry and another
+only at crossover, TrialLedger shows their different consequences and names that scope difference while
+keeping an independent registered age restriction usable. Choosing a reading still does not rewrite the record.
+
+Likewise, a supplied phrase such as “previously treated” may be accepted without choosing between a
+previously treated and a maintenance setting. The answer now shows when an input has no applicable rule,
+is redundant, narrows the possibilities, or prevents a default. You can then state the intended restriction
+as a separate design choice. More supplied information does useful work only when its meaning and consumer
+are explicit; acceptance alone is no assurance that your intended question was checked.
+
+The [five fresh design conversations](acceptance/clinical-handoffs-2026-11-03/) exercise these handoffs in
+headache, pulmonary fibrosis, allergy, lung cancer and hypertension, with source readings and simulated
+choices kept distinct. Their complete checks and revisions remain available beside the decision lists.
+
 ## How the work divides
 
 | Stage | What happens | Who does it | Why it can be trusted |
@@ -175,6 +191,11 @@ records and what you have confirmed: nothing about pharmacology, biology or toda
 translation can go wrong. A misread criterion yields an exact answer to the wrong question, which is why you
 always see the premises restated. Each check is also saved as a file that a technical colleague can audit, and
 at any point you can ask which premise decided an answer.
+
+The saved labels are your assistant's account of the conversation: the program cannot independently tell
+whether you confirmed a reading. Your accepted wording and its origin should therefore remain beside the
+check. In demonstrations, a simulated choice is labelled as simulated. Copied registry values do not need
+your approval, and an unchanged premise does not need repeated confirmation.
 
 ## A design session in practice
 
@@ -410,6 +431,30 @@ checks response structure and identity, not every value against a second live co
 formatting and links, under the writing version. It establishes reproducibility, not registry truth.
 `trialledger pull` separately retains complete registry JSON/CSV with archival workbooks.
 
+Saved evidence can also be read through the CLI with the same bounded access as MCP:
+
+```bash
+trialledger record my-trials --part studies
+trialledger record my-trials --part study --nct NCT00322452
+trialledger record my-trials --part address --address /studies/0/criteria --limit 10
+```
+
+Follow every returned page or text continuation needed for the question; an address directory is navigation,
+not the underlying evidence. Local source-heading context is copied with exact offsets, without interpreting
+entry, crossover or cohort scope. Verification names supported legacy formats rather than silently adding
+new context to an old report.
+
+Trial names need not occupy the registry's acronym field. A request file containing
+`{"params":{"query.term":"\"CodeBreaK 200\""}}` uses the supported registry text search;
+preview it with `trialledger landscape --run name-search --request REQUEST_FILE --preview`, then verify
+the returned identity before using the record.
+
+Search acquisition defaults to at most 1,000 studies and 100 registry requests. The first identifier count
+is checked before bulk retrieval. An intended larger scope can declare, for example,
+`"acquisition":{"max_studies":2000,"max_registry_requests":200}` in request JSON. The policy is retained
+for resume; it does not change the clinical search. Raw `pull` exposes `--max-studies` and
+`--max-registry-requests`. These guard NIH acquisition, not local reuse of complete retained evidence.
+
 For an assistant client that supports local MCP servers:
 
 ```json
@@ -463,7 +508,11 @@ Use `{"operation":"describe","view":"design_session"}` for the closed version-1 
 named premise projections, computed decisions and runnable baseline/revision examples. Candidates and
 other clinical inputs travel through its premise ledger, not arbitrary parameter substitution. Explicit
 session budgets include child solver work; large evidence searches may need smaller declared bounds.
+Copied-source JSON-node counts are diagnostic; the legacy `max_expanded_items` field no longer refuses
+local replay. Aggregate solver work, analysis count and complete response-byte limits still apply.
 The `source_study` projection supplies both `study` and `expected_digest`; omit both from child parameters.
+Its historical target uses the exact `/result/source/study_ref` returned by source inspection; an NCT
+number alone does not identify that snapshot. Its local source-ledger ID remains separate.
 The operation returns reusable JSON and does not save files or manage a background session. Save each
 request/result pair separately; the complete trial writer is a further integration.
 

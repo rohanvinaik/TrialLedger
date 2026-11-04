@@ -1,0 +1,89 @@
+{
+  "case": "phase3-nsclc",
+  "retained_complete_packet": "/Users/rohanvinaik/trialledger-runs/fresh-phase3-nsclc-20261103-effects-v1",
+  "scope": "Complete chosen reasoning inputs/results and decision brief; duplicate wires/workbooks/search bodies retained externally. Layer-one replay requires that external packet. Re-fetch is a new observation.",
+  "files": [
+    {
+      "path": "working-brief.md",
+      "bytes": 4055,
+      "sha256": "53f63b67d9bd946c95df0f1fee6afc26dedc38016c2835108c338441fb4c301a"
+    },
+    {
+      "path": "working-brief-initial.md",
+      "bytes": 2064,
+      "sha256": "1a5739e3effc25668c17127b028fb797e50079fdb7cf8aeafe6a3891dca155fd"
+    },
+    {
+      "path": "predeclaration.json",
+      "bytes": 1246,
+      "sha256": "3d00b51df17e2a0f5eb7d645a741618417d05d59dbf5464672d1448150b1166a"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 15327,
+      "sha256": "5ee576f8c05210308b9874818dec8e2a07c64d8e3a824e5154b9cc9c05cb2ea0"
+    },
+    {
+      "path": "matrix.json",
+      "bytes": 8842,
+      "sha256": "8dc9b41c61d6a4626deb447f79a23cac07494c90e50b2ca36429d1d98176a67c"
+    },
+    {
+      "path": "findings.json",
+      "bytes": 4859,
+      "sha256": "544559869dc5423ab00607e918fdb958df1d6194d4b748cc4b4e50736d3e7595"
+    },
+    {
+      "path": "reasoning/final-managed-baseline-request.json",
+      "bytes": 256072,
+      "sha256": "ccbf14c5cd1074e8448a3c764442b9cd5bad623a6cc34be36534abf009910692"
+    },
+    {
+      "path": "reasoning/final-managed-baseline-result.json",
+      "bytes": 696244,
+      "sha256": "d89ad08b1826f4a118fec0a6ac70f63c1fcc7f47b9c655d20f6ba488a9d39b9f"
+    },
+    {
+      "path": "reasoning/final-managed-revision-request.json",
+      "bytes": 1239994,
+      "sha256": "8581ae6aed0f8930df256de48872e85b62f850d87e4ad50894d664f952cb9fc8"
+    },
+    {
+      "path": "reasoning/final-managed-revision-result.json",
+      "bytes": 1379924,
+      "sha256": "4b61d80ba16598f74edcb0ceca62dbb7ee7df76e12cce941f9342b9db9a39938"
+    },
+    {
+      "path": "reasoning/final-source-crossover-readings-request.json",
+      "bytes": 199202,
+      "sha256": "7f26d370cfcd4c4e003adef9ca0d4f4cbcd2413b48ed8fbc430203b2d8630b61"
+    },
+    {
+      "path": "reasoning/final-source-crossover-readings-result.json",
+      "bytes": 91136,
+      "sha256": "cf028374548dd02f839c7abf0b7c18704269cb138b53d62304c79e3d79cd8e16"
+    },
+    {
+      "path": "reasoning/final-source-selected-entry-only-request.json",
+      "bytes": 199230,
+      "sha256": "c188be0ba939caaf3761d88d74c8f7f8828dae62f31d6ab860d5aa2b8fc59f00"
+    },
+    {
+      "path": "reasoning/final-source-selected-entry-only-result.json",
+      "bytes": 89400,
+      "sha256": "b5c531042e176c209abf92203a86485d189e6f4bb10ade80e7410f31abe95c56"
+    },
+    {
+      "path": "reasoning/final-simulated-label-is-not-a-restriction-request.json",
+      "bytes": 1175,
+      "sha256": "ee68083e5b56183a1a9b44cce840f499c44a15e243d6c6db17047feccaa09539"
+    },
+    {
+      "path": "reasoning/final-simulated-label-is-not-a-restriction-result.json",
+      "bytes": 29661,
+      "sha256": "5068641ecfdfa7612dc31b35d96467590d7d4f663b2b80c28dab55a972568f04"
+    }
+  ],
+  "file_count": 16,
+  "bytes": 4218431
+}

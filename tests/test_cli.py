@@ -18,7 +18,10 @@ A = "NCT00000001"
 
 
 def one_study_api():
-    return FakeAPI(json_pages=[json_page([A], total=1)], csv_pages=[csv_page([A], total=1, header=True)])
+    return FakeAPI(
+        json_pages=[json_page([A], total=1), json_page([A], total=1)],
+        csv_pages=[csv_page([A], total=1, header=True)],
+    )
 
 
 def test_pull_writes_the_folder_and_reports(tmp_path, capsys):
@@ -121,7 +124,7 @@ def test_existing_output_directory_is_kept(tmp_path, capsys):
 def test_api_version_drift_is_reported(tmp_path, capsys):
     fake = FakeAPI(
         versions=[version(api_version="2.1.0"), version(api_version="2.1.0")],
-        json_pages=[json_page([A], total=1)],
+        json_pages=[json_page([A], total=1), json_page([A], total=1)],
         csv_pages=[csv_page([A], total=1, header=True)],
     )
     assert (
@@ -145,7 +148,10 @@ def test_a_pull_says_what_became_of_each_number_in_plain_words(tmp_path, capsys)
         "protocolSection": {"identificationModule": {"nctId": A, "nctIdAliases": ["NCT01086644"]}},
     }
     fake = FakeAPI(
-        json_pages=[httpx.Response(200, json={"studies": [aliased], "totalCount": 1})],
+        json_pages=[
+            json_page([A], total=1),
+            httpx.Response(200, json={"studies": [aliased], "totalCount": 1}),
+        ],
         csv_pages=[csv_page([A], total=1, header=True)],
     )
     argv = ["pull", f"filter.ids=NCT01086644,{A},NCT09999999", "--out", str(tmp_path / "run")]

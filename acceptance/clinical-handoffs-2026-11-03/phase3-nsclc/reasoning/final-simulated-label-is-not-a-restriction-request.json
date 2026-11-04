@@ -1,0 +1,56 @@
+{
+  "operation": "coordinates",
+  "domain": "nsclc",
+  "evidence": [
+    {
+      "section": "inclusion",
+      "concept": "extent",
+      "values": [
+        "metastatic"
+      ],
+      "scope": "",
+      "ref": "simulated_user_choice:extent",
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "simulated_user_choice:extent"
+        ]
+      }
+    },
+    {
+      "section": "inclusion",
+      "concept": "prior_lines",
+      "values": [
+        "1",
+        "2",
+        "3+"
+      ],
+      "scope": "advanced",
+      "ref": "simulated_user_choice:prior-lines",
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "simulated_user_choice:prior-lines"
+        ]
+      }
+    },
+    {
+      "section": "inclusion",
+      "concept": "setting_word",
+      "values": [
+        "advanced_previously_treated"
+      ],
+      "scope": "",
+      "ref": "simulated_user_choice:setting-label",
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "simulated_user_choice:setting-label"
+        ]
+      }
+    }
+  ]
+}

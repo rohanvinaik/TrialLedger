@@ -642,6 +642,9 @@ def run(
     try:
         step = advance(folder, mode, http=http, sleep=sleep, monotonic=monotonic, progress=progress)
     except PullError as error:
+        if error.code.startswith("acquisition."):
+            status = error.code.replace("acquisition.", "acquisition_", 1)
+            return _stop(folder, mode, status, error.detail, ADVICE[status])
         return _stop(folder, mode, "pull_failed", str(error), RUN_ADVICE["pull_failed"])
     if step.status == "awaiting_fetch":
         detail = f"{len(step.awaited)} registry request(s) to fetch, named in next.json"

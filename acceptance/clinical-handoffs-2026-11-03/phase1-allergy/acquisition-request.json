@@ -1,0 +1,9 @@
+{
+  "params": {
+    "filter.ids": "NCT01380327,NCT07345442"
+  },
+  "acquisition": {
+    "max_studies": 2,
+    "max_registry_requests": 5
+  }
+}

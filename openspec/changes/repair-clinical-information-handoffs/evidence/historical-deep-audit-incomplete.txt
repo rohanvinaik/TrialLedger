@@ -1,0 +1,55 @@
+Scope: deliberately interrupted historical project-wide audit; exit 143; NOT a deep-gate pass.
+Unchanged cells.py targets were not reconverged as part of this repair.
+
+== Detective: audit --two-sign --check on every pinned decision
+  … cell_text_state: static · no static smell · proves nothing (advisory)
+  … cell_text_state: tracing 29 function-routed tests
+  … cell_text_state: baseline traced · 29 tests · 32.3s
+  … cell_text_state: 1/61 mutants · 2.4/s · ETA estimating… (heartbeat)
+  … cell_text_state: 61/61 mutants · 13.3/s · done in 4.6s
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/cells.py::cell_text_state — audit · 26 test(s) · 57/61 value-pinned · 98.4% killed (value+crash) · complete, modulo 3 crash-only value gaps
+
+  · fan-in             26 reach this function · 5 in the basis-relative minimal cover (5:1) — high fan-in, thin contract: converge here
+  · origin (ℋ⊎𝒢)       25 intent-grounded · 1 characterized
+  · crash-only-equiv   3 — detected by crash; no value pins them
+  ✓ flagged equivalent 1 (your oracle — not gaps)
+  · redundant          21 test(s) pointless for kills AND lines
+                       tests/test_cells.py::test_forbidden_characters_outrank_the_other_reasons, tests/test_cells.py::test_text_a_cell_cannot_hold_exactly[\udfff-forbidden_characters], tests/test_cells.py::test_text_a_cell_cannot_hold_exactly[\x00-forbidden_characters], tests/test_cells.py::test_text_a_cell_cannot_hold_exactly[a\rb-carriage_return] … (+17 more)
+
+DO THIS:  detective converge 'TrialLedger/cells.py::cell_text_state' --two-sign
+
+  · Why                the setup is clean: the suite loads and no intent test fails; converge writes and pins this function's suite
+  … cell_number_state: static · no static smell · proves nothing (advisory)
+  … cell_number_state: tracing 42 function-routed tests
+  … cell_number_state: baseline traced · 42 tests · 32.3s
+  … cell_number_state: 1/84 mutants · 1.2s/mutant · ETA estimating… (heartbeat)
+  … book_size_state: static · no static smell · proves nothing (advisory)
+  … book_size_state: tracing 6 function-routed tests
+  … book_size_state: baseline traced · 6 tests · 0.0s
+  … book_size_state: 1/18 mutants · 3.9/s · ETA estimating… (heartbeat)
+  … book_size_state: 18/18 mutants · 16.1/s · done in 1.1s
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/cells.py::book_size_state — audit · 6 test(s) · 18/18 value-pinned · 100.0% killed (value+crash) · complete
+
+  · fan-in             6 reach this function · 3 in the basis-relative minimal cover (2:1)
+  · origin (ℋ⊎𝒢)       6 intent-grounded
+  · redundant          3 test(s) pointless for kills AND lines
+                       tests/test_book_size_state.py::test_a_workbook_over_the_cap_is_named[17000000], tests/test_book_size_state.py::test_a_workbook_up_to_the_cap_fits[1], tests/test_book_size_state.py::test_a_workbook_up_to_the_cap_fits[2178689]
+
+DO THIS:  detective converge 'TrialLedger/cells.py::book_size_state' --two-sign
+
+  · Why                the setup is clean: the suite loads and no intent test fails; converge writes and pins this function's suite
+  … sheet_fits: static · no static smell · proves nothing (advisory)
+  … sheet_fits: tracing 1 function-routed tests
+  … sheet_fits: baseline traced · 1 tests · 0.0s
+  … sheet_fits: 1/21 mutants · 3.3/s · ETA estimating… (heartbeat)
+  … sheet_fits: 21/21 mutants · 14.0/s · done in 1.5s
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/cells.py::sheet_fits — audit · 1 test(s) · 21/21 value-pinned · 100.0% killed (value+crash) · complete
+
+  · origin (ℋ⊎𝒢)       1 intent-grounded
+
+DO THIS:  detective converge 'TrialLedger/cells.py::sheet_fits' --two-sign
+
+  · Why                the setup is clean: the suite loads and no intent test fails; converge writes and pins this function's suite

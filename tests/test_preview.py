@@ -112,7 +112,11 @@ def test_previewing_a_broad_class_resolves_and_fixes_the_search_and_asks_the_reg
     assert registry.requests == []
     scope = read(folder, "resolution.json")
     assert scope["code"] == "resolved"
-    assert read(folder, "scope.json") == {"query": scope["query"], "rxnav": []}
+    assert read(folder, "scope.json") == {
+        "query": scope["query"],
+        "rxnav": [],
+        "acquisition": {"max_studies": 1000, "max_registry_requests": 100},
+    }
     assert read(folder, "request.json") == KINASE
     # nothing of the registry's: no fetch named, no body saved, no record
     assert not (folder / "fetches.json").exists() and list((folder / "bodies").iterdir()) == []

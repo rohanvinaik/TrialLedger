@@ -1903,6 +1903,80 @@
           }
         },
         "result": "UNDETERMINED",
+        "contrast": {
+          "code": "interpretation_answer_contrast",
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "answers": [
+            {
+              "frame": "observed-week12",
+              "origin": "assistant",
+              "frame_state": "compatible",
+              "query": "PS3",
+              "result": "REFUTED",
+              "query_path": "/result/interpretations/0/queries/1",
+              "warrant_path": "/result/interpretations/0/queries/1/warrant",
+              "standing": "proposed",
+              "blockers": [],
+              "deciding_premises": [
+                {
+                  "id": "observed-week12-PS",
+                  "path": "/result/interpretations/0/premises/assumptions/0",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "proposed"
+                }
+              ]
+            },
+            {
+              "frame": "imputed-week12",
+              "origin": "assistant",
+              "frame_state": "unresolved",
+              "query": "PS3",
+              "result": "UNDETERMINED",
+              "query_path": "/result/interpretations/1/queries/1",
+              "warrant_path": "/result/interpretations/1/queries/1/warrant",
+              "standing": "proposed",
+              "blockers": [
+                "dependency_unresolved:change",
+                "interpretation_unresolved"
+              ],
+              "deciding_premises": [
+                {
+                  "id": "imputed-week12-PS",
+                  "path": "/result/interpretations/1/premises/assumptions/0",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "proposed"
+                }
+              ]
+            }
+          ],
+          "path_basis": "relative_to_this_reason_envelope"
+        },
         "frames": [
           "observed-week12",
           "imputed-week12"
@@ -1914,6 +1988,7 @@
           "status": "proposed",
           "blockers": [
             "dependency_unresolved:change",
+            "interpretation_answer_contrast",
             "interpretation_unresolved"
           ]
         }
@@ -2235,12 +2310,22 @@
             "kind": "evidence"
           },
           {
+            "code": "interpretation_answer_contrast",
+            "kind": "premise"
+          },
+          {
             "code": "interpretation_unresolved",
             "kind": "premise"
           }
         ],
         "disposition": "open",
-        "support_path": "/result/consequences/1/warrant"
+        "support_path": "/result/consequences/1/warrant",
+        "contrast_code": "interpretation_answer_contrast",
+        "contrast_path": "/result/consequences/1/contrast",
+        "answer_paths": [
+          "/result/interpretations/0/queries/1",
+          "/result/interpretations/1/queries/1"
+        ]
       }
     ]
   }

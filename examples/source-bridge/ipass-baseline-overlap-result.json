@@ -400,6 +400,12 @@
     ],
     "bindings": [
       {
+        "subjects": [
+          "WHO_PS2",
+          "never_smoker"
+        ],
+        "id": "same-baseline-universe",
+        "status": "proposed",
         "basis": [
           "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
           "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
@@ -409,7 +415,16 @@
           "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0",
           "hypothesis:source-location-is-not-semantic-warrant"
         ],
+        "resolution": "resolved",
+        "scope": {
+          "study": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+          "population": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a:baseline:BG002",
+          "arm": "baseline-module:BG002-total",
+          "time": "baseline-assessment-not-eligibility-time",
+          "version": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+        },
         "kind": "population",
+        "relation": "same_universe",
         "sources": [
           {
             "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
@@ -447,22 +462,7 @@
             "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
             "digest": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
           }
-        ],
-        "scope": {
-          "study": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
-          "population": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a:baseline:BG002",
-          "arm": "baseline-module:BG002-total",
-          "time": "baseline-assessment-not-eligibility-time",
-          "version": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
-        },
-        "subjects": [
-          "WHO_PS2",
-          "never_smoker"
-        ],
-        "status": "proposed",
-        "id": "same-baseline-universe",
-        "relation": "same_universe",
-        "resolution": "resolved"
+        ]
       }
     ],
     "coverage": [
@@ -786,6 +786,12 @@
         },
         "bindings": [
           {
+            "subjects": [
+              "WHO_PS2",
+              "never_smoker"
+            ],
+            "id": "same-baseline-universe",
+            "status": "proposed",
             "basis": [
               "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
               "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
@@ -795,7 +801,16 @@
               "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0",
               "hypothesis:source-location-is-not-semantic-warrant"
             ],
+            "resolution": "resolved",
+            "scope": {
+              "study": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+              "population": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a:baseline:BG002",
+              "arm": "baseline-module:BG002-total",
+              "time": "baseline-assessment-not-eligibility-time",
+              "version": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
+            },
             "kind": "population",
+            "relation": "same_universe",
             "sources": [
               {
                 "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
@@ -833,22 +848,7 @@
                 "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
                 "digest": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
               }
-            ],
-            "scope": {
-              "study": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
-              "population": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a:baseline:BG002",
-              "arm": "baseline-module:BG002-total",
-              "time": "baseline-assessment-not-eligibility-time",
-              "version": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
-            },
-            "subjects": [
-              "WHO_PS2",
-              "never_smoker"
-            ],
-            "status": "proposed",
-            "id": "same-baseline-universe",
-            "relation": "same_universe",
-            "resolution": "resolved"
+            ]
           }
         ],
         "interpretations": [
@@ -1734,6 +1734,31 @@
                 }
               },
               "result": "UNDETERMINED",
+              "contrast": {
+                "code": "none",
+                "context": {
+                  "cohort": null,
+                  "phase": null,
+                  "arm": null
+                },
+                "answers": [
+                  {
+                    "frame": "aligned-baseline-counts",
+                    "origin": "assistant",
+                    "frame_state": "compatible",
+                    "query": "registered-PS-at-most-two",
+                    "result": "UNDETERMINED",
+                    "query_path": "/result/interpretations/0/queries/1",
+                    "warrant_path": "/result/interpretations/0/queries/1/warrant",
+                    "standing": "known",
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ],
+                    "deciding_premises": []
+                  }
+                ],
+                "path_basis": "relative_to_this_reason_envelope"
+              },
               "frames": [
                 "aligned-baseline-counts"
               ],
@@ -1869,7 +1894,12 @@
                 }
               ],
               "disposition": "open",
-              "support_path": "/result/consequences/1/warrant"
+              "support_path": "/result/consequences/1/warrant",
+              "contrast_code": "none",
+              "contrast_path": "/result/consequences/1/contrast",
+              "answer_paths": [
+                "/result/interpretations/0/queries/1"
+              ]
             }
           ]
         }
@@ -1995,7 +2025,12 @@
           }
         ],
         "disposition": "open",
-        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+        "support_path": "/result/analyses/0/result/consequences/1/warrant",
+        "contrast_code": "none",
+        "contrast_path": "/result/analyses/0/result/consequences/1/contrast",
+        "answer_paths": [
+          "/result/analyses/0/result/interpretations/0/queries/1"
+        ]
       }
     ]
   }

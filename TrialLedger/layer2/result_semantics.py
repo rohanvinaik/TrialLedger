@@ -12,6 +12,16 @@ from copy import deepcopy
 from TrialLedger.layer2.entail import weakest_status
 
 CAUSE_KINDS = {
+    "coordinate_effect_no_consumer": "translation",
+    "coordinate_effect_inactive": "translation",
+    "coordinate_effect_withheld": "premise",
+    "coordinate_effect_redundant": "constraint",
+    "coordinate_effect_narrowed": "constraint",
+    "coordinate_effect_guarded": "constraint",
+    "selected_out_of_scope": "translation",
+    "interpretation_out_of_scope": "translation",
+    "interpretation_scope_contrast": "translation",
+    "interpretation_answer_contrast": "premise",
     "profile_size_limit": "computation",
     "witness_unresolved": "premise",
     "survivor_inconsistent": "conflict",
@@ -304,6 +314,10 @@ def _query(row: dict, path: str) -> dict:
     decision = row.get("decision", {})
     finding = _row(path, "logical", row.get("result", ""), warrant.get("status"), warrant.get("blockers", ()))
     finding["support_path"] = _path(path, "warrant")
+    if "contrast" in row:
+        finding["contrast_code"] = row["contrast"]["code"]
+        finding["contrast_path"] = _path(path, "contrast")
+        finding["answer_paths"] = [answer["query_path"] for answer in row["contrast"]["answers"]]
     if decision and decision.get("result") != row.get("result"):
         finding["raw_result"] = decision.get("result")
         finding["raw_path"] = _path(path, "decision")
@@ -486,6 +500,25 @@ def _coordinates(result: dict, base: str) -> list[dict]:
                 () if code == "accepted" else (code,),
             )
         )
+    for index, effect in enumerate(result.get("effects", ())):
+        path = _path(_path(base, "effects"), index)
+        finding = _row(
+            path,
+            "coordinate_effect",
+            "computed",
+            effect["standing"].get("status"),
+            ("coordinate_effect_" + effect["code"],),
+        )
+        finding["effect"] = effect["code"]
+        finding["support_path"] = path
+        finding["disposition"] = (
+            "translation_question"
+            if effect["code"] in ("no_consumer", "inactive")
+            else "open"
+            if effect["code"] == "withheld"
+            else "descriptive"
+        )
+        findings.append(finding)
     return findings
 
 
@@ -689,9 +722,11 @@ def _source_assertions(result: dict, base: str) -> list[dict]:
             child = metadata(answer.get("operation", ""), answer.get("result"), answer.get("problems", ()))
         for row in child.get("findings", ()):
             copied = deepcopy(row)
-            for field in ("path", "raw_path", "support_path"):
+            for field in ("path", "raw_path", "support_path", "contrast_path"):
                 if field in copied:
                     copied[field] = prefix + copied[field]
+            if "answer_paths" in copied:
+                copied["answer_paths"] = [prefix + path for path in copied["answer_paths"]]
             findings.append(copied)
     return findings
 
@@ -749,9 +784,11 @@ def _session_findings(result: dict, base: str) -> list[dict]:
     def extend_child(child: dict, prefix: str) -> None:
         for raw in child.get("metadata", {}).get("findings", ()):
             finding = deepcopy(raw)
-            for field in ("path", "raw_path", "support_path"):
+            for field in ("path", "raw_path", "support_path", "contrast_path"):
                 if field in finding:
                     finding[field] = prefix + finding[field]
+            if "answer_paths" in finding:
+                finding["answer_paths"] = [prefix + path for path in finding["answer_paths"]]
             findings.append(finding)
 
     for index, analysis in enumerate(result.get("analyses", ())):

@@ -211,7 +211,7 @@ def test_registry_report_excludes_clinical_inference_but_preserves_exact_eligibi
     assert not {"interpolated", "proposed"} & record["statuses"].keys()
     assert study["eligibility"]["text"] == text
     for piece in study["criteria"]:
-        assert set(piece) == {"heading", "number", "text", "source_start", "source_end"}
+        assert set(piece) == {"heading", "number", "text", "source_start", "source_end", "source_context"}
         assert text[piece["source_start"] : piece["source_end"]] == piece["text"]
     assert "".join(piece["text"] for piece in study["criteria"]) == text
     assert any(value == text + "\n[End of field]" for _, _, _, value, _ in readout.dossier_facts(study))
@@ -231,6 +231,8 @@ def test_registry_report_excludes_clinical_inference_but_preserves_exact_eligibi
         "Source section",
         "Passage",
         "Source passage",
+        "Local source context",
+        "Context structure",
     )
     path = tmp_path / "registry-report.xlsx"
     readout.write_book(record, path)

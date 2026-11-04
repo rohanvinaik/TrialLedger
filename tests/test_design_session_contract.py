@@ -415,9 +415,7 @@ def test_prior_result_digest_cannot_be_faked_and_parent_must_match():
         session.run(request)
 
 
-@pytest.mark.parametrize(
-    "limit", ["max_analyses", "max_expanded_items", "max_solver_work", "max_output_bytes"]
-)
+@pytest.mark.parametrize("limit", ["max_analyses", "max_solver_work", "max_output_bytes"])
 def test_aggregate_limits_refuse_without_truncation(limit):
     value = bare()
     value["limits"][limit] = 1

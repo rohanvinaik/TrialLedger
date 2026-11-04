@@ -1,0 +1,46 @@
+{
+  "roots_equal": true,
+  "node_comparison": {
+    "TrialLedger.record_access:bounded_view": true,
+    "TrialLedger.record_access:response_bytes": true,
+    "TrialLedger.record_access:text_window": true,
+    "moved-selector:_served": false,
+    "moved-selector:page_window": true,
+    "moved-selector:pointer_value": true,
+    "moved-selector:record_view": true,
+    "moved-selector:study_line": true
+  },
+  "extra_constants_equal": {
+    "RECORD_PAGE_LIMIT": true,
+    "STUDY_LINE": true,
+    "MANIFEST_KEYS": true,
+    "STATUS_KEYS": true,
+    "RECORD_PARTS": true,
+    "RECORD_WORDS": true,
+    "SCHEMA_VERSION": true,
+    "DEFAULT_BYTES": true,
+    "MIN_BYTES": true,
+    "MAX_BYTES": true
+  },
+  "fields_consumed_name_consumer_projection_equal": false,
+  "served_outputs_equal_for_all_three_import_time_parts": true,
+  "changed_complete_field_objects": 4,
+  "same_interpreter_binary": true,
+  "new_actual_mcp_alias_identity": {
+    "page_window": true,
+    "pointer_value": true,
+    "study_line": true,
+    "record_view": true
+  },
+  "old_unresolved": [],
+  "new_unresolved": [],
+  "old_owner": "/private/tmp/trialledger-acquisition-access-pins-20261104/migration/baseline/TrialLedger/mcp_server.py",
+  "new_owner": "/Users/rohanvinaik/tools/TrialLedger/TrialLedger/evidence_access.py",
+  "limits": [
+    "No automatic old certificate transfer to the new module.",
+    "Function module/global dictionary identities differ; normalized function references account only for the declared move.",
+    "Full FIELDS binding differs. Only the actual three import-time _served projections are asserted equal.",
+    "Native bindings use module/name and same interpreter binary; they have no Python AST.",
+    "Introspection, old-namespace monkeypatching, custom non-JSON objects and alternate runtimes are outside the bounded clinical-interface claim."
+  ]
+}

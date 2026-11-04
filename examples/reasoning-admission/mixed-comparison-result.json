@@ -567,7 +567,14 @@
         "pending_stating": 0,
         "pending_statement_lower": 1.0,
         "pending_statement_upper": 1.0,
-        "unresolved_pending": 0
+        "unresolved_pending": 0,
+        "description": {
+          "scope": "declared_comparison_set",
+          "stating": 2,
+          "trials": 2,
+          "threshold": 0.9,
+          "meaning": "descriptive frequency threshold; no clinical standard or recommendation"
+        }
       },
       {
         "stratum": "invented-comparison-set",
@@ -590,7 +597,14 @@
         "pending_stating": 1,
         "pending_statement_lower": 0.5,
         "pending_statement_upper": 1.0,
-        "unresolved_pending": 1
+        "unresolved_pending": 1,
+        "description": {
+          "scope": "declared_comparison_set",
+          "stating": 1,
+          "trials": 2,
+          "threshold": 0.9,
+          "meaning": "descriptive frequency threshold; no clinical standard or recommendation"
+        }
       }
     ],
     "associations": [],

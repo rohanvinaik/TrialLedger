@@ -19,6 +19,7 @@ from typing import Any, cast
 import httpx
 
 from TrialLedger import __version__
+from TrialLedger import acquisition as acquisition_policy
 
 API_BASE = "https://clinicaltrials.gov/api/v2"  # spec: servers[0].url
 SPEC_API_VERSION = "2.0.5"  # spec: info.version
@@ -373,18 +374,33 @@ class Session:
         sleep: Callable[[float], None] = time.sleep,
         monotonic: Callable[[], float] = time.monotonic,
         progress: Callable[[str], None] = _ignore,
+        acquisition: dict[str, int] | None = None,
+        registry_requests: int = 0,
+        on_registry_request: Callable[[int], None] | None = None,
+        acquisition_kind: acquisition_policy.PlanKind | None = None,
     ) -> None:
         self._http = http
         self._sleep = sleep
         self._monotonic = monotonic
         self.progress = progress
         self._last_request: float | None = None
+        self.acquisition = acquisition_policy.effective_policy(acquisition)
+        self.registry_requests = registry_requests
+        self.registry_successes = registry_requests
+        self.observed_total: int | None = None
+        self.on_registry_request = on_registry_request
+        self.acquisition_kind = acquisition_kind
 
     def get(self, path: str, params: dict[str, str], expected_type: str) -> httpx.Response:
         request = self._http.build_request("GET", path, params=params)
         attempt = 0
         while True:
             attempt += 1
+            if request.url.host == "clinicaltrials.gov" and request.url.path.startswith("/api/v2/"):
+                self.guard_acquisition(None, self.registry_requests + 1)
+                self.registry_requests += 1
+                if self.on_registry_request is not None:
+                    self.on_registry_request(self.registry_requests)
             self._throttle()
             response: httpx.Response | None = None
             failure = ""
@@ -396,6 +412,8 @@ class Session:
             content_type = None if response is None else response.headers.get("content-type")
             code = classify_response(status, content_type, expected_type, attempt, MAX_ATTEMPTS)
             if code == "ok" and response is not None:
+                if request.url.host == "clinicaltrials.gov" and request.url.path.startswith("/api/v2/"):
+                    self.registry_successes += 1
                 return response
             if code == "retry":
                 retry_after = None if response is None else response.headers.get("retry-after")
@@ -405,6 +423,28 @@ class Session:
                 self._sleep(wait)
                 continue
             raise PullError(f"http.{code}", _describe(request, response, failure, attempt))
+
+    def guard_acquisition(self, total: int | None, planned: int) -> None:
+        """Check scope and full registry work before issuing the next acquisition step."""
+        if total is not None:
+            planned += max(0, self.registry_requests - self.registry_successes)
+        code = acquisition_policy.expansion_code(
+            self.acquisition["max_studies"],
+            self.acquisition["max_registry_requests"],
+            total,
+            self.registry_requests,
+            planned,
+        )
+        if code != "within_budget":
+            raise PullError(
+                "acquisition." + code,
+                acquisition_policy.refusal_detail(
+                    self.acquisition,
+                    total,
+                    self.registry_requests,
+                    planned,
+                ),
+            )
 
     def _throttle(self) -> None:
         if self._last_request is not None:
@@ -479,6 +519,15 @@ def fetch_json_pages(
             raise PullError(f"json.{code}", f"page {page_number}: {response.request.url}")
         if token is None:
             total = payload["totalCount"]
+            if session.observed_total is not None and total != session.observed_total:
+                raise PullError(
+                    "json.total_changed",
+                    f"ID preflight counted {session.observed_total}; full JSON counted {total}",
+                )
+            kind = session.acquisition_kind or ("ids" if fields == "NCTId" else "studies")
+            session.guard_acquisition(
+                total, acquisition_policy.registry_plan_requests(total, kind, PAGE_SIZE, ID_PAGE_SIZE)
+            )
         page = payload["studies"]
         studies.extend(page)
         empty_streak = 0 if page else empty_streak + 1
@@ -527,6 +576,9 @@ def fetch_csv_pages(session: Session, query: dict[str, str]) -> tuple[int, str, 
             raise PullError(f"csv.{code}", f"page {page_number}: {response.request.url}")
         if first_page:
             total = int(response.headers["x-total-count"])
+            session.guard_acquisition(
+                total, acquisition_policy.registry_plan_requests(total, "json_csv", PAGE_SIZE, ID_PAGE_SIZE)
+            )
         try:
             rows = list(csv.reader(io.StringIO(body, newline=""), strict=True))
         except csv.Error as error:
@@ -566,6 +618,25 @@ def compare_snapshots(before: tuple[str, str], after: tuple[str, str]) -> str:
     return "same" if before == after else "changed"
 
 
+def acquisition_preflight(session: Session, query: dict[str, str]) -> None:
+    """Read only the first ID page to bound NIH work before fetching any full bodies.
+
+    This page is not a complete-ID-pool claim; normal JSON/CSV completeness and the
+    two surrounding registry snapshot checks still decide the final result.
+    """
+    response = session.get("/studies", json_query_params(query, "NCTId"), JSON_TYPE)
+    payload = _decode_json(response, "json")
+    code = classify_json_page(payload, True)
+    if code not in ("next", "last"):
+        raise PullError("json." + code, str(response.request.url))
+    total = payload["totalCount"]
+    session.observed_total = total
+    kind = session.acquisition_kind or "studies"
+    session.guard_acquisition(
+        total, acquisition_policy.registry_plan_requests(total, kind, PAGE_SIZE, ID_PAGE_SIZE)
+    )
+
+
 def query_studies(
     query: dict[str, str],
     *,
@@ -573,13 +644,16 @@ def query_studies(
     sleep: Callable[[float], None] = time.sleep,
     monotonic: Callable[[], float] = time.monotonic,
     progress: Callable[[str], None] = _ignore,
+    acquisition: dict[str, int] | None = None,
 ) -> tuple[list[dict[str, Any]], str, str]:
     """Every JSON study `query` matches, from one registry snapshot, held in memory — or raise.
 
     The live path for production use (`trialledger resolve`): the same complete-or-nothing paging and
     snapshot check as `pull`, without the CSV or any file. Returns (studies, API version, data timestamp).
     """
-    return _query_snapshot(query, "", http=http, sleep=sleep, monotonic=monotonic, progress=progress)
+    return _query_snapshot(
+        query, "", http=http, sleep=sleep, monotonic=monotonic, progress=progress, acquisition=acquisition
+    )
 
 
 def query_ids(
@@ -589,12 +663,19 @@ def query_ids(
     sleep: Callable[[float], None] = time.sleep,
     monotonic: Callable[[], float] = time.monotonic,
     progress: Callable[[str], None] = _ignore,
+    acquisition: dict[str, int] | None = None,
 ) -> tuple[list[str], str, str]:
     """Every NCT ID `query` matches, from one registry snapshot — or raise. The same complete-or-nothing
     paging and snapshot check as `query_studies`, with only the IDs held in memory (for drawing samples).
     Returns (NCT IDs in API order, API version, data timestamp)."""
     studies, version, timestamp = _query_snapshot(
-        query, "NCTId", http=http, sleep=sleep, monotonic=monotonic, progress=progress
+        query,
+        "NCTId",
+        http=http,
+        sleep=sleep,
+        monotonic=monotonic,
+        progress=progress,
+        acquisition=acquisition,
     )
     return (
         [study["protocolSection"]["identificationModule"]["nctId"] for study in studies],
@@ -611,19 +692,38 @@ def _query_snapshot(
     sleep: Callable[[float], None],
     monotonic: Callable[[], float],
     progress: Callable[[str], None],
+    acquisition: dict[str, int] | None = None,
 ) -> tuple[list[dict[str, Any]], str, str]:
     code, names = check_query(query)
     if code != "ok":
         raise PullError(f"query.{code}", ", ".join(names) or "no query parameters were given")
+    kind: acquisition_policy.PlanKind = "ids" if fields == "NCTId" else "studies"
+    expected = acquisition_policy.expected_id_count(query)
+    try:
+        policy = acquisition_policy.effective_policy(
+            acquisition,
+            expected_studies=expected,
+            expected_requests=acquisition_policy.registry_plan_requests(
+                expected, kind, PAGE_SIZE, ID_PAGE_SIZE
+            )
+            if expected is not None
+            else None,
+        )
+    except ValueError as error:
+        raise PullError("acquisition.invalid_policy", str(error)) from error
     client = http or httpx.Client(
         base_url=API_BASE,
         timeout=TIMEOUT_SECONDS,
         follow_redirects=False,
         headers={"User-Agent": USER_AGENT},
     )
-    session = Session(client, sleep=sleep, monotonic=monotonic, progress=progress)
+    session = Session(
+        client, sleep=sleep, monotonic=monotonic, progress=progress, acquisition=policy, acquisition_kind=kind
+    )
     try:
         before = fetch_version(session)
+        if kind != "ids":
+            acquisition_preflight(session, query)
         _, studies, _ = fetch_json_pages(session, query, fields)
         after = fetch_version(session)
     finally:
@@ -646,6 +746,7 @@ def pull(
     monotonic: Callable[[], float] = time.monotonic,
     clock: Callable[[], str] = _utc_now,
     progress: Callable[[str], None] = _ignore,
+    acquisition: dict[str, int] | None = None,
 ) -> Pull:
     """Every study `query` matches, as JSON records and as the API's CSV, from one snapshot — or raise.
 
@@ -654,15 +755,33 @@ def pull(
     code, names = check_query(query)
     if code != "ok":
         raise PullError(f"query.{code}", ", ".join(names) or "no query parameters were given")
+    kind: acquisition_policy.PlanKind = "json_csv"
+    expected = acquisition_policy.expected_id_count(query)
+    try:
+        policy = acquisition_policy.effective_policy(
+            acquisition,
+            expected_studies=expected,
+            expected_requests=acquisition_policy.registry_plan_requests(
+                expected, kind, PAGE_SIZE, ID_PAGE_SIZE
+            )
+            if expected is not None
+            else None,
+        )
+    except ValueError as error:
+        raise PullError("acquisition.invalid_policy", str(error)) from error
     client = http or httpx.Client(
         base_url=API_BASE,
         timeout=TIMEOUT_SECONDS,
         follow_redirects=False,
         headers={"User-Agent": USER_AGENT},
     )
-    session = Session(client, sleep=sleep, monotonic=monotonic, progress=progress)
+    session = Session(
+        client, sleep=sleep, monotonic=monotonic, progress=progress, acquisition=policy, acquisition_kind=kind
+    )
     try:
         before = fetch_version(session)
+        if kind != "ids":
+            acquisition_preflight(session, query)
         total, studies, json_ids = fetch_json_pages(session, query)
         _, csv_text, csv_ids = fetch_csv_pages(session, query)
         after = fetch_version(session)

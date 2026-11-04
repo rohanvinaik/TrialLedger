@@ -1,0 +1,80 @@
+{
+  "case": "phase4-hypertension",
+  "retained_complete_packet": "/Users/rohanvinaik/trialledger-runs/repair-context-preparation-walkthroughs-20261104/phase4-hypertension",
+  "scope": "Complete chosen reasoning inputs/results and decision brief; duplicate wires/workbooks/search bodies retained externally. Layer-one replay requires that external packet. Re-fetch is a new observation.",
+  "files": [
+    {
+      "path": "working-brief.md",
+      "bytes": 5448,
+      "sha256": "7960c2cb210d99307053c74cd6643614c9ceae705d69b5052e84d050222e81fb"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 16750,
+      "sha256": "33bf811a09de1f6c79dea4b2ecea9ed0caad26f061f534f69426ee63e83deb67"
+    },
+    {
+      "path": "selection-before-acquisition.json",
+      "bytes": 534,
+      "sha256": "d3a1252bd97e105f34891e66afdd13c4edc2e1836bee99f4f29fa014e9bd4da3"
+    },
+    {
+      "path": "acquisition-request.json",
+      "bytes": 143,
+      "sha256": "c3e9bba189162ea6e1c6d6a651b3565b43822f468849406bc48858e44c4dbe53"
+    },
+    {
+      "path": "filtered-context-row.json",
+      "bytes": 489,
+      "sha256": "5113108f249c2940f1b3a345280ac612b5afca8704b1107eb1a4a7932c6a1ae6"
+    },
+    {
+      "path": "constructed-canonical-inputs.json",
+      "bytes": 7702,
+      "sha256": "9a43ca1cde54051c06678132dc26032cefa1ee7eb1d4195a9c8b92386b17ac90"
+    },
+    {
+      "path": "session-baseline-request.json",
+      "bytes": 56275,
+      "sha256": "40e881ad06c423b388ba7e913b5955c286569c232d07b66e06895a0fdfcb8b26"
+    },
+    {
+      "path": "session-baseline-result.json",
+      "bytes": 325702,
+      "sha256": "6fb4dd5284ad1fc87071267db540ae0e87d0afb15954d2c2c7ab2e3dfa68ab34"
+    },
+    {
+      "path": "session-revision-request.json",
+      "bytes": 565325,
+      "sha256": "a91ef958af6d1e36dc61b62cde16ab91af840256599a6fd2b31db2f774063acc"
+    },
+    {
+      "path": "session-revision-result.json",
+      "bytes": 606414,
+      "sha256": "a2df0d20f66fa33e987d457e4ecdaa0f735927fc2f33fe8ba9f914eb12df8961"
+    },
+    {
+      "path": "NCT00362258-population-reading-request.json",
+      "bytes": 13277,
+      "sha256": "346171ea0d87a4bc92fb8c359925a0c442f3803d505bd828331d8b2a912501af"
+    },
+    {
+      "path": "NCT00362258-population-reading-result.json",
+      "bytes": 45028,
+      "sha256": "10418c38b2a158757987b5c5515c038ca6fd3430db197d60b210c08cfe52c23a"
+    },
+    {
+      "path": "NCT00772499-population-reading-request.json",
+      "bytes": 13688,
+      "sha256": "2061c4e9443779c371325c8f15b987da5c6514535dc7d197685f7138673640fc"
+    },
+    {
+      "path": "NCT00772499-population-reading-result.json",
+      "bytes": 42604,
+      "sha256": "d28a9df54327d7c790e54c3842ae0286e2ccde596eb566159bb3b89d61663ad4"
+    }
+  ],
+  "file_count": 14,
+  "bytes": 1699379,
+  "original_packet_location": "/tmp/trialledger-fresh-context-preparation-20261103-v1/phase4-hypertension"
+}

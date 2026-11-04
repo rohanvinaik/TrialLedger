@@ -1,0 +1,69 @@
+{
+  "case": "migraine-phase2",
+  "retained_complete_packet": "/Users/rohanvinaik/trialledger-runs/repair-handoff-walkthroughs-20261104/migraine-phase2",
+  "scope": "Complete chosen reasoning inputs/results and decision brief; duplicate wires/workbooks/search bodies retained externally. Layer-one replay requires that external packet. Re-fetch is a new observation.",
+  "files": [
+    {
+      "path": "working-brief.md",
+      "bytes": 7225,
+      "sha256": "566f9d8c154001eaf2222843109522a461ced4170d1ca1f23cd757db0999c3a7"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 5378,
+      "sha256": "a21db7c4deae4c8222fb707d9bbc6688405e2b9c6a5fc649dc36791e57a89925"
+    },
+    {
+      "path": "query-request-v2.json",
+      "bytes": 287,
+      "sha256": "89c7a7c46639d9a67c53e16c20113c8bdf80c91b9a618fe40ecbf169a8d9ad99"
+    },
+    {
+      "path": "acquisition-receipt.json",
+      "bytes": 502,
+      "sha256": "11a36442ef15c5a2255890b04cc40a94dc60430caa7019cfc099a288a9e750fc"
+    },
+    {
+      "path": "paging-receipt.json",
+      "bytes": 509,
+      "sha256": "b508f1990c9da7dbea8c0c62c0aa3e25950d54450f9d394c27281d2d5928050e"
+    },
+    {
+      "path": "final-replay-receipt.json",
+      "bytes": 19134,
+      "sha256": "a8e113217c19c858848d5fcbeb2bf1787a952e3f30183d3dfd6a97724df3d1f3"
+    },
+    {
+      "path": "requests/managed-baseline-final-runtime.json",
+      "bytes": 110761,
+      "sha256": "1b130a66fb9cbf56eb024010a575c5a963da49526c0fa3343c5d39d3514be62b"
+    },
+    {
+      "path": "results/managed-baseline-final-runtime.json",
+      "bytes": 286404,
+      "sha256": "c63c3fd6f39ec135a6b04e2c1c7c8031edd09173e5a7482ca36a3056cedc2bb7"
+    },
+    {
+      "path": "requests/managed-revision-final-runtime.json",
+      "bytes": 522003,
+      "sha256": "a765d59c609053ebce415a0274cda8e244ab6262f61a0f9a39e349de60b42b4e"
+    },
+    {
+      "path": "results/managed-revision-final-runtime.json",
+      "bytes": 573118,
+      "sha256": "ccf75ca13d1eab48ad00a422181a7b0330806b5b2eab18a0f7037f1b4f9b8158"
+    },
+    {
+      "path": "requests/source-clock-rivals.json",
+      "bytes": 105555,
+      "sha256": "3f26afb05c416e58412016754c73f90ed0ac2a4036dfe70ac847e7f74ff377e6"
+    },
+    {
+      "path": "results/source-clock-rivals.json",
+      "bytes": 137542,
+      "sha256": "c00dd43e7da525c7177bfc012d95d4d536f8e86ead1e33bd506a928d831ff893"
+    }
+  ],
+  "file_count": 12,
+  "bytes": 1768418
+}

@@ -1,0 +1,419 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT07119099",
+        "orgStudyIdInfo": {
+          "id": "14/2025"
+        },
+        "organization": {
+          "fullName": "Marmara University",
+          "class": "OTHER"
+        },
+        "briefTitle": "The relatıonshıp Between Upper Extremity Exercise Test and Exercise Capacity ın patıents wıth Idiopathic Pulmonary Fibrosis",
+        "officialTitle": "The relatıonshıp Between 6 Minute Pegboard and Ring Test and Exercise Capacity, fatıgue, actıvıtıes of daıly lıvıng and Quality of lıfe ın patıents wıth Idiopathic Pulmonary Fibrosis"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2026-03",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2025-08-04",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2025-10-13",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2025-12-26",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2025-07-30",
+        "studyFirstSubmitQcDate": "2025-08-05",
+        "studyFirstPostDateStruct": {
+          "date": "2025-08-12",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2026-03-02",
+        "lastUpdatePostDateStruct": {
+          "date": "2026-03-03",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "PRINCIPAL_INVESTIGATOR",
+          "investigatorFullName": "Anıl Gökçen",
+          "investigatorTitle": "Physiotherapist",
+          "investigatorAffiliation": "Marmara University"
+        },
+        "leadSponsor": {
+          "name": "Marmara University",
+          "class": "OTHER"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": false,
+        "isFdaRegulatedDrug": false,
+        "isFdaRegulatedDevice": false
+      },
+      "descriptionModule": {
+        "briefSummary": "The primary aim of our study was to investigate the relationship between 6PBRT outcome measures and 6MWT, 1MSTST and UULEX outcome measures. The secondary aim is to investigate the predictors of 6PBRT test.",
+        "detailedDescription": "Our study was conducted in the Chest Diseases Clinic of Süreyyapaşa Chest Diseases and Thoracic Surgery Training and Research Hospital. Our study was approved by the Marmara University Faculty of Health Sciences Ethics Committee and was conducted in accordance with the Declaration of Helsinki. Signed informed consent was obtained from the participants."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Idiopathic Pulmonary Fibrosis (IPF)"
+        ],
+        "keywords": [
+          "6-minute pegboard and ring test",
+          "upper extremity",
+          "exercise capacity",
+          "idiopathic pulmonary fibrosis"
+        ]
+      },
+      "designModule": {
+        "studyType": "OBSERVATIONAL",
+        "patientRegistry": false,
+        "designInfo": {
+          "observationalModel": "OTHER",
+          "timePerspective": "CROSS_SECTIONAL"
+        },
+        "enrollmentInfo": {
+          "count": 21,
+          "type": "ACTUAL"
+        }
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "1 Minute Sit to Stand Test (1MSTST)",
+            "description": "The 1-Minute Sit-to-Stand Test (1MSTST) is a simple, inexpensive, and practical assessment used to evaluate functional capacity in a small space. During the test, participants are asked to repeatedly sit down and stand up from a fixed chair as quickly as possible for one minute, without using their arms for support.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "Unsupported Upper-Limb Exercise Test (UULEX)",
+            "description": "Patients will be instructed to lift five bars consecutively and rhythmically until the onset of fatigue. The bars will have incremental weights of 200 g, 500 g, 1 kg, and 2 kg, respectively. The duration of the activity will be recorded to assess the patients' endurance levels.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "6 Minutes Pegboard and Ring Test (6PBRT)",
+            "description": "The 6-Minute Pegboard and Ring Test (6PBRT) is designed to assess upper extremity functional capacity using unsupported arm movements. The setup includes four horizontally aligned bars: two at shoulder height and two positioned 20 cm above. Participants, seated with back support, sequentially transfer rings between the bars for six minutes, and the total number of rings moved serves as the performance score.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "6 Minutes Walking Tests (6MWT)",
+            "description": "Total distance walked (in meters) during the 6MWT will be recorded. Higher distance reflects improved functional capacity.",
+            "timeFrame": "Day 1"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Spirometric measurements (Forced vital capacity - FVC)",
+            "description": "It is used to assess respiratory function and is measured using a spirometer. Forced Vital Capacity (FVC) refers to the maximum volume of air that can be forcefully exhaled from the lungs after a full inhalation. This value can be expressed in liters or as a percentage.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "Spirometric measurements (First second forced expiratory volume - FEV1)",
+            "description": "It is employed to assess respiratory functions and is measured using a spirometer. Forced Expiratory Volume in the first second (FEV₁) represents the volume of air that can be forcefully exhaled within the first second of a maximal exhalation. This parameter can be expressed either in liters or as a percentage.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "Spirometric measurements (FEV1/FVC ratio)",
+            "description": "It is employed to assess respiratory function and is measured with a spirometer. The value is obtained by dividing FEV₁ by FVC, and the result is expressed as a percentage.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "Carbon monoxide diffusion capacity",
+            "description": "Carbon monoxide diffusion capacity (DLCO) is the measurement of the passage of carbon monoxide gas in inspired air into the lung capillary blood. Diffusion test is performed in the pulmonary function test laboratory.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "Modified Medical Research Council Dyspnea Score",
+            "description": "The Modified Medical Research Council (mMRC) Dyspnea Scale assesses the sensation of breathlessness as perceived by the individual. The severity of dyspnea is scored on a scale ranging from 0 to 4, where 0 indicates no perception of dyspnea and 4 represents severe breathlessness.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "Fatigue severity scale",
+            "description": "The fatigue levels of individuals will be evaluated using the Fatigue Severity Scale. This scale comprises nine items rated on a 7-point Likert scale, reflecting the individual's perception of fatigue, which may indicate the need for medical intervention. The total score is 63. Higher scores indicate more severe fatigue.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "London Chest Daily Activities of Living Scale",
+            "description": "The feeling of breathlessness experienced during daily living activities was assessed using the London Chest Daily Activities of Living Scale (LCADL). The scale consists of a total of 15 items divided into four sections: personal care (4 items), housework (6 items), physical activity (2 items), and leisure activities (3 items). Each item is scored on a scale of 0-5. The total score for the scale is 75. A high score indicates an increased perception of shortness of breath during daily living activities.",
+            "timeFrame": "Day 1"
+          },
+          {
+            "measure": "Saint George Quality of life questionnaire",
+            "description": "The St. George's Respiratory Questionnaire is designed to assess health-related quality of life in individuals with respiratory conditions. It provides four separate scores: Symptoms, Activity, Impacts, and an overall Total score. The scale ranges from 0 to 100, where 0 represents no impairment in quality of life and 100 indicates the most severe impairment.",
+            "timeFrame": "Day 1"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Our study included subjects who were diagnosed with IPF according to the ATS/ERS/JRS/ALAT guidelines, were over 18 years of age, had not changed their treatment for the last 3 months, and had a stable clinical status for the last 3 months.\n\nExclusion Criteria:\n\n* Subjects with orthopedic comorbidity affecting upper extremity use, neurologic comorbidity, severe postural impairment, uncontrolled cardiac or cardiometabolic comorbidity, newly diagnosed cancer, obstructive pulmonary disease, recent surgery and those who refused to volunteer were excluded.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "85 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ],
+        "studyPopulation": "Chest Diseases Clinic of Süreyyapaşa Chest Diseases and Thoracic Surgery Training and Research Hospital",
+        "samplingMethod": "PROBABILITY_SAMPLE"
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Anıl Gökçen, Phsiotheraphist",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Süreyyapaşa Chest Diseases and Thoracic Surgery Training and Research Hospital",
+            "city": "Istanbul",
+            "country": "Turkey (Türkiye)",
+            "geoPoint": {
+              "lat": 41.01384,
+              "lon": 28.94966
+            }
+          },
+          {
+            "facility": "Süreyyapaşa",
+            "city": "Istanbul",
+            "country": "Turkey (Türkiye)",
+            "geoPoint": {
+              "lat": 41.01384,
+              "lon": 28.94966
+            }
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO"
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D054990",
+            "term": "Idiopathic Pulmonary Fibrosis"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D011658",
+            "term": "Pulmonary Fibrosis"
+          },
+          {
+            "id": "D017563",
+            "term": "Lung Diseases, Interstitial"
+          },
+          {
+            "id": "D008171",
+            "term": "Lung Diseases"
+          },
+          {
+            "id": "D012140",
+            "term": "Respiratory Tract Diseases"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "49a3ac4a257e9ca4dbb1c16b990fc3205a0c0b8cd26d096fd662a4d1c5025077",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "49a3ac4a257e9ca4dbb1c16b990fc3205a0c0b8cd26d096fd662a4d1c5025077",
+      "expected": "Inclusion Criteria:\n\n* Our study included subjects who were diagnosed with IPF according to the ATS/ERS/JRS/ALAT guidelines, were over 18 years of age, had not changed their treatment for the last 3 months, and had a stable clinical status for the last 3 months.\n\nExclusion Criteria:\n\n* Subjects with orthopedic comorbidity affecting upper extremity use, neurologic comorbidity, severe postural impairment, uncontrolled cardiac or cardiometabolic comorbidity, newly diagnosed cancer, obstructive pulmonary disease, recent surgery and those who refused to volunteer were excluded."
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "strictly-over18",
+      "label": "Read over18 strictly; structured minimum18 does not settle this boundary",
+      "origin": "assistant",
+      "basis": [
+        "assistant:unconfirmed-literal-prose-boundary-reading"
+      ],
+      "anchors": [
+        "eligibility"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "gt",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT07119099:49a3ac4a257e9ca4dbb1c16b990fc3205a0c0b8cd26d096fd662a4d1c5025077#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "id": "prose-over18",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "assistant-prose-boundary-reading",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "ctg:NCT07119099:49a3ac4a257e9ca4dbb1c16b990fc3205a0c0b8cd26d096fd662a4d1c5025077"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "id": "age18",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "age30",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 30,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "at-least40",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 40,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

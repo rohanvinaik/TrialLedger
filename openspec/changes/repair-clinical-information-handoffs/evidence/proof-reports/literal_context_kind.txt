@@ -1,0 +1,58 @@
+TrialLedger/landscape.py::literal_context_kind: ✓ every killable mutant killed + line-complete — 11 candidate-equivalent (UNPROVEN: `flag` if truly equivalent, or add a distinguishing input); 3 crash-only value gap(s) — detected by crash; no value pins them
+  mutants: 9 → 9 survivors; score 91% → 91% (88/97 killed)
+  value: 14 → 14 unspecified; score 86% → 86% (83/97 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 51 operator mutants · comprehensive — full mutant universe · 83/97 = 86% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 14 survivors, 1 sound tests written
+  pass 1: 14 survivors, 0 sound tests written
+  remaining: 1 ARITHMETIC, 3 BOUNDARY, 1 LOGICAL, 3 SWAP, 6 VALUE
+  ✓ every killable mutant killed — remaining survivors have no distinguishing input (candidate-equivalent, NOT proven)
+  candidate-equivalent — retained, UNPROVEN (11: BOUNDARY, LOGICAL, SWAP, VALUE); no distinguishing input in 10 tried. To KILL: supply an input reaching a mutated branch below (or `flag` what you can PROVE equivalent):
+      boundary-probed: 4 further probe input(s) — both sides of every edge, the None of every Optional — distinguished none of these
+    → mutant BOUNDARY_333aa7a2 [BOUNDARY]: - if words.startswith('\t') or len(words) - len(words.lstrip(' ')) > 3:  + if words.startswith('\t') or False:
+    → mutant BOUNDARY_015d5d63 [BOUNDARY]: - if isolated and stripped.endswith(':') and (len(stripped) > 1) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):  + if isolated and stripped.endswith(':') and (len(stripped) >= 1) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):
+        ↳ internal condition `len(stripped) == 1` decides this — not a direct input constraint; Detective could not derive a verified call from the parameters
+    → mutant BOUNDARY_4143b400 [BOUNDARY]: - if isolated and stripped.endswith(':') and (len(stripped) > 1) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):  + if isolated and stripped.endswith(':') and True and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):
+    → mutant LOGICAL_1ce66803 [LOGICAL]: - if words.startswith('\t') or len(words) - len(words.lstrip(' ')) > 3:  + if words.startswith('\t') and len(words) - len(words.lstrip(' ')) > 3:
+    → mutant VALUE_acbadc23 [VALUE]: - stripped = words.strip(' \t')  + stripped = words.strip('')
+    → mutant VALUE_61b641e2 [VALUE]: - if words.startswith('\t') or len(words) - len(words.lstrip(' ')) > 3:  + if words.startswith('\t') or len(words) - len(words.lstrip('')) > 3:
+    → mutant VALUE_5b36a284 [VALUE]: - if words.startswith('\t') or len(words) - len(words.lstrip(' ')) > 3:  + if words.startswith('\t') or len(words) - len(words.lstrip(' ')) > 4:
+    → mutant VALUE_fdf8e45e [VALUE]: - if isolated and stripped.endswith(':') and (len(stripped) > 1) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):  + if isolated and stripped.endswith(':') and (len(stripped) > 0) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):
+    → mutant VALUE_f9f97106 [VALUE]: - if isolated and stripped.endswith(':') and (len(stripped) > 1) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):  + if isolated and stripped.endswith(':') and (len(stripped) > 2) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):
+    → mutant SWAP_ebfe6656 [SWAP]: - if isolated and stripped.endswith(':') and (len(stripped) > 1) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):  + if isolated and stripped.endswith(':') and (stripped > 1) and (not re.match('(?:[-+*>#`~]|[0-9]+[.)](?:\\s|$))', stripped)):
+    → mutant VALUE_7750929c [VALUE]: - words = line.rstrip('\r\n')  + words = line.rstrip('')
+      target:  literal_context_kind(line: str, isolated: bool)
+      template: --input "(<line>, <isolated>)"   # replace every <...> slot before running
+  value-equivalent, crash-only-distinguishable (3: ARITHMETIC, SWAP) — the mutant RAISES where the original returns, so no return-value assertion can pin it. Your suite already detects every one by crash — no input is owed for detection; a ↳ line below, where present, names the boundary input that would make the distinction explicit. An input distinguishes each, so none is an equivalence candidate — nothing to `flag`:
+    → mutant ARITHMETIC_c9956c3c [ARITHMETIC]: - if stripped in INCLUSION_HEADINGS + EXCLUSION_HEADINGS:  + if stripped in INCLUSION_HEADINGS - EXCLUSION_HEADINGS:
+    → mutant SWAP_b782b6bf [SWAP]: - if words.startswith('\t') or len(words) - len(words.lstrip(' ')) > 3:  + if words.startswith('\t') or words - len(words.lstrip(' ')) > 3:
+    → mutant SWAP_1907ace5 [SWAP]: - if words.startswith('\t') or len(words) - len(words.lstrip(' ')) > 3:  + if words.startswith('\t') or len(words) - words.lstrip(' ') > 3:
+  ⚠ structural caveat: a survivor above may be KILLABLE, not equivalent — its distinguishing input is one the deterministic search did not construct (a nested/cross-referential value, or a branch no tried input reached). Confirm with a differential check over a nested / cross-referential `--input` BEFORE you `flag`.
+  uncertain — no synthesized input discriminates the remaining survivor(s), and their inputs are expressible as literals — supply the distinguishing value(s) with --input rather than searching the covering suite
+  ▶ boundary-probed and still undistinguished — if you can PROVE one equivalent, record it: `detective flag 'TrialLedger/landscape.py::literal_context_kind' BOUNDARY_333aa7a2 --two-sign --note why-equivalent`   (repeat for: BOUNDARY_015d5d63, BOUNDARY_4143b400, LOGICAL_1ce66803, VALUE_acbadc23, VALUE_61b641e2, VALUE_5b36a284, VALUE_fdf8e45e, VALUE_f9f97106, SWAP_ebfe6656, VALUE_7750929c)
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 5164 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 8 test(s) cover all kills + lines
+  PROPOSED removals (17, redundant for BOTH kills and lines — confirm to delete, never auto): legacy:tests/detective/test_TrialLedger_landscape_literal_context_kind_5bd1ea8670_synth.py::test_literal_context_kind_value_0, tests/test_clinical_record.py::test_comparator_and_experimental_interventions_keep_their_own_source_class_answers, tests/test_clinical_record.py::test_intervention_prose_cannot_supply_a_drug_class_when_no_source_lookup_does, tests/test_clinical_record.py::test_unmapped_outcome_and_time_frame_stay_literal_without_a_clinical_recognizer, tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[####### Not ATX-True-unstated], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[#No separator-True-unstated], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[* ECOG 0-2:-True-unstated], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[-True-unstated], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[> Crossover:-True-unstated], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[Crossover Inclusion Criteria:-False-unstated], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[ECOG 0-2-True-unstated], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[Exclusion Criteria-False-registry_heading], tests/test_eligibility_source_context.py::test_literal_structure_has_named_outcomes[\t# Crossover-True-unstated], tests/test_eligibility_source_context.py::test_long_continuations_keep_same_context_and_crlf_offsets, tests/test_eligibility_source_context.py::test_markdown_context_ignores_fenced_or_indented_code_and_bulleted_labels, tests/test_eligibility_source_context.py::test_repeated_sections_keep_literal_context_without_forcing_a_coarse_split, tests/test_eligibility_source_context.py::test_unstructured_text_does_not_invent_context
+  wrote: tests/detective/test_TrialLedger_landscape_literal_context_kind_5bd1ea8670_synth.py
+  pytest wiring: pytest config already declares the marker — nothing to change; verified 1 test(s) pass under pytest
+  ▶ to run these tests: `pytest`   (only the generated ones: `pytest -m detective`; only your own: `pytest -m "not detective"`)
+  ── written to disk (auto-applied) ──
+  │ # detective-content-sha256: d9981cd025277c94e728082de03ebe9bab0475d44d85c75c1b155461dd94bd6d
+  │ """Auto-generated by Detective — warrant-classed tests for TrialLedger/landscape.py::literal_context_kind.
+  │ Function digest: 931ae24178be907f.
+  │
+  │ Regenerated wholesale by `detective converge`; hand edits will be
+  │ overwritten. Witness lines carry full fidelity on purpose."""
+  │
+  │ import pytest
+  │
+  │ from TrialLedger.landscape import literal_context_kind
+  │
+  │
+  │ @pytest.mark.detective
+  │ def test_literal_context_kind_value_0():
+  │     """VALUE survivor — golden capture (pure + deterministic)."""
+  │     result = literal_context_kind(line="abc", isolated=True)
+  │     assert result == "unstated"
+FINAL TrialLedger/landscape.py::literal_context_kind: ✓ COMPLETE (operator universe · modulo 11 unproven-equivalent · 3 crash-only value gaps) · 88/97 killed · 1 test(s) → tests/detective/test_TrialLedger_landscape_literal_context_kind_5bd1ea8670_synth.py · policy 9+neg.f5a15364c11d

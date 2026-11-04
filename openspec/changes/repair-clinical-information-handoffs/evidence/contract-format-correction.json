@@ -1,0 +1,26 @@
+[
+  {
+    "file": "TrialLedger/layer2/design_session.py",
+    "function": "session_work_code",
+    "executable_AST_equal": true,
+    "change": "PEP316 syntax/codomain declaration only; old exact-source receipts remain historical"
+  },
+  {
+    "file": "TrialLedger/layer2/reasoning_explanations.py",
+    "function": "relation_application_code",
+    "executable_AST_equal": true,
+    "change": "PEP316 syntax/codomain declaration only; old exact-source receipts remain historical"
+  },
+  {
+    "file": "TrialLedger/layer2/reasoning_explanations.py",
+    "function": "coordinate_effect_code",
+    "executable_AST_equal": true,
+    "change": "PEP316 syntax/codomain declaration only; old exact-source receipts remain historical"
+  },
+  {
+    "file": "TrialLedger/layer2/reasoning_explanations.py",
+    "function": "interpretation_contrast_code",
+    "executable_AST_equal": true,
+    "change": "PEP316 syntax/codomain declaration only; old exact-source receipts remain historical"
+  }
+]

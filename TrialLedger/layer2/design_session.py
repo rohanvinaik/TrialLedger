@@ -29,6 +29,12 @@ ALTERNATIVE_CODES = frozenset(
     }
 )
 
+SESSION_WORK_CODES = (
+    "within_budget",
+    "resource_bound:session_solver_work",
+    "resource_bound:session_analyses",
+)
+
 
 def alternative_code(result: str, blockers: list[str], accepted: bool, target_matches: bool) -> str:
     """Classify only a completed ordinary entailment's exact declared alternative (pure).
@@ -83,17 +89,37 @@ def _question(kind: str, alternatives: list[dict], selected: dict | None, distin
     return "evidence_question"
 
 
+def session_work_code(
+    analyses: int, solver_work_reserved: int, max_analyses: int, max_solver_work: int
+) -> str:
+    """Classify actual local reasoning work; source JSON size is diagnostic only.
+
+    pre: analyses >= 0
+    pre: solver_work_reserved >= 0
+    pre: max_analyses > 0
+    pre: max_solver_work > 0
+    post: __return__ in SESSION_WORK_CODES
+    """
+    if solver_work_reserved > max_solver_work:
+        return "resource_bound:session_solver_work"
+    if analyses > max_analyses:
+        return "resource_bound:session_analyses"
+    return "within_budget"
+
+
 def _child(request: dict, execute: Callable[[object], dict], budget: dict, limits: dict) -> dict:
     """One common budget owner for named analyses and pairwise distinction checks."""
     budget["expanded_items"] += _nodes(request)
     budget["solver_work_reserved"] += _reserve(request)
     budget["analyses"] += 1
-    if budget["expanded_items"] > limits["max_expanded_items"]:
-        raise ValueError("resource_bound:session_expanded_items")
-    if budget["solver_work_reserved"] > limits["max_solver_work"]:
-        raise ValueError("resource_bound:session_solver_work")
-    if budget["analyses"] > limits["max_analyses"]:
-        raise ValueError("resource_bound:session_analyses")
+    code = session_work_code(
+        budget["analyses"],
+        budget["solver_work_reserved"],
+        limits["max_analyses"],
+        limits["max_solver_work"],
+    )
+    if code != "within_budget":
+        raise ValueError(code)
     result = json.loads(state.canonical(execute(deepcopy(request))))
     if type(result) is not dict or result.get("code") not in ("complete", "refused"):
         raise ValueError("invalid_child_result")
@@ -510,6 +536,11 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
         "projection_ledger": ledger,
         "decisions": _decisions(prepared, analyses, values, execute, budget),
         "limits": deepcopy(limits),
+        "limit_semantics": {
+            "max_expanded_items": "legacy_nonoperative; expanded_items is diagnostic only",
+            "max_solver_work": "aggregate reservation across fresh previous and current analyses",
+            "max_output_bytes": "complete serialized output; no truncation",
+        },
         "limits_of_claim": [
             "Caller labels do not independently verify source truth or confirmation.",
             "Exact representation comparison is not clinical semantic equivalence.",

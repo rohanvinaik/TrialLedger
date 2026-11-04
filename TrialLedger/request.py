@@ -37,6 +37,7 @@ from datetime import date
 from typing import Any
 from urllib.parse import quote, urlencode
 
+from TrialLedger import acquisition
 from TrialLedger.classes import (
     CLASS_SOURCES,
     CROSSWALK,
@@ -73,10 +74,11 @@ REQUEST_SLOTS = (
     "start_from",
     "start_to",
     "params",
+    "acquisition",
 )
 # The slots resolved into filter.advanced; `condition` is the registry's query.cond, `params` is sent as
 # given.
-ADVANCED_SLOTS = tuple(slot for slot in REQUEST_SLOTS if slot not in ("condition", "params"))
+ADVANCED_SLOTS = tuple(slot for slot in REQUEST_SLOTS if slot not in ("condition", "params", "acquisition"))
 PHASES = tuple(enum_labels("Phase"))
 STATUSES = tuple(enum_labels("Status"))
 STUDY_TYPES = tuple(enum_labels("StudyType"))
@@ -174,6 +176,8 @@ def slot_value_ok(slot: str, value: Any) -> bool:
                 )
             )
         )
+    if slot == "acquisition":
+        return acquisition.policy_problem(value) == "ok"
     if slot == "params":
         return (
             isinstance(value, dict)
@@ -200,11 +204,15 @@ def request_problems(request: Any) -> tuple[str, list[str]]:
     """
     if not isinstance(request, dict):
         return "not_an_object", []
-    if not request:
+    if not request or set(request) <= {"acquisition"}:
         return "empty_request", []
     unknown = sorted(str(name) for name in request if name not in REQUEST_SLOTS)
     if unknown:
         return "unknown_slot", unknown
+    if "acquisition" in request:
+        problem = acquisition.policy_problem(request["acquisition"])
+        if problem != "ok":
+            return "acquisition_" + problem, ["acquisition"]
     malformed = [slot for slot in REQUEST_SLOTS if slot in request and not slot_value_ok(slot, request[slot])]
     if not malformed and request.get("start_from", "") > request.get("start_to", "9999-12-31"):
         malformed = ["start_from", "start_to"]

@@ -74,7 +74,7 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
     No source is fetched or repaired. The source index and input metadata are not derived from output facts.
     """
     from TrialLedger import classes, landscape, operate, readout, steps, warrants
-    from TrialLedger.landscape_warrants import derivation_root
+    from TrialLedger.landscape_warrants import derivation_root, retained_format
     from TrialLedger.record import DuplicateKey
 
     try:
@@ -86,11 +86,14 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
             return "changed", ["manifest_mismatch: standalone manifest differs from the record"]
         versions = manifest.get("rule_versions")
         current_root = derivation_root(Path(landscape.__file__).parent)
-        if not isinstance(versions, dict) or versions.get("derivation_code_root") != current_root:
+        legacy = retained_format(versions) == "legacy_source_passages_v1"
+        if not legacy and (
+            not isinstance(versions, dict) or versions.get("derivation_code_root") != current_root
+        ):
             return "wrong_code", [
                 "code_root: current derivation source differs; verify using the recorded code"
             ]
-        if not _same(versions, landscape.RULE_VERSIONS):
+        if not legacy and not _same(versions, landscape.RULE_VERSIONS):
             return "wrong_code", ["rule_versions: use the derivation code/version that wrote this run"]
         request = _read(folder / "request.json")
         resolution = _read(folder / "resolution.json")
@@ -111,7 +114,12 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
         studies, api_version, timestamp = steps.records(folder)
         checkpoint, named, bodies, unreadable = steps._state(folder)
         checkpoint_code, plan, _awaited, detail = steps.next_step(
-            checkpoint["query"], checkpoint["rxnav"], named, bodies, unreadable
+            checkpoint["query"],
+            checkpoint["rxnav"],
+            named,
+            bodies,
+            unreadable,
+            acquisition=scope.get("acquisition"),
         )
         if checkpoint_code != "complete":
             return "missing_source", [f"registry_checkpoint: {checkpoint_code}: {detail}"]
@@ -169,7 +177,7 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
             timestamp,
             manifest.get("code_commit", ""),
             retrieval,
-            landscape.RULE_VERSIONS,
+            versions if legacy else landscape.RULE_VERSIONS,
         )
         for key in ("input_digests",):
             if key in manifest:
@@ -181,6 +189,8 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
             rebuilt_manifest,
             answers if mode == "direct" else None,
         )
+        if legacy:
+            rebuilt = landscape.legacy_record_projection(rebuilt)
         # Production writes the JSON-decoded record, including tuple-to-list normalization.
         rebuilt = strict_json(json.dumps(rebuilt, ensure_ascii=False))
         if not _same(rebuilt, record):
@@ -196,7 +206,14 @@ def verify_landscape(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
                 return "changed", details or [
                     "workbook_bytes: workbook formatting, links or file parts differ"
                 ]
-        return "verified", []
+        return "verified", (
+            [
+                "legacy_format: source-passages-v1 replay; "
+                "local source context was not part of this retained format"
+            ]
+            if legacy
+            else []
+        )
     except DuplicateKey as error:
         return "unreadable", [f"duplicate_key: {error}"]
     except FileNotFoundError as error:

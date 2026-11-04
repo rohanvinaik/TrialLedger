@@ -28,6 +28,7 @@ from openpyxl.worksheet.pagebreak import Break
 
 from TrialLedger import __version__, checks, contract
 from TrialLedger.cells import ROW_LIMIT, cell_number_state, cell_text_state
+from TrialLedger.landscape_warrants import retained_format
 from TrialLedger.links import pubmed_link
 
 NAME = "landscape.xlsx"
@@ -1449,6 +1450,8 @@ def criterion_rows(study: dict[str, Any], number: int) -> list[tuple]:
             HEADINGS.get(str(criterion.get("heading")), value_words(criterion.get("heading"))),
             value_words(criterion.get("number")),
             value_words(criterion.get("text")),
+            value_words((criterion.get("source_context") or {}).get("text")),
+            value_words((criterion.get("source_context") or {}).get("kind")),
         )
         rows.append(tuple(cell(value, "known", address) for value in values))
     if not rows:
@@ -1456,7 +1459,15 @@ def criterion_rows(study: dict[str, Any], number: int) -> list[tuple]:
         rows.append(
             tuple(
                 cell(value, "known", address)
-                for value in (study["nct"], address, NOT_STATED, NOT_STATED, NOT_STATED)
+                for value in (
+                    study["nct"],
+                    address,
+                    NOT_STATED,
+                    NOT_STATED,
+                    NOT_STATED,
+                    NOT_STATED,
+                    NOT_STATED,
+                )
             )
         )
     return rows
@@ -1564,8 +1575,8 @@ def dictionary_rows(n: int, record: dict[str, Any] | None = None) -> list[tuple]
             continue
         for column in sheet.columns:
             if (
-                sheet.name == contract.INDEX
-                and record is not None
+                record is not None
+                and sheet.name in {contract.INDEX, contract.ELIGIBILITY}
                 and column.header not in sheet_headers(sheet.name, n, record)
             ):
                 continue
@@ -1818,6 +1829,14 @@ def sheet_headers(name: str, n: int, record: dict[str, Any] | None = None) -> tu
     headers = []
     per_group = [column.header for column in sheet.columns if column.shows == "per group"]
     for column in sheet.columns:
+        if (
+            record is not None
+            and name == "Eligibility"
+            and retained_format((record.get("manifest") or {}).get("rule_versions"))
+            == "legacy_source_passages_v1"
+            and column.header in {"Local source context", "Context structure"}
+        ):
+            continue
         if column.shows != "per group":
             headers.append(column.header)
         elif column.header == per_group[0]:
@@ -1864,6 +1883,8 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
             "Address in the record": 22,
             "Source section": 16,
             "Passage": 12,
+            "Local source context": 36,
+            "Context structure": 20,
             "Source passage": 100,
         },
         True,

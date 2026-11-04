@@ -1,0 +1,1119 @@
+[
+  {
+    "name": "rsv-initial",
+    "request": "/Users/rohanvinaik/trialledger-runs/wholesale-audit-20261103-192952-b8a635d/inflammatory-vaccine/rsv-phase3/requests/managed-initial.json",
+    "request_sha256": "41015557dcb9426fed9a95b320834cbd165e7f4f7af5ba2880036ce659084a58",
+    "request_bytes": 456973,
+    "code": "complete",
+    "work": {
+      "analyses": 2,
+      "expanded_items": 8779,
+      "solver_work_reserved": 524459
+    },
+    "source_count": 1,
+    "analyses": 2,
+    "dependencies": {
+      "source:focal-source": [],
+      "premise:draft-assessment-roles": [],
+      "premise:draft-endpoint-collection": [],
+      "premise:draft-endpoint-prerequisites": [],
+      "analysis:source-age-independent": [
+        "source:focal-source"
+      ],
+      "analysis:draft-clinical-channel-consequences": [
+        "premise:draft-assessment-roles",
+        "premise:draft-endpoint-collection",
+        "premise:draft-endpoint-prerequisites"
+      ]
+    },
+    "decisions": [],
+    "diff": null,
+    "fresh_previous_equal": false,
+    "cli_mcp_equal": true,
+    "response_bytes": 769225
+  },
+  {
+    "name": "rsv-revised",
+    "request": "/Users/rohanvinaik/trialledger-runs/wholesale-audit-20261103-192952-b8a635d/inflammatory-vaccine/rsv-phase3/requests/managed-revised.json",
+    "request_sha256": "9240f5c74681026892b63ab1ad3314317c0ec2ea7ec6fe7128cfb43d27f79b88",
+    "request_bytes": 2019020,
+    "code": "complete",
+    "work": {
+      "analyses": 4,
+      "expanded_items": 17558,
+      "solver_work_reserved": 1048918
+    },
+    "source_count": 1,
+    "analyses": 2,
+    "dependencies": {
+      "source:focal-source": [],
+      "premise:draft-assessment-roles": [],
+      "premise:draft-endpoint-collection": [],
+      "premise:draft-endpoint-prerequisites": [],
+      "analysis:source-age-independent": [
+        "source:focal-source"
+      ],
+      "analysis:draft-clinical-channel-consequences": [
+        "premise:draft-assessment-roles",
+        "premise:draft-endpoint-collection",
+        "premise:draft-endpoint-prerequisites"
+      ]
+    },
+    "decisions": [],
+    "diff": {
+      "sources": [
+        {
+          "id": "focal-source",
+          "code": "unchanged",
+          "before_digest": "c2624d0f848296e76d245dee1f579c25bbdd2d05a6e0e94a4454cfe999241519",
+          "after_digest": "c2624d0f848296e76d245dee1f579c25bbdd2d05a6e0e94a4454cfe999241519"
+        }
+      ],
+      "premises": [
+        {
+          "id": "draft-assessment-roles",
+          "code": "unchanged",
+          "before_digest": "1578fc4526d6f7e8214f9199e5b83ac7ec37fe69a643021a422f90c8fc69b764",
+          "after_digest": "1578fc4526d6f7e8214f9199e5b83ac7ec37fe69a643021a422f90c8fc69b764"
+        },
+        {
+          "id": "draft-endpoint-collection",
+          "code": "changed",
+          "before_digest": "f2efa1e80e6d54612b954b66b3b96a994a9b168e697058bf724fe27c8d444886",
+          "after_digest": "1b8df959cad39a3d534fb5992cf1303a52558e1621953e803b64ba3a9164d8eb"
+        },
+        {
+          "id": "draft-endpoint-prerequisites",
+          "code": "unchanged",
+          "before_digest": "febc333b030d12106ada5dfafe6a1e9e69418c568aa43f4e89ea49245cb53e9b",
+          "after_digest": "febc333b030d12106ada5dfafe6a1e9e69418c568aa43f4e89ea49245cb53e9b"
+        }
+      ],
+      "effective_premises": [
+        {
+          "id": "draft-assessment-roles",
+          "code": "unchanged",
+          "before_digest": "c0de581213c2ebcc2834d76cec2dd30bf32781f6afd65fddc3b028c59cc64661",
+          "after_digest": "c0de581213c2ebcc2834d76cec2dd30bf32781f6afd65fddc3b028c59cc64661"
+        },
+        {
+          "id": "draft-endpoint-collection",
+          "code": "changed",
+          "before_digest": "c89d9f1189e3f1e16b33331d2875de3856f46cd8d3fb20162857d262c6f81035",
+          "after_digest": "b0b1be24609c613556e0b671f12ea794922cebb2b0ff82a6ca1f7647e39cc59a"
+        },
+        {
+          "id": "draft-endpoint-prerequisites",
+          "code": "unchanged",
+          "before_digest": "acafbf63ee8fa74db3059f42eb3157839892acf3a86d1d54141c80000baeb065",
+          "after_digest": "acafbf63ee8fa74db3059f42eb3157839892acf3a86d1d54141c80000baeb065"
+        }
+      ],
+      "analyses": [
+        {
+          "id": "draft-clinical-channel-consequences",
+          "code": "changed",
+          "before_digest": "4f1699547a1af7a4d46049d7d61c4fe7d6516b1cf771c99e6e2345a3f29ebdba",
+          "after_digest": "5061b1b466384d9c01a25f1a3521543a63aaf8457713bc0a5f62fdd256a33b87"
+        },
+        {
+          "id": "source-age-independent",
+          "code": "unchanged",
+          "before_digest": "06b51db564e508ff2847cf6adf62fba0deb0477d9d4577ebcae5913f8b5c0b55",
+          "after_digest": "06b51db564e508ff2847cf6adf62fba0deb0477d9d4577ebcae5913f8b5c0b55"
+        }
+      ],
+      "decisions": []
+    },
+    "fresh_previous_equal": true,
+    "cli_mcp_equal": true,
+    "response_bytes": 1537259
+  },
+  {
+    "name": "nsclc-two-source-initial",
+    "request": "/Users/rohanvinaik/trialledger-runs/wholesale-audit-20261103-192952-b8a635d/oncology/nsclc/requests/managed-baseline-v2.json",
+    "request_sha256": "1bfe650a2501143351bb2f04e8c5a2aab46ecdc11b8982d1560e841a84229139",
+    "request_bytes": 713875,
+    "code": "complete",
+    "work": {
+      "analyses": 8,
+      "expanded_items": 14816,
+      "solver_work_reserved": 1053393
+    },
+    "source_count": 2,
+    "analyses": 7,
+    "dependencies": {
+      "source:source-NCT01523587": [],
+      "source:source-NCT01544179": [],
+      "premise:age-NCT01523587": [
+        "source:source-NCT01523587"
+      ],
+      "premise:corpus-NCT01523587": [
+        "source:source-NCT01523587",
+        "premise:age-NCT01523587"
+      ],
+      "premise:age-NCT01544179": [
+        "source:source-NCT01544179"
+      ],
+      "premise:corpus-NCT01544179": [
+        "source:source-NCT01544179",
+        "premise:age-NCT01544179"
+      ],
+      "premise:draft-domain": [],
+      "premise:draft-scan-schedule": [],
+      "premise:IMPRESS-population-reading": [
+        "source:source-NCT01544179"
+      ],
+      "premise:draft-combination-regimen": [],
+      "analysis:historical-NCT01523587": [
+        "source:source-NCT01523587"
+      ],
+      "analysis:historical-NCT01544179": [
+        "source:source-NCT01544179"
+      ],
+      "analysis:option-0": [
+        "premise:draft-domain"
+      ],
+      "analysis:option-1": [
+        "premise:draft-domain"
+      ],
+      "analysis:clinical-channels": [
+        "premise:draft-scan-schedule",
+        "premise:draft-combination-regimen"
+      ],
+      "analysis:documented-comparison": [
+        "premise:corpus-NCT01523587",
+        "premise:corpus-NCT01544179"
+      ],
+      "analysis:historical-population-application": [
+        "premise:IMPRESS-population-reading"
+      ]
+    },
+    "decisions": [
+      {
+        "id": "design-decision",
+        "question": "Should the draft use central or investigator PFS adjudication? These are distinct source practices, not automatically interchangeable endpoints.",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-nsclc-draft",
+          "scope": {
+            "study": "simulated-nsclc-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "design",
+            "version": "draft-1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "option-0",
+            "label": "central",
+            "analysis": "option-0",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "draft_PFS_adjudication",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "enum",
+                "members": [
+                  "central"
+                ],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "code": "feasible",
+            "warrant": {
+              "blockers": [
+                "undecided_by_constraints"
+              ],
+              "proof": [
+                "draft-domain"
+              ],
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"central\"],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "result": "UNDETERMINED",
+              "status": null
+            },
+            "feasibility_status": "known",
+            "origin_refs": [
+              {
+                "premise": "draft-domain",
+                "origin": {
+                  "kind": "user_choice",
+                  "ref": "simulated_user_choice:represented-design-options",
+                  "source": null,
+                  "analysis": null
+                }
+              }
+            ],
+            "analysis_result_digest": "7aa6db9109fe2a73432106cb53eb1209782f6a14bbb37125719ab1ccbf9c704e"
+          },
+          {
+            "id": "option-1",
+            "label": "investigator",
+            "analysis": "option-1",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "draft_PFS_adjudication",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "enum",
+                "members": [
+                  "investigator"
+                ],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "code": "feasible",
+            "warrant": {
+              "blockers": [
+                "undecided_by_constraints"
+              ],
+              "proof": [
+                "draft-domain"
+              ],
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"investigator\"],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "result": "UNDETERMINED",
+              "status": null
+            },
+            "feasibility_status": "known",
+            "origin_refs": [
+              {
+                "premise": "draft-domain",
+                "origin": {
+                  "kind": "user_choice",
+                  "ref": "simulated_user_choice:represented-design-options",
+                  "source": null,
+                  "analysis": null
+                }
+              }
+            ],
+            "analysis_result_digest": "f9a7da6bd3a57d3b8b986083678e7cb5fb241684e48c931f8f2860cd5f20b491"
+          }
+        ],
+        "selected": null,
+        "standing": "known",
+        "determining_alternatives": [
+          "option-0",
+          "option-1"
+        ],
+        "determining_distinctions": [
+          0
+        ],
+        "origin_refs": [
+          {
+            "premise": "draft-domain",
+            "origin": {
+              "kind": "user_choice",
+              "ref": "simulated_user_choice:represented-design-options",
+              "source": null,
+              "analysis": null
+            }
+          }
+        ],
+        "origin": {
+          "kind": "computed",
+          "refs": [
+            {
+              "premise": "draft-domain",
+              "origin": {
+                "kind": "user_choice",
+                "ref": "simulated_user_choice:represented-design-options",
+                "source": null,
+                "analysis": null
+              }
+            }
+          ]
+        },
+        "input_origins": [
+          {
+            "premise": "draft-domain",
+            "origin": {
+              "kind": "user_choice",
+              "ref": "simulated_user_choice:represented-design-options",
+              "source": null,
+              "analysis": null
+            }
+          }
+        ],
+        "distinctions": [
+          {
+            "alternatives": [
+              "option-0",
+              "option-1"
+            ],
+            "dependencies": [
+              "analysis:option-0",
+              "analysis:option-1"
+            ],
+            "request": {
+              "operation": "entailment",
+              "bound": 256,
+              "assertions": [
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "draft_PFS_adjudication",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "in",
+                      "inclusivity": "unspecified",
+                      "kind": "enum",
+                      "members": [
+                        "central",
+                        "investigator"
+                      ],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "simulated_user_choice:draft-domain",
+                  "id": "draft-domain",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "explicit-simulated-choice",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "simulated_user_choice:not-real-confirmation:draft-domain"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                }
+              ],
+              "query": {
+                "class": "AnyOf",
+                "parts": [
+                  {
+                    "class": "AllOf",
+                    "parts": [
+                      {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "draft_PFS_adjudication",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "enum",
+                          "members": [
+                            "central"
+                          ],
+                          "number": null,
+                          "unit": "",
+                          "upper": null
+                        }
+                      },
+                      {
+                        "class": "Not",
+                        "part": {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "draft_PFS_adjudication",
+                            "kind": "measurement"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "enum",
+                            "members": [
+                              "investigator"
+                            ],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "class": "AllOf",
+                    "parts": [
+                      {
+                        "class": "Not",
+                        "part": {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "draft_PFS_adjudication",
+                            "kind": "measurement"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "enum",
+                            "members": [
+                              "central"
+                            ],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      },
+                      {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "draft_PFS_adjudication",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "enum",
+                          "members": [
+                            "investigator"
+                          ],
+                          "number": null,
+                          "unit": "",
+                          "upper": null
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "result": {
+              "code": "complete",
+              "metadata": {
+                "findings": [
+                  {
+                    "causes": [],
+                    "completion": "complete",
+                    "disposition": "settled",
+                    "kind": "logical",
+                    "logical_result": "ENTAILED",
+                    "path": "/result/decision",
+                    "standing": "known"
+                  }
+                ],
+                "kind": "reasoning",
+                "version": 1
+              },
+              "operation": "entailment",
+              "problems": [],
+              "result": {
+                "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+                "decision": {
+                  "blockers": [],
+                  "proof": [
+                    "draft-domain"
+                  ],
+                  "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"central\"],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"investigator\"],\"number\":null,\"unit\":\"\",\"upper\":null}}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"central\"],\"number\":null,\"unit\":\"\",\"upper\":null}}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"investigator\"],\"number\":null,\"unit\":\"\",\"upper\":null}}]}]}",
+                  "result": "ENTAILED",
+                  "status": "known"
+                },
+                "premises": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "draft_PFS_adjudication",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "in",
+                        "inclusivity": "unspecified",
+                        "kind": "enum",
+                        "members": [
+                          "central",
+                          "investigator"
+                        ],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "simulated_user_choice:draft-domain",
+                    "id": "draft-domain",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "explicit-simulated-choice",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "simulated_user_choice:not-real-confirmation:draft-domain"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              }
+            },
+            "request_digest": "33b86682472182804f50510a6474e837307862d3cdcf64d3691aa9ba9a35f7ac",
+            "result_digest": "89ecd7a0f0ab5c18ef9e67ae61dd576dec0be059fba9b9ac63163aa12917fb8e",
+            "code": "distinguishable_under_floor",
+            "support_status": "known",
+            "origin_refs": [
+              {
+                "premise": "draft-domain",
+                "origin": {
+                  "kind": "user_choice",
+                  "ref": "simulated_user_choice:represented-design-options",
+                  "source": null,
+                  "analysis": null
+                }
+              }
+            ]
+          }
+        ],
+        "open_alternatives": [],
+        "code": "design_choice",
+        "coverage_limit": "Only caller-declared represented constructs; not complete clinical eligibility."
+      }
+    ],
+    "diff": null,
+    "fresh_previous_equal": false,
+    "cli_mcp_equal": true,
+    "response_bytes": 1196657
+  },
+  {
+    "name": "nsclc-revised",
+    "request": "/Users/rohanvinaik/trialledger-runs/wholesale-audit-20261103-192952-b8a635d/oncology/nsclc/requests/managed-revision-v3-one-source.json",
+    "request_sha256": "8c224cdfa9d5a8af6ad5d9f4d09c5aa014bd14e59f0df1c0b67ac53f347a451a",
+    "request_bytes": 1793460,
+    "code": "complete",
+    "work": {
+      "analyses": 13,
+      "expanded_items": 16978,
+      "solver_work_reserved": 1057636
+    },
+    "source_count": 1,
+    "analyses": 6,
+    "dependencies": {
+      "source:source-NCT01544179": [],
+      "premise:age-NCT01544179": [
+        "source:source-NCT01544179"
+      ],
+      "premise:corpus-NCT01544179": [
+        "source:source-NCT01544179",
+        "premise:age-NCT01544179"
+      ],
+      "premise:draft-domain": [],
+      "premise:draft-scan-schedule": [],
+      "premise:IMPRESS-population-reading": [
+        "source:source-NCT01544179"
+      ],
+      "premise:draft-combination-regimen": [],
+      "premise:selected-option": [],
+      "analysis:historical-NCT01544179": [
+        "source:source-NCT01544179"
+      ],
+      "analysis:option-0": [
+        "premise:draft-domain",
+        "premise:selected-option"
+      ],
+      "analysis:option-1": [
+        "premise:draft-domain",
+        "premise:selected-option"
+      ],
+      "analysis:clinical-channels": [
+        "premise:draft-scan-schedule",
+        "premise:draft-combination-regimen"
+      ],
+      "analysis:documented-comparison": [
+        "premise:corpus-NCT01544179"
+      ],
+      "analysis:historical-population-application": [
+        "premise:IMPRESS-population-reading"
+      ]
+    },
+    "decisions": [
+      {
+        "id": "design-decision",
+        "question": "Should the draft use central or investigator PFS adjudication? These are distinct source practices, not automatically interchangeable endpoints.",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-nsclc-draft",
+          "scope": {
+            "study": "simulated-nsclc-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "design",
+            "version": "draft-1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "option-0",
+            "label": "central",
+            "analysis": "option-0",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "draft_PFS_adjudication",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "enum",
+                "members": [
+                  "central"
+                ],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "code": "feasible",
+            "warrant": {
+              "blockers": [],
+              "proof": [
+                "selected-option"
+              ],
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"central\"],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "result": "ENTAILED",
+              "status": "known"
+            },
+            "feasibility_status": "known",
+            "origin_refs": [
+              {
+                "premise": "selected-option",
+                "origin": {
+                  "kind": "user_choice",
+                  "ref": "simulated_user_choice:central-review",
+                  "source": null,
+                  "analysis": null
+                }
+              }
+            ],
+            "analysis_result_digest": "9f8b6383f9debccf6fbe75a8774763a565cb1e86275dca24be4e838fb1a97277"
+          },
+          {
+            "id": "option-1",
+            "label": "investigator",
+            "analysis": "option-1",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "draft_PFS_adjudication",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "enum",
+                "members": [
+                  "investigator"
+                ],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "code": "infeasible",
+            "warrant": {
+              "blockers": [],
+              "proof": [
+                "selected-option"
+              ],
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"draft_PFS_adjudication\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"investigator\"],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "result": "REFUTED",
+              "status": "known"
+            },
+            "feasibility_status": "known",
+            "origin_refs": [
+              {
+                "premise": "selected-option",
+                "origin": {
+                  "kind": "user_choice",
+                  "ref": "simulated_user_choice:central-review",
+                  "source": null,
+                  "analysis": null
+                }
+              }
+            ],
+            "analysis_result_digest": "2532f8f9b92bc430de21a79af8c665299624a71d175ac172b85a6a7d42702cc9"
+          }
+        ],
+        "selected": {
+          "alternative": "option-0",
+          "origin": "user",
+          "basis": [
+            "simulated_user_choice:not-real-clinician-confirmation"
+          ]
+        },
+        "standing": "known",
+        "determining_alternatives": [
+          "option-0"
+        ],
+        "determining_distinctions": [],
+        "origin_refs": [
+          {
+            "premise": "selected-option",
+            "origin": {
+              "kind": "user_choice",
+              "ref": "simulated_user_choice:central-review",
+              "source": null,
+              "analysis": null
+            }
+          }
+        ],
+        "origin": {
+          "kind": "user_choice",
+          "basis": [
+            "simulated_user_choice:not-real-clinician-confirmation"
+          ]
+        },
+        "input_origins": [
+          {
+            "premise": "draft-domain",
+            "origin": {
+              "kind": "user_choice",
+              "ref": "simulated_user_choice:represented-design-options",
+              "source": null,
+              "analysis": null
+            }
+          },
+          {
+            "premise": "selected-option",
+            "origin": {
+              "kind": "user_choice",
+              "ref": "simulated_user_choice:central-review",
+              "source": null,
+              "analysis": null
+            }
+          }
+        ],
+        "distinctions": [],
+        "open_alternatives": [],
+        "code": "chosen_by_person",
+        "coverage_limit": "Only caller-declared represented constructs; not complete clinical eligibility."
+      }
+    ],
+    "diff": {
+      "sources": [
+        {
+          "id": "source-NCT01544179",
+          "code": "unchanged",
+          "before_digest": "22d97d8b6d79fd696f2ed3843b4524692e7a9e42e72da5962aa19eeff6337b89",
+          "after_digest": "22d97d8b6d79fd696f2ed3843b4524692e7a9e42e72da5962aa19eeff6337b89"
+        }
+      ],
+      "premises": [
+        {
+          "id": "IMPRESS-population-reading",
+          "code": "changed",
+          "before_digest": "3d4177fa61c9ddb5b279a50292b2c0b7615a6bfdb08280abfa39224a110d284f",
+          "after_digest": "672102bfd45433c1f35778283b5303b155b9f5dabf138eb785cc0f6184ceef5b"
+        },
+        {
+          "id": "age-NCT01544179",
+          "code": "unchanged",
+          "before_digest": "8eeb1127384cd2876d54dd3d0f8546234c571c49bda55be1257e1ec50e3337fd",
+          "after_digest": "8eeb1127384cd2876d54dd3d0f8546234c571c49bda55be1257e1ec50e3337fd"
+        },
+        {
+          "id": "corpus-NCT01544179",
+          "code": "unchanged",
+          "before_digest": "2bab597fcc3fe9be996383b3f87c5ff75bc53a32183eb662a198ff4690c8f3f2",
+          "after_digest": "2bab597fcc3fe9be996383b3f87c5ff75bc53a32183eb662a198ff4690c8f3f2"
+        },
+        {
+          "id": "draft-combination-regimen",
+          "code": "unchanged",
+          "before_digest": "632237ca66c82183aed4cf3dde91bd93306d2fbefa17c130c209f28420b86a76",
+          "after_digest": "632237ca66c82183aed4cf3dde91bd93306d2fbefa17c130c209f28420b86a76"
+        },
+        {
+          "id": "draft-domain",
+          "code": "unchanged",
+          "before_digest": "a555135c2f9fb7bbf0f99e9d62a6284b63307b6649252624c58d10c60bbc77d2",
+          "after_digest": "a555135c2f9fb7bbf0f99e9d62a6284b63307b6649252624c58d10c60bbc77d2"
+        },
+        {
+          "id": "draft-scan-schedule",
+          "code": "changed",
+          "before_digest": "bceb1a692579a81855626f0ff5f0119ef10a4a0e6fd63e5f3f2ff9e919d79409",
+          "after_digest": "5d62f0f25bad0e3447e8bb82cd4efda23efd40de20e39004faf52888c59de25d"
+        },
+        {
+          "id": "selected-option",
+          "code": "new",
+          "before_digest": null,
+          "after_digest": "29a7f98a3f4d4c8d428c24256f2540f9554b124cc6b67ebd79956a189f78408e"
+        }
+      ],
+      "effective_premises": [
+        {
+          "id": "IMPRESS-population-reading",
+          "code": "changed",
+          "before_digest": "ed6c966d4e37d71cfd19ed4adba401602611fcd21857981bc90689f3547502e4",
+          "after_digest": "8ed9fae8a1f173e189e870d7c832faf6e0e5c88c2a3616eb21a5ea32da5f096a"
+        },
+        {
+          "id": "age-NCT01544179",
+          "code": "unchanged",
+          "before_digest": "b7e4b9eb0b7d7643179eee891aaa5a4454519edc03d958b0d1a8319eb4f03818",
+          "after_digest": "b7e4b9eb0b7d7643179eee891aaa5a4454519edc03d958b0d1a8319eb4f03818"
+        },
+        {
+          "id": "corpus-NCT01544179",
+          "code": "unchanged",
+          "before_digest": "c87e28f4d4647bc2405d5c19ffb8ce07e52caee41f424d0b5ed8204c3afe3b86",
+          "after_digest": "c87e28f4d4647bc2405d5c19ffb8ce07e52caee41f424d0b5ed8204c3afe3b86"
+        },
+        {
+          "id": "draft-combination-regimen",
+          "code": "unchanged",
+          "before_digest": "9bc26c7a1aaacfd8f70ca6a629f2c59452eb0b7ba83ce275930b8c53ee39ba8d",
+          "after_digest": "9bc26c7a1aaacfd8f70ca6a629f2c59452eb0b7ba83ce275930b8c53ee39ba8d"
+        },
+        {
+          "id": "draft-domain",
+          "code": "unchanged",
+          "before_digest": "a712a00900703ea31b67e5be91c23a0f6be1b4cc88d00a1a39f181755fd2a173",
+          "after_digest": "a712a00900703ea31b67e5be91c23a0f6be1b4cc88d00a1a39f181755fd2a173"
+        },
+        {
+          "id": "draft-scan-schedule",
+          "code": "changed",
+          "before_digest": "adaf6113bdb2e5f2f751ce58c81ec0eca724400c5089dd82ee0598fe32b5f45a",
+          "after_digest": "9369dcaea92d4ff8dee480e3598ecde4630f1b24f73958b2b9426a0be6e283fe"
+        },
+        {
+          "id": "selected-option",
+          "code": "new",
+          "before_digest": null,
+          "after_digest": "dbea6b62e07488a858306fda8ec9d5ca6879cc824dffa0446c8582e920407832"
+        }
+      ],
+      "analyses": [
+        {
+          "id": "clinical-channels",
+          "code": "changed",
+          "before_digest": "cb7409d52d41525f3c65d3bfb5ae6c2fb849adfe4bf1d12729c103f1c82796ec",
+          "after_digest": "af0e4ae35c11dfd354aa4ed1b54e2056a9ba612ae16094615653d1fd4fdaeb4f"
+        },
+        {
+          "id": "documented-comparison",
+          "code": "unchanged",
+          "before_digest": "75b52ad3fb76baede269f1891521d19533bdfa49d8b2084977eb3312360d9351",
+          "after_digest": "75b52ad3fb76baede269f1891521d19533bdfa49d8b2084977eb3312360d9351"
+        },
+        {
+          "id": "historical-NCT01544179",
+          "code": "unchanged",
+          "before_digest": "7211d0bc20641d43d29e834e12333fedb4700099fa65457016632021c1823a0f",
+          "after_digest": "7211d0bc20641d43d29e834e12333fedb4700099fa65457016632021c1823a0f"
+        },
+        {
+          "id": "historical-population-application",
+          "code": "changed",
+          "before_digest": "b13e1dc64d6e98af66babd1d1db8153a260371acb4f369076baccf4ed934da4d",
+          "after_digest": "fc83d6d6a957cec3bccf2090c7eaa4e4051e8432ba311939804be982232ef0f6"
+        },
+        {
+          "id": "option-0",
+          "code": "changed",
+          "before_digest": "5116bd6405e8881840b9b6f174e975adca988f3e9a00ab34e11c00856bc0a919",
+          "after_digest": "9e902e0d310837f02b07dba650cfba0905010c351cf6c2460c186a43423d76ea"
+        },
+        {
+          "id": "option-1",
+          "code": "changed",
+          "before_digest": "190d5cbc6ded99053bb33640a4bb33a05701d7b58dd5ffe719c254b7f0ed0487",
+          "after_digest": "1e7c42bad8f1898275b865309d3bde3e8506ad4972f260794759a6795da68c25"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "design-decision",
+          "code": "changed",
+          "before_digest": "d923759658675f82ee7b7128e63a4f2bf20d9b6844d54f54d660e1f9c886aa58",
+          "after_digest": "ea76c6848ff3768476595ac4c025e1df45f13198fdcc8d87edaa884e8da16f63"
+        }
+      ]
+    },
+    "fresh_previous_equal": true,
+    "cli_mcp_equal": true,
+    "response_bytes": 1374362
+  }
+]

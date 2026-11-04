@@ -1,0 +1,1702 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "simulated-phase4-hypertension-design",
+    "revision": "baseline",
+    "parent_digest": null,
+    "target": {
+      "kind": "new_trial",
+      "ref": "simulated-phase4-hypertension-design",
+      "scope": {
+        "study": "simulated-phase4-hypertension-design",
+        "population": "declared-draft",
+        "arm": "all",
+        "time": "entry",
+        "version": "simulated-working-design"
+      }
+    },
+    "sources": [
+      {
+        "id": "NCT00362258",
+        "study": {
+          "protocolSection": {
+            "identificationModule": {
+              "nctId": "NCT00362258",
+              "orgStudyIdInfo": {
+                "id": "PM_L_0256"
+              },
+              "organization": {
+                "fullName": "Sanofi",
+                "class": "INDUSTRY"
+              },
+              "briefTitle": "I PREVENT - Irbesartan In Hypertensive Diabetic Patients",
+              "officialTitle": "Irbesartan In Hypertensive Diabetic Patients"
+            },
+            "statusModule": {
+              "statusVerifiedDate": "2011-03",
+              "overallStatus": "COMPLETED",
+              "expandedAccessInfo": {
+                "hasExpandedAccess": false
+              },
+              "startDateStruct": {
+                "date": "2006-02"
+              },
+              "primaryCompletionDateStruct": {
+                "date": "2008-09",
+                "type": "ACTUAL"
+              },
+              "completionDateStruct": {
+                "date": "2008-09",
+                "type": "ACTUAL"
+              },
+              "studyFirstSubmitDate": "2006-08-08",
+              "studyFirstSubmitQcDate": "2006-08-08",
+              "studyFirstPostDateStruct": {
+                "date": "2006-08-09",
+                "type": "ESTIMATED"
+              },
+              "lastUpdateSubmitDate": "2011-04-01",
+              "lastUpdatePostDateStruct": {
+                "date": "2011-04-04",
+                "type": "ESTIMATED"
+              }
+            },
+            "sponsorCollaboratorsModule": {
+              "responsibleParty": {
+                "oldNameTitle": "Medical Affairs Study Director",
+                "oldOrganization": "sanofi-aventis"
+              },
+              "leadSponsor": {
+                "name": "Sanofi",
+                "class": "INDUSTRY"
+              },
+              "collaborators": [
+                {
+                  "name": "Bristol-Myers Squibb",
+                  "class": "INDUSTRY"
+                }
+              ]
+            },
+            "oversightModule": {
+              "oversightHasDmc": false
+            },
+            "descriptionModule": {
+              "briefSummary": "* To evaluate Blood Pressure (BP) reduction to the targeted values (Systolic BP ≤ 130 mmHg and Diastolic BP ≤ 80 mmHg) in hypertensive type 2 diabetic patients.\n* To evaluate the benefit of Irbesartan in the reduction of microalbuminuria from baseline (if any at the inclusion visit) in this population.\n* To demonstrate the safety of Irbesartan in this population."
+            },
+            "conditionsModule": {
+              "conditions": [
+                "Hypertension"
+              ]
+            },
+            "designModule": {
+              "studyType": "INTERVENTIONAL",
+              "phases": [
+                "PHASE4"
+              ],
+              "designInfo": {
+                "allocation": "NON_RANDOMIZED",
+                "interventionModel": "SINGLE_GROUP",
+                "primaryPurpose": "TREATMENT",
+                "maskingInfo": {
+                  "masking": "NONE"
+                }
+              },
+              "enrollmentInfo": {
+                "count": 797,
+                "type": "ACTUAL"
+              }
+            },
+            "armsInterventionsModule": {
+              "interventions": [
+                {
+                  "type": "DRUG",
+                  "name": "Irbesartan (Aprovel)",
+                  "description": "Aprovel (150 \\& 300mg) \\& CoAprovel (300/12.5mg hydrochlorothiazide) one tablet/day per os."
+                }
+              ]
+            },
+            "outcomesModule": {
+              "primaryOutcomes": [
+                {
+                  "measure": "Reach blood pressure target in hypertensive diabetic patients i.e. 130/80 mmHg.",
+                  "timeFrame": "During the study conduct"
+                }
+              ],
+              "secondaryOutcomes": [
+                {
+                  "measure": "The restoration of urinary albumin excretion (UAE) rate in patients with normoalbuminuria (UAE rate < 20µg / min)",
+                  "timeFrame": "During the study conduct"
+                },
+                {
+                  "measure": "First detection of overt nephropathy (UAE rate > 200µg / min), in patients with microalbuminuria or at least 30% higher than at baseline value(on at least two consecutive occasions)",
+                  "timeFrame": "During the study conduct"
+                },
+                {
+                  "measure": "Occurrence of any side effect leading to treatment discontinuation.",
+                  "timeFrame": "During the study conduct"
+                }
+              ]
+            },
+            "eligibilityModule": {
+              "eligibilityCriteria": "Inclusion Criteria:\n\n* Proven Hypertensive Type 2 Diabetic Patients with HbA1c \\> 6% and ≤ 10% (with or without microalbuminuria).\n* Newly diagnosed \"naïve\" hypertensive patients (no prior treatment for hypertension). OR,\n* Patients who were receiving antihypertensive agents (maximum two agents, including one diuretic) with blood pressure targets achieved, yet, in the investigator's opinion, those patients would benefit more from switching to the study medication. These patients will undergo a wash out period for not less than 7 days prior to enrollment.\n\nExclusion Criteria:\n\n* Severe hypertension (SBP ≥ 180 mm Hg or DBP ≥ 110 mm Hg).\n* Patients with secondary hypertension.\n* Patients with UAE \\> 200µg / min.\n* Patients with HbA1c \\< 6% or \\> 10%.\n* Significant chronic renal impairment (Serum creatinine \\> 2.0 mg/dL).\n* Significant liver disease as shown by SGPT/SGOT (ALAT/ASAT) \\> 2.5 times the upper limit of the normal range.\n* Currently pregnant or lactating females.\n* Women of childbearing potential not protected by effective contraceptive method of birth control and/or who are unwilling or unable to be tested for pregnancy.\n* Any patient who is in need for a combination antihypertensive therapy from the start (from the medical point of view of his/her physician).\n* Known hypersensitivity to irbesartan, other ARBs(Angiotensin Receptor Blockers), hydrochlorothiazide, or other thiazide diuretics.\n* Patients with malignancy during the past 5 years, known collagen disease or severe cardiac, cerebrovascular or gastric disease.\n\nThe above information is not intended to contain all considerations relevant to a patient's potential participation in a clinical trial.",
+              "healthyVolunteers": false,
+              "sex": "ALL",
+              "minimumAge": "35 Years",
+              "maximumAge": "75 Years",
+              "stdAges": [
+                "ADULT",
+                "OLDER_ADULT"
+              ]
+            },
+            "contactsLocationsModule": {
+              "overallOfficials": [
+                {
+                  "name": "Mosaad I Morsi, MBBCh, MSc",
+                  "affiliation": "Sanofi",
+                  "role": "STUDY_DIRECTOR"
+                }
+              ],
+              "locations": [
+                {
+                  "facility": "Sanofi-Aventis Administrative Office",
+                  "city": "Cairo",
+                  "country": "Egypt",
+                  "geoPoint": {
+                    "lat": 30.06263,
+                    "lon": 31.24967
+                  }
+                }
+              ]
+            }
+          },
+          "derivedSection": {
+            "miscInfoModule": {
+              "versionHolder": "2026-11-03"
+            },
+            "conditionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D006973",
+                  "term": "Hypertension"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D014652",
+                  "term": "Vascular Diseases"
+                },
+                {
+                  "id": "D002318",
+                  "term": "Cardiovascular Diseases"
+                }
+              ]
+            },
+            "interventionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D000077405",
+                  "term": "Irbesartan"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D001713",
+                  "term": "Biphenyl Compounds"
+                },
+                {
+                  "id": "D001555",
+                  "term": "Benzene Derivatives"
+                },
+                {
+                  "id": "D006841",
+                  "term": "Hydrocarbons, Aromatic"
+                },
+                {
+                  "id": "D006844",
+                  "term": "Hydrocarbons, Cyclic"
+                },
+                {
+                  "id": "D006838",
+                  "term": "Hydrocarbons"
+                },
+                {
+                  "id": "D009930",
+                  "term": "Organic Chemicals"
+                },
+                {
+                  "id": "D013141",
+                  "term": "Spiro Compounds"
+                },
+                {
+                  "id": "D013777",
+                  "term": "Tetrazoles"
+                },
+                {
+                  "id": "D001393",
+                  "term": "Azoles"
+                },
+                {
+                  "id": "D006573",
+                  "term": "Heterocyclic Compounds, 1-Ring"
+                },
+                {
+                  "id": "D006571",
+                  "term": "Heterocyclic Compounds"
+                },
+                {
+                  "id": "D011083",
+                  "term": "Polycyclic Compounds"
+                }
+              ]
+            }
+          },
+          "hasResults": false
+        },
+        "expected_digest": "d070abc728c5df2b320cbcdd334571876fd88674da1b2c216f0712936d7a64d1"
+      },
+      {
+        "id": "NCT00772499",
+        "study": {
+          "protocolSection": {
+            "identificationModule": {
+              "nctId": "NCT00772499",
+              "orgStudyIdInfo": {
+                "id": "866-432"
+              },
+              "organization": {
+                "fullName": "Daiichi Sankyo",
+                "class": "INDUSTRY"
+              },
+              "briefTitle": "Vascular Improvement With Olmesartan Medoxomil Study",
+              "officialTitle": "Vascular Improvement With Olmesartan Medoxomil Study",
+              "acronym": "VIOS"
+            },
+            "statusModule": {
+              "statusVerifiedDate": "2008-10",
+              "overallStatus": "COMPLETED",
+              "expandedAccessInfo": {
+                "hasExpandedAccess": false
+              },
+              "startDateStruct": {
+                "date": "2002-11"
+              },
+              "primaryCompletionDateStruct": {
+                "date": "2005-07",
+                "type": "ACTUAL"
+              },
+              "completionDateStruct": {
+                "date": "2005-07",
+                "type": "ACTUAL"
+              },
+              "studyFirstSubmitDate": "2008-10-13",
+              "studyFirstSubmitQcDate": "2008-10-14",
+              "studyFirstPostDateStruct": {
+                "date": "2008-10-15",
+                "type": "ESTIMATED"
+              },
+              "lastUpdateSubmitDate": "2008-10-14",
+              "lastUpdatePostDateStruct": {
+                "date": "2008-10-15",
+                "type": "ESTIMATED"
+              }
+            },
+            "sponsorCollaboratorsModule": {
+              "responsibleParty": {
+                "oldNameTitle": "Director Medical Research",
+                "oldOrganization": "Daiichi Sankyo, Inc."
+              },
+              "leadSponsor": {
+                "name": "Daiichi Sankyo",
+                "class": "INDUSTRY"
+              }
+            },
+            "oversightModule": {
+              "oversightHasDmc": false
+            },
+            "descriptionModule": {
+              "briefSummary": "The purpose of this study is to compare in patients with primary hypertension, the non-blood pressure lowering effects of one-year therapy with olmesartan medoxomil vs. those of atenolol on changes in the vascular structure and function."
+            },
+            "conditionsModule": {
+              "conditions": [
+                "Hypertension"
+              ]
+            },
+            "designModule": {
+              "studyType": "INTERVENTIONAL",
+              "phases": [
+                "PHASE4"
+              ],
+              "designInfo": {
+                "allocation": "RANDOMIZED",
+                "interventionModel": "PARALLEL",
+                "primaryPurpose": "TREATMENT",
+                "maskingInfo": {
+                  "masking": "NONE"
+                }
+              },
+              "enrollmentInfo": {
+                "count": 100,
+                "type": "ACTUAL"
+              }
+            },
+            "armsInterventionsModule": {
+              "armGroups": [
+                {
+                  "label": "1",
+                  "type": "EXPERIMENTAL",
+                  "description": "olmesartan medoxomil tablets with added doses of hydrochlorothiazide, amlodipine, or hydralazine, if required to maintain target blood pressure",
+                  "interventionNames": [
+                    "Drug: olmesartan medoxomil + hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure"
+                  ]
+                },
+                {
+                  "label": "2",
+                  "type": "ACTIVE_COMPARATOR",
+                  "description": "Atenolol tablets with added doses of hydrochlorothiazide, amlodipine, or hydralazine, if required to maintain target blood pressure",
+                  "interventionNames": [
+                    "Drug: atenolol+ hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure"
+                  ]
+                }
+              ],
+              "interventions": [
+                {
+                  "type": "DRUG",
+                  "name": "olmesartan medoxomil + hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure",
+                  "description": "Tablets and capsules for oral administration once or twice daily for up to 52 weeks",
+                  "armGroupLabels": [
+                    "1"
+                  ]
+                },
+                {
+                  "type": "DRUG",
+                  "name": "atenolol+ hydrochlorothiazide + amlodipine + hydralazine if necessary to control blood pressure",
+                  "description": "Tablets and capsules for oral administration once or twice daily for up to 52 weeks",
+                  "armGroupLabels": [
+                    "2"
+                  ]
+                }
+              ]
+            },
+            "outcomesModule": {
+              "primaryOutcomes": [
+                {
+                  "measure": "Subcutaneous gluteal fat arteriole measurements prior to and after 52 weeks of therapy",
+                  "timeFrame": "52 weeks"
+                }
+              ],
+              "secondaryOutcomes": [
+                {
+                  "measure": "Results of vascular function tests",
+                  "timeFrame": "12 weeks"
+                },
+                {
+                  "measure": "Results of vascular function tests",
+                  "timeFrame": "28 weeks"
+                },
+                {
+                  "measure": "Results of vascular function tests",
+                  "timeFrame": "52 weeks"
+                },
+                {
+                  "measure": "Measurement of serum lipid and markers of atherosclerosis",
+                  "timeFrame": "12 weeks"
+                },
+                {
+                  "measure": "Measurement of serum lipid and markers of atherosclerosis",
+                  "timeFrame": "28 weeks"
+                },
+                {
+                  "measure": "Measurement of serum lipid and markers of atherosclerosis",
+                  "timeFrame": "52 weeks"
+                },
+                {
+                  "measure": "Retinal arteriole measurements",
+                  "timeFrame": "52 weeks"
+                },
+                {
+                  "measure": "Calculation of insulin sensitivity measurement",
+                  "timeFrame": "12 Weeks"
+                },
+                {
+                  "measure": "Calculation of insulin sensitivity measurement",
+                  "timeFrame": "28 weeks"
+                },
+                {
+                  "measure": "Calculation of insulin sensitivity measurement",
+                  "timeFrame": "52 weeks"
+                },
+                {
+                  "measure": "24 hour urine creatinine and thromboxane B2 measurements",
+                  "timeFrame": "12 weeks"
+                },
+                {
+                  "measure": "Calculation of albumin-to-creatinine ratio and sodium-to-creatinine ratio",
+                  "timeFrame": "12 weeks"
+                },
+                {
+                  "measure": "Calculation of albumin-to-creatinine ratio and sodium-to-creatinine ratio",
+                  "timeFrame": "28 weeks"
+                },
+                {
+                  "measure": "Calculation of albumin-to-creatinine ratio and sodium-to-creatinine ratio",
+                  "timeFrame": "52 weeks"
+                }
+              ]
+            },
+            "eligibilityModule": {
+              "eligibilityCriteria": "Inclusion Criteria:\n\n* Male or female\n* 18-75 years of age\n* Mean seated diastolic BP 90-109 or mean seated systolic BP of 140-179\n\nExclusion Criteria:\n\n* Secondary hypertension\n* Renal disease\n* Diabetes mellitus\n* Serum creatinine \\>3.0 mg/dL\n* Hemoglobin \\<10 mg/dL (males) or \\<9mg/dL (females)\n* WBC count \\<2000 cells/mL\n* Platelet count \\<100,000 cells/mL\n* Either ALT \\& AST \\>2.5 x upper limit of normal\n* BMI \\>35 kg/m2\n* TIA or cerebrovascular attack within 3 months of study entry",
+              "healthyVolunteers": false,
+              "sex": "ALL",
+              "minimumAge": "18 Years",
+              "maximumAge": "75 Years",
+              "stdAges": [
+                "ADULT",
+                "OLDER_ADULT"
+              ]
+            },
+            "contactsLocationsModule": {
+              "locations": [
+                {
+                  "facility": "Wake Forest University Baptist Medical Center",
+                  "city": "Winston-Salem",
+                  "state": "North Carolina",
+                  "zip": "27157",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 36.09986,
+                    "lon": -80.24422
+                  }
+                }
+              ]
+            }
+          },
+          "derivedSection": {
+            "miscInfoModule": {
+              "versionHolder": "2026-11-03"
+            },
+            "conditionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D006973",
+                  "term": "Hypertension"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D014652",
+                  "term": "Vascular Diseases"
+                },
+                {
+                  "id": "D002318",
+                  "term": "Cardiovascular Diseases"
+                }
+              ]
+            },
+            "interventionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D000068557",
+                  "term": "Olmesartan Medoxomil"
+                },
+                {
+                  "id": "D006852",
+                  "term": "Hydrochlorothiazide"
+                },
+                {
+                  "id": "D017311",
+                  "term": "Amlodipine"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D007093",
+                  "term": "Imidazoles"
+                },
+                {
+                  "id": "D001393",
+                  "term": "Azoles"
+                },
+                {
+                  "id": "D006573",
+                  "term": "Heterocyclic Compounds, 1-Ring"
+                },
+                {
+                  "id": "D006571",
+                  "term": "Heterocyclic Compounds"
+                },
+                {
+                  "id": "D013777",
+                  "term": "Tetrazoles"
+                },
+                {
+                  "id": "D002740",
+                  "term": "Chlorothiazide"
+                },
+                {
+                  "id": "D001581",
+                  "term": "Benzothiadiazines"
+                },
+                {
+                  "id": "D013449",
+                  "term": "Sulfonamides"
+                },
+                {
+                  "id": "D013450",
+                  "term": "Sulfones"
+                },
+                {
+                  "id": "D013457",
+                  "term": "Sulfur Compounds"
+                },
+                {
+                  "id": "D009930",
+                  "term": "Organic Chemicals"
+                },
+                {
+                  "id": "D049971",
+                  "term": "Thiazides"
+                },
+                {
+                  "id": "D006574",
+                  "term": "Heterocyclic Compounds, 2-Ring"
+                },
+                {
+                  "id": "D000072471",
+                  "term": "Heterocyclic Compounds, Fused-Ring"
+                },
+                {
+                  "id": "D004095",
+                  "term": "Dihydropyridines"
+                },
+                {
+                  "id": "D011725",
+                  "term": "Pyridines"
+                }
+              ]
+            }
+          },
+          "hasResults": false
+        },
+        "expected_digest": "a5b4b05af0947337c7e4fa60bee6ce9918b883b02607328c21533ff0c1b0dc0c"
+      }
+    ],
+    "premises": [
+      {
+        "id": "draft-hypertension",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "hypertension",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:user-choice/draft-hypertension",
+          "id": "draft-hypertension",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "simulated-user-adoption",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:hypertension-draft-not-source-fact"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:user-choice/draft-hypertension",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "draft-age",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 35.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 75.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:user-choice/draft-age",
+          "id": "draft-age",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "simulated-user-adoption",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:hypertension-draft-not-source-fact"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:user-choice/draft-age",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "draft-risk-population",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "AnyOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "type2_diabetes",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 65.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:user-choice/draft-risk-population",
+          "id": "draft-risk-population",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "simulated-user-adoption",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:hypertension-draft-not-source-fact"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:user-choice/draft-risk-population",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "draft-history",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "AnyOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "hypertension_history",
+                  "kind": "treatment_history"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "enum",
+                  "members": [
+                    "treatment-naive"
+                  ],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "AllOf",
+                "parts": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "hypertension_history",
+                      "kind": "treatment_history"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "enum",
+                      "members": [
+                        "previously-treated"
+                      ],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "prior_antihypertensive_agents",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "le",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "agents",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "antihypertensive_washout",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "enrollment",
+                      "anchor_ref": "",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "before",
+                      "unit": "days",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 7.0,
+                      "unit": "days",
+                      "upper": null
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "simulated:user-choice/draft-history",
+          "id": "draft-history",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "simulated-user-adoption",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "simulated:hypertension-draft-not-source-fact"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "simulated:user-choice/draft-history",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "source-NCT00362258",
+        "operation": "source_assertions",
+        "target": {
+          "kind": "historical",
+          "ref": "ctg:NCT00362258:d070abc728c5df2b320cbcdd334571876fd88674da1b2c216f0712936d7a64d1",
+          "scope": {
+            "study": "ctg:NCT00362258:d070abc728c5df2b320cbcdd334571876fd88674da1b2c216f0712936d7a64d1",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "d070abc728c5df2b320cbcdd334571876fd88674da1b2c216f0712936d7a64d1"
+          }
+        },
+        "parameters": {
+          "queries": [
+            {
+              "id": "adult-profile",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            }
+          ]
+        },
+        "uses": [
+          {
+            "premise": "NCT00362258",
+            "slot": "study",
+            "projection": "source_study"
+          }
+        ]
+      },
+      {
+        "id": "source-NCT00772499",
+        "operation": "source_assertions",
+        "target": {
+          "kind": "historical",
+          "ref": "ctg:NCT00772499:a5b4b05af0947337c7e4fa60bee6ce9918b883b02607328c21533ff0c1b0dc0c",
+          "scope": {
+            "study": "ctg:NCT00772499:a5b4b05af0947337c7e4fa60bee6ce9918b883b02607328c21533ff0c1b0dc0c",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "a5b4b05af0947337c7e4fa60bee6ce9918b883b02607328c21533ff0c1b0dc0c"
+          }
+        },
+        "parameters": {
+          "queries": [
+            {
+              "id": "adult-profile",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            }
+          ]
+        },
+        "uses": [
+          {
+            "premise": "NCT00772499",
+            "slot": "study",
+            "projection": "source_study"
+          }
+        ]
+      },
+      {
+        "id": "require-diabetes",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-phase4-hypertension-design",
+          "scope": {
+            "study": "simulated-phase4-hypertension-design",
+            "population": "declared-draft",
+            "arm": "all",
+            "time": "entry",
+            "version": "simulated-working-design"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "type2_diabetes",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "inclusive",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "bound": 8192
+        },
+        "uses": [
+          {
+            "premise": "draft-hypertension",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-risk-population",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-history",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "allow-nondiabetic",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-phase4-hypertension-design",
+          "scope": {
+            "study": "simulated-phase4-hypertension-design",
+            "population": "declared-draft",
+            "arm": "all",
+            "time": "entry",
+            "version": "simulated-working-design"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Not",
+            "part": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "type2_diabetes",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "inclusive",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "bound": 8192
+        },
+        "uses": [
+          {
+            "premise": "draft-hypertension",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-risk-population",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-history",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "treated-three-agents",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-phase4-hypertension-design",
+          "scope": {
+            "study": "simulated-phase4-hypertension-design",
+            "population": "declared-draft",
+            "arm": "all",
+            "time": "entry",
+            "version": "simulated-working-design"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "hypertension_history",
+                  "kind": "treatment_history"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "enum",
+                  "members": [
+                    "previously-treated"
+                  ],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "prior_antihypertensive_agents",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 3.0,
+                  "unit": "agents",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "antihypertensive_washout",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "enrollment",
+                  "anchor_ref": "",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "before",
+                  "unit": "days",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 8.0,
+                  "unit": "days",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "bound": 8192
+        },
+        "uses": [
+          {
+            "premise": "draft-hypertension",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-risk-population",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-history",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "older-nondiabetic-naive",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-phase4-hypertension-design",
+          "scope": {
+            "study": "simulated-phase4-hypertension-design",
+            "population": "declared-draft",
+            "arm": "all",
+            "time": "entry",
+            "version": "simulated-working-design"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Not",
+                "part": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "type2_diabetes",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "inclusive",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 68.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "hypertension_history",
+                  "kind": "treatment_history"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "enum",
+                  "members": [
+                    "treatment-naive"
+                  ],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "bound": 8192
+        },
+        "uses": [
+          {
+            "premise": "draft-hypertension",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-age",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-risk-population",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "draft-history",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "main-choice",
+        "question": "Should this represented risk population require type2 diabetes, or also permit older people without diabetes?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-phase4-hypertension-design",
+          "scope": {
+            "study": "simulated-phase4-hypertension-design",
+            "population": "declared-draft",
+            "arm": "all",
+            "time": "entry",
+            "version": "simulated-working-design"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "require-diabetes",
+            "label": "require-diabetes",
+            "analysis": "require-diabetes",
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "type2_diabetes",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "inclusive",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "allow-nondiabetic",
+            "label": "allow-nondiabetic",
+            "analysis": "allow-nondiabetic",
+            "query": {
+              "class": "Not",
+              "part": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "type2_diabetes",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "selected": null
+      }
+    ],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    }
+  },
+  "previous": null
+}

@@ -96,7 +96,13 @@ def test_a_relay_round_trip_holds_the_direct_pulls_records(tmp_path, small_batch
     assert advance(other, "direct", http=direct.client(), sleep=direct.sleep, monotonic=no_clock) == Step(
         "complete", "", []
     )
-    whole = FakeAPI(json_pages=[json_page([A, B], total=3, token="t1"), json_page([C])])
+    whole = FakeAPI(
+        json_pages=[
+            json_page([A], total=3, token="preflight"),
+            json_page([A, B], total=3, token="t1"),
+            json_page([C]),
+        ]
+    )
     expected = query_studies(QUERY, http=whole.client(), sleep=whole.sleep, monotonic=no_clock)
     assert records(folder) == records(other) == expected
     assert [s["protocolSection"]["identificationModule"]["nctId"] for s in expected[0]] == [A, B, C]
@@ -126,11 +132,12 @@ def test_the_relayed_urls_are_the_requests_the_direct_path_sends(tmp_path, small
     ids_api = FakeAPI(json_pages=[json_page([A, B], total=3, token="t1"), json_page([C])])
     query_ids(QUERY, http=ids_api.client(), sleep=ids_api.sleep, monotonic=no_clock)
     assert sent[:3] == [str(request.url) for request in ids_api.requests[:3]]
-    batch_api = FakeAPI(json_pages=[json_page([B, A], total=2)])
+    batch_api = FakeAPI(json_pages=[json_page([A], total=2, token="preflight"), json_page([B, A], total=2)])
     query_studies(
         {"filter.ids": f"{A},{B}"}, http=batch_api.client(), sleep=batch_api.sleep, monotonic=no_clock
     )
-    assert sent[3] == str(batch_api.requests[1].url)
+    assert batch_api.requests[1].url.params["fields"] == "NCTId"
+    assert sent[3] == str(batch_api.requests[2].url)
 
 
 def test_next_json_tells_the_agent_what_to_fetch_and_where(tmp_path):
@@ -407,13 +414,17 @@ def test_every_refusal_has_exactly_one_piece_of_advice():
     codes = set().union(
         *(returned_codes(f) for f in (steps.next_step, steps.follow_ids, steps.follow_batches))
     )
-    assert set(ADVICE) == codes - {"complete", "awaiting_fetch"}
+    assert set(ADVICE) == (codes - {"complete", "awaiting_fetch"}) | set(steps.ACQUISITION_CODES)
 
 
 def test_the_folder_keeps_the_request_and_the_scope(tmp_path):
     folder = started(tmp_path)
     assert json.loads((folder / "request.json").read_text(encoding="utf-8")) == {"drug": ["testamab"]}
-    assert json.loads((folder / "scope.json").read_text(encoding="utf-8")) == {"query": QUERY, "rxnav": []}
+    assert json.loads((folder / "scope.json").read_text(encoding="utf-8")) == {
+        "query": QUERY,
+        "rxnav": [],
+        "acquisition": {"max_studies": 1000, "max_registry_requests": 100},
+    }
     assert open_run(folder, {"drug": ["testamab"]}, QUERY) == ("ok", [])
 
 

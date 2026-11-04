@@ -436,7 +436,11 @@ def test_full_eligibility_and_literal_fields_survive_without_a_clinical_reading(
     assert study["eligibility"]["text"] == text
     assert study["study_population"] == source["protocolSection"]["eligibilityModule"]["studyPopulation"]
     for criterion in study["criteria"]:
-        assert set(criterion) == {"heading", "number", "text", "source_start", "source_end"}
+        assert (
+            {"heading", "number", "text", "source_start", "source_end"}
+            <= set(criterion)
+            <= {"heading", "number", "text", "source_start", "source_end", "source_context"}
+        )
         assert criterion["text"] == text[criterion["source_start"] : criterion["source_end"]]
         assert "readings" not in criterion and "role" not in criterion
 
@@ -513,7 +517,11 @@ def test_only_exact_unambiguous_source_headings_classify_source_passages(text, s
         assert criterion["source_start"] == offset
         offset += len(criterion["text"])
         assert criterion["source_end"] == offset
-        assert set(criterion) == {"heading", "number", "text", "source_start", "source_end"}
+        assert (
+            {"heading", "number", "text", "source_start", "source_end"}
+            <= set(criterion)
+            <= {"heading", "number", "text", "source_start", "source_end", "source_context"}
+        )
 
 
 @pytest.mark.parametrize(

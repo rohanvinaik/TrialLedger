@@ -1,0 +1,22 @@
+{
+  "measured_at_utc": "2026-11-04T03:59:37.012319+00:00",
+  "scope": "Current clinical replay/trace hashes and adopted target records; not clinical confirmation or full-project deep certification.",
+  "clinical_pairs": 19,
+  "runtime_hashes_verified": 85,
+  "consumer_trace_runs": 90,
+  "consumer_trace_modules": 42,
+  "public_contract_pairs": 80,
+  "supported_schema_acceptances": 79,
+  "unsupported_writer_schema_rejections": 1,
+  "selected_clinical_files": 75,
+  "selected_clinical_bytes": 11800416,
+  "adopted_exact_target_entries": 11,
+  "accepted_pin_limit": "TrialLedger/landscape.py::context_problem: INCOMPLETE property_render_timeout; explicitly accepted by the person.",
+  "evidence_sha256": {
+    "acceptance/clinical-handoffs-2026-11-03/final-replay-receipt.json": "0eeff2c5b74052dd2023f596ce53588a064e17c2d84cec930e7830a536fb6ad9",
+    "acceptance/reasoning-consumer-trace.json": "a336916394fe8a619c8c5522f1bc0fd78b39c4923300a1f4749f2a8ce5fc900c",
+    "openspec/changes/repair-clinical-information-handoffs/evidence/public-contract-receipt.json": "0ddac6ec229ef3783c24e1518503ca1d7fc04786ae463affcb4483d088e6f694",
+    "openspec/changes/repair-clinical-information-handoffs/evidence/full-source-replay-receipt.json": "49068079fd3aaaef685efac267b80d2da504f559c4b6122f96aee31fc645e7b4",
+    "openspec/changes/repair-clinical-information-handoffs/evidence/certificate-adoption.json": "efeb3c58a3d8fa9552c203f299ee1153b68750152e6e2f18476b9f5638a6aa59"
+  }
+}

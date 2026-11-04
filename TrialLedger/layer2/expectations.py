@@ -98,9 +98,24 @@ def deviation_status(status: str, qualifiers: int, audit: str) -> str:
     conforms; not_documented → omission (silence is not admission, and never shares its label);
     explicitly_negated with a condition recorded → explanation_supported; explicitly_negated
     otherwise → verified_deviation (valid, and unexplained until something explains it).
+    Audit accepts only "", "valid" and "invalid". Outside that vocabulary: invalid_audit;
+    unknown observation status: invalid_status; qualifiers other than a nonnegative exact
+    integer: invalid_qualifiers. An invalid extraction retains its override regardless of
+    status or qualifiers. These labels inspect supplied data, not the clinical reading.
+
+    post: __return__ != "verified_deviation" or status == "explicitly_negated"
+    post: __return__ != "verified_deviation" or (type(qualifiers) is int and qualifiers == 0)
+    post: __return__ != "verified_deviation" or audit in ("", "valid")
+    post: audit != "invalid" or __return__ == "invalid_extraction"
     """
+    if not isinstance(audit, str) or audit not in ("", "valid", "invalid"):
+        return "invalid_audit"
     if audit == "invalid":
         return "invalid_extraction"
+    if not isinstance(status, str) or status not in STATUSES:
+        return "invalid_status"
+    if type(qualifiers) is not int or qualifiers < 0:
+        return "invalid_qualifiers"
     if status == "not_applicable":
         return "not_applicable"
     if status == "unresolved":

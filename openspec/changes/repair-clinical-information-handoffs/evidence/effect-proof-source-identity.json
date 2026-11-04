@@ -1,0 +1,8 @@
+{
+  "target": "TrialLedger/layer2/reasoning_explanations.py::coordinate_effect_code",
+  "whole_function_source_sha256": "44c68edcdb70f815488d3ba0cfa8cc23807fa902867a1f98ab921b3e30ccfa0c",
+  "old_and_current_whole_function_source_equal": true,
+  "executable_global_loads": [],
+  "proof_directory": "/tmp/trialledger-pin-effect-20261104",
+  "scope": "Exact unchanged function and empty executable global dependency; unrelated module constant/doc changes and source line shifts are not a new operator proof. No whole-module clearance."
+}

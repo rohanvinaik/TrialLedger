@@ -1048,6 +1048,66 @@
           }
         },
         "result": "UNDETERMINED",
+        "contrast": {
+          "code": "none",
+          "context": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "answers": [
+            {
+              "frame": "PS0-3",
+              "origin": "assistant",
+              "frame_state": "compatible",
+              "query": "PS3",
+              "result": "UNDETERMINED",
+              "query_path": "/result/interpretations/1/queries/1",
+              "warrant_path": "/result/interpretations/1/queries/1/warrant",
+              "standing": "proposed",
+              "blockers": [
+                "undecided_by_constraints"
+              ],
+              "deciding_premises": [
+                {
+                  "id": "draft-PS-min",
+                  "path": "/result/fixed/assertions/1",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "known"
+                },
+                {
+                  "id": "PS-upper-3",
+                  "path": "/result/interpretations/1/premises/assumptions/0",
+                  "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "standing": "proposed"
+                }
+              ]
+            }
+          ],
+          "path_basis": "relative_to_this_reason_envelope"
+        },
         "frames": [
           "PS0-3"
         ],
@@ -1237,7 +1297,12 @@
           }
         ],
         "disposition": "open",
-        "support_path": "/result/consequences/1/warrant"
+        "support_path": "/result/consequences/1/warrant",
+        "contrast_code": "none",
+        "contrast_path": "/result/consequences/1/contrast",
+        "answer_paths": [
+          "/result/interpretations/1/queries/1"
+        ]
       }
     ]
   }

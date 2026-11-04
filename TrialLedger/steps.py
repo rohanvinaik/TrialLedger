@@ -42,6 +42,7 @@ from typing import Any
 
 import httpx
 
+from TrialLedger import acquisition as acquisition_policy
 from TrialLedger.ingest import (
     API_BASE,
     JSON_TYPE,
@@ -68,6 +69,7 @@ REQUEST_NAME = "request.json"
 SCOPE_NAME = "scope.json"
 FETCHES_NAME = "fetches.json"
 NEXT_NAME = "next.json"
+ACQUISITION_NAME = "acquisition.json"
 BODIES = "bodies"
 MODES = ("direct", "relay")
 FETCH_INSTRUCTIONS = (
@@ -107,6 +109,32 @@ ADVICE = {
     "snapshot_changed": "The registry published new data during the run, so its pages may mix two snapshots. "
     "Start a new run folder.",
 }
+
+
+ACQUISITION_ADVICE = (
+    "The requested NIH acquisition exceeds its recorded scope or registry-request budget. "
+    "Keep all saved evidence; narrow the search or explicitly budget the intended acquisition "
+    "in a new run. This is an operator acquisition task, not a missing clinical fact."
+)
+ACQUISITION_CODES = (
+    "acquisition_study_expansion",
+    "acquisition_request_expansion",
+    "acquisition_invalid_policy",
+    "acquisition_invalid_cost",
+)
+ADVICE.update({code: ACQUISITION_ADVICE for code in ACQUISITION_CODES})
+
+
+def acquisition_status(
+    policy: dict[str, int], total: int | None, current: int, planned: int
+) -> tuple[str, str]:
+    """Translate the shared pure acquisition decision into resumable named stop codes."""
+    code = acquisition_policy.expansion_code(
+        policy["max_studies"], policy["max_registry_requests"], total, current, planned
+    )
+    if code == "within_budget":
+        return "within_budget", ""
+    return "acquisition_" + code, acquisition_policy.refusal_detail(policy, total, current, planned)
 
 
 def follow_ids(
@@ -214,6 +242,9 @@ def next_step(
     named: list[str],
     bodies: dict[str, Any],
     unreadable: list[str],
+    *,
+    acquisition: dict[str, int] | None = None,
+    registry_requests: int | None = None,
 ) -> tuple[str, list[dict[str, Any]], list[dict[str, Any]], str]:
     """What a run folder needs next (pure — pinned).
 
@@ -242,6 +273,18 @@ def next_step(
         for n, (url, params) in enumerate(rxnav, 1)
     ]
     plan = [start, *answers]
+    policy = None
+    saved_registry = sum(
+        name in (START_NAME, END_NAME) or name.startswith(("ids-", "studies-")) for name in bodies
+    )
+    current = saved_registry if registry_requests is None else registry_requests
+    if acquisition is not None:
+        if acquisition_policy.policy_problem(acquisition) != "ok":
+            return "acquisition_invalid_policy", plan, [], "Malformed recorded acquisition policy"
+        policy = acquisition_policy.effective_policy(acquisition)
+        status, detail = acquisition_status(policy, None, current, 3)
+        if status != "within_budget":
+            return status, plan, [], detail
     if START_NAME in unreadable:
         return "not_json", plan, [], START_NAME
     pending = [] if START_NAME in bodies else [start]
@@ -250,6 +293,22 @@ def next_step(
         code = classify_version(before)
         if code != "ok":
             return "not_a_registry_page", plan, [], f"{START_NAME}: {code}"
+        if policy is not None and "ids-001.json" in bodies:
+            first = bodies["ids-001.json"]
+            if classify_json_page(first, True) in PAGE_CODES:
+                total = first["totalCount"]
+                planned = acquisition_policy.registry_plan_requests(total, "run", PAGE_SIZE) + max(
+                    0, current - saved_registry
+                )
+                status, detail = acquisition_status(policy, total, current, planned)
+                if status != "within_budget":
+                    first_fetch = {
+                        "file": "ids-001.json",
+                        "url": STUDIES_URL,
+                        "params": json_query_params(query, "NCTId"),
+                        "why": "id_page",
+                    }
+                    return status, [*plan, first_fetch], [], detail
         code, pages, ids, detail = follow_ids(query, bodies, unreadable)
         plan += pages
         if code == "complete":
@@ -284,6 +343,13 @@ def next_step(
     for file in sorted(saved):
         if file not in planned or file not in named:
             return "page_out_of_order", plan, [], f"{file}: saved before it was named"
+    if policy is not None:
+        planned_requests = sum(fetch["why"] != "rxnav_answer" for fetch in plan) + max(
+            0, current - saved_registry
+        )
+        status, detail = acquisition_status(policy, None, current, planned_requests)
+        if status != "within_budget":
+            return status, plan, [], detail
     awaited = pending + [fetch for fetch in answers if fetch["file"] not in saved]
     return ("awaiting_fetch" if awaited else "complete"), plan, awaited, ""
 
@@ -344,7 +410,34 @@ def open_run(
     code, names = check_query(query)
     if code != "ok":
         return f"query.{code}", names
-    scope = {"query": dict(query), "rxnav": [[url, dict(params)] for url, params in rxnav]}
+    raw_policy = request.get("acquisition") if isinstance(request, dict) else None
+    if (
+        isinstance(request, dict)
+        and "acquisition" in request
+        and acquisition_policy.policy_problem(raw_policy) != "ok"
+    ):
+        return "acquisition_invalid_policy", ["acquisition"]
+    expected = acquisition_policy.expected_id_count(query)
+    policy = acquisition_policy.effective_policy(
+        raw_policy,
+        expected_studies=expected,
+        expected_requests=acquisition_policy.registry_plan_requests(expected, "run", PAGE_SIZE)
+        if expected is not None
+        else None,
+    )
+    scope = {
+        "query": dict(query),
+        "rxnav": [[url, dict(params)] for url, params in rxnav],
+        "acquisition": policy,
+    }
+    old_scope = folder / SCOPE_NAME
+    if (
+        old_scope.exists()
+        and "acquisition" not in json.loads(old_scope.read_text(encoding="utf-8"))
+        and raw_policy is None
+    ):
+        # Preserve the exact writing contract of an existing legacy scope.
+        scope.pop("acquisition")
     documents = ((REQUEST_NAME, request), (SCOPE_NAME, scope))
     for name, document in documents:
         path = folder / name
@@ -453,7 +546,62 @@ def advance(
     try:
         while True:
             scope, named, bodies, unreadable = _state(folder)
-            code, plan, awaited, detail = next_step(scope["query"], scope["rxnav"], named, bodies, unreadable)
+            code, plan, awaited, detail = next_step(
+                scope["query"],
+                scope["rxnav"],
+                named,
+                bodies,
+                unreadable,
+                acquisition=scope.get("acquisition"),
+            )
+            checkpoint_path = folder / ACQUISITION_NAME
+            if code != "complete":
+                expected = acquisition_policy.expected_id_count(scope["query"])
+                policy = scope.get("acquisition") or acquisition_policy.effective_policy(
+                    expected_studies=expected,
+                    expected_requests=acquisition_policy.registry_plan_requests(expected, "run", PAGE_SIZE)
+                    if expected is not None
+                    else None,
+                )
+                saved_count = sum(
+                    name in (START_NAME, END_NAME) or name.startswith(("ids-", "studies-")) for name in bodies
+                )
+                checkpoint: dict[str, Any] = (
+                    json.loads(checkpoint_path.read_text())
+                    if checkpoint_path.exists()
+                    else {"registry_requests": saved_count}
+                )
+                count = checkpoint.get("registry_requests")
+                if type(count) is not int or count < 0:
+                    return Step("acquisition_invalid_cost", "Malformed recorded registry request count", [])
+                count = max(count, saved_count)
+                first = bodies.get("ids-001.json")
+                total = (
+                    first["totalCount"]
+                    if isinstance(first, dict) and classify_json_page(first, True) in PAGE_CODES
+                    else None
+                )
+                checkpoint.update(
+                    policy=policy,
+                    registry_requests=count,
+                    observed_total=total,
+                    request_count_basis="direct attempts plus retained relay response lower bound",
+                    planned_registry_requests=acquisition_policy.registry_plan_requests(
+                        total, "run", PAGE_SIZE
+                    )
+                    if total is not None
+                    else 3,
+                )
+                _write(folder, checkpoint_path, _json_bytes(checkpoint))
+                code, plan, awaited, detail = next_step(
+                    scope["query"],
+                    scope["rxnav"],
+                    named,
+                    bodies,
+                    unreadable,
+                    acquisition=policy,
+                    registry_requests=count,
+                )
             _name(folder, plan)
             if code != "awaiting_fetch" or mode == "relay":
                 step = Step(code, detail, [_shown(fetch) for fetch in awaited])
@@ -469,7 +617,23 @@ def advance(
                     follow_redirects=False,
                     headers={"User-Agent": USER_AGENT},
                 )
-                session = Session(client, sleep=sleep, monotonic=monotonic, progress=progress)
+
+                session = Session(
+                    client,
+                    sleep=sleep,
+                    monotonic=monotonic,
+                    progress=progress,
+                    acquisition=policy,
+                    registry_requests=count,
+                )
+
+            def record_attempt(
+                count: int, document: dict[str, Any] = checkpoint, target: Path = checkpoint_path
+            ) -> None:
+                document["registry_requests"] = count
+                _write(folder, target, _json_bytes(document))
+
+            session.on_registry_request = record_attempt
             for fetch in awaited:
                 _write(folder, folder / BODIES / fetch["file"], _fetch(session, fetch))
                 progress(f"saved {fetch['file']} ({fetch['why']})")
@@ -483,7 +647,9 @@ def records(folder: Path) -> tuple[list[dict[str, Any]], str, str]:
     the data timestamp: what `ingest.query_studies` returns for the same query at the same snapshot. Raises
     StepError, assembling nothing, unless next_step says the folder is complete."""
     scope, named, bodies, unreadable = _state(folder)
-    code, plan, awaited, detail = next_step(scope["query"], scope["rxnav"], named, bodies, unreadable)
+    code, plan, awaited, detail = next_step(
+        scope["query"], scope["rxnav"], named, bodies, unreadable, acquisition=scope.get("acquisition")
+    )
     if code != "complete":
         raise StepError(code, detail or ", ".join(fetch["file"] for fetch in awaited))
     order: list[str] = []
@@ -508,7 +674,9 @@ def rxnav_answers(folder: Path) -> list[tuple[str, dict[str, str], int, Any]]:
     recorded, an error page), which the decisions read as lookup_failed, never as no class. Raises StepError,
     reading nothing, unless next_step says the folder is complete."""
     scope, named, bodies, unreadable = _state(folder)
-    code, plan, awaited, detail = next_step(scope["query"], scope["rxnav"], named, bodies, unreadable)
+    code, plan, awaited, detail = next_step(
+        scope["query"], scope["rxnav"], named, bodies, unreadable, acquisition=scope.get("acquisition")
+    )
     if code != "complete":
         raise StepError(code, detail or ", ".join(fetch["file"] for fetch in awaited))
     answers = []

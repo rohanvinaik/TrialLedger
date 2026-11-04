@@ -1,0 +1,32 @@
+[
+  {
+    "nct": "NCT07119099",
+    "address": "/studies/0/detailed_description",
+    "field": "detailed_description",
+    "chunks": 1,
+    "exact_reconstruction": true,
+    "characters": 354
+  },
+  {
+    "nct": "NCT02009293",
+    "address": "/studies/1/detailed_description",
+    "field": "detailed_description",
+    "chunks": 2,
+    "exact_reconstruction": true,
+    "characters": 1625
+  },
+  {
+    "nct": "NCT07119099",
+    "address": "/studies/0/eligibility/text",
+    "chunks": 1,
+    "exact_reconstruction": true,
+    "characters": 579
+  },
+  {
+    "nct": "NCT02009293",
+    "address": "/studies/1/eligibility/text",
+    "chunks": 1,
+    "exact_reconstruction": true,
+    "characters": 1059
+  }
+]

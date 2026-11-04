@@ -36,6 +36,10 @@ RETIRED = {
     "gates",
 }
 REPORT_ROOTS = {
+    "acquisition",
+    "capabilities",
+    "evidence_access",
+    "record_access",
     "operate",
     "landscape",
     "readout",

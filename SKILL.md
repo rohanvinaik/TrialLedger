@@ -205,6 +205,16 @@ dependencies and child results, and computes decision states. Historical unknown
 new-trial choices require distinct feasible alternatives. Save returned JSON beside the human brief; the
 operation does not persist files or write a complete protocol.
 
+For a historical `source_study` analysis, copy target `scope.study` from source inspection's
+`/result/source/study_ref`, not an NCT ID or reconstructed identity. The local source ID in `use.premise`
+is separate. The projection supplies both `study` and `expected_digest`; omit both from child parameters.
+
+Local replay retains complete old/new sources. Copied JSON-node count is diagnostic and the legacy
+`max_expanded_items` limit is nonoperative; solver-work, analysis-count and complete-output limits still
+apply. Do not trim evidence or reuse stale answers to pass a limit. Confirmation/choice labels are caller
+declarations: retain literal accepted wording, revision and an actual exchange reference when available;
+label simulations explicitly, reuse unchanged agreements and do not reconfirm copied registry values.
+
 ## Reference sheet
 
 For an assistant-operated local run, first inspect whether this environment has local execution, network,
@@ -234,6 +244,12 @@ ask the clinician to select an app when the assistant can inspect its own capabi
    reconstruction of a registry page. The JSON is a declared clinical selection; complete source responses are
    retained separately.
 
+Search acquisition defaults to 1,000 studies and 100 registry requests, checked on the first identifier
+count before bulk retrieval. Optional request `acquisition` supplies positive `max_studies` and/or
+`max_registry_requests` for a deliberate scope; its effective policy is retained for resume. Raw `pull`
+has matching `--max-studies` and `--max-registry-requests` controls. A name need not be an acronym:
+`{"params":{"query.term":"\"CodeBreaK 200\""}}` uses the ordinary request/preview route; verify identity.
+
 Source copies are plain values with sources defined once in `fields`. Direct transformations name their
 rules/inputs. Keep exact prose, populations, local groups, denominators, units, periods, precision, zero and
 false. Not stated is not none; not posted is not no effect; empty listings are not zero harms. Malformed scalar
@@ -260,6 +276,10 @@ Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an 
 `evidence_requests` or `design_session`. The same public
 contract is `TrialLedger.layer2.run(request)`.
 
+Every operation name above is also a focused discovery view. Python callers can use strict
+`layer2.construction` helpers for quantity/enum/literal/scoped assertions and inspect `expanded` canonical
+inputs. They require explicit scope/force/origin and default to proposed; they do not interpret prose.
+
 Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus
 permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive
 limit or not; exposure versus follow-up time. Two readings can give opposite answers (the worked session's exon
@@ -277,6 +297,14 @@ match only when identical; convert Python tuples to lists before reusing a resul
 needs an explicitly warranted scoped relation, never name matching or implicit scale conversion. Inspect optional
 entailment `translation_diagnostics` for same-predicate subject/unit/time differences; the diagnostic identifies
 a translation question and never establishes equivalence.
+
+Coordinate `effects` distinguish admission from actual use: unused, inactive, redundant, withheld,
+narrowed or guarded. An active guard can preserve alternatives without removals. Finite `setting` is an
+explicit restriction, distinct from `setting_word`; neither invents progression/maintenance equivalence.
+Known and default-layer conflicts have different warrants. Interpretation `contrast` and metadata paths
+name differing frame scopes/answers without changing the common verdict or independent fixed answers.
+Frequency `description` names the declared-set count/denominator and descriptive threshold; even two of two
+does not establish a clinical standard or class-association support.
 
 Deliver the clinical question, confirmed premises and origins, the result in its category with its basis, open
 items and the unchanged structured response, saved separately (for example `reason-result.json`) beside the
@@ -334,6 +362,14 @@ full analyses; keep conversation focused on the question. These limits do not ch
 completeness or logical outcomes, and do not bound the entire process's memory. `reason` is a separate typed
 request. `verify FOLDER` replays saved reporting/archival inputs under their writing version; it establishes
 reproduction rather than clinical truth. `pull` preserves complete source JSON/CSV and archival workbooks.
+
+CLI-only assistants use the same selectors: `trialledger record FOLDER --part studies`,
+`trialledger record FOLDER --part study --nct NCT...`, or
+`trialledger record FOLDER --part address --address /studies/0/criteria`, with identical continuations.
+Optional `source_context` copies local headings/labels and offsets beside passages; it does not decide
+entry/crossover or cohort scope. Legacy replay details do not certify fields absent from that old format.
+The Python-only deviation utility returns named invalid results for malformed audit/status/qualifiers,
+never a verified deviation from an unknown code.
 
 ## Read the information inside an abstention
 

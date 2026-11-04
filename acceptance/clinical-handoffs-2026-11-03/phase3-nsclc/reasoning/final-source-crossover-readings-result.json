@@ -1,0 +1,2016 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT03875092",
+      "digest": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+      "study_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+      "version": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+      "last_update": {
+        "date": "2024-10-01",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+        "value": "Inclusion Criteria:\n\n* Has a histologically or cytologically confirmed diagnosis of stage IV (M1a or M1b-American Joint Committee on Cancer \\[AJCC\\]) squamous NSCLC.\n* Has measurable disease based on RECIST 1.1 as determined by the local site investigator/radiology assessment.\n* Has not received prior systemic treatment for metastatic NSCLC.\n* Has provided tumor tissue from locations not radiated prior to biopsy.\n* Has a life expectancy of at least 3 months.\n* Has a performance status of 0 or 1 on the Eastern Cooperative Oncology Group (ECOG) Performance Status.\n* Has adequate organ function.\n* If female of childbearing potential, is willing to use an adequate method of contraception for the course of the study through 180 days after the last dose of study treatment.\n* If male with a female partner(s) of child-bearing potential, must agree to use an adequate method of contraception starting with the first dose of study treatment through 95 days after the last dose of study treatment. Males with pregnant partners must agree to use a condom; no additional method of contraception is required for the pregnant partner.\n\nExclusion Criteria:\n\n* Has non-squamous histology NSCLC.\n* Is currently participating and receiving study therapy or has participated in a study of an investigational agent and received study therapy or used an investigational device within 4 weeks prior to administration of pembrolizumab.\n* Before the first dose of study drug: a) Has received prior systemic cytotoxic chemotherapy for metastatic disease; b) Has received other targeted or biological antineoplastic therapy (e.g., erlotinib, crizotinib, cetuximab) for metastatic disease; c) Has had major surgery (\\<3 weeks prior to first dose).\n* Received radiation therapy to the lung that is \\>30 Gray (Gy) within 6 months of the first dose of study treatment.\n* Completed palliative radiotherapy within 7 days of the first dose of study treatment.\n* Is expected to require any other form of antineoplastic therapy while on study.\n* Has received a live-virus vaccination within 30 days of planned treatment start.\n* Has a known history of prior malignancy except if the participant has undergone potentially curative therapy with no evidence of that disease recurrence for 5 years since initiation of that therapy.\n* Has known active central nervous system (CNS) metastases and/or carcinomatous meningitis.\n* Has pre-existing peripheral neuropathy that is ≥ Grade 2 by Common Terminology Criteria for Adverse Events (CTCAE) Version 4 criteria.\n* Previously had a severe hypersensitivity reaction to treatment with another monoclonal antibody.\n* Has a known sensitivity to any component of carboplatin or paclitaxel or nab-paclitaxel.\n* Has active autoimmune disease that has required systemic treatment in past 2 years.\n* Is on chronic systemic steroids.\n* Had prior treatment with any other anti-programmed cell death 1 (anti-PD-1), or programmed cell death ligand 1 (PD-L1) or PD-L2 agent or an antibody or a small molecule targeting other immuno-regulatory receptors or mechanisms.\n* Has participated in any other pembrolizumab trial and has been treated with pembrolizumab.\n* Has an active infection requiring therapy.\n* Has known history of Human Immunodeficiency Virus (HIV).\n* Has known active Hepatitis B virus (HBV) or Hepatitis C virus (HCV) infection.\n* Is, at the time of providing documented informed consent, a regular user (including \"recreational use\") of any illicit drugs or has a recent history (within the last year) of substance abuse (including alcohol).\n* Has interstitial lung disease or a history of pneumonitis that required oral or intravenous glucocorticoids to assist with management.",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+          "version": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3"
+        },
+        "code": "located"
+      },
+      {
+        "id": "crossover-summary",
+        "address": "/protocolSection/descriptionModule/briefSummary",
+        "digest": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+        "value": "In this China extension study, carboplatin and paclitaxel with or without pembrolizumab (MK-3475, KEYTRUDA®) will be administered to Chinese adults with first line metastatic squamous non-small cell lung cancer (NSCLC).\n\nThe primary hypotheses are that treatment with pembrolizumab prolongs: 1) Progression-free Survival (PFS) by Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST 1.1) as assessed by a blinded central imaging vendor compared to placebo, and 2) Overall Survival (OS) in Chinese participants.\n\nAfter analysis of interim results was conducted, the protocol was amended (Amendment 5) to allow participants the option to discontinue placebo in the control arm and to switch to pembrolizumab in the event of documented progressive disease as assessed by central review.",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+        "source": {
+          "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+          "version": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+          "address": "/protocolSection/descriptionModule/briefSummary",
+          "digest": "bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [
+      {
+        "id": "entry-only",
+        "label": "The PS criterion governs initial enrollment only",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "inclusive",
+                "kind": "quantity",
+                "members": [],
+                "number": 1.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "phase_ref",
+              "parts": [],
+              "ref": "initial-enrollment"
+            },
+            "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+            "id": "PS-entry-only",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+      },
+      {
+        "id": "reassess-at-crossover",
+        "label": "Hypothetically require the same PS limit again when crossover starts",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "inclusive",
+                "kind": "quantity",
+                "members": [],
+                "number": 1.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "phase_ref",
+              "parts": [],
+              "ref": "crossover-treatment-start"
+            },
+            "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+            "id": "PS-reassess-at-crossover",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+      }
+    ],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Has a histologically or cytologically confirmed diagnosis of stage IV (M1a or M1b-American Joint Committee on Cancer \\[AJCC\\]) squamous NSCLC.\n* Has measurable disease based on RECIST 1.1 as determined by the local site investigator/radiology assessment.\n* Has not received prior systemic treatment for metastatic NSCLC.\n* Has provided tumor tissue from locations not radiated prior to biopsy.\n* Has a life expectancy of at least 3 months.\n* Has a performance status of 0 or 1 on the Eastern Cooperative Oncology Group (ECOG) Performance Status.\n* Has adequate organ function.\n* If female of childbearing potential, is willing to use an adequate method of contraception for the course of the study through 180 days after the last dose of study treatment.\n* If male with a female partner(s) of child-bearing potential, must agree to use an adequate method of contraception starting with the first dose of study treatment through 95 days after the last dose of study treatment. Males with pregnant partners must agree to use a condom; no additional method of contraception is required for the pregnant partner.\n\nExclusion Criteria:\n\n* Has non-squamous histology NSCLC.\n* Is currently participating and receiving study therapy or has participated in a study of an investigational agent and received study therapy or used an investigational device within 4 weeks prior to administration of pembrolizumab.\n* Before the first dose of study drug: a) Has received prior systemic cytotoxic chemotherapy for metastatic disease; b) Has received other targeted or biological antineoplastic therapy (e.g., erlotinib, crizotinib, cetuximab) for metastatic disease; c) Has had major surgery (\\<3 weeks prior to first dose).\n* Received radiation therapy to the lung that is \\>30 Gray (Gy) within 6 months of the first dose of study treatment.\n* Completed palliative radiotherapy within 7 days of the first dose of study treatment.\n* Is expected to require any other form of antineoplastic therapy while on study.\n* Has received a live-virus vaccination within 30 days of planned treatment start.\n* Has a known history of prior malignancy except if the participant has undergone potentially curative therapy with no evidence of that disease recurrence for 5 years since initiation of that therapy.\n* Has known active central nervous system (CNS) metastases and/or carcinomatous meningitis.\n* Has pre-existing peripheral neuropathy that is ≥ Grade 2 by Common Terminology Criteria for Adverse Events (CTCAE) Version 4 criteria.\n* Previously had a severe hypersensitivity reaction to treatment with another monoclonal antibody.\n* Has a known sensitivity to any component of carboplatin or paclitaxel or nab-paclitaxel.\n* Has active autoimmune disease that has required systemic treatment in past 2 years.\n* Is on chronic systemic steroids.\n* Had prior treatment with any other anti-programmed cell death 1 (anti-PD-1), or programmed cell death ligand 1 (PD-L1) or PD-L2 agent or an antibody or a small molecule targeting other immuno-regulatory receptors or mechanisms.\n* Has participated in any other pembrolizumab trial and has been treated with pembrolizumab.\n* Has an active infection requiring therapy.\n* Has known history of Human Immunodeficiency Virus (HIV).\n* Has known active Hepatitis B virus (HBV) or Hepatitis C virus (HCV) infection.\n* Is, at the time of providing documented informed consent, a regular user (including \"recreational use\") of any illicit drugs or has a recent history (within the last year) of substance abuse (including alcohol).\n* Has interstitial lung disease or a history of pneumonitis that required oral or intravenous glucocorticoids to assist with management."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/documentSection",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/documentSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/ipdSharingStatementModule",
+        "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/ipdSharingStatementModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [
+        {
+          "id": "entry-only",
+          "label": "The PS criterion governs initial enrollment only",
+          "origin": "assistant",
+          "basis": [
+            "proposed_reading:registry_does_not_state_crossover_reassessment_rule"
+          ],
+          "anchors": [
+            "eligibility",
+            "crossover-summary"
+          ],
+          "assumptions": [
+            {
+              "class": "ScopedAssertion",
+              "id": "PS-entry-only",
+              "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "modality": "required",
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "measurement",
+                  "key": "ECOG"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "quantity",
+                  "comparison": "le",
+                  "number": 1,
+                  "unit": "ECOG",
+                  "inclusivity": "inclusive"
+                }
+              },
+              "cohort": {
+                "class": "Scope",
+                "kind": "phase_ref",
+                "ref": "initial-enrollment"
+              },
+              "rule": {
+                "class": "Rule",
+                "id": "declared-reading-or-simulated-choice",
+                "version": "1",
+                "warrants": [
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                ]
+              },
+              "status": "proposed",
+              "resolution": "resolved"
+            }
+          ]
+        },
+        {
+          "id": "reassess-at-crossover",
+          "label": "Hypothetically require the same PS limit again when crossover starts",
+          "origin": "assistant",
+          "basis": [
+            "proposed_reading:registry_does_not_state_crossover_reassessment_rule"
+          ],
+          "anchors": [
+            "eligibility",
+            "crossover-summary"
+          ],
+          "assumptions": [
+            {
+              "class": "ScopedAssertion",
+              "id": "PS-reassess-at-crossover",
+              "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "modality": "required",
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "measurement",
+                  "key": "ECOG"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "quantity",
+                  "comparison": "le",
+                  "number": 1,
+                  "unit": "ECOG",
+                  "inclusivity": "inclusive"
+                }
+              },
+              "cohort": {
+                "class": "Scope",
+                "kind": "phase_ref",
+                "ref": "crossover-treatment-start"
+              },
+              "rule": {
+                "class": "Rule",
+                "id": "declared-reading-or-simulated-choice",
+                "version": "1",
+                "warrants": [
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                ]
+              },
+              "status": "proposed",
+              "resolution": "resolved"
+            }
+          ]
+        }
+      ],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "interpretations",
+        "study_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+        "fixed": {
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ],
+          "signals": []
+        },
+        "bindings": [],
+        "interpretations": [
+          {
+            "id": "entry-only",
+            "label": "The PS criterion governs initial enrollment only",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "ECOG",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "le",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 1.0,
+                    "unit": "ECOG",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "phase_ref",
+                  "parts": [],
+                  "ref": "initial-enrollment"
+                },
+                "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                "id": "PS-entry-only",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                    "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [],
+                "status": "proposed"
+              }
+            ],
+            "signals": [],
+            "signal_claims": [],
+            "binding_uses": []
+          },
+          {
+            "id": "reassess-at-crossover",
+            "label": "Hypothetically require the same PS limit again when crossover starts",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "ECOG",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "le",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 1.0,
+                    "unit": "ECOG",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "phase_ref",
+                  "parts": [],
+                  "ref": "crossover-treatment-start"
+                },
+                "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                "id": "PS-reassess-at-crossover",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                    "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [],
+                "status": "proposed"
+              }
+            ],
+            "signals": [],
+            "signal_claims": [],
+            "binding_uses": []
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "measurement",
+                "key": "age"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "quantity",
+                "comparison": "ge",
+                "number": 18,
+                "unit": "Years",
+                "inclusivity": "inclusive"
+              }
+            }
+          },
+          {
+            "id": "ECOG2-at-crossover",
+            "body": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "measurement",
+                "key": "ECOG"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "quantity",
+                "comparison": "eq",
+                "number": 2,
+                "unit": "ECOG",
+                "inclusivity": "inclusive"
+              }
+            }
+          }
+        ],
+        "context": {
+          "phase": "crossover-treatment-start"
+        }
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "interpretations",
+        "result": {
+          "study_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3",
+          "fixed": {
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge",
+                "id": "registry-age-minimumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/minimumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              }
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "queries": [
+              {
+                "id": "adult",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "ENTAILED",
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                }
+              },
+              {
+                "id": "ECOG2-at-crossover",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "ECOG",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "inclusive",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 2.0,
+                    "unit": "ECOG",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              }
+            ],
+            "signals": [],
+            "blockers": []
+          },
+          "bindings": [],
+          "interpretations": [
+            {
+              "id": "entry-only",
+              "label": "The PS criterion governs initial enrollment only",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "ECOG",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "le",
+                        "inclusivity": "inclusive",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 1.0,
+                        "unit": "ECOG",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "phase_ref",
+                      "parts": [],
+                      "ref": "initial-enrollment"
+                    },
+                    "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                    "id": "PS-entry-only",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                        "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "adult",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "PS-entry-only"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "ECOG2-at-crossover",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "ECOG",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "ECOG",
+                      "upper": null
+                    }
+                  },
+                  "result": "OUT_OF_SCOPE",
+                  "decision": {
+                    "result": "OUT_OF_SCOPE",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [
+                      "PS-entry-only"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "PS-entry-only"
+                    ],
+                    "proof": [
+                      "PS-entry-only"
+                    ],
+                    "blockers": []
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "PS-entry-only"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [],
+                "blockers": []
+              }
+            },
+            {
+              "id": "reassess-at-crossover",
+              "label": "Hypothetically require the same PS limit again when crossover starts",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "ECOG",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "le",
+                        "inclusivity": "inclusive",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 1.0,
+                        "unit": "ECOG",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "phase_ref",
+                      "parts": [],
+                      "ref": "crossover-treatment-start"
+                    },
+                    "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                    "id": "PS-reassess-at-crossover",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                        "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "adult",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "PS-reassess-at-crossover"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "ECOG2-at-crossover",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "ECOG",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "inclusive",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "ECOG",
+                      "upper": null
+                    }
+                  },
+                  "result": "REFUTED",
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "PS-reassess-at-crossover"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "PS-reassess-at-crossover"
+                    ],
+                    "proof": [
+                      "PS-reassess-at-crossover"
+                    ],
+                    "blockers": []
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "PS-reassess-at-crossover"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [],
+                "blockers": []
+              }
+            }
+          ],
+          "remaining": [
+            "entry-only",
+            "reassess-at-crossover"
+          ],
+          "refuted": [],
+          "incoherent": [],
+          "unresolved": [],
+          "selection": {
+            "id": null,
+            "state": "none",
+            "origin": null
+          },
+          "consequences": [
+            {
+              "id": "adult",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "ENTAILED",
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"inclusive\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            },
+            {
+              "id": "ECOG2-at-crossover",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "inclusive",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "result": "UNDETERMINED",
+              "contrast": {
+                "code": "interpretation_scope_contrast",
+                "context": {
+                  "cohort": null,
+                  "phase": "crossover-treatment-start",
+                  "arm": null
+                },
+                "answers": [
+                  {
+                    "frame": "entry-only",
+                    "origin": "assistant",
+                    "frame_state": "compatible",
+                    "query": "ECOG2-at-crossover",
+                    "result": "OUT_OF_SCOPE",
+                    "query_path": "/result/interpretations/0/queries/1",
+                    "warrant_path": "/result/interpretations/0/queries/1/warrant",
+                    "standing": "proposed",
+                    "blockers": [],
+                    "deciding_premises": [
+                      {
+                        "id": "PS-entry-only",
+                        "path": "/result/interpretations/0/premises/assumptions/0",
+                        "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                        "cohort": {
+                          "class": "Scope",
+                          "kind": "phase_ref",
+                          "parts": [],
+                          "ref": "initial-enrollment"
+                        },
+                        "branch": {
+                          "class": "Branch",
+                          "node": "unresolved",
+                          "path": []
+                        },
+                        "standing": "proposed"
+                      }
+                    ]
+                  },
+                  {
+                    "frame": "reassess-at-crossover",
+                    "origin": "assistant",
+                    "frame_state": "compatible",
+                    "query": "ECOG2-at-crossover",
+                    "result": "REFUTED",
+                    "query_path": "/result/interpretations/1/queries/1",
+                    "warrant_path": "/result/interpretations/1/queries/1/warrant",
+                    "standing": "proposed",
+                    "blockers": [],
+                    "deciding_premises": [
+                      {
+                        "id": "PS-reassess-at-crossover",
+                        "path": "/result/interpretations/1/premises/assumptions/0",
+                        "criterion_ref": "ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/eligibilityModule/eligibilityCriteria|ctg:NCT03875092:bf24c37fe0abb27d2a307de7ab0ab0b09dc9dc4d15b726aa3265ba1d131554c3#/protocolSection/descriptionModule/briefSummary",
+                        "cohort": {
+                          "class": "Scope",
+                          "kind": "phase_ref",
+                          "parts": [],
+                          "ref": "crossover-treatment-start"
+                        },
+                        "branch": {
+                          "class": "Branch",
+                          "node": "unresolved",
+                          "path": []
+                        },
+                        "standing": "proposed"
+                      }
+                    ]
+                  }
+                ],
+                "path_basis": "relative_to_this_reason_envelope"
+              },
+              "frames": [
+                "entry-only",
+                "reassess-at-crossover"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": [
+                  "interpretation_scope_contrast"
+                ]
+              }
+            }
+          ],
+          "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/1",
+              "kind": "logical",
+              "logical_result": "OUT_OF_SCOPE",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/1",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/1/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/1/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/1",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/1/queries/1/warrant"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            },
+            {
+              "path": "/result/consequences/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "interpretation_scope_contrast",
+                  "kind": "translation"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/1/warrant",
+              "contrast_code": "interpretation_scope_contrast",
+              "contrast_path": "/result/consequences/1/contrast",
+              "answer_paths": [
+                "/result/interpretations/0/queries/1",
+                "/result/interpretations/1/queries/1"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "OUT_OF_SCOPE",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_scope_contrast",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant",
+        "contrast_code": "interpretation_scope_contrast",
+        "contrast_path": "/result/analyses/0/result/consequences/1/contrast",
+        "answer_paths": [
+          "/result/analyses/0/result/interpretations/0/queries/1",
+          "/result/analyses/0/result/interpretations/1/queries/1"
+        ]
+      }
+    ]
+  }
+}

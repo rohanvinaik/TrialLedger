@@ -1,0 +1,17 @@
+{
+  "condition": "Migraine",
+  "phase": [
+    "PHASE2"
+  ],
+  "status": [
+    "COMPLETED"
+  ],
+  "study_type": "INTERVENTIONAL",
+  "params": {
+    "query.term": "AREA[DesignPrimaryPurpose]TREATMENT"
+  },
+  "acquisition": {
+    "max_studies": 1000,
+    "max_registry_requests": 100
+  }
+}

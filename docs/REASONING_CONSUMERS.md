@@ -64,6 +64,54 @@ that context still remain `unclassified`.
 | Setting/class membership | corpus_admission → explicit occupancy projection | Known dimensions retained independently. Pending setting widens to requested settings; pending class remains possible. Empty means no possible member within this supplied set. |
 | Declared expectation observations | corpus_admission → conditional_rarity | Known/resolved rows only; original states and pending rows retained. Denominator/support are explicit; no automatic join with trials. |
 
+## Accepted input, actual effect and competing answers
+
+Coordinate `admission` answers whether an input can enter a standing layer. Its separate `effects` ledger
+answers what consumed it: exact direct-coordinate membership, a relation's positive antecedent, or a negative
+guard. It distinguishes no consumer, inactive rule, redundancy, withheld support, narrowing and active
+guarding. Required antecedents must hold before a veto is described as decisive. A retraction comparison
+shows marginal domain deltas, not a unique proof or clinical causality. Duplicate extensional membership
+can share that domain calculation without merging the original refs, ordering or support.
+
+The finite `setting` input is an explicit restriction, separate from `setting_word` evidence. Neither
+infers progression or supplies an equivalence between previously treated and maintenance. Known domains
+and default-layer domains remain separate; a default conflict does not certify a known-floor contradiction.
+Missing symbolic consumption is a translation/coverage question for the assistant, not a negative medical fact.
+
+Interpretation common consequences retain a named `contrast` with each actual frame/query answer and scope.
+OUT_OF_SCOPE versus REFUTED explains why the common result cannot settle entry eligibility. Selecting the
+out-of-scope frame does not create an entry answer. Distinct hypothetical answers do not make their rivals
+jointly inconsistent. Independent fixed-floor answers keep their original strength. Metadata `contrast_path`
+and `answer_paths` are prefixed through source and session envelopes to the retained results; explanatory
+rows never supply a clinical feasibility premise to the session's decision checker.
+
+Corpus frequency `description` retains the declaring comparison-set scope, stating/trials denominator and
+numerical threshold. Even two of two can meet that descriptive threshold; neither this label nor five-trial/
+three-sponsor association support decides the new trial's restriction. Retracting a statement can reopen
+the silence interval without establishing absence. Python deviation input validation separately refuses
+unknown audit/status or malformed qualifier counts before any verified-deviation label is possible.
+
+## Acquisition, evidence access and local replay
+
+`acquisition` supplies one policy to request/ingest/steps/operate. First-count study and registry-request
+checks protect NIH retrieval; intentional larger scopes can supply explicit positive budgets. Recorded policy
+and actual attempt accounting survive resume. Complete retained legacy reports remain locally verifiable.
+Session copied-source node counts are diagnostics; the old `max_expanded_items` field is nonoperative.
+Aggregate solver reservations, analysis count and complete-output byte limits remain operative. Both old
+and new snapshots replay completely; trimming sources or carrying stale answers cannot substitute for that.
+
+`evidence_access` supplies the same selector to CLI `record` and MCP `record`, using `record_access` for
+bounded navigation/page/text output. Source context is exact literal structure with offsets, not a cohort
+interpretation. Old supported report roots replay their explicit writing projection and name the legacy
+format; unknown roots still refuse. The shared `capabilities` inventory advertises operations/views without
+importing reasoning into reporting. Strict construction helpers expand existing assertion objects; no
+clinical prose or confirmation is supplied by construction.
+
+Every caller-declared reading or choice retains its original provenance and revision. Keep literal accepted
+wording and a real exchange reference in the human brief where available. A supplied origin or “confirmed”
+string authenticates neither consent nor source meaning; simulated choices stay labelled. Copied registry
+facts and unchanged agreements require no repeated confirmation.
+
 ## Stage populations: permission and actual membership travel separately
 
 The `stages` signal reaches the existing population arithmetic and then the ordinary signal/design

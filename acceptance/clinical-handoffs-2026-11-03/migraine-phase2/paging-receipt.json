@@ -1,0 +1,24 @@
+[
+  {
+    "nct": "NCT02266329",
+    "address": "/studies/0/detailed_description",
+    "field": "detailed_description",
+    "chunks": 3,
+    "exact_reconstruction": true,
+    "characters": 2730
+  },
+  {
+    "nct": "NCT02266329",
+    "address": "/studies/0/eligibility/text",
+    "chunks": 5,
+    "exact_reconstruction": true,
+    "characters": 6718
+  },
+  {
+    "nct": "NCT00319137",
+    "address": "/studies/1/eligibility/text",
+    "chunks": 2,
+    "exact_reconstruction": true,
+    "characters": 2332
+  }
+]
