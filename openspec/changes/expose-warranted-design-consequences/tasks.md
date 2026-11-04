@@ -23,8 +23,8 @@
 
 ## 5. Assembled verification
 
-- [ ] 5.1 Refresh actual consumer traces and protected example conservation; verify real obesity regressions, fresh varied clinical structures, isolated installation, CLI/MCP parity and strictly validated specs without claiming automatic protocol writing.
-- [ ] 5.2 Complete scoped explicit Detective two-sign/CrossHair walks with exact source/test hashes and honest limitations; run the stable local gate, inspect staged paths/no AD entries and commit coherent verified changes on main through normal gates.
+- [x] 5.1 Refresh actual consumer traces and protected example conservation; verify real obesity regressions, fresh varied clinical structures, isolated installation, CLI/MCP parity and strictly validated specs without claiming automatic protocol writing.
+- [x] 5.2 Complete scoped explicit Detective two-sign/CrossHair walks with exact source/test hashes and honest limitations; run the stable local gate, inspect staged paths/no AD entries and commit coherent verified changes on main through normal gates.
 
 ## Workflow follow-up
 

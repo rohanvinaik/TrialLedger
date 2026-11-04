@@ -1,0 +1,60 @@
+{
+  "artifact": "8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a",
+  "python": "3.12.12 (main, Jan 27 2026, 23:41:44) [Clang 21.1.4 ]",
+  "scope": "Installed final writer public CLI and subprocess stdio MCP, real retained Phase3migraine packet with explicitly simulated draft choices; no new clinical interpretation.",
+  "file_parity": "Every exported relative file byte-identical, including workbook, readablelist, manifest, canonicalartifact and sourcecopies.",
+  "files": {
+    "design-review.xlsx": "bb46f28e61a24836321e881f35f51e721fc32bb2d0f0246606b183d8a2999967",
+    "decision-list.md": "269f1acc74d1c7b5b5a3abeb969b46a02c51bf11e82696b00e5a89ad08050451",
+    "landscape.xlsx": "efbd2dcaafd89d7c5a2925db583eba23adf9eafa606f7d2c3dd72476d2c36e7e",
+    "landscape.json": "e364785832012a60fe7d8cbc3a0a06a84c5d73de19ace17912c8a23e0e2b9794",
+    "export-manifest.json": "6a5de973f3e275f534ea415baed07f623018899c3e24dc232c23b7444e049694",
+    "artifacts/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a.json": "8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a"
+  },
+  "sheets": {
+    "Read me": {
+      "rows": 12,
+      "columns": 2
+    },
+    "Decision list": {
+      "rows": 3,
+      "columns": 9
+    },
+    "Options": {
+      "rows": 5,
+      "columns": 13
+    },
+    "Requirements": {
+      "rows": 4,
+      "columns": 10
+    },
+    "Decision evidence": {
+      "rows": 59,
+      "columns": 9
+    },
+    "Findings": {
+      "rows": 8,
+      "columns": 13
+    },
+    "Changes": {
+      "rows": 8,
+      "columns": 12
+    },
+    "Sources and origins": {
+      "rows": 7,
+      "columns": 6
+    },
+    "Baseline values": {
+      "rows": 18,
+      "columns": 17
+    },
+    "Baseline tables": {
+      "rows": 58,
+      "columns": 6
+    }
+  },
+  "formula_cells": [],
+  "original_source_and_artifact_unchanged": true,
+  "source_workbook_exact_copy": true,
+  "source_record_exact_copy": true
+}

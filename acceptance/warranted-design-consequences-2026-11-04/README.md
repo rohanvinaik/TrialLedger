@@ -93,3 +93,18 @@ followed dictionary insertion order. Canonical artifact serialization could ther
 change. Coverage now sorts exact addresses, preserving every region and escaped pointer. A direct complete
 source-bridge round-trip test covers the invariant; the final lupus replay keeps both sources unchanged.
 No clinical assertion or eligibility decision changed in that repair.
+
+## Closeout verification
+
+The ordinary local gate passed 6,520 tests with Ruff/format and production Ty clean. Ten live API tests
+passed separately. The final installed Python 3.12 package matches all 100 production modules. The current
+consumer trace covers 90 runs / 45 CLI–MCP pairs and 54 observed modules, with equal request/result digests.
+The writer additionally passed a separate installed CLI/MCP export comparison. See
+[final verification](final-verification.json), [installed identity](installed-source-identity.json),
+[installed export](installed-export.json), [coverage conservation](coverage-conservation.json) and
+[live checks](live-checks.json). Full trace and console captures remain at their hash-bound local locations.
+
+The normal secret scanner identified twelve public registry URIs or local retained-output paths. Complete
+source/receipt units were reviewed and exact path/detector/whole-added-line fingerprints recorded through
+the existing review mechanism. Detectors were not disabled. Normal publication checks run again over the
+final committed tree. Implementation commit: `2331b5e`; the closeout commit records these receipts.

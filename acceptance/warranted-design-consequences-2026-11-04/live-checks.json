@@ -1,0 +1,7 @@
+{
+  "command": ".venv/bin/pytest -m live --disable-warnings",
+  "result": "10 passed, 6519 deselected",
+  "log": "/tmp/trialledger-live-final-20261104.log",
+  "sha256": "90166926429a856ce7928523b5ed2a9ec6f33c02c928cb92ca9620d423c17c6a",
+  "scope": "Live API checks, run separately from ordinary test gate. Test inventory later gains one source-coverage regression."
+}

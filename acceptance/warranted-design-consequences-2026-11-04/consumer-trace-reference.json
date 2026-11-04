@@ -1,0 +1,10 @@
+{
+  "path": "/tmp/trialledger-final-coverage-snapshot-20261104/acceptance/reasoning-consumer-trace.json",
+  "sha256": "e6bc6cb29a206b671600b71c652a8966beb333d5d7156bd46fea080d3032e017",
+  "runs": 90,
+  "paired_cases": 45,
+  "observed_modules": 54,
+  "all_observed_hashes_match_current": true,
+  "all_request_result_pairs_equal": true,
+  "scope": "Executed CLI and MCP dispatcher reachability and parity; no semantic completeness claim."
+}

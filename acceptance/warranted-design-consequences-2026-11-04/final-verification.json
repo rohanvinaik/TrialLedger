@@ -1,0 +1,42 @@
+{
+  "source_change": {
+    "path": "TrialLedger/layer2/source_assertions.py",
+    "sha256": "7830b3c4561cfdb742b9eae4b43bce80ef363e1ad9c255237e2698eb424cbc6b",
+    "scope": "_uncompiled_roots terminal address enumeration sorted; no clinical rules or warrants changed."
+  },
+  "saved_examples": {
+    "changed": 3,
+    "conservation": "/tmp/trialledger-source-coverage-final-20261104/conservation-receipt.json",
+    "sha256": "0a5e1d1af623563805b7827853294e55120e406a842712c11f96a0ef9feec5fb",
+    "coverage_rows": "Same complete multiset; non-target rows keep order; uncompiled region addresses sorted.",
+    "all_other_clinical_payloads_and_request_bytes_preserved": true
+  },
+  "public_source_tests": {
+    "passed": 134,
+    "log": "/tmp/trialledger-source-coverage-final-20261104/public-replay.log",
+    "sha256": "867ec950e9dec3a4ad484069da9ff6bb2cc05a5e6b73317775eb86758fb9b1b9"
+  },
+  "installed_current": {
+    "path": "/tmp/trialledger-source-coverage-final-20261104/installed-current100-receipt.json",
+    "sha256": "5630af9b3988bb513eb96b0bb91372c7be577a3a8f3edda1dea72035bed5d9b1",
+    "module_count": 100,
+    "python": "3.12.12",
+    "scoped_checks": "All3sourceexamples original/canonical-key CLI/MCP/saved complete outputs exactlyequal.",
+    "final_after_trace_all100_hash_recheck": true
+  },
+  "trace": {
+    "path": "/tmp/trialledger-final-coverage-snapshot-20261104/acceptance/reasoning-consumer-trace.json",
+    "sha256": "e6bc6cb29a206b671600b71c652a8966beb333d5d7156bd46fea080d3032e017",
+    "log": "/tmp/trialledger-source-coverage-final-20261104/consumer-trace.log",
+    "runs": 90,
+    "paired_cases": 45,
+    "observed_modules": 54,
+    "all_observed_hashes_match_current": true,
+    "all_cli_mcp_request_result_digests_equal": true
+  },
+  "prior_export_receipt": {
+    "path": "/tmp/trialledger-installed-final-writer-20261104/export-smoke-receipt.json",
+    "qualification": "Preserved latestwriter smoke against unchanged59a25f5f785edbd326ae20effd7ecfd25e86b5c170253b31889afe104fef4c84 exporter; not rerun for this source-only fix."
+  },
+  "scope": "No source/tests/certificates/acceptance changes or commit by verificationlane. Three savedsourcebridge RESULTS only refreshed."
+}

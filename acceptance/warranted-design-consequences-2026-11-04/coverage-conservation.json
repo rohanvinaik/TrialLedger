@@ -1,0 +1,93 @@
+{
+  "rows": [
+    {
+      "file": "examples/source-bridge/ipass-baseline-overlap-result.json",
+      "request_sha256": "48c25f5d370efe555561eb10c94d0c07a12f9e67cb27af5afa530f98c83d2294",
+      "before_sha256": "16781ece2c518f89b377461f01325f2873830910c1c42845f1f11ba4ef1cede3",
+      "after_sha256": "067fd8945d7dc03bf1bef05020ec2b3785fef820898c6123d91be350da96eb13",
+      "changed": true,
+      "coverage_row_multiset_equal": true,
+      "non_target_coverage_order_equal": true,
+      "uncompiled_addresses_sorted": true,
+      "uncompiled_addresses": [
+        "/derivedSection",
+        "/hasResults",
+        "/protocolSection/armsInterventionsModule",
+        "/protocolSection/conditionsModule",
+        "/protocolSection/contactsLocationsModule",
+        "/protocolSection/descriptionModule",
+        "/protocolSection/designModule",
+        "/protocolSection/identificationModule",
+        "/protocolSection/outcomesModule",
+        "/protocolSection/referencesModule",
+        "/protocolSection/sponsorCollaboratorsModule",
+        "/protocolSection/statusModule",
+        "/resultsSection"
+      ],
+      "protected_canonical_sha256": "ee86bb356a916dd215533b2ee17e60da4ee06edfa84901d61400491949dc61fd",
+      "all_other_canonical_clinical_fields_equal": true,
+      "coverage_normalization_scope": "Only result.coverage of actual complete source_assertions envelopes; no other coverage list normalized.",
+      "narrow_protected_sha256": "b98f6c759e208e238cde2f77b50b3c0ca1e23710e90628b3b4957368f5af23be"
+    },
+    {
+      "file": "examples/source-bridge/ipass-registered-age-result.json",
+      "request_sha256": "013889874faed788fd8818f7ddc53cf16356f8109d485887029a230dddb9ba16",
+      "before_sha256": "cfc3316c8163244c0b857120cbff5d485f296f979c68411856426abb46cc1ddf",
+      "after_sha256": "d58e7f7b5b85e0f7fc113f925232e42e2084e1128ea7d1bb8f04365cbbccdc23",
+      "changed": true,
+      "coverage_row_multiset_equal": true,
+      "non_target_coverage_order_equal": true,
+      "uncompiled_addresses_sorted": true,
+      "uncompiled_addresses": [
+        "/derivedSection",
+        "/hasResults",
+        "/protocolSection/armsInterventionsModule",
+        "/protocolSection/conditionsModule",
+        "/protocolSection/contactsLocationsModule",
+        "/protocolSection/descriptionModule",
+        "/protocolSection/designModule",
+        "/protocolSection/identificationModule",
+        "/protocolSection/outcomesModule",
+        "/protocolSection/referencesModule",
+        "/protocolSection/sponsorCollaboratorsModule",
+        "/protocolSection/statusModule",
+        "/resultsSection"
+      ],
+      "protected_canonical_sha256": "d29bec30df28333b5a67d6d3e5bf84474c7da823a793749c704a6b119eae7e9d",
+      "all_other_canonical_clinical_fields_equal": true,
+      "coverage_normalization_scope": "Only result.coverage of actual complete source_assertions envelopes; no other coverage list normalized.",
+      "narrow_protected_sha256": "12f7aca7dd2c3c8c5fe3fae49cf1c00a97800cabada5546a68852f87355da186"
+    },
+    {
+      "file": "examples/source-bridge/ipass-schedule-readings-result.json",
+      "request_sha256": "56659a6ec0452fabd12e498480b2ab80d39684e7c004928f9be427415e65cd5f",
+      "before_sha256": "f731a02bbf55d9f7eada5fb6d35d13713a02ca93a57cc3dffedd5f7793281dc8",
+      "after_sha256": "e368d14a7c5a111c8526887fec84a1d5ba6cd586a1085f52edfce744749bc721",
+      "changed": true,
+      "coverage_row_multiset_equal": true,
+      "non_target_coverage_order_equal": true,
+      "uncompiled_addresses_sorted": true,
+      "uncompiled_addresses": [
+        "/derivedSection",
+        "/hasResults",
+        "/protocolSection/armsInterventionsModule",
+        "/protocolSection/conditionsModule",
+        "/protocolSection/contactsLocationsModule",
+        "/protocolSection/descriptionModule",
+        "/protocolSection/designModule",
+        "/protocolSection/identificationModule",
+        "/protocolSection/outcomesModule",
+        "/protocolSection/referencesModule",
+        "/protocolSection/sponsorCollaboratorsModule",
+        "/protocolSection/statusModule",
+        "/resultsSection"
+      ],
+      "protected_canonical_sha256": "1eae16a87e5a42501e27c3babf16a487297a808c913186ce2238ec72001c9c96",
+      "all_other_canonical_clinical_fields_equal": true,
+      "coverage_normalization_scope": "Only result.coverage of actual complete source_assertions envelopes; no other coverage list normalized.",
+      "narrow_protected_sha256": "489c6b68e6c176c4611ebc615512ac0b18bd38dbf06b937587c05574cfde70bf"
+    }
+  ],
+  "changed_files": 3,
+  "qualification": "Only coverage order and derived response fingerprints/presentation may differ; all clinical source/premise/query/warrant/standing/decision/explanation data preserved."
+}
