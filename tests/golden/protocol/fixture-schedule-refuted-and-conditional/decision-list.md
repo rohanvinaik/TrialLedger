@@ -93,8 +93,8 @@ No plan comparison declared.
 ### Open items
 
 1. The nominal target is outside the permitted window. (/protocol/checks/0/children/0/result)
-2. Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
-3. Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
+2. Check week12-schedule, claim visit: Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
+3. Check week12-schedule, claim window: Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
 4. Section assessments is open. (/protocol/sections/assessments)
 5. Section safety is open. (/protocol/sections/safety)
 

@@ -243,9 +243,10 @@ class _Build:
         return out
 
     def receipt(self, name: str, version: str, request: dict, support: list[dict]) -> dict:
+        closure = self.gating(self.objects)
         stale = {
             stale_adoption_id(identity, premise): premise
-            for identity in self.objects
+            for identity in closure
             for premise in self.index.get("stale_adoptions", {}).get(identity, [])
         }
         # Provenance keeps the original premise id for both current and stale applications.
@@ -262,7 +263,7 @@ class _Build:
             "check": self.check["id"],
             "objects": list(self.objects),
             # Every object whose standing, adoption and conditions gate this check.
-            "closure": self.gating(self.objects),
+            "closure": closure,
             "premises": premises,
             "target": copy.deepcopy(self.check["scope"]["target"]),
             "scope": copy.deepcopy(self.check["scope"]),

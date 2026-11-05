@@ -1,0 +1,17 @@
+  … cumulative_request_count: static · no static smell · proves nothing (advisory)
+  … cumulative_request_count: tracing 4 function-routed tests
+  … cumulative_request_count: baseline traced · 4 tests · 0.0s
+  … cumulative_request_count: 1/16 mutants · 1.6/s · ETA estimating… (heartbeat)
+  … cumulative_request_count: 16/16 mutants · 10.0/s · done in 1.6s
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/coverage.py::cumulative_request_count — audit · 4 test(s) · 12/16 value-pinned · 100.0% killed (value+crash) · complete, modulo 4 crash-only value gaps
+
+  · fan-in             4 reach this function · 2 in the basis-relative minimal cover (2:1)
+  · origin (ℋ⊎𝒢)       2 intent-grounded · 2 characterized
+  · crash-only-equiv   4 — detected by crash; no value pins them
+  · redundant          2 test(s) pointless for kills AND lines
+                       tests/test_coverage_request_checkpoint.py::test_cumulative_request_count_adds_new_responses_beside_recorded_failures, tests/test_coverage_request_checkpoint.py::test_cumulative_request_count_never_recharges_retained_or_deleted_responses
+
+DO THIS:  detective converge 'TrialLedger/coverage.py::cumulative_request_count' --two-sign
+
+  · Why                the setup is clean: the suite loads and no intent test fails; converge writes and pins this function's suite

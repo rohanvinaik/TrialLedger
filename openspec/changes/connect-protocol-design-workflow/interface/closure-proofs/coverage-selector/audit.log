@@ -1,0 +1,17 @@
+  … coverage_selector_code: static · no static smell · proves nothing (advisory)
+  … coverage_selector_code: tracing 30 function-routed tests
+  … coverage_selector_code: baseline traced · 30 tests · 2.7s
+  … coverage_selector_code: 1/19 mutants · 8.2s/mutant · ETA estimating… (heartbeat)
+  … coverage_selector_code: 19/19 mutants · 1.4/s · done in 13.5s
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/coverage_access.py::coverage_selector_code — audit · 27 test(s) · 16/19 value-pinned · 100.0% killed (value+crash) · complete, modulo 3 crash-only value gaps
+
+  · fan-in             27 reach this function · 3 in the basis-relative minimal cover (9:1) — high fan-in, thin contract: converge here
+  · origin (ℋ⊎𝒢)       25 intent-grounded · 2 characterized
+  · crash-only-equiv   3 — detected by crash; no value pins them
+  · redundant          24 test(s) pointless for kills AND lines
+                       tests/detective/test_TrialLedger_coverage_access_coverage_selector_code_c4dea11865_synth.py::test_coverage_selector_code_golden[args1-invalid_coverage_file], tests/test_coverage_access.py::test_a_leftover_union_file_never_becomes_a_current_offer[complete-False], tests/test_coverage_access.py::test_a_leftover_union_file_never_becomes_a_current_offer[failed-True], tests/test_coverage_access.py::test_a_sidecar_symlink_cannot_escape_the_authorized_run[coverage.json] … (+20 more)
+
+DO THIS:  detective converge 'TrialLedger/coverage_access.py::coverage_selector_code' --two-sign
+
+  · Why                the setup is clean: the suite loads and no intent test fails; converge writes and pins this function's suite

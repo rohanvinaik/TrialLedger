@@ -1,0 +1,86 @@
+{
+  "prepare": "dacd2c3b38ee4fe5509dbf60f51b11e7241b98963c661e50f38ec5a202d4e9e2",
+  "initial": "66a16494f13de9501d154c235fa9a30414a6da5d3efae8de7d05701d9390022f",
+  "revised": "785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f",
+  "parity": {
+    "preparation": true,
+    "initial_result": true,
+    "revision_result": true
+  },
+  "mcp_export": {
+    "tool": "reason_export",
+    "code": "complete",
+    "artifact": "785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f",
+    "folder": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/reasoning-exports/785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f/review",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/reasoning-exports/785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/reasoning-exports/785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f/review/decision-list.md",
+    "manifest": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/reasoning-exports/785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f/review/export-manifest.json",
+    "files": {
+      "artifacts/785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f.json": {
+        "sha256": "785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f",
+        "bytes": 834811
+      },
+      "decision-list.md": {
+        "sha256": "9741a8612e30080b26ad8078934267856994a9824da1698d37740b9f9fe02efb",
+        "bytes": 14248
+      },
+      "design-review.xlsx": {
+        "sha256": "8a9a3f3b4c308679f073ce02a28cf3a0b0ace4d69a6fb4637b3c907c7f285f2c",
+        "bytes": 133549
+      },
+      "landscape.json": {
+        "sha256": "b7eff1f0b23f4a5643b59bc74085c30a8e62f274223f0e5d9febaf47d362ef69",
+        "bytes": 5862224
+      },
+      "landscape.xlsx": {
+        "sha256": "2fbaf596906a42d267bd586476e8869b91da7ac25c74819f6be6fb3b3963940b",
+        "bytes": 950951
+      }
+    },
+    "problems": []
+  },
+  "cli_export": {
+    "code": "complete",
+    "artifact": "785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f",
+    "folder": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/scoped-cli-export/review",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/scoped-cli-export/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/scoped-cli-export/review/decision-list.md",
+    "manifest": "/Users/rohanvinaik/trialledger-runs/closure-ophthalmology-20261105/scoped-cli-export/review/export-manifest.json",
+    "files": {
+      "artifacts/785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f.json": {
+        "sha256": "785857348814e0c1ba5afc894f88db71fdcd1b35d7d9b0a09dc4adc90c39e25f",
+        "bytes": 834811
+      },
+      "decision-list.md": {
+        "sha256": "9741a8612e30080b26ad8078934267856994a9824da1698d37740b9f9fe02efb",
+        "bytes": 14248
+      },
+      "design-review.xlsx": {
+        "sha256": "8a9a3f3b4c308679f073ce02a28cf3a0b0ace4d69a6fb4637b3c907c7f285f2c",
+        "bytes": 133549
+      },
+      "landscape.json": {
+        "sha256": "b7eff1f0b23f4a5643b59bc74085c30a8e62f274223f0e5d9febaf47d362ef69",
+        "bytes": 5862224
+      },
+      "landscape.xlsx": {
+        "sha256": "2fbaf596906a42d267bd586476e8869b91da7ac25c74819f6be6fb3b3963940b",
+        "bytes": 950951
+      }
+    },
+    "problems": []
+  },
+  "scope": {
+    "entry_loading": {
+      "cohort": "initial-randomized",
+      "phase": "loading",
+      "arm": "all"
+    },
+    "maintenance": {
+      "cohort": "responders-rerandomized",
+      "phase": "maintenance",
+      "arm": "all"
+    }
+  },
+  "no_clinical_confirmation": true
+}

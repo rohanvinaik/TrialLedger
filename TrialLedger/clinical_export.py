@@ -1359,9 +1359,9 @@ def _synopsis_part(book: Workbook, view: dict, identity: str) -> list[str]:
     return lines + ["", COVERAGE_LEGEND, ""]
 
 
-def _finding_cells(entry: dict, reference: str) -> list:
+def _finding_cells(entry: dict, reference: str, with_readings: bool = False) -> list:
     check = entry["check"]
-    return [
+    cells = [
         protocol_view.KIND_WORDS.get(entry["kind"], entry["kind"]),
         check["id"],
         check["kind"],
@@ -1379,6 +1379,11 @@ def _finding_cells(entry: dict, reference: str) -> list:
         reference,
         entry.get("witness") or "n/a",
     ]
+    if with_readings:
+        cells.append(
+            protocol_view.source_reading_words(check.get("source_readings") or []) or "none declared"
+        )
+    return cells
 
 
 def _count_line(entries: list[dict], relations: list[dict]) -> str:
@@ -1397,6 +1402,8 @@ def _count_line(entries: list[dict], relations: list[dict]) -> str:
 
 
 def _check_bullet_lines(view: dict, entries: list[dict], identity: str) -> list[str]:
+    from TrialLedger.clinical_delivery import protocol_condition_words
+
     lines: list[str] = []
     ordered = sorted(
         view["checks"],
@@ -1409,6 +1416,18 @@ def _check_bullet_lines(view: dict, entries: list[dict], identity: str) -> list[
             f"Check {check['id']} ({check['kind']}, {'required' if check['required'] else 'optional'})"
             + (f" — rests on standing {protocol_view.standing_text(check)}" if check.get("standing") else "")
         )
+        if check.get("source_readings"):
+            lines.append(
+                "Source readings among this check's inputs (caller-attributed): "
+                + protocol_view.source_reading_words(check["source_readings"])
+            )
+        if check.get("conditions"):
+            condition_ref = _ref(identity, f"/response/result/protocol/checks/{view['checks'].index(check)}")
+            lines.append(
+                "Declared conditions (caller-declared): "
+                + protocol_condition_words(check["conditions"])
+                + f" (exact conditions: {condition_ref})"
+            )
         for entry in entries:
             if entry["check"] is check:
                 kind_word = protocol_view.KIND_WORDS.get(entry["kind"], entry["kind"])
@@ -1422,13 +1441,17 @@ def _check_bullet_lines(view: dict, entries: list[dict], identity: str) -> list[
 def _findings_part(book: Workbook, view: dict, relations: list[dict], identity: str) -> list[str]:
     """The Findings heading, Protocol findings sheet, counts and per-check bullets."""
     lines = ["### Findings", ""]
-    findings = _sheet(book, "Protocol findings", FINDINGS_HEADERS)
+    with_readings = any(check.get("source_readings") for check in view["checks"])
+    headers = FINDINGS_HEADERS + (
+        ["Source readings among check inputs (caller-attributed)"] if with_readings else []
+    )
+    findings = _sheet(book, "Protocol findings", headers)
     entries = _claim_entries(view, identity)
     lines.append(_count_line(entries, relations))
     lines.append("")
     for entry in entries:
         reference = _ref(identity, entry["pointer"])
-        _write(findings, _finding_cells(entry, reference), reference)
+        _write(findings, _finding_cells(entry, reference, with_readings), reference)
     return lines + _check_bullet_lines(view, entries, identity)
 
 
@@ -1481,6 +1504,8 @@ def _schedule_table_line(row: dict, shown: dict) -> str:
 
 
 def _schedule_part(book: Workbook, view: dict, identity: str) -> list[str]:
+    from TrialLedger.clinical_delivery import protocol_condition_words
+
     lines = [
         "### Schedule of assessments",
         "",
@@ -1489,7 +1514,14 @@ def _schedule_part(book: Workbook, view: dict, identity: str) -> list[str]:
         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     schedule = _sheet(book, "Schedule of assessments", SCHEDULE_HEADERS)
+    checks = {check["id"]: check for check in view["checks"]}
     for row in view["schedule"]:
+        conditions = checks[row["check"]].get("conditions") or []
+        if conditions:
+            row = {
+                **row,
+                "conditionality": row["conditionality"] + " — " + protocol_condition_words(conditions),
+            }
         refs = row.get("refs") or []
         ref = refs[0]["result"] if refs and isinstance(refs[0], dict) else ""
         reference = _ref(identity, ref) if ref else ""
@@ -1520,9 +1552,14 @@ def _windows_sentence(permitted: str, availability: str, feasible: str, gap: str
 
 
 def _comparison_cells(
-    decision: dict, alternative: dict, words: dict, windows: tuple, selection: tuple
+    decision: dict,
+    alternative: dict,
+    words: dict,
+    windows: tuple,
+    selection: tuple,
+    with_readings: bool = False,
 ) -> list:
-    return [
+    cells = [
         decision["id"],
         decision["question"],
         decision["disposition"],
@@ -1542,6 +1579,11 @@ def _comparison_cells(
         _deciding_text(alternative),
         _statistics_cell(alternative),
     ]
+    if with_readings:
+        cells.append(
+            protocol_view.source_reading_words(alternative.get("source_readings") or []) or "none declared"
+        )
+    return cells
 
 
 def _alternative_bullet(alternative: dict, application: str, selection: tuple, windows: tuple) -> str:
@@ -1556,6 +1598,12 @@ def _alternative_bullet(alternative: dict, application: str, selection: tuple, w
             if alternative.get("statistics")
             else ""
         )
+        + (
+            " Source readings among this alternative's inputs (caller-attributed): "
+            + protocol_view.source_reading_words(alternative["source_readings"])
+            if alternative.get("source_readings")
+            else ""
+        )
     )
 
 
@@ -1568,7 +1616,9 @@ def _alternative_table_line(alternative: dict, compat_words: str) -> str:
     )
 
 
-def _decision_lines(comparisons, decision: dict, index: int, identity: str) -> list[str]:
+def _decision_lines(
+    comparisons, decision: dict, index: int, identity: str, with_readings: bool = False
+) -> list[str]:
     disposition_words = protocol_view.DISPOSITION_WORDS.get(decision["disposition"], decision["disposition"])
     lines = [
         f"{decision['question']} (caller wording)",
@@ -1594,7 +1644,7 @@ def _decision_lines(comparisons, decision: dict, index: int, identity: str) -> l
         words = {"disposition": disposition_words, "compatibility": compat_words, "application": application}
         _write(
             comparisons,
-            _comparison_cells(decision, alternative, words, windows, selection),
+            _comparison_cells(decision, alternative, words, windows, selection, with_readings),
             _reference(identity, f"/response/protocol_view/decisions/{index}"),
         )
         lines.append(_alternative_table_line(alternative, compat_words))
@@ -1603,13 +1653,17 @@ def _decision_lines(comparisons, decision: dict, index: int, identity: str) -> l
 
 
 def _comparisons_part(book: Workbook, view: dict, identity: str) -> list[str]:
-    comparisons = _sheet(book, "Plan comparisons", COMPARISON_HEADERS)
+    with_readings = any(a.get("source_readings") for d in view["decisions"] for a in d["alternatives"])
+    headers = COMPARISON_HEADERS + (
+        ["Source readings among alternative inputs (caller-attributed)"] if with_readings else []
+    )
+    comparisons = _sheet(book, "Plan comparisons", headers)
     lines = ["", "### Plan comparisons", ""]
     if not view["decisions"]:
         _write(comparisons, ["No plan comparison declared"], "")
         lines += ["No plan comparison declared.", ""]
     for index, decision in enumerate(view["decisions"]):
-        lines += _decision_lines(comparisons, decision, index, identity)
+        lines += _decision_lines(comparisons, decision, index, identity, with_readings)
     return lines
 
 
@@ -1673,8 +1727,16 @@ def _adoption_part(book: Workbook, view: dict, result: dict, identity: str) -> l
 
 
 def _open_items_part(view: dict, relations: list[dict]) -> list[str]:
+    from collections import Counter
+
     lines = ["", "### Open items", ""]
-    lines += [f"{n}. {item['text']} ({item['ref']})" for n, item in enumerate(view["delivery_findings"], 1)]
+    items = view["delivery_findings"]
+    text_counts = Counter(item["text"] for item in items)
+    for n, item in enumerate(items, 1):
+        # Equal wording can describe different claim obligations; name them rather than imply duplication.
+        repeated = text_counts[item["text"]] > 1
+        label = f"Check {item['check']}, claim {item['claim']}: " if repeated and item.get("claim") else ""
+        lines.append(f"{n}. {label}{item['text']} ({item['ref']})")
     count = len(view["delivery_findings"])
     for row in (r for r in relations if r["code"] != "consistent"):
         count += 1

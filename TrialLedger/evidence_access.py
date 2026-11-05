@@ -21,7 +21,7 @@ from TrialLedger.record_access import (
     response_bytes,
 )
 
-RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "address", "source")
+RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "address", "source", "coverage")
 
 RECORD_PAGE_LIMIT = 50
 
@@ -210,6 +210,15 @@ def read_record(folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any]
     Folder authorization belongs to the transport: an explicit CLI folder or MCP's
     existing root/run isolation check. This owner never fetches, repairs or rewrites.
     """
+    if "coverage_file" in arguments and arguments.get("part") != "coverage":
+        return {
+            "error": "coverage_file_requires_coverage_part",
+            "why": "coverage_file selects only a coverage document; use part coverage.",
+        }, True
+    if arguments.get("part") == "coverage":
+        from TrialLedger.coverage_access import read_coverage
+
+        return read_coverage(folder, arguments)
     if arguments.get("part") == "source":
         from TrialLedger.retained_sources import read_source
 

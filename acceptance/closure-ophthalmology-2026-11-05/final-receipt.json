@@ -1,0 +1,80 @@
+{
+  "basis": "working tree after db762ba; exact source hashes below",
+  "final_artifact": "536554bd7b0743ad311d22699199599cb063cbe0ad7acc2f5056cdbc52f9294d",
+  "result_digest": "1dfb4fef05e8b57a6b092ad33547a1bc3aeb32282819ac321f6dbd40a1951a8a",
+  "final_export": "/Users/rohanvinaik/trialledger-runs/closure-audit-20261105/final-clinical-export/review",
+  "code_sha256": {
+    "TrialLedger/cli.py": "cdc0ca958d3e55d185f87d7ab3da8f24049cb9d3cfdaa1933179849b02f9748b",
+    "TrialLedger/clinical_delivery.py": "0300b669a8bb9696148e86e832ec3acd3adaa4e30fb06d7f63cfe5b209a67622",
+    "TrialLedger/clinical_export.py": "2735f92fc6a1e3d8fe7cdbea804281a21f87a80980eaf2b1db4ec145696b5b5d",
+    "TrialLedger/coverage.py": "ce0e8cb611a175df30b006bc69780c86040e35bcf4b93989f44d3125f81b7039",
+    "TrialLedger/coverage_run.py": "f0eacdeda4d0d3a7e45e5f41143138ca83173d6c4b16f4c1d95edcce7bf3526e",
+    "TrialLedger/coverage_access.py": "024b8ffcf37dfdbd3c3e4844b821a104626e5c54f1bd9b9880306e40a40e46b4",
+    "TrialLedger/evidence_access.py": "b3cd6e01dddc8cf6e541dfd8df6084ebafac5f0fe1a9bc3ac4e7c5fb24828ba1",
+    "TrialLedger/layer2/design_session.py": "272d8429ccaf4e13a9de497d64fad1136ba43ddbabed09c1c368a3684bfb69b3",
+    "TrialLedger/layer2/protocol_projections.py": "ea2892c124a2712b50945d558b219f07d730250d6edeb933efa63f1b62bd46a8",
+    "TrialLedger/layer2/protocol_view.py": "7a931bc0edd2539f219180b9dee6e72dc323a228a8b36af57df3a85e91d001d9",
+    "TrialLedger/layer2/protocol_origins.py": "7c00424747f2127b9eacf5203c666f099aa69ab548c8e6b36056436a46671af4",
+    "TrialLedger/mcp_server.py": "87f05f0f934f6b1af06a467a3ac3ffb1ad00cac7f84a02c0f6c229fa624ff779"
+  },
+  "retained_files": {
+    "decision-list.md": {
+      "bytes": 14660,
+      "sha256": "7edbe3a4cbb56746213b83c0b09bb150dc00af726fad4b76e7907d76ae829701"
+    },
+    "scoped-verification.json": {
+      "bytes": 3990,
+      "sha256": "e4f3c748c519ba7f9ffea82b4da50a799ddbab1876d68aab3a551bd408ffcd86"
+    },
+    "README.md": {
+      "bytes": 5716,
+      "sha256": "0b6e263a525efe27fa22edf641f146dcc53cceb59148185fede5a33d072863f6"
+    },
+    "sampling.json": {
+      "bytes": 1040,
+      "sha256": "95a6d4a3dc4019ca087981d25c3cfe518eb54ce1ef80bbe0ee42a15844254d6d"
+    },
+    "scoped-receipt.json": {
+      "bytes": 3862,
+      "sha256": "3b6264cc5c5b2c2bec7b31c92bd346b268a9bb8d5c4cf53f1958f1ba9dc21445"
+    },
+    "artifact.json": {
+      "bytes": 834917,
+      "sha256": "536554bd7b0743ad311d22699199599cb063cbe0ad7acc2f5056cdbc52f9294d"
+    }
+  },
+  "final_export_files": {
+    "design-review.xlsx": {
+      "bytes": 133550,
+      "sha256": "fa54d5e2a71f555e9446a5f149b0deb5c38be79d8ffe5da7c5d2f2ba33cc978d"
+    },
+    "decision-list.md": {
+      "bytes": 14660,
+      "sha256": "7edbe3a4cbb56746213b83c0b09bb150dc00af726fad4b76e7907d76ae829701"
+    },
+    "landscape.xlsx": {
+      "bytes": 950951,
+      "sha256": "2fbaf596906a42d267bd586476e8869b91da7ac25c74819f6be6fb3b3963940b"
+    },
+    "landscape.json": {
+      "bytes": 5862224,
+      "sha256": "b7eff1f0b23f4a5643b59bc74085c30a8e62f274223f0e5d9febaf47d362ef69"
+    },
+    "export-manifest.json": {
+      "bytes": 897,
+      "sha256": "a31e00892cd29f4438d8ab3fd2d510db68f97381c18042d6830a34d54b4c3735"
+    }
+  },
+  "observations": {
+    "canonical_open_rows": 10,
+    "delivered_open_rows": 5,
+    "proposed_source_plan_still_proposed": true,
+    "actual_conditions_in_compact_and_export": true,
+    "independent_entry_and_loading_unchanged": true
+  },
+  "limits": [
+    "Simulated clinical choices, not authenticated confirmation",
+    "Native workbook visual rendering not exercised",
+    "Earlier source workbook last verify refused wrong_code; source packet remains retained"
+  ]
+}

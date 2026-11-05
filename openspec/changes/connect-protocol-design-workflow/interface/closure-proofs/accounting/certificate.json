@@ -1,0 +1,8 @@
+{
+  "TrialLedger/coverage.py::cumulative_request_count": {
+    "cut_reasons": [],
+    "function_digest": "ff02fccc5153d5d9",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

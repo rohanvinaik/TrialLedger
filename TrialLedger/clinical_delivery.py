@@ -85,6 +85,59 @@ def finding_priority_kind(kind: str, outcome: str | None) -> str:
     return kind
 
 
+def protocol_condition_words(conditions: list[dict]) -> str:
+    """Display the actual conjoined assessment conditions; no name-based interpretation or admission."""
+    from TrialLedger.clinical_display import proposition
+
+    rendered = []
+    for entry in conditions:
+        text = proposition(entry["condition"])["text"]
+        wording = f"{entry['object']}: {text}"
+        if wording not in rendered:
+            rendered.append(wording)
+    return "; AND ".join(rendered)
+
+
+def _protocol_delivery_items(items: list[dict], checks: list[dict]) -> list[dict]:
+    """Consolidate repeated remedies without discarding their original canonical rows or references."""
+    by_id = {check["id"]: check for check in checks}
+    claims = {(check["id"], c["id"]): c for check in checks for c in check["claims"]}
+    out: list[dict] = []
+    exact: dict[tuple, dict] = {}
+    conditional: dict[tuple, dict] = {}
+    for item in items:
+        key = tuple(item.get(k) for k in ("check", "claim", "text", "ref"))
+        if key in exact:
+            held = exact[key]
+            held.setdefault("members", [deepcopy(held)]).append(deepcopy(item))
+            continue
+        claim = claims.get((item["check"], item["claim"])) or {}
+        if item["kind"] == "claim_conditional" and claim.get("effective_outcome") == "satisfied":
+            group = (item["check"], item["ref"])
+            if group in conditional:
+                held = conditional[group]
+                held["members"].append(deepcopy(item))
+                held["claims"].append(item["claim"])
+                exact[key] = held
+                continue
+            words = protocol_condition_words(by_id[item["check"]]["conditions"])
+            held = {
+                **item,
+                "claim": None,
+                "claims": [item["claim"]],
+                "members": [deepcopy(item)],
+                "text": f"Check {item['check']}: satisfied claims remain conditional on "
+                + (words or "the declared assessment condition")
+                + ". Applicability is not established by these calculations.",
+            }
+            conditional[group] = held
+        else:
+            held = deepcopy(item)
+        out.append(held)
+        exact[key] = held
+    return out
+
+
 def protocol_delivery_view(result: dict) -> dict:
     """The one clinical protocol view plus its delivery ordering and decision summaries; no recomputation."""
     from TrialLedger.layer2 import protocol_view
@@ -108,7 +161,9 @@ def protocol_delivery_view(result: dict) -> dict:
                 witness if len(witness) <= WITNESS_CHARACTERS else witness[:WITNESS_CHARACTERS] + "…"
             )
             row["witness_truncated"] = len(witness) > WITNESS_CHARACTERS
-    view["delivery_findings"] = [row for _, _, row in sorted(ordered, key=lambda r: (r[0], r[1]))]
+    view["delivery_findings"] = _protocol_delivery_items(
+        [row for _, _, row in sorted(ordered, key=lambda r: (r[0], r[1]))], view["checks"]
+    )
     view["check_summaries"] = [
         {
             "id": check["id"],
@@ -134,8 +189,21 @@ def protocol_delivery_view(result: dict) -> dict:
             "standing": check["standing"],
             "resolution": check["resolution"],
             "resolution_causes": list(check["resolution_causes"]),
+            **(
+                {
+                    "condition_wording": protocol_condition_words(check["conditions"]),
+                    "condition_ref": f"/response/result/protocol/checks/{index}",
+                }
+                if check.get("conditions")
+                else {}
+            ),
+            **(
+                {"source_readings": deepcopy(check["source_readings"])}
+                if check.get("source_readings")
+                else {}
+            ),
         }
-        for check in view["checks"]
+        for index, check in enumerate(view["checks"])
     ]
     schedule = {row["check"]: row for row in view["schedule"]}
     checks = {row["id"]: row for row in view["checks"]}
@@ -246,6 +314,11 @@ def _alternative_row(alternative: dict, schedule: dict, checks: dict | None = No
         "claim_outcomes": claims,
         "deciding_checks": deciding,
         "statistics": statistics,
+        **(
+            {"source_readings": deepcopy(alternative["source_readings"])}
+            if alternative.get("source_readings")
+            else {}
+        ),
     }
 
 

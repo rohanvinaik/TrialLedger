@@ -71,7 +71,6 @@ UNDECIDED = {
     "qualifiers": {"class": "Always"},
     "evidence": [],
 }
-SOURCE_Q = "contract question: which delivery surfaces must show a source_interpretation origin (Q4)?"
 
 
 # --- builders ----
@@ -153,12 +152,6 @@ def gates(check: str, identity: str) -> bool | None:
     return identity in CLOSURE[check]
 
 
-def question(check: str, identity: str, attr: str, stage: str) -> str | None:
-    if attr == "origin_src" and stage in ("S4", "S6", "S7"):
-        return SOURCE_Q
-    return None
-
-
 def cells(stage: str, attrs=ATTRS):
     out = []
     for check in CHECKS:
@@ -166,11 +159,7 @@ def cells(stage: str, attrs=ATTRS):
             for attr in attrs:
                 if attr == "condition" and identity != "week12":
                     continue
-                marks = []
-                text = question(check, identity, attr, stage)
-                if text:
-                    marks.append(pytest.mark.skip(reason=text))
-                out.append(pytest.param(check, identity, attr, id=f"{check}-{identity}-{attr}", marks=marks))
+                out.append(pytest.param(check, identity, attr, id=f"{check}-{identity}-{attr}"))
     return out
 
 
@@ -495,7 +484,20 @@ def test_s5_a_hypothesis_origin_is_an_origin_change_on_every_gating_check(check,
 @pytest.mark.parametrize(("check", "identity", "attr"), cells("S6"))
 def test_s6_delivery_rows_carry_standing_conditionality_and_open_items(check, identity, attr):
     reply, base = _reply(identity, attr), _reply(None, None)
-    if not gates(check, identity) or attr == "origin_src":
+    if attr == "origin_src" and gates(check, identity):
+        for changed, original in (
+            (view_row(reply, check), view_row(base, check)),
+            (summary_row(reply, check), summary_row(base, check)),
+        ):
+            readings = changed["source_readings"]
+            assert any(
+                row["object"] == identity and row["origin"]["kind"] == "source_interpretation"
+                for row in readings
+            )
+            assert {key: value for key, value in changed.items() if key != "source_readings"} == original
+        assert open_texts(reply, check) == open_texts(base, check)
+        return
+    if not gates(check, identity):
         assert view_row(reply, check) == view_row(base, check)
         assert summary_row(reply, check) == summary_row(base, check)
         assert open_texts(reply, check) == open_texts(base, check)

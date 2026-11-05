@@ -12,6 +12,7 @@ from fractions import Fraction
 from typing import Any
 
 from TrialLedger.layer2.protocol_numbers import render
+from TrialLedger.layer2.protocol_origins import source_readings
 from TrialLedger.layer2.protocol_outcomes import CONFLICT_CODES, CONFLICT_OUTCOMES, REPAIR_OUTCOMES
 
 SCHEMA_VERSION = 1
@@ -1486,6 +1487,15 @@ def _adoption_rows(protocol: dict, result: dict, checks: list[dict]) -> list[dic
 PROTOCOL_RESULT_SCHEMA = 1
 
 
+def source_reading_words(readings: list[dict]) -> str:
+    """Word the exact origin labels as caller-attributed check-input readings, never certified facts."""
+    return "; ".join(
+        f"{row['object']}: reading of {row['origin'].get('source') or 'source not stated'} "
+        f"at {row['origin']['ref']} (caller-attributed)"
+        for row in readings
+    )
+
+
 def view(result: dict) -> dict:
     """The clinical protocol view of one v2 design_session result.
 
@@ -1502,6 +1512,10 @@ def view(result: dict) -> dict:
         raise ValueError("view_unsupported_protocol_schema")
     checks = list(protocol.get("checks") or [])
     check_rows = [_check_row(i, c) for i, c in enumerate(checks)]
+    for check, row in zip(checks, check_rows, strict=True):
+        readings = source_readings(list(protocol.get("objects") or []), check)
+        if readings:
+            row["source_readings"] = readings
     sections = _section_rows(protocol, check_rows, checks)
     schedule = [
         _schedule_row(protocol, i, c, check_rows[i])

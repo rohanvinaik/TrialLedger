@@ -25,7 +25,7 @@ adult: Requires participant: "age" ≥ 18.0 Years [standing: known; Caller-decla
 Remaining requirements:
 No additional proved requirement displayed; this is not complete screening.
 Open items: This exact query is allowed but not required; its negation also fits (undecided_by_constraints)
-Exact result: `artifacts/3b75bf43e2d0b44be242b771d18cefc62d65e229d1a71a5bcd2c2249a7add9cc.json#/response/result/decisions/0/alternatives/0`
+Exact result: `artifacts/a5eab2fa47b2dc1a058cfb6ed1023d4b13c4398e757f361787aeec1647c7231e.json#/response/result/decisions/0/alternatives/0`
 
 ### Caller-labelled option: Below 65
 
@@ -39,11 +39,11 @@ Remaining requirements:
 The supplied profile does not establish the following; actual absence is not asserted.
 required_by_criteria: participant: "age" ≥ 18.0 Years [standing: known; proof: adult].
 Open items: This exact query is allowed but not required; its negation also fits (undecided_by_constraints)
-Exact result: `artifacts/3b75bf43e2d0b44be242b771d18cefc62d65e229d1a71a5bcd2c2249a7add9cc.json#/response/result/decisions/0/alternatives/1`
+Exact result: `artifacts/a5eab2fa47b2dc1a058cfb6ed1023d4b13c4398e757f361787aeec1647c7231e.json#/response/result/decisions/0/alternatives/1`
 
 Origin: Computed from declared premises: user:adult
 Coverage: Only caller-declared represented constructs; not complete clinical eligibility.
-Exact result: `artifacts/3b75bf43e2d0b44be242b771d18cefc62d65e229d1a71a5bcd2c2249a7add9cc.json#/response/result/decisions/0`
+Exact result: `artifacts/a5eab2fa47b2dc1a058cfb6ed1023d4b13c4398e757f361787aeec1647c7231e.json#/response/result/decisions/0`
 
 ## Protocol
 
@@ -67,15 +67,16 @@ Coverage legend: specified = the section's declared checks ran and nothing is op
 Counts: conflict 0; repair choice 2; not computed 0; not applied 0; not determined 0; definition relations refuted by a counterexample 0. Kinds: Conflict = an admitted policy failure; Repair choice = an admitted gap you choose how to repair; Not computed = no finding because an input, scope or method is missing; Not applied = the deciding premise is still a proposal or unsupported; Not determined = a declared input is missing.
 
 Check week12-schedule (schedule, required) — rests on standing known
-- [Repair choice] nominal: If the declared condition applies: The nominal target is inside the permitted window but outside planned collection. — standing known; result artifacts/3b75bf43e2d0b44be242b771d18cefc62d65e229d1a71a5bcd2c2249a7add9cc.json#/response/result/protocol/checks/0/children/0/result
-- [Repair choice] full_window: If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]. — standing known; result artifacts/3b75bf43e2d0b44be242b771d18cefc62d65e229d1a71a5bcd2c2249a7add9cc.json#/response/result/protocol/checks/0/children/0/result
-- [Conditional] existence: If the declared condition applies: At least one permitted assessment time falls within planned collection. — standing known; result artifacts/3b75bf43e2d0b44be242b771d18cefc62d65e229d1a71a5bcd2c2249a7add9cc.json#/response/result/protocol/checks/0/children/0/result
+Declared conditions (caller-declared): week12: study procedure: "discontinued_treatment" (exact conditions: artifacts/a5eab2fa47b2dc1a058cfb6ed1023d4b13c4398e757f361787aeec1647c7231e.json#/response/result/response/result/protocol/checks/0)
+- [Repair choice] nominal: If the declared condition applies: The nominal target is inside the permitted window but outside planned collection. — standing known; result artifacts/a5eab2fa47b2dc1a058cfb6ed1023d4b13c4398e757f361787aeec1647c7231e.json#/response/result/protocol/checks/0/children/0/result
+- [Repair choice] full_window: If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]. — standing known; result artifacts/a5eab2fa47b2dc1a058cfb6ed1023d4b13c4398e757f361787aeec1647c7231e.json#/response/result/protocol/checks/0/children/0/result
+- [Conditional] existence: If the declared condition applies: At least one permitted assessment time falls within planned collection. — standing known; result artifacts/a5eab2fa47b2dc1a058cfb6ed1023d4b13c4398e757f361787aeec1647c7231e.json#/response/result/protocol/checks/0/children/0/result
 
 ### Schedule of assessments
 
 | Check | Cohort | Arm | Phase | Conditionality | Measurement | Mode | Anchor | Unit | Nominal | Permitted | Collection | Feasible | Gap | Nominal outcome |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| week12-schedule | not stated (open) | not stated (open) | not stated (open) | conditional | score | observed | randomization | day | 84 days from randomization | [77, 91] days from randomization | (-∞, 80] days from randomization | [77, 80] days from randomization | (80, 91] days from randomization | Target 84 days from randomization is inside the permitted window but outside planned collection (not_collected) |
+| week12-schedule | not stated (open) | not stated (open) | not stated (open) | conditional — week12: study procedure: "discontinued_treatment" | score | observed | randomization | day | 84 days from randomization | [77, 91] days from randomization | (-∞, 80] days from randomization | [77, 80] days from randomization | (80, 91] days from randomization | Target 84 days from randomization is inside the permitted window but outside planned collection (not_collected) |
 
 ### Plan comparisons
 
@@ -94,9 +95,7 @@ No plan comparison declared.
 
 1. If the declared condition applies: The nominal target is inside the permitted window but outside planned collection. (/protocol/checks/0/children/0/result)
 2. If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]. (/protocol/checks/0/children/0/result)
-3. If the declared condition applies: At least one permitted assessment time falls within planned collection. (/protocol/checks/0/children/0/result)
-4. If the declared condition applies: The nominal target is inside the permitted window but outside planned collection. (/protocol/checks/0/children/0/result)
-5. If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]. (/protocol/checks/0/children/0/result)
+3. Check week12-schedule: satisfied claims remain conditional on week12: study procedure: "discontinued_treatment". Applicability is not established by these calculations. (/protocol/checks/0/children/0/result)
 
 ### Limits
 

@@ -214,6 +214,12 @@ and definition relations.
 
 - Each protocol object carries its own standing, apart from explicit adoption records naming an exact id
   and version. Standing and adoption are conjunctive; unspecified standing stays proposed.
+- `source_readings` copies caller-attributed origins among a check's actual inputs, including linked
+  gating inputs. Read it beside the finding in compact replies and exports. It is not a claim that each
+  input determines every finding, nor confirmation of the reading. Alternatives retain their own origins.
+- Conditional summaries and assessment rows show the actual typed condition, preserving AND/OR/NOT,
+  qualifiers and time. It is a caller-declared condition, not an established event. Read bounded display
+  fallbacks through the exact result. Repeated delivery tasks may be grouped; original rows remain retained.
 - An instructed plan change records a new version and its adoption together, under the person's attributed
   origin, with no second confirmation. A what-if (`hypothesis` origin) never adopts: the earlier adoption
   then reads stale. Changed content under an unchanged version is refused on every revision path.
@@ -242,13 +248,22 @@ A `condition_class` landscape also compares its MeSH search with the registry's 
 candidates for clinical review, not established members; a comparison not run never means no additional
 trials. In relay mode the alternate query's pages are further `next.json` fetches (save each unchanged
 under its `save_as`, then repeat the same call); nothing is claimed until they are saved. Opt out with `--no-coverage-comparison` (MCP `no_coverage_comparison`); the union stays explicit.
+Read the saved comparison through `record` part `coverage`, with an optional document-relative `address`
+such as `/comparison/text_only`; `coverage_file:"union_request"` selects the current offered union.
+CLI uses `--coverage-file union_request`. Follow continuations. The snapshot digest identifies exact saved
+bytes, not clinical membership. This part works even while source-report construction is unfinished.
+Missing, empty and malformed annotations remain distinct; malformed annotations cannot complete a diagnosis.
+`class_drug_additions` (CLI `--class-drug-addition`) are explicit scope choices, never catalogue membership.
 
 Acquisition defaults (1,000 studies / 100 registry requests) are checked before bulk retrieval. Deliberate
 larger scope declares positive `acquisition.max_studies` / `max_registry_requests`; raw pull has matching
 flags. These guard NIH acquisition, not local replay. Relay bridges network access only: execution, writing
 and complete unchanged response bytes remain necessary. Excerpts and reconstructed JSON cannot substitute.
+Failed direct attempts and newly saved relay responses share the retained request allowance across resume.
+The comparison plan reserves remaining work, not work already saved. Unverifiable historical accounting
+requires an acquisition remedy; it does not establish a clinical absence.
 
-Record parts are manifest, statuses, fields, studies, study, address and source. No separate checks/drug-identity
+Record parts are manifest, statuses, fields, studies, study, address, source and coverage. No separate checks/drug-identity
 tool exists. Pages hold at most 50 entries and bounded bytes; that changes neither scope nor completeness.
 Literal heading context never decides entry/crossover scope. Eligible, enrolled, baseline and analysed are
 different populations. Do not join groups by title or add arms and totals. Missing, empty, malformed, zero

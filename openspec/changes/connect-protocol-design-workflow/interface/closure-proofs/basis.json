@@ -1,0 +1,13 @@
+{
+  "source_sha256": {
+    "TrialLedger/coverage.py": "ce0e8cb611a175df30b006bc69780c86040e35bcf4b93989f44d3125f81b7039",
+    "TrialLedger/coverage_access.py": "024b8ffcf37dfdbd3c3e4844b821a104626e5c54f1bd9b9880306e40a40e46b4",
+    "tests/test_coverage_access.py": "87100c89a76b294f679c60a5885f39ceee2e1915369dd5d5c56ba56bdb057b51",
+    "tests/test_coverage_request_checkpoint.py": "dd891e93795b6be4aa672e492c09ec40864bb44f9243b1cf0f85ebf831709038"
+  },
+  "engines": {
+    "Detective": "ce2a50002529861d303eec0071984a3c3cbb5fd9",
+    "Wesker": "2fbd029f47bfe6e684e2bd0b0a956bac71d246e8"
+  },
+  "note": "Serial fresh verification copies. No whole-codebase proof or central certificate modification."
+}

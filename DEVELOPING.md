@@ -392,6 +392,13 @@ changed pure decisions with Detective by its current SquishOS protocol, one targ
 characterization is not a clinical warrant. Never turn an incomplete/ungateable result or stale measurement
 into a pass.
 
+The closure regressions exercise acquisition checkpoints across direct/relay retries, malformed annotation
+states and bounded public coverage access, plus linked stale-adoption premises and source-origin delivery.
+Origin-only edits must preserve logical results and standing; origins belong beside the actual affected
+checks and candidate inputs. Keep direct positive/MUST-NOT tests beside generated characterizations.
+An earlier automated proof driver is not final certification when it did not follow Detective's printed
+actions. Record each current target's actual outcome separately; do not inherit a blanket proof claim.
+
 Run scripts/ci_local.sh, read its full output and keep relevant local/type/lint checks current. Detective and
 Wesker use the founder's local checkouts. Run the final deep gate only after code and proof inputs are stable.
 Follow current machine instructions for temporary processes, Git and verification tools; do not restate or

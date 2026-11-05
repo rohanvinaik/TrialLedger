@@ -119,9 +119,9 @@ nothing was written · 2 the search was refused (the words printed say why)
 """
 
 RECORD_HELP = """\
-Read a finished landscape folder without contacting a service. Choose its study index (the default),
-one study, source dictionary, status summary, manifest or exact workbook address. The result carries
-the same evidence, named refusals and continuations as the assistant app’s record tool.
+Read a landscape folder without contacting a service. Choose its study index (the default),
+one study, source dictionary, status summary, manifest, search coverage or exact workbook address.
+The result carries the same evidence, named refusals and continuations as the assistant app’s record tool.
 
 Lists and objects are returned in pages: follow page.next_offset with --offset. A list of addresses is
 navigation, not source data; read a named address with --part address --address PATH. Long passages keep
@@ -132,6 +132,12 @@ examples:
   trialledger record my-trials
   trialledger record my-trials --part study --nct NCT04852770
   trialledger record my-trials --part address --address /studies/0/eligibility/text --text-limit 1000
+  trialledger record my-trials --part coverage --address /comparison/text_only
+  trialledger record my-trials --part coverage --coverage-file union_request
+
+Coverage is readable before the workbook is finished. Its addresses are inside the selected coverage
+document. Text-only hits are candidates for review, not established disease-class members. A union
+request is offered only by the current completed comparison and is never executed by reading it.
 
 exit status: 0 evidence returned (a page may need continuation) · 2 missing record or named request refusal
 """
@@ -459,6 +465,11 @@ def main(
     )
     record_parser.add_argument("folder", type=Path, metavar="FOLDER")
     record_parser.add_argument("--part", choices=RECORD_PARTS, default="studies")
+    record_parser.add_argument(
+        "--coverage-file",
+        choices=("comparison", "union_request"),
+        help="with --part coverage: the saved comparison (default), or its currently offered union request",
+    )
     record_parser.add_argument("--nct", help="the NCT identifier for --part study")
     record_parser.add_argument("--address", help="the exact saved record address for --part address")
     record_parser.add_argument("--offset", type=int, help="first entry of the next evidence page")
@@ -715,7 +726,7 @@ def _coverage(run: Path, plan: bool, *, http, sleep) -> int:
     import json
 
     from TrialLedger import coverage
-    from TrialLedger.coverage_run import run_coverage, spent_requests
+    from TrialLedger.coverage_run import comparison_plan, run_coverage
 
     if not (run / "resolution.json").is_file():
         print(f"trialledger landscape: {run} holds no landscape run (resolution.json)", file=sys.stderr)
@@ -726,9 +737,7 @@ def _coverage(run: Path, plan: bool, *, http, sleep) -> int:
         print(f"alternate search: {code}")
         for name, value in alternate.items():
             print(f"  {name}={value}")
-        scope = json.loads((run / "scope.json").read_text(encoding="utf-8"))
-        policy = scope.get("acquisition") or {"max_studies": 1000, "max_registry_requests": 100}
-        print(coverage.comparison_budget(policy, None, None, spent_requests(run)))
+        print(comparison_plan(run))
         return 0 if code == "ok" else 2
     say = functools.partial(print, file=sys.stderr)
     state, detail = run_coverage(run, http=http, sleep=sleep, progress=say)
@@ -788,7 +797,18 @@ def _record(args: argparse.Namespace) -> int:
     arguments = {
         key: value
         for key, value in vars(args).items()
-        if key in {"part", "nct", "address", "offset", "limit", "text_offset", "text_limit", "max_bytes"}
+        if key
+        in {
+            "part",
+            "nct",
+            "address",
+            "offset",
+            "limit",
+            "text_offset",
+            "text_limit",
+            "max_bytes",
+            "coverage_file",
+        }
         and value is not None
     }
     payload, is_error = read_record(args.folder, arguments)

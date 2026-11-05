@@ -258,6 +258,18 @@ def difference_words(state: str, comparison: dict[str, Any] | None) -> str:
     )
 
 
+def cumulative_request_count(
+    recorded: int, retained_responses: list[str], accounted_responses: list[str]
+) -> int:
+    """Add newly retained exchanges to recorded attempts without erasing failures (pure).
+
+    pre: type(recorded) is int and recorded >= 0
+    post: __return__ >= recorded
+    post: __return__ == recorded + len(set(retained_responses) - set(accounted_responses))
+    """
+    return recorded + len(set(retained_responses) - set(accounted_responses))
+
+
 def comparison_budget(
     policy: dict[str, int],
     class_total: int | None,
@@ -265,6 +277,7 @@ def comparison_budget(
     spent_requests: int,
     id_page_size: int = ID_PAGE_SIZE,
     diagnosed: int = 0,
+    retained_requests: int = 0,
 ) -> dict[str, Any]:
     """The comparison's cost against the one acquisition budget, before any further page is asked (pure —
     pinned).
@@ -275,21 +288,28 @@ def comparison_budget(
     (records read only for their condition annotations, never hydrated). Unique studies are the larger of
     the two searches' totals: the comparison reads identifiers only and hydrates nothing. Returns the plan
     and acquisition.expansion_code's verdict ("within_budget" or the named expansion), equality admissible.
+    `spent_requests` includes prior comparison attempts. `retained_requests` counts reusable responses for
+    this plan, so only work still missing is reserved; retained evidence is never charged twice.
     """
     pages = max(1, -(-(text_total or 0) // id_page_size))
     added = 2 + pages + (-(-diagnosed // DIAGNOSIS_BATCH) if diagnosed else 0)
+    if type(retained_requests) is not int or retained_requests < 0:
+        raise ValueError("coverage_invalid_retained_cost")
+    remaining = max(0, added - retained_requests)
     unique = max(class_total or 0, text_total or 0)
     verdict = acquisition.expansion_code(
         policy["max_studies"],
         policy["max_registry_requests"],
         None if text_total is None else unique,
         spent_requests,
-        spent_requests + added,
+        spent_requests + remaining,
     )
     return {
         "added_requests": added,
+        "retained_requests": retained_requests,
+        "remaining_requests": remaining,
         "spent_requests": spent_requests,
-        "planned_requests": spent_requests + added,
+        "planned_requests": spent_requests + remaining,
         "unique_studies": unique,
         "max_studies": policy["max_studies"],
         "max_registry_requests": policy["max_registry_requests"],
@@ -309,35 +329,78 @@ def routes(class_ids: list[str], text_ids: list[str]) -> dict[str, list[str]]:
     return held
 
 
+def annotation_state(has_fields: bool, has_values: bool, malformed: bool) -> str:
+    """Classify the supplied annotation structure without supplying clinical meaning (pure).
+
+    pre: type(has_fields) is bool and type(has_values) is bool and type(malformed) is bool
+    post: __return__ in ('missing', 'empty', 'present', 'malformed')
+    post: (__return__ == 'malformed') == malformed
+    post: malformed or ((__return__ == 'present') == has_values)
+    """
+    if malformed:
+        return "malformed"
+    if has_values:
+        return "present"
+    return "empty" if has_fields else "missing"
+
+
+def _annotation_arrays(study: dict) -> tuple[list[str], list[str], str, list[str]]:
+    """Read the two supplied term arrays, retaining valid terms beside malformed fields."""
+    missing: dict = {}
+    derived = study.get("derivedSection", missing)
+    if not isinstance(derived, dict):
+        return [], [], "malformed", ["/derivedSection"]
+    browse = derived.get("conditionBrowseModule", missing)
+    if not isinstance(browse, dict):
+        return [], [], "malformed", ["/derivedSection/conditionBrowseModule"]
+    values: dict[str, list[str]] = {"meshes": [], "ancestors": []}
+    problems = []
+    for key in values:
+        if key not in browse:
+            continue
+        path = "/derivedSection/conditionBrowseModule/" + key
+        rows = browse[key]
+        if not isinstance(rows, list):
+            problems.append(path)
+            continue
+        for index, row in enumerate(rows):
+            if not isinstance(row, dict) or not isinstance(row.get("term"), str) or not row["term"]:
+                problems.append(f"{path}/{index}")
+            else:
+                values[key].append(row["term"])
+    state = annotation_state(any(key in browse for key in values), any(values.values()), bool(problems))
+    return values["meshes"], values["ancestors"], state, problems
+
+
 def annotation_reading(study: Any, term: str) -> dict[str, Any]:
     """What one record's condition annotations say about a class term (pure).
 
     Reads only the registry's own fields: derivedSection.conditionBrowseModule's meshes and ancestors, and the
     declared conditions and keywords. `annotation` is "none" (no condition MeSH annotation at all),
     "under_class" (the class term is a MeSH term or ancestor), or "other" (annotated, but not under the
-    class). Missing, empty and malformed stay distinct from each other only as far as the record shows: a
-    non-object record reads "unreadable".
+    class). `annotation_state` preserves missing, empty, present and malformed supplied fields. A known
+    matching term remains usable beside a malformed field; otherwise malformed annotations are unreadable,
+    never "none". A non-object record reads "unreadable".
     """
     if not isinstance(study, dict):
         return {"annotation": "unreadable"}
-    protocol = study.get("protocolSection") or {}
-    conditions = (protocol.get("conditionsModule") or {}) if isinstance(protocol, dict) else {}
-    browse = (
-        ((study.get("derivedSection") or {}).get("conditionBrowseModule") or {})
-        if isinstance(study.get("derivedSection"), dict)
-        else {}
-    )
-    meshes = [m.get("term") for m in browse.get("meshes") or [] if isinstance(m, dict)]
-    ancestors = [m.get("term") for m in browse.get("ancestors") or [] if isinstance(m, dict)]
+    protocol = study.get("protocolSection")
+    protocol = protocol if isinstance(protocol, dict) else {}
+    conditions = protocol.get("conditionsModule")
+    conditions = conditions if isinstance(conditions, dict) else {}
+    meshes, ancestors, state, problems = _annotation_arrays(study)
     wanted = term.casefold()
     held = [t for t in (*meshes, *ancestors) if isinstance(t, str)]
-    if not held:
-        kind = "none"
-    elif any(t.casefold() == wanted for t in held):
+    if any(t.casefold() == wanted for t in held):
         kind = "under_class"
+    elif state == "malformed":
+        kind = "unreadable"
+    elif not held:
+        kind = "none"
     else:
         kind = "other"
-    identification = protocol.get("identificationModule") or {} if isinstance(protocol, dict) else {}
+    identification = protocol.get("identificationModule")
+    identification = identification if isinstance(identification, dict) else {}
     return {
         "nct_id": identification.get("nctId"),
         "title": identification.get("briefTitle"),
@@ -346,4 +409,6 @@ def annotation_reading(study: Any, term: str) -> dict[str, Any]:
         "mesh_terms": [t for t in meshes if isinstance(t, str)],
         "mesh_ancestors": [t for t in ancestors if isinstance(t, str)],
         "annotation": kind,
+        "annotation_state": state,
+        "annotation_problems": problems,
     }

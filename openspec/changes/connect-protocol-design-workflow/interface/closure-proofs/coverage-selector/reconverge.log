@@ -1,0 +1,46 @@
+  ▸ recalled 2 pinned test(s) from a previous run
+  … coverage_selector_code: tracing 30 function-routed tests
+  … coverage_selector_code: baseline traced · 30 tests · 2.5s
+  … coverage_selector_code: 1/19 mutants · 2.3s/mutant · ETA estimating… (heartbeat)
+  … coverage_selector_code: 19/19 mutants · 3.7/s · done in 5.2s
+  ▸ pass 0: 3 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +4 new killing test(s) written [test_TrialLedger_coverage_access_coverage_selector_code_c4dea11865_synth.py]
+  … coverage_selector_code: tracing 34 function-routed tests
+  … coverage_selector_code: baseline traced · 34 tests · 0.0s
+  … coverage_selector_code: 19/19 mutants · 1.5/s · done in 12.7s
+  ▸ pass 1: 3 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … coverage_selector_code: tracing 34 function-routed tests
+  … coverage_selector_code: baseline traced · 34 tests · 0.0s
+  … coverage_selector_code: 19/19 mutants · 1.5/s · done in 13.0s
+  ▸ minimizing — dropped 4 redundant test(s) our own cover flagged
+  … coverage_selector_code: tracing 30 function-routed tests
+  … coverage_selector_code: baseline traced · 30 tests · 0.0s
+  … coverage_selector_code: 19/19 mutants · 1.5/s · done in 12.9s
+  ▸ 3 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … coverage_selector_code: tracing 30 function-routed tests
+  … coverage_selector_code: baseline traced · 30 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/coverage_access.py::coverage_selector_code — converge · 19 behaviours · 16 pinned · 3 crash-only
+
+  ✓ wrote              2 test(s) → tests/detective/test_TrialLedger_coverage_access_coverage_selector_code_c4dea11865_synth.py
+  · crash-only-equiv   3 — detected by crash; no value pins them
+  · not consulted      7728 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_coverage_selector_code.txt
+
+DONE:  every killable behaviour Detective found is pinned.
+       What remains differs from your function only by a CRASH: an input
+       distinguishes each (the mutant raises where your function returns), so
+       none is an equivalence candidate and nothing is offered to `flag` — no
+       value assertion can pin a raise. They are detected, not equivalent.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/coverage_access.py'
+         detective decompose 'TrialLedger/coverage_access.py::coverage_selector_code' --apply --two-sign
+         detective survey 'TrialLedger/coverage_access.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/coverage_access.py::coverage_selector_code: ✓ COMPLETE (operator universe · modulo 3 crash-only value gaps) · 19/19 killed · 2 test(s) → tests/detective/test_TrialLedger_coverage_access_coverage_selector_code_c4dea11865_synth.py · policy 9+neg.f5a15364c11d

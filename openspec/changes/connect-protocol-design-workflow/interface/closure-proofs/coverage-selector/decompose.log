@@ -1,0 +1,26 @@
+  ▸ proving: converging the target to a mutation-complete suite (the proof)…
+  ▸ recalled 2 pinned test(s) from a previous run
+  … coverage_selector_code: tracing 30 function-routed tests
+  … coverage_selector_code: baseline traced · 30 tests · 2.7s
+  ▸ pass 0: 3 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +4 new killing test(s) written [test_TrialLedger_coverage_access_coverage_selector_code_c4dea11865_synth.py]
+  … coverage_selector_code: tracing 34 function-routed tests
+  … coverage_selector_code: baseline traced · 34 tests · 0.0s
+  ▸ pass 1: 3 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … coverage_selector_code: tracing 34 function-routed tests
+  … coverage_selector_code: baseline traced · 34 tests · 0.0s
+  ▸ minimizing — dropped 4 redundant test(s) our own cover flagged
+  … coverage_selector_code: tracing 30 function-routed tests
+  … coverage_selector_code: baseline traced · 30 tests · 0.0s
+  ▸ 3 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … coverage_selector_code: tracing 30 function-routed tests
+  … coverage_selector_code: baseline traced · 30 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+  ▸ 3 crash-only survivor(s) block automatic application — a green trial would prove only the pinned behaviours, not these. `detective flag` each that is truly equivalent, or supply a stronger proof; extractions will be proposed only
+  ▸ full report: .detective/reports/decompose_coverage_selector_code.txt
+coverage_selector_code — decompose
+
+DONE:  no separable block. There is no seam here to split.

@@ -1,0 +1,52 @@
+{
+  "seed": 20261105,
+  "sample_size": 2,
+  "selection_rule": "random.Random(20261105).sample(sorted(complete gathered class-search NCT identifiers), 2)",
+  "query": {
+    "condition_class": "Macular Degeneration",
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ],
+    "start_from": "2020-01-01"
+  },
+  "declared_before_record_inspection": true,
+  "declared_at": "2026-11-05T20:51:23.694769+00:00",
+  "pool": [
+    "NCT04239027",
+    "NCT04264819",
+    "NCT04270747",
+    "NCT04435366",
+    "NCT04480463",
+    "NCT04516278",
+    "NCT04592419",
+    "NCT04597632",
+    "NCT04740671",
+    "NCT04740905",
+    "NCT04740931",
+    "NCT04964089",
+    "NCT04976777",
+    "NCT05003245",
+    "NCT05155293",
+    "NCT05244304",
+    "NCT05439629",
+    "NCT05520177",
+    "NCT05536297",
+    "NCT06190093",
+    "NCT06305416",
+    "NCT07214740"
+  ],
+  "selected": [
+    "NCT04480463",
+    "NCT07214740"
+  ],
+  "complete_page": {
+    "offset": 0,
+    "limit": 50,
+    "returned": 22,
+    "total": 22,
+    "next_offset": null
+  }
+}

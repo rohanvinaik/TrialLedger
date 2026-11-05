@@ -1085,7 +1085,16 @@ def test_record_refuses_a_record_of_another_schema_and_one_not_there(tmp_path):
 def test_every_part_serves_what_the_contract_names_it_for():
     named = {rest[0] for f in FIELDS for kind, *rest in f.consumers if kind == "mcp"}
     assert named <= set(RECORD_PARTS)
-    assert RECORD_PARTS == ("manifest", "studies", "study", "statuses", "fields", "address", "source")
+    assert RECORD_PARTS == (
+        "manifest",
+        "studies",
+        "study",
+        "statuses",
+        "fields",
+        "address",
+        "source",
+        "coverage",
+    )
     assert MANIFEST_KEYS == ("schema_version", "request", "manifest")
     assert STATUS_KEYS == ("statuses", "envelope")
 

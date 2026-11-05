@@ -300,6 +300,13 @@ REQUEST = {
             "reached through. A broad class may bring in subclasses the person does not expect: show them "
             "the scope, and exclude a subclass when they ask.",
         },
+        "class_drug_additions": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "minItems": 1,
+            "description": "Explicit caller additions to a drug_class or mechanism search, joined by OR "
+            "with its returned members. These additions are the person's, not RxNav class membership.",
+        },
         "mechanism": {"type": "string", "description": "A drug target of TrialLedger's sourced crosswalk."},
         "condition": {"type": "string", "description": "A condition, searched as the registry searches it."},
         "condition_class": {
@@ -449,12 +456,22 @@ TOOLS: dict[str, dict[str, Any]] = {
         "Part source reads the complete retained raw NIH study for nct, with its digest and study_ref. "
         "For that part, address is relative to the raw study "
         "(for example /protocolSection/eligibilityModule). "
-        "Follow the same page/text continuation; snapshot identity is not clinical certification.",
+        "Follow the same page/text continuation; snapshot identity is not clinical certification. "
+        "Part coverage reads the saved search comparison or its currently offered union request, with "
+        "exact addresses and the same page/text continuation. Failed or unrun comparisons remain as "
+        "recorded; text-only hits are candidates for review, not established clinical comparators.",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "run": RUN,
                 "part": {"type": "string", "enum": list(RECORD_PARTS)},
+                "coverage_file": {
+                    "type": "string",
+                    "enum": ["comparison", "union_request"],
+                    "description": "For part coverage only: comparison (default) reads coverage.json; "
+                    "union_request reads the exact request currently offered by that comparison. "
+                    "Each has a byte digest; address is inside the selected document. No path is accepted.",
+                },
                 "nct": {
                     "type": "string",
                     "pattern": NCT_PATTERN,

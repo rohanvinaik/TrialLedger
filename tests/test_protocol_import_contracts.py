@@ -98,11 +98,13 @@ def test_each_named_preexisting_edge_still_exists():
         assert target in _direct_imports(source), f"stale exception {source} -> {target}; remove it"
 
 
-def test_the_clinical_view_reaches_only_the_shared_number_syntax_and_outcome_sets():
+def test_the_clinical_view_reaches_only_pure_number_outcome_and_origin_projections():
     reached = {
         name for name in _closure("TrialLedger.layer2.protocol_view") if name.startswith("TrialLedger")
     }
     # protocol_outcomes is a dependency-free leaf: the one owner of the outcome classifications.
-    assert reached == {"TrialLedger.layer2.protocol_numbers", "TrialLedger.layer2.protocol_outcomes"}, sorted(
-        reached
-    )
+    assert reached == {
+        "TrialLedger.layer2.protocol_numbers",
+        "TrialLedger.layer2.protocol_outcomes",
+        "TrialLedger.layer2.protocol_origins",
+    }, sorted(reached)

@@ -95,9 +95,9 @@ No plan comparison declared.
 
 ### Open items
 
-1. Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
-2. Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
-3. Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
+1. Check week12-schedule, claim visit: Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
+2. Check week12-schedule, claim target: Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
+3. Check week12-schedule, claim window: Not applied: the deciding premise is still a proposal. (/protocol/checks/0/children/0/result)
 4. Section assessments is open. (/protocol/sections/assessments)
 
 ### Limits

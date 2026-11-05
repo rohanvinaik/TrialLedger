@@ -103,8 +103,8 @@ Superseded adoption records for week12 (listed, not used): adopt:week12:fixture-
 ### Open items
 
 1. Not computed: external method; missing inputs: accrual_rate, dropout. (/protocol/checks/1)
-2. Not applied: a premise this claim needs is not fully resolved. Withheld because the model assumption 'alignment' is not declared (assumption_missing:alignment). The computed values (null rejection probability 0.0100, power 0.4044) stay visible; they are not applied. (/protocol/checks/0/children/0/result)
-3. Not applied: a premise this claim needs is not fully resolved. Withheld because the model assumption 'alignment' is not declared (assumption_missing:alignment). The computed values (null rejection probability 0.0100, power 0.4044) stay visible; they are not applied. (/protocol/checks/0/children/0/result)
+2. Check efficacy-exact, claim alpha: Not applied: a premise this claim needs is not fully resolved. Withheld because the model assumption 'alignment' is not declared (assumption_missing:alignment). The computed values (null rejection probability 0.0100, power 0.4044) stay visible; they are not applied. (/protocol/checks/0/children/0/result)
+3. Check efficacy-exact, claim power: Not applied: a premise this claim needs is not fully resolved. Withheld because the model assumption 'alignment' is not declared (assumption_missing:alignment). The computed values (null rejection probability 0.0100, power 0.4044) stay visible; they are not applied. (/protocol/checks/0/children/0/result)
 4. Section endpoints is open. (/protocol/sections/endpoints)
 5. Section efficacy is not_computed. (/protocol/sections/efficacy)
 

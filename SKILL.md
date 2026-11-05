@@ -81,6 +81,10 @@ claim's effective outcome, never a refused claim's raw one. Not computed is not 
 declared variables only; a covered policy is not a safe one. Not built: adaptive, cluster or survival
 calculation, sample-size search, optimiser, protocol writer and prose compilation.
 
+`source_readings` preserves the caller-attributed source origins among each check's actual inputs and its
+linked gating inputs. Compact replies, the decision list and workbook show them without confirming the
+reading or changing standing. A plan alternative carries its own origins, including replacements.
+
 ## Retain and hand over
 
 Pure computation writes no files. MCP reason uses retain:true or response_view:"compact"; CLI uses --store
@@ -111,3 +115,11 @@ complete unchanged bodies. Acquisition defaults (1,000 studies/100 requests) gua
 local solver/analysis/output limits. Never trim evidence or use stale answers to pass a limit. Verify checks
 reproducibility, not clinical truth. Heading context does not decide entry/crossover scope. Complete prose
 compilation, protocol writing, publication reading and derivational significance remain unintegrated.
+
+For a disease-class search, inspect the default class-versus-condition-text comparison through `record`
+part `coverage`, optionally at `/comparison/text_only`. Text-only hits are candidates for review. Select
+`coverage_file:"union_request"` (CLI `--coverage-file union_request`) to read the current explicit union
+offer; reading it never executes it. These are document-relative addresses with ordinary continuations.
+Snapshot digests identify saved bytes, not clinical membership. Missing or malformed annotations never mean
+an absent tag. Failed direct attempts and new relay responses consume the same allowance across resumes.
+Explicit `class_drug_additions` remain the person's scope additions, separate from catalogue membership.

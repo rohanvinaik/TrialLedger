@@ -11,6 +11,15 @@ requested-ID accounting. Use record study indexes and exact addresses to inspect
 all page and text continuations. Keep populations, local groups, denominators, units and time. A publication
 link remains a place to investigate, not read evidence.
 
+A disease-class search compares its complete identifiers with a condition-text search by default, within
+the acquisition allowance. Read `record` with `part:"coverage"` and `address:"/comparison/text_only"`
+(CLI `record FOLDER --part coverage --address /comparison/text_only`). Additional hits are candidates,
+not established disease-class members. Read the current explicit union offer with
+`coverage_file:"union_request"`; it does not execute a new pull. Coverage addresses are inside the
+selected saved document, with the usual page/text continuations and an exact-byte snapshot digest.
+An unfinished comparison, malformed annotations or exhausted allowance keeps that question open; completed
+source evidence remains available. Retry/resume work includes failed direct attempts and saved relay fetches.
+
 Ask the consequential distinction: which cohort, required or permitted, one qualifying mutation or compound
 mutations, inclusive boundary, nominal assessment or allowed window, same patients or distinct analysis
 populations. Show material premises in clinical words from the actual request. Retain accepted wording and
@@ -210,6 +219,15 @@ adds protocol synopsis, findings, schedule-of-assessments, plan-comparison and a
 check of declared intervals, variables and parameters: not a judgement of clinical appropriateness, safety,
 validity or completeness. Adaptive, cluster and survival calculations, sample-size search and the protocol
 writer are not built.
+
+Source-origin readings among the actual check inputs, including linked gating inputs, appear as
+`source_readings` in the compact reply and beside the check in the decision list and workbook. They remain
+caller-attributed readings, not certified interpretations or proof that each input decides every finding.
+Each plan alternative uses its own origins; a replacement cannot inherit the baseline plan's attribution.
+Conditional checks name their actual typed condition in compact summaries, check paragraphs and the
+assessment schedule. AND/OR/NOT, qualifiers and time keep their declared structure. The wording establishes
+neither that the condition occurred nor that an uncertain reading is admitted. Grouped delivery tasks keep
+their original claim rows and references; the canonical view retains the complete ungrouped open list.
 
 ## Keep permission, requirement and choice separate in the review
 

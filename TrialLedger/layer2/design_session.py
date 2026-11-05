@@ -1051,6 +1051,7 @@ def _alternative_row(
     budget: dict,
 ) -> dict:
     from TrialLedger.layer2 import protocol_decisions
+    from TrialLedger.layer2.protocol_origins import source_readings
 
     assumed = frozenset(o["id"] for o in alternative["replace_objects"])
     frame = "hypothetical" if assumed else "fixed"
@@ -1070,6 +1071,11 @@ def _alternative_row(
     compatibility = protocol_decisions.compatibility(
         [code for check, code in zip(checks, codes, strict=True) if check["required"]]
     )
+    readings = [
+        {"check": check["id"], **reading}
+        for check in checks
+        for reading in source_readings(list(held["index"]["objects"].values()), check)
+    ]
     return {
         "id": alternative["id"],
         "label": alternative["label"],
@@ -1088,6 +1094,7 @@ def _alternative_row(
             {key: deepcopy(o.get(key)) for key in ("id", "version", "origin", "standing")}
             for o in alternative["replace_objects"]
         ],
+        **({"source_readings": readings} if readings else {}),
     }
 
 

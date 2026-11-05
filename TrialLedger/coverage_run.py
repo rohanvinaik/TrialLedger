@@ -61,6 +61,7 @@ COVERAGE_DIR = "coverage"
 RETRIEVED_NAME = "retrieved.json"  # within COVERAGE_DIR: when each saved body was fetched (UTC)
 SCHEMA = "coverage-1"
 TEXT_START, TEXT_END = "version-start.json", "version-end.json"
+ACCOUNTING_CODES = ("acquisition.invalid_cost", "acquisition.unverifiable_cost")
 CLASS_TIME_BASIS = (
     "modification time of the saved page file (the class search ran in the run's own pull); "
     "it changes if the folder is copied"
@@ -131,7 +132,7 @@ def text_side_state(
     """The text search as its saved bodies hold it, and the retrieval times kept beside them."""
     bodies, unreadable = _read_bodies(base / BODIES)
     code, pages, ids, detail = follow_ids(query, bodies, unreadable)
-    stamps = json.loads((base / RETRIEVED_NAME).read_text()) if (base / RETRIEVED_NAME).is_file() else {}
+    stamps, stamp_state = _retrieval_stamps(base)
     saved = [page["file"] for page in pages if page["file"] in bodies]
     first = bodies.get("ids-001.json")
     state = "complete" if code == "complete" else ("failed" if failure else "incomplete")
@@ -147,34 +148,212 @@ def text_side_state(
             {stamps.get(name) or _iso((base / BODIES / name).stat().st_mtime) for name in saved}
         ),
         "retrieved_at_basis": TEXT_TIME_BASIS,
+        "retrieval_metadata_state": stamp_state,
         "snapshot": _snapshot(bodies.get(TEXT_START)),
         "snapshot_end": _snapshot(bodies.get(TEXT_END)),
     }
     return side, bodies
 
 
+def _retrieval_stamps(base: Path) -> tuple[dict[str, str], str]:
+    """Read timestamp metadata independently of the retained response bodies it describes."""
+    path = base / RETRIEVED_NAME
+    if not path.is_file():
+        return {}, "missing"
+    try:
+        document = json.loads(path.read_text())
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return {}, "malformed"
+    if not isinstance(document, dict) or any(not isinstance(value, str) for value in document.values()):
+        return {}, "malformed"
+    return document, "present"
+
+
 def same_snapshot(class_side_: dict[str, Any], text_side_: dict[str, Any]) -> bool | None:
     """Whether the registry data was one snapshot across both searches (None when any end is unread)."""
     held = [class_side_.get("snapshot"), class_side_.get("snapshot_end"), text_side_.get("snapshot")]
     held.append(text_side_.get("snapshot_end"))
-    if any(snapshot is None for snapshot in held):
+    known = [snapshot for snapshot in held if isinstance(snapshot, dict)]
+    if len(known) != len(held):
         return None
-    first = held[0]
-    return all(compare_snapshots(tuple(first.values()), tuple(s.values())) == "same" for s in held[1:])
+    first = known[0]
+    return all(compare_snapshots(tuple(first.values()), tuple(s.values())) == "same" for s in known[1:])
 
 
 def spent_requests(folder: Path) -> int:
-    """Registry requests the run has already made (its acquisition checkpoint, else its saved bodies)."""
+    """All recorded attempts, with retained main and coverage responses as a lower bound.
+
+    The checkpoint's response identities say which successes its attempt count already includes. Newly
+    retained relay responses add to that count; failures are never replaced by a response-count maximum.
+    Relay attempts without a saved response cannot be measured here.
+    """
     checkpoint = folder / ACQUISITION_NAME
+    count = 0
+    document: dict[str, Any] = {}
     if checkpoint.is_file():
-        count = json.loads(checkpoint.read_text()).get("registry_requests")
-        if type(count) is int and count >= 0:
-            return count
+        try:
+            document = json.loads(checkpoint.read_text())
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise PullError("acquisition.invalid_cost", "Unreadable acquisition checkpoint JSON") from error
+        if not isinstance(document, dict):
+            raise PullError("acquisition.invalid_cost", "Acquisition checkpoint must be an object")
+        count = document.get("registry_requests")
+        if type(count) is not int or count < 0:
+            raise PullError("acquisition.invalid_cost", "Malformed recorded registry request count")
+    paths = _response_paths(folder)
+    if not document:
+        return len(paths)
+    accounted = document.get("accounted_response_paths")
+    if "accounted_response_paths" not in document:
+        accounted = _legacy_accounted_paths(folder, paths)
+        count = max(count, len(accounted))
+    elif (
+        not isinstance(accounted, list)
+        or any(not isinstance(path, str) for path in accounted)
+        or len(set(accounted)) != len(accounted)
+        or count < len(accounted)
+    ):
+        raise PullError("acquisition.invalid_cost", "Malformed accounted registry response identities")
+    return coverage.cumulative_request_count(count, paths, accounted)
+
+
+def _response_paths(folder: Path) -> list[str]:
+    """Stable local identities for retained registry responses in this run and comparison."""
     _scope, _named, bodies, unreadable = run_state(folder)
-    return sum(
-        name in (START_NAME, END_NAME) or name.startswith(("ids-", "studies-"))
+    main = [
+        f"{BODIES}/{name}"
         for name in (*bodies, *unreadable)
+        if name in (START_NAME, END_NAME) or name.startswith(("ids-", "studies-"))
+    ]
+    return sorted([*main, *(f"{COVERAGE_DIR}/{BODIES}/{n}" for n in _response_names(folder / COVERAGE_DIR))])
+
+
+def _legacy_accounted_paths(folder: Path, paths: list[str]) -> list[str]:
+    """Migrate old direct-only counts; an unanchored mixed history cannot establish a total."""
+    stamps, stamp_state = _retrieval_stamps(folder / COVERAGE_DIR)
+    if stamp_state == "malformed":
+        raise PullError("acquisition.invalid_cost", "Malformed legacy registry retrieval timestamps")
+    unknown = [
+        path for path in paths if path.startswith(f"{COVERAGE_DIR}/") and Path(path).name not in stamps
+    ]
+    if unknown:
+        raise PullError(
+            "acquisition.unverifiable_cost",
+            "Older acquisition checkpoint does not identify which relay responses its attempt count "
+            "already includes; request accounting must be resolved before further acquisition. "
+            "Retained search evidence is unchanged.",
+        )
+    return paths
+
+
+def _response_names(base: Path) -> list[str]:
+    """Saved coverage response names, not derived metadata or partially written bodies."""
+    return [
+        path.name
+        for path in (base / BODIES).glob("*.json")
+        if path.is_file()
+        and (path.name in (TEXT_START, TEXT_END) or path.name.startswith(("ids-", "diagnosis-")))
+    ]
+
+
+def _retained_requests(base: Path, diagnosed: int = 0) -> int:
+    """Responses reused by this plan; unrelated saved diagnosis batches do not reduce identifier work."""
+    names = _response_names(base)
+    text = sum(name in (TEXT_START, TEXT_END) or name.startswith("ids-") for name in names)
+    diagnosis = sum(
+        f"diagnosis-{number:03d}.json" in names
+        for number in range(1, -(-diagnosed // coverage.DIAGNOSIS_BATCH) + 1)
     )
+    return text + diagnosis
+
+
+def _record_attempt(folder: Path, count: int) -> None:
+    """Persist the attempt before Session sends it, preserving the main acquisition checkpoint."""
+    path = folder / ACQUISITION_NAME
+    document = json.loads(path.read_text()) if path.is_file() else {}
+    document.update(
+        registry_requests=count,
+        accounted_response_paths=_response_paths(folder),
+        request_count_basis="direct attempts plus retained relay response lower bound",
+    )
+    _write(path, _json(document))
+
+
+def _budget(folder: Path, policy: dict, klass: dict, total: int | None, diagnosed: int = 0) -> dict:
+    return coverage.comparison_budget(
+        policy,
+        klass["total"],
+        total,
+        spent_requests(folder),
+        diagnosed=diagnosed,
+        retained_requests=_retained_requests(folder / COVERAGE_DIR, diagnosed),
+    )
+
+
+def comparison_plan(folder: Path) -> dict[str, Any]:
+    """Preview execution's remaining-work budget from retained evidence, without requests or writes.
+
+    Saved totals determine paging cost. Only a complete, same-snapshot comparison identifies differing
+    trials whose annotation batches can be reserved; before then their cost remains unknown.
+    """
+    resolution = json.loads((folder / "resolution.json").read_text(encoding="utf-8"))
+    scope = json.loads((folder / "scope.json").read_text(encoding="utf-8"))
+    policy = scope.get("acquisition") or acquisition.effective_policy()
+    klass = class_side(folder, resolution["query"])
+    _code, alternate = coverage.alternate_query(resolution)
+    text, _bodies = text_side_state(folder / COVERAGE_DIR, alternate)
+    state = coverage.comparison_state(klass, text, same_snapshot(klass, text))
+    differing = 0
+    if state == "complete":
+        comparison = coverage.compare_id_sets(klass["ids"], text["ids"])
+        differing = len(comparison["text_only"]) + len(comparison["class_only"])
+    try:
+        return _budget(folder, policy, klass, text["total"], differing)
+    except PullError as error:
+        if error.code not in ACCOUNTING_CODES:
+            raise
+        return _unverifiable_plan(policy, error.code)
+
+
+def _unverifiable_plan(policy: dict[str, int], code: str = "acquisition.unverifiable_cost") -> dict[str, Any]:
+    """Unknown historical accounting has no computable total or admissible acquisition reservation."""
+    return {
+        "added_requests": None,
+        "retained_requests": None,
+        "remaining_requests": None,
+        "spent_requests": None,
+        "planned_requests": None,
+        "unique_studies": None,
+        "max_studies": policy["max_studies"],
+        "max_registry_requests": policy["max_registry_requests"],
+        "verdict": code,
+    }
+
+
+def _accounting_failure(
+    folder: Path, policy: dict[str, int], klass: dict[str, Any], alternate: dict[str, str], error: PullError
+) -> tuple[str, str]:
+    """Keep independently retained searches while exposing an accounting task, without requesting more."""
+    text, _bodies = text_side_state(folder / COVERAGE_DIR, alternate)
+    words = f"{error.code}: {error.detail} {coverage.difference_words('incomplete', None)}"
+    document = {
+        "schema": SCHEMA,
+        "state": "incomplete",
+        "reason": error.code,
+        "difference_words": words,
+        "boundary": coverage.BOUNDARY,
+        "class_search": klass | {"unique_ids": len(set(klass["ids"]))},
+        "text_search": text | {"unique_ids": len(set(text["ids"]))},
+        "other_filters_unchanged": coverage.unchanged_filters(klass["query"], alternate),
+        "comparison": None,
+        "routes": {},
+        "diagnosis": {"state": "not_run", "detail": error.code, "trials": {}},
+        "budget": _unverifiable_plan(policy, error.code),
+        "union": {"offered": False},
+    }
+    _write(folder / COVERAGE_NAME, _json(document))
+    _write(folder / COVERAGE_TEXT, render(document).encode("utf-8"))
+    return "incomplete", words
 
 
 class Awaiting(Exception):
@@ -203,6 +382,7 @@ def _fetch(
     stamps = json.loads(path.read_text()) if path.is_file() else {}
     stamps[name] = datetime.now(UTC).isoformat(timespec="seconds")
     _write(path, _json(stamps))
+    _record_attempt(base.parent, session.registry_requests)
 
 
 def diagnosis_batches(ids: list[str]) -> list[list[str]]:
@@ -258,7 +438,12 @@ def diagnose(
             reading = coverage.annotation_reading(study, term)
             reading["route"] = route_of[reading["nct_id"]]
             readings[reading["nct_id"]] = reading
-    return {"state": "complete", "detail": "", "trials": readings}
+    malformed = [key for key, value in readings.items() if value.get("annotation_state") == "malformed"]
+    return {
+        "state": "incomplete" if malformed else "complete",
+        "detail": "malformed condition annotations: " + ", ".join(malformed) if malformed else "",
+        "trials": readings,
+    }
 
 
 def union_request(ids: list[str]) -> tuple[str, dict[str, Any] | None]:
@@ -299,8 +484,14 @@ def run_coverage(
     scope_file = json.loads((folder / "scope.json").read_text(encoding="utf-8"))
     policy = scope_file.get("acquisition") or acquisition.effective_policy()
     base = folder / COVERAGE_DIR
-    spent = spent_requests(folder)
     klass = class_side(folder, query)
+    try:
+        spent = spent_requests(folder)
+    except PullError as error:
+        if error.code not in ACCOUNTING_CODES:
+            raise
+        return _accounting_failure(folder, policy, klass, alternate, error)
+    _record_attempt(folder, spent)
     client = (
         None
         if relay
@@ -322,19 +513,20 @@ def run_coverage(
             progress=progress,
             acquisition=policy,
             registry_requests=spent,
+            on_registry_request=lambda count: _record_attempt(folder, count),
         )
     )
     failure = ""
     diagnosis: dict[str, Any] = {"state": "not_run", "detail": "no differing trial to read", "trials": {}}
     try:
-        first = coverage.comparison_budget(policy, klass["total"], None, spent)
+        first = _budget(folder, policy, klass, None)
         if klass["state"] != "complete":
             pass  # nothing to compare with: the alternate search is not asked
         elif first["verdict"] != "within_budget":
             failure = f"acquisition_{first['verdict']}: the comparison's first requests exceed the budget"
         else:
             try:
-                failure = _retrieve_text(session, base, alternate, policy, spent, klass, progress)
+                failure = _retrieve_text(session, base, alternate, policy, klass, progress)
             except PullError as error:
                 failure = f"{error.code}: {error.detail}"
             except Awaiting as wait:
@@ -346,9 +538,7 @@ def run_coverage(
         comparison = coverage.compare_id_sets(klass["ids"], text["ids"]) if state == "complete" else None
         routes = coverage.routes(klass["ids"], text["ids"]) if state == "complete" else {}
         differing = [*comparison["text_only"], *comparison["class_only"]] if comparison else []
-        budget = coverage.comparison_budget(
-            policy, klass["total"], text["total"], spent, diagnosed=len(differing)
-        )
+        budget = _budget(folder, policy, klass, text["total"], len(differing))
         if differing and budget["verdict"] == "within_budget":
             try:
                 diagnosis = diagnose(session, base, differing, request["condition_class"], routes)
@@ -362,6 +552,7 @@ def run_coverage(
         if http is None and client is not None:
             client.close()
     budget["requests_this_invocation"] = 0 if session is None else session.registry_requests - spent
+    budget["actual_registry_requests"] = spent_requests(folder)
     budget["saved_responses"] = len([p for p in (base / BODIES).glob("*") if not p.name.startswith(".")])
     union: dict[str, Any] = {"policy": "explicit_expansion_offered_not_gathered", "offered": False}
     if comparison is not None:
@@ -411,7 +602,6 @@ def _retrieve_text(
     base: Path,
     alternate: dict[str, str],
     policy: dict[str, int],
-    spent: int,
     klass: dict[str, Any],
     progress: Callable[[str], None],
 ) -> str:
@@ -425,12 +615,12 @@ def _retrieve_text(
         bodies, unreadable = _read_bodies(base / BODIES)
         first = bodies.get("ids-001.json")
         if isinstance(first, dict) and classify_json_page(first, True) in ("next", "last"):
-            plan = coverage.comparison_budget(policy, klass["total"], first["totalCount"], spent)
+            plan = _budget(base.parent, policy, klass, first["totalCount"])
             if plan["verdict"] != "within_budget":
                 raise PullError(
                     "acquisition." + plan["verdict"],
                     acquisition.refusal_detail(
-                        policy, plan["unique_studies"], spent, plan["planned_requests"]
+                        policy, plan["unique_studies"], plan["spent_requests"], plan["planned_requests"]
                     ),
                 )
         if session is None and TEXT_START not in bodies and "ids-001.json" not in bodies:
@@ -476,7 +666,10 @@ def _awaiting(folder: Path, alternate: dict[str, str], fetches: list[dict[str, s
     # Every save_as directory exists before the relay asks for it, as for the main retrieval's bodies.
     for fetch in fetches:
         (folder / fetch["save_as"]).parent.mkdir(parents=True, exist_ok=True)
-    waiting = {"status": "awaiting_fetch", "detail": f"{len(fetches)} coverage request(s) to fetch"}
+    waiting: dict[str, Any] = {
+        "status": "awaiting_fetch",
+        "detail": f"{len(fetches)} coverage request(s) to fetch",
+    }
     waiting |= {"run_folder": str(folder.resolve()), "instructions": words, "fetches": fetches}
     _write(folder / "next.json", _json(waiting))
     return "awaiting_fetch", words
@@ -527,13 +720,15 @@ def render(document: dict[str, Any]) -> str:
         f"Diagnosis of differing records: {document['diagnosis']['state']} {document['diagnosis']['detail']}",
     ]
     budget = document["budget"]
-    lines += [
-        f"Acquisition budget: {budget['planned_requests']} of {budget['max_registry_requests']} registry "
-        f"requests, {budget['unique_studies']} of {budget['max_studies']} unique studies: "
-        f"{budget['verdict']}",
-        "",
-        document["union"].get("words", "No union is offered."),
-    ]
+    if budget["verdict"] in ACCOUNTING_CODES:
+        lines.append("Acquisition budget: not computed; historical request accounting must be resolved.")
+    else:
+        lines.append(
+            f"Acquisition budget: {budget['planned_requests']} of {budget['max_registry_requests']} registry "
+            f"requests, {budget['unique_studies']} of {budget['max_studies']} unique studies: "
+            f"{budget['verdict']}"
+        )
+    lines += ["", document["union"].get("words", "No union is offered.")]
     return "\n".join(lines) + "\n"
 
 
@@ -585,6 +780,10 @@ def default_comparison_state(
         "difference_words": f"Comparison not run ({NOT_RUN_WORDS[reason]}); no statement is made about "
         "trials the class search misses.",
     }
+    if reason == "budget" and (folder / COVERAGE_NAME).is_file():
+        # The comparison's limit does not erase the independently completed class search or retained costs.
+        previous = json.loads((folder / COVERAGE_NAME).read_text())
+        document = previous | document
     if reason == "budget" or not (folder / COVERAGE_NAME).is_file():
         _write(folder / COVERAGE_NAME, _json(document))
         _write(folder / COVERAGE_TEXT, render(document).encode("utf-8"))

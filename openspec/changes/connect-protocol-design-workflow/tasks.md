@@ -76,6 +76,31 @@ Groups are integration order. After group 1, disjoint mathematical packets B/C/D
 - [ ] 7.7 Review retained/staged artifacts for replay sufficiency, size, opaque archives, accidental source duplication and added-then-deleted index entries; verify actual diff contains only intended coherent changes and privacy/security gates required for publishing pass.
 - [ ] 7.8 Under implementation authorization and repository gates, commit coherent changes on main and push; verify remote identity, clean intended status and a final delivered decision-list/workbook example with explicit remaining engineering/proof limitations.
 
+## 8. Bounded acquisition and provenance closure
+
+Evidence and strict worker scopes: [closure receipt](interface/closure-20261105.md). This group does not
+close the older whole-build proof tasks or imply the complete autonomous writer is built.
+
+- [x] 8.1 Preserve direct attempts across resumes, count newly saved relay responses once, reserve only
+  remaining work in both execution and public preview, and refuse unverifiable legacy accounting without
+  losing completed evidence. _(Evidence: `tests/test_coverage_request_checkpoint.py` and shared `_budget`.)_
+- [x] 8.2 Preserve missing/empty/malformed annotation states and incomplete diagnosis beside independent
+  complete identifier comparisons. _(Evidence: the same checkpoint packet and annotation intent cases.)_
+- [x] 8.3 Expose bounded coverage documents and explicit class additions through public CLI/MCP, with exact
+  saved-byte digests, strict selectors, current union offers and containment checks. _(Evidence:
+  `tests/test_coverage_access.py`, existing MCP inventory and clinical workflow.)_
+- [x] 8.4 Preserve original stale-adoption premises from the same linked gating closure, propagate
+  caller-attributed source origins through affected checks and candidate alternatives, and execute the
+  formerly skipped origin matrix. _(Evidence: `tests/test_protocol_closure_provenance.py`,
+  `tests/test_protocol_origin_delivery.py`, composition matrix.)_
+- [x] 8.5 Name actual typed conditions in clinical handoff, retain exact fallback references and consolidate
+  repeated delivery tasks without deleting canonical claim rows. _(Evidence:
+  `tests/test_protocol_condition_handoff.py` and the cold Phase 3 ophthalmology re-walk.)_
+- [x] 8.6 Record the frozen relevant basis, actual current gate/proof results, complete public clinical
+  receipt and artifact review; keep broad incomplete proof tasks explicit. _(Evidence: closure receipt,
+  proof reports and clinical acceptance packet; frozen gate 9,190 passed, four skipped, ten live deselected.
+  Publishing follows the repository gate; this does not close the whole-plan proof/reconciliation tasks.)_
+
 ## Workflow follow-up
 
 - Archive/sync this change only after its reviewed evidence and any explicitly accepted target-specific limitations satisfy the project's completion rules; archiving is separate from implementing it.

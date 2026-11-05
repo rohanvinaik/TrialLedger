@@ -1,0 +1,109 @@
+{
+  "checks": {
+    "public_CLI_MCP_parity": true,
+    "unchanged_entry_axes": true,
+    "loading_unchanged": true,
+    "vision_unchanged": true,
+    "only_maintenance_check_changed": true,
+    "two_repaired_effective_outcomes": true,
+    "maintenance_condition_preserved": true,
+    "source_reading_not_promoted": true,
+    "source_origin_only_affected_check": true,
+    "scope_preserved_in_child_receipts": true,
+    "distinct_populations_preserved": true,
+    "new_version_adoption_only": true,
+    "exact_source_reference_in_list": true,
+    "source_reference_in_affected_workbook_rows": true,
+    "condition_now_visible_in_list": true,
+    "condition_visible_in_schedule_sheet": true,
+    "passing_conditional_claims_grouped_in_readable_list": true,
+    "no_duplicate_open_keys": true,
+    "CLI_MCP_export_files_identical": true,
+    "all_export_hashes_match": true,
+    "bounded_replies": true
+  },
+  "passed": 21,
+  "total": 21,
+  "all_passed": true,
+  "open_items": [
+    {
+      "check": "vision-schedule",
+      "claim": "visit",
+      "kind": "claim_unsettled",
+      "ref": "/protocol/checks/2/children/0/result",
+      "text": "If the declared condition applies: Not applied: the deciding premise is still a proposal."
+    },
+    {
+      "check": "vision-schedule",
+      "claim": "target",
+      "kind": "claim_unsettled",
+      "ref": "/protocol/checks/2/children/0/result",
+      "text": "If the declared condition applies: Not applied: the deciding premise is still a proposal."
+    },
+    {
+      "check": "vision-schedule",
+      "claim": "window",
+      "kind": "claim_unsettled",
+      "ref": "/protocol/checks/2/children/0/result",
+      "text": "If the declared condition applies: Not applied: the deciding premise is still a proposal."
+    },
+    {
+      "check": "maintenance-schedule",
+      "claim": "visit",
+      "kind": "claim_conditional",
+      "ref": "/protocol/checks/1/children/0/result",
+      "text": "If the declared condition applies: At least one permitted assessment time falls within planned collection."
+    },
+    {
+      "check": "maintenance-schedule",
+      "claim": "target",
+      "kind": "claim_conditional",
+      "ref": "/protocol/checks/1/children/0/result",
+      "text": "If the declared condition applies: The nominal target is inside the permitted window and within planned collection."
+    },
+    {
+      "check": "maintenance-schedule",
+      "claim": "window",
+      "kind": "claim_conditional",
+      "ref": "/protocol/checks/1/children/0/result",
+      "text": "If the declared condition applies: Planned collection covers every permitted assessment time."
+    },
+    {
+      "check": "vision-schedule",
+      "claim": "visit",
+      "kind": "claim_conditional",
+      "ref": "/protocol/checks/2/children/0/result",
+      "text": "If the declared condition applies: Not applied: the deciding premise is still a proposal."
+    },
+    {
+      "check": "vision-schedule",
+      "claim": "target",
+      "kind": "claim_conditional",
+      "ref": "/protocol/checks/2/children/0/result",
+      "text": "If the declared condition applies: Not applied: the deciding premise is still a proposal."
+    },
+    {
+      "check": "vision-schedule",
+      "claim": "window",
+      "kind": "claim_conditional",
+      "ref": "/protocol/checks/2/children/0/result",
+      "text": "If the declared condition applies: Not applied: the deciding premise is still a proposal."
+    },
+    {
+      "check": null,
+      "claim": null,
+      "kind": "section",
+      "ref": "/protocol/sections/assessments",
+      "text": "Section assessments is open."
+    }
+  ],
+  "reply_bytes": {
+    "scoped-execute.cli.json": 7893,
+    "scoped-revision.cli.json": 7890
+  },
+  "limits": [
+    "Assertions inspect public artifacts; they do not recompute clinical reasoning manually.",
+    "No visual rendering or native Excel interaction performed.",
+    "Public source verify passed initially; later verify refused wrong_code after concurrent repository edits."
+  ]
+}

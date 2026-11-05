@@ -329,6 +329,16 @@ declare a larger intended scope explicitly rather than silently broadening it. T
 observed work are retained for resume. Raw `pull` has corresponding `--max-studies` and
 `--max-registry-requests` flags. This is acquisition protection, not a limit on copied evidence in local replay.
 
+**Search coverage.** A disease-class search compares its full ID set with a condition-text search by default.
+Read `record` part `coverage` at `/comparison/text_only` for review candidates; this address is relative to
+the saved coverage document. `coverage_file:"union_request"` selects only the current offered union request
+and does not execute it. CLI uses `--coverage-file union_request`; MCP uses the same record fields and
+continuations. The digest identifies the exact saved bytes, not disease membership. Coverage is readable
+before the landscape workbook is finished. Missing, empty and malformed annotations remain different;
+malformed annotation data leaves diagnosis incomplete. Failed direct attempts and newly saved relay
+responses consume the shared acquisition allowance across resume. Explicit `class_drug_additions` are
+the person's scope choices, separate from source-catalogue membership.
+
 **Read the record in pages.** Start with the study index or the exact requested address, then retrieve
 relevant sections. Pages are limited by entries and bytes. `navigation: addresses` is a directory, not source
 data; follow the relevant entry's `address` using part `address`. Follow `page.next_offset` to cover all
@@ -557,6 +567,10 @@ those contracts; read the view before encoding.
 - **Gaps versus conflicts.** An uncovered or uncollected part of a window is a plan gap and a repair choice.
   A violated prohibition or uncovered case in a declared policy is a policy conflict.
 - **Declared once.** The estimand's collection requirement is declared on the collection (`event_handling`).
+- **Source origins.** `source_readings` copies the attributed origins among each check's actual inputs,
+  including linked gating inputs, into compact replies and exports. It does not certify the reading,
+  authenticate confirmation or assert that every input decides each finding. A plan alternative shows
+  its own input origins, including replacements; origin display never changes admission or standing.
 - **Not computed.** An `external_method` and a binomial design missing a role report the arithmetic or named
   missing inputs, never a finding.
 

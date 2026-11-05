@@ -1,0 +1,46 @@
+  … cumulative_request_count: tracing 2 function-routed tests
+  … cumulative_request_count: baseline traced · 2 tests · 0.0s
+  … cumulative_request_count: 1/16 mutants · 62.8/s · ETA estimating… (heartbeat)
+  … cumulative_request_count: 16/16 mutants · 336.5/s · done in 0.0s
+  ▸ pass 0: 6 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +5 new killing test(s) written [test_TrialLedger_coverage_cumulative_request_count_b0e70ebdac_synth.py]
+  … cumulative_request_count: tracing 7 function-routed tests
+  … cumulative_request_count: baseline traced · 7 tests · 0.0s
+  … cumulative_request_count: 16/16 mutants · 311.6/s · done in 0.1s
+  ▸ pass 1: 6 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ witness pass: +2 distinguishing kill test(s) auto-written
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … cumulative_request_count: tracing 9 function-routed tests
+  … cumulative_request_count: baseline traced · 9 tests · 0.0s
+  … cumulative_request_count: 16/16 mutants · 350.1/s · done in 0.0s
+  ▸ minimizing — dropped 5 redundant test(s) our own cover flagged
+  … cumulative_request_count: tracing 4 function-routed tests
+  … cumulative_request_count: baseline traced · 4 tests · 0.0s
+  … cumulative_request_count: 16/16 mutants · 407.8/s · done in 0.0s
+  ▸ 4 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … cumulative_request_count: tracing 4 function-routed tests
+  … cumulative_request_count: baseline traced · 4 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/coverage.py::cumulative_request_count — converge · 16 behaviours · 12 pinned · 4 crash-only
+
+  ✓ wrote              2 test(s) → tests/detective/test_TrialLedger_coverage_cumulative_request_count_b0e70ebdac_synth.py
+  · crash-only-equiv   4 — detected by crash; no value pins them
+  · not consulted      7789 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_cumulative_request_count.txt
+
+DONE:  every killable behaviour Detective found is pinned.
+       What remains differs from your function only by a CRASH: an input
+       distinguishes each (the mutant raises where your function returns), so
+       none is an equivalence candidate and nothing is offered to `flag` — no
+       value assertion can pin a raise. They are detected, not equivalent.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/coverage.py'
+         detective decompose 'TrialLedger/coverage.py::cumulative_request_count' --apply --two-sign
+         detective survey 'TrialLedger/coverage.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/coverage.py::cumulative_request_count: ✓ COMPLETE (operator universe · modulo 4 crash-only value gaps) · 16/16 killed · 2 test(s) → tests/detective/test_TrialLedger_coverage_cumulative_request_count_b0e70ebdac_synth.py · policy 9+neg.f5a15364c11d

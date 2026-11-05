@@ -89,6 +89,11 @@ expands to its documented members and names; the preview shows what will be sear
 you a dossier per trial and shared listings for eligibility, interventions, endpoints, baseline, results,
 participant flow and safety.
 
+A disease-class search can miss a trial that the registry never tagged with that class. TrialLedger
+therefore compares its identifiers with a condition-text search by default. Additional hits stay candidates
+for review; the assistant can inspect them and explicitly request the union. Neither route establishes a
+complete clinical landscape, and a comparison that did not run never means there were no additional hits.
+
 | What you can inspect | What TrialLedger preserves |
 |---|---|
 | The actual criterion | Verbatim wording, source headings and addresses, including awkward or contradictory source entries |
@@ -712,7 +717,14 @@ Saved evidence can also be read through the CLI with the same bounded access as 
 trialledger record my-trials --part studies
 trialledger record my-trials --part study --nct NCT00322452
 trialledger record my-trials --part address --address /studies/0/criteria --limit 10
+trialledger record egfr-nsclc --part coverage --address /comparison/text_only
+trialledger record egfr-nsclc --part coverage --coverage-file union_request
 ```
+
+Coverage addresses are inside the selected saved coverage document, separate from workbook addresses.
+The same MCP `record` calls use `part:"coverage"`, optional `coverage_file:"union_request"` and `address`.
+The returned digest identifies the exact saved bytes; it establishes neither disease membership nor a
+reading's truth. A union is offered only by a complete current comparison; reading it does not execute it.
 
 Follow every returned page or text continuation needed for the question; an address directory is navigation,
 not the underlying evidence. Local source-heading context is copied with exact offsets, without interpreting
@@ -729,6 +741,12 @@ is checked before bulk retrieval. An intended larger scope can declare, for exam
 `"acquisition":{"max_studies":2000,"max_registry_requests":200}` in request JSON. The policy is retained
 for resume; it does not change the clinical search. Raw `pull` exposes `--max-studies` and
 `--max-registry-requests`. These guard NIH acquisition, not local reuse of complete retained evidence.
+
+Retries and resumed comparison work share that request allowance, including failed direct attempts.
+`landscape --run FOLDER --compare-condition-text --compare-plan` previews only the remaining work from
+retained responses. Missing or malformed annotation data stays unresolved. Source-catalogue membership
+and explicit `class_drug_additions` (CLI `--class-drug-addition`) remain distinct; additions are your scope
+choices, not newly discovered catalogue facts.
 
 For an assistant client that supports local MCP servers:
 

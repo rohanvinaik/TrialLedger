@@ -1,4 +1,9 @@
-# Freeze line for the final proof phase (task 7.4)
+# Historical freezes and current closure status (task 7.4)
+
+The hashes below are historical writing bases, not certification of the current tree. The acquisition
+and provenance closure after `db762ba` supersedes them for changed targets. See
+[the current closure receipt](closure-20261105.md) for traced ownership, tests and target-specific proof
+status. No whole-project proof completion is claimed by this pass.
 
 - Commit: `a1c8d54b3cd9c25d5a4ae9e6c31c13d1dbdccf2e` (2026-11-04), tree `c89832836949a87bce5e512c3bc5d58e10b87755`.
 - Rule: after this line there are no code edits except fixes forced by a proof finding (a CrossHair counterexample or Detective gap). Each such fix re-freezes and re-pins only the affected targets, recorded below.
@@ -88,9 +93,14 @@ Done in this pass:
 Open (listed, not fixed):
 - Refusals raised in `design_session` / `session_state` (e.g. `alternative_requires_exact_entailment_query`), and
   errors raised before `run` in the CLI/MCP wrappers, still return only a code.
-- The `source_interpretation` origin is shown on the adoption sheet and in revision axes only.
+- Source-origin display was subsequently closed: actual check inputs and linked gating inputs, plus each
+  alternative's own origins, reach compact replies, the decision list and workbook as caller attribution.
 - Dependencies are not linked to a baseline's own collection plan (a contract decision for Rohan).
 
-## Second freeze (2026-11-05)
+## Historical second freeze (2026-11-05)
 
-- Commit `284ed95c82387848009add2fb7d41ec2b9b95973`. Targeted verification runs against this commit: every pinned decision (two-sign audit, converge where Detective prescribes) and every contracted function (CrossHair `--report_all`) in files this change touched; target list in `~/trialledger-runs/proof-targeted/targets.txt`.
+- Commit `284ed95c82387848009add2fb7d41ec2b9b95973`. A targeted verification driver was started for pinned
+  decisions and contracted functions; target list in `~/trialledger-runs/proof-targeted/targets.txt`.
+  Its shell driver did not follow Detective's printed actions and is not accepted as final certification.
+  The files are preserved as historical run material. Current code, imports and authored tests need their
+  own evidence; the earlier proof tasks remain open.

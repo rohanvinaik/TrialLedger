@@ -4,6 +4,8 @@
   {
    "canonical_ref": "/response/protocol_view/check_summaries/0",
    "code": "violated",
+   "condition_ref": "/response/result/protocol/checks/0",
+   "condition_wording": "week12: study procedure: \"discontinued_treatment\"",
    "conditional": true,
    "conflicts": 0,
    "id": "week12-schedule",
@@ -23,6 +25,24 @@
    "claim": "target",
    "class": "repair_choice",
    "kind": "claim_failure",
+   "members": [
+    {
+     "check": "week12-schedule",
+     "claim": "target",
+     "class": "repair_choice",
+     "kind": "claim_failure",
+     "ref": "/protocol/checks/0/children/0/result",
+     "text": "If the declared condition applies: The nominal target is inside the permitted window but outside planned collection."
+    },
+    {
+     "check": "week12-schedule",
+     "claim": "target",
+     "class": "claim_conditional",
+     "kind": "claim_conditional",
+     "ref": "/protocol/checks/0/children/0/result",
+     "text": "If the declared condition applies: The nominal target is inside the permitted window but outside planned collection."
+    }
+   ],
    "ref": "/protocol/checks/0/children/0/result",
    "text": "If the declared condition applies: The nominal target is inside the permitted window but outside planned collection."
   },
@@ -32,35 +52,48 @@
    "claim": "window",
    "class": "repair_choice",
    "kind": "claim_failure",
+   "members": [
+    {
+     "check": "week12-schedule",
+     "claim": "window",
+     "class": "repair_choice",
+     "kind": "claim_failure",
+     "ref": "/protocol/checks/0/children/0/result",
+     "text": "If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]."
+    },
+    {
+     "check": "week12-schedule",
+     "claim": "window",
+     "class": "claim_conditional",
+     "kind": "claim_conditional",
+     "ref": "/protocol/checks/0/children/0/result",
+     "text": "If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]."
+    }
+   ],
    "ref": "/protocol/checks/0/children/0/result",
    "text": "If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]."
   },
   {
    "canonical_ref": "/response/protocol_view/delivery_findings/2",
    "check": "week12-schedule",
-   "claim": "visit",
+   "claim": null,
+   "claims": [
+    "visit"
+   ],
    "class": "claim_conditional",
    "kind": "claim_conditional",
+   "members": [
+    {
+     "check": "week12-schedule",
+     "claim": "visit",
+     "class": "claim_conditional",
+     "kind": "claim_conditional",
+     "ref": "/protocol/checks/0/children/0/result",
+     "text": "If the declared condition applies: At least one permitted assessment time falls within planned collection."
+    }
+   ],
    "ref": "/protocol/checks/0/children/0/result",
-   "text": "If the declared condition applies: At least one permitted assessment time falls within planned collection."
-  },
-  {
-   "canonical_ref": "/response/protocol_view/delivery_findings/3",
-   "check": "week12-schedule",
-   "claim": "target",
-   "class": "claim_conditional",
-   "kind": "claim_conditional",
-   "ref": "/protocol/checks/0/children/0/result",
-   "text": "If the declared condition applies: The nominal target is inside the permitted window but outside planned collection."
-  },
-  {
-   "canonical_ref": "/response/protocol_view/delivery_findings/4",
-   "check": "week12-schedule",
-   "claim": "window",
-   "class": "claim_conditional",
-   "kind": "claim_conditional",
-   "ref": "/protocol/checks/0/children/0/result",
-   "text": "If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]."
+   "text": "Check week12-schedule: satisfied claims remain conditional on week12: study procedure: \"discontinued_treatment\". Applicability is not established by these calculations."
   }
  ],
  "omitted": {
@@ -77,8 +110,8 @@
   "findings": {
    "next_offset": null,
    "offset": 0,
-   "returned": 5,
-   "total": 5
+   "returned": 3,
+   "total": 3
   }
  },
  "sections": [
