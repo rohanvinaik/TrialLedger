@@ -87,10 +87,13 @@ def test_render_writes_scoped_badges_report_and_every_survivor(tmp_path):
     assert mutation == {
         "schemaVersion": 1,
         "label": "Mutation Census (Decision Logic)",
-        "message": "90.0% · 0123456 · Measured",
+        "message": "90.0% · 0123456 · Measured · 2026-11-02",
         "color": "green",
     }
-    assert json.loads((tmp_path / "site" / "badges" / "dependencies.json").read_text())["message"] == "2"
+    assert (
+        json.loads((tmp_path / "site" / "badges" / "dependencies.json").read_text())["message"]
+        == "2 · 0123456 · 2026-11-02"
+    )
     assert "`TrialLedger/x.py::f`" in (tmp_path / "site" / "survivors.md").read_text()
     text = report.read_text()
     assert "lower" in text and "bound" in text and "httpx, openpyxl" in text
@@ -168,10 +171,10 @@ def test_render_keeps_old_census_date_and_incomplete_scope_visible(tmp_path):
     }
     qm.render(source, tmp_path)
     mutation = json.loads((tmp_path / "badges/mutation.json").read_text())
-    assert mutation["message"] == "99.0% · older12 · Historical · 7 stale · 3 unmeasured"
+    assert mutation["message"] == "99.0% · older12 · Historical · 2026-11-02 · 7 stale · 3 unmeasured"
     assert mutation["color"] == "lightgrey"
     tests = json.loads((tmp_path / "badges/tests.json").read_text())
-    assert tests["message"] == "3,566 passed · newer12"
+    assert tests["message"] == "3,566 passed · newer12 · 2026-11-04"
     assert tests["label"] == "Test Suite"
     for filename in ("index.html", "quality.md"):
         report = (tmp_path / filename).read_text()

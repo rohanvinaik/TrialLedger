@@ -10,20 +10,17 @@ from __future__ import annotations
 
 import copy
 import json
-import subprocess
 from pathlib import Path
 
 import pytest
 from openpyxl import load_workbook
 
 from tests.test_protocol_golden_outputs import GOLDEN, generate
-from tests.test_protocol_mcp_lifecycle import CLI, ROOT, McpClient, cli, fetch
+from tests.test_protocol_mcp_lifecycle import McpClient, cli, fetch
 from tests.test_protocol_session_replay import _adult_body, _session, adopt
 from tests.test_protocol_walkthrough_repairs import _estimand_with_linked_collection
 from TrialLedger import clinical_delivery, clinical_display
 from TrialLedger.layer2 import run
-
-OWNED_RUN = Path.home() / "Projects/SquishOS/ops/agents/bin/owned-run"
 
 
 def _atom(name: str, number: float = 15.0) -> dict:
@@ -202,43 +199,10 @@ def test_proposed_collection_display_never_promotes_its_arithmetic_or_admission(
     )
 
 
-class _OwnedMcp(McpClient):
-    def __init__(self, root: Path):
-        root.mkdir(parents=True, exist_ok=True)
-        self.process = subprocess.Popen(
-            [
-                str(OWNED_RUN),
-                "--label",
-                "protocol-condition-handoff-test",
-                "--",
-                CLI,
-                "mcp",
-                "--root",
-                str(root),
-            ],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True,
-            cwd=ROOT,
-        )
-        self.ident = 0
-        reply = self.send(
-            "initialize",
-            {
-                "protocolVersion": "2025-11-25",
-                "capabilities": {},
-                "clientInfo": {"name": "condition-handoff", "version": "1"},
-            },
-        )
-        assert reply["result"]["serverInfo"]
-        self.process.stdin.write(json.dumps({"jsonrpc": "2.0", "method": "notifications/initialized"}) + "\n")
-        self.process.stdin.flush()
-
-
 def test_initialized_mcp_and_cli_export_inherited_conditions_and_keep_exact_open_tasks(tmp_path):
     request = _request("branches", inherited=True)
     cli_reply, store = _compact(tmp_path, request)
-    client = _OwnedMcp(tmp_path / "served")
+    client = McpClient(tmp_path / "served")
     try:
         reply = client.call("reason", request=request, response_view="compact")
         assert reply["result_digest"] == cli_reply["result_digest"]

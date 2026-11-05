@@ -5,16 +5,13 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
-from pathlib import Path
 
 import pytest
 
-from tests.test_protocol_mcp_lifecycle import CLI, ROOT
+from tests.test_protocol_mcp_lifecycle import CLI, ROOT, McpClient
 from tests.test_search_coverage_run import Registry, compare, make_run
 from TrialLedger.evidence_access import read_record
 from TrialLedger.record_access import response_bytes
-
-OWNER = str(Path.home() / "Projects/SquishOS/ops/agents/bin/owned-run")
 
 
 @pytest.fixture
@@ -184,46 +181,12 @@ def test_missing_coverage_does_not_claim_a_comparison_was_run(tmp_path):
     assert error and reply["error"] == "coverage_not_available"
 
 
-class CoverageMcp:
-    """Initialize the actual public MCP command, with an owned temporary process group."""
-
-    def __init__(self, root):
-        self.process = subprocess.Popen(
-            [OWNER, "--label", "coverage-interface-test", "--", CLI, "mcp", "--root", str(root)],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True,
-            cwd=ROOT,
-        )
-        self.ident = 0
-        self.send(
-            "initialize",
-            {
-                "protocolVersion": "2025-11-25",
-                "capabilities": {},
-                "clientInfo": {"name": "coverage-test", "version": "1"},
-            },
-        )
-        self.process.stdin.write(json.dumps({"jsonrpc": "2.0", "method": "notifications/initialized"}) + "\n")
-        self.process.stdin.flush()
-
-    def send(self, method, params):
-        self.ident += 1
-        self.process.stdin.write(
-            json.dumps({"jsonrpc": "2.0", "id": self.ident, "method": method, "params": params}) + "\n"
-        )
-        self.process.stdin.flush()
-        reply = json.loads(self.process.stdout.readline())
-        assert reply["id"] == self.ident and "error" not in reply
-        return reply["result"]
+class CoverageMcp(McpClient):
+    """Reuse the portable initialized client; adapt only the record reply's error-bearing shape."""
 
     def call(self, arguments):
-        result = self.send("tools/call", {"name": "record", "arguments": arguments})
+        result = self.send("tools/call", {"name": "record", "arguments": arguments})["result"]
         return json.loads(result["content"][0]["text"]), result["isError"]
-
-    def close(self):
-        self.process.stdin.close()
-        assert self.process.wait(timeout=30) == 0
 
 
 def test_cli_and_initialized_mcp_read_the_same_comparison_and_union(coverage_folder):
@@ -249,7 +212,7 @@ def test_cli_and_initialized_mcp_read_the_same_comparison_and_union(coverage_fol
 def test_discovery_exposes_the_selector_and_explicit_drug_additions(coverage_folder):
     client = CoverageMcp(coverage_folder.parent)
     try:
-        tools = {tool["name"]: tool for tool in client.send("tools/list", {})["tools"]}
+        tools = {tool["name"]: tool for tool in client.send("tools/list", {})["result"]["tools"]}
         properties = tools["record"]["inputSchema"]["properties"]
         assert "coverage" in properties["part"]["enum"]
         assert properties["coverage_file"]["enum"] == ["comparison", "union_request"]

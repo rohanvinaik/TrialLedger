@@ -63,6 +63,32 @@ def archive(repo: Path, commit: str, dest: Path) -> None:
     subprocess.run(["tar", "-x", "-C", str(dest)], stdin=tar.stdout, check=True)
     if tar.wait() != 0:
         raise SystemExit(f"git archive {commit} failed")
+    snapshot_cli(dest)
+
+
+def snapshot_cli(root: Path) -> None:
+    """Expose the archived console entry point without borrowing the live checkout's CLI or package.
+
+    Some public-entry tests use <repo>/.venv/bin/trialledger. A git archive has no environment, so create
+    that console script from its own project declaration, using the measuring interpreter's dependencies.
+    Pin its imports to this archive even if a caller starts it elsewhere or changes PYTHONPATH.
+    """
+    project = tomllib.loads((root / "pyproject.toml").read_text())["project"]
+    entry = project.get("scripts", {}).get("trialledger")
+    if entry is None:
+        return
+    module, attribute = entry.split(":", 1)
+    executable = root / ".venv/bin/trialledger"
+    executable.parent.mkdir(parents=True, exist_ok=True)
+    executable.write_text(
+        f"#!{sys.executable}\n"
+        "import sys\n"
+        "from importlib import import_module\n"
+        f"sys.path.insert(0, {str(root.resolve())!r})\n"
+        f"raise SystemExit(import_module({module!r}).{attribute}())\n",
+        encoding="utf-8",
+    )
+    executable.chmod(0o755)
 
 
 def check_isolated(copy_root: Path) -> None:
@@ -150,18 +176,35 @@ def select_tests(root: Path, file: str, name: str) -> tuple[list[str], str]:
 
 
 def pytest(root: Path, tests: list[str], timeout: float):
-    argv = [sys.executable, "-m", "pytest", "-x", "-q", "-p", "no:cacheprovider", "-p", "no:randomly", *tests]
+    argv = [sys.executable, "-m", "pytest", "-x", "-p", "no:cacheprovider", "-p", "no:randomly", *tests]
     return run(argv, root, timeout=timeout, env=copy_env(root))
+
+
+def census_test_run(root: Path, tests: list[str], timeout: float, deadline: float) -> str:
+    """Run a selected suite within both limits; budget exhaustion is never a mutation kill."""
+    remaining = deadline - time.time() if deadline else timeout
+    if remaining <= 0:
+        return "deferred"
+    limited_by_budget = bool(deadline) and remaining <= timeout
+    try:
+        done = pytest(root, tests, timeout=min(timeout, remaining))
+    except subprocess.TimeoutExpired:
+        return "deferred" if limited_by_budget or (deadline and time.time() >= deadline) else "timeout"
+    if deadline and time.time() >= deadline:
+        return "deferred"
+    return "failed" if done.returncode else "passed"
 
 
 def census(job: tuple[str, list[dict], float]) -> list[dict]:
     """Mutate each function in one private copy, serially; every file is restored after each mutant.
 
-    A function not started before the deadline (epoch seconds; 0 means none) is returned marked skipped."""
+    A function unfinished at the deadline (epoch seconds; 0 means none) is returned marked skipped.
+    Its partial outcomes never enter the aggregate as a completed measurement.
+    """
     root, targets, deadline = Path(job[0]), job[1], job[2]
     results = []
     for target in targets:
-        if deadline and time.time() > deadline:
+        if deadline and time.time() >= deadline:
             results.append({**target, "skipped": True})
             continue
         path = root / target["file"]
@@ -175,10 +218,14 @@ def census(job: tuple[str, list[dict], float]) -> list[dict]:
             results.append(record)
             continue
         started = time.monotonic()
-        baseline = pytest(root, tests, timeout=900)
+        baseline = census_test_run(root, tests, timeout=900, deadline=deadline)
         elapsed = time.monotonic() - started
-        if baseline.returncode != 0:
+        if baseline == "deferred":
+            results.append({**target, "skipped": True})
+            continue
+        if baseline != "passed":
             record["baseline"] = "failing"
+            record["baseline_reason"] = baseline
             results.append(record)
             continue
         record["baseline"] = "passing"
@@ -193,15 +240,13 @@ def census(job: tuple[str, list[dict], float]) -> list[dict]:
                 continue
             path.write_text(text, encoding="utf-8")
             try:
-                outcome = (
-                    "killed"
-                    if pytest(root, tests, timeout=max(60, 5 * elapsed + 30)).returncode
-                    else "survived"
-                )
-            except subprocess.TimeoutExpired:
-                outcome = "timeout"
+                state = census_test_run(root, tests, timeout=max(60, 5 * elapsed + 30), deadline=deadline)
             finally:
                 path.write_text(original, encoding="utf-8")
+            if state == "deferred":
+                record = {**target, "skipped": True}
+                break
+            outcome = {"passed": "survived", "failed": "killed", "timeout": "timeout"}[state]
             record["outcomes"].append(
                 {
                     "line": lineno,
@@ -222,7 +267,6 @@ def coverage(root: Path) -> dict:
         sys.executable,
         "-m",
         "pytest",
-        "-q",
         "-p",
         "no:cacheprovider",
         "--cov=TrialLedger",
@@ -232,12 +276,15 @@ def coverage(root: Path) -> dict:
     if done.returncode != 0:
         raise SystemExit("the suite failed under coverage:\n" + done.stdout + done.stderr)
     totals = json.loads(report.read_text())["totals"]
-    summary = re.search(r"(\d+) passed(?:, (\d+) deselected)?", done.stdout)
+    summary = re.search(r"(\d+) passed", done.stdout)
     if summary is None:
         raise SystemExit("no pytest summary line under coverage")
     return {
         "tests_passed": int(summary.group(1)),
-        "tests_deselected": int(summary.group(2) or 0),
+        "tests_deselected": int(found.group(1))
+        if (found := re.search(r"(\d+) deselected", done.stdout))
+        else 0,
+        "tests_skipped": int(found.group(1)) if (found := re.search(r"(\d+) skipped", done.stdout)) else 0,
         "statements": totals["num_statements"],
         "line_coverage": round(100 * totals["covered_lines"] / totals["num_statements"], 1),
         "branches": totals["num_branches"],
@@ -314,7 +361,10 @@ def mutation_message(metrics: dict) -> str:
     basis = mutation_basis(metrics)
     if basis["status"] == "unmeasured":
         return "Not measured"
-    message = f"{rate(metrics['mutation_pinned'])} · {basis['commit'][:7]} · {basis['status'].capitalize()}"
+    message = (
+        f"{rate(metrics['mutation_pinned'])} · {basis['commit'][:7]} · {basis['status'].capitalize()}"
+        f" · {basis['measured'] or 'date unknown'}"
+    )
     for key, label in (
         ("stale_functions", "stale"),
         ("unmeasured_functions", "unmeasured"),
@@ -335,7 +385,8 @@ uv run --with coverage --with pytest-cov python scripts/quality_metrics.py --wor
 ```
 
 - **Coverage** runs the whole suite under coverage.py with the classic tracer, counting statements and
-  branches in the `TrialLedger` package.
+  branches in the `TrialLedger` package. Archived console scripts use that snapshot's declared entry point
+  and source, with the measuring interpreter's dependencies; they never borrow the live checkout's code.
 - **Mutation score** plants one simple bug at a time inside a function body (comparison flipped, `and`/`or`
   swapped, boolean flipped, integer incremented, string constant changed), runs the test files that name
   the function (or, failing that, import its module) and counts the bug caught if a test fails or times
@@ -353,6 +404,10 @@ uv run --with coverage --with pytest-cov python scripts/quality_metrics.py --wor
   result, marked stale, and is re-measured on the next run. Stale results remain in the historical aggregate;
   the badge names their count and says Partial (or Historical when its commit differs from coverage).
   Unmeasured targets and pinned functions without a passing selected-test baseline also remain visible.
+  Deferred targets retain their exact identities across limits, deadlines and coverage-only publication.
+  A deadline interruption defers the whole function; it never counts as a caught mutant. Legacy reports
+  that retain only an anonymous missing-count stay incomplete until a fresh non-incremental census declares
+  a new sample. A reuse-only run preserves the last actual census measurement date.
   Reuse checks function bodies and selected tests, not the entire transitive dependency graph; Measured
   describes that census basis, not proof of every path at the current commit. See the published
   [snapshot report](https://rohanvinaik.github.io/TrialLedger/quality.md) for its exact basis and date.
@@ -371,7 +426,8 @@ def quality_md(m: dict) -> str:
     rows = [
         (
             "Tests",
-            f"{m['tests_passed']:,} passing ({m['tests_deselected']} opt-in live-registry tests deselected)",
+            f"{m['tests_passed']:,} passing ({m.get('tests_skipped', 0)} skipped; "
+            f"{m['tests_deselected']} opt-in live-registry tests deselected)",
         ),
         ("Line coverage", f"{m['line_coverage']}% of {m['statements']:,} statements"),
         ("Branch coverage", f"{m['branch_coverage']}% of {m['branches']:,} branches"),
@@ -412,7 +468,14 @@ def quality_md(m: dict) -> str:
         "badges show the latest successful publication, which may lag main. They are published by the\n"
         f"[quality workflow](.github/workflows/quality.yml) and published to {PAGES}."
     )
-    return f"# Quality\n\n{intro}\n\n| Measure | Value |\n|---|---|\n{table}\n\n{METHOD}"
+    legacy = m.get("unidentified_pending_targets", 0)
+    uncertainty = (
+        f"\n\n{legacy} unfinished targets have no retained identity in the legacy baseline. "
+        "They remain unmeasured; run a fresh census without --incremental to declare a new sample."
+        if legacy
+        else ""
+    )
+    return f"# Quality\n\n{intro}\n\n| Measure | Value |\n|---|---|\n{table}{uncertainty}\n\n{METHOD}"
 
 
 def slim(records: list[dict]) -> list[dict]:
@@ -454,12 +517,18 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
     basis = metrics["mutation_basis"]
     commit = metrics["commit"][:7]
     for name, data in {
-        "tests": badge("Test Suite", f"{metrics['tests_passed']:,} passed · {commit}", "blue"),
+        "tests": badge(
+            "Test Suite", f"{metrics['tests_passed']:,} passed · {commit} · {metrics['measured']}", "blue"
+        ),
         "coverage": badge(
-            "Line Coverage", f"{metrics['line_coverage']}% · {commit}", color(metrics["line_coverage"])
+            "Line Coverage",
+            f"{metrics['line_coverage']}% · {commit} · {metrics['measured']}",
+            color(metrics["line_coverage"]),
         ),
         "branches": badge(
-            "Branch Coverage", f"{metrics['branch_coverage']}% · {commit}", color(metrics["branch_coverage"])
+            "Branch Coverage",
+            f"{metrics['branch_coverage']}% · {commit} · {metrics['measured']}",
+            color(metrics["branch_coverage"]),
         ),
         "mutation": badge(
             "Mutation Census (Decision Logic)",
@@ -467,7 +536,9 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
             color(pin["kill_rate"]) if basis["status"] == "measured" else "lightgrey",
         ),
         "dependencies": badge(
-            "Runtime Dependencies", str(len(metrics["runtime_dependencies"])), "brightgreen"
+            "Runtime Dependencies",
+            f"{len(metrics['runtime_dependencies'])} · {commit} · {metrics['measured']}",
+            "blue",
         ),
     }.items():
         (badges / f"{name}.json").write_text(json.dumps(data) + "\n", encoding="utf-8")
@@ -514,6 +585,35 @@ def inventory(root: Path, everything: list[dict]) -> dict:
             ),
         },
     }
+
+
+def census_scope(everything: list[dict], baseline: dict | None, size: int, seed: int) -> list[dict]:
+    """Keep every current pinned decision and the declared unpinned sample, including unfinished IDs."""
+    pinned = [f for f in everything if f["pinned"]]
+    if baseline is None or baseline.get("mutation_commit", baseline.get("commit")) is None:
+        others = [f for f in everything if not f["pinned"] and f["mutants"]]
+        return pinned + random.Random(seed).sample(others, min(size, len(others)))
+    remembered = [*baseline.get("records", []), *baseline.get("pending_targets", [])]
+    kept = {(r["file"], r["name"]) for r in remembered if not r["pinned"]}
+    return pinned + [f for f in everything if not f["pinned"] and (f["file"], f["name"]) in kept]
+
+
+def reconcile_census(attempts: list[dict], previous: list[dict]) -> dict:
+    """A deferred target retains its old result as stale, or its exact identity as unmeasured.
+
+    No skipped target is a measurement. Both limit omissions and worker deadlines use this owner.
+    """
+    old = {(r["file"], r["name"]): r for r in previous}
+    records, pending, measured = [], [], 0
+    for target in attempts:
+        if not target.get("skipped"):
+            records.append(target)
+            measured += 1
+        elif prior := old.get((target["file"], target["name"])):
+            records.append({**prior, "stale": True})
+        else:
+            pending.append({k: v for k, v in target.items() if k != "skipped"})
+    return {"records": records, "pending_targets": pending, "remeasured": measured}
 
 
 def publish_coverage(repo: Path, commit: str, baseline: dict | None, out: Path, quality: Path | None):
@@ -591,21 +691,18 @@ def main(argv: list[str] | None = None) -> int:
         check_isolated(base)
         everything = functions(base)
         pinned = [f for f in everything if f["pinned"]]
+        scope = census_scope(everything, baseline, args.unpinned_sample, args.seed)
         reused: list[dict] = []
         mutation_commit = baseline.get("mutation_commit", baseline["commit"]) if baseline else None
         if baseline is None or mutation_commit is None:
-            others = [f for f in everything if not f["pinned"] and f["mutants"]]
-            sample = random.Random(args.seed).sample(others, min(args.unpinned_sample, len(others)))
-            targets = pinned + sample
+            targets = scope
         else:
             old = {(r["file"], r["name"]): r for r in baseline["records"]}
-            kept = {key for key, r in old.items() if not r["pinned"]}
-            targets, sample = (
-                [],
-                [f for f in everything if (f["file"], f["name"]) in kept and not f["pinned"]],
-            )
-            diff = run(["git", "diff", "--name-only", mutation_commit, commit], repo).stdout.split()
-            for f in pinned + sample:
+            targets = []
+            changed = run(["git", "diff", "--name-only", mutation_commit, commit], repo)
+            changed.check_returncode()
+            diff = changed.stdout.splitlines()
+            for f in scope:
                 record = old.get((f["file"], f["name"]))
                 tests, _ = select_tests(base, f["file"], f["name"])
                 unchanged = (
@@ -627,10 +724,11 @@ def main(argv: list[str] | None = None) -> int:
         print("measuring coverage", flush=True)
         covered = coverage(base)
         targets = sorted(targets, key=lambda f: -f["mutants"])
-        omitted = max(0, len(targets) - args.limit) if args.limit else 0
+        deferred = []
         if args.limit:
+            deferred = [{**f, "skipped": True} for f in targets[: -args.limit]]
             targets = targets[-args.limit :]
-        records = list(reused)
+        attempts = []
         workers = max(1, min(args.workers, len(targets)))
         deadline = time.time() + 60 * args.budget_minutes if args.budget_minutes else 0.0
         if targets:
@@ -643,17 +741,19 @@ def main(argv: list[str] | None = None) -> int:
             with ProcessPoolExecutor(max_workers=workers) as pool:
                 jobs = zip(map(str, copies), shares, [deadline] * workers, strict=True)
                 for share in pool.map(census, jobs):
-                    records.extend(share)
-        previous = {(r["file"], r["name"]): r for r in (baseline or {}).get("records", [])}
-        stale, unmeasured = 0, omitted
-        for index, record in enumerate(records):
-            if record.get("skipped"):
-                old = previous.get((record["file"], record["name"]))
-                if old is not None:
-                    records[index], stale = {**old, "stale": True}, stale + 1
-                else:
-                    unmeasured += 1
-        records = [r for r in records if not r.get("skipped")]
+                    attempts.extend(share)
+        reconciled = reconcile_census([*deferred, *attempts], (baseline or {}).get("records", []))
+        records = [*reused, *reconciled["records"]]
+        pending = reconciled["pending_targets"]
+        # Old count-only reports cannot identify their omitted sample. Preserve that uncertainty until
+        # a fresh (non-incremental) census explicitly declares and measures a new sample.
+        prior = baseline or {}
+        unidentified = prior.get(
+            "unidentified_pending_targets",
+            max(0, prior.get("functions_not_yet_measured", 0) - len(prior.get("pending_targets", []))),
+        )
+        if mutation_commit is None:
+            unidentified = 0
         print("mutation census done", flush=True)
         package = inventory(base, everything)
     metrics = {
@@ -662,10 +762,16 @@ def main(argv: list[str] | None = None) -> int:
         "python": sys.version.split()[0],
         "baseline_commit": mutation_commit or commit,
         "mutation_commit": commit,
-        "mutation_measured": datetime.date.today().isoformat(),
-        "functions_remeasured": len(targets) - stale - (unmeasured - omitted),
-        "functions_stale": stale,
-        "functions_not_yet_measured": unmeasured,
+        "mutation_measured": datetime.date.today().isoformat()
+        if reconciled["remeasured"]
+        else prior.get("mutation_measured", prior.get("measured")),
+        "census_checked": datetime.date.today().isoformat(),
+        "functions_reused": len(reused),
+        "functions_remeasured": reconciled["remeasured"],
+        "functions_stale": sum(bool(r.get("stale")) for r in records),
+        "functions_not_yet_measured": len(pending) + unidentified,
+        "pending_targets": sorted(pending, key=lambda f: (f["file"], f["name"])),
+        "unidentified_pending_targets": unidentified,
         **package,
         **covered,
         "mutation_pinned": tally([r for r in records if r["pinned"]]),

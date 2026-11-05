@@ -1,0 +1,9 @@
+{
+  "source": "scripts/quality_metrics.py",
+  "ast_sha256": {
+    "census_scope": "23e7e8417fd4a15b028380501c2d7d6c49decaaaf7d4b0ac0e32445b247dd952",
+    "reconcile_census": "348008332c40747165e9afa2c6a9c1b8f438994468b7c206e4946e5d8ca42868"
+  },
+  "reconcile": "COMPLETE modulo 4 unproven-equivalent, 34/34 killed",
+  "scope": "INCOMPLETE, 3 killable, 66/67 killed; not certified"
+}

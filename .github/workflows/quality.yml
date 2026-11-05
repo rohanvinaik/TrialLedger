@@ -4,7 +4,9 @@
 # The baseline rolls forward: each run compares against the metrics the previous run published, falling back
 # to the committed baseline (quality/metrics.json) when there is none or its commit is not an ancestor. A
 # 30-minute census budget keeps the run bounded; functions not reached keep their previous result, marked
-# stale, and are re-measured on the next run. tests.yml separately supplies the Actions status badge.
+# stale, and are re-measured on the next run. Unmeasured targets keep their identities; deadline interruptions
+# never count as caught mutants. tests.yml separately supplies the suite status; this job supplies the
+# QC Publication status, and every numeric badge names its own measurement commit/date.
 name: Quality
 
 on:

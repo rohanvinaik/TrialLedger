@@ -404,6 +404,19 @@ Wesker use the founder's local checkouts. Run the final deep gate only after cod
 Follow current machine instructions for temporary processes, Git and verification tools; do not restate or
 weaken them in this repository.
 
+Push completion includes the remote result. Follow **Tests** and **Quality** for the exact pushed commit,
+including the final Pages deployment; a local gate or successful Git push is not that result. Read the
+published metrics and badges back, compare their commit, date, counts and pending scope with the run, and
+report a failure or stale publication explicitly. Do not end a repair with a green local result while the
+corresponding remote workflow is failing or unobserved.
+
+Quality measurements use disposable archived snapshots with their own console entry point. Test fixtures
+must run without personal machine launchers. Keep mutation evidence separate from coverage: coverage-only
+publication carries the census's original basis, and limits/deadlines retain every unfinished target.
+An interrupted function is deferred, never scored as caught; legacy unnamed pending work stays incomplete.
+Numeric README badges include their measured commit/date, beside the separate QC-publication status.
+Neither a green bounded census nor recorded certificates establish a fresh whole-codebase Detective audit.
+
 The dated [rescue verification record](acceptance/rescue-2026-11-02.md) retains the completed checks,
 individual mutation-check limitation and founder-approved boundary for the extended deep audit. Read the
 actual receipts before reusing a validation claim; a skipped or incomplete check is not a pass.

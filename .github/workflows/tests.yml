@@ -27,4 +27,4 @@ jobs:
           .venv/bin/ruff check .
           .venv/bin/ruff format --check .
       - name: Tests
-        run: .venv/bin/pytest -q
+        run: .venv/bin/pytest

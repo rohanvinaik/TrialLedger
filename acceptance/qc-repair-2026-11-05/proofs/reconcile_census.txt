@@ -1,0 +1,24 @@
+scripts/quality_metrics.py::reconcile_census: ✓ every killable mutant killed + line-complete — 4 candidate-equivalent (UNPROVEN: `flag` if truly equivalent, or add a distinguishing input)
+  mutants: 0 → 0 survivors; score 100% → 100% (34/34 killed)
+  value: 4 → 4 unspecified; score 88% → 88% (30/34 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 27 operator mutants · comprehensive — full mutant universe · 30/34 = 88% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 4 survivors, 0 sound tests written
+  remaining: 1 SWAP, 3 VALUE
+  ✓ every killable mutant killed — remaining survivors have no distinguishing input (candidate-equivalent, NOT proven)
+  candidate-equivalent — retained, UNPROVEN (4: SWAP, VALUE); no distinguishing input in 11 tried. To KILL: supply an input reaching a mutated branch below (or `flag` what you can PROVE equivalent):
+      boundary-probed: 0 further probe input(s) — both sides of every edge, the None of every Optional — distinguished none of these
+    → mutant SWAP_c33efed8 [SWAP]: - elif (prior := old.get((target['file'], target['name']))):  + elif (prior := (target['file'], target['name'])):
+    → mutant VALUE_d44f6e31 [VALUE]: - old = {(r['file'], r['name']): r for r in previous}  + old = {(r['file'], r['']): r for r in previous}
+    → mutant VALUE_960cf2d2 [VALUE]: - elif (prior := old.get((target['file'], target['name']))):  + elif (prior := old.get((target[''], target['name']))):
+    → mutant VALUE_b3f3c26b [VALUE]: - elif (prior := old.get((target['file'], target['name']))):  + elif (prior := old.get((target['file'], target['']))):
+      target:  reconcile_census(attempts: list[dict], previous: list[dict])
+      template: --input "(<attempts>, <previous>)"   # replace every <...> slot before running
+  ⚠ structural caveat: a survivor above may be KILLABLE, not equivalent — its distinguishing input is one the deterministic search did not construct (a nested/cross-referential value, or a branch no tried input reached). Confirm with a differential check over a nested / cross-referential `--input` BEFORE you `flag`.
+  uncertain — no synthesized input discriminates the remaining survivor(s), and their inputs are expressible as literals — supply the distinguishing value(s) with --input rather than searching the covering suite
+  ▶ boundary-probed and still undistinguished — if you can PROVE one equivalent, record it: `detective flag 'scripts/quality_metrics.py::reconcile_census' SWAP_c33efed8 --two-sign --note why-equivalent`   (repeat for: VALUE_d44f6e31, VALUE_960cf2d2, VALUE_b3f3c26b)
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 9149 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 4 test(s) cover all kills + lines
+  PROPOSED removals (6, redundant for BOTH kills and lines — confirm to delete, never auto): tests/test_quality_deadline.py::test_a_deferred_function_keeps_old_evidence_stale_without_merging_new_partial_outcomes, tests/test_quality_deadline.py::test_all_normal_outcomes_before_deadline_remain_a_complete_measurement, tests/test_quality_deadline.py::test_baseline_exhaustion_defers_without_a_failing_or_measured_record[budget_timeout], tests/test_quality_deadline.py::test_baseline_exhaustion_defers_without_a_failing_or_measured_record[returns_after_deadline], tests/test_quality_deadline.py::test_mutant_budget_expiry_discards_earlier_outcomes_and_restores_source[budget_timeout], tests/test_quality_deadline.py::test_mutant_budget_expiry_discards_earlier_outcomes_and_restores_source[returns_after_deadline]
+FINAL scripts/quality_metrics.py::reconcile_census: ✓ COMPLETE (operator universe · modulo 4 unproven-equivalent) · 34/34 killed · minimal cover 4 test(s) · policy 9+neg.f5a15364c11d

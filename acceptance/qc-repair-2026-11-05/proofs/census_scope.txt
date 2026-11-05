@@ -1,0 +1,32 @@
+scripts/quality_metrics.py::census_scope: Incomplete
+  mutants: 1 → 1 survivors; score 99% → 99% (66/67 killed)
+  value: 12 → 12 unspecified; score 82% → 82% (55/67 pinned)
+  every-killable-killed=False  line-complete=True
+  universe: 46 operator mutants · comprehensive — full mutant universe (count ≈ in-process estimate; killset and proof stable) · 55/67 = 82% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 12 survivors, 0 sound tests written
+  spec-completeness: 120% resolved by structure for free · structure exhausted — 3 unresolved residual(s) = I_solve (supply input/evidence below to finish)
+  remaining: 2 ARITHMETIC, 1 BOUNDARY, 7 SWAP, 2 VALUE
+  candidate-equivalent — retained, UNPROVEN (3: SWAP, VALUE); no distinguishing input in 84 tried. To KILL: supply an input reaching a mutated branch below (or `flag` what you can PROVE equivalent):
+      boundary-probed: 65 further probe input(s) — both sides of every edge, the None of every Optional — distinguished none of these
+    → mutant SWAP_0ae01b0e [SWAP]: - return pinned + random.Random(seed).sample(others, min(size, len(others)))  + return pinned + random.Random(seed).sample(others, min(len(others), size))
+    → mutant VALUE_474d17f2 [VALUE]: - others = [f for f in everything if not f['pinned'] and f['mutants']]  + others = [f for f in everything if not f[''] and f['mutants']]
+    → mutant VALUE_6bf4db22 [VALUE]: - others = [f for f in everything if not f['pinned'] and f['mutants']]  + others = [f for f in everything if not f['pinned'] and f['']]
+      target:  census_scope(everything: list[dict], baseline: dict | None, size: int, seed: int)
+      template: --input "(<everything>, <baseline>, <size>, <seed>)"   # replace every <...> slot before running
+  value-equivalent, crash-only-distinguishable (6: ARITHMETIC, BOUNDARY, SWAP) — the mutant RAISES where the original returns, so no return-value assertion can pin it. Your suite already detects every one by crash — no input is owed for detection; a ↳ line below, where present, names the boundary input that would make the distinction explicit. An input distinguishes each, so none is an equivalence candidate — nothing to `flag`:
+    → mutant ARITHMETIC_d00e8d1e [ARITHMETIC]: - return pinned + random.Random(seed).sample(others, min(size, len(others)))  + return pinned - random.Random(seed).sample(others, min(size, len(others)))
+    → mutant ARITHMETIC_4257e2e3 [ARITHMETIC]: - return pinned + [f for f in everything if not f['pinned'] and (f['file'], f['name']) in kept]  + return pinned - [f for f in everything if not f['pinned'] and (f['file'], f['name']) in kept]
+    → mutant BOUNDARY_6eb2cb17 [BOUNDARY]: - if baseline is None or baseline.get('mutation_commit', baseline.get('commit')) is None:  + if False or baseline.get('mutation_commit', baseline.get('commit')) is None:
+    → mutant SWAP_08ccbd01 [SWAP]: - return pinned + random.Random(seed).sample(others, min(size, len(others)))  + return pinned + random.Random(seed).sample(others, size)
+    → mutant SWAP_00cb22e4 [SWAP]: - remembered = [*baseline.get('records', []), *baseline.get('pending_targets', [])]  + remembered = [*'records', *baseline.get('pending_targets', [])]
+    → mutant SWAP_3b693f25 [SWAP]: - remembered = [*baseline.get('records', []), *baseline.get('pending_targets', [])]  + remembered = [*baseline.get('records', []), *'pending_targets']
+  killable — SUGGESTED tests (not auto-applied, 3):
+    → assert f([], {}, -1, -1) == <raised ValueError: Sample larger than population or is negative>   (mutant gives <raised TypeError: Population must be a sequence.  For dicts or sets, use sorted(d).>)   (kills 3: SWAP_89784f7c, SWAP_6ec87e93, SWAP_0e821e84)
+  uncertain — no synthesized input discriminates the remaining survivor(s), and their inputs are expressible as literals — supply the distinguishing value(s) with --input rather than searching the covering suite
+  ▶ boundary-probed and still undistinguished — if you can PROVE one equivalent, record it: `detective flag 'scripts/quality_metrics.py::census_scope' SWAP_0ae01b0e --two-sign --note why-equivalent`   (repeat for: VALUE_474d17f2, VALUE_6bf4db22)
+  ✓ line-complete — every executable line is covered by a test
+  ⚠ golden refused — reads entropy via random.Random(); not capturable without an explicit fixture/capability
+  · not consulted: 9157 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 7 test(s) cover all kills + lines
+  PROPOSED removals (1, redundant for BOTH kills and lines — confirm to delete, never auto): tests/test_quality_census_contracts.py::test_sample_size_is_capped_to_the_available_inventory
+FINAL scripts/quality_metrics.py::census_scope: Incomplete: 3 killable · 66/67 killed · minimal cover 7 test(s) · policy 9+neg.f5a15364c11d
