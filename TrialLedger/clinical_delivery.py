@@ -125,7 +125,10 @@ def protocol_delivery_view(result: dict) -> dict:
                 for item in view["delivery_findings"]
                 if item["check"] == check["id"] and item["class"] == "repair_choice"
             ),
-            "conditional": any(claim["application"] == "conditional" for claim in check["claims"]),
+            "conditional": any(claim["application"] == "conditional" for claim in check["claims"])
+            or any(row.get("application") == "conditional" for row in check["findings"])
+            or any(row.get("application") == "conditional" for row in check["clean_signals"]),
+            "standing": check["standing"],
         }
         for check in view["checks"]
     ]

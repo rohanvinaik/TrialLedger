@@ -1065,14 +1065,27 @@ def _claim_entries(view: dict, identity: str) -> list[dict]:
                     "outcome": clean["code"],
                     "effective": clean["code"],
                     "admission": "accepted",
-                    "application": "n/a",
-                    "standing": "n/a",
+                    "application": clean.get("application") or "n/a",
+                    "standing": clean.get("standing") or "n/a",
                     "arithmetic": "n/a",
                     "applicability": "n/a",
-                    "wording": f"No finding: the {clean['kind']} check returned {clean['code']}.",
+                    "wording": f"No finding: the {clean['kind']} check returned {clean['code']}"
+                    + (
+                        " (only where the declared condition applies)"
+                        if clean.get("application") == "conditional"
+                        else ""
+                    )
+                    + ".",
                     "determining": "",
                     "pointer": clean["ref"],
-                    "bullet": f"{clean['kind']} check: no finding, returned {clean['code']};",
+                    "bullet": f"{clean['kind']} check: no finding, returned {clean['code']} — standing "
+                    f"{clean.get('standing') or 'not stated'}"
+                    + (
+                        "; applies only where the declared condition applies"
+                        if clean.get("application") == "conditional"
+                        else ""
+                    )
+                    + ";",
                 }
             )
         # A projection that could not be computed has no claim rows; the reason is still a row (never an
@@ -1319,6 +1332,7 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
     ):
         lines.append(
             f"Check {check['id']} ({check['kind']}, {'required' if check['required'] else 'optional'})"
+            + (f" — rests on standing {check['standing']}" if check.get("standing") else "")
         )
         for entry in entries:
             if entry["check"] is check:

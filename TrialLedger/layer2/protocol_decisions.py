@@ -104,6 +104,9 @@ def validate(raw: object, index: dict, target: dict) -> dict:
         for obj in replacements:
             if type(obj) is not dict or "id" not in obj or "kind" not in obj or "scope" not in obj:
                 raise _fail("fields")
+            if type(obj["id"]) is not str:
+                # An id is a string; an unhashable value is a named refusal, never a TypeError (ty triage).
+                raise _fail("fields")
             if obj["id"] not in index["objects"] or obj["id"] in seen:
                 raise _fail("unknown_object")
             seen.add(obj["id"])
@@ -119,6 +122,8 @@ def validate(raw: object, index: dict, target: dict) -> dict:
         if type(selected) is not dict or set(selected) != {"alternative", "origin", "basis"}:
             raise _fail("selection")
         basis = selected["basis"]
+        if type(selected["alternative"]) is not str:
+            raise _fail("selection")
         if selected["origin"] != "user" or selected["alternative"] not in ids:
             raise _fail("selection")
         if type(basis) is not list or not basis or any(type(b) is not str or not b for b in basis):

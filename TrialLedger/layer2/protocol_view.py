@@ -414,10 +414,30 @@ def _check_row(index: int, check: dict) -> dict:
                         "kind_of_finding": claim_kind(row),
                     }
                 )
+    plain_standing = [sig.get("finding_status") or sig.get("status") for _, sig in _plain_signals(check)]
+    inherited = sorted(
+        {
+            row["object"]
+            for child in children
+            for row in child.get("conditions") or []
+            if row.get("object") not in (check.get("objects") or [])
+        }
+    )
     return {
         "id": check["id"],
         "kind": check["kind"],
         "required": check["required"],
+        # The weakest standing this check's findings rest on, separate from `conditional` (which means only
+        # "applies under a declared condition"); Rohan, 2026-11-05.
+        "standing": weakest_standing([c["standing"] for c in claims] + plain_standing),
+        # Conditions reached through a linked object, and whether this check declares its own applicability
+        # binding (bindings are check-local; Rohan, 2026-11-05).
+        "inherited_conditions": inherited,
+        "applicability_binding": any(
+            b.get("projection") == "condition_applicability"
+            for child in children[:1]
+            for b in (child.get("receipt") or {}).get("bindings") or []
+        ),
         "projection": check.get("projection"),
         "summary": None
         if first is None
@@ -435,7 +455,12 @@ def _check_row(index: int, check: dict) -> dict:
                 "calculation_code": sig.get("calculation_code"),
                 "admission": (sig.get("admission") or {}).get("code"),
                 "codes": signal_finding_codes(sig),
-                "kind_of_finding": signal_kind(sig),
+                # A plain signal carries its own applicability (a condition reached through a linked object).
+                "application": sig.get("application"),
+                "finding_status": sig.get("finding_status"),
+                "kind_of_finding": "conditional"
+                if sig.get("application") == "conditional"
+                else signal_kind(sig),
                 "ref": _child_ref(index, j),
             }
             for j, sig in _plain_signals(check)
@@ -449,6 +474,8 @@ def _check_row(index: int, check: dict) -> dict:
                 "signal": sig.get("id"),
                 "kind": sig.get("kind"),
                 "code": sig.get("code"),
+                "standing": sig.get("finding_status") or sig.get("status"),
+                "application": sig.get("application"),
                 "ref": _child_ref(index, j),
             }
             for j, sig in _plain_signals(check)
@@ -636,6 +663,15 @@ FINDING_CODE_WORDS = {
     "binomial_bit_limit": "not computed within the declared size limit",
     "collection_plan_mismatch": "the collection plan does not meet a declared requirement",
 }
+
+
+STANDING_ORDER = ("proposed", "interpolated", "known")
+
+
+def weakest_standing(values: list) -> str | None:
+    """The weakest declared standing among values; None when none is declared (pure)."""
+    present = [v for v in values if v in STANDING_ORDER]
+    return min(present, key=STANDING_ORDER.index) if present else None
 
 
 def code_words(code: object) -> str:
@@ -1278,12 +1314,36 @@ def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]
                         "signal_finding",
                         check_rows[i]["id"],
                         None,
-                        f"Finding from the {signal.get('kind')} check: {code_words(code)}.",
+                        (CONDITIONAL_PREFIX if signal.get("application") == "conditional" else "")
+                        + f"Finding from the {signal.get('kind')} check: {code_words(code)}.",
                         _child_ref(i, j),
                     )
                 )
     items += claim_items("claim_unsettled", lambda r: r["effective_outcome"] in UNSETTLED)
     items += claim_items("claim_conditional", lambda r: r["application"] == "conditional")
+    for i, check in enumerate(checks):
+        for j, signal in _plain_signals(check):
+            if signal.get("application") == "conditional":
+                items.append(
+                    item(
+                        "claim_conditional",
+                        check_rows[i]["id"],
+                        None,
+                        CONDITIONAL_PREFIX
+                        + f"the {signal.get('kind')} check's result ({code_words(signal.get('code'))}) holds "
+                        "only where the declared assessment condition applies."
+                        + (
+                            " The condition is inherited from "
+                            + ", ".join(check_rows[i]["inherited_conditions"])
+                            + "; "
+                            "declare a condition_applicability binding on this check to decide it."
+                            if check_rows[i]["inherited_conditions"]
+                            and not check_rows[i]["applicability_binding"]
+                            else ""
+                        ),
+                        _child_ref(i, j),
+                    )
+                )
     items += claim_items("claim_failure", lambda r: r["effective_outcome"] in FAILURES)
     for section in sections:
         if section["coverage"] in ("open", "not_computed"):

@@ -177,7 +177,7 @@ def test_schedule_child_request_receipt_and_digest():
     receipt = child["receipt"]
     assert set(receipt) == {
         "projection", "version", "check", "objects", "premises", "target", "scope",
-        "bindings", "role_support", "conditions", "request_digest",
+        "bindings", "role_support", "conditions", "request_digest", "closure",
     }  # fmt: skip
     assert (receipt["projection"], receipt["version"], receipt["check"]) == (
         "schedule_window_coverage",
@@ -376,9 +376,14 @@ def test_finite_policy_row():
         "adoption:pol1",
         "object:m1",
         "premise:adopt:m1:e1",
+        # Rohan (2026-11-05): a linked object (m1, reached through the policy binding) gates together with
+        # what it references, here its baseline measurement m0, which is not adopted.
+        "object:m0",
+        "adoption:m0",
         "premise:p2",
     ]
     assert child["receipt"]["objects"] == ["pol1", "m1"]
+    assert child["receipt"]["closure"] == ["pol1", "m1", "m0"]
     assert child["receipt"]["request_digest"] == digest(child["request"])
 
 
@@ -477,7 +482,9 @@ def test_dependencies_child_has_no_claims_key_and_includes_measurement_support()
     assert "claims" not in signal
     assert ids(child["receipt"]["role_support"]["dependencies"]) == [
         "object:ep1", "premise:adopt:ep1:e1", "object:m1", "premise:adopt:m1:e1",
+        "object:m0", "adoption:m0",
     ]  # fmt: skip
+    # The change endpoint reaches m1 through its variable link; m1's baseline m0 gates it (Rohan, 2026-11-05).
     assert child["receipt"]["objects"] == ["ep1", "m1"]
 
 

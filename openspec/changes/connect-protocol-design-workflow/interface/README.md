@@ -113,6 +113,25 @@ it but never edit it. Report a gap as a factual case instead.
 - A sole compatible alternative that is a what-if (hypothetical frame) is never `settled_within_declared_
   alternatives`; the disposition is `repair_choice`, pointing at that candidate repair.
 
+**Composition decisions confirmed by Rohan (2026-11-05).**
+- **Linked objects' closure.**
+  - An object listed on a check gates that check by itself.
+  - An object a projection reaches through a link it follows gates together with everything it references
+    transitively. Example: the collection an estimand consumes, with that collection's assessment and
+    measurement.
+  - Objects merely named inside a listed object's data do not gate that check. Examples: a measurement
+    baseline, or the estimand a collection names.
+  - Standing, adoption and assessment conditions all follow this set. Receipts carry `closure`.
+- **Bindings are check-local.** A `condition_applicability` binding is declared on each check. A check that
+  inherits a condition through a link, with no binding of its own, stays conditional, and delivery names the
+  missing binding.
+- **Standing on every check row.** Every check row carries the weakest standing its findings rest on, kept
+  apart from `conditional`, which means only "applies under a declared condition". Applies to the compact
+  reply, the decision list and the workbook.
+- **Plain-signal applicability.** Signals with no claim rows (estimand, dependencies) carry `application`,
+  `application_status` and `finding_status`. The headline never reads a conditionally applied result as
+  settled.
+
 **R2. C6 field naming and the reserved state.**
 - C6's `variables` keeps its name, and each entry uses the decision-table domain shape.
 - `policy_state` is a reserved equality literal whose value is the current state. It may appear in guards,

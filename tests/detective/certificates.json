@@ -1720,6 +1720,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/readout.py::footer_parts": {
+    "cut_reasons": [],
+    "function_digest": "cf4d510fb3232495",
+    "refusal": "",
+    "standing": "incomplete"
+  },
   "TrialLedger/readout.py::held_kind": {
     "cut_reasons": [],
     "function_digest": "da178396cc3035bd",
@@ -1737,6 +1743,12 @@
     "function_digest": "7f2a0140463d097b",
     "refusal": "",
     "standing": "complete"
+  },
+  "TrialLedger/readout.py::place": {
+    "cut_reasons": [],
+    "function_digest": "ff0393e1960d87e3",
+    "refusal": "",
+    "standing": "incomplete"
   },
   "TrialLedger/readout.py::stat_cell": {
     "cut_reasons": [],

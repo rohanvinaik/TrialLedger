@@ -161,6 +161,19 @@ def _unresolved(code: str, objects: list[str], premises: list[str] | None = None
 APPLICABILITY = "condition_applicability"
 
 
+def reference_closure(index: dict, roots: list[str]) -> list[str]:
+    """The roots, then every object they reference transitively, in first-reached order (pure, finite)."""
+    seen: list[str] = []
+    pending = list(roots)
+    while pending:
+        identity = pending.pop(0)
+        if identity in seen or identity not in index.get("objects", {}):
+            continue
+        seen.append(identity)
+        pending.extend(index.get("references", {}).get(identity, {}).get("objects", []))
+    return seen
+
+
 class _Build:
     """Accumulates one check's consumed objects and role support."""
 
@@ -172,12 +185,27 @@ class _Build:
         self.roles: dict[str, list[dict]] = {}
         self.extra: list[dict] = []
 
+    def gating(self, ids: list[str]) -> list[str]:
+        """Objects whose standing, adoption and conditions gate a finding over `ids` (Rohan, 2026-11-05).
+
+        An object listed on the check gates by itself. An object a projection reached through a link (for
+        example the collection an estimand consumes) gates together with everything it references
+        transitively (that collection's assessment and measurement). Objects merely named inside a listed
+        object's data (a measurement baseline, the estimand a collection names) do not gate that check.
+        """
+        out: list[str] = []
+        for identity in ids:
+            out += (
+                [identity] if identity in self.check["objects"] else reference_closure(self.index, [identity])
+            )
+        return list(dict.fromkeys(out))
+
     def consume(self, identity: str) -> None:
         if identity not in self.objects:
             self.objects.append(identity)
 
     def role(self, name: str, ids: list[str], premises: list[str] | None = None) -> None:
-        rows = _obj_entries(self.index, ids, self.standing)
+        rows = _obj_entries(self.index, self.gating(ids), self.standing)
         rows += [_premise_entry(p, self.standing) for p in premises or []]
         # Check-wide support is explicit in every role. It is never inferred from absence: a premise that
         # also backs one object must still reach every claim when the check declares it (external review).
@@ -185,7 +213,7 @@ class _Build:
         self.roles[name] = _unique(rows)
 
     def support(self) -> list[dict]:
-        rows = _obj_entries(self.index, self.objects, self.standing)
+        rows = _obj_entries(self.index, self.gating(self.objects), self.standing)
         for entries in self.roles.values():
             rows += entries
         rows += [_premise_entry(p, self.standing) for p in self.check["support"]]
@@ -200,8 +228,14 @@ class _Build:
         return _unresolved("scope_mismatch", wrong) if wrong else None
 
     def conditions(self) -> list[dict]:
+        """Every assessment condition in the reference closure of what this check consumes.
+
+        A condition travels along references, not only with objects listed on the check: an estimand that
+        consumes a linked collection is bound by that collection's conditional assessment (composition
+        audit, 2026-11-05). The closure follows `references[id].objects` (object ids named inside data).
+        """
         out = []
-        for identity in self.objects:
+        for identity in self.gating(self.objects):
             obj = self.index["objects"][identity]
             if obj["kind"] == "assessment" and obj["data"]["condition"] is not None:
                 out.append({"object": identity, "condition": copy.deepcopy(obj["data"]["condition"])})
@@ -226,6 +260,8 @@ class _Build:
             "version": version,
             "check": self.check["id"],
             "objects": list(self.objects),
+            # Every object whose standing, adoption and conditions gate this check.
+            "closure": self.gating(self.objects),
             "premises": premises,
             "target": copy.deepcopy(self.check["scope"]["target"]),
             "scope": copy.deepcopy(self.check["scope"]),

@@ -890,9 +890,14 @@ def _session_findings(result: dict, base: str) -> list[dict]:
     """Retain every actual child finding and the separately computed question context."""
     findings = []
 
-    def extend_child(child: dict, prefix: str) -> None:
+    def extend_child(child: dict, prefix: str, application: str | None = None) -> None:
         for raw in child.get("metadata", {}).get("findings", ()):
             finding = deepcopy(raw)
+            if application == "conditional" and finding.get("disposition") == "settled":
+                # A protocol child applied only under a declared condition never reads settled in the
+                # headline; its own metadata predates protocol-level applicability (composition audit).
+                finding["disposition"] = "conditional"
+                finding["application"] = "conditional"
             for field in ("path", "raw_path", "support_path", "contrast_path"):
                 if field in finding:
                     finding[field] = prefix + finding[field]
@@ -909,7 +914,17 @@ def _session_findings(result: dict, base: str) -> list[dict]:
     for index, check in enumerate(protocol.get("checks", ())):
         for number, child in enumerate(check.get("children", ())):
             prefix = _path(_path(_path(_path(_path(base, "protocol"), "checks"), index), "children"), number)
-            extend_child(child["result"], _path(prefix, "result"))
+            applications = {
+                row.get("application")
+                for signal in child.get("signals", ())
+                for row in [signal, *signal.get("claim_admission", ())]
+                if row.get("application")
+            }
+            extend_child(
+                child["result"],
+                _path(prefix, "result"),
+                "conditional" if "conditional" in applications else None,
+            )
     # A check that is unresolved, limited or not computed is an open item in the headline, never silence
     # (trace audit F4): one finding per such check, with each named cause.
     for index, check in enumerate(protocol.get("checks", ())):

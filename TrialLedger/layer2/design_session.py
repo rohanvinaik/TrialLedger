@@ -725,7 +725,8 @@ def _applicability_premises(declared: dict, prepared: dict) -> list[str] | None:
     if (
         type(premises) is not list
         or not premises
-        or len(set(map(str, premises))) != len(premises)
+        or any(type(p) is not str for p in premises)
+        or len(set(premises)) != len(premises)
         or any(p not in prepared["premises"] for p in premises)
         or any(prepared["premises"][p]["kind"] not in APPLICABILITY_PREMISE_KINDS for p in premises)
     ):
@@ -877,6 +878,23 @@ def _run_protocol_checks(
                                 for row in signal.get("claim_admission", [])
                             ]
                         }
+                        | (
+                            # A signal without claim rows (estimand, dependencies, external method) carries
+                            # the same applicability at signal level: a condition reached through a linked
+                            # object is never dropped because no claim row exists (composition audit).
+                            {
+                                "application": application,
+                                "application_status": applied_status,
+                                "application_refs": list(applied_refs),
+                                "finding_status": entail.weakest_status(
+                                    tuple(v for v in (signal.get("status"), applied_status) if v)
+                                )
+                                if signal.get("status") or applied_status
+                                else None,
+                            }
+                            if not signal.get("claim_admission")
+                            else {}
+                        )
                         for signal in signals_out
                     ],
                     "conditions": deepcopy(child["receipt"].get("conditions", [])),
@@ -987,6 +1005,13 @@ def _protocol_decision_rows(
                             for signal in child["signals"]
                             for claim in signal["claim_admission"]
                             if claim.get("application") == "conditional"
+                        ]
+                        + [
+                            # A plain signal applied only under a condition is a conditional obligation too.
+                            signal["id"]
+                            for child in check["children"]
+                            for signal in child["signals"]
+                            if not signal["claim_admission"] and signal.get("application") == "conditional"
                         ],
                         "claims": [
                             _frame_claim(claim, lifted)
@@ -1441,7 +1466,12 @@ def _semantic_record(check: dict) -> dict:
         "verdict": {
             **{("claim", k): (v.get("effective_outcome"), v.get("application")) for k, v in claims.items()},
             **{
-                ("signal", k): (s.get("code"), s.get("calculation_code"), tuple(s.get("blockers") or ()))
+                ("signal", k): (
+                    s.get("code"),
+                    s.get("calculation_code"),
+                    tuple(s.get("blockers") or ()),
+                    s.get("application"),
+                )
                 for k, s in plain.items()
             },
             ("projection",): (
