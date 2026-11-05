@@ -18,17 +18,20 @@ def _example() -> dict:
 
 def _adopted_example() -> dict:
     request = _example()
-    adopting = request["criteria"][0]["id"]
     request["criteria"][0]["status"] = "known"
     request["criteria"][0]["resolution"] = "resolved"
     for item in request["protocol"]["objects"]:
         item["standing"] = {"status": "known", "resolution": "resolved", "basis": ["user:invented adoption"]}
-        item["support"] = [adopting]
+        item.pop("support", None)
+        item["adopted_by"] = {"ref": "user:invented adoption", "status": "known", "resolution": "resolved"}
     return request
 
 
 def _extended(request: dict) -> dict:
     collection = copy.deepcopy(request["protocol"]["objects"][2])
+    # The replacement keeps the baseline object's edition, so it reuses that edition's adoption record.
+    collection.pop("adopted_by", None)
+    collection["support"] = [f"adopt:{collection['id']}:{collection['version']}"]
     collection["data"]["availability"] = [
         {"lower": None, "upper": "91", "lower_inclusive": False, "upper_inclusive": True}
     ]
@@ -123,3 +126,42 @@ def test_the_card_states_the_rules_walkers_had_to_guess():
         "retained_study",
     ):
         assert notes[key], key
+
+
+def _estimand_with_linked_collection(action: str) -> dict:
+    from tests.test_protocol_session_replay import _session, adopt
+
+    example = run({"operation": "describe", "view": "signals", "detail": "full"})["result"]["signal_examples"]
+    estimand = copy.deepcopy(example["estimand"]["signals"][0]["data"])
+    requirement = estimand["requirements"][0]["id"]
+    estimand["collection_plan"] = [
+        row for row in estimand["collection_plan"] if row["requirement"] != requirement
+    ]
+    request = _session("84", collection_status="known")
+    protocol = request["session"]["protocol"]
+    template = copy.deepcopy(protocol["objects"][0])
+    template.update(id="estimand", kind="estimand", depends_on=[], data=estimand, support=[])
+    protocol["objects"].append(template)
+    adopt(request, "estimand")
+    collection = next(o for o in protocol["objects"] if o["id"] == "collection")
+    collection["data"]["event_handling"] = {
+        "estimand": "estimand",
+        "requirement": requirement,
+        "action": action,
+    }
+    collection["depends_on"] = sorted(set(collection["depends_on"]) | {"estimand"})
+    check = copy.deepcopy(protocol["checks"][0])
+    check.update(id="estimand-check", kind="estimand", objects=["estimand"], claims=[])
+    protocol["checks"] = [check]
+    return request
+
+
+def test_the_collection_declares_the_estimand_plan_once():
+    """MS walk: the collection's event_handling action now drives the estimand's alignment."""
+    stop = run(_estimand_with_linked_collection("stop"))
+    assert stop["code"] == "complete", stop["problems"]
+    blockers = stop["result"]["protocol"]["checks"][0]["children"][0]["signals"][0]["blockers"]
+    assert any(b.startswith("estimand_collection_plan_mismatch") for b in blockers)
+    collect = run(_estimand_with_linked_collection("collect"))
+    blockers = collect["result"]["protocol"]["checks"][0]["children"][0]["signals"][0]["blockers"]
+    assert not any(b.startswith("estimand_collection_plan_mismatch") for b in blockers)

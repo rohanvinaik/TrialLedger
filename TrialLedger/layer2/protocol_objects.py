@@ -228,6 +228,7 @@ class _Frame:
         self.objects: dict[str, dict] = {}
         self.requirements: dict[str, set[str]] = {}
         self.deferred: list[tuple[str, str]] = []
+        self.stale: dict[str, list[str]] = {}
 
 
 def _canonical(value: object) -> str:
@@ -294,6 +295,21 @@ def _origin(raw: object, frame: _Frame) -> None:
         raise _fail("origin_pointer") from error
 
 
+def adoption_state(premise: Mapping[str, Any], object_id: str, version: str) -> str:
+    """Whether a support premise is an adoption record naming this exact object version (pure).
+
+    post: __return__ in ("adopts", "stale_version", "not_adoption", "other_object")
+    """
+    if premise.get("kind") != "adoption":
+        return "not_adoption"
+    objects = [o for o in (premise.get("payload") or {}).get("objects") or [] if isinstance(o, dict)]
+    if any(o.get("id") == object_id and o.get("version") == version for o in objects):
+        return "adopts"
+    if any(o.get("id") == object_id for o in objects):
+        return "stale_version"
+    return "other_object"
+
+
 def origin_standing_state(origin_kind: str, status: str) -> str:
     """A hypothesis-origin object may only be proposed (pure — pinned).
 
@@ -324,6 +340,15 @@ def _envelope(raw: object, frame: _Frame) -> dict:
         # Explicit hypothetical frames for unchosen alternatives are a separate path (C8).
         raise _fail("hypothesis_cannot_supply_fact")
     _unique_ids(item["support"], frame.premises, "unknown_premise", "duplicate_support")
+    for premise_id in item["support"]:
+        # Only an explicit adoption record naming this exact object version adopts it (Rohan, 2026-11-04).
+        # A wrong premise (a criterion, another object's adoption) is a translation mistake and refuses; an
+        # adoption of an older version of this object is stale: the object is treated as not yet adopted.
+        state = adoption_state(frame.premises[premise_id], item["id"], item["version"])
+        if state in ("not_adoption", "other_object"):
+            raise _fail("adoption_mismatch")
+        if state == "stale_version":
+            frame.stale.setdefault(item["id"], []).append(premise_id)
     _rows(item["depends_on"])
     return item
 
@@ -406,9 +431,13 @@ def _collection(data: dict, frame: _Frame) -> list[str]:
     protocol_numbers.union(data["availability"], "protocol")
     handling = data["event_handling"]
     if handling is not None:
-        row = _object(handling, {"estimand", "requirement"}, "data_fields:collection")
+        # Declared once, on the collection (Rohan, 2026-11-04): the estimand check takes this requirement's
+        # collection action from here; the action is never inferred from availability intervals.
+        row = _object(handling, {"estimand", "requirement", "action"}, "data_fields:collection")
         refs.append(_reference(row["estimand"], "estimand", frame, "collection"))
         _text(row["requirement"], "data_fields:collection")
+        if row["action"] not in ("collect", "stop"):
+            raise _fail("data_fields:collection")
         frame.deferred.append((row["estimand"], row["requirement"]))
     return refs
 
@@ -721,6 +750,7 @@ def validate_protocol(
         "references": references,
         "checks": checks,
         "check_order": list(checks),
+        "stale_adoptions": {key: list(value) for key, value in frame.stale.items()},
         "sections": sections,
     }
     return copy.deepcopy(index)

@@ -66,7 +66,15 @@ def test_not_protocol_result_raises_named_error():
 @pytest.mark.parametrize("name", NAMES)
 def test_exact_keys_and_all_eight_sections_in_order(name):
     out = protocol_view.view(load(name))
-    assert set(out) == {"schema_version", "sections", "checks", "schedule", "open_items", "limits_of_claim"}
+    assert set(out) == {
+        "schema_version",
+        "sections",
+        "checks",
+        "schedule",
+        "open_items",
+        "adoption",
+        "limits_of_claim",
+    }
     assert out["schema_version"] == 1
     assert [s["id"] for s in out["sections"]] == ALL_SECTIONS
     for s in out["sections"]:
@@ -156,7 +164,13 @@ def test_binomial_claims_refused_with_arithmetic_kept_in_child():
         row = claim(out, "efficacy-exact", cid)
         assert row["effective_outcome"] == "unresolved"
         assert row["wording"] == "Not applied: the deciding support is binding_unresolved."
-        assert row["standing_support"] == ["object:efficacy", "object:response", "premise:adult"]
+        assert row["standing_support"] == [
+            "object:efficacy",
+            "object:response",
+            "premise:adopt:efficacy:fixture-v1",
+            "premise:adopt:response:fixture-v1",
+            "premise:adult",  # the efficacy assumption, unchanged by the adoption rule
+        ]
     assert claim(out, "efficacy-exact", "power")["outcome"] == "not_satisfied"
 
 

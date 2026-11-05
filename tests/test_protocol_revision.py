@@ -5,7 +5,7 @@ Every premise here is an invented fixture; no clinical record, exchange or confi
 
 import copy
 
-from test_protocol_session_replay import _session
+from test_protocol_session_replay import _session, adopt
 
 from TrialLedger.layer2 import run, session_state
 
@@ -13,9 +13,10 @@ CHECK = "week12-schedule"
 DECISION = "age-policy"
 
 
-def _plan(collection_status: str = "known", support: tuple = ("adult",)) -> dict:
+def _plan(collection_status: str = "known", adopted: bool = True) -> dict:
     request = _session("84", collection_status=collection_status)
-    request["session"]["protocol"]["objects"][2]["support"] = list(support)
+    if adopted:
+        adopt(request, "collection")
     return request
 
 
@@ -60,7 +61,7 @@ def test_a_collection_window_change_that_moves_a_claim_outcome_is_a_verdict_chan
 
 def test_a_standing_change_that_only_refuses_admission_is_a_requirements_change():
     """Without adoption support, a proposed plan changes admission; effective outcomes stay unresolved."""
-    previous = _plan(collection_status="known", support=())
+    previous = _plan(collection_status="known", adopted=False)
 
     def mutate(session: dict) -> None:
         session["protocol"]["objects"][2]["standing"]["status"] = "proposed"
@@ -74,7 +75,7 @@ def test_a_standing_change_that_only_refuses_admission_is_a_requirements_change(
 
 def test_a_requirements_only_change_never_lists_verdict_for_any_decision_or_check():
     """MUST-NOT: a residual-only change is never reported as a verdict change in either section."""
-    previous = _plan(collection_status="known", support=())
+    previous = _plan(collection_status="known", adopted=False)
 
     def mutate(session: dict) -> None:
         session["protocol"]["objects"][2]["standing"]["status"] = "proposed"
@@ -117,7 +118,13 @@ def test_an_object_version_change_is_a_scope_model_change_only():
     """Changing only an involved object's version sets scope_model, and not verdict."""
 
     def mutate(session: dict) -> None:
-        session["protocol"]["objects"][2]["version"] = "invented-v2"
+        item = session["protocol"]["objects"][2]
+        item["version"] = "invented-v2"
+        # The adoption names the exact object version, so it follows the new edition.
+        old = next(p for p in session["premises"] if p["id"] == item["support"][0])
+        old["id"] = "adopt:collection:invented-v2"
+        old["payload"]["objects"] = [{"id": "collection", "version": "invented-v2"}]
+        item["support"] = [old["id"]]
 
     reply = _revise(_plan(), mutate)
     assert reply["code"] == "complete", reply
@@ -141,7 +148,7 @@ def _collection_plan() -> dict:
             "analysis": None,
         }
         item["standing"] = {"status": "proposed", "resolution": "resolved", "basis": [f"user:invented {ref}"]}
-        item["support"] = ["adult"]
+        item["support"] = list(template["support"])
         item["data"]["availability"] = [
             {"lower": None, "upper": upper, "lower_inclusive": False, "upper_inclusive": True}
         ]

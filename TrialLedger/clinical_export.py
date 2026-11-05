@@ -1162,6 +1162,28 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                 f"{alternative['unconditional_application']} |"
             )
         lines.append("")
+    adoption = _sheet(
+        book,
+        "Protocol adoption",
+        ["Object", "Kind", "Version", "Adoption", "Adopted by", "Adoption origin", "Object standing"],
+    )
+    lines += ["", "### Adoption", "", "| Object | Version | Adoption | Adopted by |", "|---|---|---|---|"]
+    for index, row in enumerate(view.get("adoption", [])):
+        _write(
+            adoption,
+            [
+                row["object"],
+                row["kind"],
+                row["version"],
+                row["adoption"],
+                _join(row["adopted_by"]),
+                _join(row["adoption_origins"]),
+                row["object_standing"],
+            ],
+            _reference(identity, f"/response/protocol_view/adoption/{index}"),
+        )
+        adopted_by = _join(row["adopted_by"]) or "none"
+        lines.append(f"| {row['object']} | {row['version']} | {row['adoption']} | {adopted_by} |")
     lines += ["", "### Open items", ""]
     lines += [f"{n}. {item['text']} ({item['ref']})" for n, item in enumerate(view["delivery_findings"], 1)]
     lines += ["", "### Limits", ""] + [f"- {text}" for text in view["limits_of_claim"]] + [""]

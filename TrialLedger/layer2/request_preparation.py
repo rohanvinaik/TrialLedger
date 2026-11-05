@@ -80,8 +80,8 @@ PROTOCOL_DATA = {
     "assessment": "{measurement:measurement id, anchor:event id, unit:string, nominal:rational string|null, "
     "permitted:interval union|null, condition:proposition|null}",
     "collection": "{assessment:assessment id, mode:observed|imputed|derived, availability:interval "
-    "union|null (null unknown, [] none planned), event_handling:null|{estimand:estimand id, "
-    "requirement:that estimand's requirement id}}",
+    "union|null (null unknown, [] none planned), event_handling:null|{estimand:estimand object id, "
+    "requirement:that estimand's requirement id, action:collect|stop}}",
     "efficacy": "{endpoint:endpoint id, method:binomial_design|external_method, parameters:"
     "{model,direction,n,critical_count,p0,p1}|external_method id, assumptions:[{role:fixed_n|iid_binary|"
     "alignment, premise:premise id}]}",
@@ -127,8 +127,9 @@ PROTOCOL_NOTES = {
     "study_ref>#<RFC6901 pointer into that study>, source:<session source id>}",
     "external_method": "inputs and missing are disjoint by name; list every input you cannot supply in "
     "missing (a null-valued input is not treated as missing)",
-    "event_handling": "a declared link from a collection to an estimand requirement, retained and shown; it "
-    "is not yet consumed by a check (the estimand's own collection_plan drives its alignment)",
+    "event_handling": "declared once, on the collection: {estimand, requirement, action}. The estimand check "
+    "takes that requirement's collection plan from the linked collection (with its standing); a differing "
+    "action in the estimand's own data is a named collection_plan_conflict, never an override",
     "adoption": "support premises are the caller's attribution of adoption; the tool does not judge whether "
     "a premise is clinically about the object",
     "raw_vs_effective": "operator values keep raw outcomes; claim_admission.effective_outcome is what may be "
@@ -609,11 +610,47 @@ def _protocol_scope(raw: dict, target: dict, path: str, defaults: list) -> dict:
     )
 
 
-def _protocol_object(item: object, path: str, target: dict, ids: set, defaults: list) -> dict:
+def _adoption_premise(raw: object, object_id: str, version: str) -> dict:
+    """An explicit adoption record from a compact `adopted_by`; standing is never defaulted."""
+    held = _fields(
+        raw, {"ref", "status", "resolution"}, {"ref", "status", "resolution"}, "protocol.adopted_by"
+    )
+    return {
+        "id": f"adopt:{object_id}:{version}",
+        "kind": "adoption",
+        "payload": {
+            "objects": [{"id": object_id, "version": version}],
+            "status": held["status"],
+            "resolution": held["resolution"],
+        },
+        "origin": {
+            "kind": "user_choice",
+            "ref": _text(held["ref"], "adopted_by.ref"),
+            "source": None,
+            "analysis": None,
+        },
+        "depends_on": [],
+    }
+
+
+def _protocol_object(
+    item: object, path: str, target: dict, ids: set, defaults: list, adoptions: list
+) -> dict:
     """One compact protocol object with disclosed administrative defaults (also used for replacements)."""
     row = _fields(
         item,
-        {"id", "kind", "version", "origin", "data", "standing", "support", "depends_on", "scope"},
+        {
+            "id",
+            "kind",
+            "version",
+            "origin",
+            "data",
+            "standing",
+            "support",
+            "depends_on",
+            "scope",
+            "adopted_by",
+        },
         {"id", "kind", "version", "origin", "data"},
         "protocol.object",
     )
@@ -622,6 +659,17 @@ def _protocol_object(item: object, path: str, target: dict, ids: set, defaults: 
     if row["kind"] == "assessment" and isinstance(data, dict) and isinstance(data.get("condition"), dict):
         data["condition"] = proposition(data["condition"], path + "/data/condition", defaults)
     standing = {"status": "proposed", "resolution": "unresolved", "basis": [origin["ref"]]}
+    support: list = []
+    if "adopted_by" in row:
+        adoption = _adoption_premise(row["adopted_by"], row["id"], row["version"])
+        adoptions.append(adoption)
+        # Defaults follow the explicit adoption (disclosed); own standing and support stay conjunctive (C3).
+        standing = {
+            "status": adoption["payload"]["status"],
+            "resolution": adoption["payload"]["resolution"],
+            "basis": [adoption["origin"]["ref"]],
+        }
+        support = [adoption["id"]]
     references = _data_references(row["kind"], data, ids) if isinstance(data, dict) else []
     return {
         "id": row["id"],
@@ -630,13 +678,15 @@ def _protocol_object(item: object, path: str, target: dict, ids: set, defaults: 
         "version": row["version"],
         "origin": origin,
         "standing": deepcopy(_take(row, "standing", standing, path, defaults)),
-        "support": deepcopy(_take(row, "support", [], path, defaults)),
+        "support": deepcopy(_take(row, "support", support, path, defaults)),
         "depends_on": deepcopy(_take(row, "depends_on", references, path, defaults)),
         "data": data,
     }
 
 
-def _protocol_decisions(raw: object, target: dict, ids: set, defaults: list, offset: int) -> list[dict]:
+def _protocol_decisions(
+    raw: object, target: dict, ids: set, defaults: list, offset: int, adoptions: list
+) -> list[dict]:
     """Compact protocol alternatives (C8): {id,question,alternatives:[{id,label,replace?,checks}]}."""
     out = []
     for index, item in enumerate(_rows(raw, 128, "protocol.decisions")):
@@ -662,7 +712,7 @@ def _protocol_decisions(raw: object, target: dict, ids: set, defaults: list, off
                     "id": held["id"],
                     "label": held["label"],
                     "replace_objects": [
-                        _protocol_object(obj, f"{spot}/replace_objects/{k}", target, ids, defaults)
+                        _protocol_object(obj, f"{spot}/replace_objects/{k}", target, ids, defaults, adoptions)
                         for k, obj in enumerate(_rows(replace, 16, "protocol.alternative.replace"))
                     ],
                     "checks": deepcopy(held["checks"]),
@@ -682,7 +732,7 @@ def _protocol_decisions(raw: object, target: dict, ids: set, defaults: list, off
     return out
 
 
-def _protocol(raw: object, target: dict, defaults: list, decision_offset: int = 0) -> dict:
+def _protocol(raw: object, target: dict, defaults: list, decision_offset: int, adoptions: list) -> dict:
     """Mechanical expansion of a compact protocol; every administrative default is disclosed."""
     held = _fields(
         raw, {"objects", "checks", "sections", "decisions"}, {"objects", "checks", "sections"}, "protocol"
@@ -691,7 +741,7 @@ def _protocol(raw: object, target: dict, defaults: list, decision_offset: int = 
     rows = _rows(held["objects"], 256, "protocol.objects")
     ids = {row.get("id") for row in rows if isinstance(row, dict)}
     objects = [
-        _protocol_object(item, f"{base}/objects/{index}", target, ids, defaults)
+        _protocol_object(item, f"{base}/objects/{index}", target, ids, defaults, adoptions)
         for index, item in enumerate(rows)
     ]
     checks = []
@@ -731,7 +781,9 @@ def _protocol(raw: object, target: dict, defaults: list, decision_offset: int = 
         )
     expanded = {"schema_version": 1, "objects": objects, "checks": checks, "sections": sections}
     if "decisions" in held:
-        expanded["decisions"] = _protocol_decisions(held["decisions"], target, ids, defaults, decision_offset)
+        expanded["decisions"] = _protocol_decisions(
+            held["decisions"], target, ids, defaults, decision_offset, adoptions
+        )
     return expanded
 
 
@@ -823,7 +875,19 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
         )
     if "protocol" in raw:
         session["schema_version"] = 2
-        protocol = _protocol(raw["protocol"], target, defaults, len(session["decisions"]))
+        adoptions: list = []
+        protocol = _protocol(raw["protocol"], target, defaults, len(session["decisions"]), adoptions)
+        known = {premise["id"]: premise for premise in session["premises"]}
+        for adoption in adoptions:
+            held = known.get(adoption["id"])
+            if held is not None:
+                # The same object version adopted twice (e.g. a baseline and an identical replacement) is one
+                # record; a different record under the same id is a conflicting adoption.
+                if held != adoption:
+                    raise ValueError("conflicting_adoption:" + adoption["id"])
+                continue
+            known[adoption["id"]] = adoption
+            session["premises"].append(adoption)
         # Protocol alternatives are session decisions (C8); the protocol envelope itself stays exactly C2.
         session["decisions"].extend(protocol.pop("decisions", []))
         session["protocol"] = protocol

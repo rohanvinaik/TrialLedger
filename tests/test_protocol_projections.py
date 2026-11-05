@@ -28,6 +28,27 @@ TARGET = {
     "scope": {"study": "draft", "population": "general", "arm": "all", "time": "entry", "version": "v1"},
 }
 PREMISES = {"p1": {"kind": "assertion"}, "p2": {"kind": "assertion"}}
+
+
+def _adoptions(cases) -> dict:
+    """One known, resolved adoption premise per object version in the fixtures (Rohan, 2026-11-04)."""
+    out = {}
+    for case in cases:
+        objects = case["protocol"].get("objects")
+        for item in objects if isinstance(objects, list) else []:
+            if isinstance(item, dict) and isinstance(item.get("version"), str) and item["version"]:
+                out[f"adopt:{item['id']}:{item['version']}"] = {
+                    "kind": "adoption",
+                    "payload": {
+                        "objects": [{"id": item["id"], "version": item["version"]}],
+                        "status": "known",
+                        "resolution": "resolved",
+                    },
+                }
+    return out
+
+
+PREMISES.update(_adoptions(CASES.values()))
 SOURCES = {
     "src": {"snapshot": {"study_ref": "ctg:NCT00000001:rev"}, "study": {"protocolSection": {"title": "x"}}}
 }
@@ -35,6 +56,8 @@ STANDING = {
     "p1": {"status": "known", "resolution": "resolved", "basis": ["user:p1"]},
     "p2": {"status": "proposed", "resolution": "unresolved", "basis": ["user:p2"]},
 }
+for _id in _adoptions(CASES.values()):
+    STANDING[_id] = {"status": "known", "resolution": "resolved", "basis": ["user:adoption"]}
 WINDOW = [{"lower": "77", "upper": "91", "lower_inclusive": True, "upper_inclusive": True}]
 THROUGH_80 = [{"lower": None, "upper": "80", "lower_inclusive": False, "upper_inclusive": True}]
 
@@ -90,6 +113,14 @@ def adoption(obj_id: str) -> dict:
 
 def entry(premise: str) -> dict:
     return {"id": "premise:" + premise, **STANDING[premise]}
+
+
+def adopt(protocol: dict, identity: str, status: str = "known", resolution: str = "resolved") -> dict:
+    """Adopt one object by its own adoption premise; returns the premise standing to hand to `run`."""
+    obj = next(o for o in protocol["objects"] if o["id"] == identity)
+    premise = f"adopt:{identity}:{obj['version']}"
+    obj["support"] = [premise]
+    return {premise: {"status": status, "resolution": resolution, "basis": [f"user:adopts {identity}"]}}
 
 
 def ids(entries: list[dict]) -> list[str]:
@@ -197,39 +228,33 @@ def test_known_object_without_support_still_gets_unresolved_adoption_entry():
 
 def test_proposed_support_premise_stays_in_support_and_role_support():
     protocol = week12()
-    edit(protocol, "a1", support=["p1", "p2"])
-    out = run(protocol, "k-sched")
+    held = adopt(protocol, "a1", "proposed", "unresolved")
+    out = run(protocol, "k-sched", standing={**STANDING, **held})
     child = out["children"][0]
     support = child["request"]["signals"][0]["support"]
-    assert entry("p2") in support and entry("p1") in support
-    assert ids(child["receipt"]["role_support"]["permitted"]) == ["object:a1", "premise:p1", "premise:p2"]
+    assert {"id": "premise:adopt:a1:e1", **held["adopt:a1:e1"]} in support
+    assert ids(child["receipt"]["role_support"]["permitted"]) == ["object:a1", "premise:adopt:a1:e1"]
     assert not any(e["id"] == "adoption:a1" for e in support)
-    assert child["receipt"]["premises"] == ["p1", "p2"]
+    assert child["receipt"]["premises"] == ["adopt:a1:e1"]
 
 
 def test_proposed_collection_leaves_assessment_roles_untouched():
     plain = run(week12(), "k-sched")["children"][0]["receipt"]["role_support"]
     protocol = week12()
-    edit(
-        protocol,
-        "c1",
-        support=["p2"],
-        standing={"status": "proposed", "resolution": "unresolved", "basis": ["c"]},
-    )
-    roles = run(protocol, "k-sched")["children"][0]["receipt"]["role_support"]
+    edit(protocol, "c1", standing={"status": "proposed", "resolution": "unresolved", "basis": ["c"]})
+    held = adopt(protocol, "c1", "proposed", "unresolved")
+    roles = run(protocol, "k-sched", standing={**STANDING, **held})["children"][0]["receipt"]["role_support"]
     assert roles["permitted"] == plain["permitted"] and roles["nominal"] == plain["nominal"]
     for role in ("permitted", "nominal"):
-        assert not any(e["id"].endswith("c1") or e["id"] == "premise:p2" for e in roles[role])
-    assert ids(roles["available"]) == ["object:c1", "premise:p2"]
+        assert not any(e["id"].endswith("c1") or e["id"] == "premise:adopt:c1:e1" for e in roles[role])
+    assert ids(roles["available"]) == ["object:c1", "premise:adopt:c1:e1"]
 
 
 def test_known_assessment_beside_proposed_collection_keeps_known_roles():
     protocol = week12()
-    edit(
-        protocol, "a1", support=["p1"], standing={"status": "known", "resolution": "resolved", "basis": ["a"]}
-    )
-    edit(protocol, "c1", support=["p2"])
-    roles = run(protocol, "k-sched")["children"][0]["receipt"]["role_support"]
+    edit(protocol, "a1", standing={"status": "known", "resolution": "resolved", "basis": ["a"]})
+    held = {**adopt(protocol, "a1"), **adopt(protocol, "c1", "proposed", "unresolved")}
+    roles = run(protocol, "k-sched", standing={**STANDING, **held})["children"][0]["receipt"]["role_support"]
     assert all(e["status"] == "known" and e["resolution"] == "resolved" for e in roles["permitted"])
     assert roles["available"][0]["status"] == "proposed"
 
@@ -323,11 +348,11 @@ def test_repeated_projection_has_the_same_digest_and_does_not_mutate():
 
 def test_missing_premise_standing_and_bad_check_id_raise_named_codes():
     protocol = week12()
-    edit(protocol, "a1", support=["p1"])
+    adopt(protocol, "a1")
     with pytest.raises(ValueError, match="^projection_missing_premise_standing$"):
         run(protocol, "k-sched", standing={})
     with pytest.raises(ValueError, match="^projection_invalid_standing$"):
-        run(protocol, "k-sched", standing={"p1": {"status": "known"}})
+        run(protocol, "k-sched", standing={"adopt:a1:e1": {"status": "known"}})
     with pytest.raises(ValueError, match="^projection_unknown_check$"):
         run(protocol, "nope")
     with pytest.raises(ValueError, match="^projection_unknown_check$"):
@@ -350,7 +375,7 @@ def test_finite_policy_row():
         "object:pol1",
         "adoption:pol1",
         "object:m1",
-        "premise:p1",
+        "premise:adopt:m1:e1",
         "premise:p2",
     ]
     assert child["receipt"]["objects"] == ["pol1", "m1"]
@@ -383,8 +408,7 @@ def test_binomial_row_builds_assumptions_from_premise_standing():
         "object:ef1",
         "adoption:ef1",
         "object:ep1",
-        "premise:p1",
-        "premise:p2",
+        "premise:adopt:ep1:e1",
     ]
     assert ids(roles["assumptions"]) == ["premise:p1", "premise:p2"]
     assert entry("p2") in roles["assumptions"]
@@ -397,13 +421,51 @@ def test_binomial_assumption_uses_efficacy_version_not_premise_version():
     assert {a["version"] for a in data["assumptions"]} == {"edition-9"}
 
 
-def test_estimand_child_has_no_claims_key():
+def test_estimand_child_has_no_claims_key_and_unlinked_data_is_unchanged():
     protocol = base()
+    for obj in protocol["objects"]:
+        if obj["kind"] == "collection":
+            obj["data"]["event_handling"] = None
     child = run(protocol, "k-est")["children"][0]
     signal = child["request"]["signals"][0]
     est = next(o for o in protocol["objects"] if o["id"] == "est1")
     assert signal["kind"] == "estimand" and signal["data"] == est["data"] and "claims" not in signal
     assert ids(child["receipt"]["role_support"]["estimand"]) == ["object:est1", "adoption:est1"]
+
+
+def test_a_linked_collection_supplies_the_estimand_collection_plan_with_its_standing():
+    """Declared once on the collection (Rohan, 2026-11-04): event_handling.action drives the plan row."""
+    protocol = base()
+    collection = next(o for o in protocol["objects"] if o["kind"] == "collection")
+    handling = collection["data"]["event_handling"]
+    child = run(protocol, "k-est")["children"][0]
+    plan = child["request"]["signals"][0]["data"]["collection_plan"]
+    row = next(r for r in plan if r["requirement"] == handling["requirement"])
+    assert row["action"] == handling["action"]
+    assert (row["status"], row["resolution"]) == (
+        collection["standing"]["status"],
+        collection["standing"]["resolution"],
+    )
+    assert collection["id"] in child["receipt"]["objects"]
+
+
+def test_a_differing_declaration_is_a_named_conflict_not_an_override():
+    protocol = base()
+    collection = next(o for o in protocol["objects"] if o["kind"] == "collection")
+    handling = collection["data"]["event_handling"]
+    est = next(o for o in protocol["objects"] if o["id"] == handling["estimand"])
+    est["data"]["collection_plan"] = [
+        {
+            "requirement": handling["requirement"],
+            "action": "stop" if handling["action"] == "collect" else "collect",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": ["user:invented"],
+        }
+    ]
+    out = run(protocol, "k-est")
+    assert out["children"] == []
+    assert [u["code"] for u in out["unresolved"]] == ["projection_collection_plan_conflict"]
 
 
 def test_dependencies_child_has_no_claims_key_and_includes_measurement_support():
@@ -414,7 +476,7 @@ def test_dependencies_child_has_no_claims_key_and_includes_measurement_support()
     assert signal["kind"] == "dependencies" and signal["data"] == ep["data"]["dependencies"]
     assert "claims" not in signal
     assert ids(child["receipt"]["role_support"]["dependencies"]) == [
-        "object:ep1", "premise:p1", "premise:p2", "object:m1",
+        "object:ep1", "premise:adopt:ep1:e1", "object:m1", "premise:adopt:m1:e1",
     ]  # fmt: skip
     assert child["receipt"]["objects"] == ["ep1", "m1"]
 
@@ -430,8 +492,8 @@ def test_single_named_binding_becomes_the_request(kind):
     (child,) = out["children"]
     signal = child["request"]["signals"][0]
     assert signal["kind"] == kind and signal["data"] == {"x": [1]} and signal["id"] == f"{check['id']}:{name}"
-    assert ids(child["receipt"]["role_support"]["data"]) == ["object:m1", "premise:p1"]
-    assert ids(signal["support"]) == ["object:m1", "premise:p1"]
+    assert ids(child["receipt"]["role_support"]["data"]) == ["object:m1", "premise:adopt:m1:e1", "premise:p1"]
+    assert ids(signal["support"]) == ["object:m1", "premise:adopt:m1:e1", "premise:p1"]
 
 
 @pytest.mark.parametrize(
@@ -499,14 +561,13 @@ def test_claim_kind_children_carry_role_support_ids_present_in_support():
 
 def test_tim1_schedule_role_support_separates_assessment_and_collection():
     protocol = week12()
-    edit(protocol, "a1", support=["p1"])
-    edit(protocol, "c1", support=["p2"])
-    child = run(protocol, "k-sched")["children"][0]
+    held = {**adopt(protocol, "a1"), **adopt(protocol, "c1", "proposed", "unresolved")}
+    child = run(protocol, "k-sched", standing={**STANDING, **held})["children"][0]
     signal = child["request"]["signals"][0]
     assert signal["role_support"] == {
-        "permitted": ["object:a1", "premise:p1"],
-        "nominal": ["object:a1", "premise:p1"],
-        "available": ["object:c1", "premise:p2"],
+        "permitted": ["object:a1", "premise:adopt:a1:e1"],
+        "nominal": ["object:a1", "premise:adopt:a1:e1"],
+        "available": ["object:c1", "premise:adopt:c1:e1"],
     }
     assert set(sum(signal["role_support"].values(), [])) <= {e["id"] for e in signal["support"]}
     assert child["receipt"]["request_digest"] == digest(child["request"])

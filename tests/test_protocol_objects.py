@@ -28,6 +28,27 @@ TARGET = {
     "scope": {"study": "draft", "population": "general", "arm": "all", "time": "entry", "version": "v1"},
 }
 PREMISES = {"p1": {"kind": "assertion"}, "p2": {"kind": "assertion"}}
+
+
+def _adoptions(cases) -> dict:
+    """One known, resolved adoption premise per object version in the fixtures (Rohan, 2026-11-04)."""
+    out = {}
+    for case in cases:
+        objects = case["protocol"].get("objects")
+        for item in objects if isinstance(objects, list) else []:
+            if isinstance(item, dict) and isinstance(item.get("version"), str) and item["version"]:
+                out[f"adopt:{item['id']}:{item['version']}"] = {
+                    "kind": "adoption",
+                    "payload": {
+                        "objects": [{"id": item["id"], "version": item["version"]}],
+                        "status": "known",
+                        "resolution": "resolved",
+                    },
+                }
+    return out
+
+
+PREMISES.update(_adoptions(CASES))
 SOURCES = {
     "src": {
         "snapshot": {"study_ref": "ctg:NCT00000001:rev"},
@@ -133,7 +154,7 @@ def test_dependents_and_references_are_derived_from_the_declared_lists():
     assert index["references"]["ef1"] == {"objects": ["ep1"], "premises": [], "sources": []}
     assert index["references"]["ef2"]["objects"] == ["ep1", "xm1"]
     assert index["references"]["m0"]["sources"] == ["src"]
-    assert index["references"]["ep1"]["premises"] == ["p1", "p2"]
+    assert index["references"]["ep1"]["premises"] == ["adopt:ep1:e1"]
     # an extra explicit dependency is allowed and is not a data reference
     protocol = valid()
     obj(protocol, "a1")["depends_on"].append("est1")
@@ -160,6 +181,7 @@ def test_empty_support_is_allowed_and_no_effective_standing_is_returned():
         "checks",
         "check_order",
         "sections",
+        "stale_adoptions",
     }
     for key in ("references", "sections"):
         assert not any("standing" in str(row) for row in index[key].values())

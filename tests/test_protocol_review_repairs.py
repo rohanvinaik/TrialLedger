@@ -9,7 +9,7 @@ import copy
 import json
 from pathlib import Path
 
-from tests.test_protocol_session_replay import _session
+from tests.test_protocol_session_replay import _session, adopt, adoption_premise
 from TrialLedger.layer2 import protocol_view, run
 
 FIXTURES = (
@@ -34,7 +34,7 @@ def _with_proposed_premise(request: dict) -> dict:
 # 1. Check-level support cannot be bypassed per claim.
 def test_a_proposed_check_level_premise_refuses_every_claim_in_a_managed_session():
     request = _with_proposed_premise(_session("84", collection_status="known"))
-    request["session"]["protocol"]["objects"][2]["support"] = ["adult"]
+    adopt(request, "collection")
     request["session"]["protocol"]["checks"][0]["support"] = ["draft-reading"]
     reply = run(request)
     assert reply["code"] == "complete", reply["problems"]
@@ -46,7 +46,7 @@ def test_a_proposed_check_level_premise_refuses_every_claim_in_a_managed_session
 
 def test_without_check_level_support_the_same_claims_are_accepted():
     request = _session("84", collection_status="known")
-    request["session"]["protocol"]["objects"][2]["support"] = ["adult"]
+    adopt(request, "collection")
     assert {row["admission"] for row in _claims(run(request))} == {"accepted"}
 
 
@@ -123,6 +123,7 @@ def test_an_estimand_collection_mismatch_reaches_the_view_and_keeps_the_section_
     template = copy.deepcopy(protocol["objects"][0])
     template.update(id="estimand", kind="estimand", depends_on=[], data=estimand)
     protocol["objects"].append(template)
+    adopt(request, "estimand")
     check = copy.deepcopy(protocol["checks"][0])
     check.update(id="estimand-check", kind="estimand", objects=["estimand"], claims=[])
     protocol["checks"] = [check]
@@ -144,11 +145,13 @@ def test_an_estimand_collection_mismatch_reaches_the_view_and_keeps_the_section_
 
 
 # 1b. A premise backing one object and also declared check-wide reaches every claim (second review).
+COLLECTION_ADOPTION = "adopt:collection:invented-v1"
+
+
 def _outside_window_with_collection_premise(check_wide: bool) -> dict:
-    request = _with_proposed_premise(_session("100", collection_status="known"))
-    request["session"]["protocol"]["objects"][2]["support"] = ["draft-reading"]
+    request = adopt(_session("100", collection_status="known"), "collection", "proposed", "unresolved")
     if check_wide:
-        request["session"]["protocol"]["checks"][0]["support"] = ["draft-reading"]
+        request["session"]["protocol"]["checks"][0]["support"] = [COLLECTION_ADOPTION]
     return request
 
 
@@ -165,7 +168,7 @@ def test_collection_only_proposed_support_leaves_the_known_outside_window_findin
         "known",
     )
     assert nominal["effective_outcome"] == "outside_window"
-    assert "premise:draft-reading" not in nominal["support"]
+    assert f"premise:{COLLECTION_ADOPTION}" not in nominal["support"]
 
 
 def test_the_same_premise_declared_check_wide_withholds_that_finding():
@@ -173,7 +176,7 @@ def test_the_same_premise_declared_check_wide_withholds_that_finding():
     nominal = _nominal(reply)
     assert nominal["admission"] == "proposed_refused"
     assert nominal["effective_outcome"] == "unresolved"
-    assert "premise:draft-reading" in nominal["support"]
+    assert f"premise:{COLLECTION_ADOPTION}" in nominal["support"]
 
 
 def test_declaring_a_premise_check_wide_changes_the_child_request():
@@ -306,6 +309,7 @@ def _estimand_session() -> dict:
     template = copy.deepcopy(protocol["objects"][0])
     template.update(id="estimand", kind="estimand", depends_on=[], data=estimand)
     protocol["objects"].append(template)
+    adopt(request, "estimand")
     check = copy.deepcopy(protocol["checks"][0])
     check.update(id="estimand-check", kind="estimand", objects=["estimand"], claims=[])
     protocol["checks"] = [check]
@@ -321,3 +325,96 @@ def test_repairing_an_estimand_collection_plan_is_a_verdict_change():
     row = _revise(_estimand_session(), collect)["answer_diff"]["protocol_checks"][0]
     assert row["code"] == "changed"
     assert "verdict" in row["axes"]
+
+
+# 6. Object support names only an adoption record for that exact object version (Rohan, 2026-11-04).
+def _refused_support(request: dict) -> list:
+    reply = run(request)
+    assert reply["code"] == "refused", reply
+    return reply["problems"]
+
+
+def test_an_eligibility_criterion_in_object_support_is_refused_as_an_adoption_mismatch():
+    request = _session("84", collection_status="known")
+    request["session"]["protocol"]["objects"][2]["support"] = ["adult"]
+    assert _refused_support(request) == ["protocol_adoption_mismatch"]
+
+
+def test_an_adoption_naming_a_different_object_is_refused_and_a_stale_version_adopts_nothing():
+    other_object = _session("84", collection_status="known")
+    adopt(other_object, "score")
+    other_object["session"]["protocol"]["objects"][2]["support"] = ["adopt:score:invented-v1"]
+    assert _refused_support(other_object) == ["protocol_adoption_mismatch"]
+
+    # Current production rule: an adoption of an older edition of this same object is stale, not a mismatch.
+    # It is not refused, but it adopts nothing, so no claim is admitted.
+    stale = _session("84", collection_status="known")
+    adopt(stale, "collection")
+    premise = next(p for p in stale["session"]["premises"] if p["id"] == "adopt:collection:invented-v1")
+    premise["payload"]["objects"] = [{"id": "collection", "version": "invented-v0"}]
+    reply = run(stale)
+    rows = _claims(reply)
+    assert {row["admission"] for row in rows} == {"binding_unresolved"}
+    unresolved = reply["result"]["protocol"]["checks"][0]["unresolved"]
+    assert {
+        "code": "adoption_stale_version",
+        "objects": ["collection"],
+        "premises": ["adopt:collection:invented-v1"],
+    } in unresolved
+    assert "accepted" not in {row["admission"] for row in rows}
+
+
+def test_an_adoption_premise_in_a_v1_session_keeps_the_previous_refusal():
+    request = copy.deepcopy(run({"operation": "describe", "view": "design_session"})["result"]["example"])
+    request["session"]["premises"].append(adoption_premise("collection", "invented-v1"))
+    assert request["session"]["schema_version"] == 1
+    assert _refused_support(request) == ["invalid_premise_kind_or_payload:adopt:collection:invented-v1"]
+
+
+def test_prepare_adopted_by_creates_the_adoption_premise_and_discloses_its_defaults():
+    request = copy.deepcopy(run({"operation": "describe", "view": "protocol"})["result"]["example"])
+    item = request["protocol"]["objects"][2]
+    item["adopted_by"] = {
+        "ref": "user:invented adoption",
+        "status": "interpolated",
+        "resolution": "partially_resolved",
+    }
+    prepared = run(request)
+    assert prepared["code"] == "complete", prepared["problems"]
+    session = prepared["result"]["request"]["session"]
+    premise = next(p for p in session["premises"] if p["id"] == "adopt:collection:invented-v1")
+    assert premise["kind"] == "adoption" and premise["origin"]["kind"] == "user_choice"
+    assert premise["origin"]["ref"] == "user:invented adoption"
+    assert premise["payload"] == {
+        "objects": [{"id": "collection", "version": "invented-v1"}],
+        "status": "interpolated",
+        "resolution": "partially_resolved",
+    }
+    built = next(o for o in session["protocol"]["objects"] if o["id"] == "collection")
+    assert built["support"] == ["adopt:collection:invented-v1"]
+    assert built["standing"] == {
+        "status": "interpolated",
+        "resolution": "partially_resolved",
+        "basis": ["user:invented adoption"],
+    }
+    # The unadopted objects keep their disclosed proposed defaults.
+    other = next(o for o in session["protocol"]["objects"] if o["id"] == "week12")
+    assert other["support"] == [] and other["standing"]["status"] == "proposed"
+    defaults = {row["path"]: row["value"] for row in prepared["result"]["defaults"]}
+    base = "/request/session/protocol/objects/2/"
+    assert defaults[base + "support"] == ["adopt:collection:invented-v1"]
+    assert defaults[base + "standing"] == built["standing"]
+    assert (
+        "/request/session/protocol/objects/1/support" in defaults
+    )  # unadopted objects disclose empty support
+    assert run(prepared["result"]["request"])["code"] == "complete"
+
+
+def test_a_proposed_adoption_keeps_every_claim_unadmitted_while_a_known_adoption_admits_them():
+    proposed = adopt(_session("84", collection_status="known"), "collection", "proposed", "unresolved")
+    rows = _claims(run(proposed))
+    assert {row["admission"] for row in rows} == {"proposed_refused"}
+    assert {row["effective_outcome"] for row in rows} == {"unresolved"}
+
+    known = adopt(_session("84", collection_status="known"), "collection", "known", "resolved")
+    assert {row["admission"] for row in _claims(run(known))} == {"accepted"}

@@ -89,6 +89,27 @@
       "analysis": null
      },
      "depends_on": []
+    },
+    {
+     "id": "adopt:big-rule:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "big-rule",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
     }
    ],
    "analyses": [
@@ -344,7 +365,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:big-rule:fixture-v1"
       ],
       "depends_on": [],
       "data": {
@@ -2706,7 +2727,7 @@
   "schema_version": 2,
   "session_id": "design",
   "revision": "one",
-  "session_digest": "b13c251d2d21e085a1d27fe913a03064126c5e4878e343563782df0a43b5fe8a",
+  "session_digest": "46e011d99782ea52be17b557c0d50acd2335747134500faf2035a698d79a29fc",
   "target": {
    "kind": "new_trial",
    "ref": "draft",
@@ -2786,6 +2807,27 @@
     "origin": {
      "kind": "user_choice",
      "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:big-rule:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "big-rule",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
      "source": null,
      "analysis": null
     },
@@ -2871,10 +2913,40 @@
     },
     "depends_on": [],
     "dependency_support": null
+   },
+   {
+    "id": "adopt:big-rule:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "big-rule",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
    }
   ],
   "dependency_graph": {
    "premise:adult": [],
+   "premise:adopt:big-rule:fixture-v1": [],
    "analysis:older": [
     "premise:adult"
    ],
@@ -4601,7 +4673,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:big-rule:fixture-v1"
      ],
      "depends_on": [],
      "data": {
@@ -6990,7 +7062,7 @@
          "big-rule"
         ],
         "premises": [
-         "adult"
+         "adopt:big-rule:fixture-v1"
         ],
         "target": {
          "kind": "new_trial",
@@ -7033,17 +7105,17 @@
            ]
           },
           {
-           "id": "premise:adult",
+           "id": "premise:adopt:big-rule:fixture-v1",
            "status": "known",
            "resolution": "resolved",
            "basis": [
-            "user:adult"
+            "user:simulated choice (fixture)"
            ]
           }
          ]
         },
         "conditions": [],
-        "request_digest": "034bb76bbcb43d045204b46cbe3eec999b1fcdb4f2a3c7891d65b2485767cca6"
+        "request_digest": "5afec917b8df6c044dfe969cda0e99e5bc3b0f363de940d80beebe19d0032e0a"
        },
        "request": {
         "operation": "signals",
@@ -9360,11 +9432,11 @@
             ]
            },
            {
-            "id": "premise:adult",
+            "id": "premise:adopt:big-rule:fixture-v1",
             "status": "known",
             "resolution": "resolved",
             "basis": [
-             "user:adult"
+             "user:simulated choice (fixture)"
             ]
            }
           ],
@@ -9378,7 +9450,7 @@
           "role_support": {
            "model": [
             "object:big-rule",
-            "premise:adult"
+            "premise:adopt:big-rule:fixture-v1"
            ]
           }
          }
@@ -9408,7 +9480,7 @@
             },
             "basis": [
              "user:simulated choice (fixture)",
-             "user:adult"
+             "user:simulated choice (fixture)"
             ],
             "rule": "policy.finite_reachable_states:1",
             "support": [
@@ -9422,9 +9494,9 @@
              },
              {
               "basis": [
-               "user:adult"
+               "user:simulated choice (fixture)"
               ],
-              "id": "premise:adult",
+              "id": "premise:adopt:big-rule:fixture-v1",
               "resolution": "resolved",
               "status": "known"
              }
@@ -11039,11 +11111,11 @@
             "admission": "undetermined",
             "declared_support": [
              "object:big-rule",
-             "premise:adult"
+             "premise:adopt:big-rule:fixture-v1"
             ],
             "support": [
              "object:big-rule",
-             "premise:adult"
+             "premise:adopt:big-rule:fixture-v1"
             ]
            },
            "values": {
@@ -13413,7 +13485,7 @@
            "role_support": {
             "model": [
              "object:big-rule",
-             "premise:adult"
+             "premise:adopt:big-rule:fixture-v1"
             ]
            },
            "support": [
@@ -13427,9 +13499,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:big-rule:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             }
@@ -13444,7 +13516,7 @@
            },
            "basis": [
             "user:simulated choice (fixture)",
-            "user:adult"
+            "user:simulated choice (fixture)"
            ],
            "blockers": [
             "policy_work_limit"
@@ -13470,7 +13542,7 @@
              "status": "known",
              "support": [
               "object:big-rule",
-              "premise:adult"
+              "premise:adopt:big-rule:fixture-v1"
              ]
             }
            ],
@@ -13494,7 +13566,7 @@
            "role_support": {
             "model": [
              "object:big-rule",
-             "premise:adult"
+             "premise:adopt:big-rule:fixture-v1"
             ]
            },
            "rule": "policy.finite_reachable_states:1",
@@ -13510,9 +13582,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:big-rule:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             }
@@ -15109,7 +15181,7 @@
           }
          ]
         },
-        "result_digest": "5870f46e86cb3a73600388fae975d46d4009df173a2a4d0d0843d0fbde1fe0a9",
+        "result_digest": "4dcde59ef2761618fa58aa26ace96300aff90cf533b6384a06188ec6ed907cac",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -15122,8 +15194,8 @@
          "problems": []
         }
        },
-       "request_digest": "034bb76bbcb43d045204b46cbe3eec999b1fcdb4f2a3c7891d65b2485767cca6",
-       "result_digest": "4db31e0548607f4bd783d7990492a59c1cd89fef3fcb9d61bdded3a0c0cb667c",
+       "request_digest": "5afec917b8df6c044dfe969cda0e99e5bc3b0f363de940d80beebe19d0032e0a",
+       "result_digest": "1397b63aa8b6133940429567d207778982efa4b8f1498734fa2a4c84ca6970e3",
        "signals": [
         {
          "id": "big-safety:finite_policy_model",
@@ -15158,7 +15230,7 @@
            "status": "known",
            "support": [
             "object:big-rule",
-            "premise:adult"
+            "premise:adopt:big-rule:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,

@@ -89,6 +89,27 @@
       "analysis": null
      },
      "depends_on": []
+    },
+    {
+     "id": "adopt:interim-rule:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "interim-rule",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
     }
    ],
    "analyses": [
@@ -344,7 +365,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:interim-rule:fixture-v1"
       ],
       "depends_on": [],
       "data": {
@@ -636,7 +657,7 @@
   "schema_version": 2,
   "session_id": "design",
   "revision": "one",
-  "session_digest": "d01f288daf82cf6a9c383a8a7955e9a074ba3232679fbb8533cf38742a3b9880",
+  "session_digest": "3d40e15221abe87c9e235114b33a3c4b6a0baf0eb5e9c3b76db13e68d1d9e18d",
   "target": {
    "kind": "new_trial",
    "ref": "draft",
@@ -716,6 +737,27 @@
     "origin": {
      "kind": "user_choice",
      "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:interim-rule:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "interim-rule",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
      "source": null,
      "analysis": null
     },
@@ -801,10 +843,40 @@
     },
     "depends_on": [],
     "dependency_support": null
+   },
+   {
+    "id": "adopt:interim-rule:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "interim-rule",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
    }
   ],
   "dependency_graph": {
    "premise:adult": [],
+   "premise:adopt:interim-rule:fixture-v1": [],
    "analysis:older": [
     "premise:adult"
    ],
@@ -2531,7 +2603,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:interim-rule:fixture-v1"
      ],
      "depends_on": [],
      "data": {
@@ -2835,7 +2907,7 @@
          "interim-rule"
         ],
         "premises": [
-         "adult"
+         "adopt:interim-rule:fixture-v1"
         ],
         "target": {
          "kind": "new_trial",
@@ -2878,17 +2950,17 @@
            ]
           },
           {
-           "id": "premise:adult",
+           "id": "premise:adopt:interim-rule:fixture-v1",
            "status": "known",
            "resolution": "resolved",
            "basis": [
-            "user:adult"
+            "user:simulated choice (fixture)"
            ]
           }
          ]
         },
         "conditions": [],
-        "request_digest": "d14e3e6a3ee9d8a65838d16017aea6a52a2d2ea745a33aaf1cd1b5d2efb40322"
+        "request_digest": "25e6a5fce2ef9fa1f30cfff3aad9ccb12255e8af91812d83320445783905be27"
        },
        "request": {
         "operation": "signals",
@@ -3120,11 +3192,11 @@
             ]
            },
            {
-            "id": "premise:adult",
+            "id": "premise:adopt:interim-rule:fixture-v1",
             "status": "known",
             "resolution": "resolved",
             "basis": [
-             "user:adult"
+             "user:simulated choice (fixture)"
             ]
            }
           ],
@@ -3153,7 +3225,7 @@
           "role_support": {
            "model": [
             "object:interim-rule",
-            "premise:adult"
+            "premise:adopt:interim-rule:fixture-v1"
            ]
           }
          }
@@ -3183,7 +3255,7 @@
             },
             "basis": [
              "user:simulated choice (fixture)",
-             "user:adult"
+             "user:simulated choice (fixture)"
             ],
             "rule": "policy.finite_reachable_states:1",
             "support": [
@@ -3197,9 +3269,9 @@
              },
              {
               "basis": [
-               "user:adult"
+               "user:simulated choice (fixture)"
               ],
-              "id": "premise:adult",
+              "id": "premise:adopt:interim-rule:fixture-v1",
               "resolution": "resolved",
               "status": "known"
              }
@@ -3433,11 +3505,11 @@
             "admission": "accepted",
             "declared_support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ],
             "support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ]
            },
            "values": {
@@ -3460,11 +3532,11 @@
             "admission": "accepted",
             "declared_support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ],
             "support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ]
            },
            "values": {
@@ -3487,11 +3559,11 @@
             "admission": "accepted",
             "declared_support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ],
             "support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ]
            },
            "values": {
@@ -3514,11 +3586,11 @@
             "admission": "accepted",
             "declared_support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ],
             "support": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ]
            },
            "values": {
@@ -3844,7 +3916,7 @@
            "role_support": {
             "model": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ]
            },
            "support": [
@@ -3858,9 +3930,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:interim-rule:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             }
@@ -3875,7 +3947,7 @@
            },
            "basis": [
             "user:simulated choice (fixture)",
-            "user:adult"
+            "user:simulated choice (fixture)"
            ],
            "blockers": [
             "policy_violation:prohibition"
@@ -3892,7 +3964,7 @@
              "status": "known",
              "support": [
               "object:interim-rule",
-              "premise:adult"
+              "premise:adopt:interim-rule:fixture-v1"
              ]
             },
             {
@@ -3905,7 +3977,7 @@
              "status": "known",
              "support": [
               "object:interim-rule",
-              "premise:adult"
+              "premise:adopt:interim-rule:fixture-v1"
              ]
             },
             {
@@ -3920,7 +3992,7 @@
              "status": "known",
              "support": [
               "object:interim-rule",
-              "premise:adult"
+              "premise:adopt:interim-rule:fixture-v1"
              ]
             },
             {
@@ -3933,7 +4005,7 @@
              "status": "known",
              "support": [
               "object:interim-rule",
-              "premise:adult"
+              "premise:adopt:interim-rule:fixture-v1"
              ]
             }
            ],
@@ -3950,7 +4022,7 @@
            "role_support": {
             "model": [
              "object:interim-rule",
-             "premise:adult"
+             "premise:adopt:interim-rule:fixture-v1"
             ]
            },
            "rule": "policy.finite_reachable_states:1",
@@ -3966,9 +4038,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:interim-rule:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             }
@@ -4184,7 +4256,7 @@
           }
          ]
         },
-        "result_digest": "cce48f502e3cc1588a84592e4af9d823cc8297368c9f40731134b645cceaba9f",
+        "result_digest": "865b19581d595ad2b81a117fa4888b9671df5ae239d49a113586df42f4469894",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -4198,8 +4270,8 @@
          "problems": []
         }
        },
-       "request_digest": "d14e3e6a3ee9d8a65838d16017aea6a52a2d2ea745a33aaf1cd1b5d2efb40322",
-       "result_digest": "b5f01a16f1a7d0dc33bec63ecd0d410f85f4e0cc7b43a176ca884049c4a3882e",
+       "request_digest": "25e6a5fce2ef9fa1f30cfff3aad9ccb12255e8af91812d83320445783905be27",
+       "result_digest": "ce3f7821de70c85d72b644daf1d03bbcf9685fec10dd1383b20b464147c5b4cb",
        "signals": [
         {
          "id": "interim-safety:finite_policy_model",
@@ -4225,7 +4297,7 @@
            "status": "known",
            "support": [
             "object:interim-rule",
-            "premise:adult"
+            "premise:adopt:interim-rule:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,
@@ -4242,7 +4314,7 @@
            "status": "known",
            "support": [
             "object:interim-rule",
-            "premise:adult"
+            "premise:adopt:interim-rule:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,
@@ -4261,7 +4333,7 @@
            "status": "known",
            "support": [
             "object:interim-rule",
-            "premise:adult"
+            "premise:adopt:interim-rule:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,
@@ -4278,7 +4350,7 @@
            "status": "known",
            "support": [
             "object:interim-rule",
-            "premise:adult"
+            "premise:adopt:interim-rule:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,

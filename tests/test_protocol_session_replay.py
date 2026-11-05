@@ -11,6 +11,33 @@ def _standing(status: str) -> dict:
     return {"status": status, "resolution": "resolved", "basis": ["user:invented week-12 plan"]}
 
 
+def adoption_premise(
+    identity: str, version: str, status: str = "known", resolution: str = "resolved"
+) -> dict:
+    """An explicit attributed adoption record naming exactly one object version (Rohan, 2026-11-04)."""
+    return {
+        "id": f"adopt:{identity}:{version}",
+        "kind": "adoption",
+        "payload": {
+            "objects": [{"id": identity, "version": version}],
+            "status": status,
+            "resolution": resolution,
+        },
+        "origin": copy.deepcopy(ORIGIN),
+        "depends_on": [],
+    }
+
+
+def adopt(request: dict, identity: str, status: str = "known", resolution: str = "resolved") -> dict:
+    """Adopt a protocol object by its own adoption premise, which becomes its only support."""
+    session = request["session"]
+    item = next(o for o in session["protocol"]["objects"] if o["id"] == identity)
+    premise = adoption_premise(identity, item["version"], status, resolution)
+    session["premises"] = [p for p in session["premises"] if p["id"] != premise["id"]] + [premise]
+    item["support"] = [premise["id"]]
+    return request
+
+
 def _session(nominal: str, collection_status: str = "proposed") -> dict:
     request = copy.deepcopy(run({"operation": "describe", "view": "design_session"})["result"]["example"])
     session = request["session"]
@@ -20,7 +47,11 @@ def _session(nominal: str, collection_status: str = "proposed") -> dict:
         "context": {"cohort": None, "phase": None, "arm": None},
     }
 
-    def obj(identity, kind, data, depends_on, status="known", support=("adult",)):
+    adoptions = []
+
+    def obj(identity, kind, data, depends_on, status="known", adopted=True):
+        if adopted:
+            adoptions.append(adoption_premise(identity, "invented-v1"))
         return {
             "id": identity,
             "kind": kind,
@@ -28,7 +59,7 @@ def _session(nominal: str, collection_status: str = "proposed") -> dict:
             "version": "invented-v1",
             "origin": copy.deepcopy(ORIGIN),
             "standing": _standing(status),
-            "support": list(support),
+            "support": [f"adopt:{identity}:invented-v1"] if adopted else [],
             "depends_on": depends_on,
             "data": data,
         }
@@ -69,7 +100,7 @@ def _session(nominal: str, collection_status: str = "proposed") -> dict:
                 },
                 ["week12"],
                 status=collection_status,
-                support=(),
+                adopted=False,
             ),
         ],
         "checks": [
@@ -92,6 +123,7 @@ def _session(nominal: str, collection_status: str = "proposed") -> dict:
             {"id": "assessments", "state": "requested", "objects": ["week12", "collection"], "basis": []}
         ],
     }
+    session["premises"] = session["premises"] + adoptions
     return request
 
 
@@ -168,7 +200,7 @@ def _adult_body(request: dict) -> dict:
 
 def _with_condition(condition: dict, deciding: list | None) -> dict:
     request = _session("84", collection_status="known")
-    request["session"]["protocol"]["objects"][2]["support"] = ["adult"]
+    adopt(request, "collection")
     request["session"]["protocol"]["objects"][1]["data"]["condition"] = condition
     if deciding is not None:
         request["session"]["protocol"]["checks"][0]["bindings"] = [

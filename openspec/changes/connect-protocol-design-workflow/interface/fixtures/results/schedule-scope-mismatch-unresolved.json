@@ -89,6 +89,48 @@
       "analysis": null
      },
      "depends_on": []
+    },
+    {
+     "id": "adopt:score:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "score",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
+    },
+    {
+     "id": "adopt:week12:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "week12",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
     }
    ],
    "analyses": [
@@ -344,7 +386,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:score:fixture-v1"
       ],
       "depends_on": [],
       "data": {
@@ -398,7 +440,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:week12:fixture-v1"
       ],
       "depends_on": [
        "score"
@@ -565,7 +607,7 @@
   "schema_version": 2,
   "session_id": "design",
   "revision": "one",
-  "session_digest": "7a1a920a8c7884c964822e50182db87fc57034fdfd002dafa7c6aed795839208",
+  "session_digest": "9f6798613d91caf6e355e5b0ee2cc7a2e1ea63f6b84c734c644f726220d94f31",
   "target": {
    "kind": "new_trial",
    "ref": "draft",
@@ -645,6 +687,48 @@
     "origin": {
      "kind": "user_choice",
      "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:score:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "score",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:week12:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "week12",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
      "source": null,
      "analysis": null
     },
@@ -730,10 +814,70 @@
     },
     "depends_on": [],
     "dependency_support": null
+   },
+   {
+    "id": "adopt:score:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "score",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
+   },
+   {
+    "id": "adopt:week12:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "week12",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
    }
   ],
   "dependency_graph": {
    "premise:adult": [],
+   "premise:adopt:score:fixture-v1": [],
+   "premise:adopt:week12:fixture-v1": [],
    "analysis:older": [
     "premise:adult"
    ],
@@ -2460,7 +2604,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:score:fixture-v1"
      ],
      "depends_on": [],
      "data": {
@@ -2514,7 +2658,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:week12:fixture-v1"
      ],
      "depends_on": [
       "score"

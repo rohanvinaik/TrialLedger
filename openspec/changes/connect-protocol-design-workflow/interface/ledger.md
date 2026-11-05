@@ -204,3 +204,19 @@ Every check has exactly `id`, `kind`, `scope`, `objects`, `bindings`, `claims`, 
   helper inside the test that supplies `target`, `premises` and `sources`.
 - Use invented values only: no clinical defaults.
 - The coordinator reviews these fixtures before integration.
+
+## Integration changes decided by Rohan (2026-11-04)
+
+1. **Explicit adoption records.** An object's `support` may contain only premises of kind `adoption` whose payload
+   `{objects: [{id, version}], status, resolution}` names this object; their origin must be `user_choice`.
+   - A criterion, or another object's adoption, refuses with `protocol_adoption_mismatch`.
+   - An adoption of an older version of this object is **stale**. It is recorded in the index as
+     `stale_adoptions`; the object is treated as not yet adopted, and the projection adds an
+     `adoption_stale_version` entry.
+   - Adoption premises are v2-only. A v1 session keeps its previous `invalid_premise_kind_or_payload` refusal.
+   - Check-level support, applicability premises and efficacy assumptions are unchanged.
+2. **The collection link is declared once.** `collection.event_handling` is `null`, or exactly
+   `{estimand, requirement, action: collect|stop}`. The estimand projection takes that requirement's
+   `collection_plan` row from the linked collection, with its standing. A differing declaration, in the
+   estimand's own data or from another linked collection, gives `projection_collection_plan_conflict` and no
+   child.

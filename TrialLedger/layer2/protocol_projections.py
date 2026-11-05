@@ -92,7 +92,7 @@ def _premise_entry(premise: str, premise_standing: Mapping[str, dict]) -> dict:
     return {"id": "premise:" + premise, **_standing_of(premise_standing, premise)}
 
 
-def object_entries(obj: dict, premise_standing: Mapping[str, dict]) -> list[dict]:
+def object_entries(obj: dict, premise_standing: Mapping[str, dict], stale: list | tuple = ()) -> list[dict]:
     """Support entries for one object: its own standing, each support premise, or the adoption gap."""
     standing = obj["standing"]
     entries = [
@@ -103,7 +103,15 @@ def object_entries(obj: dict, premise_standing: Mapping[str, dict]) -> list[dict
             "basis": list(standing["basis"]),
         }
     ]
-    entries += [_premise_entry(premise, premise_standing) for premise in obj["support"]]
+    for premise in obj["support"]:
+        entry = _premise_entry(premise, premise_standing)
+        if premise in stale:
+            # A stale adoption (older version of this object) never admits the current version.
+            entry.update(
+                resolution="unresolved",
+                basis=[f"adoption_stale_version: re-adopt {obj['id']} at version {obj['version']}"],
+            )
+        entries.append(entry)
     if adoption_state(len(obj["support"])) == "adoption_absent":
         entries.append(
             {
@@ -129,7 +137,8 @@ def _unique(entries: list[dict]) -> list[dict]:
 def _obj_entries(index: dict, ids: list[str], premise_standing: Mapping[str, dict]) -> list[dict]:
     rows: list[dict] = []
     for identity in ids:
-        rows += object_entries(index["objects"][identity], premise_standing)
+        stale = index.get("stale_adoptions", {}).get(identity, [])
+        rows += object_entries(index["objects"][identity], premise_standing, stale)
     return _unique(rows)
 
 
@@ -302,11 +311,57 @@ def _project_binomial(build: _Build, name: str, version: str) -> dict:
 
 def _project_estimand(build: _Build, name: str, version: str) -> dict:
     (est_id,) = _of_kind(build.index, build.check, "estimand")
+    data = copy.deepcopy(build.index["objects"][est_id]["data"])
+    # Collections that declare event_handling for this estimand supply its collection plan (declared once,
+    # on the collection). A differing declaration is a named conflict, never a silent override.
+    linked = [
+        (oid, obj)
+        for oid, obj in build.index["objects"].items()
+        if obj["kind"] == "collection"
+        and isinstance(obj["data"].get("event_handling"), dict)
+        and obj["data"]["event_handling"]["estimand"] == est_id
+    ]
+    declared_in_data = {
+        row["requirement"]: row["action"]
+        for row in data.get("collection_plan", [])
+        if isinstance(row, dict) and "requirement" in row
+    }
+    plan = {row["requirement"]: row for row in data.get("collection_plan", []) if isinstance(row, dict)}
+    declared: dict[str, tuple[str, str]] = {}
+    conflicts = []
+    for oid, obj in linked:
+        handling = obj["data"]["event_handling"]
+        requirement, action = handling["requirement"], handling["action"]
+        other_collection = declared.get(requirement)
+        in_data = declared_in_data.get(requirement)
+        if (other_collection and other_collection[1] != action) or (
+            in_data is not None and in_data != action
+        ):
+            conflicts.append(oid)
+            continue
+        declared[requirement] = (oid, action)
+        build.consume(oid)
+        standing = obj["standing"]
+        plan[requirement] = {
+            "requirement": requirement,
+            "action": action,
+            "status": standing["status"],
+            "resolution": standing["resolution"],
+            "basis": list(standing["basis"]),
+        }
+    if conflicts:
+        return _result(
+            build.check,
+            name,
+            version,
+            unresolved=[_unresolved("collection_plan_conflict", [est_id, *conflicts])],
+        )
+    if linked:
+        data["collection_plan"] = [plan[key] for key in sorted(plan)]
     _, issue = _scope_string(build, False)
     if issue:
         return _result(build.check, name, version, unresolved=[issue])
-    build.role("estimand", [est_id])
-    data = copy.deepcopy(build.index["objects"][est_id]["data"])
+    build.role("estimand", [est_id, *(oid for oid, _ in linked)])
     return _result(build.check, name, version, [build.child(name, version, "estimand", data)])
 
 
@@ -383,4 +438,12 @@ def project(index: dict, check_id: str, *, premise_standing: Mapping[str, dict])
     if projector is None:
         raise _fail("unknown_kind")
     name, version = PROJECTIONS.get(check["kind"], UNPROJECTED).split(":")
-    return projector(_Build(index, check, premise_standing), name, version)
+    projected = projector(_Build(index, check, premise_standing), name, version)
+    stale = index.get("stale_adoptions", {})
+    consumed = [*check["objects"], *(o for c in projected["children"] for o in c["receipt"]["objects"])]
+    for identity in dict.fromkeys(consumed):
+        if stale.get(identity):
+            projected["unresolved"].append(
+                {"code": "adoption_stale_version", "objects": [identity], "premises": list(stale[identity])}
+            )
+    return projected

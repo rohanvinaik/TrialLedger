@@ -225,3 +225,10 @@ Every test body calls `protocol_view.view(...)` directly, by name.
 6. **Not-executed claims** (output test author, 2026-11-04). A claim whose effective outcome is `not_executed`
    (work limit) is an unsettled claim. It is listed as a `claim_unsettled` open item with the fixed wording "Not
    computed within the declared work limit." This is in addition to its section's `not_computed` coverage.
+7. **Adoption** (explicit adoption records, decided by Rohan on 2026-11-04). The view adds `adoption`, one row per
+   protocol object: `{object, kind, version, adopted_by, adoption_origins, adoption, object_standing}`.
+   - `adoption` ∈ not_adopted, stale_version, adopted_known, adopted_interpolated or adopted_proposed, read only
+     from declared adoption records and the `adoption_stale_version` entries.
+   - The view now has seven keys.
+   - Export adds a "Protocol adoption" sheet and an "Adoption" table in the decision list, so a reviewer sees who
+     adopted each object version.

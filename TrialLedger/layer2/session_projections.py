@@ -54,7 +54,7 @@ def weakest(values: list[dict], basis: list[str]) -> dict:
 def _declared(premise: dict, payload: dict) -> dict:
     kind = premise["kind"]
     basis = [premise["origin"]["ref"]]
-    if kind in ("assertion", "derived_assertion", "source_assertion", "binding", "observation"):
+    if kind in ("assertion", "derived_assertion", "source_assertion", "binding", "observation", "adoption"):
         return admission.read_standing(
             {
                 "status": payload.get("status", "proposed"),

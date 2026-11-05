@@ -89,6 +89,48 @@
       "analysis": null
      },
      "depends_on": []
+    },
+    {
+     "id": "adopt:score:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "score",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
+    },
+    {
+     "id": "adopt:week12:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "week12",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
     }
    ],
    "analyses": [
@@ -344,7 +386,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:score:fixture-v1"
       ],
       "depends_on": [],
       "data": {
@@ -398,7 +440,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:week12:fixture-v1"
       ],
       "depends_on": [
        "score"
@@ -551,7 +593,7 @@
   "schema_version": 2,
   "session_id": "design",
   "revision": "one",
-  "session_digest": "acd90b04027d57187733cd8a4304d29e3da76a600cd19ccd9acae7329367b70c",
+  "session_digest": "9e4f042ba11ecc9bf16388191ab0b736563e86b6cc52062c8903d630c4c6466d",
   "target": {
    "kind": "new_trial",
    "ref": "draft",
@@ -631,6 +673,48 @@
     "origin": {
      "kind": "user_choice",
      "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:score:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "score",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:week12:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "week12",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
      "source": null,
      "analysis": null
     },
@@ -716,10 +800,70 @@
     },
     "depends_on": [],
     "dependency_support": null
+   },
+   {
+    "id": "adopt:score:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "score",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
+   },
+   {
+    "id": "adopt:week12:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "week12",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
    }
   ],
   "dependency_graph": {
    "premise:adult": [],
+   "premise:adopt:score:fixture-v1": [],
+   "premise:adopt:week12:fixture-v1": [],
    "analysis:older": [
     "premise:adult"
    ],
@@ -2446,7 +2590,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:score:fixture-v1"
      ],
      "depends_on": [],
      "data": {
@@ -2500,7 +2644,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:week12:fixture-v1"
      ],
      "depends_on": [
       "score"
@@ -2662,7 +2806,7 @@
          "collection"
         ],
         "premises": [
-         "adult"
+         "adopt:week12:fixture-v1"
         ],
         "target": {
          "kind": "new_trial",
@@ -2705,11 +2849,11 @@
            ]
           },
           {
-           "id": "premise:adult",
+           "id": "premise:adopt:week12:fixture-v1",
            "status": "known",
            "resolution": "resolved",
            "basis": [
-            "user:adult"
+            "user:simulated choice (fixture)"
            ]
           }
          ],
@@ -2723,11 +2867,11 @@
            ]
           },
           {
-           "id": "premise:adult",
+           "id": "premise:adopt:week12:fixture-v1",
            "status": "known",
            "resolution": "resolved",
            "basis": [
-            "user:adult"
+            "user:simulated choice (fixture)"
            ]
           }
          ],
@@ -2751,7 +2895,7 @@
          ]
         },
         "conditions": [],
-        "request_digest": "2509ba4945f1b66c5be61e2040ce3d124db5c86b3e47f004f1aae329516ef1f5"
+        "request_digest": "6cf59db0a033fa794de696e0f0ae719aeb86bd4a0f203962e414da4552013eb9"
        },
        "request": {
         "operation": "signals",
@@ -2791,11 +2935,11 @@
             ]
            },
            {
-            "id": "premise:adult",
+            "id": "premise:adopt:week12:fixture-v1",
             "status": "known",
             "resolution": "resolved",
             "basis": [
-             "user:adult"
+             "user:simulated choice (fixture)"
             ]
            },
            {
@@ -2832,11 +2976,11 @@
           "role_support": {
            "permitted": [
             "object:week12",
-            "premise:adult"
+            "premise:adopt:week12:fixture-v1"
            ],
            "nominal": [
             "object:week12",
-            "premise:adult"
+            "premise:adopt:week12:fixture-v1"
            ],
            "available": [
             "object:collection",
@@ -2872,7 +3016,7 @@
             },
             "basis": [
              "user:simulated choice (fixture)",
-             "user:adult",
+             "user:simulated choice (fixture)",
              "user:simulated choice (fixture)",
              "no adoption support declared for collection"
             ],
@@ -2888,9 +3032,9 @@
              },
              {
               "basis": [
-               "user:adult"
+               "user:simulated choice (fixture)"
               ],
-              "id": "premise:adult",
+              "id": "premise:adopt:week12:fixture-v1",
               "resolution": "resolved",
               "status": "known"
              },
@@ -3015,13 +3159,13 @@
              "adoption:collection",
              "object:collection",
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ],
             "support": [
              "adoption:collection",
              "object:collection",
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ]
            },
            "values": {
@@ -3044,11 +3188,11 @@
             "admission": "accepted",
             "declared_support": [
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ],
             "support": [
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ]
            },
            "values": {
@@ -3075,13 +3219,13 @@
              "adoption:collection",
              "object:collection",
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ],
             "support": [
              "adoption:collection",
              "object:collection",
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ]
            },
            "values": {
@@ -3222,11 +3366,11 @@
             ],
             "nominal": [
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ],
             "permitted": [
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ]
            },
            "support": [
@@ -3240,9 +3384,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:week12:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             },
@@ -3273,7 +3417,7 @@
            },
            "basis": [
             "user:simulated choice (fixture)",
-            "user:adult",
+            "user:simulated choice (fixture)",
             "user:simulated choice (fixture)",
             "no adoption support declared for collection"
            ],
@@ -3296,7 +3440,7 @@
               "adoption:collection",
               "object:collection",
               "object:week12",
-              "premise:adult"
+              "premise:adopt:week12:fixture-v1"
              ]
             },
             {
@@ -3309,7 +3453,7 @@
              "status": "known",
              "support": [
               "object:week12",
-              "premise:adult"
+              "premise:adopt:week12:fixture-v1"
              ]
             },
             {
@@ -3324,7 +3468,7 @@
               "adoption:collection",
               "object:collection",
               "object:week12",
-              "premise:adult"
+              "premise:adopt:week12:fixture-v1"
              ]
             }
            ],
@@ -3338,11 +3482,11 @@
             ],
             "nominal": [
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ],
             "permitted": [
              "object:week12",
-             "premise:adult"
+             "premise:adopt:week12:fixture-v1"
             ]
            },
            "rule": "schedule.exact_interval_coverage:1",
@@ -3358,9 +3502,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:week12:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             },
@@ -3463,7 +3607,7 @@
           }
          ]
         },
-        "result_digest": "2dbc0faeca7041b16d368db081f9f525ceda48cba88f33100eec06bed3140afa",
+        "result_digest": "9dcdba0bd485964c8e655bced9e9652f55bcef425374d621d04bf45f4a5e3b20",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -3476,8 +3620,8 @@
          "problems": []
         }
        },
-       "request_digest": "2509ba4945f1b66c5be61e2040ce3d124db5c86b3e47f004f1aae329516ef1f5",
-       "result_digest": "28350410a9c92d26448d73b6b6ee7ac56561aa1b8ba2fbdd9bce76204acacc29",
+       "request_digest": "6cf59db0a033fa794de696e0f0ae719aeb86bd4a0f203962e414da4552013eb9",
+       "result_digest": "1b1c4a6781d84e16a2bad06e9da5b304bc2b90e339d0f72b6781f9643aa1311a",
        "signals": [
         {
          "id": "week12-schedule:schedule_window_coverage",
@@ -3507,7 +3651,7 @@
             "adoption:collection",
             "object:collection",
             "object:week12",
-            "premise:adult"
+            "premise:adopt:week12:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,
@@ -3524,7 +3668,7 @@
            "status": "known",
            "support": [
             "object:week12",
-            "premise:adult"
+            "premise:adopt:week12:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,
@@ -3543,7 +3687,7 @@
             "adoption:collection",
             "object:collection",
             "object:week12",
-            "premise:adult"
+            "premise:adopt:week12:fixture-v1"
            ],
            "application": "unconditional",
            "application_status": null,

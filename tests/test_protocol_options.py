@@ -6,7 +6,7 @@ Written from the frozen contract before implementation. Every test calls `run` d
 import copy
 import re
 
-from tests.test_protocol_session_replay import _session
+from tests.test_protocol_session_replay import _session, adopt, adoption_premise
 from TrialLedger.layer2 import run
 
 ALL_REQUIRED = ("visit", "target", "window")
@@ -22,7 +22,7 @@ def _base(required: tuple = ALL_REQUIRED, optional: bool = False) -> dict:
     request = _session("84", collection_status="known")
     session = request["session"]
     protocol = session["protocol"]
-    protocol["objects"][2]["support"] = ["adult"]
+    adopt(request, "collection")
     claims = {
         "visit": {"id": "visit", "claim": "existence"},
         "target": {"id": "target", "claim": "nominal"},
@@ -46,22 +46,21 @@ def _base(required: tuple = ALL_REQUIRED, optional: bool = False) -> dict:
     return request
 
 
-def _with_draft_premise(request: dict) -> dict:
-    """Adds a proposed external premise `draft-reading` (not adopted by anyone)."""
-    premise = copy.deepcopy(request["session"]["premises"][0])
-    premise["id"] = premise["payload"]["id"] = "draft-reading"
-    premise["payload"]["status"] = "proposed"
-    request["session"]["premises"].append(premise)
-    return request
+def _replacement(base: dict, upper: str, *, ref: str, adoption: str = "known") -> dict:
+    """A complete collection object: hypothesis origin, proposed standing, window edited only.
 
-
-def _replacement(base: dict, upper: str, *, ref: str, support: tuple = ("adult",)) -> dict:
-    """A complete collection object: hypothesis origin, proposed standing, window edited only."""
+    A "proposed" adoption names its own edition so it never shares the known adoption of the baseline plan.
+    """
     template = next(o for o in base["session"]["protocol"]["objects"] if o["id"] == "collection")
     item = copy.deepcopy(template)
     item["origin"] = {"kind": "hypothesis", "ref": f"user:invented {ref}", "source": None, "analysis": None}
     item["standing"] = {"status": "proposed", "resolution": "resolved", "basis": [f"user:invented {ref}"]}
-    item["support"] = list(support)
+    if adoption == "proposed":
+        item["version"] = "invented-v1-draft"
+        premise = adoption_premise("collection", item["version"], "proposed", "resolved")
+        base["session"]["premises"] = [p for p in base["session"]["premises"] if p["id"] != premise["id"]]
+        base["session"]["premises"].append(premise)
+    item["support"] = [f"adopt:collection:{item['version']}"]
     item["data"]["availability"] = [_through(upper)]
     return item
 
@@ -163,8 +162,8 @@ def test_opt1_two_replacements_yield_fresh_separately_retained_candidates_and_le
 
 def test_opt2_a_required_check_left_undetermined_makes_its_alternative_undetermined():
     """OPT-2: a replacement supported by a proposed premise leaves its required claims unadmitted."""
-    base = _with_draft_premise(_base())
-    unsupported = _replacement(base, "95", ref="unsupported window", support=("adult", "draft-reading"))
+    base = _base()
+    unsupported = _replacement(base, "95", ref="unsupported window", adoption="proposed")
     supported = _replacement(base, "95", ref="supported window")
     alternatives = [
         _alt("supported", [supported], ("week12-schedule",)),
@@ -250,6 +249,7 @@ def _policy_session(prohibition_status: str = "known") -> dict:
     policy = copy.deepcopy(protocol["objects"][0])
     policy.update(id="interim-rule", kind="policy", depends_on=[], data={"model": model, "bindings": []})
     protocol["objects"].append(policy)
+    adopt(request, "interim-rule")
     protocol["checks"] = [
         {
             **copy.deepcopy(protocol["checks"][0]),
@@ -302,12 +302,12 @@ def test_opt4_an_unchosen_hypothetical_replacement_is_a_hypothetical_frame_with_
 
 def test_opt4_hypothesis_standing_stays_proposed_and_proposed_external_support_is_not_lifted():
     """OPT-4: replacement standing is never promoted; proposed external support is not lifted."""
-    base = _with_draft_premise(_base())
+    base = _base()
     alternatives = [
         _alt("through-95", [_replacement(base, "95", ref="through 95")], ("week12-schedule",)),
         _alt(
             "unsupported",
-            [_replacement(base, "95", ref="unsupported", support=("adult", "draft-reading"))],
+            [_replacement(base, "95", ref="unsupported", adoption="proposed")],
             ("week12-schedule",),
         ),
     ]

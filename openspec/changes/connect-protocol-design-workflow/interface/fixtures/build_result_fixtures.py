@@ -32,18 +32,37 @@ def scope_of(session, cohort=None):
     }
 
 
-def obj(session, identity, kind, data, depends_on, status="known", support=("adult",), cohort=None):
-    return {
+def adopt(session, item):
+    """Adopt one object version by an explicit attributed record; support names only that record."""
+    premise = {
+        "id": f"adopt:{item['id']}:{item['version']}",
+        "kind": "adoption",
+        "payload": {
+            "objects": [{"id": item["id"], "version": item["version"]}],
+            "status": "known",
+            "resolution": "resolved",
+        },
+        "origin": copy.deepcopy(ORIGIN),
+        "depends_on": [],
+    }
+    session["premises"] = [p for p in session["premises"] if p["id"] != premise["id"]] + [premise]
+    item["support"] = [premise["id"]]
+    return item
+
+
+def obj(session, identity, kind, data, depends_on, status="known", adopted=True, cohort=None):
+    item = {
         "id": identity,
         "kind": kind,
         "scope": scope_of(session, cohort),
         "version": "fixture-v1",
         "origin": copy.deepcopy(ORIGIN),
         "standing": standing(status),
-        "support": list(support),
+        "support": [],
         "depends_on": depends_on,
         "data": data,
     }
+    return adopt(session, item) if adopted else item
 
 
 def check(session, identity, kind, objects, claims, required=True, bindings=(), cohort=None):
@@ -111,7 +130,7 @@ def schedule_objects(session, nominal, collection_status="proposed", condition=N
             },
             ["week12"],
             status=collection_status,
-            support=(),
+            adopted=False,
         ),
     ]
 
@@ -258,7 +277,7 @@ def main():
     r = base()
     s = r["session"]
     objects = schedule_objects(s, "84", collection_status="known", condition=cond)
-    objects[2]["support"] = ["adult"]
+    adopt(s, objects[2])
     s["protocol"] = {
         "schema_version": 1,
         "objects": objects,
@@ -385,7 +404,7 @@ def main():
     r = base()
     s = r["session"]
     objects = schedule_objects(s, "84", collection_status="known")
-    objects[2]["support"] = ["adult"]
+    adopt(s, objects[2])
     extended = copy.deepcopy(objects[2])
     extended["data"]["availability"] = [iv(None, "91")]
     s["protocol"] = {

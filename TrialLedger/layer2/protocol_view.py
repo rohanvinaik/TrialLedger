@@ -654,11 +654,60 @@ def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]
     return items
 
 
+ADOPTION_CODES = ("not_adopted", "stale_version", "adopted_known", "adopted_interpolated", "adopted_proposed")
+
+
+def adoption_code(supported: bool, stale: bool, standing: str | None) -> str:
+    """How one protocol object stands as adopted, from its declared records only (pure).
+
+    post: __return__ in ADOPTION_CODES
+    post: supported or __return__ == "not_adopted"
+    """
+    if not supported:
+        return "not_adopted"
+    if stale:
+        return "stale_version"
+    if standing in ("known", "interpolated", "proposed"):
+        return "adopted_" + standing
+    return "adopted_proposed"
+
+
+def _adoption_rows(protocol: dict, result: dict, checks: list[dict]) -> list[dict]:
+    """Who adopted each protocol object, at which version, with which standing (explicit records only)."""
+    premises = {p.get("id"): p for p in result.get("effective_premises") or [] if isinstance(p, dict)}
+    stale = {
+        entry["objects"][0]: list(entry.get("premises") or [])
+        for check in checks
+        for entry in check.get("unresolved") or []
+        if entry.get("code") == "adoption_stale_version" and entry.get("objects")
+    }
+    rows = []
+    for obj in protocol.get("objects") or []:
+        records = [premises.get(pid) or {"id": pid} for pid in obj.get("support") or []]
+        standing = [(r.get("standing") or {}).get("status") for r in records]
+        weakest = next((s for s in ("proposed", "interpolated", "known") if s in standing), None)
+        rows.append(
+            {
+                "object": obj["id"],
+                "kind": obj.get("kind"),
+                "version": obj.get("version"),
+                "adopted_by": [r["id"] for r in records],
+                "adoption_origins": [
+                    f"{(r.get('origin') or {}).get('kind')}: {(r.get('origin') or {}).get('ref')}"
+                    for r in records
+                ],
+                "adoption": adoption_code(bool(records), obj["id"] in stale, weakest),
+                "object_standing": (obj.get("standing") or {}).get("status"),
+            }
+        )
+    return rows
+
+
 def view(result: dict) -> dict:
     """The clinical protocol view of one v2 design_session result.
 
     pre: isinstance(result, dict)
-    post: len(__return__) == 6
+    post: len(__return__) == 7
     post: len(__return__["sections"]) == 8
     """
     protocol = result.get("protocol") if isinstance(result, dict) else None
@@ -678,5 +727,6 @@ def view(result: dict) -> dict:
         "checks": check_rows,
         "schedule": schedule,
         "open_items": _open_items(check_rows, checks, sections),
+        "adoption": _adoption_rows(protocol, result, checks),
         "limits_of_claim": list(protocol.get("limits_of_claim") or []) + list(EXTRA_LIMITS),
     }

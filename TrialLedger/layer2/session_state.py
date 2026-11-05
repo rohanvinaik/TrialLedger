@@ -30,6 +30,7 @@ KINDS = {
     "corpus_trial",
     "coordinate_evidence",
     "derived_assertion",
+    "adoption",
 }
 OPERATIONS = {
     "entailment",
@@ -212,6 +213,30 @@ def _origin(premise: dict, sources: dict, analyses: dict) -> None:
         raise ValueError("choice_origin_is_not_source_fact")
 
 
+def _adoption(premise: dict) -> None:
+    """An explicit attributed record that the person adopted exact protocol object versions (2026-11-04)."""
+    payload = obj(premise["payload"], {"objects", "status", "resolution"}, "adoption")
+    if premise["origin"]["kind"] != "user_choice":
+        raise ValueError("adoption_requires_user_choice")
+    if payload["status"] not in ("known", "interpolated", "proposed") or payload["resolution"] not in (
+        "resolved",
+        "partially_resolved",
+        "unresolved",
+        "conflicting",
+    ):
+        raise ValueError("invalid_adoption_standing")
+    adopted = rows(payload["objects"], "adoption.objects")
+    if not adopted:
+        raise ValueError("empty_adoption")
+    seen = set()
+    for item in adopted:
+        row = obj(item, {"id", "version"}, "adoption.object")
+        key = (text(row["id"], "adoption.object.id"), text(row["version"], "adoption.object.version"))
+        if key in seen:
+            raise ValueError("duplicate_adoption_object")
+        seen.add(key)
+
+
 def _decision_inputs(decisions: dict, analyses: dict) -> None:
     """Check question administration before any reasoning call; no clinical feasibility is inferred."""
     for item in decisions.values():
@@ -326,6 +351,11 @@ def prepare(value: object) -> dict:
     for key, premise in premises.items():
         if premise["kind"] not in KINDS or type(premise["payload"]) is not dict:
             raise ValueError("invalid_premise_kind_or_payload:" + key)
+        if premise["kind"] == "adoption":
+            # Version 2 only; a v1 session keeps its exact previous refusal (CMP-1).
+            if session["schema_version"] != 2:
+                raise ValueError("invalid_premise_kind_or_payload:" + key)
+            _adoption(premise)
         deps = rows(premise["depends_on"], "depends_on")
         if len(deps) != len(set(text(v, "depends_on") for v in deps)):
             raise ValueError("duplicate_dependency:" + key)

@@ -89,6 +89,111 @@
       "analysis": null
      },
      "depends_on": []
+    },
+    {
+     "id": "adopt:response:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "response",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
+    },
+    {
+     "id": "adopt:efficacy:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "efficacy",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
+    },
+    {
+     "id": "adopt:survival:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "survival",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
+    },
+    {
+     "id": "adopt:score:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "score",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
+    },
+    {
+     "id": "adopt:week12:fixture-v1",
+     "kind": "adoption",
+     "payload": {
+      "objects": [
+       {
+        "id": "week12",
+        "version": "fixture-v1"
+       }
+      ],
+      "status": "known",
+      "resolution": "resolved"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
     }
    ],
    "analyses": [
@@ -344,7 +449,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:score:fixture-v1"
       ],
       "depends_on": [],
       "data": {
@@ -398,7 +503,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:response:fixture-v1"
       ],
       "depends_on": [
        "score"
@@ -454,7 +559,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:efficacy:fixture-v1"
       ],
       "depends_on": [
        "response"
@@ -518,7 +623,7 @@
        ]
       },
       "support": [
-       "adult"
+       "adopt:survival:fixture-v1"
       ],
       "depends_on": [],
       "data": {
@@ -647,7 +752,7 @@
   "schema_version": 2,
   "session_id": "design",
   "revision": "one",
-  "session_digest": "579dd0dbcdda7bb4d8aae02ce9e83cd40a8ed6e7a4391f1f70c0d10e42da36a2",
+  "session_digest": "2678c16b1329fa8c9662453f8ed2838e1b0c818a2ed7ca77aa811a3d0201463c",
   "target": {
    "kind": "new_trial",
    "ref": "draft",
@@ -727,6 +832,111 @@
     "origin": {
      "kind": "user_choice",
      "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:response:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "response",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:efficacy:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "efficacy",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:survival:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "survival",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:score:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "score",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   },
+   {
+    "id": "adopt:week12:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "week12",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
      "source": null,
      "analysis": null
     },
@@ -812,10 +1022,160 @@
     },
     "depends_on": [],
     "dependency_support": null
+   },
+   {
+    "id": "adopt:response:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "response",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
+   },
+   {
+    "id": "adopt:efficacy:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "efficacy",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
+   },
+   {
+    "id": "adopt:survival:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "survival",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
+   },
+   {
+    "id": "adopt:score:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "score",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
+   },
+   {
+    "id": "adopt:week12:fixture-v1",
+    "kind": "adoption",
+    "payload": {
+     "objects": [
+      {
+       "id": "week12",
+       "version": "fixture-v1"
+      }
+     ],
+     "status": "known",
+     "resolution": "resolved"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:simulated choice (fixture)"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:simulated choice (fixture)",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
    }
   ],
   "dependency_graph": {
    "premise:adult": [],
+   "premise:adopt:response:fixture-v1": [],
+   "premise:adopt:efficacy:fixture-v1": [],
+   "premise:adopt:survival:fixture-v1": [],
+   "premise:adopt:score:fixture-v1": [],
+   "premise:adopt:week12:fixture-v1": [],
    "analysis:older": [
     "premise:adult"
    ],
@@ -2542,7 +2902,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:score:fixture-v1"
      ],
      "depends_on": [],
      "data": {
@@ -2596,7 +2956,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:response:fixture-v1"
      ],
      "depends_on": [
       "score"
@@ -2652,7 +3012,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:efficacy:fixture-v1"
      ],
      "depends_on": [
       "response"
@@ -2716,7 +3076,7 @@
       ]
      },
      "support": [
-      "adult"
+      "adopt:survival:fixture-v1"
      ],
      "depends_on": [],
      "data": {
@@ -2831,6 +3191,8 @@
          "response"
         ],
         "premises": [
+         "adopt:efficacy:fixture-v1",
+         "adopt:response:fixture-v1",
          "adult"
         ],
         "target": {
@@ -2874,15 +3236,23 @@
            ]
           },
           {
-           "id": "premise:adult",
+           "id": "premise:adopt:efficacy:fixture-v1",
            "status": "known",
            "resolution": "resolved",
            "basis": [
-            "user:adult"
+            "user:simulated choice (fixture)"
            ]
           },
           {
            "id": "object:response",
+           "status": "known",
+           "resolution": "resolved",
+           "basis": [
+            "user:simulated choice (fixture)"
+           ]
+          },
+          {
+           "id": "premise:adopt:response:fixture-v1",
            "status": "known",
            "resolution": "resolved",
            "basis": [
@@ -2902,7 +3272,7 @@
          ]
         },
         "conditions": [],
-        "request_digest": "fa54dd6af484ff137a9c193954545cbb1800f9063f6dc98852592ebe86360a50"
+        "request_digest": "5c1b7fc8c980791b7ad3f8136a9c5ed859b56a0373fa496179028a0ac4e4e8bc"
        },
        "request": {
         "operation": "signals",
@@ -2951,11 +3321,11 @@
             ]
            },
            {
-            "id": "premise:adult",
+            "id": "premise:adopt:efficacy:fixture-v1",
             "status": "known",
             "resolution": "resolved",
             "basis": [
-             "user:adult"
+             "user:simulated choice (fixture)"
             ]
            },
            {
@@ -2964,6 +3334,22 @@
             "resolution": "resolved",
             "basis": [
              "user:simulated choice (fixture)"
+            ]
+           },
+           {
+            "id": "premise:adopt:response:fixture-v1",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+             "user:simulated choice (fixture)"
+            ]
+           },
+           {
+            "id": "premise:adult",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+             "user:adult"
             ]
            }
           ],
@@ -2984,8 +3370,9 @@
           "role_support": {
            "parameters": [
             "object:efficacy",
-            "premise:adult",
-            "object:response"
+            "premise:adopt:efficacy:fixture-v1",
+            "object:response",
+            "premise:adopt:response:fixture-v1"
            ],
            "assumptions": [
             "premise:adult"
@@ -3020,8 +3407,10 @@
             },
             "basis": [
              "user:simulated choice (fixture)",
-             "user:adult",
-             "user:simulated choice (fixture)"
+             "user:simulated choice (fixture)",
+             "user:simulated choice (fixture)",
+             "user:simulated choice (fixture)",
+             "user:adult"
             ],
             "rule": "binomial.exact_one_stage_greater:1",
             "support": [
@@ -3035,9 +3424,9 @@
              },
              {
               "basis": [
-               "user:adult"
+               "user:simulated choice (fixture)"
               ],
-              "id": "premise:adult",
+              "id": "premise:adopt:efficacy:fixture-v1",
               "resolution": "resolved",
               "status": "known"
              },
@@ -3046,6 +3435,22 @@
                "user:simulated choice (fixture)"
               ],
               "id": "object:response",
+              "resolution": "resolved",
+              "status": "known"
+             },
+             {
+              "basis": [
+               "user:simulated choice (fixture)"
+              ],
+              "id": "premise:adopt:response:fixture-v1",
+              "resolution": "resolved",
+              "status": "known"
+             },
+             {
+              "basis": [
+               "user:adult"
+              ],
+              "id": "premise:adult",
               "resolution": "resolved",
               "status": "known"
              }
@@ -3152,11 +3557,15 @@
             "declared_support": [
              "object:efficacy",
              "object:response",
+             "premise:adopt:efficacy:fixture-v1",
+             "premise:adopt:response:fixture-v1",
              "premise:adult"
             ],
             "support": [
              "object:efficacy",
              "object:response",
+             "premise:adopt:efficacy:fixture-v1",
+             "premise:adopt:response:fixture-v1",
              "premise:adult"
             ]
            },
@@ -3183,11 +3592,15 @@
             "declared_support": [
              "object:efficacy",
              "object:response",
+             "premise:adopt:efficacy:fixture-v1",
+             "premise:adopt:response:fixture-v1",
              "premise:adult"
             ],
             "support": [
              "object:efficacy",
              "object:response",
+             "premise:adopt:efficacy:fixture-v1",
+             "premise:adopt:response:fixture-v1",
              "premise:adult"
             ]
            },
@@ -3330,8 +3743,9 @@
             ],
             "parameters": [
              "object:efficacy",
-             "premise:adult",
-             "object:response"
+             "premise:adopt:efficacy:fixture-v1",
+             "object:response",
+             "premise:adopt:response:fixture-v1"
             ]
            },
            "support": [
@@ -3345,9 +3759,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:efficacy:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             },
@@ -3356,6 +3770,22 @@
               "user:simulated choice (fixture)"
              ],
              "id": "object:response",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:simulated choice (fixture)"
+             ],
+             "id": "premise:adopt:response:fixture-v1",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:adult"
+             ],
+             "id": "premise:adult",
              "resolution": "resolved",
              "status": "known"
             }
@@ -3370,8 +3800,10 @@
            },
            "basis": [
             "user:simulated choice (fixture)",
-            "user:adult",
-            "user:simulated choice (fixture)"
+            "user:simulated choice (fixture)",
+            "user:simulated choice (fixture)",
+            "user:simulated choice (fixture)",
+            "user:adult"
            ],
            "blockers": [
             "binomial_assumption_missing:alignment",
@@ -3393,6 +3825,8 @@
              "support": [
               "object:efficacy",
               "object:response",
+              "premise:adopt:efficacy:fixture-v1",
+              "premise:adopt:response:fixture-v1",
               "premise:adult"
              ]
             },
@@ -3409,6 +3843,8 @@
              "support": [
               "object:efficacy",
               "object:response",
+              "premise:adopt:efficacy:fixture-v1",
+              "premise:adopt:response:fixture-v1",
               "premise:adult"
              ]
             }
@@ -3429,8 +3865,9 @@
             ],
             "parameters": [
              "object:efficacy",
-             "premise:adult",
-             "object:response"
+             "premise:adopt:efficacy:fixture-v1",
+             "object:response",
+             "premise:adopt:response:fixture-v1"
             ]
            },
            "rule": "binomial.exact_one_stage_greater:1",
@@ -3446,9 +3883,9 @@
             },
             {
              "basis": [
-              "user:adult"
+              "user:simulated choice (fixture)"
              ],
-             "id": "premise:adult",
+             "id": "premise:adopt:efficacy:fixture-v1",
              "resolution": "resolved",
              "status": "known"
             },
@@ -3457,6 +3894,22 @@
               "user:simulated choice (fixture)"
              ],
              "id": "object:response",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:simulated choice (fixture)"
+             ],
+             "id": "premise:adopt:response:fixture-v1",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:adult"
+             ],
+             "id": "premise:adult",
              "resolution": "resolved",
              "status": "known"
             }
@@ -3542,7 +3995,7 @@
           }
          ]
         },
-        "result_digest": "fe6577729ac2f36cf426e0073f835b6261bda5283f008c81fbee3dc3c3fd2133",
+        "result_digest": "8ad49ff6609065a35380d3b1b8e902f5630f954b8bbd18cb60cd97d6390e1270",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -3555,8 +4008,8 @@
          "problems": []
         }
        },
-       "request_digest": "fa54dd6af484ff137a9c193954545cbb1800f9063f6dc98852592ebe86360a50",
-       "result_digest": "4cf52c6ab27a36d2e7f9b5f82d81619b7299fd38bd7324cc045cda9be6fccc59",
+       "request_digest": "5c1b7fc8c980791b7ad3f8136a9c5ed859b56a0373fa496179028a0ac4e4e8bc",
+       "result_digest": "eebc140de9c8822f9619e7ad2b883c1ca6028478680fcf4f50b989178ce95420",
        "signals": [
         {
          "id": "efficacy-exact:binomial_efficacy",
@@ -3587,6 +4040,8 @@
            "support": [
             "object:efficacy",
             "object:response",
+            "premise:adopt:efficacy:fixture-v1",
+            "premise:adopt:response:fixture-v1",
             "premise:adult"
            ],
            "application": "unconditional",
@@ -3607,6 +4062,8 @@
            "support": [
             "object:efficacy",
             "object:response",
+            "premise:adopt:efficacy:fixture-v1",
+            "premise:adopt:response:fixture-v1",
             "premise:adult"
            ],
            "application": "unconditional",
