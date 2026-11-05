@@ -86,14 +86,11 @@ def test_render_writes_scoped_badges_report_and_every_survivor(tmp_path):
     mutation = json.loads((tmp_path / "site" / "badges" / "mutation.json").read_text())
     assert mutation == {
         "schemaVersion": 1,
-        "label": "Mutation Census (Decision Logic)",
-        "message": "90.0% · 0123456 · Measured · 2026-11-02",
+        "label": "Decision Mutations",
+        "message": "90.0%",
         "color": "green",
     }
-    assert (
-        json.loads((tmp_path / "site" / "badges" / "dependencies.json").read_text())["message"]
-        == "2 · 0123456 · 2026-11-02"
-    )
+    assert json.loads((tmp_path / "site" / "badges" / "dependencies.json").read_text())["message"] == "2"
     assert "`TrialLedger/x.py::f`" in (tmp_path / "site" / "survivors.md").read_text()
     text = report.read_text()
     assert "lower" in text and "bound" in text and "httpx, openpyxl" in text
@@ -159,6 +156,12 @@ def test_no_mutants_does_not_become_a_measured_zero_percent_score():
     assert qm.mutation_message(metrics(None)) == "Not measured"
 
 
+def test_matching_commit_cannot_override_an_unverified_experiment_basis():
+    source = {**metrics(99.0), "mutation_inputs_digest": "inputs", "mutation_applies_to": None}
+    assert qm.mutation_basis(source)["status"] == "partial"
+    assert qm.mutation_badge_message(source) == "99.0% · Partial"
+
+
 def test_render_keeps_old_census_date_and_incomplete_scope_visible(tmp_path):
     source = {
         **metrics(99.0),
@@ -171,11 +174,11 @@ def test_render_keeps_old_census_date_and_incomplete_scope_visible(tmp_path):
     }
     qm.render(source, tmp_path)
     mutation = json.loads((tmp_path / "badges/mutation.json").read_text())
-    assert mutation["message"] == "99.0% · older12 · Historical · 2026-11-02 · 7 stale · 3 unmeasured"
+    assert mutation["message"] == "99.0% · Historical"
     assert mutation["color"] == "lightgrey"
     tests = json.loads((tmp_path / "badges/tests.json").read_text())
-    assert tests["message"] == "3,566 passed · newer12 · 2026-11-04"
-    assert tests["label"] == "Test Suite"
+    assert tests["message"] == "3,566 passing"
+    assert tests["label"] == "Tests"
     for filename in ("index.html", "quality.md"):
         report = (tmp_path / filename).read_text()
         assert "2026-11-04" in report and "2026-11-02" in report
@@ -189,7 +192,8 @@ def test_partial_census_cannot_render_as_unqualified_green(tmp_path):
     source = {**metrics(99.0), "functions_stale": 1}
     qm.render(source, tmp_path)
     mutation = json.loads((tmp_path / "badges/mutation.json").read_text())
-    assert "Partial" in mutation["message"] and "1 stale" in mutation["message"]
+    assert mutation["message"] == "99.0% · Partial"
+    assert "1 stale" in (tmp_path / "quality.md").read_text()
     assert mutation["color"] == "lightgrey"
 
 
@@ -296,5 +300,31 @@ def test_public_limited_census_reports_omitted_targets_instead_of_a_complete_sco
     assert result["functions_remeasured"] == 1 and result["functions_not_yet_measured"] == 1
     assert result["mutation_pinned"]["kill_rate"] == 100.0
     mutation = json.loads((site / "badges/mutation.json").read_text())
-    assert "Partial" in mutation["message"] and "1 unmeasured" in mutation["message"]
+    assert "Partial" in mutation["message"]
+    assert "1 unmeasured" in (site / "quality.md").read_text()
     assert mutation["color"] == "lightgrey"
+
+
+@pytest.mark.parametrize(
+    "changes,expected",
+    [
+        ({}, "95.4%"),
+        ({"mutation_commit": "old"}, "95.4% · Historical"),
+        ({"functions_not_yet_measured": 2}, "95.4% · Partial"),
+        ({"mutation_commit": None}, "Not measured"),
+    ],
+)
+def test_compact_mutation_badge_preserves_the_existing_basis(changes, expected):
+    assert qm.mutation_badge_message({**metrics(95.4), **changes}) == expected
+
+
+def test_published_and_repository_reports_link_to_their_actual_survivor_locations(tmp_path):
+    source = metrics(99.0)
+    qm.render(source, tmp_path / "site", tmp_path / "QUALITY.md")
+    site = (tmp_path / "site/quality.md").read_text()
+    repo = (tmp_path / "QUALITY.md").read_text()
+    assert "[survivors](survivors.md)" in site
+    assert "[survivors](quality/survivors.md)" in repo
+    for report in (site, repo):
+        assert f"/blob/{source['commit']}/scripts/quality_metrics.py" in report
+        assert f"/blob/{source['commit']}/.github/workflows/quality.yml" in report

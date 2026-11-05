@@ -414,7 +414,13 @@ Quality measurements use disposable archived snapshots with their own console en
 must run without personal machine launchers. Keep mutation evidence separate from coverage: coverage-only
 publication carries the census's original basis, and limits/deadlines retain every unfinished target.
 An interrupted function is deferred, never scored as caught; legacy unnamed pending work stays incomplete.
-Numeric README badges include their measured commit/date, beside the separate QC-publication status.
+Numeric README badges link to their measured commit/date, scope and publication status in the quality
+report. Keep Historical/Partial/Not measured qualifiers and recorded-audit attribution visible in compact
+badges; do not repeat the full provenance in every label or promote a recorded audit to a fresh proof.
+A current mutation result needs a complete measured scope with matching experiment fingerprints. Verify
+archived code, test/fixture inputs, measurement policy and tools; preserve each record's actual measurement
+commit/date. Missing or mismatched worker evidence refuses publication. README presentation-only edits can
+reuse verified unchanged inputs; executable example edits cannot. Refresh legacy records lacking this basis.
 Neither a green bounded census nor recorded certificates establish a fresh whole-codebase Detective audit.
 
 The dated [rescue verification record](acceptance/rescue-2026-11-02.md) retains the completed checks,

@@ -1,20 +1,12 @@
 # TrialLedger
 
-[![Tests](https://img.shields.io/github/actions/workflow/status/rohanvinaik/TrialLedger/tests.yml?branch=main&label=Tests&logo=github)](https://github.com/rohanvinaik/TrialLedger/actions/workflows/tests.yml)
-[![QC Publication](https://img.shields.io/github/actions/workflow/status/rohanvinaik/TrialLedger/quality.yml?branch=main&label=QC%20Publication&logo=github)](https://github.com/rohanvinaik/TrialLedger/actions/workflows/quality.yml)
-[![Test Suite](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Ftests.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
-[![Line Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fcoverage.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
-[![Branch Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fbranches.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
-[![Mutation Census](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fmutation.json)](https://rohanvinaik.github.io/TrialLedger/quality.md)
-[![Runtime Dependencies](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fdependencies.json)](pyproject.toml)
-[![Python](https://img.shields.io/badge/Python-3.12%2B-blue?logo=python&logoColor=white)](pyproject.toml)
-[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
-
-Numeric badges name their measured commit and date; they are the last successful publication, not a claim
-about unmeasured changes on main. Check **QC Publication** as well as **Tests**. Historical, partial and
-unmeasured mutation results remain labelled; recorded Detective certificates are not a fresh audit.
-
 **Clinical trial evidence you can trace. Design consequences you can check.**
+
+[![CI](https://img.shields.io/github/actions/workflow/status/rohanvinaik/TrialLedger/tests.yml?branch=main&label=CI&style=flat-square&labelColor=334155)](https://github.com/rohanvinaik/TrialLedger/actions/workflows/tests.yml) [![Passing tests](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Ftests.json&style=flat-square&labelColor=334155)](https://rohanvinaik.github.io/TrialLedger/) [![Decision-logic mutation testing](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fmutation.json&style=flat-square&labelColor=334155)](https://rohanvinaik.github.io/TrialLedger/)
+
+[![Line coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fcoverage.json&style=flat-square&labelColor=334155)](https://rohanvinaik.github.io/TrialLedger/) [![Branch coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fbranches.json&style=flat-square&labelColor=334155)](https://rohanvinaik.github.io/TrialLedger/) [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square&labelColor=334155)](LICENSE)
+
+<sub>[Verification & methodology](https://rohanvinaik.github.io/TrialLedger/)</sub>
 
 Tell your AI assistant which trials interest you. TrialLedger gathers their ClinicalTrials.gov records into
 a reference workbook, preserves the source wording and checks the records against the registry's own rules.

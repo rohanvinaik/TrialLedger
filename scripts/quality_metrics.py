@@ -22,6 +22,7 @@ import datetime
 import hashlib
 import html
 import json
+import math
 import os
 import random
 import re
@@ -31,6 +32,7 @@ import tempfile
 import time
 import tomllib
 from concurrent.futures import ProcessPoolExecutor
+from importlib import metadata
 from pathlib import Path
 
 PIN = "(pure — pinned)"
@@ -63,6 +65,11 @@ def archive(repo: Path, commit: str, dest: Path) -> None:
     subprocess.run(["tar", "-x", "-C", str(dest)], stdin=tar.stdout, check=True)
     if tar.wait() != 0:
         raise SystemExit(f"git archive {commit} failed")
+    listing = run(["git", "ls-tree", "-r", "--name-only", "-z", commit], repo)
+    listing.check_returncode()
+    (dest / ".qc-inputs.json").write_text(
+        json.dumps(listing.stdout.rstrip("\0").split("\0")), encoding="utf-8"
+    )
     snapshot_cli(dest)
 
 
@@ -99,6 +106,127 @@ def check_isolated(copy_root: Path) -> None:
         raise SystemExit(f"tests in {copy_root} would import {found.stdout.strip()}; refusing to measure")
 
 
+def readme_examples(text: str) -> str:
+    """Fingerprint executable README examples, independently of its prose and badge presentation."""
+    kept, fence, width = [], "", 0
+    for line in text.splitlines(keepends=True):
+        stripped = line.lstrip()
+        char = stripped[:1]
+        length = len(stripped) - len(stripped.lstrip(char)) if char else 0
+        if fence:
+            kept.append(line)
+            if char == fence and length >= width and not stripped[length:].strip():
+                fence = ""
+        elif char in ("`", "~") and length >= 3:
+            fence, width = char, length
+            kept.append(line)
+        elif line.startswith(("    ", "\t")):
+            kept.append(line)
+    return "".join(kept)
+
+
+def measurement_engine(source: str) -> str:
+    """Reporting presentation is outside the mutation experiment; its runner and policy remain inside."""
+    reporting = {
+        "color",
+        "badge",
+        "rate",
+        "mutation_basis",
+        "mutation_message",
+        "mutation_badge_message",
+        "quality_md",
+        "render",
+    }
+    tree = ast.parse(source)
+    tree.body = [
+        node
+        for node in tree.body
+        if not (isinstance(node, ast.FunctionDef) and node.name in reporting)
+        and not (
+            isinstance(node, ast.Assign)
+            and any(isinstance(t, ast.Name) and t.id in {"METHOD", "PAGES"} for t in node.targets)
+        )
+        and not (
+            isinstance(node, ast.Expr)
+            and isinstance(node.value, ast.Constant)
+            and isinstance(node.value.value, str)
+        )
+    ]
+    return ast.dump(tree)
+
+
+def mutation_inputs_digest(root: Path) -> str:
+    """Conservative experiment identity: code, tests/fixtures, engine, lock and runtime tool versions.
+
+    Repository communication changes alone do not invalidate tested behavior. README executable examples
+    remain inputs. This is an exact identity check, not a claim of semantic equivalence between edits.
+    """
+    excluded = {".git", ".venv", "__pycache__", ".pytest_cache", ".detective", ".wesker"}
+    manifest = root / ".qc-inputs.json"
+    if manifest.exists():
+        paths = [root / name for name in json.loads(manifest.read_text())]
+    elif (root / ".git").exists():
+        listing = run(["git", "ls-files", "-z"], root)
+        listing.check_returncode()
+        paths = [root / name for name in listing.stdout.rstrip("\0").split("\0")]
+    else:
+        paths = list(root.rglob("*"))
+    digest = hashlib.sha256()
+    for path in sorted(paths):
+        relative = path.relative_to(root)
+        if (
+            not path.is_file()
+            or any(part in excluded for part in relative.parts)
+            or relative.parts[0] in {"quality", "_site"}
+        ):
+            continue
+        if relative.as_posix().startswith(".github/badges/") or relative.as_posix() == "QUALITY.md":
+            continue
+        raw = path.read_bytes()
+        if relative.as_posix() == "README.md":
+            raw = readme_examples(raw.decode()).encode()
+        elif relative.as_posix() == "scripts/quality_metrics.py":
+            raw = measurement_engine(raw.decode()).encode()
+        digest.update(str(relative).encode() + b"\0" + hashlib.sha256(raw).digest())
+    digest.update(measurement_engine(Path(__file__).read_text()).encode())
+    digest.update(f"{sys.version}\0{sys.platform}".encode())
+    for tool in ("pytest", "coverage", "pytest-cov"):
+        try:
+            version = metadata.version(tool)
+        except metadata.PackageNotFoundError:
+            version = "not installed"
+        digest.update(f"{tool}\0{version}\0".encode())
+    return digest.hexdigest()
+
+
+def mutation_applicability(prior: dict, input_digest: str, everything: list[dict]) -> str:
+    """A complete declared census applies only to identical measured inputs and actual target identities."""
+    if not prior.get("scope_complete"):
+        return "scope_incomplete"
+    if any(
+        prior.get(key, 0)
+        for key in ("functions_stale", "functions_not_yet_measured", "unidentified_pending_targets")
+    ):
+        return "scope_incomplete"
+    if prior.get("pending_targets"):
+        return "scope_incomplete"
+    scope = census_scope(everything, prior, 0, 0)
+    expected = {(f["file"], f["name"]): f["digest"] for f in scope}
+    records = prior.get("records", [])
+    if (
+        len(expected) != len(scope)
+        or len(records) != len(expected)
+        or {(r.get("file"), r.get("name")): r.get("digest") for r in records} != expected
+    ):
+        return "scope_mismatch"
+    if any(
+        r.get("input_digest") != input_digest or r.get("stale") or r.get("baseline") != "passing"
+        for r in records
+    ):
+        return "inputs_unverified"
+    return "applicable"
+
+
 def mutants(fn: ast.FunctionDef) -> list[tuple[int, int, int, str, str]]:
     """Single-line mutants of a function body: (line, start col, end col, replacement, kind) (pure)."""
     body = fn.body
@@ -132,23 +260,41 @@ def mutants(fn: ast.FunctionDef) -> list[tuple[int, int, int, str, str]]:
     return found
 
 
+def function_nodes(tree: ast.AST) -> list[tuple[str, ast.FunctionDef]]:
+    """Identify a declaration by its lexical owners; repeated declarations retain their own location."""
+    found = []
+
+    def visit(node: ast.AST, owners: tuple[str, ...]) -> None:
+        if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            owners = (*owners, node.name)
+        if isinstance(node, ast.FunctionDef):
+            found.append((".".join(owners), node))
+        for child in ast.iter_child_nodes(node):
+            visit(child, owners)
+
+    visit(tree, ())
+    counts = {}
+    for name, _ in found:
+        counts[name] = counts.get(name, 0) + 1
+    return [(name if counts[name] == 1 else f"{name}@{node.lineno}", node) for name, node in found]
+
+
 def functions(root: Path) -> list[dict]:
     out = []
     for path in sorted((root / "TrialLedger").glob("**/*.py")):
         text = path.read_text(encoding="utf-8")
-        for node in ast.walk(ast.parse(text)):
-            if isinstance(node, ast.FunctionDef):
-                docstring = ast.get_docstring(node) or ""
-                rel = str(path.relative_to(root))
-                out.append(
-                    {
-                        "file": rel,
-                        "name": node.name,
-                        "pinned": PIN in docstring,
-                        "mutants": len(mutants(node)),
-                        "digest": hashlib.sha256(ast.dump(node).encode()).hexdigest()[:16],
-                    }
-                )
+        for name, node in function_nodes(ast.parse(text)):
+            docstring = ast.get_docstring(node) or ""
+            rel = str(path.relative_to(root))
+            out.append(
+                {
+                    "file": rel,
+                    "name": name,
+                    "pinned": PIN in docstring,
+                    "mutants": len(mutants(node)),
+                    "digest": hashlib.sha256(ast.dump(node).encode()).hexdigest()[:16],
+                }
+            )
     return out
 
 
@@ -156,6 +302,7 @@ _TEXTS: dict[Path, dict[str, str]] = {}
 
 
 def select_tests(root: Path, file: str, name: str) -> tuple[list[str], str]:
+    name = name.rsplit(".", 1)[-1].split("@", 1)[0]
     if root not in _TEXTS:
         paths = sorted(str(p.relative_to(root)) for p in (root / "tests").glob("**/*.py"))
         _TEXTS[root] = {t: (root / t).read_text(encoding="utf-8") for t in paths}
@@ -202,6 +349,7 @@ def census(job: tuple[str, list[dict], float]) -> list[dict]:
     Its partial outcomes never enter the aggregate as a completed measurement.
     """
     root, targets, deadline = Path(job[0]), job[1], job[2]
+    inputs = mutation_inputs_digest(root)
     results = []
     for target in targets:
         if deadline and time.time() >= deadline:
@@ -210,9 +358,18 @@ def census(job: tuple[str, list[dict], float]) -> list[dict]:
         path = root / target["file"]
         original = path.read_text(encoding="utf-8")
         tree = ast.parse(original)
-        fn = next(n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef) and n.name == target["name"])
+        fn = dict(function_nodes(tree)).get(target["name"])
+        if fn is None or hashlib.sha256(ast.dump(fn).encode()).hexdigest()[:16] != target["digest"]:
+            raise SystemExit(f"mutation_target_mismatch: {target['file']}::{target['name']}")
         tests, selected_by = select_tests(root, target["file"], target["name"])
-        record = {**target, "selected_by": selected_by, "test_files": tests, "outcomes": [], "baseline": ""}
+        record = {
+            **target,
+            "selected_by": selected_by,
+            "test_files": tests,
+            "outcomes": [],
+            "baseline": "",
+            "input_digest": inputs,
+        }
         if not tests:
             record["baseline"] = "no_tests_selected"
             results.append(record)
@@ -340,7 +497,9 @@ def mutation_basis(metrics: dict) -> dict:
     )
     if commit is None or pin["kill_rate"] is None:
         status = "unmeasured"
-    elif commit != metrics["commit"]:
+    elif "mutation_inputs_digest" in metrics and metrics.get("mutation_applies_to") != metrics["commit"]:
+        status = "partial" if commit == metrics["commit"] else "historical"
+    elif commit != metrics["commit"] and metrics.get("mutation_applies_to") != metrics["commit"]:
         status = "historical"
     elif stale or pending or unavailable:
         status = "partial"
@@ -357,7 +516,7 @@ def mutation_basis(metrics: dict) -> dict:
 
 
 def mutation_message(metrics: dict) -> str:
-    """Keep the census score, commit and incomplete scope together in the visible badge (pure)."""
+    """Keep the census score, commit and incomplete scope together in the detailed report (pure)."""
     basis = mutation_basis(metrics)
     if basis["status"] == "unmeasured":
         return "Not measured"
@@ -375,10 +534,19 @@ def mutation_message(metrics: dict) -> str:
     return message
 
 
+def mutation_badge_message(metrics: dict) -> str:
+    """Compact presentation of the existing basis; never hide a historical or incomplete census."""
+    basis = mutation_basis(metrics)
+    if basis["status"] == "unmeasured":
+        return "Not measured"
+    score = rate(metrics["mutation_pinned"])
+    return score if basis["status"] == "measured" else f"{score} · {basis['status'].capitalize()}"
+
+
 METHOD = """## How it is measured
 
-[`scripts/quality_metrics.py`](scripts/quality_metrics.py) measures one commit in throwaway `git archive`
-copies; the working checkout is never modified. Reproduce from the repository root:
+[`scripts/quality_metrics.py`]({source}/scripts/quality_metrics.py) measures one commit in throwaway
+`git archive` copies; the working checkout is never modified. Reproduce from the repository root:
 
 ```bash
 uv run --with coverage --with pytest-cov python scripts/quality_metrics.py --workers 8
@@ -393,7 +561,7 @@ uv run --with coverage --with pytest-cov python scripts/quality_metrics.py --wor
   out. Every pinned decision is measured; the other functions are a seeded random sample. The score is a
   lower bound: tests elsewhere that catch a bug indirectly are not run, and equivalent mutants (changes
   that cannot alter behavior) are not removed. Every survivor is listed in
-  [`quality/survivors.md`](quality/survivors.md).
+  [survivors]({survivors}).
 - **On each push** the quality workflow publishes tests and coverage before starting mutation work, then
   publishes the completed census if that run finishes. The first publication preserves the prior census's
   own commit and date; it never relabels it as a measurement of the new code. A newer push can cancel the
@@ -408,8 +576,11 @@ uv run --with coverage --with pytest-cov python scripts/quality_metrics.py --wor
   A deadline interruption defers the whole function; it never counts as a caught mutant. Legacy reports
   that retain only an anonymous missing-count stay incomplete until a fresh non-incremental census declares
   a new sample. A reuse-only run preserves the last actual census measurement date.
-  Reuse checks function bodies and selected tests, not the entire transitive dependency graph; Measured
-  describes that census basis, not proof of every path at the current commit. See the published
+  Reuse requires the exact archived code, test/fixture inputs, measurement engine and tool environment.
+  README prose/badge changes are independent; executable examples remain inputs. A complete matching
+  census can apply to a newer commit without inventing a new measurement date. Unverified legacy records
+  must be measured again. A manual full refresh can extend the mutation budget to 120 minutes.
+  Measured describes this bounded census, not proof of every path at the current commit. See the published
   [snapshot report](https://rohanvinaik.github.io/TrialLedger/quality.md) for its exact basis and date.
 - **Detective certificates** are read from `tests/detective/certificates.json`, as recorded by Detective's
   two-sign audit; this report does not re-run that audit or certify that its recorded basis is still current.
@@ -419,7 +590,7 @@ of any trial interpretation.
 """
 
 
-def quality_md(m: dict) -> str:
+def quality_md(m: dict, survivors_link: str = "quality/survivors.md") -> str:
     pin, sample, cert = m["mutation_pinned"], m["mutation_unpinned_sample"], m["detective_certificates"]
     basis = mutation_basis(m)
     deps = ", ".join(re.split(r"[<>=!~ ]", d)[0] for d in m["runtime_dependencies"])
@@ -445,6 +616,12 @@ def quality_md(m: dict) -> str:
             "unavailable-baseline count refers to pinned decisions only.",
         ),
         (
+            "Mutation applicability",
+            f"{m.get('mutation_applicability', 'not verified')}; "
+            f"applies to `{m.get('mutation_applies_to') or 'not established'}`. "
+            "Measurement dates stay with the actual experiment; matching inputs establish carry-forward.",
+        ),
+        (
             "Mutation score, other functions",
             f"{rate(sample)} of {sample['mutants']:,} planted bugs caught, across a seeded random sample of "
             f"{sample['functions']} of the remaining functions; "
@@ -461,12 +638,13 @@ def quality_md(m: dict) -> str:
         ("Package", f"{m['package_functions']} functions, {m['package_nonblank_lines']:,} non-blank lines"),
     ]
     table = "\n".join(f"| {name} | {value} |" for name, value in rows)
+    source = f"https://github.com/rohanvinaik/TrialLedger/blob/{m['commit']}"
     intro = (
         f"Tests and coverage measured at commit `{m['commit'][:7]}` on {m['measured']} "
         f"with Python {m['python']}.\n"
         "Mutation results have the separate basis below. This file is a retained snapshot; live README\n"
         "badges show the latest successful publication, which may lag main. They are published by the\n"
-        f"[quality workflow](.github/workflows/quality.yml) and published to {PAGES}."
+        f"[quality workflow]({source}/.github/workflows/quality.yml) and published to {PAGES}."
     )
     legacy = m.get("unidentified_pending_targets", 0)
     uncertainty = (
@@ -475,7 +653,8 @@ def quality_md(m: dict) -> str:
         if legacy
         else ""
     )
-    return f"# Quality\n\n{intro}\n\n| Measure | Value |\n|---|---|\n{table}{uncertainty}\n\n{METHOD}"
+    method = METHOD.format(source=source, survivors=survivors_link)
+    return f"# Quality\n\n{intro}\n\n| Measure | Value |\n|---|---|\n{table}{uncertainty}\n\n{method}"
 
 
 def slim(records: list[dict]) -> list[dict]:
@@ -517,27 +696,25 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
     basis = metrics["mutation_basis"]
     commit = metrics["commit"][:7]
     for name, data in {
-        "tests": badge(
-            "Test Suite", f"{metrics['tests_passed']:,} passed · {commit} · {metrics['measured']}", "blue"
-        ),
+        "tests": badge("Tests", f"{metrics['tests_passed']:,} passing", "blue"),
         "coverage": badge(
             "Line Coverage",
-            f"{metrics['line_coverage']}% · {commit} · {metrics['measured']}",
+            f"{metrics['line_coverage']}%",
             color(metrics["line_coverage"]),
         ),
         "branches": badge(
             "Branch Coverage",
-            f"{metrics['branch_coverage']}% · {commit} · {metrics['measured']}",
+            f"{metrics['branch_coverage']}%",
             color(metrics["branch_coverage"]),
         ),
         "mutation": badge(
-            "Mutation Census (Decision Logic)",
-            mutation_message(metrics),
+            "Decision Mutations",
+            mutation_badge_message(metrics),
             color(pin["kill_rate"]) if basis["status"] == "measured" else "lightgrey",
         ),
         "dependencies": badge(
             "Runtime Dependencies",
-            f"{len(metrics['runtime_dependencies'])} · {commit} · {metrics['measured']}",
+            str(len(metrics["runtime_dependencies"])),
             "blue",
         ),
     }.items():
@@ -554,10 +731,9 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
         "Detective certificates are recorded statuses, not a rerun or freshness validation.</p>\n",
         encoding="utf-8",
     )
-    report = quality_md(metrics)
-    (out / "quality.md").write_text(report, encoding="utf-8")
+    (out / "quality.md").write_text(quality_md(metrics, "survivors.md"), encoding="utf-8")
     if quality is not None:
-        quality.write_text(report, encoding="utf-8")
+        quality.write_text(quality_md(metrics), encoding="utf-8")
 
 
 PAGES = "https://rohanvinaik.github.io/TrialLedger/"
@@ -595,7 +771,16 @@ def census_scope(everything: list[dict], baseline: dict | None, size: int, seed:
         return pinned + random.Random(seed).sample(others, min(size, len(others)))
     remembered = [*baseline.get("records", []), *baseline.get("pending_targets", [])]
     kept = {(r["file"], r["name"]) for r in remembered if not r["pinned"]}
-    return pinned + [f for f in everything if not f["pinned"] and (f["file"], f["name"]) in kept]
+    legacy = {(r["file"], r["name"]) for r in remembered if not r["pinned"] and "input_digest" not in r}
+    return pinned + [
+        f
+        for f in everything
+        if not f["pinned"]
+        and (
+            (f["file"], f["name"]) in kept
+            or (f["file"], f["name"].rsplit(".", 1)[-1].split("@", 1)[0]) in legacy
+        )
+    ]
 
 
 def reconcile_census(attempts: list[dict], previous: list[dict]) -> dict:
@@ -623,7 +808,10 @@ def publish_coverage(repo: Path, commit: str, baseline: dict | None, out: Path, 
         archive(repo, commit, root)
         check_isolated(root)
         covered = coverage(root)
-        package = inventory(root, functions(root))
+        everything = functions(root)
+        package = inventory(root, everything)
+        inputs = mutation_inputs_digest(root)
+        application = mutation_applicability(baseline or {}, inputs, everything)
     prior = baseline or {}
     metrics = {
         **prior,
@@ -634,6 +822,9 @@ def publish_coverage(repo: Path, commit: str, baseline: dict | None, out: Path, 
         "python": sys.version.split()[0],
         "mutation_commit": prior.get("mutation_commit", prior.get("commit")),
         "mutation_measured": prior.get("mutation_measured", prior.get("measured")),
+        "mutation_applies_to": commit if application == "applicable" else None,
+        "mutation_applicability": application,
+        "mutation_inputs_digest": inputs,
         "functions_remeasured": 0,
         "functions_stale": prior.get("functions_stale", 0),
         "functions_not_yet_measured": prior.get("functions_not_yet_measured", 0),
@@ -673,6 +864,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--count-only", action="store_true", help="print the census size and stop")
     parser.add_argument("--limit", type=int, default=0, help="census only the first N targets (smoke test)")
     args = parser.parse_args(argv)
+    if not math.isfinite(args.budget_minutes) or args.budget_minutes < 0:
+        parser.error("budget-minutes must be a finite non-negative number")
     if args.render:
         render(json.loads(args.render.read_text()), args.out, args.quality_md)
         return 0
@@ -692,6 +885,7 @@ def main(argv: list[str] | None = None) -> int:
         everything = functions(base)
         pinned = [f for f in everything if f["pinned"]]
         scope = census_scope(everything, baseline, args.unpinned_sample, args.seed)
+        inputs = mutation_inputs_digest(base)
         reused: list[dict] = []
         mutation_commit = baseline.get("mutation_commit", baseline["commit"]) if baseline else None
         if baseline is None or mutation_commit is None:
@@ -707,6 +901,8 @@ def main(argv: list[str] | None = None) -> int:
                 tests, _ = select_tests(base, f["file"], f["name"])
                 unchanged = (
                     record is not None
+                    and record.get("input_digest") == inputs
+                    and record.get("baseline") == "passing"
                     and not record.get("stale")
                     and record.get("digest") == f["digest"]
                     and record["pinned"] == f["pinned"]
@@ -742,6 +938,11 @@ def main(argv: list[str] | None = None) -> int:
                 jobs = zip(map(str, copies), shares, [deadline] * workers, strict=True)
                 for share in pool.map(census, jobs):
                     attempts.extend(share)
+        for record in attempts:
+            if not record.get("skipped"):
+                if record.get("input_digest") != inputs:
+                    raise SystemExit("mutation_input_mismatch: worker did not measure the declared inputs")
+                record.update(measured_commit=commit, measured=datetime.date.today().isoformat())
         reconciled = reconcile_census([*deferred, *attempts], (baseline or {}).get("records", []))
         records = [*reused, *reconciled["records"]]
         pending = reconciled["pending_targets"]
@@ -761,12 +962,19 @@ def main(argv: list[str] | None = None) -> int:
         "measured": datetime.date.today().isoformat(),
         "python": sys.version.split()[0],
         "baseline_commit": mutation_commit or commit,
-        "mutation_commit": commit,
+        "mutation_commit": commit if reconciled["remeasured"] else prior.get("mutation_commit", commit),
         "mutation_measured": datetime.date.today().isoformat()
         if reconciled["remeasured"]
         else prior.get("mutation_measured", prior.get("measured")),
         "census_checked": datetime.date.today().isoformat(),
         "functions_reused": len(reused),
+        "mutation_inputs_digest": inputs,
+        "scope_complete": (
+            len(records) == len(scope)
+            and not pending
+            and not unidentified
+            and all(not r.get("stale") and r.get("baseline") == "passing" for r in records)
+        ),
         "functions_remeasured": reconciled["remeasured"],
         "functions_stale": sum(bool(r.get("stale")) for r in records),
         "functions_not_yet_measured": len(pending) + unidentified,
@@ -779,6 +987,9 @@ def main(argv: list[str] | None = None) -> int:
         "detective_certificates_commit": commit,
         "records": sorted(records, key=lambda r: (r["file"], r["name"])),
     }
+    application = mutation_applicability(metrics, inputs, everything)
+    metrics["mutation_applicability"] = application
+    metrics["mutation_applies_to"] = commit if application == "applicable" else None
     render(metrics, args.out, args.quality_md)
     print(json.dumps({k: v for k, v in metrics.items() if k != "records"}, indent=1))
     return 0

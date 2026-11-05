@@ -14,7 +14,7 @@ publication receipts. A passing local gate is evidence about that tree, not a su
 | Coverage runs archived code | Measurement invariant, one archived commit | The CLI is missing or imports changed live code | Console entry point from the snapshot's project declaration; adversarial external working directory and live-source change; full archived coverage run |
 | Deferred targets remain unresolved | Conservation invariant, incremental census | An omitted unpinned target disappears and produces Measured | Independent limit/deadline/replay/coverage-only contracts and positive complete control |
 | Deadline exhaustion is not a kill | Measurement invariant, selected subprocesses | Partial outcomes count as a completed function or budget timeout as a caught mutant | Independent fake-clock boundaries, discarded partial results and restored-source assertions |
-| Badges disclose their actual basis | Reporting invariant, generated site and README | Missing measurement date, silent historical census or unobserved deployment | Dated commit-specific numeric badges, separate QC Publication status, post-push read-back |
+| Badges disclose their actual basis | Reporting invariant, generated site and README | Missing measurement provenance, silent historical census or unobserved deployment | Compact measured signals, linked dated report, exact input applicability and post-push read-back |
 
 ## Wiring
 
@@ -35,7 +35,8 @@ restoration still runs. Ordinary test timeouts before budget exhaustion remain s
 `render` consumes these results without strengthening them. Historical and incomplete mutation badges
 remain neutral, coverage-only publication preserves the census's own date, and a reuse-only run records a
 separate check date. Passing, skipped and deselected test counts are parsed independently. Every numeric
-badge includes its measurement commit/date. The README exposes the separate Quality workflow status.
+badge originally included its measurement commit/date. The current-build follow-up below moves that
+provenance into the linked report and verifies applicability separately from presentation.
 
 ## Evidence and boundaries
 
@@ -70,3 +71,28 @@ that packet are not a substitute for those remote receipts.
 
 The other agent's modified certificate and preview-scope suite are excluded from this change and preserved
 byte-for-byte. No clinical source record, admission rule, standing or symbolic clinical outcome is changed.
+
+## Current-build badge follow-up
+
+The compact README keeps the existing measured test, coverage and decision-mutation signals. Commit/date,
+method and detailed scope stay in the linked report; repository and published-report links resolve in their
+own locations. Badge presentation does not supply measurement evidence.
+
+Mutation records now carry a fingerprint of the actual archived inputs and measurement environment.
+Archived manifests exclude generated coverage files and console wrappers from that identity. Code, test
+fixtures, lockfiles and executable README examples remain inputs; README prose and layout do not.
+A complete matching census can therefore apply to a presentation-only revision while retaining its real
+measurement commit/date. Missing, legacy, stale or mismatched evidence requires remeasurement. The
+coordinator refuses a missing or different worker fingerprint instead of replacing it with its own.
+`applicability_contracts.py` checks all combinations of matching input, complete scope and pending work;
+CrossHair reported Confirmed over all paths for that bounded contract. Independent regressions cover the
+producer, archive, scheduling, carry-forward and public reporting boundaries. A manual 120-minute refresh
+is available for the one-time migration from records without this evidence; an old score labelled
+Historical is not treated as completion of that refresh.
+
+Function targets use their full lexical identity, including class and enclosing function, with a source
+location distinguishing repeated declarations at the same lexical path. The worker verifies that exact
+target's body fingerprint before changing it. Test selection still uses the leaf name conservatively.
+Legacy leaf-only sample identities retain all matching current declarations until remeasurement rather
+than silently dropping ambiguous members. Independent two-sign regressions inspect the actual mutated
+source and refuse wrong or stale targets; applicability cannot collapse two distinct target identities.

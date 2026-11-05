@@ -78,10 +78,12 @@ def install_doubles(monkeypatch, repo, skipped=()):
     skip_names = set(skipped)
 
     def census(job):
-        _root, targets, _deadline = job
+        root, targets, _deadline = job
         scheduled.extend(targets)
         return [
-            {**target, "skipped": True} if target["name"] in skip_names else record(target)
+            {**target, "skipped": True}
+            if target["name"] in skip_names
+            else {**record(target), "input_digest": qm.mutation_inputs_digest(Path(root))}
             for target in targets
         ]
 
