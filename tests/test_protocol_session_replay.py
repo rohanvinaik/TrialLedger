@@ -28,6 +28,35 @@ def adoption_premise(
     }
 
 
+def new_edition(session: dict, identity: str, suffix: str = "revised") -> dict:
+    """An instructed change to an adopted object: a new version, re-adopted at exactly that version.
+
+    Content changed under an unchanged version is refused on every revision path, and an adoption belongs to
+    one edition (Rohan, 2026-11-04). Each adoption record adopting the old version gets a matching record for
+    the new version, with the same standing and origin; only this object's support is rebound.
+    """
+    item = next(o for o in session["protocol"]["objects"] if o["id"] == identity)
+    old, new = item["version"], f"{item['version']}-{suffix}"
+    item["version"] = new
+    premises = {p["id"]: p for p in session["premises"]}
+    support = []
+    for ref in item["support"]:
+        record = premises.get(ref)
+        named = (record or {}).get("payload", {}).get("objects", []) if record else []
+        if record and record.get("kind") == "adoption" and {"id": identity, "version": old} in named:
+            fresh = copy.deepcopy(record)
+            fresh["id"] = f"adopt:{identity}:{new}"
+            fresh["payload"]["objects"] = [{"id": identity, "version": new}]
+            if fresh["id"] not in premises:
+                session["premises"].append(fresh)
+                premises[fresh["id"]] = fresh
+            support.append(fresh["id"])
+        else:
+            support.append(ref)
+    item["support"] = support
+    return item
+
+
 def adopt(request: dict, identity: str, status: str = "known", resolution: str = "resolved") -> dict:
     """Adopt a protocol object by its own adoption premise, which becomes its only support."""
     session = request["session"]

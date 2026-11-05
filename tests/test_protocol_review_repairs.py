@@ -9,7 +9,7 @@ import copy
 import json
 from pathlib import Path
 
-from tests.test_protocol_session_replay import _session, adopt, adoption_premise
+from tests.test_protocol_session_replay import _session, adopt, adoption_premise, new_edition
 from TrialLedger.layer2 import protocol_view, run
 
 FIXTURES = (
@@ -321,6 +321,8 @@ def test_repairing_an_estimand_collection_plan_is_a_verdict_change():
         estimand = next(o for o in session["protocol"]["objects"] if o["id"] == "estimand")
         for plan in estimand["data"]["collection_plan"]:
             plan["action"] = "collect"
+        # Changed content is a new edition, re-adopted with the instruction (Rohan, 2026-11-04).
+        new_edition(session, "estimand")
 
     row = _revise(_estimand_session(), collect)["answer_diff"]["protocol_checks"][0]
     assert row["code"] == "changed"

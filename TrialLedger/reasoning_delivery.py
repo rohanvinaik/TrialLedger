@@ -11,8 +11,6 @@ from TrialLedger.evidence_access import pointer_value
 
 MAX_EDITS = 64
 EDIT_ROOTS = ("premises", "analyses", "decisions", "limits", "target", "definition_checks", "protocol")
-# Protocol object fields attributed separately from its content (a content edit needs a new version).
-OBJECT_ATTRIBUTION = ("origin", "standing", "support", "version")
 EDIT_CODES = (
     "unsupported_edit_operation",
     "invalid_edit_path",
@@ -184,24 +182,29 @@ def edited_session(previous: dict, revision: str, edits: list) -> tuple[dict, li
             raise ValueError("source_premise_requires_new_binding")
         if changed and before is not None:
             reviewed.extend(_rebind_adoption(before, item, index))
-    _check_protocol_objects(previous, session, whole_objects, attributed_objects)
+    reviewed.extend(_check_protocol_objects(previous, session, whole_objects, attributed_objects))
     session["revision"] = revision
     session["parent_digest"] = None
     return session, reviewed
 
 
-def _check_protocol_objects(previous: dict, session: dict, whole: bool, attributed: set[int]) -> None:
+def _check_protocol_objects(previous: dict, session: dict, whole: bool, attributed: set[int]) -> list[dict]:
     """A changed protocol object needs explicit attribution, and changed content needs a new version.
 
-    Adoption records name an exact object id and version, so editing an object's content under its old
-    version would carry that adoption to content nobody adopted. A content edit must therefore declare a new
-    version: the earlier adoption then reads as a stale version (soft, unresolved) until a new adoption record
-    is supplied. Origin, standing and support edits need attribution but keep the version.
+    Adoption records name an exact object id and version (Rohan, 2026-11-04), so content changed under an old
+    version would carry that adoption to content nobody adopted; the same guard runs on every revision path
+    (design_session). Origin, standing and support edits need attribution but keep the version.
+
+    An explicit instruction to change an adopted plan records the new version and its adoption together: when
+    an adopted object gets a new version under a newly attributed user_choice origin, and its support was not
+    edited, a new adoption record for that exact version is added under the same origin and replaces the old
+    records in that object's support. The mechanical edits are returned for the review. A hypothesis origin
+    (a what-if) never adopts, and unchanged objects keep their adoption.
     """
-    from TrialLedger.layer2 import source_evidence
+    from TrialLedger.layer2 import protocol_objects, source_evidence
 
     if "protocol" not in session:
-        return
+        return []
     protocol = session["protocol"]
     objects = protocol.get("objects") if type(protocol) is dict else None
     if type(objects) is not list:
@@ -214,17 +217,83 @@ def _check_protocol_objects(previous: dict, session: dict, whole: bool, attribut
     for index, raw in enumerate(objects):
         if type(raw) is not dict or "id" not in raw or "origin" not in raw:
             raise ValueError("edited_protocol_object_invalid")
-        item = cast(dict, raw)
-        before = old.get(item["id"])
-        if before is not None and source_evidence.exact_json_equal(before, item):
+        before = old.get(raw["id"])
+        if before is not None and source_evidence.exact_json_equal(before, raw):
             continue
         if not (whole or index in attributed):
             raise ValueError("changed_protocol_object_origin_required")
-        if before is None:
-            continue
-        content = [{k: v for k, v in held.items() if k not in OBJECT_ATTRIBUTION} for held in (before, item)]
-        if not source_evidence.exact_json_equal(*content) and item.get("version") == before.get("version"):
-            raise ValueError("changed_protocol_object_version_required")
+    conflicts = protocol_objects.edition_conflicts(list(old.values()), objects)
+    if conflicts:
+        raise ValueError("changed_protocol_object_version_required:" + conflicts[0])
+    reviewed: list[dict] = []
+    for index, raw in enumerate(objects):
+        before = old.get(raw["id"])
+        if before is not None:
+            reviewed += _adopt_instructed_version(previous, session, index, before, cast(dict, raw))
+    return reviewed
+
+
+STATUS_ORDER = ("proposed", "interpolated", "known")
+
+
+def _adopt_instructed_version(
+    previous: dict, session: dict, index: int, before: dict, item: dict
+) -> list[dict]:
+    """Add the adoption record of an explicitly instructed new version of an adopted object (see above)."""
+    from TrialLedger.layer2 import protocol_objects, source_evidence
+
+    origin = item.get("origin")
+    if (
+        item.get("version") == before.get("version")
+        or type(origin) is not dict
+        or origin.get("kind") != "user_choice"
+        or source_evidence.exact_json_equal(origin, before.get("origin"))
+        or not source_evidence.exact_json_equal(item.get("support"), before.get("support"))
+    ):
+        return []
+    held = {p["id"]: p for p in previous.get("premises", []) if type(p) is dict and "id" in p}
+    records = [
+        held[ref]
+        for ref in before.get("support") or []
+        if ref in held
+        and protocol_objects.adoption_state(held[ref], item["id"], before["version"]) == "adopts"
+    ]
+    if not records:
+        return []
+    payloads = [r["payload"] for r in records]
+    status = min(
+        (p.get("status") for p in payloads), key=lambda v: STATUS_ORDER.index(v) if v in STATUS_ORDER else -1
+    )
+    resolution = "resolved" if all(p.get("resolution") == "resolved" for p in payloads) else "unresolved"
+    identity = f"adopt:{item['id']}:{item['version']}"
+    premise = {
+        "id": identity,
+        "kind": "adoption",
+        "payload": {
+            "objects": [{"id": item["id"], "version": item["version"]}],
+            "status": status,
+            "resolution": resolution,
+        },
+        "origin": deepcopy(origin),
+        "depends_on": [],
+    }
+    premises = session["premises"]
+    existing = next((p for p in premises if type(p) is dict and p.get("id") == identity), None)
+    rows = []
+    if existing is None:
+        premises.append(premise)
+        rows.append({"path": f"/premises/{len(premises) - 1}", "before": None, "after": deepcopy(premise)})
+    elif not source_evidence.exact_json_equal(existing, premise):
+        raise ValueError("conflicting_adoption:" + identity)
+    old_refs = {r["id"] for r in records}
+    support = [ref for ref in item["support"] if ref not in old_refs] + [identity]
+    rows.append(
+        {"path": f"/protocol/objects/{index}/support", "before": list(item["support"]), "after": support}
+    )
+    item["support"] = support
+    for row in rows:
+        row["mechanical"] = "adoption_of_instructed_version"
+    return rows
 
 
 def execute(

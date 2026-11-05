@@ -4,6 +4,7 @@ import copy
 import json
 from pathlib import Path
 
+from tests.test_protocol_session_replay import new_edition
 from TrialLedger.layer2 import run, session_state
 
 FIXTURES = (
@@ -89,6 +90,8 @@ def test_revision_rows_carry_per_claim_before_and_after():
     nxt["session"]["revision"] = "two"
     nxt["session"]["parent_digest"] = session_state.digest(prepared["session"])
     nxt["session"]["protocol"]["objects"][2]["data"]["availability"][0]["upper"] = "91"
+    # Changed content is a new edition, re-adopted with the instruction (Rohan, 2026-11-04).
+    new_edition(nxt["session"], nxt["session"]["protocol"]["objects"][2]["id"])
     nxt["previous"] = {
         "session": prepared["session"],
         "result": initial["result"],

@@ -11,6 +11,8 @@ from pathlib import Path
 import openpyxl
 import pytest
 
+from tests.test_protocol_session_replay import new_edition
+
 ROOT = Path(__file__).resolve().parents[1]
 CLI = str(Path(sys.executable).with_name("trialledger"))
 FIXTURES = ROOT / "openspec/changes/connect-protocol-design-workflow/interface/fixtures"
@@ -176,6 +178,8 @@ def revised_session(mcp: McpClient, artifact: str) -> dict:
     collection["data"]["availability"] = [
         {"lower": None, "upper": "91", "lower_inclusive": False, "upper_inclusive": True}
     ]
+    # Changed content is a new edition, re-adopted with the instruction (Rohan, 2026-11-04).
+    new_edition(session, "collection")
     return session
 
 

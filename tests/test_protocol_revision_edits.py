@@ -56,11 +56,12 @@ def test_changed_object_content_under_the_same_version_is_refused(tmp_path):
     edits = [
         {"op": "replace", "path": COLLECTION + "/data/availability", "value": THROUGH_95, "origin": ORIGIN}
     ]
-    with pytest.raises(ValueError, match="^changed_protocol_object_version_required$"):
+    with pytest.raises(ValueError, match="^changed_protocol_object_version_required:collection$"):
         delivery.revise(tmp_path, identity, revision="two", edits=edits)
 
 
-def test_an_attributed_new_version_is_revised_and_its_old_adoption_reads_as_stale(tmp_path):
+def test_an_instructed_new_version_records_its_adoption_in_the_same_revision(tmp_path):
+    """An explicit instruction to change an adopted plan adopts the new version (Rohan, 2026-11-04)."""
     identity = _held(tmp_path)
     edits = [
         {"op": "replace", "path": COLLECTION + "/data/availability", "value": THROUGH_95, "origin": ORIGIN},
@@ -69,15 +70,66 @@ def test_an_attributed_new_version_is_revised_and_its_old_adoption_reads_as_stal
     revised = delivery.revise(tmp_path, identity, revision="two", edits=edits, response_view="full")
     assert revised["code"] == "complete", revised.get("problems")
     canonical = artifacts.load(tmp_path, revised["artifact"]["id"])
-    collection = canonical["request"]["session"]["protocol"]["objects"][2]
+    session = canonical["request"]["session"]
+    collection = session["protocol"]["objects"][2]
     assert (collection["version"], collection["origin"]) == ("invented-v2", ORIGIN)
-    # The adoption record still names invented-v1: it is stale, never silently carried to the new content.
-    assert collection["support"] == ["adopt:collection:invented-v1"]
-    assert "adoption_stale_version" in _unresolved_codes(revised)
+    assert collection["support"] == ["adopt:collection:invented-v2"]
+    record = next(p for p in session["premises"] if p["id"] == "adopt:collection:invented-v2")
+    assert record["payload"] == {
+        "objects": [{"id": "collection", "version": "invented-v2"}],
+        "status": "known",
+        "resolution": "resolved",
+    }
+    assert record["origin"] == ORIGIN
+    # The earlier record stays as history; unchanged objects keep their own adoption.
+    assert any(p["id"] == "adopt:collection:invented-v1" for p in session["premises"])
+    week12 = session["protocol"]["objects"][1]
+    assert week12["support"] == ["adopt:week12:invented-v1"]
+    assert "adoption_stale_version" not in _unresolved_codes(revised)
+    edits_review = canonical["response"]["delivery"]["edits"]
+    mechanical = [row for row in edits_review if row.get("mechanical") == "adoption_of_instructed_version"]
+    assert [row["path"] for row in mechanical] == [
+        f"/premises/{len(session['premises']) - 1}",
+        COLLECTION + "/support",
+    ]
     rows = {row["id"]: row for row in revised["answer_diff"]["protocol_checks"]}
     assert rows["week12-schedule"]["code"] != "unchanged"
-    paths = [row["path"] for row in canonical["response"]["delivery"]["edits"]]
-    assert paths == [COLLECTION + "/data/availability", COLLECTION + "/version"]
+
+
+def test_a_what_if_new_version_is_never_adopted_and_its_old_adoption_reads_as_stale(tmp_path):
+    """A hypothesis origin is a what-if: the new version gets no adoption, so the old one is stale."""
+    identity = _held(tmp_path)
+    what_if = {**ORIGIN, "kind": "hypothesis", "ref": "user:invented what-if through 95"}
+    standing = {"status": "proposed", "resolution": "resolved", "basis": ["user:invented what-if"]}
+    edits = [
+        {"op": "replace", "path": COLLECTION + "/data/availability", "value": THROUGH_95, "origin": what_if},
+        {"op": "replace", "path": COLLECTION + "/version", "value": "invented-v2"},
+        {"op": "replace", "path": COLLECTION + "/standing", "value": standing},
+    ]
+    revised = delivery.revise(tmp_path, identity, revision="two", edits=edits, response_view="full")
+    assert revised["code"] == "complete", revised.get("problems")
+    session = artifacts.load(tmp_path, revised["artifact"]["id"])["request"]["session"]
+    assert session["protocol"]["objects"][2]["support"] == ["adopt:collection:invented-v1"]
+    assert not any(p["id"] == "adopt:collection:invented-v2" for p in session["premises"])
+    assert "adoption_stale_version" in _unresolved_codes(revised)
+
+
+def test_an_unchanged_origin_does_not_adopt_a_new_version(tmp_path):
+    """Re-adoption needs a newly attributed instruction; a reused origin leaves the old one stale."""
+    identity = _held(tmp_path)
+    prior = artifacts.load(tmp_path, identity)["request"]["session"]["protocol"]["objects"][2]
+    edits = [
+        {
+            "op": "replace",
+            "path": COLLECTION + "/data/availability",
+            "value": THROUGH_95,
+            "origin": copy.deepcopy(prior["origin"]),
+        },
+        {"op": "replace", "path": COLLECTION + "/version", "value": "invented-v2"},
+    ]
+    revised = delivery.revise(tmp_path, identity, revision="two", edits=edits, response_view="full")
+    assert revised["code"] == "complete", revised.get("problems")
+    assert "adoption_stale_version" in _unresolved_codes(revised)
 
 
 def test_a_new_adoption_record_and_support_clear_the_stale_version(tmp_path):
@@ -122,7 +174,7 @@ def test_a_whole_object_replacement_still_needs_a_new_version_for_new_content(tm
     replacement = copy.deepcopy(prior)
     replacement["data"]["availability"] = THROUGH_95
     replacement["origin"] = copy.deepcopy(ORIGIN)
-    with pytest.raises(ValueError, match="^changed_protocol_object_version_required$"):
+    with pytest.raises(ValueError, match="^changed_protocol_object_version_required:collection$"):
         delivery.revise(
             tmp_path,
             identity,

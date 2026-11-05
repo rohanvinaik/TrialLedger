@@ -88,6 +88,11 @@ def _standing_of(premise_standing: Mapping[str, dict], premise: str) -> dict:
     return copy.deepcopy(dict(row))
 
 
+def stale_adoption_id(obj_id: str, premise: str) -> str:
+    """The support identity of one object's stale application of an adoption record."""
+    return f"stale_adoption:{obj_id}:{premise}"
+
+
 def _premise_entry(premise: str, premise_standing: Mapping[str, dict]) -> dict:
     return {"id": "premise:" + premise, **_standing_of(premise_standing, premise)}
 
@@ -106,8 +111,11 @@ def object_entries(obj: dict, premise_standing: Mapping[str, dict], stale: list 
     for premise in obj["support"]:
         entry = _premise_entry(premise, premise_standing)
         if premise in stale:
-            # A stale adoption (older version of this object) never admits the current version.
+            # A stale adoption (older version of this object) never admits the current version. Its
+            # application is object-specific: one record may be current for another object, so the
+            # stale application keeps its own identity and can never be merged into the current one.
             entry.update(
+                id=stale_adoption_id(obj["id"], premise),
                 resolution="unresolved",
                 basis=[f"adoption_stale_version: re-adopt {obj['id']} at version {obj['version']}"],
             )
@@ -200,7 +208,19 @@ class _Build:
         return out
 
     def receipt(self, name: str, version: str, request: dict, support: list[dict]) -> dict:
-        premises = [e["id"][len("premise:") :] for e in support if e["id"].startswith("premise:")]
+        stale = {
+            stale_adoption_id(identity, premise): premise
+            for identity in self.objects
+            for premise in self.index.get("stale_adoptions", {}).get(identity, [])
+        }
+        # Provenance keeps the original premise id for both current and stale applications.
+        premises = list(
+            dict.fromkeys(
+                e["id"][len("premise:") :] if e["id"].startswith("premise:") else stale[e["id"]]
+                for e in support
+                if e["id"].startswith("premise:") or e["id"] in stale
+            )
+        )
         return {
             "projection": name,
             "version": version,

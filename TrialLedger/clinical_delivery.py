@@ -240,6 +240,7 @@ def _compact_edit(row: dict, address: str) -> dict:
         "before_digest": digest(row["before"]),
         "after_digest": digest(row["after"]),
         "canonical_ref": address,
+        **({"mechanical": row["mechanical"]} if "mechanical" in row else {}),
     }
 
 

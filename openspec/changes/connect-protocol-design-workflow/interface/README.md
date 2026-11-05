@@ -84,6 +84,23 @@ it but never edit it. Report a gap as a factual case instead.
   always competing; inputs are re-chosen freely at each step; `policy_state` may be used in guards and
   constraints.
 
+**Adoption editions confirmed by Rohan (2026-11-04).**
+- Adoption belongs to one definition edition (an exact object id and version). Changing governed content
+  (everything except origin, standing, adoption support and the version label) needs a new version. Every
+  revision path enforces it: `--edits`, `--session`, MCP `reason_revise` and a direct canonical revision all
+  refuse `changed_protocol_object_version_required:<object id>`.
+- An explicit instruction to change an adopted plan records the new version and its adoption together, with no
+  second confirmation. The `--edits` shortcut does this mechanically when an adopted object gets a new version
+  under a newly attributed `user_choice` origin and its support was not edited. It adds
+  `adopt:<id>:<new version>` under that origin, with the earlier records' weakest standing, and rebinds only
+  that object's support. Both edits are listed in the review as `adoption_of_instructed_version`.
+- A what-if (`hypothesis` origin) never adopts, and a reused origin does not re-adopt. The earlier adoption then
+  reads as stale. Unchanged objects keep their adoption. Wording or attribution changes outside the governed
+  definition preserve adoption, and stay visible as changed warrants.
+- A stale application is object-specific (`stale_adoption:<object>:<premise>`). One shared record can be
+  current for one object and stale for another without either application overwriting the other. Only the
+  stale object's deciding roles are withheld, and receipts keep the original premise id.
+
 **R2. C6 field naming and the reserved state.**
 - C6's `variables` keeps its name, and each entry uses the decision-table domain shape.
 - `policy_state` is a reserved equality literal whose value is the current state. It may appear in guards,

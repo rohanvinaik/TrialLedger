@@ -5,7 +5,7 @@ Every premise here is an invented fixture; no clinical record, exchange or confi
 
 import copy
 
-from test_protocol_session_replay import _session, adopt
+from test_protocol_session_replay import _session, adopt, adoption_premise
 
 from TrialLedger.layer2 import run, session_state
 
@@ -37,6 +37,12 @@ def _revise(previous: dict, mutate) -> dict:
     return run(request)
 
 
+def _adoption_rows(reply: dict) -> list[dict]:
+    from TrialLedger.layer2 import protocol_view
+
+    return protocol_view.view(reply["result"])["adoption"]
+
+
 def _row(rows: list, identity: str) -> dict:
     matches = [row for row in rows if row["id"] == identity]
     assert len(matches) == 1, rows
@@ -44,8 +50,19 @@ def _row(rows: list, identity: str) -> dict:
 
 
 def _set_window_upper(upper: str):
+    """An instructed plan change: new content is a new edition, re-adopted with it when it was adopted.
+
+    Content changed under an unchanged version is refused on every revision path (Rohan, 2026-11-04).
+    """
+
     def mutate(session: dict) -> None:
-        session["protocol"]["objects"][2]["data"]["availability"][0]["upper"] = upper
+        collection = session["protocol"]["objects"][2]
+        old = collection["version"]
+        collection["data"]["availability"][0]["upper"] = upper
+        collection["version"] = f"{old}-through-{upper}"
+        if f"adopt:collection:{old}" in collection["support"]:
+            session["premises"].append(adoption_premise("collection", collection["version"]))
+            collection["support"] = [f"adopt:collection:{collection['version']}"]
 
     return mutate
 
@@ -230,3 +247,52 @@ def test_a_mixed_version_one_to_version_two_revision_stays_refused():
     reply = run(revised)
     assert reply["code"] == "refused"
     assert reply["problems"] == ["mixed_session_version_revision"]
+
+
+def test_content_changed_under_the_same_version_is_refused_on_the_direct_revision_path():
+    """REV-1: the edition guard is not only a shortcut rule; a direct canonical revision is refused too."""
+
+    def mutate(session: dict) -> None:
+        session["protocol"]["objects"][2]["data"]["availability"][0]["upper"] = "90"
+
+    reply = _revise(_plan(), mutate)
+    assert reply["code"] == "refused"
+    assert reply["problems"] == ["changed_protocol_object_version_required:collection"]
+
+
+def test_scope_and_dependency_changes_are_governed_content_too():
+    """REV-1: kind, scope and depends_on belong to the adopted definition; only attribution is excluded."""
+
+    def scope(session: dict) -> None:
+        session["protocol"]["objects"][2]["scope"]["context"]["cohort"] = "invented-cohort-a"
+
+    def dependencies(session: dict) -> None:
+        session["protocol"]["objects"][2]["depends_on"] = ["week12", "score"]
+
+    for mutate in (scope, dependencies):
+        reply = _revise(_plan(), mutate)
+        assert reply["code"] == "refused", mutate.__name__
+        assert reply["problems"] == ["changed_protocol_object_version_required:collection"], mutate.__name__
+
+
+def test_attribution_only_changes_keep_the_edition_and_its_adoption():
+    """REV-1: a new origin or standing under the same version is a changed warrant, not a new edition."""
+
+    def mutate(session: dict) -> None:
+        collection = session["protocol"]["objects"][2]
+        collection["origin"] = {
+            "kind": "user_choice",
+            "ref": "user:invented re-attribution",
+            "source": None,
+            "analysis": None,
+        }
+        collection["standing"] = {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": ["user:invented review"],
+        }
+
+    reply = _revise(_plan(), mutate)
+    assert reply["code"] == "complete", reply.get("problems")
+    adoption = {row["object"]: row for row in _adoption_rows(reply)}
+    assert adoption["collection"]["adoption"] != "stale_version"

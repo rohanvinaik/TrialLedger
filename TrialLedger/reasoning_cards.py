@@ -416,8 +416,10 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
                 "origin, or origin on the edit; copied source assertions cannot be edited here",
                 "protocol_objects": "a changed /protocol/objects/<i> needs an explicit origin in the same "
                 "way. A change to its content (anything but origin, standing, support and version) also "
-                "needs a new version, so an adoption of the earlier version reads as stale (unresolved) "
-                "until a new adoption record and support are supplied",
+                "needs a new version, on every revision path. An adopted object given a new version under a "
+                "new user_choice origin is re-adopted at that version in the same revision (listed as "
+                "adoption_of_instructed_version); a hypothesis origin (a what-if) or a reused origin is not, "
+                "and its earlier adoption reads as stale (unresolved)",
                 "protocol_checks_and_sections": "edits need no origin; origin on them is refused",
             },
             "source_handles": {

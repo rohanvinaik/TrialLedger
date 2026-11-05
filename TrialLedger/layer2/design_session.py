@@ -80,6 +80,19 @@ def revision_input_code(
     return "ready"
 
 
+def _edition_guard(old_session: dict, new_session: dict) -> None:
+    """Every revision path refuses governed content changed under an unchanged object version."""
+    from TrialLedger.layer2 import protocol_objects
+
+    if "protocol" not in old_session or "protocol" not in new_session:
+        return
+    conflicts = protocol_objects.edition_conflicts(
+        old_session["protocol"].get("objects") or [], new_session["protocol"].get("objects") or []
+    )
+    if conflicts:
+        raise ValueError("changed_protocol_object_version_required:" + conflicts[0])
+
+
 def prepare_revision(previous_request: object, previous_response: object, next_session: object) -> dict:
     """Prepare a public revision without interpreting or accepting any clinical field.
 
@@ -119,6 +132,7 @@ def prepare_revision(previous_request: object, previous_response: object, next_s
     supplied_parent = following.get("parent_digest")
     following.setdefault("parent_digest", None)
     next_prepared = state.prepare(following)
+    _edition_guard(old["session"], next_prepared["session"])
     result = prior_response.get("result")
     complete = (
         prior_response.get("code") == "complete"
@@ -1597,6 +1611,7 @@ def run(request: object, execute: Callable[[object], dict] | None = None) -> dic
             or old["session"]["revision"] == current["session"]["revision"]
         ):
             raise ValueError("invalid_session_revision_identity")
+        _edition_guard(old["session"], current["session"])
     code = state.revision_code(
         previous is not None,
         old is not None and current["session"]["parent_digest"] == old["digest"],

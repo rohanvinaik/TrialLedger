@@ -310,6 +310,43 @@ def adoption_state(premise: Mapping[str, Any], object_id: str, version: str) -> 
     return "other_object"
 
 
+# An adopted definition edition: everything but its attribution (origin, standing, adoption support) and the
+# version label itself. Kind, scope, dependencies and data are governed content (Rohan, 2026-11-04).
+EDITION_EXCLUDED = ("origin", "standing", "support", "version")
+
+
+def edition_change_state(content_equal: bool, version_equal: bool) -> str:
+    """Classify one object's revision by its governed content and version label (pure — pinned).
+
+    post: __return__ in ("unchanged_edition", "new_edition", "content_changed_without_new_version")
+    post: __return__ != "content_changed_without_new_version" or (version_equal and not content_equal)
+    """
+    if version_equal and not content_equal:
+        return "content_changed_without_new_version"
+    return "unchanged_edition" if version_equal else "new_edition"
+
+
+def edition_conflicts(before: list, after: list) -> list[str]:
+    """Object ids whose governed content changed while their version label stayed the same.
+
+    Adoption records name an exact object id and version, so content changed under an old version would
+    silently carry an adoption to content nobody adopted. Compared by id across two raw protocol object lists.
+    """
+    old = {o["id"]: o for o in before if isinstance(o, dict) and isinstance(o.get("id"), str)}
+    out = []
+    for item in after:
+        if not isinstance(item, dict) or item.get("id") not in old:
+            continue
+        prior = old[item["id"]]
+        content = [{k: v for k, v in o.items() if k not in EDITION_EXCLUDED} for o in (prior, item)]
+        state = edition_change_state(
+            _canonical(content[0]) == _canonical(content[1]), prior.get("version") == item.get("version")
+        )
+        if state == "content_changed_without_new_version":
+            out.append(item["id"])
+    return out
+
+
 def origin_standing_state(origin_kind: str, status: str) -> str:
     """A hypothesis-origin object may only be proposed (pure — pinned).
 

@@ -8,6 +8,8 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+from tests.test_protocol_session_replay import new_edition
+
 ROOT = Path(__file__).resolve().parents[1]
 CLI = str(Path(sys.executable).with_name("trialledger"))
 FIXTURE = ROOT / (
@@ -70,6 +72,8 @@ def test_a_protocol_revision_appears_in_the_changes_section_and_sheet(tmp_path):
     nxt = copy.deepcopy(first["session"])
     nxt["revision"] = "two"
     nxt["protocol"]["objects"][2]["data"]["availability"][0]["upper"] = "91"
+    # Changed content is a new edition, re-adopted with the instruction (Rohan, 2026-11-04).
+    new_edition(nxt, nxt["protocol"]["objects"][2]["id"])
     session_path = tmp_path / "next.json"
     session_path.write_text(json.dumps(nxt))
     revised = _cli(
