@@ -368,6 +368,14 @@ TOOLS: dict[str, dict[str, Any]] = {
             "properties": {
                 "run": RUN,
                 "request": REQUEST,
+                "no_coverage_comparison": {
+                    "type": "boolean",
+                    "description": "opt out of the default coverage comparison: a finished run that searched "
+                    "a disease class also asks the registry's condition-text search for the same term "
+                    "(identifiers only, within the acquisition budget); coverage.json and coverage.md in "
+                    "the run folder say what it found, or that it was not run. Text-only trials are "
+                    "candidates for clinical review, not established members.",
+                },
                 "mode": {
                     "type": "string",
                     "enum": list(MODES),
@@ -787,6 +795,7 @@ def _landscape(context: Context, folder: Path, arguments: dict[str, Any]) -> tup
             http=context.http,
             sleep=context.sleep,
             progress=_progress,
+            coverage=not arguments.get("no_coverage_comparison", False),
         )
     else:
         outcome = Outcome("mode_unavailable", mode, NEXT_STEP[mode])

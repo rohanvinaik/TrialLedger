@@ -65,7 +65,9 @@ CLASS_TIME_BASIS = (
     "modification time of the saved page file (the class search ran in the run's own pull); "
     "it changes if the folder is copied"
 )
-TEXT_TIME_BASIS = "clock time when this program saved the response"
+TEXT_TIME_BASIS = (
+    "clock time when this program saved the response; in relay mode the saved file's modification time"
+)
 
 
 def _json(document: Any) -> bytes:
@@ -141,7 +143,9 @@ def text_side_state(
         "total": first.get("totalCount") if isinstance(first, dict) and "totalCount" in first else None,
         "ids": ids if code == "complete" else [],
         "sources": [f"{COVERAGE_DIR}/{BODIES}/{name}" for name in saved],
-        "retrieved_at": sorted({stamps[name] for name in saved if name in stamps}),
+        "retrieved_at": sorted(
+            {stamps.get(name) or _iso((base / BODIES / name).stat().st_mtime) for name in saved}
+        ),
         "retrieved_at_basis": TEXT_TIME_BASIS,
         "snapshot": _snapshot(bodies.get(TEXT_START)),
         "snapshot_end": _snapshot(bodies.get(TEXT_END)),
@@ -173,8 +177,25 @@ def spent_requests(folder: Path) -> int:
     )
 
 
-def _fetch(session: Session, url: str, params: dict[str, str], base: Path, name: str) -> None:
-    """One response, saved whole and stamped with its retrieval time."""
+class Awaiting(Exception):
+    """Relay mode: these exact registry requests must be fetched and saved (save_fetch) before going on."""
+
+    def __init__(self, fetches: list[dict[str, str]]) -> None:
+        super().__init__(f"{len(fetches)} fetch(es) awaited")
+        self.fetches = fetches
+
+
+def relay_fetch(url: str, params: dict[str, str], name: str, why: str) -> dict[str, str]:
+    """One awaited request as the relay protocol names it: the full URL, where to save the body, why."""
+    return {"url": request_url(url, params), "save_as": f"{COVERAGE_DIR}/{BODIES}/{name}", "why": why}
+
+
+def _fetch(
+    session: Session | None, url: str, params: dict[str, str], base: Path, name: str, why: str = "coverage"
+) -> None:
+    """One response, saved whole and stamped with its retrieval time (relay: named, never fetched here)."""
+    if session is None:
+        raise Awaiting([relay_fetch(url, params, name, why)])
     content = session.get(url, params, JSON_TYPE).content
     (base / BODIES).mkdir(parents=True, exist_ok=True)
     _write(base / BODIES / name, content)
@@ -191,24 +212,38 @@ def diagnosis_batches(ids: list[str]) -> list[list[str]]:
     ]
 
 
+def diagnosis_params(batch: list[str]) -> dict[str, str]:
+    """The request that reads exactly these trials' condition annotations."""
+    return {
+        "filter.ids": ",".join(batch),
+        "format": "json",
+        "markupFormat": "markdown",
+        "countTotal": "true",
+        "pageSize": str(PAGE_SIZE),
+        "fields": coverage.DIAGNOSIS_FIELDS,
+    }
+
+
 def diagnose(
-    session: Session, base: Path, ids: list[str], term: str, route_of: dict[str, list[str]]
+    session: Session | None, base: Path, ids: list[str], term: str, route_of: dict[str, list[str]]
 ) -> dict[str, Any]:
     """Read the differing trials' condition annotations (identifiers asked, exactly those answered)."""
     readings: dict[str, Any] = {}
+    if session is None:  # relay: every missing batch is named at once
+        missing = [
+            relay_fetch(
+                STUDIES_URL, diagnosis_params(batch), f"diagnosis-{number:03d}.json", "coverage_annotations"
+            )
+            for number, batch in enumerate(diagnosis_batches(ids), 1)
+            if not (base / BODIES / f"diagnosis-{number:03d}.json").is_file()
+        ]
+        if missing:
+            raise Awaiting(missing)
     for number, batch in enumerate(diagnosis_batches(ids), 1):
         name = f"diagnosis-{number:03d}.json"
         path = base / BODIES / name
         if not path.is_file():
-            params = {
-                "filter.ids": ",".join(batch),
-                "format": "json",
-                "markupFormat": "markdown",
-                "countTotal": "true",
-                "pageSize": str(PAGE_SIZE),
-                "fields": coverage.DIAGNOSIS_FIELDS,
-            }
-            _fetch(session, STUDIES_URL, params, base, name)
+            _fetch(session, STUDIES_URL, diagnosis_params(batch), base, name, "coverage_annotations")
         payload = json.loads(path.read_bytes().decode("utf-8"))
         if classify_json_page(payload, True) not in ("next", "last"):
             return {"state": "incomplete", "detail": f"{name}: not a registry page", "trials": readings}
@@ -241,11 +276,15 @@ def run_coverage(
     sleep: Callable[[float], None] = time.sleep,
     monotonic: Callable[[], float] = time.monotonic,
     progress: Callable[[str], None] = lambda _m: None,
+    relay: bool = False,
 ) -> tuple[str, str]:
     """Compare the run's class search with its condition-text search; returns (state, detail).
 
     The state is coverage.COMPARISON_STATES. Every outcome writes coverage.json and coverage.md; a stop
-    (budget, failed request) keeps every saved body so the same command resumes.
+    (budget, failed request) keeps every saved body so the same command resumes. In `relay` mode nothing
+    is fetched here: the awaited requests are written to next.json (the relay protocol's own shape) and
+    coverage.json, the state is "awaiting_fetch", and nothing is claimed until they are saved and the
+    command is repeated; the saved bytes are then read exactly as direct mode's.
     """
     request = json.loads((folder / "request.json").read_text(encoding="utf-8"))
     resolution = json.loads((folder / "resolution.json").read_text(encoding="utf-8"))
@@ -262,16 +301,28 @@ def run_coverage(
     base = folder / COVERAGE_DIR
     spent = spent_requests(folder)
     klass = class_side(folder, query)
-    client = http or httpx.Client(
-        base_url=API_BASE, timeout=TIMEOUT_SECONDS, follow_redirects=False, headers={"User-Agent": USER_AGENT}
+    client = (
+        None
+        if relay
+        else http
+        or httpx.Client(
+            base_url=API_BASE,
+            timeout=TIMEOUT_SECONDS,
+            follow_redirects=False,
+            headers={"User-Agent": USER_AGENT},
+        )
     )
-    session = Session(
-        client,
-        sleep=sleep,
-        monotonic=monotonic,
-        progress=progress,
-        acquisition=policy,
-        registry_requests=spent,
+    session = (
+        None
+        if client is None
+        else Session(
+            client,
+            sleep=sleep,
+            monotonic=monotonic,
+            progress=progress,
+            acquisition=policy,
+            registry_requests=spent,
+        )
     )
     failure = ""
     diagnosis: dict[str, Any] = {"state": "not_run", "detail": "no differing trial to read", "trials": {}}
@@ -286,6 +337,8 @@ def run_coverage(
                 failure = _retrieve_text(session, base, alternate, policy, spent, klass, progress)
             except PullError as error:
                 failure = f"{error.code}: {error.detail}"
+            except Awaiting as wait:
+                return _awaiting(folder, alternate, wait.fetches)
         text, _bodies = text_side_state(base, alternate, failure)
         if klass["state"] != "complete":
             text["state"], text["detail"] = "not_run", "not asked: the class search itself is not complete"
@@ -301,12 +354,14 @@ def run_coverage(
                 diagnosis = diagnose(session, base, differing, request["condition_class"], routes)
             except PullError as error:
                 diagnosis = {"state": "failed", "detail": f"{error.code}: {error.detail}", "trials": {}}
+            except Awaiting as wait:
+                return _awaiting(folder, alternate, wait.fetches)
         elif differing:
             diagnosis = {"state": "not_run", "detail": f"budget: {budget['verdict']}", "trials": {}}
     finally:
-        if http is None:
+        if http is None and client is not None:
             client.close()
-    budget["requests_this_invocation"] = session.registry_requests - spent
+    budget["requests_this_invocation"] = 0 if session is None else session.registry_requests - spent
     budget["saved_responses"] = len([p for p in (base / BODIES).glob("*") if not p.name.startswith(".")])
     union: dict[str, Any] = {"policy": "explicit_expansion_offered_not_gathered", "offered": False}
     if comparison is not None:
@@ -352,7 +407,7 @@ def run_coverage(
 
 
 def _retrieve_text(
-    session: Session,
+    session: Session | None,
     base: Path,
     alternate: dict[str, str],
     policy: dict[str, int],
@@ -362,43 +417,81 @@ def _retrieve_text(
 ) -> str:
     """Fetch what the alternate search still needs: /version, its identifier pages, /version again.
 
-    The budget is decided on observed scope after the first page (study total) and before every further
-    page; a stop raises PullError('acquisition.…') and keeps what is saved. Returns "" when nothing failed.
+    The budget is decided on observed scope as soon as the first page is saved (study total) and before every
+    further page; a stop raises PullError('acquisition.…') and keeps what is saved. With no session (relay)
+    the awaited requests are raised as Awaiting instead of fetched. Returns "" when nothing failed.
     """
     while True:
         bodies, unreadable = _read_bodies(base / BODIES)
+        first = bodies.get("ids-001.json")
+        if isinstance(first, dict) and classify_json_page(first, True) in ("next", "last"):
+            plan = coverage.comparison_budget(policy, klass["total"], first["totalCount"], spent)
+            if plan["verdict"] != "within_budget":
+                raise PullError(
+                    "acquisition." + plan["verdict"],
+                    acquisition.refusal_detail(
+                        policy, plan["unique_studies"], spent, plan["planned_requests"]
+                    ),
+                )
+        if session is None and TEXT_START not in bodies and "ids-001.json" not in bodies:
+            _code, pages, _ids, _detail = follow_ids(alternate, bodies, unreadable)
+            raise Awaiting(
+                [
+                    relay_fetch(VERSION_URL, {}, TEXT_START, "coverage_version_start"),
+                    relay_fetch(pages[0]["url"], pages[0]["params"], pages[0]["file"], "coverage_id_page"),
+                ]
+            )
         if TEXT_START not in bodies:
-            _fetch(session, VERSION_URL, {}, base, TEXT_START)
+            _fetch(session, VERSION_URL, {}, base, TEXT_START, "coverage_version_start")
             continue
         code, pages, _ids, _detail = follow_ids(alternate, bodies, unreadable)
         if code == "awaiting_fetch":
             page = pages[-1]
-            _fetch(session, page["url"], page["params"], base, page["file"])
+            _fetch(session, page["url"], page["params"], base, page["file"], "coverage_id_page")
             progress(f"saved {page['file']} (alternate id page)")
-            if page["file"] == "ids-001.json":
-                first = json.loads((base / BODIES / "ids-001.json").read_bytes().decode("utf-8"))
-                if classify_json_page(first, True) in ("next", "last"):
-                    plan = coverage.comparison_budget(policy, klass["total"], first["totalCount"], spent)
-                    if plan["verdict"] != "within_budget":
-                        raise PullError(
-                            "acquisition." + plan["verdict"],
-                            acquisition.refusal_detail(
-                                policy, plan["unique_studies"], spent, plan["planned_requests"]
-                            ),
-                        )
             continue
         if code == "complete" and TEXT_END not in bodies:
-            _fetch(session, VERSION_URL, {}, base, TEXT_END)
+            _fetch(session, VERSION_URL, {}, base, TEXT_END, "coverage_version_end")
             continue
         return "" if code == "complete" else f"{code}: {_detail}"
+
+
+def _awaiting(folder: Path, alternate: dict[str, str], fetches: list[dict[str, str]]) -> tuple[str, str]:
+    """Relay: name the awaited requests in next.json and coverage.json; claim nothing until they run."""
+    words = (
+        "Comparison not yet run: the registry's condition-text search for the same term, every other filter "
+        "unchanged, must be fetched. Fetch each URL in `fetches`, save its body unchanged with save_fetch "
+        "under the save_as given, then run the same command again. Nothing is claimed about trials the "
+        "class search misses until it has run."
+    )
+    document = {
+        "schema": SCHEMA,
+        "state": "awaiting_fetch",
+        "alternate_query": alternate,
+        "fetches": fetches,
+        "difference_words": words,
+    }
+    _write(folder / COVERAGE_NAME, _json(document))
+    _write(folder / COVERAGE_TEXT, render(document).encode("utf-8"))
+    # Every save_as directory exists before the relay asks for it, as for the main retrieval's bodies.
+    for fetch in fetches:
+        (folder / fetch["save_as"]).parent.mkdir(parents=True, exist_ok=True)
+    waiting = {"status": "awaiting_fetch", "detail": f"{len(fetches)} coverage request(s) to fetch"}
+    waiting |= {"run_folder": str(folder.resolve()), "instructions": words, "fetches": fetches}
+    _write(folder / "next.json", _json(waiting))
+    return "awaiting_fetch", words
 
 
 def render(document: dict[str, Any]) -> str:
     """coverage.json as readable text (pure): the state and what may be said first, then the facts."""
     lines = ["# Search coverage: condition class (MeSH) versus condition text", ""]
     lines += [f"State: {document['state']}", document["difference_words"], ""]
-    if document["state"] == "not_applicable":
+    if "class_search" not in document:
         lines.append(f"Reason: {document.get('reason')}")
+        for fetch in document.get("fetches", []):
+            lines.append(f"- fetch {fetch['url']} and save it as {fetch['save_as']} ({fetch['why']})")
+        if document.get("alternate_query"):
+            lines.append(f"Alternate query: {json.dumps(document['alternate_query'], ensure_ascii=False)}")
         return "\n".join(lines) + "\n"
     lines += [document["boundary"], ""]
     for key, title in (("class_search", "Class search (MeSH)"), ("text_search", "Condition-text search")):
@@ -442,3 +535,70 @@ def render(document: dict[str, Any]) -> str:
         document["union"].get("words", "No union is offered."),
     ]
     return "\n".join(lines) + "\n"
+
+
+NOT_RUN_WORDS = {
+    "opted_out": "the person opted out of the default comparison",
+    "budget": "the acquisition budget would be exceeded",
+}
+
+
+def default_comparison(*args: Any, **kwargs: Any) -> str:
+    """default_comparison_state's plain lines alone."""
+    return default_comparison_state(*args, **kwargs)[1]
+
+
+def default_comparison_state(
+    folder: Path,
+    *,
+    enabled: bool = True,
+    mode: str = "direct",
+    http: httpx.Client | None = None,
+    sleep: Callable[[float], None] = time.sleep,
+    monotonic: Callable[[], float] = time.monotonic,
+    progress: Callable[[str], None] = lambda _m: None,
+) -> tuple[str, str]:
+    """The default coverage comparison of a finished class-search run, as plain lines for the run's detail.
+
+    Runs only for a resolved scope that searched a condition class (coverage.alternate_query is ok). Never
+    changes the run's outcome. When not run (opted out, relay mode, budget) it says so and saves that in
+    coverage.json; it never claims "no additional trials" for a comparison that did not complete.
+    """
+    resolution = json.loads((folder / "resolution.json").read_text(encoding="utf-8"))
+    if coverage.alternate_query(resolution)[0] != "ok":
+        return "not_applicable", ""
+    reason = "" if enabled else "opted_out"
+    if not reason:
+        state, words = run_coverage(
+            folder, http=http, sleep=sleep, monotonic=monotonic, progress=progress, relay=mode == "relay"
+        )
+        detail = saved_detail(folder)
+        if state == "failed" and detail.startswith("acquisition"):
+            reason = "budget"
+        else:
+            return state, f"Coverage comparison ({state}): {words} See coverage.md."
+    words = f"coverage comparison not run: {reason.replace('_', ' ') if reason != 'budget' else 'budget'}"
+    document = {
+        "schema": SCHEMA,
+        "state": "not_run",
+        "reason": reason,
+        "difference_words": f"Comparison not run ({NOT_RUN_WORDS[reason]}); no statement is made about "
+        "trials the class search misses.",
+    }
+    if reason == "budget" or not (folder / COVERAGE_NAME).is_file():
+        _write(folder / COVERAGE_NAME, _json(document))
+        _write(folder / COVERAGE_TEXT, render(document).encode("utf-8"))
+    line = (
+        "" if reason == "opted_out" else f"{words}: {NOT_RUN_WORDS[reason]}. {document['difference_words']}"
+    )
+    return "not_run", line
+
+
+def saved_detail(folder: Path) -> str:
+    """The alternate search's saved detail (why it stopped), or empty."""
+    try:
+        return json.loads((folder / COVERAGE_NAME).read_text(encoding="utf-8"))["text_search"].get(
+            "detail", ""
+        )
+    except (OSError, ValueError, KeyError):
+        return ""

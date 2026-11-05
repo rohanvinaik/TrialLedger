@@ -86,6 +86,7 @@ def claim_outcome(claim: str, violations: int, declared: int) -> str:
     pre: claim in ('coverage', 'exclusivity', 'prohibition', 'invariant', 'termination')
     pre: violations >= 0
     pre: declared >= 0
+    pre: violations == 0 or declared > 0 or claim not in ('prohibition', 'invariant')
     post: claim != 'coverage' or __return__ in ('covered', 'gap')
     post: claim != 'exclusivity' or __return__ in ('exclusive', 'competing')
     post: claim != 'prohibition' or __return__ in ('not_declared', 'clear', 'violation')

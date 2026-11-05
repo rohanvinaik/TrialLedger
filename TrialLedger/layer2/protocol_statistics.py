@@ -262,6 +262,7 @@ def result_code(limited: bool, outcomes: list[str]) -> str:
 
     pre: all(outcome in ("satisfied", "not_satisfied", "limit") for outcome in outcomes)
     pre: not limited or all(outcome == "limit" for outcome in outcomes)
+    pre: limited or all(outcome != "limit" for outcome in outcomes)
     post: __return__ in ("limit", "not_satisfied", "satisfied", "computed")
     post: __return__ != "limit" or limited
     post: __return__ != "not_satisfied" or "not_satisfied" in outcomes

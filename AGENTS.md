@@ -237,6 +237,11 @@ catalogue drug/class identities before expansion; never substitute your pharmaco
 acronyms: `{"params":{"query.term":"\"CodeBreaK 200\""}}` uses ordinary search; check returned identity.
 Requested-ID accounting separates found, aliased, missing, repeated and malformed. Completion does not mean
 every requested ID was found. Repetition resumes; a changed request uses a new folder.
+A `condition_class` landscape also compares its MeSH search with the registry's condition text by default
+(identifiers only, within the acquisition budget; `coverage.json`/`coverage.md`). Text-only hits are
+candidates for clinical review, not established members; a comparison not run never means no additional
+trials. In relay mode the alternate query's pages are further `next.json` fetches (save each unchanged
+under its `save_as`, then repeat the same call); nothing is claimed until they are saved. Opt out with `--no-coverage-comparison` (MCP `no_coverage_comparison`); the union stays explicit.
 
 Acquisition defaults (1,000 studies / 100 registry requests) are checked before bulk retrieval. Deliberate
 larger scope declares positive `acquisition.max_studies` / `max_registry_requests`; raw pull has matching

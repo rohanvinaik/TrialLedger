@@ -433,6 +433,13 @@ def main(
         "review. Takes no request flags",
     )
     landscape_parser.add_argument(
+        "--no-coverage-comparison",
+        action="store_true",
+        help="opt out of the default comparison: a run that searched a disease class otherwise also asks the "
+        "registry's condition-text search for the same term (identifiers only, within the acquisition "
+        "budget) and reports the difference; the opt-out is recorded in coverage.json",
+    )
+    landscape_parser.add_argument(
         "--compare-plan",
         action="store_true",
         help="with --compare-condition-text: show the alternate query and its budget; ask the registry "
@@ -685,7 +692,14 @@ def _landscape(args, *, http, sleep, rxclass_get, probe_get) -> int:
         outcome = preview(args.run, request, mode, get=rxclass_get or rx.http_get, sleep=sleep, progress=say)
     elif outcome is None:
         outcome = run(
-            args.run, request, mode, get=rxclass_get or rx.http_get, http=http, sleep=sleep, progress=say
+            args.run,
+            request,
+            mode,
+            get=rxclass_get or rx.http_get,
+            http=http,
+            sleep=sleep,
+            progress=say,
+            coverage=not args.no_coverage_comparison,
         )
     code_ = run_exit(outcome.status)
     stream = sys.stdout if code_ in (0, 3) else sys.stderr

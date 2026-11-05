@@ -163,6 +163,7 @@ def missing_inputs(outcome: str, w_known: bool, c_known: bool) -> list[str]:
     """Name the unknown inputs that prevent a row from being decided, sorted.
 
     pre: outcome in ('satisfied',) + VIOLATED_OUTCOMES + UNRESOLVED_OUTCOMES
+    pre: outcome != 'unresolved' or not (w_known and c_known)
     post: __return__ == sorted(__return__)
     post: outcome != 'unresolved' or __return__ != []
     post: outcome == 'unknown_target' or outcome == 'unresolved' or __return__ == []

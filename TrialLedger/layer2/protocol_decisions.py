@@ -185,7 +185,7 @@ def disposition(rows: list[tuple], selected: str | None) -> str:
     `rows` are in alternative order; `selected` is the selected alternative's compatibility or None. A row's
     optional third element is True for a hypothetical frame (a what-if), which can never make it settled.
 
-    pre: all(row[0] in COMPATIBILITY for row in rows)
+    pre: all(len(row) >= 2 and row[0] in COMPATIBILITY for row in rows)
     post: __return__ in DISPOSITIONS
     post: selected != "incompatible_under_declared_checks" or __return__ == "blocker"
     post: selected != "repair_choice_open_under_declared_checks" or __return__ == "repair_choice"

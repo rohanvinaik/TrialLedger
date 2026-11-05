@@ -1490,6 +1490,7 @@ def view(result: dict) -> dict:
     """The clinical protocol view of one v2 design_session result.
 
     pre: isinstance(result, dict)
+    raises: ValueError
     post: len(__return__) == 7
     post: len(__return__["sections"]) == 8
     """

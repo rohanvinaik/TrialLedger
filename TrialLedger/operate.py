@@ -630,8 +630,13 @@ def run(
     sleep: Callable[[float], None] = time.sleep,
     monotonic: Callable[[], float] = time.monotonic,
     progress: Callable[[str], None] = _ignore,
+    coverage: bool = True,
 ) -> Outcome:
     """Take a run of `request` in `folder` as far as `mode` allows, and say how it stands (module docstring).
+
+    A finished run that searched a disease class then compares it with the registry's condition-text search
+    by default (coverage_run.default_comparison: identifiers only, within the acquisition budget, the record
+    never widened); `coverage=False` opts out, and the opt-out is recorded.
 
     `get` asks RxNav (classes.http_get's shape); `http`, `sleep`, `monotonic` and `progress` reach the
     registry's Session (steps.advance). Re-running resumes; a finished run re-run changes nothing.
@@ -714,4 +719,13 @@ def run(
         trials = "trial" if len(asked) == 1 else "trials"
         detail += f"\n{len(asked)} {trials} asked for by number, {found} found under their own number"
         detail += "".join(f"\n{requested_id_words(e)}" for e in asked if e["status"] != "found")
+    from TrialLedger.coverage_run import default_comparison_state
+
+    state, comparison = default_comparison_state(
+        folder, enabled=coverage, mode=mode, http=http, sleep=sleep, monotonic=monotonic, progress=progress
+    )
+    if comparison:
+        detail += f"\n{comparison}"
+    if state == "awaiting_fetch":
+        return Outcome("awaiting_fetch", detail, RUN_ADVICE["awaiting_fetch"])
     return Outcome("complete", detail, f"{RUN_ADVICE['complete']} {BOOK_WORDS[book]}")

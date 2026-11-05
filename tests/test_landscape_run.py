@@ -121,7 +121,7 @@ def direct(folder, request, registry, rxnav, **kwargs):
         http=registry.client(),
         sleep=lambda seconds: None,
         monotonic=lambda: 0.0,
-        **kwargs,
+        **({"coverage": False} | kwargs),
     )
 
 
@@ -139,7 +139,7 @@ def fetch_round(folder, registry, rxnav):
 def relay_to_the_end(folder, request, registry, rxnav):
     statuses = []
     while True:
-        outcome = run(folder, request, "relay")
+        outcome = run(folder, request, "relay", coverage=False)
         statuses.append(outcome.status)
         if outcome.status != "awaiting_fetch":
             return statuses, outcome
@@ -320,6 +320,7 @@ def test_a_finished_run_rerun_asks_nothing_and_leaves_its_record(tmp_path):
                 get=idle_rxnav.get,
                 http=idle_registry.client(),
                 sleep=lambda seconds: None,
+                coverage=False,
             )
             assert outcome.status == "complete" and outcome.detail.endswith("landscape.json unchanged")
         assert idle_registry.requests == [] and idle_rxnav.asked == []
@@ -353,7 +354,9 @@ def test_a_run_interrupted_resumes(tmp_path):
         return answering.serve(request)
 
     client = httpx.Client(base_url=API_BASE, transport=httpx.MockTransport(fail_after_version))
-    outcome = run(folder, PD1_IN_LUNG, "direct", get=RxNav().get, http=client, sleep=lambda s: None)
+    outcome = run(
+        folder, PD1_IN_LUNG, "direct", get=RxNav().get, http=client, sleep=lambda s: None, coverage=False
+    )
     assert (outcome.status, run_exit(outcome.status)) == ("pull_failed", 1)
     assert "http.server_error" in outcome.detail and outcome.advice == RUN_ADVICE["pull_failed"]
     assert not (folder / "landscape.json").exists() and (folder / "bodies" / "version-start.json").is_file()

@@ -90,3 +90,7 @@ Open (listed, not fixed):
   errors raised before `run` in the CLI/MCP wrappers, still return only a code.
 - The `source_interpretation` origin is shown on the adoption sheet and in revision axes only.
 - Dependencies are not linked to a baseline's own collection plan (a contract decision for Rohan).
+
+## Second freeze (2026-11-05)
+
+- Commit `284ed95c82387848009add2fb7d41ec2b9b95973`. Targeted verification runs against this commit: every pinned decision (two-sign audit, converge where Detective prescribes) and every contracted function (CrossHair `--report_all`) in files this change touched; target list in `~/trialledger-runs/proof-targeted/targets.txt`.

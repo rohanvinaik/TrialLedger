@@ -139,7 +139,15 @@ def test_the_same_command_then_gathers_exactly_the_previewed_search(tmp_path):
     previewed(folder, PD1_IN_LUNG, rxnav)
     resolved = (folder / "resolution.json").read_bytes()
     registry, later = Registry(), RxNav()
-    outcome = run(folder, PD1_IN_LUNG, "direct", get=later.get, http=registry.client(), sleep=lambda s: None)
+    outcome = run(
+        folder,
+        PD1_IN_LUNG,
+        "direct",
+        get=later.get,
+        http=registry.client(),
+        sleep=lambda s: None,
+        coverage=False,
+    )
     assert outcome.status == "complete"
     assert later.asked == []  # no study has a drug, and the search is never resolved again
     assert (folder / "resolution.json").read_bytes() == resolved
