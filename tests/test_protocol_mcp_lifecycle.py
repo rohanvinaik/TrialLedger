@@ -313,6 +313,11 @@ def test_an_admitted_conflict_is_never_silently_missing_from_the_compact_reply(m
         assert page["total"] - page["returned"] >= len(conflicts) and page["next_offset"] is not None
     if shown:
         assert compact["protocol"]["findings"][0]["class"] == "conflict"
+    if "protocol" not in compact:
+        # The block was dropped for budget: it is named as omitted, with its conflicts still counted.
+        assert "protocol" in compact["omitted_fields"]
+        assert compact["protocol_omitted"]["conflicts"] >= len(conflicts)
+        assert compact["protocol_omitted"]["canonical_ref"] == "/response/protocol_view"
 
 
 def test_a_proposed_adoption_is_never_reported_as_adopted_known_in_the_export(mcp, tmp_path):

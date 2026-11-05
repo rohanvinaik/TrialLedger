@@ -80,6 +80,26 @@ COUNT_WORDING = {
     ("prohibition", "violation"): "{n} declared prohibition violation(s) in reachable declared situations.",
     ("invariant", "violation"): "{n} declared invariant failure(s).",
 }
+# Plain words for the admission code of a refused claim. The exact code stays in the Admission column.
+ADMISSION_WORDS = {
+    "proposed_refused": "the deciding premise is still a proposal",
+    "missing_support": "a premise this claim needs is not declared",
+    "binding_unresolved": "a premise this claim needs is not fully resolved",
+    "application_blocked": "the condition for applying this claim is blocked",
+}
+# Kind of finding for one claim or finding, from the view's own conflict/repair classification.
+KIND_WORDS = {
+    "conflict": "Conflict",
+    "repair_choice": "Repair choice",
+    "not_computed": "Not computed",
+    "not_determined": "Not determined",
+    "not_applied": "Not applied",
+    "conditional": "Conditional",
+    "not_applicable": "Not applicable",
+    "finding": "Finding",
+    "no_finding": "No finding",
+}
+KIND_ORDER = tuple(KIND_WORDS)
 QUANTITIES = {"null_rejection_probability": "null rejection probability", "power": "power"}
 
 
@@ -170,7 +190,8 @@ def _template(row: dict, child: dict) -> str:
         # Not a refusal: the operator could not decide because a declared input is missing.
         return "Not determined: an input this claim needs is not declared."
     if effective == "unresolved":
-        return f"Not applied: the deciding support is {row.get('admission')}."
+        admission = str(row.get("admission"))
+        return f"Not applied: {ADMISSION_WORDS.get(admission, 'the deciding support is ' + admission)}."
     if effective == "not_executed":
         return "Not computed within the declared work limit."
     key: Any = (claim, effective)
@@ -334,6 +355,7 @@ def _check_row(index: int, check: dict) -> dict:
                             if r not in (row.get("determining_ids") or [])
                         ],
                         "wording": claim_wording(row, child),
+                        "kind_of_finding": claim_kind(row),
                     }
                 )
     return {
@@ -357,12 +379,14 @@ def _check_row(index: int, check: dict) -> dict:
                 "calculation_code": sig.get("calculation_code"),
                 "admission": (sig.get("admission") or {}).get("code"),
                 "codes": signal_finding_codes(sig),
+                "kind_of_finding": signal_kind(sig),
                 "ref": _child_ref(index, j),
             }
             for j, sig in _plain_signals(check)
         ],
         "unresolved": copy.deepcopy(check.get("unresolved") or []),
         "not_computed": copy.deepcopy(check.get("not_computed")),
+        "not_computed_items": not_computed_items(check),
         "conditions": [copy.deepcopy(c) for child in children for c in child.get("conditions") or []],
         "refs": [
             {
@@ -385,7 +409,7 @@ def _by_kind(protocol: dict, check: dict, kind: str) -> dict | None:
 
 def _context(check: dict, key: str) -> str:
     value = _get(check, "scope", "context", key)
-    return "all (open)" if value is None else str(value)
+    return "not stated (open)" if value is None else str(value)
 
 
 def _schedule_row(protocol: dict, index: int, check: dict, row: dict) -> dict:
@@ -440,6 +464,21 @@ SCHEDULE_KEYS = (
 )
 
 
+def window_texts(value: dict) -> dict:
+    """Permitted, availability, feasible and gap texts of one schedule_coverage `value` (shared builder)."""
+    claims = {r.get("claim"): r for r in value.get("claims") or [] if isinstance(r, dict)}
+    return {
+        "permitted": interval_text(value.get("permitted")),
+        "availability": interval_text(value.get("available")),
+        "feasible": interval_text(claims["existence"].get("feasible"))
+        if "existence" in claims
+        else "not computed",
+        "full_coverage_gap": interval_text(claims["full_window"].get("uncovered"))
+        if "full_window" in claims
+        else "not computed",
+    }
+
+
 def _schedule_numbers(child: dict | None, codes: list, row: dict) -> dict:
     if child is None:
         text = "not computed"
@@ -458,14 +497,7 @@ def _schedule_numbers(child: dict | None, codes: list, row: dict) -> dict:
     return {
         "conditionality": "conditional" if child.get("conditions") else "unconditional",
         "nominal": rational_text(value.get("nominal")) if "nominal" in claims else "not computed",
-        "permitted": interval_text(value.get("permitted")),
-        "availability": interval_text(value.get("available")),
-        "feasible": interval_text(claims["existence"].get("feasible"))
-        if "existence" in claims
-        else "not computed",
-        "full_coverage_gap": interval_text(claims["full_window"].get("uncovered"))
-        if "full_window" in claims
-        else "not computed",
+        **window_texts(value),
         "nominal_outcome": "not computed" if nominal_row is None else nominal_row["effective_outcome"],
     }
 
@@ -502,6 +534,281 @@ def section_findings(coverage: str, conflicts: int, repairs: int) -> str:
     if coverage == "specified":
         return "none_found_in_declared_checks"
     return "not_checked"
+
+
+# Plain words for the unresolved-projection and operator-finding codes. The exact code always stays beside.
+UNRESOLVED_WORDS = {
+    "projection_scope_mismatch": "the declared objects are for different scopes (for example collection and "
+    "assessment), so nothing was computed",
+    "projection_scope_too_long": "the declared scope is too long to project, so nothing was computed",
+    "projection_collection_plan_conflict": "the declared collection plans conflict, so nothing was computed",
+    "projection_binding_shape": "a declared object does not have the shape this check reads, so nothing was "
+    "computed",
+    "projection_slice_5": "this kind of check is not computed in this version",
+    "adoption_stale_version": "an object was adopted at an older version than the one now declared",
+}
+FINDING_CODE_WORDS = {
+    "schedule_no_permitted_time": "the permitted window is empty",
+    "schedule_no_feasible_time": "no permitted assessment time falls within planned collection",
+    "schedule_outside_window": "the nominal target is outside the permitted window",
+    "schedule_not_collected": "the nominal target is not within planned collection",
+    "schedule_uncovered": "planned collection leaves part of the permitted window uncovered",
+    "schedule_unresolved": "the schedule could not be settled from the declared inputs",
+    "policy_gap": "a reachable declared situation has no rule",
+    "policy_competing": "a reachable declared situation enables more than one rule",
+    "policy_violation": "a declared prohibition is violated in a reachable declared situation",
+    "policy_not_established": "the declared property is not established",
+    "policy_transition_target_infeasible": "a declared transition target is not reachable",
+    "policy_inconsistent_domain": "the declared domain is inconsistent",
+    "policy_work_limit": "not computed within the declared work limit",
+    "binomial_claim_not_satisfied": "a declared binomial design target is not met",
+    "binomial_assumption_missing": "a declared assumption the method needs is missing",
+    "binomial_unsupported_method": "the declared method is not supported",
+    "binomial_bit_limit": "not computed within the declared size limit",
+    "collection_plan_mismatch": "the collection plan does not meet a declared requirement",
+}
+
+
+def code_words(code: object) -> str:
+    """Plain words for one operator finding code such as `schedule_uncovered:window`; the code stays beside.
+
+    pre: True
+    post: isinstance(__return__, str)
+    post: str(code) in __return__
+    """
+    text = str(code)
+    head, _, tail = text.partition(":")
+    words = FINDING_CODE_WORDS.get(head) or UNRESOLVED_WORDS.get(head)
+    if words is None:
+        words = head.replace("_", " ")
+    return f"{words} (claim {tail}; {text})" if tail and head in FINDING_CODE_WORDS else f"{words} ({text})"
+
+
+def unresolved_words(entry: dict) -> str:
+    """Plain words for one unresolved-projection entry; its objects and exact code stay in the text."""
+    code = str(entry.get("code"))
+    words = UNRESOLVED_WORDS.get(code, code.replace("_", " "))
+    objects = ", ".join(str(o) for o in entry.get("objects") or [])
+    return f"{words}{' (objects: ' + objects + ')' if objects else ''} [{code}]"
+
+
+def not_computed_items(check: dict) -> list[dict]:
+    """One entry per reason a check was not computed: unresolved projection or external method (pure)."""
+    out = [
+        {
+            "code": str(entry.get("code")),
+            "text": f"No finding: {unresolved_words(entry)}. Resolve this before relying on the check.",
+        }
+        for entry in check.get("unresolved") or []
+    ]
+    declared = check.get("not_computed")
+    if declared is not None:
+        missing = ", ".join(str(m) for m in declared.get("missing") or []) or "none declared"
+        out.append(
+            {
+                "code": "not_computed",
+                "text": "No finding: computed outside this tool (external method); "
+                f"missing inputs: {missing}.",
+            }
+        )
+    return out
+
+
+def claim_kind(row: dict) -> str:
+    """Kind of finding for one claim row, from the same conflict/repair split the sections use (pure).
+
+    pre: isinstance(row, dict)
+    post: __return__ in KIND_WORDS
+    """
+    if row.get("application") == "not_applicable":
+        return "not_applicable"
+    if row.get("effective_outcome") == "not_executed":
+        return "not_computed"
+    if row.get("admission") != "accepted":
+        return "not_determined" if row.get("admission") == "undetermined" else "not_applied"
+    outcome = row.get("outcome")
+    if outcome in CONFLICT_OUTCOMES:
+        return "conflict"
+    if outcome in REPAIR_OUTCOMES:
+        return "repair_choice"
+    if row.get("application") == "conditional":
+        return "conditional"
+    if row.get("effective_outcome") in UNSETTLED:
+        return "not_applied"
+    return "finding" if row.get("effective_outcome") in FAILURES else "no_finding"
+
+
+def signal_kind(signal: dict) -> str:
+    """Kind of finding for one operator finding with no claim rows (pure)."""
+    if (signal.get("admission") or {}).get("code") != "accepted":
+        return "not_applied"
+    if signal.get("calculation_code") in CONFLICT_CODES:
+        return "conflict"
+    if any("collection_plan_mismatch" in code for code in signal_finding_codes(signal)):
+        return "repair_choice"
+    return "finding"
+
+
+def reason_words(reason: str, consuming: list[dict], coverage: str) -> str:
+    """Plain words for one section reason; `consuming` are view check rows. The code keeps its own column."""
+    if coverage == "not_applicable":
+        return f"Declared not applicable by the caller (caller's basis: {reason})"
+    kind, _, rest = reason.partition(":")
+    if reason == "no_objects_declared":
+        return "The section is requested but no objects are declared for it"
+    if reason == "no_check_declared":
+        return "Objects are declared but no check consumes them"
+    if kind == "not_computed":
+        return f"Check {rest} was not computed (see its Protocol findings row)"
+    check_id, _, tail = rest.partition(":")
+    if kind == "unresolved":
+        return f"Check {check_id}: {UNRESOLVED_WORDS.get(tail, tail.replace('_', ' '))}"
+    if kind == "signal":
+        return f"Check {check_id}: {code_words(tail)}"
+    if kind == "claim_unresolved":
+        for check in consuming:
+            for row in check["claims"]:
+                if check["id"] == check_id and row.get("id") == tail:
+                    if row.get("admission") == "undetermined":
+                        return (
+                            f"Claim {tail} of check {check_id} is not determined: a declared input is missing"
+                        )
+                    word = ADMISSION_WORDS.get(str(row.get("admission")), "its support is not accepted")
+                    return f"Claim {tail} of check {check_id} was not applied: {word}"
+        return f"Claim {tail} of check {check_id} is not settled"
+    return reason.replace("_", " ")
+
+
+NOMINAL_WORDS = {
+    "satisfied": "is inside the permitted window and within planned collection",
+    "outside_window": "is outside the permitted window",
+    "not_collected": "is inside the permitted window but outside planned collection",
+    "unresolved": "has no applied finding (its deciding premise is a proposal or an input is missing)",
+    "not_executed": "was not computed within the declared work limit",
+}
+NO_UNIT_TEXT = ("unknown", "not computed", "none", "not stated")
+
+
+def interval_phrase(text: object, unit: object, anchor: object) -> str:
+    """An interval or number with its unit and anchor, e.g. `[77, 91] days from randomization` (pure)."""
+    shown = str(text)
+    if shown in NO_UNIT_TEXT or shown.startswith("not "):
+        return shown
+    plural = "" if not unit else (f" {unit}s" if not str(unit).endswith("s") else f" {unit}")
+    return f"{shown}{plural}" + (f" from {anchor}" if anchor else "")
+
+
+def nominal_phrase(outcome: object, nominal: object, unit: object, anchor: object) -> str:
+    """The nominal outcome in words with the raw code kept beside; no outcome is invented (pure)."""
+    if outcome == "unknown_target":
+        return "No nominal target is declared (unknown_target)"
+    if str(outcome) in ("not computed", "None"):
+        return "not computed"
+    words = NOMINAL_WORDS.get(str(outcome), f"has outcome {outcome}")
+    return f"Target {interval_phrase(nominal, unit, anchor)} {words} ({outcome})"
+
+
+COMPATIBILITY_WORDS = {
+    "compatible_under_declared_checks": "No conflict or repair choice found under the declared checks",
+    "repair_choice_open_under_declared_checks": "A repair choice is open under the declared checks",
+    "incompatible_under_declared_checks": "A conflict is found under the declared checks",
+    "undetermined": "Not determined: a declared check is unsettled or was not computed",
+}
+DISPOSITION_WORDS = {
+    "blocker": "The option you selected has a conflict under the declared checks",
+    "repair_choice": "A repair choice is open: the option you selected, or every declared option, leaves a "
+    "gap to repair",
+    "design_choice": "Two or more declared options fit; choosing among them is your design decision",
+    "evidence_question": "Not settled: a declared check needs more evidence or inputs",
+    "settled_within_declared_alternatives": "Settled among the declared alternatives only",
+    "no_compatible_alternative": "No declared option fits under the declared checks",
+}
+
+
+def application_phrase(frame: str, compatibility: str, application: str, assumptions: list[str]) -> str:
+    """Why an alternative is or is not applied to the draft, in plain words (pure).
+
+    pre: application in ("admitted", "withheld")
+    post: isinstance(__return__, str)
+    """
+    if application == "admitted":
+        return "Applied to the draft: it is the draft as written and no conflict or repair choice is found"
+    if frame == "hypothetical":
+        objects = ", ".join(assumptions) or "none named"
+        return (
+            "Not applied to the draft: a hypothetical alternative that assumes these objects are replaced: "
+            f"{objects}"
+        )
+    return (
+        "Not applied as a settled design: the draft as written has no clean result "
+        f"({COMPATIBILITY_WORDS.get(compatibility, compatibility).lower()})"
+    )
+
+
+OUTCOME_WORDS = {
+    "gap": "a reachable declared situation has no rule",
+    "competing": "a reachable declared situation enables more than one rule",
+    "violation": "a declared prohibition is violated",
+    "not_established": "a declared property is not established",
+    "inconsistent_domain": "the declared domain is inconsistent",
+    "no_feasible_time": "no permitted assessment time falls within planned collection",
+    "no_permitted_time": "the permitted window is empty",
+    "outside_window": "the nominal target is outside the permitted window",
+    "not_collected": "the nominal target is outside planned collection",
+    "uncovered": "planned collection leaves part of the permitted window uncovered",
+    "not_satisfied": "a declared bound is not met",
+    "satisfied": "holds under the declared inputs",
+    "unresolved": "no applied finding",
+    "not_executed": "not computed within the work limit",
+    "violated": "a declared check is violated",
+    "conflict": "a conflict is found",
+}
+FIELD_WORDS = {
+    "effective_outcome": "outcome",
+    "application": "application",
+    "admission": "admission",
+    "finding_status": "standing",
+    "application_status": "applicability standing",
+    "code": "result code",
+    "calculation_code": "calculated code",
+    "blockers": "blockers",
+}
+AXIS_WORDS = {
+    "verdict": "the computed outcome changed",
+    "requirements": "remaining requirements changed",
+    "support": "the deciding support changed",
+    "origin": "the attributed origin changed",
+    "scope_model": "the scope or an object version changed",
+    "wording": "the caller wording changed",
+    "input": "inputs changed; outcome, support and origin are the same",
+}
+
+
+def outcome_words(code: object) -> str:
+    """Plain words for an outcome code, with the code kept beside it (pure)."""
+    words = OUTCOME_WORDS.get(str(code))
+    return f"{words} ({code})" if words else str(code)
+
+
+def _changed_value(value: object) -> str:
+    if value is None:
+        return "n/a"
+    if isinstance(value, list | tuple):
+        return "; ".join(str(v) for v in value) or "none"
+    return outcome_words(value)
+
+
+def change_lines(changes: list[dict]) -> tuple[list[str], list[str]]:
+    """Before and after lines for the per-claim changes of one retained answer_diff row (pure)."""
+    before, after = [], []
+    for change in changes:
+        if not isinstance(change, dict):
+            continue
+        subject = f"Claim {change['claim']}" if "claim" in change else f"Check finding {change.get('signal')}"
+        field = FIELD_WORDS.get(str(change.get("field")), str(change.get("field")))
+        before.append(f"{subject}, {field}: {_changed_value(change.get('before'))}")
+        after.append(f"{subject}, {field}: {_changed_value(change.get('after'))}")
+    return before, after
 
 
 def _section_detail(consuming: list[dict]) -> list[dict]:
@@ -655,6 +962,15 @@ def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]
 
 
 ADOPTION_CODES = ("not_adopted", "stale_version", "adopted_known", "adopted_interpolated", "adopted_proposed")
+
+
+ADOPTION_WORDS = {
+    "not_adopted": "No adoption record: nothing was declared as adopting this object",
+    "stale_version": "Adopted at an older version than the one now declared; re-adoption is needed",
+    "adopted_known": "Adopted as written (caller-attributed; known only if its premises hold)",
+    "adopted_interpolated": "Adopted as written on an overridable working assumption (caller-attributed)",
+    "adopted_proposed": "Adopted as a proposal only (caller-attributed; not yet accepted)",
+}
 
 
 def adoption_code(supported: bool, stale: bool, standing: str | None) -> str:

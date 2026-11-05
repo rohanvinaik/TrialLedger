@@ -29,6 +29,7 @@ from TrialLedger.analysis_review import summaries as analysis_summaries
 from TrialLedger.baseline_view import baseline_tables, group_code
 from TrialLedger.cells import cell_number_state, cell_text_state
 from TrialLedger.landscape_verify import strict_json
+from TrialLedger.layer2 import protocol_view
 from TrialLedger.layer2.clinical_answers import project
 from TrialLedger.layer2.session_state import canonical
 
@@ -71,6 +72,8 @@ BLOCKER_WORDS = {
     "unresolved_literal": "The proposition is not fully stated",
     "unspecified_boundary": "The limit's inclusivity is not stated",
     "opaque": "A premise needs a supported representation",
+    "binding_unresolved": "A premise this claim needs is not fully resolved",
+    "missing_support": "A premise this claim needs is not declared",
 }
 CHANGE_WORDS = {
     "answer_changed": "Clinical answer changed",
@@ -82,6 +85,7 @@ CHANGE_WORDS = {
     "origin_changed": "Attributed origin changed",
     "input_only": "Inputs changed; clinical answer, support and origin stayed the same",
     "unchanged": "No change",
+    "changed": "Changed",
     "new": "New item",
     "withdrawn": "Withdrawn item",
     "projection_unknown": "Comparison not available",
@@ -151,9 +155,16 @@ def _sheet(book: Workbook, name: str, headers: list[str]):
     return sheet
 
 
+EMPTY_SHEET_NOTE = "None in this session"
+EXCEL_ROW_MAXIMUM = 409
+
+
 def _finish(sheet) -> None:
     if sheet.title in ("Decision list", "Options"):
         sheet.freeze_panes = "C2" if sheet.title == "Options" else "B2"
+    if sheet.max_row == 1 and sheet.title != "Baseline tables":
+        # A header-only sheet reads as absent by design, not as a truncated export.
+        _write(sheet, [EMPTY_SHEET_NOTE], "")
     if sheet.title != "Baseline tables":
         sheet.auto_filter.ref = sheet.dimensions
     sheet.print_title_rows = "1:1"
@@ -171,7 +182,9 @@ def _finish(sheet) -> None:
                     else "Open exact result"
                 )
     for column in sheet.columns:
-        size = max(len(str(cell.value or "").split("\n")[0]) for cell in column)
+        size = max(
+            max((len(line) for line in str(cell.value or "").split("\n")), default=0) for cell in column
+        )
         sheet.column_dimensions[get_column_letter(column[0].column)].width = min(65, max(16, size + 2))
     for row in sheet.iter_rows(min_row=2):
         lines = 1
@@ -187,17 +200,9 @@ def _finish(sheet) -> None:
                 lines,
                 sum(max(1, math.ceil(len(part) / max(1, width - 2))) for part in str(cell.value).split("\n")),
             )
-        ceiling = {
-            "Options": 64,
-            "Findings": 132,
-            "Changes": 56,
-            "Sources and origins": 64,
-            "Baseline values": 56,
-            "Decision list": 96,
-            "Decision evidence": 180,
-            "Analysis details": 180,
-        }.get(sheet.title, 120)
-        sheet.row_dimensions[row[0].row].height = min(ceiling, max(28, lines * 14))
+        # Heights follow the wrapped text up to the largest height a spreadsheet allows; clinical cells are
+        # kept short enough (see _cap) that nothing is clipped.
+        sheet.row_dimensions[row[0].row].height = min(EXCEL_ROW_MAXIMUM, max(28, lines * 15))
 
 
 def _artifact(store: Path, identity: str) -> tuple[dict, bytes]:
@@ -282,8 +287,14 @@ def _blocker_text(codes: list) -> str:
             words = "A linked analysis was refused; its definition cannot be certified"
         elif isinstance(code, str) and code.startswith("definition_empty_antecedent:"):
             words = "A declared antecedent is inconsistent; the relationship is not certified"
+        elif str(code).partition(":")[0] in protocol_view.FINDING_CODE_WORDS | protocol_view.UNRESOLVED_WORDS:
+            # Protocol codes read as they do on the Protocol findings sheet; code_words keeps the code.
+            parts.append(protocol_view.code_words(code))
+            continue
         else:
-            words = BLOCKER_WORDS.get(str(code), "Unclassified open item")
+            words = BLOCKER_WORDS.get(str(code)) or BLOCKER_WORDS.get(
+                str(code).partition(":")[0], "Unclassified open item"
+            )
         parts.append(f"{words} ({code})")
     return "; ".join(parts) if parts else "No blocker reported"
 
@@ -597,7 +608,12 @@ def _decision_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                 f"## {question}",
                 "",
                 "Question above is caller wording.",
-                f"Current result: {outcome}. Selected caller-labelled option: {label}.",
+                f"Current computed result: {outcome}.",
+                (
+                    f"Selected caller-labelled option: {label}."
+                    if key
+                    else "No option has been selected by the caller yet."
+                ),
                 "",
                 "Comparator evidence and context:",
                 context,
@@ -750,6 +766,18 @@ def _detail_text(value: object, reference: str, depth: int = 0) -> str:
     return str(value) if value is not None else "Not stated"
 
 
+CLINICAL_CELL_CHARACTERS = 300
+
+
+def _cap(text: str, reference: str) -> str:
+    """Bound a developer-sheet cell; say what was cut and where the exact finding is retained."""
+    if len(text) <= CLINICAL_CELL_CHARACTERS:
+        return text
+    cut = text[:CLINICAL_CELL_CHARACTERS].rstrip()
+    omitted = len(text) - len(cut)
+    return f"{cut}… open exact result ({omitted} more characters retained at {reference})"
+
+
 def _findings(book: Workbook, payloads: list[tuple[str, dict]]) -> None:
     sheet = _sheet(
         book,
@@ -784,24 +812,27 @@ def _findings(book: Workbook, payloads: list[tuple[str, dict]]) -> None:
                     finding["standing"] if finding["standing"] is not None else "Not stated",
                     finding["disposition"],
                     finding["completion"],
-                    _detail_text(
-                        {
-                            key: finding["scope"][key]
-                            for key in ("query", "context")
-                            if key in finding["scope"]
-                        }
-                        | {
-                            key: value
-                            for key, value in finding["scope"].items()
-                            if key not in ("query", "context")
-                        },
+                    _cap(
+                        _detail_text(
+                            {
+                                key: finding["scope"][key]
+                                for key in ("query", "context")
+                                if key in finding["scope"]
+                            }
+                            | {
+                                key: value
+                                for key, value in finding["scope"].items()
+                                if key not in ("query", "context")
+                            },
+                            ref,
+                        ),
                         ref,
                     ),
-                    _detail_text(finding["values"], ref),
-                    _detail_text(finding["conditions"], ref),
-                    _detail_text(finding["support"], ref),
-                    _detail_text(finding["origins"], ref),
-                    _blocker_text(finding["blockers"]),
+                    _cap(_detail_text(finding["values"], ref), ref),
+                    _cap(_detail_text(finding["conditions"], ref), ref),
+                    _cap(_detail_text(finding["support"], ref), ref),
+                    _cap(_detail_text(finding["origins"], ref), ref),
+                    _cap(_blocker_text(finding["blockers"]), ref),
                     ref,
                 ],
                 ref,
@@ -831,16 +862,25 @@ def _changes(book: Workbook, payload: dict, identity: str) -> list[str]:
     difference = payload["response"].get("answer_diff")
     if not isinstance(difference, dict):
         return []
-    lines = ["## Changes from the previous revision", ""]
+    revision = (payload["response"].get("result") or {}).get("revision", "Not stated")
+    lines = [f"## Changes from the previous revision (current revision: {revision})", ""]
     rows = [
         (kind, index, item)
-        for kind in ("decisions", "analyses", "definition_checks")
+        for kind in ("decisions", "analyses", "definition_checks", "protocol_checks", "protocol_decisions")
         for index, item in enumerate(difference.get(kind, []))
     ]
-    rows.sort(key=lambda row: (row[2].get("code") in ("unchanged", "input_only"), row[0] != "decisions"))
+
+    def code_of(item: dict) -> object:
+        return item.get("code") or item.get("change")
+
+    # Changed rows first; within them decisions, then analyses, then protocol rows (stable).
+    rows.sort(key=lambda row: (code_of(row[2]) in ("unchanged", "input_only"), row[0] != "decisions"))
     for kind, index, item in rows:
-        axes = item.get("axes", {})
         ref = _reference(identity, f"/response/answer_diff/{kind}/{index}")
+        if kind.startswith("protocol_"):
+            lines.append(_protocol_change_row(sheet, kind, item, ref))
+            continue
+        axes = item.get("axes", {})
         _write(
             sheet,
             [
@@ -873,35 +913,44 @@ def _changes(book: Workbook, payload: dict, identity: str) -> list[str]:
                 for axis in ("question", "answer", "requirements", "support", "origin", "wording", "context")
             )
         )
-    # Protocol rows carry a list of changed axes (decisions.md); a changed verdict is never silently dropped.
-    for kind in ("protocol_checks", "protocol_decisions"):
-        for index, item in enumerate(difference.get(kind, [])):
-            named = list(item.get("axes", []))
-            ref = _reference(identity, f"/response/answer_diff/{kind}/{index}")
-            _write(
-                sheet,
-                [
-                    kind.replace("_", " "),
-                    item.get("id"),
-                    _word(item.get("code"), CHANGE_WORDS),
-                    "changed" if "verdict" in named else "unchanged",
-                    "changed" if "support" in named else "unchanged",
-                    "changed" if "origin" in named else "unchanged",
-                    "See exact comparison",
-                    "See exact comparison",
-                    ref,
-                    "not applicable",
-                    "changed" if "wording" in named else "unchanged",
-                    "changed" if "scope_model" in named else "unchanged",
-                    "changed" if "requirements" in named else "unchanged",
-                ],
-                ref,
-            )
-            lines.append(
-                f"- {kind.replace('_', ' ')} {item.get('id')}: {_word(item.get('code'), CHANGE_WORDS)}"
-                + (f" ({', '.join(named)})" if named else "")
-            )
     return [*lines, ""]
+
+
+def _protocol_change_row(sheet, kind: str, item: dict, ref: str) -> str:
+    """One protocol row of the Changes sheet and its decision-list line, in words (no recomputation)."""
+    named = list(item.get("axes", []))
+    code = item.get("code") or item.get("change")
+    label = "Changed" if code == "changed" else _word(code, CHANGE_WORDS)
+    if named:
+        label += (
+            " (" + "; ".join(f"{axis}: {protocol_view.AXIS_WORDS.get(axis, axis)}" for axis in named) + ")"
+        )
+    before, after = protocol_view.change_lines(item.get("changes") or [])
+    support = "changed" if "support" in named else "unchanged"
+    if "input" in named:
+        support = "unchanged (premise content the same; the object data differs)"
+    _write(
+        sheet,
+        [
+            kind.replace("_", " "),
+            item.get("id"),
+            label,
+            "changed" if "verdict" in named else "unchanged",
+            support,
+            "changed" if "origin" in named else "unchanged",
+            "\n".join(before) or "Not recorded in this row (no per-claim change); open the exact comparison",
+            "\n".join(after) or "Not recorded in this row (no per-claim change); open the exact comparison",
+            ref,
+            "Not applicable (protocol rows carry no typed question)",
+            "changed" if "wording" in named else "unchanged",
+            "changed" if "scope_model" in named else "unchanged",
+            "changed" if "requirements" in named else "unchanged",
+        ],
+        ref,
+    )
+    lines = [f"{kind.replace('_', ' ')} {item.get('id')}: {label}"]
+    lines += [f"{b} → {a.split(': ', 1)[-1]}" for b, a in zip(before, after, strict=False)]
+    return "- " + "; ".join(lines)
 
 
 def _join(values: object) -> str:
@@ -910,6 +959,165 @@ def _join(values: object) -> str:
     if isinstance(values, (list, tuple)):
         return "; ".join(_join(value) for value in values)
     return "" if values is None else str(values)
+
+
+KIND_RANK = {kind: rank for rank, kind in enumerate(protocol_view.KIND_ORDER)}
+COVERAGE_LEGEND = (
+    "Coverage legend: specified = the section's declared checks ran and nothing is open (not a clinical "
+    "completeness claim); open = something is unapplied, undetermined or missing; "
+    "not_computed = a check could not be computed; "
+    "not_requested or not_applicable = the section is not declared or declared not applicable."
+)
+KIND_LEGEND = (
+    "Kinds: Conflict = an admitted policy failure; "
+    "Repair choice = an admitted gap you choose how to repair; "
+    "Not computed = no finding because an input, scope or method is missing; "
+    "Not applied = the deciding premise is still a proposal or unsupported; "
+    "Not determined = a declared input is missing."
+)
+
+
+def _na(value: object) -> object:
+    return "n/a" if value is None else value
+
+
+def _ref(identity: str, pointer: str) -> str:
+    return _reference(identity, "/response/result" + pointer)
+
+
+def _status_phrase(row: dict) -> str:
+    """A section status naming conflict and repair choice from the view's own detail rows."""
+    detail = row.get("findings_detail") or []
+    parts = []
+    for kind, label in (("conflict", "Conflict"), ("repair_choice", "Repair choice open")):
+        outcomes = sorted(
+            {
+                protocol_view.OUTCOME_WORDS.get(str(d["outcome"]), str(d["outcome"]))
+                for d in detail
+                if d["kind"] == kind
+            }
+        )
+        if outcomes:
+            parts.append(f"{label} ({'; '.join(outcomes)})")
+    if row["coverage"] in ("open", "not_computed"):
+        parts.append("Not fully checked (coverage " + row["coverage"] + ")")
+    return "; ".join(parts) or row["findings_text"]
+
+
+def _claim_entries(view: dict, identity: str) -> list[dict]:
+    """Every finding row of every check (claims, operator findings, not-computed), in delivery order."""
+    entries = []
+    for check in view["checks"]:
+        for claim in check["claims"]:
+            pointer = check["refs"][0]["result"] if check["refs"] else _check_address(view, check)
+            entries.append(
+                {
+                    "check": check,
+                    "kind": claim.get("kind_of_finding") or "finding",
+                    "claim": claim["claim"],
+                    "outcome": claim["outcome"],
+                    "effective": claim["effective_outcome"],
+                    "admission": claim["admission"],
+                    "application": claim["application"],
+                    "standing": _na(claim.get("standing")),
+                    "arithmetic": _na(claim.get("arithmetic_standing")),
+                    "applicability": _na(claim.get("application_standing")),
+                    "wording": claim["wording"],
+                    "determining": _join(claim.get("determining_ids")),
+                    "pointer": pointer,
+                    "bullet": f"{claim['claim']}: {claim['wording']} — standing {claim.get('standing')};",
+                }
+            )
+        for finding in check.get("findings", []):
+            for code in finding["codes"]:
+                entries.append(
+                    {
+                        "check": check,
+                        "kind": finding.get("kind_of_finding") or "finding",
+                        "claim": finding["kind"],
+                        "outcome": finding["calculation_code"],
+                        "effective": finding["code"],
+                        "admission": finding["admission"],
+                        "application": "n/a",
+                        "standing": "n/a",
+                        "arithmetic": "n/a",
+                        "applicability": "n/a",
+                        "wording": f"Finding: {protocol_view.code_words(code)}",
+                        "determining": "",
+                        "pointer": finding["ref"],
+                        "bullet": f"{finding['kind']} finding: {protocol_view.code_words(code)};",
+                    }
+                )
+        # A projection that could not be computed has no claim rows; the reason is still a row (never an
+        # empty list that reads as "nothing found").
+        for item in check.get("not_computed_items", []):
+            entries.append(
+                {
+                    "check": check,
+                    "kind": "not_computed",
+                    "claim": "(whole check)",
+                    "outcome": "not computed",
+                    "effective": "not computed",
+                    "admission": "n/a",
+                    "application": "n/a",
+                    "standing": "n/a",
+                    "arithmetic": "n/a",
+                    "applicability": "n/a",
+                    "wording": item["text"],
+                    "determining": _join([e.get("objects") for e in check.get("unresolved", [])]),
+                    "pointer": _check_address(view, check),
+                    "bullet": f"(whole check): {item['text']};",
+                }
+            )
+    return sorted(entries, key=lambda entry: KIND_RANK.get(entry["kind"], len(KIND_RANK)))
+
+
+NOT_RETAINED = (
+    "Not retained: the windows of a hypothetical alternative are not stored, only its claim outcomes"
+)
+
+
+def _window_cells(alternative: dict) -> tuple[str, str, str, str]:
+    """Permitted, availability, feasible and gap for one alternative, only from its own retained rows."""
+    rows = alternative.get("windows")
+    if rows is None:
+        return ("Not retained in this stored view",) * 4
+    if not rows:
+        return ("n/a (no schedule check)",) * 4
+    out = []
+    for key in ("permitted", "availability", "feasible", "full_coverage_gap"):
+        cells = []
+        for row in rows:
+            if not row["retained"]:
+                text = NOT_RETAINED
+            else:
+                text = protocol_view.interval_phrase(row[key], row["unit"], row["anchor"])
+            cells.append(text if len(rows) == 1 else f"{row['check']}: {text}")
+        out.append("; ".join(cells))
+    return out[0], out[1], out[2], out[3]
+
+
+def _selection_cells(decision: dict, alternative: dict) -> tuple[str, str]:
+    selected = decision.get("selected")
+    if not isinstance(selected, dict):
+        return "No selection recorded", "n/a"
+    if selected.get("alternative") != alternative["id"]:
+        return "Not selected", "n/a"
+    basis = _join(selected.get("basis"))
+    return (
+        "Selected (caller-attributed, not authenticated)",
+        f"{selected.get('origin')}: {basis}" if basis else str(selected.get("origin")),
+    )
+
+
+def _claim_outcome_text(alternative: dict) -> str:
+    rows = alternative.get("claim_outcomes") or []
+    if not rows:
+        return "No claim outcomes retained"
+    return "; ".join(
+        f"{row['check']}/{row['id']} {protocol_view.outcome_words(row['outcome'])} [{row['standing']}]"
+        for row in rows
+    )
 
 
 def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
@@ -932,10 +1140,23 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
     synopsis = _sheet(
         book,
         "Protocol synopsis",
-        ["Section", "Declared", "Coverage", "Findings", "Findings text", "Reasons", "Objects", "Checks"],
+        [
+            "Section",
+            "Declared",
+            "Coverage",
+            "Findings",
+            "Findings text",
+            "Reasons",
+            "Objects",
+            "Checks",
+            "Conflicts",
+            "Repair choices",
+            "Status",
+            "Reason codes",
+        ],
     )
-    for row in view["sections"]:
-        ref = _reference(identity, f"/response/protocol_view/sections/{view['sections'].index(row)}")
+    for index, row in enumerate(view["sections"]):
+        detail = row.get("findings_detail") or []
         _write(
             synopsis,
             [
@@ -944,18 +1165,31 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                 row["coverage"],
                 row["findings"],
                 row["findings_text"],
-                _join(row["reasons"]),
+                _join(
+                    [
+                        protocol_view.reason_words(
+                            reason, [c for c in view["checks"] if c["id"] in row["checks"]], row["coverage"]
+                        )
+                        for reason in row["reasons"]
+                    ]
+                ),
                 _join(row["objects"]),
                 _join(row["checks"]),
+                sum(1 for d in detail if d["kind"] == "conflict"),
+                sum(1 for d in detail if d["kind"] == "repair_choice"),
+                _status_phrase(row),
+                _join(row["reasons"]),
             ],
-            ref,
+            _reference(identity, f"/response/protocol_view/sections/{index}"),
         )
         lines.append(f"| {row['id']} | {row['declared']} | {row['coverage']} | {row['findings_text']} |")
-    lines += ["", "### Findings", ""]
+    _write(synopsis, ["Legend", COVERAGE_LEGEND], "")
+    lines += ["", COVERAGE_LEGEND, "", "### Findings", ""]
     findings = _sheet(
         book,
         "Protocol findings",
         [
+            "Kind of finding",
             "Check",
             "Kind",
             "Required",
@@ -972,59 +1206,55 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             "Result reference",
         ],
     )
-    for check in view["checks"]:
+    entries = _claim_entries(view, identity)
+    counts = {k: sum(1 for e in entries if e["kind"] == k) for k in protocol_view.KIND_ORDER}
+    lines.append(
+        "Counts: "
+        + "; ".join(
+            f"{protocol_view.KIND_WORDS[k].lower()} {counts[k]}"
+            for k in ("conflict", "repair_choice", "not_computed", "not_applied", "not_determined")
+        )
+        + ". "
+        + KIND_LEGEND
+    )
+    lines.append("")
+    for entry in entries:
+        check = entry["check"]
+        reference = _ref(identity, entry["pointer"])
+        _write(
+            findings,
+            [
+                protocol_view.KIND_WORDS.get(entry["kind"], entry["kind"]),
+                check["id"],
+                check["kind"],
+                check["required"],
+                entry["claim"],
+                entry["outcome"],
+                entry["effective"],
+                entry["admission"],
+                entry["application"],
+                entry["standing"],
+                entry["arithmetic"],
+                entry["applicability"],
+                entry["wording"],
+                entry["determining"],
+                reference,
+            ],
+            reference,
+        )
+    for check in sorted(
+        view["checks"],
+        key=lambda c: min(
+            (KIND_RANK.get(e["kind"], 99) for e in entries if e["check"] is c), default=len(KIND_RANK)
+        ),
+    ):
         lines.append(
             f"Check {check['id']} ({check['kind']}, {'required' if check['required'] else 'optional'})"
         )
-        for claim in check["claims"]:
-            result_ref = check["refs"][0]["result"] if check["refs"] else _check_address(view, check)
-            _write(
-                findings,
-                [
-                    check["id"],
-                    check["kind"],
-                    check["required"],
-                    claim["claim"],
-                    claim["outcome"],
-                    claim["effective_outcome"],
-                    claim["admission"],
-                    claim["application"],
-                    claim.get("standing"),
-                    claim.get("arithmetic_standing"),
-                    claim.get("application_standing"),
-                    claim["wording"],
-                    _join(claim.get("determining_ids")),
-                    result_ref,
-                ],
-                _reference(identity, "/response/result" + result_ref),
-            )
-            lines.append(
-                f"- {claim['claim']}: {claim['wording']} — standing {claim.get('standing')}; "
-                f"result {result_ref}"
-            )
-        for finding in check.get("findings", []):
-            for code in finding["codes"]:
-                _write(
-                    findings,
-                    [
-                        check["id"],
-                        check["kind"],
-                        check["required"],
-                        finding["kind"],
-                        finding["calculation_code"],
-                        finding["code"],
-                        finding["admission"],
-                        "",
-                        "",
-                        "",
-                        "",
-                        f"Finding: {code}",
-                        "",
-                        finding["ref"],
-                    ],
-                    _reference(identity, "/response/result" + finding["ref"]),
-                )
-                lines.append(f"- {finding['kind']} finding: {code}; result {finding['ref']}")
+        for entry in entries:
+            if entry["check"] is check:
+                kind_word = protocol_view.KIND_WORDS.get(entry["kind"], entry["kind"])
+                lines.append(f"- [{kind_word}] {entry['bullet']} result {_ref(identity, entry['pointer'])}")
         lines.append("")
     lines += [
         "### Schedule of assessments",
@@ -1062,6 +1292,21 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
     for row in view["schedule"]:
         refs = row.get("refs") or []
         ref = refs[0]["result"] if refs and isinstance(refs[0], dict) else ""
+        reference = _ref(identity, ref) if ref else ""
+
+        def phrase(key: str, row: dict = row) -> str:
+            return protocol_view.interval_phrase(row[key], row["unit"], row["anchor"])
+
+        shown = {
+            "nominal": phrase("nominal"),
+            "permitted": phrase("permitted"),
+            "availability": phrase("availability"),
+            "feasible": phrase("feasible"),
+            "full_coverage_gap": phrase("full_coverage_gap"),
+            "nominal_outcome": protocol_view.nominal_phrase(
+                row["nominal_outcome"], row["nominal"], row["unit"], row["anchor"]
+            ),
+        }
         _write(
             schedule,
             [
@@ -1076,22 +1321,25 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                 row["mode"],
                 row["anchor"],
                 row["unit"],
-                row["nominal"],
-                row["permitted"],
-                row["availability"],
-                row["feasible"],
-                row["full_coverage_gap"],
-                row["nominal_outcome"],
+                shown["nominal"],
+                shown["permitted"],
+                shown["availability"],
+                shown["feasible"],
+                shown["full_coverage_gap"],
+                shown["nominal_outcome"],
                 _join(row["standing"]),
                 _origin_join(row["origin"]),
-                ref,
+                reference,
             ],
-            _reference(identity, "/response/result" + ref) if ref else "",
+            reference,
         )
+        cells = {**{key: str(row[key]) for key in ("check", "cohort", "arm", "phase", "conditionality")}}
+        cells.update({key: str(row[key]) for key in ("measurement", "mode", "anchor", "unit")})
+        cells.update({k: str(v) for k, v in shown.items()})
         lines.append(
             "| "
             + " | ".join(
-                str(row[key])
+                cells[key]
                 for key in (
                     "check",
                     "cohort",
@@ -1126,20 +1374,47 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             "Conditional checks",
             "Assumptions",
             "Application",
+            "Disposition in words",
+            "Compatibility in words",
+            "Application in words",
+            "Selected by you (caller label)",
+            "Selection origin and basis (caller label)",
+            "Permitted window",
+            "Collection availability",
+            "Feasible window",
+            "Full-coverage gap",
+            "Claim outcomes under this alternative",
         ],
     )
-    if view["decisions"]:
-        lines += ["", "### Plan comparisons", ""]
+    lines += ["", "### Plan comparisons", ""]
+    if not view["decisions"]:
+        _write(comparisons, ["No plan comparison declared"], "")
+        lines += ["No plan comparison declared.", ""]
     for index, decision in enumerate(view["decisions"]):
+        disposition_words = protocol_view.DISPOSITION_WORDS.get(
+            decision["disposition"], decision["disposition"]
+        )
         lines += [
             f"{decision['question']} (caller wording)",
             "",
-            f"Disposition: {decision['disposition']}",
+            f"Disposition: {decision['disposition']} ({disposition_words})",
             "",
             "| Alternative | Label | Frame | Compatibility | Conditional checks | Application |",
             "|---|---|---|---|---|---|",
         ]
+        extra = []
         for alternative in decision["alternatives"]:
+            compat_words = protocol_view.COMPATIBILITY_WORDS.get(
+                alternative["compatibility"], alternative["compatibility"]
+            )
+            application = protocol_view.application_phrase(
+                alternative["frame"],
+                alternative["compatibility"],
+                alternative["unconditional_application"],
+                alternative["assumption_refs"],
+            )
+            permitted, availability, feasible, gap = _window_cells(alternative)
+            selected, selected_origin = _selection_cells(decision, alternative)
             _write(
                 comparisons,
                 [
@@ -1153,22 +1428,61 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                     _join(alternative["conditional_checks"]),
                     _join(alternative["assumption_refs"]),
                     alternative["unconditional_application"],
+                    disposition_words,
+                    compat_words,
+                    application,
+                    selected,
+                    selected_origin,
+                    permitted,
+                    availability,
+                    feasible,
+                    gap,
+                    _claim_outcome_text(alternative),
                 ],
                 _reference(identity, f"/response/protocol_view/decisions/{index}"),
             )
             lines.append(
                 f"| {alternative['id']} | {alternative['label']} (caller wording) | {alternative['frame']} | "
-                f"{alternative['compatibility']} | {_join(alternative['conditional_checks']) or 'none'} | "
+                f"{alternative['compatibility']} ({compat_words}) | "
+                f"{_join(alternative['conditional_checks']) or 'none'} | "
                 f"{alternative['unconditional_application']} |"
             )
-        lines.append("")
+            windows = (
+                f"Windows: {permitted}."
+                if len({permitted, availability, feasible, gap}) == 1
+                else f"Permitted window: {permitted}; collection availability: {availability}; "
+                f"feasible window: {feasible}; full-coverage gap: {gap}."
+            )
+            extra.append(
+                f"- {alternative['id']}: {application}. {selected}"
+                + (f" (origin {selected_origin})" if selected_origin != "n/a" else "")
+                + f". {windows} Claim outcomes: {_claim_outcome_text(alternative)}."
+            )
+        lines += ["", *extra, ""]
     adoption = _sheet(
         book,
         "Protocol adoption",
-        ["Object", "Kind", "Version", "Adoption", "Adopted by", "Adoption origin", "Object standing"],
+        [
+            "Object",
+            "Kind",
+            "Version",
+            "Adoption",
+            "Adopted by (premise id)",
+            "Attributed to (caller label, not authenticated)",
+            "Object standing",
+            "Adoption in words",
+        ],
     )
-    lines += ["", "### Adoption", "", "| Object | Version | Adoption | Adopted by |", "|---|---|---|---|"]
+    lines += [
+        "",
+        "### Adoption",
+        "",
+        "| Object | Version | Adoption | Adoption in words | Adopted by (premise id) | Attributed to "
+        "(caller label, not authenticated) | Object standing |",
+        "|---|---|---|---|---|---|---|",
+    ]
     for index, row in enumerate(view.get("adoption", [])):
+        words = protocol_view.ADOPTION_WORDS.get(row["adoption"], row["adoption"])
         _write(
             adoption,
             [
@@ -1178,12 +1492,17 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                 row["adoption"],
                 _join(row["adopted_by"]),
                 _join(row["adoption_origins"]),
-                row["object_standing"],
+                _na(row["object_standing"]),
+                words,
             ],
             _reference(identity, f"/response/protocol_view/adoption/{index}"),
         )
         adopted_by = _join(row["adopted_by"]) or "none"
-        lines.append(f"| {row['object']} | {row['version']} | {row['adoption']} | {adopted_by} |")
+        origins = _join(row["adoption_origins"]) or "none"
+        lines.append(
+            f"| {row['object']} | {row['version']} | {row['adoption']} | {words} | {adopted_by} | "
+            f"{origins} | {_na(row['object_standing'])} |"
+        )
     lines += ["", "### Open items", ""]
     lines += [f"{n}. {item['text']} ({item['ref']})" for n, item in enumerate(view["delivery_findings"], 1)]
     lines += ["", "### Limits", ""] + [f"- {text}" for text in view["limits_of_claim"]] + [""]

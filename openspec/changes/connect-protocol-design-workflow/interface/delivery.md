@@ -74,3 +74,37 @@ The existing `## Changes` section also lists `protocol_checks` and `protocol_dec
 - A refused claim's raw outcome is never shown as its effective outcome.
 - No JSON object text appears in a clinical cell.
 - `landscape.xlsx` and other source workbooks are byte-identical after export.
+
+## Legibility amendments (2026-11-04)
+
+Wording and rows only; no computed value, operator output, admission or revision logic changed. Every code stays
+reachable (its own column, a parenthesis, or the "Open exact result" link).
+
+- **Protocol findings** gains a first column `Kind of finding` (Conflict, Repair choice, Not computed, Not applied,
+  Not determined, Conditional, Not applicable, Finding, No finding), from the view's existing conflict/repair split.
+  Rows sort conflicts first. A check whose projection is unresolved or not computed emits one `Not computed` row
+  (claim `(whole check)`, because the result does not retain declared claims of an unresolved check) and a
+  matching `[Not computed]` bullet. Standing `null` renders `n/a`. Result reference is the artifact address plus
+  pointer (hyperlinked "Open exact result"). Refused wording reads "the deciding premise is still a proposal".
+  The md bullets gain a `[Kind]` prefix and count line plus a kinds legend.
+- **Protocol synopsis** gains `Conflicts`, `Repair choices`, `Status`, `Reason codes`; `Reasons` is now words. A
+  legend row follows the table.
+- **Schedule of assessments**: unset cohort/arm/phase read `not stated (open)`. Interval, nominal and unit cells
+  carry unit and anchor (`[77, 91] days from randomization`); nominal outcome is a sentence with its code.
+- **Plan comparisons** gains `Disposition in words`, `Compatibility in words`, `Application in words`,
+  `Selected by you (caller label)`, `Selection origin and basis (caller label)`, `Permitted window`,
+  `Collection availability`, `Feasible window`, `Full-coverage gap`, `Claim outcomes under this alternative`.
+  Windows come from each alternative's own retained `schedule` values
+  (`decisions[].alternatives[].checks[].children[].schedule`), read by the view's shared builder
+  (`window_texts`); "Not retained" appears only when `schedule` is absent or empty. No comparison reads
+  "No plan comparison declared". The view's decision rows gain `selected`, per-alternative `windows` and
+  `claim_outcomes`.
+- **Protocol adoption** headings: `Adopted by (premise id)`, `Attributed to (caller label, not authenticated)`;
+  new `Adoption in words`. The md table adds origin, words and object standing.
+- **Changes**: protocol rows read `Changed (<axis words>)`, list per-claim before/after text from
+  `answer_diff` `changes`, and sort with the other changed rows ahead of unchanged ones.
+- **Findings (developer sheet)**: clinical text capped at 300 characters with the omitted count and the exact
+  address; widths follow the longest line, row heights are no longer capped below the spreadsheet maximum;
+  protocol codes use the Protocol findings wording.
+- Header-only sheets carry one `None in this session` row. The md decision "Current computed result" line and
+  "No option has been selected by the caller yet." replace the ambiguous "Selected ... option: Open".

@@ -163,7 +163,7 @@ def test_binomial_claims_refused_with_arithmetic_kept_in_child():
     for cid in ("alpha", "power"):
         row = claim(out, "efficacy-exact", cid)
         assert row["effective_outcome"] == "unresolved"
-        assert row["wording"] == "Not applied: the deciding support is binding_unresolved."
+        assert row["wording"] == "Not applied: a premise this claim needs is not fully resolved."
         assert row["standing_support"] == [
             "object:efficacy",
             "object:response",
@@ -205,7 +205,7 @@ def test_conditional_assessment_prefix_and_specified_section():
 def test_proposed_prohibition_is_refused_while_coverage_stays_covered():
     out = protocol_view.view(load("policy-violation-proposed"))
     row = claim(out, "interim-safety", "prohibition")
-    assert row["wording"] == "Not applied: the deciding support is proposed_refused."
+    assert row["wording"] == "Not applied: the deciding premise is still a proposal."
     assert row["effective_outcome"] == "unresolved" and row["outcome"] == "violation"
     assert (
         claim(out, "interim-safety", "coverage")["wording"]
@@ -234,7 +234,7 @@ def test_schedule_row_numbers(name):
     assert row["availability"] == "(-∞, 80]"
     assert row["feasible"] == "[77, 80]"
     assert row["full_coverage_gap"] == "(80, 91]"
-    assert (row["cohort"], row["arm"], row["phase"]) == ("all (open)",) * 3
+    assert (row["cohort"], row["arm"], row["phase"]) == ("not stated (open)",) * 3
     assert (row["measurement"], row["mode"], row["anchor"], row["unit"]) == (
         "score",
         "observed",
@@ -267,7 +267,8 @@ def test_refused_raw_outcome_never_shown_as_effective():
             for row in check["claims"]:
                 if row["admission"] != "accepted" and row["effective_outcome"] == "unresolved":
                     assert row["effective_outcome"] != row["outcome"]
-                    assert row["wording"].startswith("Not applied: the deciding support is ")
+                    assert row["wording"].startswith("Not applied: ")
+                    assert row["admission"] not in row["wording"], "the admission code must not leak"
                     assert row["outcome"] not in row["wording"]
 
 

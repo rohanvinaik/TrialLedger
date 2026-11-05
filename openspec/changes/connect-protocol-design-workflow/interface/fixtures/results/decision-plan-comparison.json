@@ -3927,7 +3927,89 @@
          "children": [
           {
            "request_digest": "b0da8475624971aec819e508d772c8bb70cba92a169df058cd05a35ff865079f",
-           "result_digest": "33147a27f057640409a386869fe0e2fbbde0c5b190d87ce6b3376def62826fb1"
+           "result_digest": "33147a27f057640409a386869fe0e2fbbde0c5b190d87ce6b3376def62826fb1",
+           "schedule": [
+            {
+             "anchor": "randomization",
+             "available": [
+              {
+               "lower": null,
+               "lower_inclusive": false,
+               "upper": "80",
+               "upper_inclusive": true
+              }
+             ],
+             "claims": [
+              {
+               "claim": "existence",
+               "determined_by": [
+                "available",
+                "permitted"
+               ],
+               "feasible": [
+                {
+                 "lower": "77",
+                 "lower_inclusive": true,
+                 "upper": "80",
+                 "upper_inclusive": true
+                }
+               ],
+               "id": "visit",
+               "missing": [],
+               "outcome": "satisfied",
+               "uncovered": null
+              },
+              {
+               "claim": "nominal",
+               "determined_by": [
+                "available",
+                "nominal",
+                "permitted"
+               ],
+               "feasible": null,
+               "id": "target",
+               "missing": [],
+               "outcome": "not_collected",
+               "uncovered": null
+              },
+              {
+               "claim": "full_window",
+               "determined_by": [
+                "available",
+                "permitted"
+               ],
+               "feasible": null,
+               "id": "window",
+               "missing": [],
+               "outcome": "uncovered",
+               "uncovered": [
+                {
+                 "lower": "80",
+                 "lower_inclusive": false,
+                 "upper": "91",
+                 "upper_inclusive": true
+                }
+               ]
+              }
+             ],
+             "guarantee": "exact_over_declared_intervals",
+             "nominal": "84",
+             "permitted": [
+              {
+               "lower": "77",
+               "lower_inclusive": true,
+               "upper": "91",
+               "upper_inclusive": true
+              }
+             ],
+             "scope": "{\"context\":{\"arm\":null,\"cohort\":null,\"phase\":null},\"target\":{\"kind\":\"new_trial\",\"ref\":\"draft\",\"scope\":{\"arm\":\"all\",\"population\":\"general\",\"study\":\"draft\",\"time\":\"entry\",\"version\":\"v1\"}}}",
+             "unit": "day",
+             "work": {
+              "reserved": 36,
+              "used": 11
+             }
+            }
+           ]
           }
          ]
         }
@@ -3988,7 +4070,82 @@
          "children": [
           {
            "request_digest": "4a63859b0cdfa644a2cef9571594e48cb03aae939b6a8b856ba9ab1eb8e5f64c",
-           "result_digest": "304299ac03cee51c2d608886bf382340690c7d1dc4d2e3db29751ada1e1d6de6"
+           "result_digest": "304299ac03cee51c2d608886bf382340690c7d1dc4d2e3db29751ada1e1d6de6",
+           "schedule": [
+            {
+             "anchor": "randomization",
+             "available": [
+              {
+               "lower": null,
+               "lower_inclusive": false,
+               "upper": "91",
+               "upper_inclusive": true
+              }
+             ],
+             "claims": [
+              {
+               "claim": "existence",
+               "determined_by": [
+                "available",
+                "permitted"
+               ],
+               "feasible": [
+                {
+                 "lower": "77",
+                 "lower_inclusive": true,
+                 "upper": "91",
+                 "upper_inclusive": true
+                }
+               ],
+               "id": "visit",
+               "missing": [],
+               "outcome": "satisfied",
+               "uncovered": null
+              },
+              {
+               "claim": "nominal",
+               "determined_by": [
+                "available",
+                "nominal",
+                "permitted"
+               ],
+               "feasible": null,
+               "id": "target",
+               "missing": [],
+               "outcome": "satisfied",
+               "uncovered": null
+              },
+              {
+               "claim": "full_window",
+               "determined_by": [
+                "available",
+                "permitted"
+               ],
+               "feasible": null,
+               "id": "window",
+               "missing": [],
+               "outcome": "satisfied",
+               "uncovered": []
+              }
+             ],
+             "guarantee": "exact_over_declared_intervals",
+             "nominal": "84",
+             "permitted": [
+              {
+               "lower": "77",
+               "lower_inclusive": true,
+               "upper": "91",
+               "upper_inclusive": true
+              }
+             ],
+             "scope": "{\"context\":{\"arm\":null,\"cohort\":null,\"phase\":null},\"target\":{\"kind\":\"new_trial\",\"ref\":\"draft\",\"scope\":{\"arm\":\"all\",\"population\":\"general\",\"study\":\"draft\",\"time\":\"entry\",\"version\":\"v1\"}}}",
+             "unit": "day",
+             "work": {
+              "reserved": 36,
+              "used": 11
+             }
+            }
+           ]
           }
          ]
         }

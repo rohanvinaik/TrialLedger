@@ -114,27 +114,67 @@ def protocol_delivery_view(result: dict) -> dict:
         }
         for check in view["checks"]
     ]
+    schedule = {row["check"]: row for row in view["schedule"]}
     view["decisions"] = [
         {
             "id": d["id"],
             "question": d["question"],
             "disposition": d["disposition"],
-            "alternatives": [
-                {
-                    "id": a["id"],
-                    "label": a["label"],
-                    "frame": a["frame"],
-                    "compatibility": a["compatibility"],
-                    "conditional_checks": list(a.get("conditional_checks", [])),
-                    "assumption_refs": list(a.get("assumption_refs", [])),
-                    "unconditional_application": a["unconditional_application"],
-                }
-                for a in d["alternatives"]
-            ],
+            "selected": deepcopy(d.get("selected")),
+            "alternatives": [_alternative_row(a, schedule) for a in d["alternatives"]],
         }
         for d in result["protocol"].get("decisions", [])
     ]
     return view
+
+
+def _alternative_row(alternative: dict, schedule: dict) -> dict:
+    """One alternative with its own claim outcomes and its own retained schedule windows.
+
+    Windows are read from each child's retained `schedule` values (the alternative's own result) by the
+    view's shared builder. When none is retained the row says so; nothing is computed here.
+    """
+    from TrialLedger.layer2 import protocol_view
+
+    rows, claims = [], []
+    for check in alternative.get("checks", []):
+        values = [v for child in check.get("children", []) for v in child.get("schedule") or []]
+        source = schedule.get(check["id"])
+        if source is not None or values:
+            rows.append(
+                {
+                    "check": check["id"],
+                    "retained": bool(values),
+                    **{
+                        key: (protocol_view.window_texts(values[0])[key] if values else None)
+                        for key in ("permitted", "availability", "feasible", "full_coverage_gap")
+                    },
+                    "unit": values[0].get("unit") if values else (source or {}).get("unit"),
+                    "anchor": values[0].get("anchor") if values else (source or {}).get("anchor"),
+                }
+            )
+        claims += [
+            {
+                "check": check["id"],
+                "id": claim["id"],
+                "claim": claim["claim"],
+                "outcome": claim["outcome"],
+                "standing": claim["finding_status"],
+                "assumed": list(claim.get("assumed", [])),
+            }
+            for claim in check.get("claims", [])
+        ]
+    return {
+        "id": alternative["id"],
+        "label": alternative["label"],
+        "frame": alternative["frame"],
+        "compatibility": alternative["compatibility"],
+        "conditional_checks": list(alternative.get("conditional_checks", [])),
+        "assumption_refs": list(alternative.get("assumption_refs", [])),
+        "unconditional_application": alternative["unconditional_application"],
+        "windows": rows,
+        "claim_outcomes": claims,
+    }
 
 
 def present(response: dict, *, intent: str = "unspecified", question: str = "") -> dict:
@@ -358,7 +398,7 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
     fields = ("summary", "problems", "result_digest", "result_digest_scope", "presentation", "diagnostics")
     reply["omitted_fields"] = [key for key in fields if key in response]
     if response_bytes(reply) > max_bytes - 128:
-        return {
+        degraded = {
             "code": response["code"],
             "operation": response["operation"],
             "artifact": {"id": artifact["id"]},
@@ -369,6 +409,17 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
             "pages": {address: _compact_page(len(rows)) for _shown, _page, rows, address, _project in groups},
             "omitted_fields": reply["omitted_fields"],
         }
+        if "protocol_view" in response:
+            # The protocol block did not fit: name it as omitted, keep the counts that matter, say where
+            # the rest is retained.
+            summaries = response["protocol_view"]["check_summaries"]
+            degraded["omitted_fields"] = [*reply["omitted_fields"], "protocol"]
+            degraded["protocol_omitted"] = {
+                "conflicts": sum(c["conflicts"] for c in summaries),
+                "repair_choices": sum(c["repairs"] for c in summaries),
+                "canonical_ref": "/response/protocol_view",
+            }
+        return degraded
     for key in tuple(reply["omitted_fields"]):
         if key == "diagnostics":
             continue

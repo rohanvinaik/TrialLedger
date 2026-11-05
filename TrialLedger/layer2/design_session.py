@@ -922,7 +922,21 @@ def _protocol_decision_rows(
                             for claim in signal["claim_admission"]
                         ],
                         "children": [
-                            {"request_digest": c["request_digest"], "result_digest": c["result_digest"]}
+                            {
+                                "request_digest": c["request_digest"],
+                                "result_digest": c["result_digest"],
+                                # The alternative's own computed schedule values (windows, feasible part,
+                                # gap), retained so delivery can show them without recomputing.
+                                "schedule": [
+                                    deepcopy(signal["value"])
+                                    for signal in (
+                                        (c["result"].get("result") or {}).get("signals", [])
+                                        if c["result"].get("code") == "complete"
+                                        else []
+                                    )
+                                    if signal.get("kind") == "schedule_coverage"
+                                ],
+                            }
                             for c in check["children"]
                         ],
                     }

@@ -43,7 +43,7 @@ ADMITTED_FAILURES = {
     "no_permitted_time",
 }
 VIOLATION_TEMPLATE = "{n} declared prohibition violation(s) in reachable declared situations."
-REFUSED_PREFIX = "Not applied: the deciding support is "
+REFUSED_PREFIX = "Not applied: the deciding premise is "
 BULLET_PATTERN = (
     r"prohibition: 1 declared prohibition violation\(s\) in reachable declared situations\. "
     r"— standing [^;]+; result \S+"
@@ -63,6 +63,7 @@ PROTOCOL_SHEET_HEADERS = {
         "Checks",
     ],
     "Protocol findings": [
+        "Kind of finding",
         "Check",
         "Kind",
         "Required",
@@ -516,14 +517,18 @@ def test_decision_list_schedule_table_keeps_permitted_window_apart_from_feasible
     rows = table_rows(subsection(lines, "Schedule of assessments"), SCHEDULE_TABLE_HEADER)
     assert len(rows) == 1, "one schedule check must yield exactly one schedule row"
     row = rows[0]
-    assert row["Permitted"] == "[77, 91]", "the original permitted window must be shown unchanged"
-    assert row["Feasible"] == "[77, 80]", (
+    assert row["Permitted"] == "[77, 91] days from randomization", (
+        "the original permitted window must be shown unchanged"
+    )
+    assert row["Feasible"] == "[77, 80] days from randomization", (
         "feasible is the intersection of permitted and collection availability"
     )
     assert row["Feasible"] != row["Permitted"], (
         "the permitted window must never be replaced by the feasible window"
     )
-    assert row["Gap"] == "(80, 91]", "the full-coverage gap is the uncollected part of the permitted window"
+    assert row["Gap"] == "(80, 91] days from randomization", (
+        "the full-coverage gap is the uncollected part of the permitted window"
+    )
     assert row["Conditionality"] == "unconditional", "no declared condition means unconditional"
 
 
@@ -568,7 +573,7 @@ def test_decision_list_refused_violation_is_not_reported_as_violation(tmp_path):
     review = export(store, reply["artifact"]["id"], tmp_path)
     text = "\n".join(protocol_section((review / "decision-list.md").read_text()))
     assert "declared prohibition violation(s)" not in text, "a refused violation must not read as a violation"
-    assert f"{REFUSED_PREFIX}proposed_refused." in text, (
+    assert f"{REFUSED_PREFIX}still a proposal." in text, (
         "the refused claim must read not applied with its admission"
     )
 
@@ -623,13 +628,17 @@ def test_workbook_schedule_row_keeps_permitted_feasible_and_gap_apart(tmp_path):
     _, rows = sheet_rows(workbook, "Schedule of assessments")
     assert len(rows) == 1, "one schedule check must yield exactly one workbook row"
     row = rows[0]
-    assert row["Permitted window"] == "[77, 91]", "the permitted window cell must be the original window"
-    assert row["Feasible window"] == "[77, 80]", "the feasible window must be its own cell"
+    assert row["Permitted window"] == "[77, 91] days from randomization", (
+        "the permitted window cell must be the original window"
+    )
+    assert row["Feasible window"] == "[77, 80] days from randomization", (
+        "the feasible window must be its own cell"
+    )
     assert row["Feasible window"] != row["Permitted window"], (
         "the permitted window must never be replaced by feasible"
     )
-    assert row["Full-coverage gap"] == "(80, 91]", "the gap must be its own cell"
-    assert row["Cohort"] == "all (open)", "a null cohort renders as `all (open)`"
+    assert row["Full-coverage gap"] == "(80, 91] days from randomization", "the gap must be its own cell"
+    assert row["Cohort"] == "not stated (open)", "a null cohort renders as `not stated (open)`"
     assert row["Conditionality"] == "unconditional", "no declared condition means unconditional"
     assert "assessment: known" in row["Standing"] and "collection: proposed" in row["Standing"], (
         "standing must render as a map of object to standing status"
