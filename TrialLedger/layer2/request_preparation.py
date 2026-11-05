@@ -110,6 +110,32 @@ PROTOCOL_CHECKS = {
     "condition_applicability binding": "{projection:condition_applicability, premises:[assertion premise "
     "ids]}; decides a declared assessment condition (otherwise findings stay conditional)",
 }
+PROTOCOL_DECISIONS = {
+    "shape": "protocol.decisions: [{id, question, alternatives:[{id, label, replace?: [compact objects with "
+    "existing ids, same kind], checks:[check ids]}], selected?: {alternative, origin:user, basis:[refs]}}]",
+    "rules": "every alternative lists every required check; optional checks must be identical across "
+    "alternatives; an empty replace is the baseline as declared; a replacement is a hypothetical frame "
+    "(withheld from unconditional application, never reported as known)",
+    "results": "result.protocol.decisions: per alternative compatible / repair_choice_open / undetermined / "
+    "incompatible under the declared checks; disposition blocker (selected incompatible), repair_choice, "
+    "design_choice, evidence_question, settled_within_declared_alternatives or no_compatible_alternative",
+}
+PROTOCOL_NOTES = {
+    "ids": "references inside data (variable, estimand, assessment, endpoint, measurement) are protocol "
+    "OBJECT ids, not an estimand's own data.id",
+    "source_interpretation_origin": "origin {kind:source_interpretation, ref:<session source snapshot "
+    "study_ref>#<RFC6901 pointer into that study>, source:<session source id>}",
+    "external_method": "inputs and missing are disjoint by name; list every input you cannot supply in "
+    "missing (a null-valued input is not treated as missing)",
+    "event_handling": "a declared link from a collection to an estimand requirement, retained and shown; it "
+    "is not yet consumed by a check (the estimand's own collection_plan drives its alignment)",
+    "adoption": "support premises are the caller's attribution of adoption; the tool does not judge whether "
+    "a premise is clinically about the object",
+    "raw_vs_effective": "operator values keep raw outcomes; claim_admission.effective_outcome is what may be "
+    "applied (unresolved when support is refused)",
+    "retained_study": 'a source study handle is {"$retained_study": {run, nct, digest}}; all three are '
+    "required, and validation is deferred to execution where the handle is hydrated",
+}
 PROTOCOL_ADMISSION = (
     "An object's own standing and its adoption support are conjunctive (C3): support premises record "
     "adoption, "
@@ -583,47 +609,91 @@ def _protocol_scope(raw: dict, target: dict, path: str, defaults: list) -> dict:
     )
 
 
-def _protocol(raw: object, target: dict, defaults: list) -> dict:
+def _protocol_object(item: object, path: str, target: dict, ids: set, defaults: list) -> dict:
+    """One compact protocol object with disclosed administrative defaults (also used for replacements)."""
+    row = _fields(
+        item,
+        {"id", "kind", "version", "origin", "data", "standing", "support", "depends_on", "scope"},
+        {"id", "kind", "version", "origin", "data"},
+        "protocol.object",
+    )
+    origin = _origin(row["origin"], path + "/origin", defaults)
+    data = deepcopy(row["data"])
+    if row["kind"] == "assessment" and isinstance(data, dict) and isinstance(data.get("condition"), dict):
+        data["condition"] = proposition(data["condition"], path + "/data/condition", defaults)
+    standing = {"status": "proposed", "resolution": "unresolved", "basis": [origin["ref"]]}
+    references = _data_references(row["kind"], data, ids) if isinstance(data, dict) else []
+    return {
+        "id": row["id"],
+        "kind": row["kind"],
+        "scope": _protocol_scope(row, target, path, defaults),
+        "version": row["version"],
+        "origin": origin,
+        "standing": deepcopy(_take(row, "standing", standing, path, defaults)),
+        "support": deepcopy(_take(row, "support", [], path, defaults)),
+        "depends_on": deepcopy(_take(row, "depends_on", references, path, defaults)),
+        "data": data,
+    }
+
+
+def _protocol_decisions(raw: object, target: dict, ids: set, defaults: list, offset: int) -> list[dict]:
+    """Compact protocol alternatives (C8): {id,question,alternatives:[{id,label,replace?,checks}]}."""
+    out = []
+    for index, item in enumerate(_rows(raw, 128, "protocol.decisions")):
+        # Disclosed defaults point where the values land: the expanded session's decisions list.
+        path = f"/request/session/decisions/{offset + index}"
+        row = _fields(
+            item,
+            {"id", "question", "alternatives", "selected"},
+            {"id", "question", "alternatives"},
+            "protocol.decision",
+        )
+        alternatives = []
+        for number, alt in enumerate(_rows(row["alternatives"], 16, "protocol.decision.alternatives")):
+            spot = f"{path}/alternatives/{number}"
+            held = _fields(
+                alt, {"id", "label", "replace", "checks"}, {"id", "label", "checks"}, "protocol.alternative"
+            )
+            replace = (
+                held["replace"] if "replace" in held else _default(defaults, spot + "/replace_objects", [])
+            )
+            alternatives.append(
+                {
+                    "id": held["id"],
+                    "label": held["label"],
+                    "replace_objects": [
+                        _protocol_object(obj, f"{spot}/replace_objects/{k}", target, ids, defaults)
+                        for k, obj in enumerate(_rows(replace, 16, "protocol.alternative.replace"))
+                    ],
+                    "checks": deepcopy(held["checks"]),
+                }
+            )
+        out.append(
+            {
+                "kind": "protocol_options",
+                "id": row["id"],
+                "question": row["question"],
+                "target": deepcopy(target),
+                "coverage": "declared_design",
+                "selected": deepcopy(_take(row, "selected", None, path, defaults)),
+                "alternatives": alternatives,
+            }
+        )
+    return out
+
+
+def _protocol(raw: object, target: dict, defaults: list, decision_offset: int = 0) -> dict:
     """Mechanical expansion of a compact protocol; every administrative default is disclosed."""
-    held = _fields(raw, {"objects", "checks", "sections"}, {"objects", "checks", "sections"}, "protocol")
+    held = _fields(
+        raw, {"objects", "checks", "sections", "decisions"}, {"objects", "checks", "sections"}, "protocol"
+    )
     base = "/request/session/protocol"
     rows = _rows(held["objects"], 256, "protocol.objects")
     ids = {row.get("id") for row in rows if isinstance(row, dict)}
-    objects = []
-    for index, item in enumerate(rows):
-        path = f"{base}/objects/{index}"
-        row = _fields(
-            item,
-            {"id", "kind", "version", "origin", "data", "standing", "support", "depends_on", "scope"},
-            {"id", "kind", "version", "origin", "data"},
-            "protocol.object",
-        )
-        origin = _origin(row["origin"], path + "/origin", defaults)
-        data = deepcopy(row["data"])
-        if row["kind"] == "assessment" and isinstance(data, dict) and isinstance(data.get("condition"), dict):
-            data["condition"] = proposition(data["condition"], path + "/data/condition", defaults)
-        standing = {"status": "proposed", "resolution": "unresolved", "basis": [origin["ref"]]}
-        objects.append(
-            {
-                "id": row["id"],
-                "kind": row["kind"],
-                "scope": _protocol_scope(row, target, path, defaults),
-                "version": row["version"],
-                "origin": origin,
-                "standing": deepcopy(_take(row, "standing", standing, path, defaults)),
-                "support": deepcopy(_take(row, "support", [], path, defaults)),
-                "depends_on": deepcopy(
-                    _take(
-                        row,
-                        "depends_on",
-                        _data_references(row["kind"], data, ids) if isinstance(data, dict) else [],
-                        path,
-                        defaults,
-                    )
-                ),
-                "data": data,
-            }
-        )
+    objects = [
+        _protocol_object(item, f"{base}/objects/{index}", target, ids, defaults)
+        for index, item in enumerate(rows)
+    ]
     checks = []
     for index, item in enumerate(_rows(held["checks"], 128, "protocol.checks")):
         path = f"{base}/checks/{index}"
@@ -659,17 +729,28 @@ def _protocol(raw: object, target: dict, defaults: list) -> dict:
                 "basis": deepcopy(_take(row, "basis", [], path, defaults)),
             }
         )
-    return {"schema_version": 1, "objects": objects, "checks": checks, "sections": sections}
+    expanded = {"schema_version": 1, "objects": objects, "checks": checks, "sections": sections}
+    if "decisions" in held:
+        expanded["decisions"] = _protocol_decisions(held["decisions"], target, ids, defaults, decision_offset)
+    return expanded
 
 
 RETAINED_STUDY_MARKER = "$retained_study"  # the transport's typed source handle (retained_sources.MARKER)
 
 
 def _has_retained_handles(sources: list) -> bool:
-    return any(
-        isinstance(source.get("study"), dict) and RETAINED_STUDY_MARKER in source["study"]
+    handles = [
+        source["study"][RETAINED_STUDY_MARKER]
         for source in sources
-    )
+        if isinstance(source.get("study"), dict) and RETAINED_STUDY_MARKER in source["study"]
+    ]
+    for handle in handles:
+        # Structural only (no hydration here): the transport needs exactly run, nct and digest.
+        if type(handle) is not dict or set(handle) != {"run", "nct", "digest"}:
+            raise ValueError("invalid_source_marker")
+        if not all(type(value) is str and value for value in handle.values()):
+            raise ValueError("invalid_source_marker")
+    return bool(handles)
 
 
 def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
@@ -742,7 +823,10 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
         )
     if "protocol" in raw:
         session["schema_version"] = 2
-        session["protocol"] = _protocol(raw["protocol"], target, defaults)
+        protocol = _protocol(raw["protocol"], target, defaults, len(session["decisions"]))
+        # Protocol alternatives are session decisions (C8); the protocol envelope itself stays exactly C2.
+        session["decisions"].extend(protocol.pop("decisions", []))
+        session["protocol"] = protocol
         # Validation only (no solver): the expansion must already be an admissible v2 session. Digest-bound
         # retained-study handles are hydrated by the transport at execution, so a session carrying them is
         # validated there instead; prepare() discloses that deferral (PAH cold audit).
@@ -1005,6 +1089,8 @@ def protocol_card(*, schema: bool = False) -> dict:
         "object_data": deepcopy(PROTOCOL_DATA),
         "check_patterns": deepcopy(PROTOCOL_CHECKS),
         "admission": PROTOCOL_ADMISSION,
+        "decisions": deepcopy(PROTOCOL_DECISIONS),
+        "notes": deepcopy(PROTOCOL_NOTES),
         "operator_inputs": {"operation": "describe", "view": "signals", "detail": "full"},
         "example_basis": "Invented teaching choices, not a real trial or human confirmation.",
         "example": protocol_example(),

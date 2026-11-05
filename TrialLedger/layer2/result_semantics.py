@@ -892,6 +892,36 @@ def _session_findings(result: dict, base: str) -> list[dict]:
     for index, analysis in enumerate(result.get("analyses", ())):
         prefix = _path(_path(_path(base, "analyses"), index), "result")
         extend_child(analysis["result"], prefix)
+    # Protocol checks (v2): every child envelope is classified like any child analysis, so the headline
+    # summary counts protocol conflicts and repair choices (walkthrough finding, 2026-11-04).
+    protocol = result.get("protocol") or {}
+    for index, check in enumerate(protocol.get("checks", ())):
+        for number, child in enumerate(check.get("children", ())):
+            prefix = _path(_path(_path(_path(_path(base, "protocol"), "checks"), index), "children"), number)
+            extend_child(child["result"], _path(prefix, "result"))
+    protocol_dispositions = {
+        "blocker": "conflict",
+        "repair_choice": "open",
+        "design_choice": "open",
+        "evidence_question": "open",
+        "settled_within_declared_alternatives": "settled",
+        "no_compatible_alternative": "open",
+    }
+    for index, decision in enumerate(protocol.get("decisions", ())):
+        path = _path(_path(_path(base, "protocol"), "decisions"), index)
+        findings.append(
+            {
+                "path": path,
+                "kind": "protocol_decision",
+                "logical_result": decision["disposition"],
+                "standing": None,
+                "completion": "complete",
+                "causes": [],
+                "disposition": protocol_dispositions.get(decision["disposition"], "unclassified"),
+                "session_disposition": decision["disposition"],
+                "support_path": path,
+            }
+        )
     for index, check in enumerate(result.get("definition_checks", ())):
         path = _path(_path(base, "definition_checks"), index)
         finding = _row(path, "definition_relation", check["code"], check["status"], check["blockers"])

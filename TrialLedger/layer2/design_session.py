@@ -1361,6 +1361,37 @@ def _semantic_record(check: dict) -> dict:
     }
 
 
+CHANGE_FIELDS = ("effective_outcome", "application", "admission", "finding_status", "application_status")
+
+
+def _check_changes(left: dict, right: dict) -> list[dict]:
+    """Per-claim and per-signal before/after for a protocol check (walkthrough finding: thin answer_diff)."""
+    out = []
+    lc, rc = _claims_of(left), _claims_of(right)
+    for key in sorted(lc.keys() | rc.keys()):
+        for field in CHANGE_FIELDS:
+            before = lc.get(key, {}).get(field)
+            after = rc.get(key, {}).get(field)
+            if before != after:
+                out.append({"claim": key, "field": field, "before": before, "after": after})
+    signals = [
+        {
+            (child.get("id"), signal.get("id")): signal
+            for child in check.get("children", [])
+            for signal in child.get("signals", [])
+            if not signal.get("claim_admission")
+        }
+        for check in (left, right)
+    ]
+    for key in sorted(signals[0].keys() | signals[1].keys(), key=str):
+        for field in ("code", "calculation_code", "blockers"):
+            before = signals[0].get(key, {}).get(field)
+            after = signals[1].get(key, {}).get(field)
+            if before != after:
+                out.append({"signal": key[1], "field": field, "before": before, "after": after})
+    return out
+
+
 def _record_changed(left: dict, right: dict) -> bool:
     return left.keys() != right.keys() or any(left[k] != right[k] for k in left)
 
@@ -1405,7 +1436,14 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
             != [c.get("request_digest") for c in right.get("children", [])],
         }
         axes = protocol_axes(changed)
-        out["checks"].append({"id": key, "code": state.change_code(True, True, not axes), "axes": axes})
+        out["checks"].append(
+            {
+                "id": key,
+                "code": state.change_code(True, True, not axes),
+                "axes": axes,
+                "changes": _check_changes(left, right),
+            }
+        )
     old, new = ({d["id"]: d for d in snapshot.get("decisions", [])} for snapshot in (before, after))
     for key in sorted(old.keys() | new.keys()):
         left, right = old.get(key), new.get(key)
