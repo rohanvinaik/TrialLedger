@@ -1562,8 +1562,10 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
             out["checks"].append(
                 {
                     "id": key,
-                    "change": state.change_code(left is not None, right is not None, False),
+                    # A check or decision added or withdrawn: every row carries `code` (trace audit F1).
+                    "code": state.change_code(left is not None, right is not None, False),
                     "axes": [],
+                    "changes": [],
                 }
             )
             continue
@@ -1613,8 +1615,10 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
             out["decisions"].append(
                 {
                     "id": key,
-                    "change": state.change_code(left is not None, right is not None, False),
+                    # A check or decision added or withdrawn: every row carries `code` (trace audit F1).
+                    "code": state.change_code(left is not None, right is not None, False),
                     "axes": [],
+                    "changes": [],
                 }
             )
             continue

@@ -1253,7 +1253,7 @@ def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]
                     "unresolved_projection",
                     row["id"],
                     None,
-                    f"Projection unresolved: {entry.get('code')}.",
+                    f"Not computed: {unresolved_words(entry)}.",
                     _check_ref(i),
                 )
             )
@@ -1278,7 +1278,7 @@ def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]
                         "signal_finding",
                         check_rows[i]["id"],
                         None,
-                        f"Finding from the {signal.get('kind')} check: {code}.",
+                        f"Finding from the {signal.get('kind')} check: {code_words(code)}.",
                         _child_ref(i, j),
                     )
                 )

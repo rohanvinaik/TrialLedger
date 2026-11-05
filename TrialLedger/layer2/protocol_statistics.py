@@ -28,6 +28,9 @@ NOT_COMPUTED = [
 ]
 MAX_N = 512
 MAX_INTERMEDIATE_BITS = 1_048_576
+# Exact results are rendered as decimal integer ratios; Python refuses int-to-str beyond 4,300 digits
+# (about 14,284 bits). A design whose pre-computation bound exceeds this returns `limit` (trace audit F2).
+MAX_RENDERED_BITS = 14_000
 MAX_ASSUMPTIONS = 16
 MAX_CLAIMS = 16
 MAX_BASIS = 32
@@ -423,7 +426,7 @@ def check(kind: str, data: dict, claims: list[dict]) -> dict:
     n, k, p0, p1 = parsed["n"], parsed["critical_count"], parsed["p0"], parsed["p1"]
     reserved = 12 * (n + 2)
     work = _Work()
-    limited = _estimated_bits(n, p0, p1) > MAX_INTERMEDIATE_BITS
+    limited = _estimated_bits(n, p0, p1) > min(MAX_INTERMEDIATE_BITS, MAX_RENDERED_BITS)
     null_tail = power_tail = Fraction(0)
     if not limited:
         try:

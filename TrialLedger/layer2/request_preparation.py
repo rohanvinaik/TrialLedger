@@ -84,7 +84,9 @@ PROTOCOL_DATA = {
     "requirement:that estimand's requirement id, action:collect|stop}}",
     "efficacy": "{endpoint:endpoint id, method:binomial_design|external_method, parameters:"
     "{model,direction,n,critical_count,p0,p1}|external_method id, assumptions:[{role:fixed_n|iid_binary|"
-    "alignment, premise:premise id}]}",
+    "alignment, premise:premise id}]}. Roles: fixed_n (the sample size is fixed in advance), iid_binary "
+    "(independent, identically distributed binary responses) and alignment (the population, endpoint and "
+    "analysis set correspond to the modelled Bernoulli response); all three are needed for application",
     "policy": "{model:the finite_policy operator data (see operator_inputs.finite_policy), bindings:"
     "[{variable:model variable id, object:object id|null, premise:premise id|null}] (exactly one non-null)}. "
     "External variables are re-chosen at every step from the feasible valuations: an invariant over them can "

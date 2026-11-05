@@ -3407,9 +3407,6 @@
             },
             "basis": [
              "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
              "user:adult"
             ],
             "rule": "binomial.exact_one_stage_greater:1",
@@ -3800,9 +3797,6 @@
            },
            "basis": [
             "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
             "user:adult"
            ],
            "blockers": [
@@ -3995,7 +3989,7 @@
           }
          ]
         },
-        "result_digest": "8ad49ff6609065a35380d3b1b8e902f5630f954b8bbd18cb60cd97d6390e1270",
+        "result_digest": "fc7e38abf6a37bb22b715723d20cbac344cb8543dc486f45787d8d8f1f935bca",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -4009,7 +4003,7 @@
         }
        },
        "request_digest": "5c1b7fc8c980791b7ad3f8136a9c5ed859b56a0373fa496179028a0ac4e4e8bc",
-       "result_digest": "eebc140de9c8822f9619e7ad2b883c1ca6028478680fcf4f50b989178ce95420",
+       "result_digest": "5117df20f3fb0b7e8c75571ad2fea0519b99812578bc8e8f39d5386f36c45744",
        "signals": [
         {
          "id": "efficacy-exact:binomial_efficacy",

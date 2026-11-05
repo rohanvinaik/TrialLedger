@@ -3016,8 +3016,6 @@
             },
             "basis": [
              "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
              "no adoption support declared for collection"
             ],
             "rule": "schedule.exact_interval_coverage:1",
@@ -3417,8 +3415,6 @@
            },
            "basis": [
             "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
             "no adoption support declared for collection"
            ],
            "blockers": [
@@ -3607,7 +3603,7 @@
           }
          ]
         },
-        "result_digest": "9dcdba0bd485964c8e655bced9e9652f55bcef425374d621d04bf45f4a5e3b20",
+        "result_digest": "48b7652589ca6a650268ebf0235b314461d262aae64f4f67971ac78e1a5e3b87",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -3621,7 +3617,7 @@
         }
        },
        "request_digest": "6cf59db0a033fa794de696e0f0ae719aeb86bd4a0f203962e414da4552013eb9",
-       "result_digest": "1b1c4a6781d84e16a2bad06e9da5b304bc2b90e339d0f72b6781f9643aa1311a",
+       "result_digest": "6193295818c31fbdd66c5ab5b0dc48876f3bc3ae49c996dee899ad2d180f2377",
        "signals": [
         {
          "id": "week12-schedule:schedule_window_coverage",

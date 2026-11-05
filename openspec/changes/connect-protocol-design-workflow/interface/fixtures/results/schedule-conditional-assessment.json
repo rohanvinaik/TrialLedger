@@ -3164,9 +3164,6 @@
              "code": "accepted"
             },
             "basis": [
-             "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
              "user:simulated choice (fixture)"
             ],
             "rule": "schedule.exact_interval_coverage:1",
@@ -3546,9 +3543,6 @@
             "code": "accepted"
            },
            "basis": [
-            "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
             "user:simulated choice (fixture)"
            ],
            "blockers": [
@@ -3739,7 +3733,7 @@
           }
          ]
         },
-        "result_digest": "f7959b8b063c2f0cce8fa9f587e096d62f2e92132c82324bc249e600a053e7f1",
+        "result_digest": "4062c8654bf3a232bbeaa89fe92c8eb7526d3645b29c4a67948d2b0a587786df",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -3754,7 +3748,7 @@
         }
        },
        "request_digest": "b0da8475624971aec819e508d772c8bb70cba92a169df058cd05a35ff865079f",
-       "result_digest": "33147a27f057640409a386869fe0e2fbbde0c5b190d87ce6b3376def62826fb1",
+       "result_digest": "6f08e1020bc89d97f1e31f4125e129758487578a03350979c2713d3d5b2d0f71",
        "signals": [
         {
          "id": "week12-schedule:schedule_window_coverage",

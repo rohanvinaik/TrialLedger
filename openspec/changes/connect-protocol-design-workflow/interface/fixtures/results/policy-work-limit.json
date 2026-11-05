@@ -9479,7 +9479,6 @@
              "code": "accepted"
             },
             "basis": [
-             "user:simulated choice (fixture)",
              "user:simulated choice (fixture)"
             ],
             "rule": "policy.finite_reachable_states:1",
@@ -13515,7 +13514,6 @@
             "code": "accepted"
            },
            "basis": [
-            "user:simulated choice (fixture)",
             "user:simulated choice (fixture)"
            ],
            "blockers": [
@@ -15181,7 +15179,7 @@
           }
          ]
         },
-        "result_digest": "4dcde59ef2761618fa58aa26ace96300aff90cf533b6384a06188ec6ed907cac",
+        "result_digest": "2f989310399793fc9e96b07c07399c0a560609ec6be82f97b7703d8367835611",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -15195,7 +15193,7 @@
         }
        },
        "request_digest": "5afec917b8df6c044dfe969cda0e99e5bc3b0f363de940d80beebe19d0032e0a",
-       "result_digest": "1397b63aa8b6133940429567d207778982efa4b8f1498734fa2a4c84ca6970e3",
+       "result_digest": "59347d6e8b1747aab9c0c939a3644f5c8a421800e232ee465165dcb94422f614",
        "signals": [
         {
          "id": "big-safety:finite_policy_model",

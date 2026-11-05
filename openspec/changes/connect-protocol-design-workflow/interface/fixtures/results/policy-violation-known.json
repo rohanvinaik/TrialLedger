@@ -3254,7 +3254,6 @@
              "code": "accepted"
             },
             "basis": [
-             "user:simulated choice (fixture)",
              "user:simulated choice (fixture)"
             ],
             "rule": "policy.finite_reachable_states:1",
@@ -3946,7 +3945,6 @@
             "code": "accepted"
            },
            "basis": [
-            "user:simulated choice (fixture)",
             "user:simulated choice (fixture)"
            ],
            "blockers": [
@@ -4256,7 +4254,7 @@
           }
          ]
         },
-        "result_digest": "865b19581d595ad2b81a117fa4888b9671df5ae239d49a113586df42f4469894",
+        "result_digest": "1c46718bb7f0bc2c8bfbcc6cd2ad5cf536855412bf15512e01f1d20fb16aa837",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -4271,7 +4269,7 @@
         }
        },
        "request_digest": "25e6a5fce2ef9fa1f30cfff3aad9ccb12255e8af91812d83320445783905be27",
-       "result_digest": "ce3f7821de70c85d72b644daf1d03bbcf9685fec10dd1383b20b464147c5b4cb",
+       "result_digest": "0a77e697cec2d83f8e81a36caf81aa08a704a9968b476bb27ffee3d9f53d5a41",
        "signals": [
         {
          "id": "interim-safety:finite_policy_model",

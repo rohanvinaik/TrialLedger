@@ -74,6 +74,17 @@ CAUSE_KINDS = {
     "definition_proposed_refused": "premise",
     "definition_binding_unresolved": "translation",
     "definition_missing_support": "premise",
+    # Protocol checks and relations (trace audit F3).
+    "definition_protocol_child_refused": "computation",
+    "definition_protocol_child_missing": "translation",
+    "projection_scope_mismatch": "translation",
+    "projection_scope_too_long": "translation",
+    "projection_binding_shape": "translation",
+    "projection_slice_5": "translation",
+    "projection_collection_plan_conflict": "conflict",
+    "adoption_stale_version": "premise",
+    "session_work_limit": "computation",
+    "external_method_not_computed": "unsupported",
     "stage_scope_mismatch": "translation",
     "stage_unit_mismatch": "translation",
     "stage_binding_unresolved": "translation",
@@ -899,6 +910,15 @@ def _session_findings(result: dict, base: str) -> list[dict]:
         for number, child in enumerate(check.get("children", ())):
             prefix = _path(_path(_path(_path(_path(base, "protocol"), "checks"), index), "children"), number)
             extend_child(child["result"], _path(prefix, "result"))
+    # A check that is unresolved, limited or not computed is an open item in the headline, never silence
+    # (trace audit F4): one finding per such check, with each named cause.
+    for index, check in enumerate(protocol.get("checks", ())):
+        causes = [str(entry.get("code")) for entry in check.get("unresolved") or ()]
+        if check.get("not_computed") is not None:
+            causes.append("external_method_not_computed")
+        if causes:
+            path = _path(_path(_path(base, "protocol"), "checks"), index)
+            findings.append(_row(path, "protocol_check", "unresolved", None, causes))
     protocol_dispositions = {
         "blocker": "conflict",
         "repair_choice": "open",

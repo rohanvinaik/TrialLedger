@@ -3173,9 +3173,6 @@
              "code": "accepted"
             },
             "basis": [
-             "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
-             "user:simulated choice (fixture)",
              "user:simulated choice (fixture)"
             ],
             "rule": "schedule.exact_interval_coverage:1",
@@ -3555,9 +3552,6 @@
             "code": "accepted"
            },
            "basis": [
-            "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
-            "user:simulated choice (fixture)",
             "user:simulated choice (fixture)"
            ],
            "blockers": [
@@ -3748,7 +3742,7 @@
           }
          ]
         },
-        "result_digest": "f7959b8b063c2f0cce8fa9f587e096d62f2e92132c82324bc249e600a053e7f1",
+        "result_digest": "4062c8654bf3a232bbeaa89fe92c8eb7526d3645b29c4a67948d2b0a587786df",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
         "summary": {
          "code": "complete",
@@ -3763,7 +3757,7 @@
         }
        },
        "request_digest": "b0da8475624971aec819e508d772c8bb70cba92a169df058cd05a35ff865079f",
-       "result_digest": "33147a27f057640409a386869fe0e2fbbde0c5b190d87ce6b3376def62826fb1",
+       "result_digest": "6f08e1020bc89d97f1e31f4125e129758487578a03350979c2713d3d5b2d0f71",
        "signals": [
         {
          "id": "week12-schedule:schedule_window_coverage",
@@ -3900,6 +3894,7 @@
            "id": "visit",
            "claim": "existence",
            "outcome": "satisfied",
+           "effective_outcome": "satisfied",
            "admission": "accepted",
            "application": "unconditional",
            "finding_status": "known",
@@ -3909,6 +3904,7 @@
            "id": "target",
            "claim": "nominal",
            "outcome": "not_collected",
+           "effective_outcome": "not_collected",
            "admission": "accepted",
            "application": "unconditional",
            "finding_status": "known",
@@ -3918,6 +3914,7 @@
            "id": "window",
            "claim": "full_window",
            "outcome": "uncovered",
+           "effective_outcome": "uncovered",
            "admission": "accepted",
            "application": "unconditional",
            "finding_status": "known",
@@ -3927,7 +3924,7 @@
          "children": [
           {
            "request_digest": "b0da8475624971aec819e508d772c8bb70cba92a169df058cd05a35ff865079f",
-           "result_digest": "33147a27f057640409a386869fe0e2fbbde0c5b190d87ce6b3376def62826fb1",
+           "result_digest": "6f08e1020bc89d97f1e31f4125e129758487578a03350979c2713d3d5b2d0f71",
            "schedule": [
             {
              "anchor": "randomization",
@@ -4009,7 +4006,8 @@
               "used": 11
              }
             }
-           ]
+           ],
+           "statistics": []
           }
          ]
         }
@@ -4038,6 +4036,7 @@
            "id": "visit",
            "claim": "existence",
            "outcome": "satisfied",
+           "effective_outcome": "satisfied",
            "admission": "accepted",
            "application": "unconditional",
            "finding_status": "proposed",
@@ -4049,6 +4048,7 @@
            "id": "target",
            "claim": "nominal",
            "outcome": "satisfied",
+           "effective_outcome": "satisfied",
            "admission": "accepted",
            "application": "unconditional",
            "finding_status": "proposed",
@@ -4060,6 +4060,7 @@
            "id": "window",
            "claim": "full_window",
            "outcome": "satisfied",
+           "effective_outcome": "satisfied",
            "admission": "accepted",
            "application": "unconditional",
            "finding_status": "proposed",
@@ -4071,7 +4072,7 @@
          "children": [
           {
            "request_digest": "4a63859b0cdfa644a2cef9571594e48cb03aae939b6a8b856ba9ab1eb8e5f64c",
-           "result_digest": "304299ac03cee51c2d608886bf382340690c7d1dc4d2e3db29751ada1e1d6de6",
+           "result_digest": "f277cfa93be3b1b805941f22425a4137d9c1a4385761e284138f527b788c241a",
            "schedule": [
             {
              "anchor": "randomization",
@@ -4146,7 +4147,8 @@
               "used": 11
              }
             }
-           ]
+           ],
+           "statistics": []
           }
          ]
         }

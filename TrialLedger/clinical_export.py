@@ -164,8 +164,12 @@ def _finish(sheet) -> None:
     if sheet.title in ("Decision list", "Options"):
         sheet.freeze_panes = "C2" if sheet.title == "Options" else "B2"
     if sheet.max_row == 1 and sheet.title != "Baseline tables":
-        # A header-only sheet reads as absent by design, not as a truncated export.
-        _write(sheet, [EMPTY_SHEET_NOTE], "")
+        # A header-only sheet reads as absent by design, not as a truncated export. The eligibility decision
+        # sheets point to where protocol plan comparisons are (final walkthrough).
+        note = EMPTY_SHEET_NOTE
+        if sheet.title in ("Decision list", "Options") and "Plan comparisons" in sheet.parent.sheetnames:
+            note += "; protocol plan comparisons are on the Plan comparisons sheet"
+        _write(sheet, [note], "")
     if sheet.title != "Baseline tables":
         sheet.auto_filter.ref = sheet.dimensions
     sheet.print_title_rows = "1:1"
