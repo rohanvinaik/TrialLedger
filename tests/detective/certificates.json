@@ -1174,6 +1174,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/protocol_objects.py::edition_change_state": {
+    "cut_reasons": [],
+    "function_digest": "8b987d68ae264e2c",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/protocol_objects.py::identity_state": {
     "cut_reasons": [],
     "function_digest": "07a7b5d728cdeede",
