@@ -873,7 +873,314 @@ def _changes(book: Workbook, payload: dict, identity: str) -> list[str]:
                 for axis in ("question", "answer", "requirements", "support", "origin", "wording", "context")
             )
         )
+    # Protocol rows carry a list of changed axes (decisions.md); a changed verdict is never silently dropped.
+    for kind in ("protocol_checks", "protocol_decisions"):
+        for index, item in enumerate(difference.get(kind, [])):
+            named = list(item.get("axes", []))
+            ref = _reference(identity, f"/response/answer_diff/{kind}/{index}")
+            _write(
+                sheet,
+                [
+                    kind.replace("_", " "),
+                    item.get("id"),
+                    _word(item.get("code"), CHANGE_WORDS),
+                    "changed" if "verdict" in named else "unchanged",
+                    "changed" if "support" in named else "unchanged",
+                    "changed" if "origin" in named else "unchanged",
+                    "See exact comparison",
+                    "See exact comparison",
+                    ref,
+                    "not applicable",
+                    "changed" if "wording" in named else "unchanged",
+                    "changed" if "scope_model" in named else "unchanged",
+                    "changed" if "requirements" in named else "unchanged",
+                ],
+                ref,
+            )
+            lines.append(
+                f"- {kind.replace('_', ' ')} {item.get('id')}: {_word(item.get('code'), CHANGE_WORDS)}"
+                + (f" ({', '.join(named)})" if named else "")
+            )
     return [*lines, ""]
+
+
+def _join(values: object) -> str:
+    if isinstance(values, dict):
+        return "; ".join(f"{key}: {_join(value)}" for key, value in values.items())
+    if isinstance(values, (list, tuple)):
+        return "; ".join(_join(value) for value in values)
+    return "" if values is None else str(values)
+
+
+def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
+    """Protocol synopsis, findings, schedule and plan comparisons from the one clinical view (delivery.md)."""
+    response = payload["response"]
+    result = response.get("result") or {}
+    if "protocol" not in result:
+        return []
+    from TrialLedger.clinical_delivery import protocol_delivery_view
+
+    view = response.get("protocol_view") or protocol_delivery_view(result)
+    lines = [
+        "## Protocol",
+        "",
+        "### Sections",
+        "",
+        "| Section | Declared | Coverage | Findings |",
+        "|---|---|---|---|",
+    ]
+    synopsis = _sheet(
+        book,
+        "Protocol synopsis",
+        ["Section", "Declared", "Coverage", "Findings", "Findings text", "Reasons", "Objects", "Checks"],
+    )
+    for row in view["sections"]:
+        ref = _reference(identity, f"/response/protocol_view/sections/{view['sections'].index(row)}")
+        _write(
+            synopsis,
+            [
+                row["id"],
+                row["declared"],
+                row["coverage"],
+                row["findings"],
+                row["findings_text"],
+                _join(row["reasons"]),
+                _join(row["objects"]),
+                _join(row["checks"]),
+            ],
+            ref,
+        )
+        lines.append(f"| {row['id']} | {row['declared']} | {row['coverage']} | {row['findings_text']} |")
+    lines += ["", "### Findings", ""]
+    findings = _sheet(
+        book,
+        "Protocol findings",
+        [
+            "Check",
+            "Kind",
+            "Required",
+            "Claim",
+            "Outcome",
+            "Effective outcome",
+            "Admission",
+            "Application",
+            "Standing",
+            "Arithmetic standing",
+            "Applicability standing",
+            "Wording",
+            "Determining references",
+            "Result reference",
+        ],
+    )
+    for check in view["checks"]:
+        lines.append(
+            f"Check {check['id']} ({check['kind']}, {'required' if check['required'] else 'optional'})"
+        )
+        for claim in check["claims"]:
+            result_ref = check["refs"][0]["result"] if check["refs"] else _check_address(view, check)
+            _write(
+                findings,
+                [
+                    check["id"],
+                    check["kind"],
+                    check["required"],
+                    claim["claim"],
+                    claim["outcome"],
+                    claim["effective_outcome"],
+                    claim["admission"],
+                    claim["application"],
+                    claim.get("standing"),
+                    claim.get("arithmetic_standing"),
+                    claim.get("application_standing"),
+                    claim["wording"],
+                    _join(claim.get("determining_ids")),
+                    result_ref,
+                ],
+                _reference(identity, "/response/result" + result_ref),
+            )
+            lines.append(
+                f"- {claim['claim']}: {claim['wording']} — standing {claim.get('standing')}; "
+                f"result {result_ref}"
+            )
+        for finding in check.get("findings", []):
+            for code in finding["codes"]:
+                _write(
+                    findings,
+                    [
+                        check["id"],
+                        check["kind"],
+                        check["required"],
+                        finding["kind"],
+                        finding["calculation_code"],
+                        finding["code"],
+                        finding["admission"],
+                        "",
+                        "",
+                        "",
+                        "",
+                        f"Finding: {code}",
+                        "",
+                        finding["ref"],
+                    ],
+                    _reference(identity, "/response/result" + finding["ref"]),
+                )
+                lines.append(f"- {finding['kind']} finding: {code}; result {finding['ref']}")
+        lines.append("")
+    lines += [
+        "### Schedule of assessments",
+        "",
+        "| Check | Cohort | Arm | Phase | Conditionality | Measurement | Mode | Anchor | Unit | Nominal "
+        "| Permitted | Collection | Feasible | Gap | Nominal outcome |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    schedule = _sheet(
+        book,
+        "Schedule of assessments",
+        [
+            "Check",
+            "Assessment",
+            "Collection",
+            "Cohort",
+            "Arm",
+            "Phase",
+            "Conditionality",
+            "Measurement",
+            "Mode",
+            "Anchor",
+            "Unit",
+            "Nominal target",
+            "Permitted window",
+            "Collection availability",
+            "Feasible window",
+            "Full-coverage gap",
+            "Nominal outcome",
+            "Standing",
+            "Origin",
+            "Result reference",
+        ],
+    )
+    for row in view["schedule"]:
+        refs = row.get("refs") or []
+        ref = refs[0]["result"] if refs and isinstance(refs[0], dict) else ""
+        _write(
+            schedule,
+            [
+                row["check"],
+                row["assessment"],
+                row["collection"],
+                row["cohort"],
+                row["arm"],
+                row["phase"],
+                row["conditionality"],
+                row["measurement"],
+                row["mode"],
+                row["anchor"],
+                row["unit"],
+                row["nominal"],
+                row["permitted"],
+                row["availability"],
+                row["feasible"],
+                row["full_coverage_gap"],
+                row["nominal_outcome"],
+                _join(row["standing"]),
+                _origin_join(row["origin"]),
+                ref,
+            ],
+            _reference(identity, "/response/result" + ref) if ref else "",
+        )
+        lines.append(
+            "| "
+            + " | ".join(
+                str(row[key])
+                for key in (
+                    "check",
+                    "cohort",
+                    "arm",
+                    "phase",
+                    "conditionality",
+                    "measurement",
+                    "mode",
+                    "anchor",
+                    "unit",
+                    "nominal",
+                    "permitted",
+                    "availability",
+                    "feasible",
+                    "full_coverage_gap",
+                    "nominal_outcome",
+                )
+            )
+            + " |"
+        )
+    comparisons = _sheet(
+        book,
+        "Plan comparisons",
+        [
+            "Decision",
+            "Question",
+            "Disposition",
+            "Alternative",
+            "Label",
+            "Frame",
+            "Compatibility",
+            "Conditional checks",
+            "Assumptions",
+            "Application",
+        ],
+    )
+    if view["decisions"]:
+        lines += ["", "### Plan comparisons", ""]
+    for index, decision in enumerate(view["decisions"]):
+        lines += [
+            f"{decision['question']} (caller wording)",
+            "",
+            f"Disposition: {decision['disposition']}",
+            "",
+            "| Alternative | Label | Frame | Compatibility | Conditional checks | Application |",
+            "|---|---|---|---|---|---|",
+        ]
+        for alternative in decision["alternatives"]:
+            _write(
+                comparisons,
+                [
+                    decision["id"],
+                    decision["question"],
+                    decision["disposition"],
+                    alternative["id"],
+                    alternative["label"],
+                    alternative["frame"],
+                    alternative["compatibility"],
+                    _join(alternative["conditional_checks"]),
+                    _join(alternative["assumption_refs"]),
+                    alternative["unconditional_application"],
+                ],
+                _reference(identity, f"/response/protocol_view/decisions/{index}"),
+            )
+            lines.append(
+                f"| {alternative['id']} | {alternative['label']} (caller wording) | {alternative['frame']} | "
+                f"{alternative['compatibility']} | {_join(alternative['conditional_checks']) or 'none'} | "
+                f"{alternative['unconditional_application']} |"
+            )
+        lines.append("")
+    lines += ["", "### Open items", ""]
+    lines += [f"{n}. {item['text']} ({item['ref']})" for n, item in enumerate(view["delivery_findings"], 1)]
+    lines += ["", "### Limits", ""] + [f"- {text}" for text in view["limits_of_claim"]] + [""]
+    return lines
+
+
+def _check_address(view: dict, check: dict) -> str:
+    return f"/protocol/checks/{view['checks'].index(check)}"
+
+
+def _origin_join(origin: object) -> str:
+    if isinstance(origin, dict):
+        return "; ".join(
+            f"{name}: {value.get('kind')}: {value.get('ref')}"
+            if isinstance(value, dict)
+            else f"{name}: {value}"
+            for name, value in origin.items()
+        )
+    return _join(origin)
 
 
 def _sources(book: Workbook, payloads: list[tuple[str, dict]]) -> None:
@@ -1335,6 +1642,7 @@ def _stage(folder: Path, payloads: list[tuple[str, dict, bytes]], source_record:
     book = Workbook()
     book.remove(book.active)
     lines = _decision_rows(book, payload, identity)
+    lines.extend(_protocol_rows(book, payload, identity))
     lines.extend(_analysis_rows(book, pairs))
     _findings(book, pairs)
     lines.extend(_changes(book, payload, identity))

@@ -54,7 +54,7 @@ exploratory. Each row is `{id, declared, coverage, reasons, objects, checks}`:
 | declared not_applicable | `not_applicable` | the declared `basis` |
 | requested with no objects | `open` | `["no_objects_declared"]` |
 | any consuming check has `not_computed`, a `limit` signal code, or any claim outcome `not_executed` | `not_computed` | `"not_computed:<check id>"` |
-| any consuming check has `unresolved` entries, or any claim row whose `effective_outcome` is `unresolved`, `unknown_target` or `undetermined`, or whose application is `conditional` | `open` | one reason per cause, e.g. `"unresolved:<check id>:<code>"`, `"claim_unresolved:<check id>:<claim id>"`, `"conditional:<check id>"` |
+| any consuming check has `unresolved` entries, or any claim row whose `effective_outcome` is `unresolved`, `unknown_target` or `undetermined` (a `conditional` application no longer opens the section; see integration correction 4) | `open` | one reason per cause, e.g. `"unresolved:<check id>:<code>"`, `"claim_unresolved:<check id>:<claim id>"` |
 | requested with objects but no consuming check | `open` | `["no_check_declared"]` |
 | otherwise | `specified` | `[]` |
 
@@ -222,3 +222,6 @@ Every test body calls `protocol_view.view(...)` directly, by name.
      and `determining_ids` includes the applicability references.
    - When applicability rests on interpolated support, wording (including "Not applicable…") ends with
      "Applicability rests on interpolated support."
+6. **Not-executed claims** (output test author, 2026-11-04). A claim whose effective outcome is `not_executed`
+   (work limit) is an unsettled claim. It is listed as a `claim_unsettled` open item with the fixed wording "Not
+   computed within the declared work limit." This is in addition to its section's `not_computed` coverage.

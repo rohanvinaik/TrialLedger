@@ -55,7 +55,7 @@ def claim(out: dict, check: str, claim_id: str) -> dict:
 
 
 def test_fixtures_present():
-    assert len(NAMES) == 7
+    assert len(NAMES) == 8
 
 
 def test_not_protocol_result_raises_named_error():
@@ -100,6 +100,7 @@ EXPECTED_COVERAGE = {
     "policy-work-limit": {"safety": "not_computed"},
     # Corrected after review: a checked conditional obligation is specified, not open.
     "schedule-conditional-assessment": {"assessments": "specified"},
+    "decision-plan-comparison": {"assessments": "specified"},
     "schedule-refuted-and-conditional": {
         "assessments": "open",
         "safety": "open",

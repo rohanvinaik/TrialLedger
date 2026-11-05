@@ -30,7 +30,7 @@ EXTRA_LIMITS = (
     "Rendered decimals are rounded displays; exact rationals are canonical.",
 )
 # Effective outcomes that name an unapplied or unknown answer (open items, section "open").
-UNSETTLED = ("unresolved", "unknown_target", "undetermined")
+UNSETTLED = ("unresolved", "unknown_target", "undetermined", "not_executed")
 # Effective outcomes that name a found failure.
 FAILURES = (
     "no_feasible_time",
@@ -568,7 +568,9 @@ def _section_rows(protocol: dict, check_rows: list[dict], checks: list[dict]) ->
                 "declared": declared["state"],
                 "coverage": coverage,
                 "findings": findings,
-                "findings_text": FINDINGS_TEXT[findings],
+                "findings_text": FINDINGS_TEXT[findings]
+                if coverage not in ("not_requested", "not_applicable")
+                else f"No checks: section {coverage.replace('_', ' ')}.",
                 "findings_detail": detail,
                 "reasons": reasons,
                 "objects": objects,

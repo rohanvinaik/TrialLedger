@@ -3562,6 +3562,7 @@
      "not_computed": null
     }
    ],
+   "decisions": [],
    "limits_of_claim": [
     "Each check covers only its declared objects, claims and variables; not medical completeness.",
     "Projection receipts record consumed objects and premises; they do not establish meaning.",

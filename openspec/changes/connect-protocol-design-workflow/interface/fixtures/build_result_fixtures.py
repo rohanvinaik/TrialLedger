@@ -380,6 +380,51 @@ def main():
         ],
     }
     write("efficacy-binomial-and-external", r)
+    # 6. A plan comparison: the selected plan leaves a window gap (repair choice); the alternative extends
+    #    collection as a hypothetical replacement.
+    r = base()
+    s = r["session"]
+    objects = schedule_objects(s, "84", collection_status="known")
+    objects[2]["support"] = ["adult"]
+    extended = copy.deepcopy(objects[2])
+    extended["data"]["availability"] = [iv(None, "91")]
+    s["protocol"] = {
+        "schema_version": 1,
+        "objects": objects,
+        "checks": [check(s, "week12-schedule", "schedule", ["week12", "collection"], SCHEDULE_CLAIMS)],
+        "sections": [
+            {"id": "assessments", "state": "requested", "objects": ["week12", "collection"], "basis": []}
+        ],
+    }
+    s["decisions"].append(
+        {
+            "kind": "protocol_options",
+            "id": "collection-plan",
+            "question": "How long should week-12 collection run?",
+            "target": copy.deepcopy(s["target"]),
+            "coverage": "declared_design",
+            "selected": {
+                "alternative": "as-drafted",
+                "origin": "user",
+                "basis": ["user:simulated choice (fixture)"],
+            },
+            "alternatives": [
+                {
+                    "id": "as-drafted",
+                    "label": "Collect through day 80",
+                    "replace_objects": [],
+                    "checks": ["week12-schedule"],
+                },
+                {
+                    "id": "extend",
+                    "label": "Collect through day 91",
+                    "replace_objects": [extended],
+                    "checks": ["week12-schedule"],
+                },
+            ],
+        }
+    )
+    write("decision-plan-comparison", r)
 
 
 if __name__ == "__main__":

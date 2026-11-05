@@ -46,10 +46,95 @@ def augment(response: dict) -> dict:
         from TrialLedger.clinical_view import build
 
         reply["decision_view"] = build(response)
+        if isinstance(response.get("result"), dict) and "protocol" in response["result"]:
+            reply["protocol_view"] = protocol_delivery_view(response["result"])
     if response["code"] == "complete":
         reply["result_digest"] = digest(response["result"])
         reply["result_digest_scope"] = "result only; excludes summary, presentation and artifact metadata"
     return reply
+
+
+# Delivery order for protocol findings (interface delivery.md): known conflicts first, then repair choices,
+# so a bounded reply can never lose them silently behind lower-priority items.
+FINDING_PRIORITY = (
+    "conflict",
+    "repair_choice",
+    "signal_finding",
+    "unresolved_projection",
+    "not_computed",
+    "claim_unsettled",
+    "claim_conditional",
+    "section",
+)
+CONFLICT_OUTCOMES = frozenset({"gap", "competing", "violation", "not_established", "inconsistent_domain"})
+
+
+def finding_priority_kind(kind: str, outcome: str | None) -> str:
+    """Delivery class of one view open item; a failure splits into conflict or repair choice (pure).
+
+    post: __return__ in FINDING_PRIORITY or __return__ == kind
+    post: kind != "claim_failure" or __return__ in ("conflict", "repair_choice")
+    """
+    if kind == "claim_failure":
+        return "conflict" if outcome in CONFLICT_OUTCOMES else "repair_choice"
+    return kind
+
+
+def protocol_delivery_view(result: dict) -> dict:
+    """The one clinical protocol view plus its delivery ordering and decision summaries; no recomputation."""
+    from TrialLedger.layer2 import protocol_view
+
+    view = protocol_view.view(result)
+    outcomes = {(c["id"], claim["id"]): claim["outcome"] for c in view["checks"] for claim in c["claims"]}
+    ordered = []
+    for index, item in enumerate(view["open_items"]):
+        kind = finding_priority_kind(item["kind"], outcomes.get((item["check"], item["claim"])))
+        rank = FINDING_PRIORITY.index(kind) if kind in FINDING_PRIORITY else len(FINDING_PRIORITY)
+        ordered.append((rank, index, {**item, "class": kind}))
+    view["delivery_findings"] = [row for _, _, row in sorted(ordered, key=lambda r: (r[0], r[1]))]
+    view["check_summaries"] = [
+        {
+            "id": check["id"],
+            "kind": check["kind"],
+            "required": check["required"],
+            "code": (check.get("summary") or {}).get("code"),
+            "conflicts": sum(
+                1
+                for claim in check["claims"]
+                if claim["admission"] == "accepted"
+                and claim["outcome"] in CONFLICT_OUTCOMES
+                and claim["application"] != "not_applicable"
+            ),
+            "repairs": sum(
+                1
+                for item in view["delivery_findings"]
+                if item["check"] == check["id"] and item["class"] == "repair_choice"
+            ),
+            "conditional": any(claim["application"] == "conditional" for claim in check["claims"]),
+        }
+        for check in view["checks"]
+    ]
+    view["decisions"] = [
+        {
+            "id": d["id"],
+            "question": d["question"],
+            "disposition": d["disposition"],
+            "alternatives": [
+                {
+                    "id": a["id"],
+                    "label": a["label"],
+                    "frame": a["frame"],
+                    "compatibility": a["compatibility"],
+                    "conditional_checks": list(a.get("conditional_checks", [])),
+                    "assumption_refs": list(a.get("assumption_refs", [])),
+                    "unconditional_application": a["unconditional_application"],
+                }
+                for a in d["alternatives"]
+            ],
+        }
+        for d in result["protocol"].get("decisions", [])
+    ]
+    return view
 
 
 def present(response: dict, *, intent: str = "unspecified", question: str = "") -> dict:
@@ -200,6 +285,51 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
             if response["answer_diff"] is None
             else {"navigation": "exact_artifact", "canonical_ref": "/response/answer_diff"}
         )
+    protocol: dict | None = None
+    if "protocol_view" in response:
+        view = response["protocol_view"]
+        protocol = {
+            "canonical_ref": "/response/protocol_view",
+            "sections": [
+                {key: row[key] for key in ("id", "declared", "coverage", "findings", "findings_text")}
+                for row in view["sections"]
+            ],
+            "decisions": [
+                {
+                    "id": d["id"],
+                    "disposition": d["disposition"],
+                    "alternatives": [
+                        {key: a[key] for key in ("id", "label", "compatibility")} for a in d["alternatives"]
+                    ],
+                }
+                for d in view["decisions"]
+            ],
+            "findings": [],
+            "checks": [],
+            "pages": {
+                "findings": _compact_page(len(view["delivery_findings"])),
+                "checks": _compact_page(len(view["check_summaries"])),
+            },
+        }
+        reply["protocol"] = protocol
+        groups.append(
+            (
+                protocol["findings"],
+                protocol["pages"]["findings"],
+                view["delivery_findings"],
+                "/response/protocol_view/delivery_findings",
+                lambda row, address: {**deepcopy(row), "canonical_ref": address},
+            )
+        )
+        groups.append(
+            (
+                protocol["checks"],
+                protocol["pages"]["checks"],
+                view["check_summaries"],
+                "/response/protocol_view/check_summaries",
+                lambda row, address: {**deepcopy(row), "canonical_ref": address},
+            )
+        )
     if "clinical" in response:
         clinical = response["clinical"]
         rows = clinical["findings"]
@@ -262,4 +392,9 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
                 shown.pop()
                 page.update(_compact_page(len(rows), len(shown)))
         active = following
+    if protocol is not None:
+        # Truncation names what it omitted; every omitted row stays reachable at its canonical address.
+        protocol["omitted"] = {
+            name: page["total"] - page["returned"] for name, page in protocol["pages"].items()
+        }
     return reply
