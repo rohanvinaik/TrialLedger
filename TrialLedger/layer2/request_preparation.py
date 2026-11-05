@@ -12,7 +12,7 @@ from copy import deepcopy
 from typing import Any, cast
 
 from TrialLedger.layer2 import assertions as a
-from TrialLedger.layer2 import session_state, source_evidence
+from TrialLedger.layer2 import refusal, session_state, source_evidence
 from TrialLedger.layer2.entail import MAX_ASSIGNMENTS
 
 INPUTS: dict[str, dict[str, Any]] = {
@@ -215,27 +215,56 @@ def compact_node_code(keys: list[str]) -> str:
     return "literal" if "kind" in keys else "invalid_node"
 
 
+def _refuse(code: str, **location: Any) -> ValueError:
+    """The named refusal, with where it was found when that is known (never guessed)."""
+    return refusal.annotate(ValueError(code), **location)
+
+
 def _fields(value: object, allowed: set[str], required: set[str], where: str) -> dict:
+    shape = {"fields": sorted(allowed)[:40], "required": sorted(required)[:40]}
     if type(value) is not dict:
-        raise ValueError("not_an_object:" + where)
+        raise _refuse(
+            "not_an_object:" + where, pointer=None, rejected=value, expected={"structure": "object", **shape}
+        )
     if set(value) - allowed:
-        raise ValueError("unknown_field:" + where)
+        extra = sorted(str(key) for key in set(value) - allowed)[0]
+        raise _refuse(
+            "unknown_field:" + where,
+            container=value,
+            tokens=(extra,),
+            rejected=extra,
+            expected={"structure": "unknown field", **shape},
+        )
     if required - set(value):
-        raise ValueError("missing_field:" + where)
+        raise _refuse(
+            "missing_field:" + where,
+            container=value,
+            expected={
+                "structure": "missing required field",
+                "missing_fields": sorted(required - set(value)),
+                **shape,
+            },
+        )
     return value
 
 
 def _rows(value: object, maximum: int, where: str) -> list:
     if type(value) is not list:
-        raise ValueError("not_a_list:" + where)
+        raise _refuse("not_a_list:" + where, pointer=None, rejected=value, expected={"structure": "list"})
     if len(value) > maximum:
-        raise ValueError("resource_bound:prepare:" + where)
+        raise _refuse(
+            "resource_bound:prepare:" + where,
+            container=value,
+            expected={"structure": f"at most {maximum} items", "found_items": len(value)},
+        )
     return value
 
 
 def _text(value: object, where: str) -> str:
     if type(value) is not str or not value:
-        raise ValueError("not_text:" + where)
+        raise _refuse(
+            "not_text:" + where, pointer=None, rejected=value, expected={"structure": "non-empty text"}
+        )
     return value
 
 
@@ -265,12 +294,21 @@ def _added_defaults(before: object, after: object, path: str, defaults: list) ->
             _added_defaults(left, right, _pointer(path, index), defaults)
 
 
-def _model(raw: object, expected: type | tuple[type, ...], path: str, defaults: list) -> dict:
+def _model(
+    raw: object, expected: type | tuple[type, ...], path: str, defaults: list, source: object = None
+) -> dict:
     if type(raw) is not dict:
-        raise ValueError("model_object_required:" + path)
-    held = a.from_canonical(json.dumps(raw, allow_nan=False))
+        raise _refuse(
+            "model_object_required:" + path, pointer=None, rejected=raw, expected={"structure": "object"}
+        )
+    try:
+        held = a.from_canonical(json.dumps(raw, allow_nan=False))
+    except (ValueError, TypeError) as error:
+        # `source` is the submitted compact object this was expanded from, when its keys agree.
+        refusal.rebase(error, raw if source is None else source, path)
+        raise
     if not isinstance(held, expected):
-        raise ValueError("wrong_model_class:" + path)
+        raise _refuse("wrong_model_class:" + path, pointer=None, rejected=raw.get("class"))
     expanded = json.loads(a.canonical(held))
     _added_defaults(raw, expanded, path, defaults)
     return expanded
@@ -278,13 +316,17 @@ def _model(raw: object, expected: type | tuple[type, ...], path: str, defaults: 
 
 def _typed(raw: object, cls: type, path: str, defaults: list) -> dict:
     if type(raw) is not dict:
-        raise ValueError("model_object_required:" + path)
-    return _model(raw if "class" in raw else {"class": cls.__name__, **raw}, cls, path, defaults)
+        raise _refuse(
+            "model_object_required:" + path, pointer=None, rejected=raw, expected={"structure": "object"}
+        )
+    return _model(raw if "class" in raw else {"class": cls.__name__, **raw}, cls, path, defaults, source=raw)
 
 
 def _scope(raw: object, path: str, defaults: list) -> dict:
     if type(raw) is not dict:
-        raise ValueError("model_object_required:" + path)
+        raise _refuse(
+            "model_object_required:" + path, pointer=None, rejected=raw, expected={"structure": "object"}
+        )
     held = deepcopy(cast(dict, raw))
     if "parts" in held:
         held["parts"] = [
@@ -306,7 +348,24 @@ def _literal(raw: dict, path: str, defaults: list) -> dict:
     elif kind in ("enum", "enum_set", "entity_ref", "definition_ref"):
         required |= {"comparison", "members"}
     elif kind not in ("boolean", "unresolved"):
-        raise ValueError("unsupported_compact_value_kind:" + path)
+        raise _refuse(
+            "unsupported_compact_value_kind:" + path,
+            container=raw,
+            tokens=("kind",),
+            rejected=kind,
+            expected=refusal.vocabulary(
+                (
+                    "quantity",
+                    "interval",
+                    "enum",
+                    "enum_set",
+                    "entity_ref",
+                    "definition_ref",
+                    "boolean",
+                    "unresolved",
+                )
+            ),
+        )
     _fields(raw, common | fields, required, path)
     predicate = _typed(raw["predicate"], a.Predicate, _pointer(path, "predicate"), defaults)
     value = _model(
@@ -314,6 +373,7 @@ def _literal(raw: dict, path: str, defaults: list) -> dict:
         a.Value,
         _pointer(path, "value"),
         defaults,
+        source=raw,
     )
     result = {
         "class": "Literal",
@@ -335,18 +395,28 @@ def _literal(raw: dict, path: str, defaults: list) -> dict:
             )
     if "qualifiers" in raw:
         result["qualifiers"] = _condition(raw["qualifiers"], _pointer(path, "qualifiers"), defaults)
-    return _model(result, a.Literal, path, defaults)
+    return _model(result, a.Literal, path, defaults, source=raw)
 
 
 def proposition(raw: object, path: str, defaults: list) -> dict:
     if type(raw) is not dict:
-        raise ValueError("model_object_required:" + path)
+        raise _refuse(
+            "model_object_required:" + path, pointer=None, rejected=raw, expected={"structure": "object"}
+        )
     held = cast(dict[str, Any], raw)
     code = compact_node_code(list(held))
     if code == "canonical":
         return _model(held, a.PROPOSITIONS, path, defaults)
     if code in ("invalid_compound", "invalid_node"):
-        raise ValueError(code + ":" + path)
+        raise _refuse(
+            code + ":" + path,
+            container=held,
+            expected={
+                "structure": "a compact proposition is exactly one of: all, any, not (alone), or a literal "
+                "with kind and predicate; a canonical object has class",
+                "keys": sorted(held)[:40],
+            },
+        )
     if code == "literal":
         return _literal(held, path, defaults)
     if code == "not":
@@ -370,7 +440,13 @@ def _origin(raw: object, path: str, defaults: list) -> dict:
     held = _fields(raw, {"kind", "ref", "source", "analysis"}, {"kind", "ref"}, path)
     kind = held["kind"]
     if kind not in ("user_choice", "source_interpretation", "hypothesis"):
-        raise ValueError("unsupported_origin:" + path)
+        raise _refuse(
+            "unsupported_origin:" + path,
+            container=held,
+            tokens=("kind",),
+            rejected=kind,
+            expected=refusal.vocabulary(("user_choice", "source_interpretation", "hypothesis")),
+        )
     result = {"kind": kind, "ref": _text(held["ref"], path + "/ref")}
     for field in ("source", "analysis"):
         value = _take(held, field, None, path, defaults)
@@ -662,7 +738,8 @@ def _protocol_object(
     origin = _origin(row["origin"], path + "/origin", defaults)
     data = deepcopy(row["data"])
     if row["kind"] == "assessment" and isinstance(data, dict) and isinstance(data.get("condition"), dict):
-        data["condition"] = proposition(data["condition"], path + "/data/condition", defaults)
+        # the submitted node itself (not the copy) is expanded, so a refusal can name its place
+        data["condition"] = proposition(row["data"]["condition"], path + "/data/condition", defaults)
     standing = {"status": "proposed", "resolution": "unresolved", "basis": [origin["ref"]]}
     support: list = []
     if "adopted_by" in row:
@@ -913,13 +990,34 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
 def prepare(request: object) -> dict:
     """Return one runnable request and its construction record, without computing it."""
     held = source_evidence._json_copy(request, "prepare")
+    try:
+        return _prepare(held)
+    except (ValueError, TypeError) as error:
+        # The submitted compact input is what the person can edit: name the failing place in it.
+        refusal.settle(error, held, "submitted_prepare_request")
+        raise
+
+
+def _prepare(held: Any) -> dict:
     shape = INPUTS["prepare"]
     raw = _fields(held, {"operation", *shape["fields"]}, {"operation", *shape["required"]}, "prepare")
     if raw["operation"] != "prepare":
-        raise ValueError("unsupported_preparation_operation")
+        raise _refuse(
+            "unsupported_preparation_operation",
+            container=raw,
+            tokens=("operation",),
+            rejected=raw["operation"],
+            expected=refusal.vocabulary(("prepare",)),
+        )
     mode = raw["for"]
     if mode not in ("entailment", "design_session"):
-        raise ValueError("unsupported_preparation_target")
+        raise _refuse(
+            "unsupported_preparation_target",
+            container=raw,
+            tokens=("for",),
+            rejected=mode,
+            expected=refusal.vocabulary(("entailment", "design_session")),
+        )
     if mode == "entailment":
         _fields(
             raw,

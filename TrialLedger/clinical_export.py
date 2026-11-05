@@ -930,6 +930,9 @@ def _protocol_change_row(sheet, kind: str, item: dict, ref: str) -> str:
         label += (
             " (" + "; ".join(f"{axis}: {protocol_view.AXIS_WORDS.get(axis, axis)}" for axis in named) + ")"
         )
+    limited = [str(side) for side in item.get("limited") or []]
+    if limited:
+        label += f" (stopped by the work limit in the {' and '.join(limited)} snapshot)"
     before, after = protocol_view.change_lines(item.get("changes") or [])
     support = "changed" if "support" in named else "unchanged"
     if "input" in named:
@@ -1119,9 +1122,11 @@ def _window_cells(alternative: dict) -> tuple[str, str, str, str]:
     """Permitted, availability, feasible and gap for one alternative, only from its own retained rows."""
     rows = alternative.get("windows")
     if rows is None:
-        return ("Not retained in this stored view",) * 4
+        absent = "Not retained in this stored view"
+        return (absent, absent, absent, absent)
     if not rows:
-        return ("n/a (no schedule check)",) * 4
+        none = "n/a (no schedule check)"
+        return (none, none, none, none)
     out = []
     for key in ("permitted", "availability", "feasible", "full_coverage_gap"):
         cells = []
@@ -1194,18 +1199,146 @@ def _statistics_cell(alternative: dict) -> str:
     return "\n".join(f"{row['check']}: {row['text']}" for row in rows) or "None retained for this alternative"
 
 
-def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
-    """Protocol synopsis, findings, schedule and plan comparisons from the one clinical view (delivery.md)."""
-    response = payload["response"]
-    result = response.get("result") or {}
-    if "protocol" not in result:
-        return []
+SYNOPSIS_HEADERS = [
+    "Section",
+    "Declared",
+    "Coverage",
+    "Findings",
+    "Findings text",
+    "Reasons",
+    "Objects",
+    "Checks",
+    "Conflicts",
+    "Repair choices",
+    "Status",
+    "Reason codes",
+]
+FINDINGS_HEADERS = [
+    "Kind of finding",
+    "Check",
+    "Kind",
+    "Required",
+    "Claim",
+    "Outcome",
+    "Effective outcome",
+    "Admission",
+    "Application",
+    "Standing",
+    "Arithmetic standing",
+    "Applicability standing",
+    "Wording",
+    "Determining references",
+    "Result reference",
+    "Example trace (first witness)",
+]
+SCHEDULE_HEADERS = [
+    "Check",
+    "Assessment",
+    "Collection",
+    "Cohort",
+    "Arm",
+    "Phase",
+    "Conditionality",
+    "Measurement",
+    "Mode",
+    "Anchor",
+    "Unit",
+    "Nominal target",
+    "Permitted window",
+    "Collection availability",
+    "Feasible window",
+    "Full-coverage gap",
+    "Nominal outcome",
+    "Standing",
+    "Origin",
+    "Result reference",
+]
+SCHEDULE_TABLE_KEYS = (
+    "check",
+    "cohort",
+    "arm",
+    "phase",
+    "conditionality",
+    "measurement",
+    "mode",
+    "anchor",
+    "unit",
+    "nominal",
+    "permitted",
+    "availability",
+    "feasible",
+    "full_coverage_gap",
+    "nominal_outcome",
+)
+COMPARISON_HEADERS = [
+    "Decision",
+    "Question",
+    "Disposition",
+    "Alternative",
+    "Label",
+    "Frame",
+    "Compatibility",
+    "Conditional checks",
+    "Assumptions",
+    "Application",
+    "Disposition in words",
+    "Compatibility in words",
+    "Application in words",
+    "Selected by you (caller label)",
+    "Selection origin and basis (caller label)",
+    "Permitted window",
+    "Collection availability",
+    "Feasible window",
+    "Full-coverage gap",
+    "Claim outcomes under this alternative",
+    "Checks deciding this alternative",
+    "Retained binomial plan (exact, with rounded decimal)",
+]
+ADOPTION_HEADERS = [
+    "Object",
+    "Kind",
+    "Version",
+    "Adoption",
+    "Adopted by (premise id)",
+    "Attributed to (caller label, not authenticated)",
+    "Object standing",
+    "Adoption in words",
+    "Definition reference standing",
+    "Superseded adoption records (listed, not used)",
+]
+
+
+def _protocol_view_of(response: dict, result: dict) -> dict:
     from TrialLedger.clinical_delivery import protocol_delivery_view
 
     view = response.get("protocol_view")
     if not view or not all("models" in check for check in view.get("checks", [])):
         # An artifact written before the current view shape: re-render it purely from its own result.
         view = protocol_delivery_view(result)
+    return view
+
+
+def _synopsis_cells(view: dict, row: dict) -> list:
+    detail = row.get("findings_detail") or []
+    checks = [c for c in view["checks"] if c["id"] in row["checks"]]
+    return [
+        row["id"],
+        row["declared"],
+        row["coverage"],
+        row["findings"],
+        row["findings_text"],
+        _join([protocol_view.reason_words(reason, checks, row["coverage"]) for reason in row["reasons"]]),
+        _join(row["objects"]),
+        _join(row["checks"]),
+        sum(1 for d in detail if d["kind"] == "conflict"),
+        sum(1 for d in detail if d["kind"] == "repair_choice"),
+        _status_phrase(row),
+        _join(row["reasons"]),
+    ]
+
+
+def _synopsis_part(book: Workbook, view: dict, identity: str) -> list[str]:
+    """The Sections table and Protocol synopsis sheet."""
     lines = [
         "## Protocol",
         "",
@@ -1214,80 +1347,43 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
         "| Section | Declared | Coverage | Findings |",
         "|---|---|---|---|",
     ]
-    synopsis = _sheet(
-        book,
-        "Protocol synopsis",
-        [
-            "Section",
-            "Declared",
-            "Coverage",
-            "Findings",
-            "Findings text",
-            "Reasons",
-            "Objects",
-            "Checks",
-            "Conflicts",
-            "Repair choices",
-            "Status",
-            "Reason codes",
-        ],
-    )
+    synopsis = _sheet(book, "Protocol synopsis", SYNOPSIS_HEADERS)
     for index, row in enumerate(view["sections"]):
-        detail = row.get("findings_detail") or []
         _write(
             synopsis,
-            [
-                row["id"],
-                row["declared"],
-                row["coverage"],
-                row["findings"],
-                row["findings_text"],
-                _join(
-                    [
-                        protocol_view.reason_words(
-                            reason, [c for c in view["checks"] if c["id"] in row["checks"]], row["coverage"]
-                        )
-                        for reason in row["reasons"]
-                    ]
-                ),
-                _join(row["objects"]),
-                _join(row["checks"]),
-                sum(1 for d in detail if d["kind"] == "conflict"),
-                sum(1 for d in detail if d["kind"] == "repair_choice"),
-                _status_phrase(row),
-                _join(row["reasons"]),
-            ],
+            _synopsis_cells(view, row),
             _reference(identity, f"/response/protocol_view/sections/{index}"),
         )
         lines.append(f"| {row['id']} | {row['declared']} | {row['coverage']} | {row['findings_text']} |")
     _write(synopsis, ["Legend", COVERAGE_LEGEND], "")
-    lines += ["", COVERAGE_LEGEND, "", "### Findings", ""]
-    findings = _sheet(
-        book,
-        "Protocol findings",
-        [
-            "Kind of finding",
-            "Check",
-            "Kind",
-            "Required",
-            "Claim",
-            "Outcome",
-            "Effective outcome",
-            "Admission",
-            "Application",
-            "Standing",
-            "Arithmetic standing",
-            "Applicability standing",
-            "Wording",
-            "Determining references",
-            "Result reference",
-            "Example trace (first witness)",
-        ],
-    )
-    entries = _claim_entries(view, identity)
-    relations = protocol_view.relation_rows(result)
+    return lines + ["", COVERAGE_LEGEND, ""]
+
+
+def _finding_cells(entry: dict, reference: str) -> list:
+    check = entry["check"]
+    return [
+        protocol_view.KIND_WORDS.get(entry["kind"], entry["kind"]),
+        check["id"],
+        check["kind"],
+        check["required"],
+        entry["claim"],
+        entry["outcome"],
+        entry["effective"],
+        entry["admission"],
+        entry["application"],
+        entry["standing"],
+        entry["arithmetic"],
+        entry["applicability"],
+        entry["wording"],
+        entry["determining"],
+        reference,
+        entry.get("witness") or "n/a",
+    ]
+
+
+def _count_line(entries: list[dict], relations: list[dict]) -> str:
     counts = {k: sum(1 for e in entries if e["kind"] == k) for k in protocol_view.KIND_ORDER}
-    lines.append(
+    return (
         "Counts: "
         + "; ".join(
             f"{protocol_view.KIND_WORDS[k].lower()} {counts[k]}"
@@ -1298,41 +1394,20 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
         + ". "
         + KIND_LEGEND
     )
-    lines.append("")
-    for entry in entries:
-        check = entry["check"]
-        reference = _ref(identity, entry["pointer"])
-        _write(
-            findings,
-            [
-                protocol_view.KIND_WORDS.get(entry["kind"], entry["kind"]),
-                check["id"],
-                check["kind"],
-                check["required"],
-                entry["claim"],
-                entry["outcome"],
-                entry["effective"],
-                entry["admission"],
-                entry["application"],
-                entry["standing"],
-                entry["arithmetic"],
-                entry["applicability"],
-                entry["wording"],
-                entry["determining"],
-                reference,
-                entry.get("witness") or "n/a",
-            ],
-            reference,
-        )
-    for check in sorted(
+
+
+def _check_bullet_lines(view: dict, entries: list[dict], identity: str) -> list[str]:
+    lines: list[str] = []
+    ordered = sorted(
         view["checks"],
         key=lambda c: min(
             (KIND_RANK.get(e["kind"], 99) for e in entries if e["check"] is c), default=len(KIND_RANK)
         ),
-    ):
+    )
+    for check in ordered:
         lines.append(
             f"Check {check['id']} ({check['kind']}, {'required' if check['required'] else 'optional'})"
-            + (f" — rests on standing {check['standing']}" if check.get("standing") else "")
+            + (f" — rests on standing {protocol_view.standing_text(check)}" if check.get("standing") else "")
         )
         for entry in entries:
             if entry["check"] is check:
@@ -1341,249 +1416,224 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                 if entry.get("witness"):
                     lines.append(f"  - Example trace: {entry['witness']}")
         lines.append("")
-    lines += _model_section(book, view, identity)
-    lines += _relation_section(book, relations, identity)
-    lines += [
+    return lines
+
+
+def _findings_part(book: Workbook, view: dict, relations: list[dict], identity: str) -> list[str]:
+    """The Findings heading, Protocol findings sheet, counts and per-check bullets."""
+    lines = ["### Findings", ""]
+    findings = _sheet(book, "Protocol findings", FINDINGS_HEADERS)
+    entries = _claim_entries(view, identity)
+    lines.append(_count_line(entries, relations))
+    lines.append("")
+    for entry in entries:
+        reference = _ref(identity, entry["pointer"])
+        _write(findings, _finding_cells(entry, reference), reference)
+    return lines + _check_bullet_lines(view, entries, identity)
+
+
+def _schedule_shown(row: dict) -> dict:
+    def phrase(key: str) -> str:
+        return protocol_view.interval_phrase(row[key], row["unit"], row["anchor"])
+
+    return {
+        "nominal": phrase("nominal"),
+        "permitted": phrase("permitted"),
+        "availability": phrase("availability"),
+        "feasible": phrase("feasible"),
+        "full_coverage_gap": phrase("full_coverage_gap"),
+        "nominal_outcome": protocol_view.nominal_phrase(
+            row["nominal_outcome"], row["nominal"], row["unit"], row["anchor"]
+        ),
+    }
+
+
+def _schedule_cells(row: dict, shown: dict, reference: str) -> list:
+    return [
+        row["check"],
+        row["assessment"],
+        row["collection"],
+        row["cohort"],
+        row["arm"],
+        row["phase"],
+        row["conditionality"],
+        row["measurement"],
+        row["mode"],
+        row["anchor"],
+        row["unit"],
+        shown["nominal"],
+        shown["permitted"],
+        shown["availability"],
+        shown["feasible"],
+        shown["full_coverage_gap"],
+        shown["nominal_outcome"],
+        _join(row["standing"]),
+        _origin_join(row["origin"]),
+        reference,
+    ]
+
+
+def _schedule_table_line(row: dict, shown: dict) -> str:
+    cells = {key: str(row[key]) for key in ("check", "cohort", "arm", "phase", "conditionality")}
+    cells.update({key: str(row[key]) for key in ("measurement", "mode", "anchor", "unit")})
+    cells.update({k: str(v) for k, v in shown.items()})
+    return "| " + " | ".join(cells[key] for key in SCHEDULE_TABLE_KEYS) + " |"
+
+
+def _schedule_part(book: Workbook, view: dict, identity: str) -> list[str]:
+    lines = [
         "### Schedule of assessments",
         "",
         "| Check | Cohort | Arm | Phase | Conditionality | Measurement | Mode | Anchor | Unit | Nominal "
         "| Permitted | Collection | Feasible | Gap | Nominal outcome |",
         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
-    schedule = _sheet(
-        book,
-        "Schedule of assessments",
-        [
-            "Check",
-            "Assessment",
-            "Collection",
-            "Cohort",
-            "Arm",
-            "Phase",
-            "Conditionality",
-            "Measurement",
-            "Mode",
-            "Anchor",
-            "Unit",
-            "Nominal target",
-            "Permitted window",
-            "Collection availability",
-            "Feasible window",
-            "Full-coverage gap",
-            "Nominal outcome",
-            "Standing",
-            "Origin",
-            "Result reference",
-        ],
-    )
+    schedule = _sheet(book, "Schedule of assessments", SCHEDULE_HEADERS)
     for row in view["schedule"]:
         refs = row.get("refs") or []
         ref = refs[0]["result"] if refs and isinstance(refs[0], dict) else ""
         reference = _ref(identity, ref) if ref else ""
+        shown = _schedule_shown(row)
+        _write(schedule, _schedule_cells(row, shown, reference), reference)
+        lines.append(_schedule_table_line(row, shown))
+    return lines
 
-        def phrase(key: str, row: dict = row) -> str:
-            return protocol_view.interval_phrase(row[key], row["unit"], row["anchor"])
 
-        shown = {
-            "nominal": phrase("nominal"),
-            "permitted": phrase("permitted"),
-            "availability": phrase("availability"),
-            "feasible": phrase("feasible"),
-            "full_coverage_gap": phrase("full_coverage_gap"),
-            "nominal_outcome": protocol_view.nominal_phrase(
-                row["nominal_outcome"], row["nominal"], row["unit"], row["anchor"]
-            ),
-        }
-        _write(
-            schedule,
-            [
-                row["check"],
-                row["assessment"],
-                row["collection"],
-                row["cohort"],
-                row["arm"],
-                row["phase"],
-                row["conditionality"],
-                row["measurement"],
-                row["mode"],
-                row["anchor"],
-                row["unit"],
-                shown["nominal"],
-                shown["permitted"],
-                shown["availability"],
-                shown["feasible"],
-                shown["full_coverage_gap"],
-                shown["nominal_outcome"],
-                _join(row["standing"]),
-                _origin_join(row["origin"]),
-                reference,
-            ],
-            reference,
-        )
-        cells = {**{key: str(row[key]) for key in ("check", "cohort", "arm", "phase", "conditionality")}}
-        cells.update({key: str(row[key]) for key in ("measurement", "mode", "anchor", "unit")})
-        cells.update({k: str(v) for k, v in shown.items()})
-        lines.append(
-            "| "
-            + " | ".join(
-                cells[key]
-                for key in (
-                    "check",
-                    "cohort",
-                    "arm",
-                    "phase",
-                    "conditionality",
-                    "measurement",
-                    "mode",
-                    "anchor",
-                    "unit",
-                    "nominal",
-                    "permitted",
-                    "availability",
-                    "feasible",
-                    "full_coverage_gap",
-                    "nominal_outcome",
-                )
-            )
-            + " |"
-        )
-    comparisons = _sheet(
-        book,
-        "Plan comparisons",
-        [
-            "Decision",
-            "Question",
-            "Disposition",
-            "Alternative",
-            "Label",
-            "Frame",
-            "Compatibility",
-            "Conditional checks",
-            "Assumptions",
-            "Application",
-            "Disposition in words",
-            "Compatibility in words",
-            "Application in words",
-            "Selected by you (caller label)",
-            "Selection origin and basis (caller label)",
-            "Permitted window",
-            "Collection availability",
-            "Feasible window",
-            "Full-coverage gap",
-            "Claim outcomes under this alternative",
-            "Checks deciding this alternative",
-            "Retained binomial plan (exact, with rounded decimal)",
-        ],
+def _noted_windows(alternative: dict) -> tuple[str, str, str, str]:
+    cells = _window_cells(alternative)
+    if not _claims_not_applied(alternative):
+        return cells
+    note = " (calculated; its claims are not applied)"
+    permitted, availability, feasible, gap = (
+        text if text.startswith("Not retained") or text.startswith("n/a") else text + note for text in cells
     )
-    lines += ["", "### Plan comparisons", ""]
+    return permitted, availability, feasible, gap
+
+
+def _windows_sentence(permitted: str, availability: str, feasible: str, gap: str) -> str:
+    if len({permitted, availability, feasible, gap}) == 1:
+        return f"Windows: {permitted}."
+    return (
+        f"Permitted window: {permitted}; collection availability: {availability}; "
+        f"feasible window: {feasible}; full-coverage gap: {gap}."
+    )
+
+
+def _comparison_cells(
+    decision: dict, alternative: dict, words: dict, windows: tuple, selection: tuple
+) -> list:
+    return [
+        decision["id"],
+        decision["question"],
+        decision["disposition"],
+        alternative["id"],
+        alternative["label"],
+        alternative["frame"],
+        alternative["compatibility"],
+        _join(alternative["conditional_checks"]),
+        _join(alternative["assumption_refs"]),
+        alternative["unconditional_application"],
+        words["disposition"],
+        words["compatibility"],
+        words["application"],
+        *selection,
+        *windows,
+        _claim_outcome_text(alternative),
+        _deciding_text(alternative),
+        _statistics_cell(alternative),
+    ]
+
+
+def _alternative_bullet(alternative: dict, application: str, selection: tuple, windows: tuple) -> str:
+    selected, selected_origin = selection
+    return (
+        f"- {alternative['id']}: {application}. {selected}"
+        + (f" (origin {selected_origin})" if selected_origin != "n/a" else "")
+        + f". {_windows_sentence(*windows)} Claim outcomes: {_claim_outcome_text(alternative)}. "
+        f"Checks deciding it: {_deciding_text(alternative)}."
+        + (
+            " Retained binomial plan: " + _statistics_cell(alternative).replace("\n", " | ") + "."
+            if alternative.get("statistics")
+            else ""
+        )
+    )
+
+
+def _alternative_table_line(alternative: dict, compat_words: str) -> str:
+    return (
+        f"| {alternative['id']} | {alternative['label']} (caller wording) | {alternative['frame']} | "
+        f"{alternative['compatibility']} ({compat_words}) | "
+        f"{_join(alternative['conditional_checks']) or 'none'} | "
+        f"{alternative['unconditional_application']} |"
+    )
+
+
+def _decision_lines(comparisons, decision: dict, index: int, identity: str) -> list[str]:
+    disposition_words = protocol_view.DISPOSITION_WORDS.get(decision["disposition"], decision["disposition"])
+    lines = [
+        f"{decision['question']} (caller wording)",
+        "",
+        f"Disposition: {decision['disposition']} ({disposition_words})",
+        "",
+        "| Alternative | Label | Frame | Compatibility | Conditional checks | Application |",
+        "|---|---|---|---|---|---|",
+    ]
+    extra = []
+    for alternative in decision["alternatives"]:
+        compat_words = protocol_view.COMPATIBILITY_WORDS.get(
+            alternative["compatibility"], alternative["compatibility"]
+        )
+        application = protocol_view.application_phrase(
+            alternative["frame"],
+            alternative["compatibility"],
+            alternative["unconditional_application"],
+            alternative["assumption_refs"],
+        )
+        windows = _noted_windows(alternative)
+        selection = _selection_cells(decision, alternative)
+        words = {"disposition": disposition_words, "compatibility": compat_words, "application": application}
+        _write(
+            comparisons,
+            _comparison_cells(decision, alternative, words, windows, selection),
+            _reference(identity, f"/response/protocol_view/decisions/{index}"),
+        )
+        lines.append(_alternative_table_line(alternative, compat_words))
+        extra.append(_alternative_bullet(alternative, application, selection, windows))
+    return lines + ["", *extra, ""]
+
+
+def _comparisons_part(book: Workbook, view: dict, identity: str) -> list[str]:
+    comparisons = _sheet(book, "Plan comparisons", COMPARISON_HEADERS)
+    lines = ["", "### Plan comparisons", ""]
     if not view["decisions"]:
         _write(comparisons, ["No plan comparison declared"], "")
         lines += ["No plan comparison declared.", ""]
     for index, decision in enumerate(view["decisions"]):
-        disposition_words = protocol_view.DISPOSITION_WORDS.get(
-            decision["disposition"], decision["disposition"]
-        )
-        lines += [
-            f"{decision['question']} (caller wording)",
-            "",
-            f"Disposition: {decision['disposition']} ({disposition_words})",
-            "",
-            "| Alternative | Label | Frame | Compatibility | Conditional checks | Application |",
-            "|---|---|---|---|---|---|",
-        ]
-        extra = []
-        for alternative in decision["alternatives"]:
-            compat_words = protocol_view.COMPATIBILITY_WORDS.get(
-                alternative["compatibility"], alternative["compatibility"]
-            )
-            application = protocol_view.application_phrase(
-                alternative["frame"],
-                alternative["compatibility"],
-                alternative["unconditional_application"],
-                alternative["assumption_refs"],
-            )
-            permitted, availability, feasible, gap = _window_cells(alternative)
-            if _claims_not_applied(alternative):
-                note = " (calculated; its claims are not applied)"
-                permitted, availability, feasible, gap = (
-                    text if text.startswith("Not retained") or text.startswith("n/a") else text + note
-                    for text in (permitted, availability, feasible, gap)
-                )
-            selected, selected_origin = _selection_cells(decision, alternative)
-            _write(
-                comparisons,
-                [
-                    decision["id"],
-                    decision["question"],
-                    decision["disposition"],
-                    alternative["id"],
-                    alternative["label"],
-                    alternative["frame"],
-                    alternative["compatibility"],
-                    _join(alternative["conditional_checks"]),
-                    _join(alternative["assumption_refs"]),
-                    alternative["unconditional_application"],
-                    disposition_words,
-                    compat_words,
-                    application,
-                    selected,
-                    selected_origin,
-                    permitted,
-                    availability,
-                    feasible,
-                    gap,
-                    _claim_outcome_text(alternative),
-                    _deciding_text(alternative),
-                    _statistics_cell(alternative),
-                ],
-                _reference(identity, f"/response/protocol_view/decisions/{index}"),
-            )
-            lines.append(
-                f"| {alternative['id']} | {alternative['label']} (caller wording) | {alternative['frame']} | "
-                f"{alternative['compatibility']} ({compat_words}) | "
-                f"{_join(alternative['conditional_checks']) or 'none'} | "
-                f"{alternative['unconditional_application']} |"
-            )
-            windows = (
-                f"Windows: {permitted}."
-                if len({permitted, availability, feasible, gap}) == 1
-                else f"Permitted window: {permitted}; collection availability: {availability}; "
-                f"feasible window: {feasible}; full-coverage gap: {gap}."
-            )
-            extra.append(
-                f"- {alternative['id']}: {application}. {selected}"
-                + (f" (origin {selected_origin})" if selected_origin != "n/a" else "")
-                + f". {windows} Claim outcomes: {_claim_outcome_text(alternative)}. "
-                f"Checks deciding it: {_deciding_text(alternative)}."
-                + (
-                    " Retained binomial plan: " + _statistics_cell(alternative).replace("\n", " | ") + "."
-                    if alternative.get("statistics")
-                    else ""
-                )
-            )
-        lines += ["", *extra, ""]
-    adoption = _sheet(
-        book,
-        "Protocol adoption",
-        [
-            "Object",
-            "Kind",
-            "Version",
-            "Adoption",
-            "Adopted by (premise id)",
-            "Attributed to (caller label, not authenticated)",
-            "Object standing",
-            "Adoption in words",
-            "Definition reference standing",
-            "Superseded adoption records (listed, not used)",
-        ],
-    )
+        lines += _decision_lines(comparisons, decision, index, identity)
+    return lines
+
+
+def _superseded_by_object(result: dict) -> dict[str, list[str]]:
     premises = {p.get("id"): p for key in ("premises", "effective_premises") for p in result.get(key) or []}
     superseded: dict[str, list[str]] = {}
     for pid, words in protocol_view.superseded_adoptions(result).items():
         for named in (premises.get(pid, {}).get("payload") or {}).get("objects") or []:
             superseded.setdefault(str(named.get("id")), []).append(f"{pid} {words}")
-    lines += [
+    return superseded
+
+
+def _adoption_words(row: dict) -> str:
+    words = protocol_view.ADOPTION_WORDS.get(row["adoption"], row["adoption"])
+    definition = row.get("definition_standing")
+    if definition is not None and definition != "known":
+        words += f"; its definition reference is {definition}"
+    return words
+
+
+def _adoption_part(book: Workbook, view: dict, result: dict, identity: str) -> list[str]:
+    adoption = _sheet(book, "Protocol adoption", ADOPTION_HEADERS)
+    superseded = _superseded_by_object(result)
+    lines = [
         "",
         "### Adoption",
         "",
@@ -1592,10 +1642,8 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
         "|---|---|---|---|---|---|---|---|",
     ]
     for index, row in enumerate(view.get("adoption", [])):
-        words = protocol_view.ADOPTION_WORDS.get(row["adoption"], row["adoption"])
+        words = _adoption_words(row)
         definition = row.get("definition_standing")
-        if definition is not None and definition != "known":
-            words += f"; its definition reference is {definition}"
         _write(
             adoption,
             [
@@ -1621,7 +1669,11 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
     for object_id, notes in superseded.items():
         lines.append("")
         lines.append(f"Superseded adoption records for {object_id} (listed, not used): {'; '.join(notes)}.")
-    lines += ["", "### Open items", ""]
+    return lines
+
+
+def _open_items_part(view: dict, relations: list[dict]) -> list[str]:
+    lines = ["", "### Open items", ""]
     lines += [f"{n}. {item['text']} ({item['ref']})" for n, item in enumerate(view["delivery_findings"], 1)]
     count = len(view["delivery_findings"])
     for row in (r for r in relations if r["code"] != "consistent"):
@@ -1630,8 +1682,26 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             f"{count}. Definition relation {row['id']}: {row['code']}, {row['code_words']} "
             f"(/response/result{row['ref']})"
         )
-    lines += ["", "### Limits", ""] + [f"- {text}" for text in view["limits_of_claim"]] + [""]
     return lines
+
+
+def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
+    """Protocol synopsis, findings, schedule and plan comparisons from the one clinical view (delivery.md)."""
+    response = payload["response"]
+    result = response.get("result") or {}
+    if "protocol" not in result:
+        return []
+    view = _protocol_view_of(response, result)
+    relations = protocol_view.relation_rows(result)
+    lines = _synopsis_part(book, view, identity)
+    lines += _findings_part(book, view, relations, identity)
+    lines += _model_section(book, view, identity)
+    lines += _relation_section(book, relations, identity)
+    lines += _schedule_part(book, view, identity)
+    lines += _comparisons_part(book, view, identity)
+    lines += _adoption_part(book, view, result, identity)
+    lines += _open_items_part(view, relations)
+    return lines + ["", "### Limits", ""] + [f"- {text}" for text in view["limits_of_claim"]] + [""]
 
 
 def _model_section(book: Workbook, view: dict, identity: str) -> list[str]:

@@ -1,0 +1,142 @@
+{
+ "canonical_ref": "/response/protocol_view",
+ "checks": [
+  {
+   "canonical_ref": "/response/protocol_view/check_summaries/0",
+   "code": "violated",
+   "conditional": true,
+   "conflicts": 0,
+   "id": "week12-schedule",
+   "kind": "schedule",
+   "repairs": 2,
+   "required": true,
+   "resolution": "resolved",
+   "resolution_causes": [],
+   "standing": "known"
+  }
+ ],
+ "decisions": [],
+ "findings": [
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/0",
+   "check": "week12-schedule",
+   "claim": "target",
+   "class": "repair_choice",
+   "kind": "claim_failure",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "If the declared condition applies: The nominal target is inside the permitted window but outside planned collection."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/1",
+   "check": "week12-schedule",
+   "claim": "window",
+   "class": "repair_choice",
+   "kind": "claim_failure",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/2",
+   "check": "week12-schedule",
+   "claim": "visit",
+   "class": "claim_conditional",
+   "kind": "claim_conditional",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "If the declared condition applies: At least one permitted assessment time falls within planned collection."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/3",
+   "check": "week12-schedule",
+   "claim": "target",
+   "class": "claim_conditional",
+   "kind": "claim_conditional",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "If the declared condition applies: The nominal target is inside the permitted window but outside planned collection."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/4",
+   "check": "week12-schedule",
+   "claim": "window",
+   "class": "claim_conditional",
+   "kind": "claim_conditional",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "If the declared condition applies: Planned collection does not cover part of the permitted window: (80, 91]."
+  }
+ ],
+ "omitted": {
+  "checks": 0,
+  "findings": 0
+ },
+ "pages": {
+  "checks": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 1,
+   "total": 1
+  },
+  "findings": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 5,
+   "total": 5
+  }
+ },
+ "sections": [
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "population"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "eligibility"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "interventions"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "endpoints"
+  },
+  {
+   "coverage": "specified",
+   "declared": "requested",
+   "findings": "repair_choice_open",
+   "findings_text": "A repair choice is open in the declared checks.",
+   "id": "assessments"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "efficacy"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "safety"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "exploratory"
+  }
+ ]
+}

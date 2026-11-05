@@ -26,7 +26,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.hyperlink import Hyperlink
 from openpyxl.worksheet.pagebreak import Break
 
-from TrialLedger import __version__, checks, contract
+from TrialLedger import __version__, checks, contract, coverage
 from TrialLedger.cells import ROW_LIMIT, cell_number_state, cell_text_state
 from TrialLedger.landscape_warrants import retained_format
 from TrialLedger.links import pubmed_link
@@ -1647,6 +1647,16 @@ def search_plain_words(request: Any) -> str:
     return "\n".join(lines) or NOT_STATED
 
 
+def coverage_search_words(record: dict[str, Any]) -> str:
+    """The search in plain words, then (when the scope carries them) its coverage boundary: what a completed
+    retrieval of this declared search does not establish. A scope without coverage statements (a run written
+    before they existed) reads exactly as before."""
+    words = search_plain_words(record.get("request"))
+    scope = record.get("scope")
+    lines = coverage.coverage_words(scope.get("coverage")) if isinstance(scope, dict) else []
+    return "\n".join([words, *lines]) if lines else words
+
+
 def found_words(record: dict[str, Any]) -> str:
     """What the run found, in words: the trials matched and read, each number asked, how the pages came."""
     held = record["manifest"].get("retrieval")
@@ -1725,7 +1735,7 @@ def guide_rows(record: dict[str, Any]) -> list[tuple]:
     held = record.get("statuses")
     statuses = held if isinstance(held, dict) else {}
     content = {
-        "The search, in plain words": search_plain_words(record.get("request")),
+        "The search, in plain words": coverage_search_words(record),
         "What it found": found_words(record),
         "How to read this workbook": HOW_TO_READ,
         "What each status means": "\n".join(

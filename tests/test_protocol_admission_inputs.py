@@ -225,3 +225,17 @@ def test_preparation_refuses_the_same_malformed_parameters_without_computing(no_
     reply = run(example)
     assert reply["code"] == "refused"
     assert reply["problems"] == ["protocol_check_input:efficacy-check:binomial_invalid_probabilities"]
+
+
+def test_a_check_input_refusal_points_at_the_declared_check_and_names_the_contract():
+    """Repairable refusal: the code is unchanged, and the diagnostic points at the failing check."""
+    request = _binomial_session(p0="1/2", p1="1/5")
+    reply = run(request)
+    assert reply["problems"] == ["protocol_check_input:efficacy-check:binomial_invalid_probabilities"]
+    (diagnostic,) = reply["input_diagnostics"]
+    index = next(
+        i for i, c in enumerate(request["session"]["protocol"]["checks"]) if c["id"] == "efficacy-check"
+    )
+    assert diagnostic["pointer"] == f"/session/protocol/checks/{index}"
+    assert diagnostic["expected"]["operator_code"] == "binomial_invalid_probabilities"
+    assert diagnostic["reference"] == {"operation": "describe", "view": "protocol", "detail": "schema"}

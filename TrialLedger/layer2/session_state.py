@@ -318,7 +318,20 @@ def _protocol_input_check(index: dict, premises: dict) -> None:
                         signal["kind"], signal["data"], signal.get("claims") or []
                     )
                 except ValueError as error:
-                    raise ValueError(f"protocol_check_input:{check_id}:{error}") from error
+                    from TrialLedger.layer2 import refusal
+
+                    # Repairable: point at the declared check (matched by value in the submitted request) and
+                    # name the operator's input contract; the code is unchanged.
+                    raise refusal.annotate(
+                        ValueError(f"protocol_check_input:{check_id}:{error}"),
+                        node=index["checks"][check_id],
+                        rejected=str(error),
+                        expected={
+                            "requirement": f"the {signal['kind']} operator input contract",
+                            "operator_code": str(error),
+                        },
+                        reference_view="protocol",
+                    ) from error
 
 
 def prepare(value: object) -> dict:

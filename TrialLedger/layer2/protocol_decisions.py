@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import copy
 import json
-from typing import Any
+from typing import Any, cast
+
+from TrialLedger.layer2.protocol_outcomes import CONFLICT_CODES, CONFLICT_OUTCOMES, REPAIR_OUTCOMES
 
 FIELDS = {"kind", "id", "question", "target", "coverage", "selected", "alternatives"}
 ALTERNATIVE_FIELDS = {"id", "label", "replace_objects", "checks"}
@@ -29,14 +31,6 @@ DISPOSITIONS = (
     "settled_within_declared_alternatives",
     "no_compatible_alternative",
 )
-# Rohan, 2026-11-04: policy failures are conflicts (incompatible, blocking); schedule gaps and an unmet
-# binomial target are the person's repair choice, in comparisons as in the clinical labels.
-CONFLICT_OUTCOMES = frozenset({"gap", "competing", "violation", "not_established", "inconsistent_domain"})
-REPAIR_OUTCOMES = frozenset(
-    {"no_feasible_time", "no_permitted_time", "outside_window", "not_collected", "uncovered", "not_satisfied"}
-)
-FAILURE_OUTCOMES = CONFLICT_OUTCOMES | REPAIR_OUTCOMES
-CONFLICT_CODES = frozenset({"conflict", "inconsistent", "violated"})
 
 
 def _canonical(value: object) -> str:
@@ -51,7 +45,7 @@ def validate(raw: object, index: dict, target: dict) -> dict:
     """One protocol decision, validated against the admitted protocol index; returns a detached copy."""
     if type(raw) is not dict or set(raw) - (FIELDS | {"evidence"}) or FIELDS - set(raw):
         raise _fail("fields")
-    item = copy.deepcopy(raw)
+    item = cast(dict, copy.deepcopy(raw))
     if item["kind"] != "protocol_options":
         raise _fail("fields")
     if (
@@ -79,6 +73,7 @@ def validate(raw: object, index: dict, target: dict) -> dict:
     for alt in alternatives:
         if type(alt) is not dict or set(alt) != ALTERNATIVE_FIELDS:
             raise _fail("fields")
+        alt = cast(dict, alt)
         if type(alt["id"]) is not str or not alt["id"] or alt["id"] in ids:
             raise _fail("fields")
         ids.add(alt["id"])
@@ -92,6 +87,7 @@ def validate(raw: object, index: dict, target: dict) -> dict:
             or len(set(checks)) != len(checks)
         ):
             raise _fail("fields")
+        checks = cast(list[str], checks)
         if any(c not in index["checks"] for c in checks):
             raise _fail("unknown_check")
         if not required <= set(checks):
@@ -104,6 +100,7 @@ def validate(raw: object, index: dict, target: dict) -> dict:
         for obj in replacements:
             if type(obj) is not dict or "id" not in obj or "kind" not in obj or "scope" not in obj:
                 raise _fail("fields")
+            obj = cast(dict, obj)
             if type(obj["id"]) is not str:
                 # An id is a string; an unhashable value is a named refusal, never a TypeError (ty triage).
                 raise _fail("fields")
@@ -121,6 +118,7 @@ def validate(raw: object, index: dict, target: dict) -> dict:
     if selected is not None:
         if type(selected) is not dict or set(selected) != {"alternative", "origin", "basis"}:
             raise _fail("selection")
+        selected = cast(dict, selected)
         basis = selected["basis"]
         if type(selected["alternative"]) is not str:
             raise _fail("selection")

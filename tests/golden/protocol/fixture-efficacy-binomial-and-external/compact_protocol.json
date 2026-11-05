@@ -1,0 +1,155 @@
+{
+ "canonical_ref": "/response/protocol_view",
+ "checks": [
+  {
+   "canonical_ref": "/response/protocol_view/check_summaries/0",
+   "code": "unresolved",
+   "conditional": false,
+   "conflicts": 0,
+   "id": "efficacy-exact",
+   "kind": "binomial_design",
+   "repairs": 0,
+   "required": true,
+   "resolution": "resolved",
+   "resolution_causes": [],
+   "standing": "known"
+  },
+  {
+   "canonical_ref": "/response/protocol_view/check_summaries/1",
+   "code": null,
+   "conditional": false,
+   "conflicts": 0,
+   "id": "survival-method",
+   "kind": "external_method",
+   "repairs": 0,
+   "required": true,
+   "resolution": "resolved",
+   "resolution_causes": [],
+   "standing": null
+  }
+ ],
+ "decisions": [],
+ "findings": [
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/0",
+   "check": "survival-method",
+   "claim": null,
+   "class": "not_computed",
+   "kind": "not_computed",
+   "ref": "/protocol/checks/1",
+   "text": "Not computed: external method; missing inputs: accrual_rate, dropout."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/1",
+   "check": "efficacy-exact",
+   "claim": "alpha",
+   "class": "claim_unsettled",
+   "kind": "claim_unsettled",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "Not applied: a premise this claim needs is not fully resolved. Withheld because the model assumption 'alignment' is not declared (assumption_missing:alignment). The computed values (null rejection probability 0.0100, power 0.4044) stay visible; they are not applied."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/2",
+   "check": "efficacy-exact",
+   "claim": "power",
+   "class": "claim_unsettled",
+   "kind": "claim_unsettled",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "Not applied: a premise this claim needs is not fully resolved. Withheld because the model assumption 'alignment' is not declared (assumption_missing:alignment). The computed values (null rejection probability 0.0100, power 0.4044) stay visible; they are not applied."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/3",
+   "check": null,
+   "claim": null,
+   "class": "section",
+   "kind": "section",
+   "ref": "/protocol/sections/endpoints",
+   "text": "Section endpoints is open."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/4",
+   "check": null,
+   "claim": null,
+   "class": "section",
+   "kind": "section",
+   "ref": "/protocol/sections/efficacy",
+   "text": "Section efficacy is not_computed."
+  }
+ ],
+ "omitted": {
+  "checks": 0,
+  "findings": 0
+ },
+ "pages": {
+  "checks": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 2,
+   "total": 2
+  },
+  "findings": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 5,
+   "total": 5
+  }
+ },
+ "sections": [
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "population"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "eligibility"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "interventions"
+  },
+  {
+   "coverage": "open",
+   "declared": "requested",
+   "findings": "not_checked",
+   "findings_text": "Not fully checked (see coverage).",
+   "id": "endpoints"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "assessments"
+  },
+  {
+   "coverage": "not_computed",
+   "declared": "requested",
+   "findings": "not_checked",
+   "findings_text": "Not fully checked (see coverage).",
+   "id": "efficacy"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "safety"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "exploratory"
+  }
+ ]
+}

@@ -1,0 +1,128 @@
+{
+ "canonical_ref": "/response/protocol_view",
+ "checks": [
+  {
+   "canonical_ref": "/response/protocol_view/check_summaries/0",
+   "code": "unresolved",
+   "conditional": false,
+   "conflicts": 0,
+   "id": "estimand-check",
+   "kind": "estimand",
+   "repairs": 0,
+   "required": true,
+   "resolution": "resolved",
+   "resolution_causes": [],
+   "standing": "known"
+  },
+  {
+   "canonical_ref": "/response/protocol_view/check_summaries/1",
+   "code": "consistent",
+   "conditional": false,
+   "conflicts": 0,
+   "id": "dependencies-check",
+   "kind": "dependencies",
+   "repairs": 0,
+   "required": true,
+   "resolution": "resolved",
+   "resolution_causes": [],
+   "standing": "known"
+  }
+ ],
+ "decisions": [],
+ "findings": [
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/0",
+   "check": "estimand-check",
+   "claim": null,
+   "class": "signal_finding",
+   "kind": "signal_finding",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "Finding from the estimand check: estimand unresolved (estimand_unresolved:week12)."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/1",
+   "check": null,
+   "claim": null,
+   "class": "section",
+   "kind": "section",
+   "ref": "/protocol/sections/endpoints",
+   "text": "Section endpoints is open."
+  }
+ ],
+ "omitted": {
+  "checks": 0,
+  "findings": 0
+ },
+ "pages": {
+  "checks": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 2,
+   "total": 2
+  },
+  "findings": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 2,
+   "total": 2
+  }
+ },
+ "sections": [
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "population"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "eligibility"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "interventions"
+  },
+  {
+   "coverage": "open",
+   "declared": "requested",
+   "findings": "not_checked",
+   "findings_text": "Not fully checked (see coverage).",
+   "id": "endpoints"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "assessments"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "efficacy"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "safety"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "exploratory"
+  }
+ ]
+}

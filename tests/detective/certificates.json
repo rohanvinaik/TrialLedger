@@ -1887,13 +1887,13 @@
   },
   "TrialLedger/request.py::resolve_scope": {
     "cut_reasons": [],
-    "function_digest": "6fe921bf5dafc6e2",
+    "function_digest": "ec16d96fc811a105",
     "refusal": "",
-    "standing": "complete"
+    "standing": "incomplete"
   },
   "TrialLedger/request.py::slot_value_ok": {
     "cut_reasons": [],
-    "function_digest": "5672244be0413248",
+    "function_digest": "f77afc958d92ec5c",
     "refusal": "",
     "standing": "complete"
   },

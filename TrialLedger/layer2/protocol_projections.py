@@ -220,9 +220,10 @@ class _Build:
         return _unique(rows)
 
     def scope_issue(self, scope: str) -> dict | None:
+        # The same gating closure as standing, adoption and conditions (Rohan, 2026-11-05).
         wrong = [
             i
-            for i in self.objects
+            for i in self.gating(self.objects)
             if scope_equality_state(scope, canonical(self.index["objects"][i]["scope"])) == "scope_mismatch"
         ]
         return _unresolved("scope_mismatch", wrong) if wrong else None

@@ -1,0 +1,1813 @@
+{
+ "checks": [
+  {
+   "children": [
+    {
+     "applicability": [],
+     "conditions": [],
+     "id": "interim-safety:finite_policy_model",
+     "receipt": {
+      "bindings": [],
+      "check": "interim-safety",
+      "closure": [
+       "interim-rule"
+      ],
+      "conditions": [],
+      "objects": [
+       "interim-rule"
+      ],
+      "premises": [
+       "adopt:interim-rule:fixture-v1"
+      ],
+      "projection": "finite_policy_model",
+      "request_digest": "25e6a5fce2ef9fa1f30cfff3aad9ccb12255e8af91812d83320445783905be27",
+      "role_support": {
+       "model": [
+        {
+         "basis": [
+          "user:simulated choice (fixture)"
+         ],
+         "id": "object:interim-rule",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:simulated choice (fixture)"
+         ],
+         "id": "premise:adopt:interim-rule:fixture-v1",
+         "resolution": "resolved",
+         "status": "known"
+        }
+       ]
+      },
+      "scope": {
+       "context": {
+        "arm": null,
+        "cohort": null,
+        "phase": null
+       },
+       "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+         "arm": "all",
+         "population": "general",
+         "study": "draft",
+         "time": "entry",
+         "version": "v1"
+        }
+       }
+      },
+      "target": {
+       "kind": "new_trial",
+       "ref": "draft",
+       "scope": {
+        "arm": "all",
+        "population": "general",
+        "study": "draft",
+        "time": "entry",
+        "version": "v1"
+       }
+      },
+      "version": "1"
+     },
+     "refusal": null,
+     "request": {
+      "operation": "signals",
+      "signals": [
+       {
+        "claims": [
+         {
+          "claim": "coverage",
+          "id": "coverage",
+          "witness_limit": 4
+         },
+         {
+          "claim": "exclusivity",
+          "id": "exclusivity",
+          "witness_limit": 4
+         },
+         {
+          "claim": "prohibition",
+          "id": "prohibition",
+          "witness_limit": 4
+         },
+         {
+          "claim": "termination",
+          "id": "termination",
+          "witness_limit": 4
+         }
+        ],
+        "data": {
+         "actions": [
+          {
+           "description": "select low dose",
+           "id": "select_low_dose",
+           "scope": {
+            "level": "cohort",
+            "ref": "invented:stage-a"
+           }
+          }
+         ],
+         "constraints": [],
+         "initial": [
+          "interim"
+         ],
+         "invariants": [],
+         "prohibitions": [
+          {
+           "actions": [
+            "select_low_dose"
+           ],
+           "condition": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "low_dose_safety_signal",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "study_procedure",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "eq",
+             "inclusivity": "unspecified",
+             "kind": "boolean",
+             "members": [],
+             "number": null,
+             "unit": "",
+             "upper": null
+            }
+           },
+           "id": "no-low-with-signal",
+           "rule": {
+            "basis": [
+             "user:simulated choice (fixture)"
+            ],
+            "ref": "user:simulated prohibition",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "state": null
+          }
+         ],
+         "scope": "invented:stage-a-interim",
+         "states": [
+          "interim",
+          "selected"
+         ],
+         "terminal": [
+          "selected"
+         ],
+         "transitions": [
+          {
+           "actions": [
+            "select_low_dose"
+           ],
+           "from": "interim",
+           "guard": {
+            "class": "AnyOf",
+            "parts": [
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "low_dose_safety_signal",
+               "kind": "measurement"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "study_procedure",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             },
+             {
+              "class": "Not",
+              "part": {
+               "class": "Literal",
+               "evidence": [],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "low_dose_safety_signal",
+                "kind": "measurement"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "study_procedure",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              }
+             }
+            ]
+           },
+           "id": "t",
+           "to": "selected"
+          }
+         ],
+         "variables": [
+          {
+           "id": "low_safety",
+           "values": [
+            {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "low_dose_safety_signal",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            },
+            {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "negative",
+             "predicate": {
+              "class": "Predicate",
+              "key": "low_dose_safety_signal",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           ]
+          }
+         ],
+         "version": "fixture-v1"
+        },
+        "id": "interim-safety:finite_policy_model",
+        "kind": "finite_policy",
+        "role_support": {
+         "model": [
+          "object:interim-rule",
+          "premise:adopt:interim-rule:fixture-v1"
+         ]
+        },
+        "support": [
+         {
+          "basis": [
+           "user:simulated choice (fixture)"
+          ],
+          "id": "object:interim-rule",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:simulated choice (fixture)"
+          ],
+          "id": "premise:adopt:interim-rule:fixture-v1",
+          "resolution": "resolved",
+          "status": "known"
+         }
+        ]
+       }
+      ]
+     },
+     "request_digest": "25e6a5fce2ef9fa1f30cfff3aad9ccb12255e8af91812d83320445783905be27",
+     "result": {
+      "clinical": {
+       "findings": [
+        {
+         "blockers": [
+          "policy_violation:prohibition"
+         ],
+         "canonical_ref": "/result/signals/0",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "conflict",
+         "kind": "signal",
+         "origins": [],
+         "outcome": "violated",
+         "path": "/result/signals/0",
+         "scope": {},
+         "standing": "known",
+         "support": {
+          "admission": {
+           "application_blockers": [],
+           "code": "accepted"
+          },
+          "basis": [
+           "user:simulated choice (fixture)"
+          ],
+          "rule": "policy.finite_reachable_states:1",
+          "support": [
+           {
+            "basis": [
+             "user:simulated choice (fixture)"
+            ],
+            "id": "object:interim-rule",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:simulated choice (fixture)"
+            ],
+            "id": "premise:adopt:interim-rule:fixture-v1",
+            "resolution": "resolved",
+            "status": "known"
+           }
+          ]
+         },
+         "values": {
+          "id": "interim-safety:finite_policy_model",
+          "value": {
+           "claims": [
+            {
+             "claim": "coverage",
+             "determining_ids": [],
+             "id": "coverage",
+             "outcome": "covered",
+             "reasons": [],
+             "standing": "no_rule_support",
+             "violations_found": 0,
+             "witness_limit": 4,
+             "witnesses": [],
+             "witnesses_omitted": 0
+            },
+            {
+             "claim": "exclusivity",
+             "determining_ids": [],
+             "id": "exclusivity",
+             "outcome": "exclusive",
+             "reasons": [],
+             "standing": "no_rule_support",
+             "violations_found": 0,
+             "witness_limit": 4,
+             "witnesses": [],
+             "witnesses_omitted": 0
+            },
+            {
+             "claim": "prohibition",
+             "determining_ids": [
+              "no-low-with-signal"
+             ],
+             "id": "prohibition",
+             "outcome": "violation",
+             "reasons": [],
+             "standing": "known",
+             "violations_found": 1,
+             "witness_limit": 4,
+             "witnesses": [
+              {
+               "element": {
+                "id": "no-low-with-signal",
+                "kind": "prohibition",
+                "transition": "t"
+               },
+               "trace": [
+                {
+                 "actions": [
+                  "select_low_dose"
+                 ],
+                 "state": "interim",
+                 "transition": "t",
+                 "valuation": {
+                  "low_safety": {
+                   "class": "Literal",
+                   "evidence": [],
+                   "polarity": "positive",
+                   "predicate": {
+                    "class": "Predicate",
+                    "key": "low_dose_safety_signal",
+                    "kind": "measurement"
+                   },
+                   "qualifiers": {
+                    "class": "Always"
+                   },
+                   "subject": {
+                    "class": "Subject",
+                    "kind": "study_procedure",
+                    "referent": ""
+                   },
+                   "time": null,
+                   "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                   }
+                  }
+                 }
+                }
+               ]
+              }
+             ],
+             "witnesses_omitted": 0
+            },
+            {
+             "claim": "termination",
+             "determining_ids": [],
+             "id": "termination",
+             "outcome": "all_paths_terminate",
+             "reasons": [],
+             "standing": "no_rule_support",
+             "violations_found": 0,
+             "witness_limit": 4,
+             "witnesses": [],
+             "witnesses_omitted": 0
+            }
+           ],
+           "declared_variables": [
+            {
+             "id": "low_safety",
+             "values": [
+              {
+               "class": "Literal",
+               "evidence": [],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "low_dose_safety_signal",
+                "kind": "measurement"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "study_procedure",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              },
+              {
+               "class": "Literal",
+               "evidence": [],
+               "polarity": "negative",
+               "predicate": {
+                "class": "Predicate",
+                "key": "low_dose_safety_signal",
+                "kind": "measurement"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "study_procedure",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              }
+             ]
+            }
+           ],
+           "fairness": "not_assumed",
+           "feasibility": [
+            {
+             "feasible_valuations": 2,
+             "state": "interim"
+            },
+            {
+             "feasible_valuations": 2,
+             "state": "selected"
+            }
+           ],
+           "guarantee": "exhaustive_over_declared_finite_model",
+           "initial": [
+            "interim"
+           ],
+           "operating_characteristics": "not_computed",
+           "patient_outcomes": "not_modelled",
+           "reachability": {
+            "guard_evaluations": 2,
+            "initial_nodes": 2,
+            "reachable_nodes": 4,
+            "reachable_states": [
+             "interim",
+             "selected"
+            ],
+            "unreachable_states": []
+           },
+           "scope": "invented:stage-a-interim",
+           "states": [
+            "interim",
+            "selected"
+           ],
+           "terminal": [
+            "selected"
+           ],
+           "transition_target_conflicts": [],
+           "version": "fixture-v1",
+           "work": {
+            "reserved": 6,
+            "used": 4
+           }
+          }
+         }
+        },
+        {
+         "blockers": [],
+         "canonical_ref": "/result/signals/0/claim_admission/0",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "settled",
+         "kind": "protocol_claim",
+         "origins": [],
+         "outcome": "covered",
+         "path": "/result/signals/0/claim_admission/0",
+         "scope": {},
+         "standing": "known",
+         "support": {
+          "admission": "accepted",
+          "declared_support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ],
+          "support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ]
+         },
+         "values": {
+          "id": "coverage"
+         }
+        },
+        {
+         "blockers": [],
+         "canonical_ref": "/result/signals/0/claim_admission/1",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "settled",
+         "kind": "protocol_claim",
+         "origins": [],
+         "outcome": "exclusive",
+         "path": "/result/signals/0/claim_admission/1",
+         "scope": {},
+         "standing": "known",
+         "support": {
+          "admission": "accepted",
+          "declared_support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ],
+          "support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ]
+         },
+         "values": {
+          "id": "exclusivity"
+         }
+        },
+        {
+         "blockers": [],
+         "canonical_ref": "/result/signals/0/claim_admission/2",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "conflict",
+         "kind": "protocol_claim",
+         "origins": [],
+         "outcome": "violation",
+         "path": "/result/signals/0/claim_admission/2",
+         "scope": {},
+         "standing": "known",
+         "support": {
+          "admission": "accepted",
+          "declared_support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ],
+          "support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ]
+         },
+         "values": {
+          "id": "prohibition"
+         }
+        },
+        {
+         "blockers": [],
+         "canonical_ref": "/result/signals/0/claim_admission/3",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "settled",
+         "kind": "protocol_claim",
+         "origins": [],
+         "outcome": "all_paths_terminate",
+         "path": "/result/signals/0/claim_admission/3",
+         "scope": {},
+         "standing": "known",
+         "support": {
+          "admission": "accepted",
+          "declared_support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ],
+          "support": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ]
+         },
+         "values": {
+          "id": "termination"
+         }
+        }
+       ],
+       "operation": "signals",
+       "version": 1
+      },
+      "code": "complete",
+      "metadata": {
+       "findings": [
+        {
+         "causes": [
+          {
+           "code": "policy_violation:prohibition",
+           "kind": "conflict"
+          }
+         ],
+         "completion": "complete",
+         "disposition": "conflict",
+         "kind": "signal",
+         "logical_result": "violated",
+         "path": "/result/signals/0",
+         "standing": "known"
+        },
+        {
+         "causes": [],
+         "completion": "complete",
+         "determining_ids": [],
+         "disposition": "settled",
+         "kind": "protocol_claim",
+         "logical_result": "covered",
+         "path": "/result/signals/0/claim_admission/0",
+         "standing": "known",
+         "support_path": "/result/signals/0/claim_admission/0/support"
+        },
+        {
+         "causes": [],
+         "completion": "complete",
+         "determining_ids": [],
+         "disposition": "settled",
+         "kind": "protocol_claim",
+         "logical_result": "exclusive",
+         "path": "/result/signals/0/claim_admission/1",
+         "standing": "known",
+         "support_path": "/result/signals/0/claim_admission/1/support"
+        },
+        {
+         "causes": [],
+         "completion": "complete",
+         "determining_ids": [
+          "no-low-with-signal"
+         ],
+         "disposition": "conflict",
+         "kind": "protocol_claim",
+         "logical_result": "violation",
+         "path": "/result/signals/0/claim_admission/2",
+         "standing": "known",
+         "support_path": "/result/signals/0/claim_admission/2/support"
+        },
+        {
+         "causes": [],
+         "completion": "complete",
+         "determining_ids": [],
+         "disposition": "settled",
+         "kind": "protocol_claim",
+         "logical_result": "all_paths_terminate",
+         "path": "/result/signals/0/claim_admission/3",
+         "standing": "known",
+         "support_path": "/result/signals/0/claim_admission/3/support"
+        }
+       ],
+       "kind": "reasoning",
+       "version": 1
+      },
+      "operation": "signals",
+      "problems": [],
+      "result": {
+       "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+       "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation.",
+       "premises": [
+        {
+         "claims": [
+          {
+           "claim": "coverage",
+           "id": "coverage",
+           "witness_limit": 4
+          },
+          {
+           "claim": "exclusivity",
+           "id": "exclusivity",
+           "witness_limit": 4
+          },
+          {
+           "claim": "prohibition",
+           "id": "prohibition",
+           "witness_limit": 4
+          },
+          {
+           "claim": "termination",
+           "id": "termination",
+           "witness_limit": 4
+          }
+         ],
+         "data": {
+          "actions": [
+           {
+            "description": "select low dose",
+            "id": "select_low_dose",
+            "scope": {
+             "level": "cohort",
+             "ref": "invented:stage-a"
+            }
+           }
+          ],
+          "constraints": [],
+          "initial": [
+           "interim"
+          ],
+          "invariants": [],
+          "prohibitions": [
+           {
+            "actions": [
+             "select_low_dose"
+            ],
+            "condition": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "low_dose_safety_signal",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "study_procedure",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            },
+            "id": "no-low-with-signal",
+            "rule": {
+             "basis": [
+              "user:simulated choice (fixture)"
+             ],
+             "ref": "user:simulated prohibition",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "state": null
+           }
+          ],
+          "scope": "invented:stage-a-interim",
+          "states": [
+           "interim",
+           "selected"
+          ],
+          "terminal": [
+           "selected"
+          ],
+          "transitions": [
+           {
+            "actions": [
+             "select_low_dose"
+            ],
+            "from": "interim",
+            "guard": {
+             "class": "AnyOf",
+             "parts": [
+              {
+               "class": "Literal",
+               "evidence": [],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "low_dose_safety_signal",
+                "kind": "measurement"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "study_procedure",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              },
+              {
+               "class": "Not",
+               "part": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                 "class": "Predicate",
+                 "key": "low_dose_safety_signal",
+                 "kind": "measurement"
+                },
+                "qualifiers": {
+                 "class": "Always"
+                },
+                "subject": {
+                 "class": "Subject",
+                 "kind": "study_procedure",
+                 "referent": ""
+                },
+                "time": null,
+                "value": {
+                 "class": "Value",
+                 "comparison": "eq",
+                 "inclusivity": "unspecified",
+                 "kind": "boolean",
+                 "members": [],
+                 "number": null,
+                 "unit": "",
+                 "upper": null
+                }
+               }
+              }
+             ]
+            },
+            "id": "t",
+            "to": "selected"
+           }
+          ],
+          "variables": [
+           {
+            "id": "low_safety",
+            "values": [
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "low_dose_safety_signal",
+               "kind": "measurement"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "study_procedure",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             },
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "negative",
+              "predicate": {
+               "class": "Predicate",
+               "key": "low_dose_safety_signal",
+               "kind": "measurement"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "study_procedure",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             }
+            ]
+           }
+          ],
+          "version": "fixture-v1"
+         },
+         "id": "interim-safety:finite_policy_model",
+         "kind": "finite_policy",
+         "role_support": {
+          "model": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ]
+         },
+         "support": [
+          {
+           "basis": [
+            "user:simulated choice (fixture)"
+           ],
+           "id": "object:interim-rule",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:simulated choice (fixture)"
+           ],
+           "id": "premise:adopt:interim-rule:fixture-v1",
+           "resolution": "resolved",
+           "status": "known"
+          }
+         ]
+        }
+       ],
+       "signals": [
+        {
+         "admission": {
+          "application_blockers": [],
+          "code": "accepted"
+         },
+         "basis": [
+          "user:simulated choice (fixture)"
+         ],
+         "blockers": [
+          "policy_violation:prohibition"
+         ],
+         "calculation_code": "violated",
+         "claim_admission": [
+          {
+           "admission": "accepted",
+           "claim": "coverage",
+           "determining_ids": [],
+           "effective_outcome": "covered",
+           "id": "coverage",
+           "outcome": "covered",
+           "status": "known",
+           "support": [
+            "object:interim-rule",
+            "premise:adopt:interim-rule:fixture-v1"
+           ]
+          },
+          {
+           "admission": "accepted",
+           "claim": "exclusivity",
+           "determining_ids": [],
+           "effective_outcome": "exclusive",
+           "id": "exclusivity",
+           "outcome": "exclusive",
+           "status": "known",
+           "support": [
+            "object:interim-rule",
+            "premise:adopt:interim-rule:fixture-v1"
+           ]
+          },
+          {
+           "admission": "accepted",
+           "claim": "prohibition",
+           "determining_ids": [
+            "no-low-with-signal"
+           ],
+           "effective_outcome": "violation",
+           "id": "prohibition",
+           "outcome": "violation",
+           "status": "known",
+           "support": [
+            "object:interim-rule",
+            "premise:adopt:interim-rule:fixture-v1"
+           ]
+          },
+          {
+           "admission": "accepted",
+           "claim": "termination",
+           "determining_ids": [],
+           "effective_outcome": "all_paths_terminate",
+           "id": "termination",
+           "outcome": "all_paths_terminate",
+           "status": "known",
+           "support": [
+            "object:interim-rule",
+            "premise:adopt:interim-rule:fixture-v1"
+           ]
+          }
+         ],
+         "code": "violated",
+         "id": "interim-safety:finite_policy_model",
+         "kind": "finite_policy",
+         "operator_support": {
+          "determining_ids": [
+           "no-low-with-signal"
+          ],
+          "resolution": "resolved",
+          "status": "known"
+         },
+         "role_support": {
+          "model": [
+           "object:interim-rule",
+           "premise:adopt:interim-rule:fixture-v1"
+          ]
+         },
+         "rule": "policy.finite_reachable_states:1",
+         "status": "known",
+         "support": [
+          {
+           "basis": [
+            "user:simulated choice (fixture)"
+           ],
+           "id": "object:interim-rule",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:simulated choice (fixture)"
+           ],
+           "id": "premise:adopt:interim-rule:fixture-v1",
+           "resolution": "resolved",
+           "status": "known"
+          }
+         ],
+         "value": {
+          "claims": [
+           {
+            "claim": "coverage",
+            "determining_ids": [],
+            "id": "coverage",
+            "outcome": "covered",
+            "reasons": [],
+            "standing": "no_rule_support",
+            "violations_found": 0,
+            "witness_limit": 4,
+            "witnesses": [],
+            "witnesses_omitted": 0
+           },
+           {
+            "claim": "exclusivity",
+            "determining_ids": [],
+            "id": "exclusivity",
+            "outcome": "exclusive",
+            "reasons": [],
+            "standing": "no_rule_support",
+            "violations_found": 0,
+            "witness_limit": 4,
+            "witnesses": [],
+            "witnesses_omitted": 0
+           },
+           {
+            "claim": "prohibition",
+            "determining_ids": [
+             "no-low-with-signal"
+            ],
+            "id": "prohibition",
+            "outcome": "violation",
+            "reasons": [],
+            "standing": "known",
+            "violations_found": 1,
+            "witness_limit": 4,
+            "witnesses": [
+             {
+              "element": {
+               "id": "no-low-with-signal",
+               "kind": "prohibition",
+               "transition": "t"
+              },
+              "trace": [
+               {
+                "actions": [
+                 "select_low_dose"
+                ],
+                "state": "interim",
+                "transition": "t",
+                "valuation": {
+                 "low_safety": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                   "class": "Predicate",
+                   "key": "low_dose_safety_signal",
+                   "kind": "measurement"
+                  },
+                  "qualifiers": {
+                   "class": "Always"
+                  },
+                  "subject": {
+                   "class": "Subject",
+                   "kind": "study_procedure",
+                   "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                   "class": "Value",
+                   "comparison": "eq",
+                   "inclusivity": "unspecified",
+                   "kind": "boolean",
+                   "members": [],
+                   "number": null,
+                   "unit": "",
+                   "upper": null
+                  }
+                 }
+                }
+               }
+              ]
+             }
+            ],
+            "witnesses_omitted": 0
+           },
+           {
+            "claim": "termination",
+            "determining_ids": [],
+            "id": "termination",
+            "outcome": "all_paths_terminate",
+            "reasons": [],
+            "standing": "no_rule_support",
+            "violations_found": 0,
+            "witness_limit": 4,
+            "witnesses": [],
+            "witnesses_omitted": 0
+           }
+          ],
+          "declared_variables": [
+           {
+            "id": "low_safety",
+            "values": [
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "low_dose_safety_signal",
+               "kind": "measurement"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "study_procedure",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             },
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "negative",
+              "predicate": {
+               "class": "Predicate",
+               "key": "low_dose_safety_signal",
+               "kind": "measurement"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "study_procedure",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             }
+            ]
+           }
+          ],
+          "fairness": "not_assumed",
+          "feasibility": [
+           {
+            "feasible_valuations": 2,
+            "state": "interim"
+           },
+           {
+            "feasible_valuations": 2,
+            "state": "selected"
+           }
+          ],
+          "guarantee": "exhaustive_over_declared_finite_model",
+          "initial": [
+           "interim"
+          ],
+          "operating_characteristics": "not_computed",
+          "patient_outcomes": "not_modelled",
+          "reachability": {
+           "guard_evaluations": 2,
+           "initial_nodes": 2,
+           "reachable_nodes": 4,
+           "reachable_states": [
+            "interim",
+            "selected"
+           ],
+           "unreachable_states": []
+          },
+          "scope": "invented:stage-a-interim",
+          "states": [
+           "interim",
+           "selected"
+          ],
+          "terminal": [
+           "selected"
+          ],
+          "transition_target_conflicts": [],
+          "version": "fixture-v1",
+          "work": {
+           "reserved": 6,
+           "used": 4
+          }
+         }
+        }
+       ]
+      },
+      "result_digest": "1c46718bb7f0bc2c8bfbcc6cd2ad5cf536855412bf15512e01f1d20fb16aa837",
+      "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+      "summary": {
+       "code": "complete",
+       "dispositions": {
+        "conflict": 2,
+        "settled": 3
+       },
+       "findings": 5,
+       "kind": "reasoning",
+       "operation": "signals",
+       "problems": []
+      }
+     },
+     "result_digest": "0a77e697cec2d83f8e81a36caf81aa08a704a9968b476bb27ffee3d9f53d5a41",
+     "signals": [
+      {
+       "admission": {
+        "application_blockers": [],
+        "code": "accepted"
+       },
+       "blockers": [
+        "policy_violation:prohibition"
+       ],
+       "calculation_code": "violated",
+       "claim_admission": [
+        {
+         "admission": "accepted",
+         "application": "unconditional",
+         "application_refs": [],
+         "application_status": null,
+         "claim": "coverage",
+         "determining_ids": [],
+         "effective_outcome": "covered",
+         "finding_status": "known",
+         "id": "coverage",
+         "outcome": "covered",
+         "status": "known",
+         "support": [
+          "object:interim-rule",
+          "premise:adopt:interim-rule:fixture-v1"
+         ]
+        },
+        {
+         "admission": "accepted",
+         "application": "unconditional",
+         "application_refs": [],
+         "application_status": null,
+         "claim": "exclusivity",
+         "determining_ids": [],
+         "effective_outcome": "exclusive",
+         "finding_status": "known",
+         "id": "exclusivity",
+         "outcome": "exclusive",
+         "status": "known",
+         "support": [
+          "object:interim-rule",
+          "premise:adopt:interim-rule:fixture-v1"
+         ]
+        },
+        {
+         "admission": "accepted",
+         "application": "unconditional",
+         "application_refs": [],
+         "application_status": null,
+         "claim": "prohibition",
+         "determining_ids": [
+          "no-low-with-signal"
+         ],
+         "effective_outcome": "violation",
+         "finding_status": "known",
+         "id": "prohibition",
+         "outcome": "violation",
+         "status": "known",
+         "support": [
+          "object:interim-rule",
+          "premise:adopt:interim-rule:fixture-v1"
+         ]
+        },
+        {
+         "admission": "accepted",
+         "application": "unconditional",
+         "application_refs": [],
+         "application_status": null,
+         "claim": "termination",
+         "determining_ids": [],
+         "effective_outcome": "all_paths_terminate",
+         "finding_status": "known",
+         "id": "termination",
+         "outcome": "all_paths_terminate",
+         "status": "known",
+         "support": [
+          "object:interim-rule",
+          "premise:adopt:interim-rule:fixture-v1"
+         ]
+        }
+       ],
+       "code": "violated",
+       "id": "interim-safety:finite_policy_model",
+       "kind": "finite_policy",
+       "status": "known"
+      }
+     ]
+    }
+   ],
+   "id": "interim-safety",
+   "kind": "finite_policy",
+   "not_computed": null,
+   "objects": [
+    "interim-rule"
+   ],
+   "projection": "finite_policy_model:1",
+   "required": true,
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "arm": "all",
+      "population": "general",
+      "study": "draft",
+      "time": "entry",
+      "version": "v1"
+     }
+    }
+   },
+   "unresolved": []
+  }
+ ],
+ "decisions": [],
+ "limits_of_claim": [
+  "Each check covers only its declared objects, claims and variables; not medical completeness.",
+  "Projection receipts record consumed objects and premises; they do not establish meaning.",
+  "Each claim is admitted on its own deciding support; the signal code is a conservative summary."
+ ],
+ "objects": [
+  {
+   "data": {
+    "bindings": [],
+    "model": {
+     "actions": [
+      {
+       "description": "select low dose",
+       "id": "select_low_dose",
+       "scope": {
+        "level": "cohort",
+        "ref": "invented:stage-a"
+       }
+      }
+     ],
+     "constraints": [],
+     "initial": [
+      "interim"
+     ],
+     "invariants": [],
+     "prohibitions": [
+      {
+       "actions": [
+        "select_low_dose"
+       ],
+       "condition": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "low_dose_safety_signal",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "study_procedure",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       "id": "no-low-with-signal",
+       "rule": {
+        "basis": [
+         "user:simulated choice (fixture)"
+        ],
+        "ref": "user:simulated prohibition",
+        "resolution": "resolved",
+        "status": "known",
+        "version": "1"
+       },
+       "state": null
+      }
+     ],
+     "scope": "invented:stage-a-interim",
+     "states": [
+      "interim",
+      "selected"
+     ],
+     "terminal": [
+      "selected"
+     ],
+     "transitions": [
+      {
+       "actions": [
+        "select_low_dose"
+       ],
+       "from": "interim",
+       "guard": {
+        "class": "AnyOf",
+        "parts": [
+         {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "low_dose_safety_signal",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "study_procedure",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         },
+         {
+          "class": "Not",
+          "part": {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "low_dose_safety_signal",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "study_procedure",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          }
+         }
+        ]
+       },
+       "id": "t",
+       "to": "selected"
+      }
+     ],
+     "variables": [
+      {
+       "id": "low_safety",
+       "values": [
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "low_dose_safety_signal",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "negative",
+         "predicate": {
+          "class": "Predicate",
+          "key": "low_dose_safety_signal",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "study_procedure",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        }
+       ]
+      }
+     ],
+     "version": "fixture-v1"
+    }
+   },
+   "depends_on": [],
+   "id": "interim-rule",
+   "kind": "policy",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:simulated choice (fixture)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "arm": "all",
+      "population": "general",
+      "study": "draft",
+      "time": "entry",
+      "version": "v1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:simulated choice (fixture)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:interim-rule:fixture-v1"
+   ],
+   "version": "fixture-v1"
+  }
+ ],
+ "schema_version": 1,
+ "sections": {
+  "assessments": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "efficacy": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "eligibility": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "endpoints": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "exploratory": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "interventions": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "population": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "safety": {
+   "basis": [],
+   "objects": [
+    "interim-rule"
+   ],
+   "state": "requested"
+  }
+ }
+}

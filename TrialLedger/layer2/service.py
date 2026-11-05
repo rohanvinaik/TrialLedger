@@ -34,6 +34,7 @@ from TrialLedger.layer2 import (
     interpretations_guide,
     nearmiss,
     profile,
+    refusal,
     request_preparation,
     result_semantics,
     signal_binding_gate,
@@ -219,13 +220,33 @@ class RequestError(ValueError):
     """A named problem with the symbolic request, never a negative clinical finding."""
 
 
+def _refuse(code: str, **location: Any) -> RequestError:
+    """The named refusal, with where it was found when that is known (never guessed)."""
+    return refusal.annotate(RequestError(code), **location)
+
+
 def _object(value: Any, allowed: set[str], required: set[str], where: str) -> dict[str, Any]:
+    fields = {"fields": sorted(allowed), "required": sorted(required)}
     if not isinstance(value, dict):
-        raise RequestError(f"not_an_object:{where}")
+        raise _refuse(
+            f"not_an_object:{where}", pointer=None, rejected=value, expected={"structure": "object", **fields}
+        )
     if set(value) - allowed:
-        raise RequestError(f"unknown_field:{where}")
+        extra = sorted(set(value) - allowed)[0]
+        raise _refuse(
+            f"unknown_field:{where}",
+            container=value,
+            tokens=(extra,),
+            rejected=extra,
+            expected={"structure": "unknown field", **fields},
+        )
     if required - set(value):
-        raise RequestError(f"missing_field:{where}")
+        missing = sorted(required - set(value))
+        raise _refuse(
+            f"missing_field:{where}",
+            container=value,
+            expected={"structure": "missing required field", "missing_fields": missing, **fields},
+        )
     return value
 
 
@@ -239,15 +260,21 @@ def _input(value: Any, shape: str, where: str) -> dict[str, Any]:
 
 def _text(value: Any, where: str, *, empty: bool = False) -> str:
     if not isinstance(value, str) or (not empty and not value):
-        raise RequestError(f"not_text:{where}")
+        raise _refuse(
+            f"not_text:{where}", pointer=None, rejected=value, expected={"structure": "non-empty text"}
+        )
     return value
 
 
 def _list(value: Any, where: str) -> list[Any]:
     if not isinstance(value, list):
-        raise RequestError(f"not_a_list:{where}")
+        raise _refuse(f"not_a_list:{where}", pointer=None, rejected=value, expected={"structure": "list"})
     if len(value) > MAX_ITEMS:
-        raise RequestError(f"resource_bound:{where}")
+        raise _refuse(
+            f"resource_bound:{where}",
+            container=value,
+            expected={"structure": f"at most {MAX_ITEMS} items", "found_items": len(value)},
+        )
     return value
 
 
@@ -1668,10 +1695,24 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     view = request.get("view", "overview")
     views = DISCOVERY_VIEWS
     if not isinstance(view, str) or view not in views:
-        raise RequestError("request.view:unsupported_view")
+        raise _refuse(
+            "request.view:unsupported_view",
+            container=request,
+            tokens=("view",),
+            rejected=view,
+            expected=refusal.vocabulary(views),
+            reference_view="overview",
+        )
     detail = request.get("detail", "card")
     if not isinstance(detail, str) or detail not in ("card", "schema", "full"):
-        raise RequestError("request.detail:unsupported_detail")
+        raise _refuse(
+            "request.detail:unsupported_detail",
+            container=request,
+            tokens=("detail",),
+            rejected=detail,
+            expected=refusal.vocabulary(("card", "schema", "full")),
+            reference_view="overview",
+        )
     if view == "prepare":
         from TrialLedger.layer2.request_preparation import card
 
@@ -1897,9 +1938,21 @@ def run(request: object) -> dict[str, Any]:
     operation = request.get("operation") if isinstance(request, dict) else None
     try:
         if not isinstance(request, dict):
-            raise RequestError("request_not_an_object")
+            raise _refuse(
+                "request_not_an_object",
+                pointer="",
+                rejected=request,
+                expected={"structure": "object with an operation field"},
+                reference_view="overview",
+            )
         if operation not in OPERATIONS:
-            raise RequestError("unsupported_operation")
+            raise _refuse(
+                "unsupported_operation",
+                pointer="/operation" if "operation" in request else "",
+                rejected=operation if "operation" in request else refusal.MISSING,
+                expected=refusal.vocabulary(OPERATIONS),
+                reference_view="overview",
+            )
         if operation == "design_session":
             response = design_session.run(request, execute=run)
             response["metadata"] = result_semantics.metadata(operation, response["result"])
@@ -1946,4 +1999,7 @@ def run(request: object) -> dict[str, Any]:
         }
         if isinstance(error, design_session.SessionBudgetError):
             response["diagnostics"] = error.diagnostics
+        elif (located := refusal.render(error, request, DISCOVERY_VIEWS)) is not None:
+            # Input diagnostics have their own key; `diagnostics` keeps its existing work-budget shape.
+            response["input_diagnostics"] = located
         return augment(response)

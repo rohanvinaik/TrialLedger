@@ -1,0 +1,138 @@
+{
+ "canonical_ref": "/response/protocol_view",
+ "checks": [
+  {
+   "canonical_ref": "/response/protocol_view/check_summaries/0",
+   "code": "unresolved",
+   "conditional": false,
+   "conflicts": 0,
+   "id": "week12-schedule",
+   "kind": "schedule",
+   "repairs": 0,
+   "required": true,
+   "resolution": "unresolved",
+   "resolution_causes": [
+    "object:week12",
+    "adoption:week12",
+    "object:collection",
+    "adoption:collection"
+   ],
+   "standing": "proposed"
+  }
+ ],
+ "decisions": [],
+ "findings": [
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/0",
+   "check": "week12-schedule",
+   "claim": "visit",
+   "class": "claim_unsettled",
+   "kind": "claim_unsettled",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "Not applied: the deciding premise is still a proposal."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/1",
+   "check": "week12-schedule",
+   "claim": "target",
+   "class": "claim_unsettled",
+   "kind": "claim_unsettled",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "Not applied: the deciding premise is still a proposal."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/2",
+   "check": "week12-schedule",
+   "claim": "window",
+   "class": "claim_unsettled",
+   "kind": "claim_unsettled",
+   "ref": "/protocol/checks/0/children/0/result",
+   "text": "Not applied: the deciding premise is still a proposal."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/3",
+   "check": null,
+   "claim": null,
+   "class": "section",
+   "kind": "section",
+   "ref": "/protocol/sections/assessments",
+   "text": "Section assessments is open."
+  }
+ ],
+ "omitted": {
+  "checks": 0,
+  "findings": 0
+ },
+ "pages": {
+  "checks": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 1,
+   "total": 1
+  },
+  "findings": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 4,
+   "total": 4
+  }
+ },
+ "sections": [
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "population"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "eligibility"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "interventions"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "endpoints"
+  },
+  {
+   "coverage": "open",
+   "declared": "requested",
+   "findings": "not_checked",
+   "findings_text": "Not fully checked (see coverage).",
+   "id": "assessments"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "efficacy"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "safety"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "exploratory"
+  }
+ ]
+}

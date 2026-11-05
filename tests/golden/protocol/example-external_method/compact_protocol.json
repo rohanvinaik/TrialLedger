@@ -1,0 +1,115 @@
+{
+ "canonical_ref": "/response/protocol_view",
+ "checks": [
+  {
+   "canonical_ref": "/response/protocol_view/check_summaries/0",
+   "code": null,
+   "conditional": false,
+   "conflicts": 0,
+   "id": "outside-method-check",
+   "kind": "external_method",
+   "repairs": 0,
+   "required": true,
+   "resolution": "resolved",
+   "resolution_causes": [],
+   "standing": null
+  }
+ ],
+ "decisions": [],
+ "findings": [
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/0",
+   "check": "outside-method-check",
+   "claim": null,
+   "class": "not_computed",
+   "kind": "not_computed",
+   "ref": "/protocol/checks/0",
+   "text": "Not computed: external method; missing inputs: accrual_rate."
+  },
+  {
+   "canonical_ref": "/response/protocol_view/delivery_findings/1",
+   "check": null,
+   "claim": null,
+   "class": "section",
+   "kind": "section",
+   "ref": "/protocol/sections/efficacy",
+   "text": "Section efficacy is not_computed."
+  }
+ ],
+ "omitted": {
+  "checks": 0,
+  "findings": 0
+ },
+ "pages": {
+  "checks": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 1,
+   "total": 1
+  },
+  "findings": {
+   "next_offset": null,
+   "offset": 0,
+   "returned": 2,
+   "total": 2
+  }
+ },
+ "sections": [
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "population"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "eligibility"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "interventions"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "endpoints"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "assessments"
+  },
+  {
+   "coverage": "not_computed",
+   "declared": "requested",
+   "findings": "not_checked",
+   "findings_text": "Not fully checked (see coverage).",
+   "id": "efficacy"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "safety"
+  },
+  {
+   "coverage": "not_requested",
+   "declared": "not_requested",
+   "findings": "not_checked",
+   "findings_text": "No checks: section not requested.",
+   "id": "exploratory"
+  }
+ ]
+}

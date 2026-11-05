@@ -1,0 +1,289 @@
+{
+ "checks": [
+  {
+   "children": [],
+   "id": "week12-schedule",
+   "kind": "schedule",
+   "not_computed": null,
+   "objects": [
+    "week12",
+    "collection"
+   ],
+   "projection": "schedule_window_coverage:1",
+   "required": true,
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "arm": "all",
+      "population": "general",
+      "study": "draft",
+      "time": "entry",
+      "version": "v1"
+     }
+    }
+   },
+   "unresolved": [
+    {
+     "code": "projection_scope_mismatch",
+     "objects": [
+      "collection"
+     ],
+     "premises": []
+    }
+   ]
+  }
+ ],
+ "decisions": [],
+ "limits_of_claim": [
+  "Each check covers only its declared objects, claims and variables; not medical completeness.",
+  "Projection receipts record consumed objects and premises; they do not establish meaning.",
+  "Each claim is admitted on its own deciding support; the signal code is a conservative summary."
+ ],
+ "objects": [
+  {
+   "data": {
+    "baseline": null,
+    "definition": {
+     "basis": [
+      "user:simulated choice (fixture)"
+     ],
+     "ref": "invented:score definition",
+     "resolution": "resolved",
+     "status": "known",
+     "version": "1"
+    },
+    "mode": "observed",
+    "unit": "points"
+   },
+   "depends_on": [],
+   "id": "score",
+   "kind": "measurement",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:simulated choice (fixture)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "arm": "all",
+      "population": "general",
+      "study": "draft",
+      "time": "entry",
+      "version": "v1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:simulated choice (fixture)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:score:fixture-v1"
+   ],
+   "version": "fixture-v1"
+  },
+  {
+   "data": {
+    "anchor": "randomization",
+    "condition": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "discontinued_treatment",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "study_procedure",
+      "referent": ""
+     },
+     "time": null,
+     "value": {
+      "class": "Value",
+      "comparison": "eq",
+      "inclusivity": "unspecified",
+      "kind": "boolean",
+      "members": [],
+      "number": null,
+      "unit": "",
+      "upper": null
+     }
+    },
+    "measurement": "score",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "lower_inclusive": true,
+      "upper": "91",
+      "upper_inclusive": true
+     }
+    ],
+    "unit": "day"
+   },
+   "depends_on": [
+    "score"
+   ],
+   "id": "week12",
+   "kind": "assessment",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:simulated choice (fixture)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "arm": "all",
+      "population": "general",
+      "study": "draft",
+      "time": "entry",
+      "version": "v1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:simulated choice (fixture)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:week12:fixture-v1"
+   ],
+   "version": "fixture-v1"
+  },
+  {
+   "data": {
+    "assessment": "week12",
+    "availability": [
+     {
+      "lower": null,
+      "lower_inclusive": false,
+      "upper": "80",
+      "upper_inclusive": true
+     }
+    ],
+    "event_handling": null,
+    "mode": "observed"
+   },
+   "depends_on": [
+    "week12"
+   ],
+   "id": "collection",
+   "kind": "collection",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:simulated choice (fixture)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": "post-discontinuation",
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "arm": "all",
+      "population": "general",
+      "study": "draft",
+      "time": "entry",
+      "version": "v1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:simulated choice (fixture)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [],
+   "version": "fixture-v1"
+  }
+ ],
+ "schema_version": 1,
+ "sections": {
+  "assessments": {
+   "basis": [],
+   "objects": [
+    "week12",
+    "collection"
+   ],
+   "state": "requested"
+  },
+  "efficacy": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "eligibility": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "endpoints": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "exploratory": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "interventions": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "population": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "safety": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  }
+ }
+}

@@ -37,7 +37,7 @@ from datetime import date
 from typing import Any
 from urllib.parse import quote, urlencode
 
-from TrialLedger import acquisition
+from TrialLedger import acquisition, coverage
 from TrialLedger.classes import (
     CLASS_SOURCES,
     CROSSWALK,
@@ -66,6 +66,7 @@ REQUEST_SLOTS = (
     "drug",
     "drug_class",
     "mechanism",
+    "class_drug_additions",
     "condition",
     "condition_class",
     "phase",
@@ -79,6 +80,8 @@ REQUEST_SLOTS = (
 # The slots resolved into filter.advanced; `condition` is the registry's query.cond, `params` is sent as
 # given.
 ADVANCED_SLOTS = tuple(slot for slot in REQUEST_SLOTS if slot not in ("condition", "params", "acquisition"))
+# A drug the person adds to a class search (`class_drug_additions`): searched beside the class's members as
+# the person's own addition, never presented as something RxNav supplied (coverage.ADDITION_ORIGIN).
 PHASES = tuple(enum_labels("Phase"))
 STATUSES = tuple(enum_labels("Status"))
 STUDY_TYPES = tuple(enum_labels("StudyType"))
@@ -135,7 +138,8 @@ def slot_value_ok(slot: str, value: Any) -> bool:
     drug: a non-empty list of names, each non-blank and without a double quote (it is quoted in the query).
     drug_class: an object of a source (EPC, MoA or ATC) and exactly one of a name or an id, non-blank, and
     optionally `subclasses`: "include", "exclude" or a non-empty list of non-blank subclass ids to exclude;
-    nothing else. mechanism and condition: a non-blank string. condition_class: a non-blank string without a
+    nothing else. class_drug_additions: as drug, only beside a drug_class or mechanism. mechanism and
+    condition: a non-blank string. condition_class: a non-blank string without a
     double quote. phase and status: a non-empty list of the registry's values (Phase, Status); study_type: one
     StudyType value. start_from and start_to: a date written YYYY-MM-DD. params: a non-empty object of string
     names and values. Any other slot: never.
@@ -144,7 +148,7 @@ def slot_value_ok(slot: str, value: Any) -> bool:
         return (
             isinstance(value, str) and bool(value.strip()) and (slot != "condition_class" or '"' not in value)
         )
-    if slot == "drug":
+    if slot in ("drug", "class_drug_additions"):
         return (
             isinstance(value, list)
             and bool(value)
@@ -216,6 +220,8 @@ def request_problems(request: Any) -> tuple[str, list[str]]:
     malformed = [slot for slot in REQUEST_SLOTS if slot in request and not slot_value_ok(slot, request[slot])]
     if not malformed and request.get("start_from", "") > request.get("start_to", "9999-12-31"):
         malformed = ["start_from", "start_to"]
+    if "class_drug_additions" in request and not ({"drug_class", "mechanism"} & set(request)):
+        malformed = ["class_drug_additions"]
     if malformed:
         return "malformed_value", malformed
     raw = request.get("params", {})
@@ -662,6 +668,12 @@ def resolve_scope(request: Any, answers: dict[str, Any]) -> dict[str, Any]:
     for name in request.get("drug", []):
         urls, parts = identity_chain(name, answers)
         drugs.append(("drug", name, "request", urls, parts, None))
+    # The person's additions to a class search join the OR group of the class slot (drug_class, else
+    # mechanism); each is looked up as any named drug is, and kept as the person's, not RxNav's.
+    home = "drug_class" if "drug_class" in request else "mechanism"
+    for name in request.get("class_drug_additions", []):
+        urls, parts = identity_chain(name, answers)
+        drugs.append((home, name, coverage.ADDITION_ORIGIN, urls, parts, None))
     # Each class is confirmed before its members are asked: the requested one, and each ATC class an entailed
     # crosswalk row names (RxClass answers {} alike for an unknown class id and a class with no member).
     wanted: list[tuple[str, dict[str, Any]]] = []
@@ -741,6 +753,7 @@ def resolve_scope(request: Any, answers: dict[str, Any]) -> dict[str, Any]:
         expansions.append(
             {"slot": slot, "kind": "drug_names", "drug": drug, "source": "RxNorm"}
             | {"requests": urls, "code": code, "names": found_names, "candidates": candidates}
+            | ({"source_origin": source} if source == coverage.ADDITION_ORIGIN else {})
         )
         if code in ("lookup_failed", "malformed"):
             stops.append([slot, f"name_{code}", [drug]])
@@ -783,6 +796,7 @@ def resolve_scope(request: Any, answers: dict[str, Any]) -> dict[str, Any]:
         if clause and slot != "condition" and clause not in clauses:
             clauses.append(clause)
         scope["slots"].append({"slot": slot, "value": value, "clause": clause})
+    scope["coverage"] = coverage.search_coverage(request, scope["slots"], expansions)
     if stops:
         scope["code"] = "unresolved"
         return scope

@@ -56,3 +56,37 @@ c8c790ec7c322c52  TrialLedger/reasoning_mcp.py
   contracts added since wave 1. Tasks 2.7, 3.6, 4.5, 5.7 (pin part), 6.7 (pin part) and 7.4 stay open until they
   run, or until Rohan accepts this limitation explicitly.
 
+
+## Composition and engineering pass (2026-11-05), before the next freeze
+
+Done in this pass:
+- **Steps 1–2.**
+  - Conditions, standing, adoption and scope follow the linked-objects closure (Rohan).
+  - Plain-signal applicability; simultaneous admission causes are named.
+  - Every check carries a support axis on standing changes.
+  - The headline never settles a conditionally applied result.
+- **Step 3.**
+  - One owner for outcome sets (`protocol_outcomes`).
+  - Seven long functions split, with behaviour held byte-identical by golden outputs (`tests/golden/protocol/`).
+  - F7 unused fields are consumed.
+  - ty: 45 → 0 diagnostics in the protocol files.
+- **Step 4.**
+  - `tests/test_protocol_composition_matrix.py`, generated from the contract edge matrix.
+  - `tests/test_protocol_metamorphic.py`: unrelated additions, renaming, reordering and duplicate adoption change
+    nothing.
+- **Acquisition coverage** (`coverage.py`, `coverage_run.py`).
+  - Explicit MeSH-class vs condition-text comparison over complete ID sets, under the acquisition budget.
+  - Plain coverage statements in the preview, report and workbook.
+  - Union offered only as an explicit request; explicit drug additions marked as the person's.
+  - Verified: EGFR/NSCLC 53 class vs 70 text (17 text-only, including FLAURA and AURA3; 14 lacking condition
+    MeSH); T2D/SGLT2 8 vs 12.
+- **Repairable refusals** (`layer2/refusal.py`).
+  - `input_diagnostics` with pointer, rejected value, permitted vocabulary and discovery reference.
+  - Identical on CLI and MCP, and kept in compact replies.
+  - Protocol check-input refusals point at the check.
+
+Open (listed, not fixed):
+- Refusals raised in `design_session` / `session_state` (e.g. `alternative_requires_exact_entailment_query`), and
+  errors raised before `run` in the CLI/MCP wrappers, still return only a code.
+- The `source_interpretation` origin is shown on the adoption sheet and in revision axes only.
+- Dependencies are not linked to a baseline's own collection plan (a contract decision for Rohan).

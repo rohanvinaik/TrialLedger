@@ -132,6 +132,15 @@ it but never edit it. Report a gap as a factual case instead.
   `application_status` and `finding_status`. The headline never reads a conditionally applied result as
   settled.
 
+**Closure follow-ups confirmed by Rohan (2026-11-05).**
+- A followed link's closure is fully transitive. A measurement's baseline behind an estimand's linked
+  collection gates that estimand.
+- Scope is checked across the same gating closure. A closure object in another cohort, arm or phase makes the
+  check unresolved, with `projection_scope_mismatch` naming it.
+- A check row carries `standing` (the weakest status) and also `resolution` and `resolution_causes` (the
+  unresolved support entries), so a withheld row never reads plainly "known".
+- Revision origin and scope/model axes compare every object in the gating closure.
+
 **R2. C6 field naming and the reserved state.**
 - C6's `variables` keeps its name, and each entry uses the decision-table domain shape.
 - `policy_state` is a reserved equality literal whose value is the current state. It may appear in guards,

@@ -28,6 +28,7 @@ from pathlib import Path
 from typing import Any
 
 from TrialLedger import classes as rx
+from TrialLedger import coverage
 from TrialLedger.contract import DISPLAY
 from TrialLedger.operate import RESOLUTION_NAME, Outcome, fix_scope, stop_advice
 from TrialLedger.steps import NEXT_NAME
@@ -43,6 +44,7 @@ PREVIEW_ADVICE = (
 # How each name a drug is searched by came to be, in words.
 NAME_ORIGINS = {
     "request": "as asked",
+    coverage.ADDITION_ORIGIN: coverage.ADDITION_WORDS,
     "rxclass_member": "as the class lists it",
     "rxnorm_concept": "RxNorm's name for it",
     "rxnorm_ingredient": "its ingredient, the same molecule",
@@ -100,6 +102,14 @@ def _class_lines(slot: str, expansions: list[dict[str, Any]]) -> list[str]:
             if dropped:
                 left = ", ".join(row[1] for row in dropped)
                 lines.append(f"  Members left out (reached only through a subclass left out): {left}")
+    for added in (
+        e for e in expansions if e["slot"] == slot and e.get("source_origin") == coverage.ADDITION_ORIGIN
+    ):
+        note = " (RxNorm does not hold it)" if added["code"] == "not_in_rxnorm" else ""
+        lines.append(
+            f"  Added by the person, not supplied by RxNav: {added['drug']}{note}: searched as "
+            f"{_name_words(added['names']) or 'no name yet'}"
+        )
     return lines
 
 
@@ -116,6 +126,8 @@ def _slot_lines(slot: dict[str, Any], expansions: list[dict[str, Any]]) -> list[
                 f"Drug class asked for: {asked} ({source}), with every subclass it includes unless left out"
             )
         return [head, *_class_lines(name, expansions)]
+    if name == "class_drug_additions":
+        return []  # said with the class it extends (_class_lines)
     if name == "drug":
         lines = ["Drugs, each searched by every name RxNorm gives it:"]
         for expansion in expansions:
@@ -167,6 +179,17 @@ def scope_words(scope: Any) -> list[str]:
     lines: list[str] = []
     for slot in scope.get("slots", []):
         lines += _slot_lines(slot, expansions)
+    lines += coverage.coverage_words(scope.get("coverage"))
+    alternate_code, alternate = coverage.alternate_query(scope)
+    if alternate_code == "ok":
+        lines.append(
+            "Not run: the same search with the disease class replaced by the registry's condition-text "
+            f"search for {alternate['query.cond']}, every other filter unchanged, can be "
+            "compared with this one: `trialledger landscape --run <this run folder> "
+            "--compare-condition-text` (add --compare-plan to see its exact query and budget first); it "
+            "reads "
+            "identifiers only, within this run's acquisition budget."
+        )
     release = scope.get("release", ["", "", ""])
     if release[0] == "found":
         lines.append(f"Drug names and classes as RxNav's release {release[1]} gives them")

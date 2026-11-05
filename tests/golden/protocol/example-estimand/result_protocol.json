@@ -1,0 +1,2539 @@
+{
+ "checks": [
+  {
+   "children": [
+    {
+     "applicability": [],
+     "conditions": [],
+     "id": "estimand-check:estimand_declaration",
+     "receipt": {
+      "bindings": [],
+      "check": "estimand-check",
+      "closure": [
+       "week-policy",
+       "week12-collection",
+       "week12",
+       "score"
+      ],
+      "conditions": [],
+      "objects": [
+       "week-policy",
+       "week12-collection"
+      ],
+      "premises": [
+       "adopt:week-policy:invented-v1",
+       "adopt:week12-collection:invented-v1",
+       "adopt:week12:invented-v1",
+       "adopt:score:invented-v1"
+      ],
+      "projection": "estimand_declaration",
+      "request_digest": "46f9a8df92b90d0720b4c72608f8a44476d0a9a4332340c63ce4ce5b8ee4fb5b",
+      "role_support": {
+       "estimand": [
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "object:week-policy",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "premise:adopt:week-policy:invented-v1",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "object:week12-collection",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "premise:adopt:week12-collection:invented-v1",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "object:week12",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "premise:adopt:week12:invented-v1",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "object:score",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "premise:adopt:score:invented-v1",
+         "resolution": "resolved",
+         "status": "known"
+        }
+       ]
+      },
+      "scope": {
+       "context": {
+        "arm": null,
+        "cohort": null,
+        "phase": null
+       },
+       "target": {
+        "kind": "new_trial",
+        "ref": "invented-draft",
+        "scope": {
+         "arm": "all",
+         "population": "adults",
+         "study": "invented-draft",
+         "time": "entry",
+         "version": "draft-1"
+        }
+       }
+      },
+      "target": {
+       "kind": "new_trial",
+       "ref": "invented-draft",
+       "scope": {
+        "arm": "all",
+        "population": "adults",
+        "study": "invented-draft",
+        "time": "entry",
+        "version": "draft-1"
+       }
+      },
+      "version": "1"
+     },
+     "refusal": null,
+     "request": {
+      "operation": "signals",
+      "signals": [
+       {
+        "data": {
+         "collection_plan": [
+          {
+           "action": "collect",
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "requirement": "week12",
+           "resolution": "resolved",
+           "status": "known"
+          }
+         ],
+         "data_state": [],
+         "definitions": {
+          "intercurrent_events": {
+           "basis": [
+            "user:invented teaching plan (not a real trial)"
+           ],
+           "ref": "invented:intercurrent_events",
+           "resolution": "resolved",
+           "status": "known",
+           "version": "1"
+          },
+          "population": {
+           "basis": [
+            "user:invented teaching plan (not a real trial)"
+           ],
+           "ref": "invented:population",
+           "resolution": "resolved",
+           "status": "known",
+           "version": "1"
+          },
+          "summary": {
+           "basis": [
+            "user:invented teaching plan (not a real trial)"
+           ],
+           "ref": "invented:summary",
+           "resolution": "resolved",
+           "status": "known",
+           "version": "1"
+          },
+          "treatment": {
+           "basis": [
+            "user:invented teaching plan (not a real trial)"
+           ],
+           "ref": "invented:treatment",
+           "resolution": "resolved",
+           "status": "known",
+           "version": "1"
+          },
+          "variable": {
+           "basis": [
+            "user:invented teaching plan (not a real trial)"
+           ],
+           "ref": "invented:variable",
+           "resolution": "resolved",
+           "status": "known",
+           "version": "1"
+          }
+         },
+         "dependencies": null,
+         "events": [
+          {
+           "basis": [
+            "user:invented teaching plan (not a real trial)"
+           ],
+           "event_ref": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:treatment discontinuation",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "id": "discontinuation",
+           "resolution": "resolved",
+           "status": "known",
+           "strategy": "treatment_policy"
+          }
+         ],
+         "id": "invented:week12-policy",
+         "requirements": [
+          {
+           "event": "discontinuation",
+           "id": "week12",
+           "mode": "observed",
+           "relevance": "required",
+           "role": "observed_measurement",
+           "rule": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:week12 relevance",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "variable": "invented:variable",
+           "window": "invented:week12-regardless-of-discontinuation"
+          }
+         ],
+         "scope": "invented:cohort-A:week12",
+         "version": "1"
+        },
+        "id": "estimand-check:estimand_declaration",
+        "kind": "estimand",
+        "support": [
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "object:week-policy",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "premise:adopt:week-policy:invented-v1",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "object:week12-collection",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "premise:adopt:week12-collection:invented-v1",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "object:week12",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "premise:adopt:week12:invented-v1",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "object:score",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "premise:adopt:score:invented-v1",
+          "resolution": "resolved",
+          "status": "known"
+         }
+        ]
+       }
+      ]
+     },
+     "request_digest": "46f9a8df92b90d0720b4c72608f8a44476d0a9a4332340c63ce4ce5b8ee4fb5b",
+     "result": {
+      "clinical": {
+       "findings": [
+        {
+         "blockers": [
+          "estimand_unresolved:week12"
+         ],
+         "canonical_ref": "/result/signals/0",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "open",
+         "kind": "signal",
+         "origins": [],
+         "outcome": "unresolved",
+         "path": "/result/signals/0",
+         "scope": {},
+         "standing": "known",
+         "support": {
+          "admission": {
+           "application_blockers": [],
+           "code": "accepted"
+          },
+          "basis": [
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)"
+          ],
+          "rule": "estimand.supplied_relevance:1",
+          "support": [
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "object:week-policy",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "premise:adopt:week-policy:invented-v1",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "object:week12-collection",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "premise:adopt:week12-collection:invented-v1",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "object:week12",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "premise:adopt:week12:invented-v1",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "object:score",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "premise:adopt:score:invented-v1",
+            "resolution": "resolved",
+            "status": "known"
+           }
+          ]
+         },
+         "values": {
+          "id": "estimand-check:estimand_declaration",
+          "value": {
+           "data_state": [],
+           "definition_checks": [
+            {
+             "attribute": "intercurrent_events",
+             "code": "accepted",
+             "declaration": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:intercurrent_events",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             }
+            },
+            {
+             "attribute": "population",
+             "code": "accepted",
+             "declaration": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:population",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             }
+            },
+            {
+             "attribute": "summary",
+             "code": "accepted",
+             "declaration": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:summary",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             }
+            },
+            {
+             "attribute": "treatment",
+             "code": "accepted",
+             "declaration": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:treatment",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             }
+            },
+            {
+             "attribute": "variable",
+             "code": "accepted",
+             "declaration": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:variable",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             }
+            }
+           ],
+           "definition_state": "complete",
+           "dependency_checks": [],
+           "dependency_code": "consistent",
+           "dependency_request": {
+            "adopted": [],
+            "available": [],
+            "conditions": {},
+            "rules": [],
+            "scope": "invented:cohort-A:week12",
+            "unavailable": [],
+            "version": "1"
+           },
+           "dependency_result": {
+            "blockers": [],
+            "code": "consistent",
+            "rule": "dependencies.explicit_prerequisites.v1",
+            "value": {
+             "available": [],
+             "rules": [],
+             "scope": "invented:cohort-A:week12",
+             "version": "1",
+             "witnesses": []
+            }
+           },
+           "estimation": "not_computed",
+           "event_checks": [
+            {
+             "code": "accepted",
+             "id": "discontinuation",
+             "strategy": "treatment_policy"
+            }
+           ],
+           "events": [
+            {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "event_ref": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:treatment discontinuation",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             },
+             "id": "discontinuation",
+             "resolution": "resolved",
+             "status": "known",
+             "strategy": "treatment_policy"
+            }
+           ],
+           "id": "invented:week12-policy",
+           "requirements": [
+            {
+             "actual_blockers": [
+              "estimand_unresolved:week12"
+             ],
+             "actual_input": "unresolved",
+             "actual_status": null,
+             "blockers": [
+              "estimand_unresolved:week12"
+             ],
+             "collection_alignment": "aligned",
+             "collection_blockers": [],
+             "collection_plan": {
+              "action": "collect",
+              "basis": [
+               "user:invented adoption (teaching example)"
+              ],
+              "requirement": "week12",
+              "resolution": "resolved",
+              "status": "known"
+             },
+             "collection_status": "known",
+             "data_state": [],
+             "declaration": {
+              "event": "discontinuation",
+              "id": "week12",
+              "mode": "observed",
+              "relevance": "required",
+              "role": "observed_measurement",
+              "rule": {
+               "basis": [
+                "user:invented teaching plan (not a real trial)"
+               ],
+               "ref": "invented:week12 relevance",
+               "resolution": "resolved",
+               "status": "known",
+               "version": "1"
+              },
+              "variable": "invented:variable",
+              "window": "invented:week12-regardless-of-discontinuation"
+             },
+             "estimation": "not_computed",
+             "event": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "event_ref": {
+               "basis": [
+                "user:invented teaching plan (not a real trial)"
+               ],
+               "ref": "invented:treatment discontinuation",
+               "resolution": "resolved",
+               "status": "known",
+               "version": "1"
+              },
+              "id": "discontinuation",
+              "resolution": "resolved",
+              "status": "known",
+              "strategy": "treatment_policy"
+             },
+             "id": "week12",
+             "recorded_state": "unknown",
+             "relevance": "required",
+             "relevance_blockers": [],
+             "relevance_status": "known"
+            }
+           ],
+           "scope": "invented:cohort-A:week12",
+           "version": "1",
+           "witnesses": []
+          }
+         }
+        },
+        {
+         "blockers": [],
+         "canonical_ref": "/result/signals/0/value/requirements/0/relevance",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "settled",
+         "kind": "estimand_relevance",
+         "origins": [],
+         "outcome": "required",
+         "path": "/result/signals/0/value/requirements/0/relevance",
+         "scope": {
+          "scope": "invented:cohort-A:week12"
+         },
+         "standing": "known",
+         "support": {
+          "declaration": {
+           "event": "discontinuation",
+           "id": "week12",
+           "mode": "observed",
+           "relevance": "required",
+           "role": "observed_measurement",
+           "rule": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:week12 relevance",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "variable": "invented:variable",
+           "window": "invented:week12-regardless-of-discontinuation"
+          },
+          "declared_support": {
+           "actual_blockers": [
+            "estimand_unresolved:week12"
+           ],
+           "actual_input": "unresolved",
+           "actual_status": null,
+           "blockers": [
+            "estimand_unresolved:week12"
+           ],
+           "collection_alignment": "aligned",
+           "collection_blockers": [],
+           "collection_plan": {
+            "action": "collect",
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "requirement": "week12",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           "collection_status": "known",
+           "data_state": [],
+           "declaration": {
+            "event": "discontinuation",
+            "id": "week12",
+            "mode": "observed",
+            "relevance": "required",
+            "role": "observed_measurement",
+            "rule": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:week12 relevance",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "variable": "invented:variable",
+            "window": "invented:week12-regardless-of-discontinuation"
+           },
+           "estimation": "not_computed",
+           "event": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "event_ref": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:treatment discontinuation",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "id": "discontinuation",
+            "resolution": "resolved",
+            "status": "known",
+            "strategy": "treatment_policy"
+           },
+           "id": "week12",
+           "recorded_state": "unknown",
+           "relevance": "required",
+           "relevance_blockers": [],
+           "relevance_status": "known"
+          }
+         },
+         "values": {
+          "id": "week12"
+         }
+        },
+        {
+         "blockers": [],
+         "canonical_ref": "/result/signals/0/value/requirements/0/collection_alignment",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "settled",
+         "kind": "estimand_collection_alignment",
+         "origins": [],
+         "outcome": "aligned",
+         "path": "/result/signals/0/value/requirements/0/collection_alignment",
+         "scope": {
+          "scope": "invented:cohort-A:week12"
+         },
+         "standing": "known",
+         "support": {
+          "declaration": {
+           "event": "discontinuation",
+           "id": "week12",
+           "mode": "observed",
+           "relevance": "required",
+           "role": "observed_measurement",
+           "rule": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:week12 relevance",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "variable": "invented:variable",
+           "window": "invented:week12-regardless-of-discontinuation"
+          },
+          "declared_support": {
+           "actual_blockers": [
+            "estimand_unresolved:week12"
+           ],
+           "actual_input": "unresolved",
+           "actual_status": null,
+           "blockers": [
+            "estimand_unresolved:week12"
+           ],
+           "collection_alignment": "aligned",
+           "collection_blockers": [],
+           "collection_plan": {
+            "action": "collect",
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "requirement": "week12",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           "collection_status": "known",
+           "data_state": [],
+           "declaration": {
+            "event": "discontinuation",
+            "id": "week12",
+            "mode": "observed",
+            "relevance": "required",
+            "role": "observed_measurement",
+            "rule": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:week12 relevance",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "variable": "invented:variable",
+            "window": "invented:week12-regardless-of-discontinuation"
+           },
+           "estimation": "not_computed",
+           "event": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "event_ref": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:treatment discontinuation",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "id": "discontinuation",
+            "resolution": "resolved",
+            "status": "known",
+            "strategy": "treatment_policy"
+           },
+           "id": "week12",
+           "recorded_state": "unknown",
+           "relevance": "required",
+           "relevance_blockers": [],
+           "relevance_status": "known"
+          }
+         },
+         "values": {
+          "id": "week12"
+         }
+        },
+        {
+         "blockers": [
+          "estimand_unresolved:week12"
+         ],
+         "canonical_ref": "/result/signals/0/value/requirements/0/actual_input",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "open",
+         "kind": "estimand_actual_input",
+         "origins": [],
+         "outcome": "unresolved",
+         "path": "/result/signals/0/value/requirements/0/actual_input",
+         "scope": {
+          "scope": "invented:cohort-A:week12"
+         },
+         "standing": null,
+         "support": {
+          "declaration": {
+           "event": "discontinuation",
+           "id": "week12",
+           "mode": "observed",
+           "relevance": "required",
+           "role": "observed_measurement",
+           "rule": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:week12 relevance",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "variable": "invented:variable",
+           "window": "invented:week12-regardless-of-discontinuation"
+          },
+          "declared_support": {
+           "actual_blockers": [
+            "estimand_unresolved:week12"
+           ],
+           "actual_input": "unresolved",
+           "actual_status": null,
+           "blockers": [
+            "estimand_unresolved:week12"
+           ],
+           "collection_alignment": "aligned",
+           "collection_blockers": [],
+           "collection_plan": {
+            "action": "collect",
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "requirement": "week12",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           "collection_status": "known",
+           "data_state": [],
+           "declaration": {
+            "event": "discontinuation",
+            "id": "week12",
+            "mode": "observed",
+            "relevance": "required",
+            "role": "observed_measurement",
+            "rule": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:week12 relevance",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "variable": "invented:variable",
+            "window": "invented:week12-regardless-of-discontinuation"
+           },
+           "estimation": "not_computed",
+           "event": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "event_ref": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:treatment discontinuation",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "id": "discontinuation",
+            "resolution": "resolved",
+            "status": "known",
+            "strategy": "treatment_policy"
+           },
+           "id": "week12",
+           "recorded_state": "unknown",
+           "relevance": "required",
+           "relevance_blockers": [],
+           "relevance_status": "known"
+          }
+         },
+         "values": {
+          "id": "week12"
+         }
+        }
+       ],
+       "operation": "signals",
+       "version": 1
+      },
+      "code": "complete",
+      "metadata": {
+       "findings": [
+        {
+         "causes": [
+          {
+           "code": "estimand_unresolved:week12",
+           "kind": "evidence"
+          }
+         ],
+         "completion": "complete",
+         "disposition": "open",
+         "kind": "signal",
+         "logical_result": "unresolved",
+         "path": "/result/signals/0",
+         "standing": "known"
+        },
+        {
+         "causes": [],
+         "completion": "complete",
+         "disposition": "settled",
+         "kind": "estimand_relevance",
+         "logical_result": "required",
+         "path": "/result/signals/0/value/requirements/0/relevance",
+         "standing": "known",
+         "support_path": "/result/signals/0/value/requirements/0"
+        },
+        {
+         "causes": [],
+         "completion": "complete",
+         "disposition": "settled",
+         "kind": "estimand_collection_alignment",
+         "logical_result": "aligned",
+         "path": "/result/signals/0/value/requirements/0/collection_alignment",
+         "standing": "known",
+         "support_path": "/result/signals/0/value/requirements/0"
+        },
+        {
+         "causes": [
+          {
+           "code": "estimand_unresolved:week12",
+           "kind": "evidence"
+          }
+         ],
+         "completion": "complete",
+         "disposition": "open",
+         "kind": "estimand_actual_input",
+         "logical_result": "unresolved",
+         "path": "/result/signals/0/value/requirements/0/actual_input",
+         "standing": null,
+         "support_path": "/result/signals/0/value/requirements/0"
+        }
+       ],
+       "kind": "reasoning",
+       "version": 1
+      },
+      "operation": "signals",
+      "problems": [],
+      "result": {
+       "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+       "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation.",
+       "premises": [
+        {
+         "data": {
+          "collection_plan": [
+           {
+            "action": "collect",
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "requirement": "week12",
+            "resolution": "resolved",
+            "status": "known"
+           }
+          ],
+          "data_state": [],
+          "definitions": {
+           "intercurrent_events": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:intercurrent_events",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "population": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:population",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "summary": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:summary",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "treatment": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:treatment",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           },
+           "variable": {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "ref": "invented:variable",
+            "resolution": "resolved",
+            "status": "known",
+            "version": "1"
+           }
+          },
+          "dependencies": null,
+          "events": [
+           {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "event_ref": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:treatment discontinuation",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "id": "discontinuation",
+            "resolution": "resolved",
+            "status": "known",
+            "strategy": "treatment_policy"
+           }
+          ],
+          "id": "invented:week12-policy",
+          "requirements": [
+           {
+            "event": "discontinuation",
+            "id": "week12",
+            "mode": "observed",
+            "relevance": "required",
+            "role": "observed_measurement",
+            "rule": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:week12 relevance",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "variable": "invented:variable",
+            "window": "invented:week12-regardless-of-discontinuation"
+           }
+          ],
+          "scope": "invented:cohort-A:week12",
+          "version": "1"
+         },
+         "id": "estimand-check:estimand_declaration",
+         "kind": "estimand",
+         "support": [
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:week-policy",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:week-policy:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:week12-collection",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:week12-collection:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:week12",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:week12:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:score",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:score:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          }
+         ]
+        }
+       ],
+       "signals": [
+        {
+         "admission": {
+          "application_blockers": [],
+          "code": "accepted"
+         },
+         "basis": [
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)"
+         ],
+         "blockers": [
+          "estimand_unresolved:week12"
+         ],
+         "calculation_code": "unresolved",
+         "code": "unresolved",
+         "id": "estimand-check:estimand_declaration",
+         "kind": "estimand",
+         "operator_support": {
+          "determining_ids": [],
+          "status": null
+         },
+         "rule": "estimand.supplied_relevance:1",
+         "status": "known",
+         "support": [
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:week-policy",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:week-policy:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:week12-collection",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:week12-collection:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:week12",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:week12:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:score",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:score:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          }
+         ],
+         "value": {
+          "data_state": [],
+          "definition_checks": [
+           {
+            "attribute": "intercurrent_events",
+            "code": "accepted",
+            "declaration": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:intercurrent_events",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            }
+           },
+           {
+            "attribute": "population",
+            "code": "accepted",
+            "declaration": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:population",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            }
+           },
+           {
+            "attribute": "summary",
+            "code": "accepted",
+            "declaration": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:summary",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            }
+           },
+           {
+            "attribute": "treatment",
+            "code": "accepted",
+            "declaration": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:treatment",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            }
+           },
+           {
+            "attribute": "variable",
+            "code": "accepted",
+            "declaration": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:variable",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            }
+           }
+          ],
+          "definition_state": "complete",
+          "dependency_checks": [],
+          "dependency_code": "consistent",
+          "dependency_request": {
+           "adopted": [],
+           "available": [],
+           "conditions": {},
+           "rules": [],
+           "scope": "invented:cohort-A:week12",
+           "unavailable": [],
+           "version": "1"
+          },
+          "dependency_result": {
+           "blockers": [],
+           "code": "consistent",
+           "rule": "dependencies.explicit_prerequisites.v1",
+           "value": {
+            "available": [],
+            "rules": [],
+            "scope": "invented:cohort-A:week12",
+            "version": "1",
+            "witnesses": []
+           }
+          },
+          "estimation": "not_computed",
+          "event_checks": [
+           {
+            "code": "accepted",
+            "id": "discontinuation",
+            "strategy": "treatment_policy"
+           }
+          ],
+          "events": [
+           {
+            "basis": [
+             "user:invented teaching plan (not a real trial)"
+            ],
+            "event_ref": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "ref": "invented:treatment discontinuation",
+             "resolution": "resolved",
+             "status": "known",
+             "version": "1"
+            },
+            "id": "discontinuation",
+            "resolution": "resolved",
+            "status": "known",
+            "strategy": "treatment_policy"
+           }
+          ],
+          "id": "invented:week12-policy",
+          "requirements": [
+           {
+            "actual_blockers": [
+             "estimand_unresolved:week12"
+            ],
+            "actual_input": "unresolved",
+            "actual_status": null,
+            "blockers": [
+             "estimand_unresolved:week12"
+            ],
+            "collection_alignment": "aligned",
+            "collection_blockers": [],
+            "collection_plan": {
+             "action": "collect",
+             "basis": [
+              "user:invented adoption (teaching example)"
+             ],
+             "requirement": "week12",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            "collection_status": "known",
+            "data_state": [],
+            "declaration": {
+             "event": "discontinuation",
+             "id": "week12",
+             "mode": "observed",
+             "relevance": "required",
+             "role": "observed_measurement",
+             "rule": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:week12 relevance",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             },
+             "variable": "invented:variable",
+             "window": "invented:week12-regardless-of-discontinuation"
+            },
+            "estimation": "not_computed",
+            "event": {
+             "basis": [
+              "user:invented teaching plan (not a real trial)"
+             ],
+             "event_ref": {
+              "basis": [
+               "user:invented teaching plan (not a real trial)"
+              ],
+              "ref": "invented:treatment discontinuation",
+              "resolution": "resolved",
+              "status": "known",
+              "version": "1"
+             },
+             "id": "discontinuation",
+             "resolution": "resolved",
+             "status": "known",
+             "strategy": "treatment_policy"
+            },
+            "id": "week12",
+            "recorded_state": "unknown",
+            "relevance": "required",
+            "relevance_blockers": [],
+            "relevance_status": "known"
+           }
+          ],
+          "scope": "invented:cohort-A:week12",
+          "version": "1",
+          "witnesses": []
+         }
+        }
+       ]
+      },
+      "result_digest": "2d8c415d162c803a5a5138e8d6a8e6d722b08d141c689652e29175faac60ff34",
+      "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+      "summary": {
+       "code": "complete",
+       "dispositions": {
+        "open": 2,
+        "settled": 2
+       },
+       "findings": 4,
+       "kind": "reasoning",
+       "operation": "signals",
+       "problems": []
+      }
+     },
+     "result_digest": "b2a57cbb0205a66ec99593b05e5eca45d7b0ec53a5290d5eddee5d5633e03f78",
+     "signals": [
+      {
+       "admission": {
+        "application_blockers": [],
+        "code": "accepted"
+       },
+       "application": "unconditional",
+       "application_refs": [],
+       "application_status": null,
+       "blockers": [
+        "estimand_unresolved:week12"
+       ],
+       "calculation_code": "unresolved",
+       "claim_admission": [],
+       "code": "unresolved",
+       "finding_status": "known",
+       "id": "estimand-check:estimand_declaration",
+       "kind": "estimand",
+       "status": "known"
+      }
+     ]
+    }
+   ],
+   "id": "estimand-check",
+   "kind": "estimand",
+   "not_computed": null,
+   "objects": [
+    "week-policy"
+   ],
+   "projection": "estimand_declaration:1",
+   "required": true,
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "unresolved": []
+  },
+  {
+   "children": [
+    {
+     "applicability": [],
+     "conditions": [],
+     "id": "dependencies-check:endpoint_dependencies",
+     "receipt": {
+      "bindings": [],
+      "check": "dependencies-check",
+      "closure": [
+       "change-endpoint",
+       "score"
+      ],
+      "conditions": [],
+      "objects": [
+       "change-endpoint",
+       "score"
+      ],
+      "premises": [
+       "adopt:change-endpoint:invented-v1",
+       "adopt:score:invented-v1"
+      ],
+      "projection": "endpoint_dependencies",
+      "request_digest": "8ea7078d78f8762088efb49f68ccb4f928ba5e3e3b125aab2a1e63a7cd1049c1",
+      "role_support": {
+       "dependencies": [
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "object:change-endpoint",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "premise:adopt:change-endpoint:invented-v1",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "object:score",
+         "resolution": "resolved",
+         "status": "known"
+        },
+        {
+         "basis": [
+          "user:invented adoption (teaching example)"
+         ],
+         "id": "premise:adopt:score:invented-v1",
+         "resolution": "resolved",
+         "status": "known"
+        }
+       ]
+      },
+      "scope": {
+       "context": {
+        "arm": null,
+        "cohort": null,
+        "phase": null
+       },
+       "target": {
+        "kind": "new_trial",
+        "ref": "invented-draft",
+        "scope": {
+         "arm": "all",
+         "population": "adults",
+         "study": "invented-draft",
+         "time": "entry",
+         "version": "draft-1"
+        }
+       }
+      },
+      "target": {
+       "kind": "new_trial",
+       "ref": "invented-draft",
+       "scope": {
+        "arm": "all",
+        "population": "adults",
+        "study": "invented-draft",
+        "time": "entry",
+        "version": "draft-1"
+       }
+      },
+      "version": "1"
+     },
+     "refusal": null,
+     "request": {
+      "operation": "signals",
+      "signals": [
+       {
+        "data": {
+         "adopted": [
+          "change"
+         ],
+         "available": [
+          {
+           "id": "baseline",
+           "mode": "observed"
+          },
+          {
+           "id": "week12",
+           "mode": "observed"
+          }
+         ],
+         "conditions": {},
+         "rules": [
+          {
+           "alternatives": [
+            [
+             {
+              "id": "baseline",
+              "mode": "observed"
+             },
+             {
+              "id": "week12",
+              "mode": "observed"
+             }
+            ]
+           ],
+           "id": "change",
+           "output": {
+            "id": "change",
+            "mode": "derived"
+           },
+           "version": "invented-definition-1",
+           "when": []
+          }
+         ],
+         "scope": "invented:cohort-A:change-score",
+         "unavailable": [],
+         "version": "1"
+        },
+        "id": "dependencies-check:endpoint_dependencies",
+        "kind": "dependencies",
+        "support": [
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "object:change-endpoint",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "premise:adopt:change-endpoint:invented-v1",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "object:score",
+          "resolution": "resolved",
+          "status": "known"
+         },
+         {
+          "basis": [
+           "user:invented adoption (teaching example)"
+          ],
+          "id": "premise:adopt:score:invented-v1",
+          "resolution": "resolved",
+          "status": "known"
+         }
+        ]
+       }
+      ]
+     },
+     "request_digest": "8ea7078d78f8762088efb49f68ccb4f928ba5e3e3b125aab2a1e63a7cd1049c1",
+     "result": {
+      "clinical": {
+       "findings": [
+        {
+         "blockers": [],
+         "canonical_ref": "/result/signals/0",
+         "completion": "complete",
+         "conditions": [],
+         "disposition": "settled",
+         "kind": "signal",
+         "origins": [],
+         "outcome": "consistent",
+         "path": "/result/signals/0",
+         "scope": {},
+         "standing": "known",
+         "support": {
+          "admission": {
+           "application_blockers": [],
+           "code": "accepted"
+          },
+          "basis": [
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)",
+           "user:invented adoption (teaching example)"
+          ],
+          "rule": "dependencies.explicit_prerequisites.v1",
+          "support": [
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "object:change-endpoint",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "premise:adopt:change-endpoint:invented-v1",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "object:score",
+            "resolution": "resolved",
+            "status": "known"
+           },
+           {
+            "basis": [
+             "user:invented adoption (teaching example)"
+            ],
+            "id": "premise:adopt:score:invented-v1",
+            "resolution": "resolved",
+            "status": "known"
+           }
+          ]
+         },
+         "values": {
+          "id": "dependencies-check:endpoint_dependencies",
+          "value": {
+           "available": [
+            {
+             "id": "baseline",
+             "mode": "observed"
+            },
+            {
+             "id": "change",
+             "mode": "derived"
+            },
+            {
+             "id": "week12",
+             "mode": "observed"
+            }
+           ],
+           "rules": [
+            {
+             "alternatives": [
+              [
+               {
+                "id": "baseline",
+                "mode": "observed",
+                "state": "available"
+               },
+               {
+                "id": "week12",
+                "mode": "observed",
+                "state": "available"
+               }
+              ]
+             ],
+             "id": "change",
+             "missing": [],
+             "output": {
+              "id": "change",
+              "mode": "derived"
+             },
+             "state": "ready",
+             "version": "invented-definition-1",
+             "when": []
+            }
+           ],
+           "scope": "invented:cohort-A:change-score",
+           "version": "1",
+           "witnesses": []
+          }
+         }
+        }
+       ],
+       "operation": "signals",
+       "version": 1
+      },
+      "code": "complete",
+      "metadata": {
+       "findings": [
+        {
+         "causes": [],
+         "completion": "complete",
+         "disposition": "settled",
+         "kind": "signal",
+         "logical_result": "consistent",
+         "path": "/result/signals/0",
+         "standing": "known"
+        }
+       ],
+       "kind": "reasoning",
+       "version": 1
+      },
+      "operation": "signals",
+      "problems": [],
+      "result": {
+       "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+       "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation.",
+       "premises": [
+        {
+         "data": {
+          "adopted": [
+           "change"
+          ],
+          "available": [
+           {
+            "id": "baseline",
+            "mode": "observed"
+           },
+           {
+            "id": "week12",
+            "mode": "observed"
+           }
+          ],
+          "conditions": {},
+          "rules": [
+           {
+            "alternatives": [
+             [
+              {
+               "id": "baseline",
+               "mode": "observed"
+              },
+              {
+               "id": "week12",
+               "mode": "observed"
+              }
+             ]
+            ],
+            "id": "change",
+            "output": {
+             "id": "change",
+             "mode": "derived"
+            },
+            "version": "invented-definition-1",
+            "when": []
+           }
+          ],
+          "scope": "invented:cohort-A:change-score",
+          "unavailable": [],
+          "version": "1"
+         },
+         "id": "dependencies-check:endpoint_dependencies",
+         "kind": "dependencies",
+         "support": [
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:change-endpoint",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:change-endpoint:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:score",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:score:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          }
+         ]
+        }
+       ],
+       "signals": [
+        {
+         "admission": {
+          "application_blockers": [],
+          "code": "accepted"
+         },
+         "basis": [
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)",
+          "user:invented adoption (teaching example)"
+         ],
+         "blockers": [],
+         "calculation_code": "consistent",
+         "code": "consistent",
+         "id": "dependencies-check:endpoint_dependencies",
+         "kind": "dependencies",
+         "rule": "dependencies.explicit_prerequisites.v1",
+         "status": "known",
+         "support": [
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:change-endpoint",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:change-endpoint:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "object:score",
+           "resolution": "resolved",
+           "status": "known"
+          },
+          {
+           "basis": [
+            "user:invented adoption (teaching example)"
+           ],
+           "id": "premise:adopt:score:invented-v1",
+           "resolution": "resolved",
+           "status": "known"
+          }
+         ],
+         "value": {
+          "available": [
+           {
+            "id": "baseline",
+            "mode": "observed"
+           },
+           {
+            "id": "change",
+            "mode": "derived"
+           },
+           {
+            "id": "week12",
+            "mode": "observed"
+           }
+          ],
+          "rules": [
+           {
+            "alternatives": [
+             [
+              {
+               "id": "baseline",
+               "mode": "observed",
+               "state": "available"
+              },
+              {
+               "id": "week12",
+               "mode": "observed",
+               "state": "available"
+              }
+             ]
+            ],
+            "id": "change",
+            "missing": [],
+            "output": {
+             "id": "change",
+             "mode": "derived"
+            },
+            "state": "ready",
+            "version": "invented-definition-1",
+            "when": []
+           }
+          ],
+          "scope": "invented:cohort-A:change-score",
+          "version": "1",
+          "witnesses": []
+         }
+        }
+       ]
+      },
+      "result_digest": "1014d30c8e01bd83ab2dd97011e53c9bf5f5086cee174e0d47614fa62c918303",
+      "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+      "summary": {
+       "code": "complete",
+       "dispositions": {
+        "settled": 1
+       },
+       "findings": 1,
+       "kind": "reasoning",
+       "operation": "signals",
+       "problems": []
+      }
+     },
+     "result_digest": "d2af9fed951133d97ee2d65012fab313d933dbe0e7e8231b1626dacb8ea8140f",
+     "signals": [
+      {
+       "admission": {
+        "application_blockers": [],
+        "code": "accepted"
+       },
+       "application": "unconditional",
+       "application_refs": [],
+       "application_status": null,
+       "blockers": [],
+       "calculation_code": "consistent",
+       "claim_admission": [],
+       "code": "consistent",
+       "finding_status": "known",
+       "id": "dependencies-check:endpoint_dependencies",
+       "kind": "dependencies",
+       "status": "known"
+      }
+     ]
+    }
+   ],
+   "id": "dependencies-check",
+   "kind": "dependencies",
+   "not_computed": null,
+   "objects": [
+    "change-endpoint"
+   ],
+   "projection": "endpoint_dependencies:1",
+   "required": true,
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "unresolved": []
+  }
+ ],
+ "decisions": [],
+ "limits_of_claim": [
+  "Each check covers only its declared objects, claims and variables; not medical completeness.",
+  "Projection receipts record consumed objects and premises; they do not establish meaning.",
+  "Each claim is admitted on its own deciding support; the signal code is a conservative summary."
+ ],
+ "objects": [
+  {
+   "data": {
+    "baseline": null,
+    "definition": {
+     "basis": [
+      "user:invented teaching plan (not a real trial)"
+     ],
+     "ref": "invented:score definition",
+     "resolution": "resolved",
+     "status": "known",
+     "version": "1"
+    },
+    "mode": "observed",
+    "unit": "points"
+   },
+   "depends_on": [],
+   "id": "score",
+   "kind": "measurement",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:score:invented-v1"
+   ],
+   "version": "invented-v1"
+  },
+  {
+   "data": {
+    "anchor": "randomization",
+    "condition": null,
+    "measurement": "score",
+    "nominal": "84",
+    "permitted": [
+     {
+      "lower": "77",
+      "lower_inclusive": true,
+      "upper": "91",
+      "upper_inclusive": true
+     }
+    ],
+    "unit": "day"
+   },
+   "depends_on": [
+    "score"
+   ],
+   "id": "week12",
+   "kind": "assessment",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:week12:invented-v1"
+   ],
+   "version": "invented-v1"
+  },
+  {
+   "data": {
+    "collection_plan": [],
+    "data_state": [],
+    "definitions": {
+     "intercurrent_events": {
+      "basis": [
+       "user:invented teaching plan (not a real trial)"
+      ],
+      "ref": "invented:intercurrent_events",
+      "resolution": "resolved",
+      "status": "known",
+      "version": "1"
+     },
+     "population": {
+      "basis": [
+       "user:invented teaching plan (not a real trial)"
+      ],
+      "ref": "invented:population",
+      "resolution": "resolved",
+      "status": "known",
+      "version": "1"
+     },
+     "summary": {
+      "basis": [
+       "user:invented teaching plan (not a real trial)"
+      ],
+      "ref": "invented:summary",
+      "resolution": "resolved",
+      "status": "known",
+      "version": "1"
+     },
+     "treatment": {
+      "basis": [
+       "user:invented teaching plan (not a real trial)"
+      ],
+      "ref": "invented:treatment",
+      "resolution": "resolved",
+      "status": "known",
+      "version": "1"
+     },
+     "variable": {
+      "basis": [
+       "user:invented teaching plan (not a real trial)"
+      ],
+      "ref": "invented:variable",
+      "resolution": "resolved",
+      "status": "known",
+      "version": "1"
+     }
+    },
+    "dependencies": null,
+    "events": [
+     {
+      "basis": [
+       "user:invented teaching plan (not a real trial)"
+      ],
+      "event_ref": {
+       "basis": [
+        "user:invented teaching plan (not a real trial)"
+       ],
+       "ref": "invented:treatment discontinuation",
+       "resolution": "resolved",
+       "status": "known",
+       "version": "1"
+      },
+      "id": "discontinuation",
+      "resolution": "resolved",
+      "status": "known",
+      "strategy": "treatment_policy"
+     }
+    ],
+    "id": "invented:week12-policy",
+    "requirements": [
+     {
+      "event": "discontinuation",
+      "id": "week12",
+      "mode": "observed",
+      "relevance": "required",
+      "role": "observed_measurement",
+      "rule": {
+       "basis": [
+        "user:invented teaching plan (not a real trial)"
+       ],
+       "ref": "invented:week12 relevance",
+       "resolution": "resolved",
+       "status": "known",
+       "version": "1"
+      },
+      "variable": "invented:variable",
+      "window": "invented:week12-regardless-of-discontinuation"
+     }
+    ],
+    "scope": "invented:cohort-A:week12",
+    "version": "1"
+   },
+   "depends_on": [],
+   "id": "week-policy",
+   "kind": "estimand",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:week-policy:invented-v1"
+   ],
+   "version": "invented-v1"
+  },
+  {
+   "data": {
+    "assessment": "week12",
+    "availability": [
+     {
+      "lower": "77",
+      "lower_inclusive": true,
+      "upper": "91",
+      "upper_inclusive": true
+     }
+    ],
+    "event_handling": {
+     "action": "collect",
+     "estimand": "week-policy",
+     "requirement": "week12"
+    },
+    "mode": "observed"
+   },
+   "depends_on": [
+    "week12",
+    "week-policy"
+   ],
+   "id": "week12-collection",
+   "kind": "collection",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:week12-collection:invented-v1"
+   ],
+   "version": "invented-v1"
+  },
+  {
+   "data": {
+    "definition": {
+     "basis": [
+      "user:invented teaching plan (not a real trial)"
+     ],
+     "ref": "invented:change endpoint",
+     "resolution": "resolved",
+     "status": "known",
+     "version": "1"
+    },
+    "dependencies": {
+     "adopted": [
+      "change"
+     ],
+     "available": [
+      {
+       "id": "baseline",
+       "mode": "observed"
+      },
+      {
+       "id": "week12",
+       "mode": "observed"
+      }
+     ],
+     "conditions": {},
+     "rules": [
+      {
+       "alternatives": [
+        [
+         {
+          "id": "baseline",
+          "mode": "observed"
+         },
+         {
+          "id": "week12",
+          "mode": "observed"
+         }
+        ]
+       ],
+       "id": "change",
+       "output": {
+        "id": "change",
+        "mode": "derived"
+       },
+       "version": "invented-definition-1",
+       "when": []
+      }
+     ],
+     "scope": "invented:cohort-A:change-score",
+     "unavailable": [],
+     "version": "1"
+    },
+    "estimand": null,
+    "variable": "score"
+   },
+   "depends_on": [
+    "score"
+   ],
+   "id": "change-endpoint",
+   "kind": "endpoint",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:change-endpoint:invented-v1"
+   ],
+   "version": "invented-v1"
+  }
+ ],
+ "schema_version": 1,
+ "sections": {
+  "assessments": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "efficacy": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "eligibility": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "endpoints": {
+   "basis": [],
+   "objects": [
+    "week-policy",
+    "change-endpoint"
+   ],
+   "state": "requested"
+  },
+  "exploratory": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "interventions": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "population": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "safety": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  }
+ }
+}

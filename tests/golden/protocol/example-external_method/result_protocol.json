@@ -1,0 +1,343 @@
+{
+ "checks": [
+  {
+   "children": [],
+   "id": "outside-method-check",
+   "kind": "external_method",
+   "not_computed": {
+    "definition": {
+     "basis": [
+      "user:invented teaching plan (not a real trial)"
+     ],
+     "ref": "invented:externally computed survival analysis",
+     "resolution": "resolved",
+     "status": "known",
+     "version": "1"
+    },
+    "inputs": [
+     {
+      "name": "alpha",
+      "ref": null,
+      "unit": null,
+      "value": "1/20"
+     },
+     {
+      "name": "hazard_ratio",
+      "ref": null,
+      "unit": null,
+      "value": null
+     }
+    ],
+    "method": "outside-method",
+    "missing": [
+     "accrual_rate"
+    ]
+   },
+   "objects": [
+    "efficacy-design",
+    "outside-method"
+   ],
+   "projection": "external_method_declaration:1",
+   "required": true,
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "unresolved": []
+  }
+ ],
+ "decisions": [],
+ "limits_of_claim": [
+  "Each check covers only its declared objects, claims and variables; not medical completeness.",
+  "Projection receipts record consumed objects and premises; they do not establish meaning.",
+  "Each claim is admitted on its own deciding support; the signal code is a conservative summary."
+ ],
+ "objects": [
+  {
+   "data": {
+    "baseline": null,
+    "definition": {
+     "basis": [
+      "user:invented teaching plan (not a real trial)"
+     ],
+     "ref": "invented:response definition",
+     "resolution": "resolved",
+     "status": "known",
+     "version": "1"
+    },
+    "mode": "observed",
+    "unit": "responder"
+   },
+   "depends_on": [],
+   "id": "response",
+   "kind": "measurement",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:response:invented-v1"
+   ],
+   "version": "invented-v1"
+  },
+  {
+   "data": {
+    "definition": {
+     "basis": [
+      "user:invented teaching plan (not a real trial)"
+     ],
+     "ref": "invented:response endpoint",
+     "resolution": "resolved",
+     "status": "known",
+     "version": "1"
+    },
+    "dependencies": null,
+    "estimand": null,
+    "variable": "response"
+   },
+   "depends_on": [
+    "response"
+   ],
+   "id": "response-endpoint",
+   "kind": "endpoint",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:response-endpoint:invented-v1"
+   ],
+   "version": "invented-v1"
+  },
+  {
+   "data": {
+    "definition": {
+     "basis": [
+      "user:invented teaching plan (not a real trial)"
+     ],
+     "ref": "invented:externally computed survival analysis",
+     "resolution": "resolved",
+     "status": "known",
+     "version": "1"
+    },
+    "inputs": [
+     {
+      "name": "alpha",
+      "ref": null,
+      "unit": null,
+      "value": "1/20"
+     },
+     {
+      "name": "hazard_ratio",
+      "ref": null,
+      "unit": null,
+      "value": null
+     }
+    ],
+    "missing": [
+     "accrual_rate"
+    ]
+   },
+   "depends_on": [],
+   "id": "outside-method",
+   "kind": "external_method",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:outside-method:invented-v1"
+   ],
+   "version": "invented-v1"
+  },
+  {
+   "data": {
+    "assumptions": [],
+    "endpoint": "response-endpoint",
+    "method": "external_method",
+    "parameters": "outside-method"
+   },
+   "depends_on": [
+    "response-endpoint",
+    "outside-method"
+   ],
+   "id": "efficacy-design",
+   "kind": "efficacy",
+   "origin": {
+    "analysis": null,
+    "kind": "user_choice",
+    "ref": "user:invented teaching plan (not a real trial)",
+    "source": null
+   },
+   "scope": {
+    "context": {
+     "arm": null,
+     "cohort": null,
+     "phase": null
+    },
+    "target": {
+     "kind": "new_trial",
+     "ref": "invented-draft",
+     "scope": {
+      "arm": "all",
+      "population": "adults",
+      "study": "invented-draft",
+      "time": "entry",
+      "version": "draft-1"
+     }
+    }
+   },
+   "standing": {
+    "basis": [
+     "user:invented adoption (teaching example)"
+    ],
+    "resolution": "resolved",
+    "status": "known"
+   },
+   "support": [
+    "adopt:efficacy-design:invented-v1"
+   ],
+   "version": "invented-v1"
+  }
+ ],
+ "schema_version": 1,
+ "sections": {
+  "assessments": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "efficacy": {
+   "basis": [],
+   "objects": [
+    "efficacy-design"
+   ],
+   "state": "requested"
+  },
+  "eligibility": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "endpoints": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "exploratory": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "interventions": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "population": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  },
+  "safety": {
+   "basis": [],
+   "objects": [],
+   "state": "not_requested"
+  }
+ }
+}

@@ -15,6 +15,9 @@ def test_resolve_scope_value_0():
     """VALUE survivor — distinguishing witness (equivalence search)."""
     result = resolve_scope(request={"drug": ["Keytruda", "Keytruda"]}, answers={})
     assert result == {
+        "coverage": {
+            "boundary": "A completed retrieval means the declared search finished, not that every trial of the clinical concept was found: a record the declared search cannot reach is simply absent, and its absence is not evidence that no such trial exists."
+        },
         "code": "awaiting_lookups",
         "check": ["ok", []],
         "join": "the names of one slot are joined by OR, the slots by AND",
@@ -63,6 +66,14 @@ def test_resolve_scope_value_1():
     """VALUE survivor — distinguishing witness (equivalence search)."""
     result = resolve_scope(request={"condition": "NCT01030536", "phase": ["PHASE2"]}, answers={})
     assert result == {
+        "coverage": {
+            "boundary": "A completed retrieval means the declared search finished, not that every trial of the clinical concept was found: a record the declared search cannot reach is simply absent, and its absence is not evidence that no such trial exists.",
+            "condition": {
+                "slot": "condition",
+                "term": "NCT01030536",
+                "route": "the registry's own condition-text search (query.cond), which matches text, not a MeSH tree",
+            },
+        },
         "code": "unresolved",
         "check": ["ok", []],
         "join": "the names of one slot are joined by OR, the slots by AND",
@@ -104,6 +115,14 @@ def test_resolve_scope_value_3():
     """VALUE survivor — distinguishing witness (equivalence search)."""
     result = resolve_scope(request={"mechanism": "PD-1", "condition": "melanoma"}, answers={})
     assert result == {
+        "coverage": {
+            "boundary": "A completed retrieval means the declared search finished, not that every trial of the clinical concept was found: a record the declared search cannot reach is simply absent, and its absence is not evidence that no such trial exists.",
+            "condition": {
+                "slot": "condition",
+                "term": "melanoma",
+                "route": "the registry's own condition-text search (query.cond), which matches text, not a MeSH tree",
+            },
+        },
         "code": "unresolved",
         "check": ["ok", []],
         "join": "the names of one slot are joined by OR, the slots by AND",
@@ -160,6 +179,9 @@ def test_resolve_scope_value_4():
     """VALUE survivor — distinguishing witness (equivalence search)."""
     result = resolve_scope(request={"params": {"filter.ids": "NCT04852770"}}, answers={})
     assert result == {
+        "coverage": {
+            "boundary": "A completed retrieval means the declared search finished, not that every trial of the clinical concept was found: a record the declared search cannot reach is simply absent, and its absence is not evidence that no such trial exists."
+        },
         "code": "resolved",
         "check": ["ok", []],
         "join": "the names of one slot are joined by OR, the slots by AND",

@@ -920,11 +920,23 @@ def _session_findings(result: dict, base: str) -> list[dict]:
                 for row in [signal, *signal.get("claim_admission", ())]
                 if row.get("application")
             }
+            before = len(findings)
             extend_child(
                 child["result"],
                 _path(prefix, "result"),
                 "conditional" if "conditional" in applications else None,
             )
+            # Simultaneous admission causes named on the protocol signal records reach the headline too.
+            extra = [b for signal in child.get("signals", ()) for b in signal.get("blockers", ())]
+            for finding in findings[before:]:
+                # Compared by code family: a cause already named (with or without its signal id) stays once.
+                known = {cause["code"].partition(":")[0] for cause in finding.get("causes", ())}
+                finding["causes"] = list(finding.get("causes", ())) + [
+                    {"code": code, "kind": cause_kind(code)}
+                    for code in dict.fromkeys(extra)
+                    if code.partition(":")[0] in ("proposed_refused", "binding_unresolved")
+                    and code.partition(":")[0] not in known
+                ]
     # A check that is unresolved, limited or not computed is an open item in the headline, never silence
     # (trace audit F4): one finding per such check, with each named cause.
     for index, check in enumerate(protocol.get("checks", ())):

@@ -263,6 +263,7 @@ def parse_query_args(args: list[str]) -> tuple[str, dict[str, str], list[str]]:
 # The request slots `trialledger landscape` takes as flags of their own name, each as given.
 FLAG_SLOTS = (
     "drug",
+    "class_drug_additions",
     "mechanism",
     "condition",
     "condition_class",
@@ -371,6 +372,14 @@ def main(
         help="a drug name, with its canonical RxNorm name and sourced product names (repeat)",
     )
     landscape_parser.add_argument(
+        "--class-drug-addition",
+        dest="class_drug_additions",
+        action="append",
+        default=[],
+        help="a drug the person adds to the class search (repeat); searched as the person's own addition, "
+        "never presented as a member the drug vocabulary returned for the class",
+    )
+    landscape_parser.add_argument(
         "--drug-class",
         help="a drug class by name (use --drug-class-id for an ID); "
         "unresolved names offer source-catalogue choices",
@@ -411,6 +420,23 @@ def main(
         choices=("direct", "relay"),
         help="direct, or relay for a sandbox that cannot reach the registry (default: what `trialledger "
         "doctor` finds)",
+    )
+    landscape_parser.add_argument(
+        "--compare-condition-text",
+        action="store_true",
+        help="for a finished run that searched a disease class: also ask the registry's condition-text "
+        "search "
+        "for the same term, every other filter unchanged, and compare the complete identifier sets "
+        "(coverage.json and coverage.md in the run folder; identifiers only; the record is not "
+        "rewritten; repeat to resume). A completed retrieval is completion of the declared search, not "
+        "of the clinical concept; a trial only the text search finds is a candidate for clinical "
+        "review. Takes no request flags",
+    )
+    landscape_parser.add_argument(
+        "--compare-plan",
+        action="store_true",
+        help="with --compare-condition-text: show the alternate query and its budget; ask the registry "
+        "nothing",
     )
     landscape_parser.add_argument(
         "--preview",
@@ -630,6 +656,8 @@ def _landscape(args, *, http, sleep, rxclass_get, probe_get) -> int:
     from TrialLedger.operate import Outcome, run, run_exit
     from TrialLedger.preview import preview
 
+    if args.compare_condition_text:
+        return _coverage(args.run, args.compare_plan, http=http, sleep=sleep)
     code, request, offending = request_from_flags(vars(args))
     outcome: Outcome | None = None
     if args.request is not None:
@@ -666,6 +694,32 @@ def _landscape(args, *, http, sleep, rxclass_get, probe_get) -> int:
         print(outcome.detail, file=stream)
     print(outcome.advice, file=stream)
     return code_
+
+
+def _coverage(run: Path, plan: bool, *, http, sleep) -> int:
+    """`landscape --compare-condition-text`: a run's class search compared with its condition-text search."""
+    import json
+
+    from TrialLedger import coverage
+    from TrialLedger.coverage_run import run_coverage, spent_requests
+
+    if not (run / "resolution.json").is_file():
+        print(f"trialledger landscape: {run} holds no landscape run (resolution.json)", file=sys.stderr)
+        return 2
+    if plan:
+        resolution = json.loads((run / "resolution.json").read_text(encoding="utf-8"))
+        code, alternate = coverage.alternate_query(resolution)
+        print(f"alternate search: {code}")
+        for name, value in alternate.items():
+            print(f"  {name}={value}")
+        scope = json.loads((run / "scope.json").read_text(encoding="utf-8"))
+        policy = scope.get("acquisition") or {"max_studies": 1000, "max_registry_requests": 100}
+        print(coverage.comparison_budget(policy, None, None, spent_requests(run)))
+        return 0 if code == "ok" else 2
+    say = functools.partial(print, file=sys.stderr)
+    state, detail = run_coverage(run, http=http, sleep=sleep, progress=say)
+    print(f"trialledger landscape --compare-condition-text: {state} — run folder {run}\n{detail}")
+    return {"complete": 0, "not_applicable": 2}.get(state, 1)
 
 
 def _mcp(root: Path | None, *, http, sleep, rxclass_get, probe_get, streams) -> int:

@@ -12,6 +12,7 @@ from fractions import Fraction
 from typing import Any
 
 from TrialLedger.layer2.protocol_numbers import render
+from TrialLedger.layer2.protocol_outcomes import CONFLICT_CODES, CONFLICT_OUTCOMES, REPAIR_OUTCOMES
 
 SCHEMA_VERSION = 1
 SECTION_IDS = (
@@ -222,7 +223,8 @@ def witness_text(detail: dict) -> str:
     else:
         chosen = ", ".join(str(item) for item in actions) if isinstance(actions, list) and actions else "none"
         outcome = f"transition {transition} selects {chosen}"
-    steps = f" after {len(trace) - 1} earlier step(s)" if len(trace) > 1 else ""
+    size = len(trace) if isinstance(trace, list) else 0
+    steps = f" after {size - 1} earlier step(s)" if size > 1 else ""
     return f"Example from the retained bounded trace: {where}{steps}, {outcome}."
 
 
@@ -381,41 +383,44 @@ def _child_ref(index: int, child_index: int) -> str:
     return f"/protocol/checks/{index}/children/{child_index}/result"
 
 
-def _check_row(index: int, check: dict) -> dict:
-    children = check.get("children") or []
-    signals = _signals(check)
-    first = signals[0] if signals else None
-    claims = []
-    for child in children:
-        for signal in child.get("signals") or []:
-            for row in signal.get("claim_admission") or []:
-                claims.append(
-                    {
-                        "id": row.get("id"),
-                        "claim": row.get("claim"),
-                        "outcome": row.get("outcome"),
-                        "effective_outcome": row.get("effective_outcome"),
-                        "admission": row.get("admission"),
-                        "application": row.get("application"),
-                        "standing_support": copy.deepcopy(row.get("support")),
-                        # The clinical finding is no stronger than its applicability proof; the arithmetic's
-                        # own standing stays visible separately (external review).
-                        "standing": row.get("finding_status") or row.get("status"),
-                        "arithmetic_standing": row.get("status"),
-                        "application_standing": row.get("application_status"),
-                        "determining_ids": copy.deepcopy(row.get("determining_ids") or [])
-                        + [
-                            r
-                            for r in row.get("application_refs") or []
-                            if r not in (row.get("determining_ids") or [])
-                        ],
-                        "wording": claim_wording(row, child),
-                        "witness_wording": witness_wording(row, child),
-                        "kind_of_finding": claim_kind(row),
-                    }
-                )
-    plain_standing = [sig.get("finding_status") or sig.get("status") for _, sig in _plain_signals(check)]
-    inherited = sorted(
+def _determining_ids(row: dict) -> list:
+    own = row.get("determining_ids") or []
+    return copy.deepcopy(own) + [r for r in row.get("application_refs") or [] if r not in own]
+
+
+def _claim_view(row: dict, child: dict) -> dict:
+    return {
+        "id": row.get("id"),
+        "claim": row.get("claim"),
+        "outcome": row.get("outcome"),
+        "effective_outcome": row.get("effective_outcome"),
+        "admission": row.get("admission"),
+        "application": row.get("application"),
+        "standing_support": copy.deepcopy(row.get("support")),
+        # The clinical finding is no stronger than its applicability proof; the arithmetic's
+        # own standing stays visible separately (external review).
+        "standing": row.get("finding_status") or row.get("status"),
+        "arithmetic_standing": row.get("status"),
+        "application_standing": row.get("application_status"),
+        "determining_ids": _determining_ids(row),
+        "wording": claim_wording(row, child),
+        "witness_wording": witness_wording(row, child),
+        "kind_of_finding": claim_kind(row),
+    }
+
+
+def _check_summary(first: dict | None) -> dict | None:
+    if first is None:
+        return None
+    return {
+        "code": first.get("code"),
+        "calculation_code": first.get("calculation_code"),
+        "admission": copy.deepcopy(first.get("admission")),
+    }
+
+
+def _inherited_objects(check: dict, children: list[dict]) -> list:
+    return sorted(
         {
             row["object"]
             for child in children
@@ -423,6 +428,80 @@ def _check_row(index: int, check: dict) -> dict:
             if row.get("object") not in (check.get("objects") or [])
         }
     )
+
+
+def _has_applicability_binding(children: list[dict]) -> bool:
+    return any(
+        b.get("projection") == "condition_applicability"
+        for child in children[:1]
+        for b in (child.get("receipt") or {}).get("bindings") or []
+    )
+
+
+def _plain_finding(index: int, j: int, sig: dict) -> dict:
+    return {
+        "signal": sig.get("id"),
+        "kind": sig.get("kind"),
+        "code": sig.get("code"),
+        "calculation_code": sig.get("calculation_code"),
+        "admission": (sig.get("admission") or {}).get("code"),
+        "codes": signal_finding_codes(sig),
+        # A plain signal carries its own applicability (a condition reached through a linked object).
+        "application": sig.get("application"),
+        "finding_status": sig.get("finding_status"),
+        "kind_of_finding": "conditional" if sig.get("application") == "conditional" else signal_kind(sig),
+        "ref": _child_ref(index, j),
+    }
+
+
+def _clean_signal(index: int, j: int, sig: dict) -> dict:
+    return {
+        "signal": sig.get("id"),
+        "kind": sig.get("kind"),
+        "code": sig.get("code"),
+        "standing": sig.get("finding_status") or sig.get("status"),
+        "application": sig.get("application"),
+        "ref": _child_ref(index, j),
+    }
+
+
+def _child_refs(index: int, children: list[dict]) -> list[dict]:
+    return [
+        {
+            "result": _child_ref(index, j),
+            "request_digest": child.get("request_digest"),
+            "result_digest": child.get("result_digest"),
+        }
+        for j, child in enumerate(children)
+    ]
+
+
+def _unresolved_support(children: list[dict]) -> list[str]:
+    """Support entry ids, in order, whose resolution is not `resolved`, across the check's child requests."""
+    found = [
+        entry.get("id")
+        for child in children
+        for signal in (child.get("request") or {}).get("signals") or []
+        for entry in signal.get("support") or []
+        if entry.get("resolution") != "resolved"
+    ]
+    return list(dict.fromkeys(str(i) for i in found))
+
+
+def standing_text(row: dict) -> str | None:
+    """`known`, or `known, unresolved (adoption:week12)`: a row's status and unresolved support (pure)."""
+    if not row.get("standing"):
+        return None
+    causes = row.get("resolution_causes") or []
+    return row["standing"] + (", unresolved (" + ", ".join(causes) + ")" if causes else "")
+
+
+def _check_row(index: int, check: dict) -> dict:
+    children = check.get("children") or []
+    signals = _signals(check)
+    claims = [_claim_view(row, child) for row, child in _claim_rows(check)]
+    plain = _plain_signals(check)
+    plain_standing = [sig.get("finding_status") or sig.get("status") for _, sig in plain]
     return {
         "id": check["id"],
         "kind": check["kind"],
@@ -430,67 +509,26 @@ def _check_row(index: int, check: dict) -> dict:
         # The weakest standing this check's findings rest on, separate from `conditional` (which means only
         # "applies under a declared condition"); Rohan, 2026-11-05.
         "standing": weakest_standing([c["standing"] for c in claims] + plain_standing),
+        # Beside status, any support entry not resolved (a missing adoption, an unresolved binding), so a
+        # withheld row never reads plainly "known" (Rohan, 2026-11-05).
+        "resolution": "unresolved" if _unresolved_support(children) else "resolved",
+        "resolution_causes": _unresolved_support(children),
         # Conditions reached through a linked object, and whether this check declares its own applicability
         # binding (bindings are check-local; Rohan, 2026-11-05).
-        "inherited_conditions": inherited,
-        "applicability_binding": any(
-            b.get("projection") == "condition_applicability"
-            for child in children[:1]
-            for b in (child.get("receipt") or {}).get("bindings") or []
-        ),
+        "inherited_conditions": _inherited_objects(check, children),
+        "applicability_binding": _has_applicability_binding(children),
         "projection": check.get("projection"),
-        "summary": None
-        if first is None
-        else {
-            "code": first.get("code"),
-            "calculation_code": first.get("calculation_code"),
-            "admission": copy.deepcopy(first.get("admission")),
-        },
+        "summary": _check_summary(signals[0] if signals else None),
         "claims": claims,
-        "findings": [
-            {
-                "signal": sig.get("id"),
-                "kind": sig.get("kind"),
-                "code": sig.get("code"),
-                "calculation_code": sig.get("calculation_code"),
-                "admission": (sig.get("admission") or {}).get("code"),
-                "codes": signal_finding_codes(sig),
-                # A plain signal carries its own applicability (a condition reached through a linked object).
-                "application": sig.get("application"),
-                "finding_status": sig.get("finding_status"),
-                "kind_of_finding": "conditional"
-                if sig.get("application") == "conditional"
-                else signal_kind(sig),
-                "ref": _child_ref(index, j),
-            }
-            for j, sig in _plain_signals(check)
-        ],
+        "findings": [_plain_finding(index, j, sig) for j, sig in plain],
         "unresolved": copy.deepcopy(check.get("unresolved") or []),
         "not_computed": copy.deepcopy(check.get("not_computed")),
         "not_computed_items": not_computed_items(check),
         "refusals": refusal_codes(check),
-        "clean_signals": [
-            {
-                "signal": sig.get("id"),
-                "kind": sig.get("kind"),
-                "code": sig.get("code"),
-                "standing": sig.get("finding_status") or sig.get("status"),
-                "application": sig.get("application"),
-                "ref": _child_ref(index, j),
-            }
-            for j, sig in _plain_signals(check)
-            if not signal_finding_codes(sig)
-        ],
+        "clean_signals": [_clean_signal(index, j, sig) for j, sig in plain if not signal_finding_codes(sig)],
         "models": model_rows(check),
         "conditions": [copy.deepcopy(c) for child in children for c in child.get("conditions") or []],
-        "refs": [
-            {
-                "result": _child_ref(index, j),
-                "request_digest": child.get("request_digest"),
-                "result_digest": child.get("result_digest"),
-            }
-            for j, child in enumerate(children)
-        ],
+        "refs": _child_refs(index, children),
     }
 
 
@@ -598,13 +636,7 @@ def _schedule_numbers(child: dict | None, codes: list, row: dict) -> dict:
 
 
 # Section findings (Rohan, 2026-11-04): a separate label always shown beside C3 coverage, from admitted
-# results only, by a fixed outcome table. Policy failures are conflicts; schedule gaps and unmet binomial
-# targets are repair choices (the same split as the clinical metadata labels). No reasoning happens here.
-CONFLICT_OUTCOMES = frozenset({"gap", "competing", "violation", "not_established", "inconsistent_domain"})
-REPAIR_OUTCOMES = frozenset(
-    {"no_feasible_time", "no_permitted_time", "outside_window", "not_collected", "uncovered", "not_satisfied"}
-)
-CONFLICT_CODES = frozenset({"conflict", "inconsistent", "violated"})
+# results only, by a fixed outcome table (`protocol_outcomes`). No reasoning happens here.
 FINDINGS_TEXT = {
     "conflict_found": "Conflict found in the declared checks.",
     "repair_choice_open": "A repair choice is open in the declared checks.",
@@ -1067,7 +1099,8 @@ def binomial_detail(row: dict, child: dict) -> str:
     reasons = (value.get("application") or {}).get("reasons") or []
     if not reasons:
         return ""
-    display = value.get("display") if isinstance(value.get("display"), dict) else {}
+    raw_display = value.get("display")
+    display = raw_display if isinstance(raw_display, dict) else {}
     shown = ", ".join(
         f"{name} {display[key]}"
         for key, name in (("null_rejection_probability", "null rejection probability"), ("power", "power"))
@@ -1261,102 +1294,127 @@ def _section_rows(protocol: dict, check_rows: list[dict], checks: list[dict]) ->
     return rows
 
 
-def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]) -> list[dict]:
-    def item(kind: str, check: str | None, claim: str | None, text: str, ref: str) -> dict:
-        return {"kind": kind, "check": check, "claim": claim, "text": text, "ref": ref}
+def _open_item(kind: str, check: str | None, claim: str | None, text: str, ref: str) -> dict:
+    return {"kind": kind, "check": check, "claim": claim, "text": text, "ref": ref}
 
-    def claim_items(kind: str, wanted) -> list[dict]:
-        out = []
-        for i, row in enumerate(check_rows):
-            refs = row["refs"]
-            offset = 0
-            for j, child in enumerate(checks[i].get("children") or []):
-                for signal in child.get("signals") or []:
-                    for _ in signal.get("claim_admission") or []:
-                        view_row = row["claims"][offset]
-                        offset += 1
-                        if wanted(view_row):
-                            out.append(
-                                item(kind, row["id"], view_row["id"], view_row["wording"], refs[j]["result"])
-                            )
-        return out
 
-    items = []
+def _claim_open_items(kind: str, wanted, check_rows: list[dict], checks: list[dict]) -> list[dict]:
+    """One item per claim row (in check, child, signal order) the predicate selects, at its child's result."""
+    out = []
     for i, row in enumerate(check_rows):
-        for entry in row["unresolved"]:
-            items.append(
-                item(
-                    "unresolved_projection",
-                    row["id"],
-                    None,
-                    f"Not computed: {unresolved_words(entry)}.",
-                    _check_ref(i),
-                )
-            )
+        offset = 0
+        for j, child in enumerate(checks[i].get("children") or []):
+            for signal in child.get("signals") or []:
+                for _ in signal.get("claim_admission") or []:
+                    view_row = row["claims"][offset]
+                    offset += 1
+                    if wanted(view_row):
+                        out.append(
+                            _open_item(
+                                kind, row["id"], view_row["id"], view_row["wording"], row["refs"][j]["result"]
+                            )
+                        )
+    return out
+
+
+def _unresolved_items(check_rows: list[dict]) -> list[dict]:
+    return [
+        _open_item(
+            "unresolved_projection",
+            row["id"],
+            None,
+            f"Not computed: {unresolved_words(entry)}.",
+            _check_ref(i),
+        )
+        for i, row in enumerate(check_rows)
+        for entry in row["unresolved"]
+    ]
+
+
+def _external_method_items(check_rows: list[dict]) -> list[dict]:
+    out = []
     for i, row in enumerate(check_rows):
         declared = row["not_computed"]
         if declared is not None:
             missing = ", ".join(str(m) for m in declared.get("missing") or []) or "none declared"
-            items.append(
-                item(
-                    "not_computed",
-                    row["id"],
-                    None,
-                    f"Not computed: external method; missing inputs: {missing}.",
-                    _check_ref(i),
-                )
-            )
-    for i, check in enumerate(checks):
-        for j, signal in _plain_signals(check):
-            for code in signal_finding_codes(signal):
-                items.append(
-                    item(
-                        "signal_finding",
-                        check_rows[i]["id"],
-                        None,
-                        (CONDITIONAL_PREFIX if signal.get("application") == "conditional" else "")
-                        + f"Finding from the {signal.get('kind')} check: {code_words(code)}.",
-                        _child_ref(i, j),
-                    )
-                )
-    items += claim_items("claim_unsettled", lambda r: r["effective_outcome"] in UNSETTLED)
-    items += claim_items("claim_conditional", lambda r: r["application"] == "conditional")
-    for i, check in enumerate(checks):
-        for j, signal in _plain_signals(check):
-            if signal.get("application") == "conditional":
-                items.append(
-                    item(
-                        "claim_conditional",
-                        check_rows[i]["id"],
-                        None,
-                        CONDITIONAL_PREFIX
-                        + f"the {signal.get('kind')} check's result ({code_words(signal.get('code'))}) holds "
-                        "only where the declared assessment condition applies."
-                        + (
-                            " The condition is inherited from "
-                            + ", ".join(check_rows[i]["inherited_conditions"])
-                            + "; "
-                            "declare a condition_applicability binding on this check to decide it."
-                            if check_rows[i]["inherited_conditions"]
-                            and not check_rows[i]["applicability_binding"]
-                            else ""
-                        ),
-                        _child_ref(i, j),
-                    )
-                )
-    items += claim_items("claim_failure", lambda r: r["effective_outcome"] in FAILURES)
-    for section in sections:
-        if section["coverage"] in ("open", "not_computed"):
-            items.append(
-                item(
-                    "section",
-                    None,
-                    None,
-                    f"Section {section['id']} is {section['coverage']}.",
-                    f"/protocol/sections/{section['id']}",
-                )
-            )
-    return items
+            text = f"Not computed: external method; missing inputs: {missing}."
+            out.append(_open_item("not_computed", row["id"], None, text, _check_ref(i)))
+    return out
+
+
+def _signal_finding_items(check_rows: list[dict], checks: list[dict]) -> list[dict]:
+    return [
+        _open_item(
+            "signal_finding",
+            check_rows[i]["id"],
+            None,
+            (CONDITIONAL_PREFIX if signal.get("application") == "conditional" else "")
+            + f"Finding from the {signal.get('kind')} check: {code_words(code)}.",
+            _child_ref(i, j),
+        )
+        for i, check in enumerate(checks)
+        for j, signal in _plain_signals(check)
+        for code in signal_finding_codes(signal)
+    ]
+
+
+def _inherited_condition_advice(row: dict) -> str:
+    if not row["inherited_conditions"] or row["applicability_binding"]:
+        return ""
+    return (
+        " The condition is inherited from "
+        + ", ".join(row["inherited_conditions"])
+        + "; declare a condition_applicability binding on this check to decide it."
+    )
+
+
+def _conditional_signal_items(check_rows: list[dict], checks: list[dict]) -> list[dict]:
+    return [
+        _open_item(
+            "claim_conditional",
+            check_rows[i]["id"],
+            None,
+            CONDITIONAL_PREFIX
+            + f"the {signal.get('kind')} check's result ({code_words(signal.get('code'))}) holds "
+            "only where the declared assessment condition applies."
+            + _inherited_condition_advice(check_rows[i]),
+            _child_ref(i, j),
+        )
+        for i, check in enumerate(checks)
+        for j, signal in _plain_signals(check)
+        if signal.get("application") == "conditional"
+    ]
+
+
+def _section_items(sections: list[dict]) -> list[dict]:
+    return [
+        _open_item(
+            "section",
+            None,
+            None,
+            f"Section {section['id']} is {section['coverage']}.",
+            f"/protocol/sections/{section['id']}",
+        )
+        for section in sections
+        if section["coverage"] in ("open", "not_computed")
+    ]
+
+
+def _open_items(check_rows: list[dict], checks: list[dict], sections: list[dict]) -> list[dict]:
+    return [
+        *_unresolved_items(check_rows),
+        *_external_method_items(check_rows),
+        *_signal_finding_items(check_rows, checks),
+        *_claim_open_items(
+            "claim_unsettled", lambda r: r["effective_outcome"] in UNSETTLED, check_rows, checks
+        ),
+        *_claim_open_items(
+            "claim_conditional", lambda r: r["application"] == "conditional", check_rows, checks
+        ),
+        *_conditional_signal_items(check_rows, checks),
+        *_claim_open_items("claim_failure", lambda r: r["effective_outcome"] in FAILURES, check_rows, checks),
+        *_section_items(sections),
+    ]
 
 
 ADOPTION_CODES = ("not_adopted", "stale_version", "adopted_known", "adopted_interpolated", "adopted_proposed")
@@ -1425,6 +1483,9 @@ def _adoption_rows(protocol: dict, result: dict, checks: list[dict]) -> list[dic
     return rows
 
 
+PROTOCOL_RESULT_SCHEMA = 1
+
+
 def view(result: dict) -> dict:
     """The clinical protocol view of one v2 design_session result.
 
@@ -1435,6 +1496,9 @@ def view(result: dict) -> dict:
     protocol = result.get("protocol") if isinstance(result, dict) else None
     if not isinstance(protocol, dict):
         raise ValueError("view_not_protocol_result")
+    if protocol.get("schema_version", PROTOCOL_RESULT_SCHEMA) != PROTOCOL_RESULT_SCHEMA:
+        # A reader of a result shape it does not know refuses it rather than guessing at its fields.
+        raise ValueError("view_unsupported_protocol_schema")
     checks = list(protocol.get("checks") or [])
     check_rows = [_check_row(i, c) for i, c in enumerate(checks)]
     sections = _section_rows(protocol, check_rows, checks)

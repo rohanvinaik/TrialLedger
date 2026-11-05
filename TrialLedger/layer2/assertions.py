@@ -20,6 +20,8 @@ import json
 import math
 from typing import Any
 
+from TrialLedger.layer2 import refusal
+
 # The closed vocabularies of design Decision 2 (the draft's table, reconciled; 2026-11-01).
 MODALITIES = frozenset({"required", "excluded", "permitted", "definitional", "descriptive", "unresolved"})
 POLARITIES = frozenset({"positive", "negative", "unresolved"})
@@ -534,15 +536,91 @@ def from_canonical(text: str) -> object:
     return _build(json.loads(text))
 
 
-def _build(node: object) -> object:
+# Problems that name one field outside a closed vocabulary: code -> (field, vocabulary).
+_VOCABULARY_PROBLEMS = {
+    "predicate_kind_outside_vocabulary": ("kind", PREDICATE_KINDS),
+    "subject_kind_outside_vocabulary": ("kind", SUBJECT_KINDS),
+    "value_kind_outside_vocabulary": ("kind", VALUE_KINDS),
+    "evidence_kind_outside_vocabulary": ("kind", EVIDENCE_KINDS),
+    "scope_kind_outside_vocabulary": ("kind", SCOPE_KINDS),
+    "polarity_outside_vocabulary": ("polarity", POLARITIES),
+    "inclusivity_outside_vocabulary": ("inclusivity", INCLUSIVITIES),
+    "orientation_outside_vocabulary": ("orientation", ORIENTATIONS),
+    "anchor_outside_vocabulary": ("anchor", ANCHOR_KINDS),
+    "certainty_outside_vocabulary": ("certainty", CERTAINTIES),
+    "branch_node_outside_vocabulary": ("node", BRANCH_NODES),
+    "modality_outside_vocabulary": ("modality", MODALITIES),
+    "status_outside_vocabulary": ("status", STATUSES),
+    "resolution_outside_vocabulary": ("resolution", RESOLUTIONS),
+}
+
+
+def _field_names(cls: Any) -> list[str]:
+    return sorted(f.name for f in dataclasses.fields(cls))
+
+
+def _locate_problem(error: BaseException, cls: Any, node: dict, path: tuple) -> None:
+    """Record where in `node` (relative to the object being read) a construction was refused."""
+    code = str(error)
+    if isinstance(error, ModelError) and code in _VOCABULARY_PROBLEMS:
+        field, words = _VOCABULARY_PROBLEMS[code]
+        refusal.annotate(
+            error,
+            tokens=(field,),
+            node=node,
+            path=path,
+            rejected=node.get(field),
+            expected=refusal.vocabulary(words),
+        )
+    elif isinstance(error, ModelError) and code == "comparison_not_for_value_kind":
+        kind = node.get("kind")
+        words = KIND_COMPARISONS.get(kind, COMPARISONS) if isinstance(kind, str) else COMPARISONS
+        refusal.annotate(
+            error,
+            tokens=("comparison",),
+            node=node,
+            path=path,
+            rejected=node.get("comparison"),
+            expected={**refusal.vocabulary(words), "for_value_kind": kind},
+        )
+    elif isinstance(error, TypeError):
+        required = [
+            f.name
+            for f in dataclasses.fields(cls)
+            if f.default is dataclasses.MISSING and f.default_factory is dataclasses.MISSING
+        ]
+        missing = [name for name in required if name not in node]
+        expected = {"class": cls.__name__, "fields": _field_names(cls)}
+        if missing:
+            expected = {"class": cls.__name__, "missing_fields": missing}
+        refusal.annotate(error, code=code, node=node, path=path, expected=expected)
+    else:
+        refusal.annotate(
+            error,
+            node=node,
+            path=path,
+            expected={"class": cls.__name__, "fields": _field_names(cls), "problem": code},
+        )
+
+
+def _build(node: object, path: tuple = ()) -> object:
     if isinstance(node, list):
-        return tuple(_build(part) for part in node)
+        return tuple(_build(part, (*path, index)) for index, part in enumerate(node))
     if not isinstance(node, dict):
         return node
-    cls = CLASSES.get(node.get("class"))
+    cls = CLASSES.get(node.get("class")) if isinstance(node.get("class"), str) else None
     if cls is None:
-        raise ModelError("not_a_model_object")
-    fields: dict[str, Any] = {name: _build(value) for name, value in node.items() if name != "class"}
+        raise refusal.annotate(
+            ModelError("not_a_model_object"),
+            tokens=("class",) if "class" in node else (),
+            node=node,
+            path=path,
+            rejected=node.get("class", refusal.MISSING),
+            expected={**refusal.vocabulary(CLASSES), "field": "class"},
+        )
+    fields: dict[str, Any] = {
+        name: _build(value, (*path, name)) for name, value in node.items() if name != "class"
+    }
     # offsets and indexes are whole numbers, written as floats; a fraction stays one, and is refused
     if cls is Span:
         fields = {k: int(v) if isinstance(v, float) and v.is_integer() else v for k, v in fields.items()}
@@ -551,5 +629,17 @@ def _build(node: object) -> object:
         fields["path"] = tuple(int(i) if isinstance(i, float) and i.is_integer() else i for i in path)
     names = {f.name for f in dataclasses.fields(cls)}
     if not set(fields) <= names:
-        raise ModelError("fields_do_not_fit_class")
-    return cls(**fields)
+        extra = sorted(set(fields) - names)
+        raise refusal.annotate(
+            ModelError("fields_do_not_fit_class"),
+            tokens=(extra[0],),
+            node=node,
+            path=path,
+            rejected=extra[0],
+            expected={"class": cls.__name__, "fields": sorted(names)},
+        )
+    try:
+        return cls(**fields)
+    except (ModelError, TypeError) as error:
+        _locate_problem(error, cls, node, path)
+        raise

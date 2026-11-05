@@ -66,7 +66,6 @@ FINDING_PRIORITY = (
     "claim_conditional",
     "section",
 )
-CONFLICT_OUTCOMES = frozenset({"gap", "competing", "violation", "not_established", "inconsistent_domain"})
 
 
 WITNESS_CHARACTERS = 240
@@ -78,6 +77,9 @@ def finding_priority_kind(kind: str, outcome: str | None) -> str:
     post: __return__ in FINDING_PRIORITY or __return__ == kind
     post: kind != "claim_failure" or __return__ in ("conflict", "repair_choice")
     """
+    # Imported here, not at module level: reporting modules never load the reasoning engine on import.
+    from TrialLedger.layer2.protocol_outcomes import CONFLICT_OUTCOMES
+
     if kind == "claim_failure":
         return "conflict" if outcome in CONFLICT_OUTCOMES else "repair_choice"
     return kind
@@ -86,6 +88,7 @@ def finding_priority_kind(kind: str, outcome: str | None) -> str:
 def protocol_delivery_view(result: dict) -> dict:
     """The one clinical protocol view plus its delivery ordering and decision summaries; no recomputation."""
     from TrialLedger.layer2 import protocol_view
+    from TrialLedger.layer2.protocol_outcomes import CONFLICT_OUTCOMES
 
     view = protocol_view.view(result)
     outcomes = {(c["id"], claim["id"]): claim["outcome"] for c in view["checks"] for claim in c["claims"]}
@@ -129,6 +132,8 @@ def protocol_delivery_view(result: dict) -> dict:
             or any(row.get("application") == "conditional" for row in check["findings"])
             or any(row.get("application") == "conditional" for row in check["clean_signals"]),
             "standing": check["standing"],
+            "resolution": check["resolution"],
+            "resolution_causes": list(check["resolution_causes"]),
         }
         for check in view["checks"]
     ]
@@ -284,7 +289,7 @@ def _compact_finding(row: dict, address: str) -> dict:
 
 def _compact_change(row: dict, address: str) -> dict:
     """Preserve every change axis without echoing before/after projections."""
-    fields = ("id", "code", "changes", "axes")
+    fields = ("id", "code", "changes", "axes", "limited")
     return {**{key: deepcopy(row[key]) for key in fields if key in row}, "canonical_ref": address}
 
 
@@ -320,6 +325,218 @@ def _compact_page(total: int, returned: int = 0) -> dict:
     }
 
 
+_Group = tuple[list, dict, list, str, Callable[[dict, str], dict]]
+REPLY_RESERVE = 128
+
+
+def _with_address(row: dict, address: str) -> dict:
+    return {**deepcopy(row), "canonical_ref": address}
+
+
+def _compact_header(response: dict, artifact: dict, max_bytes: int) -> dict:
+    return {
+        "code": response["code"],
+        "operation": response["operation"],
+        "artifact": {key: artifact[key] for key in ("id", "bytes", "schema_version") if key in artifact},
+        "view": "compact",
+        "max_bytes": max_bytes,
+        "canonical_ref": "/response",
+        "canonical_result": "Full request/response retained unchanged. Read canonical_ref with "
+        "reason_result part address; follow page.next_offset.",
+    }
+
+
+def _compact_preparation(preparation: dict) -> dict:
+    out = {
+        "artifact": preparation["artifact"],
+        "meaning": preparation["meaning"],
+        "defaults": len(preparation["defaults"]),
+        "origins": len(preparation["origins"]),
+        "canonical_ref": "/response/preparation",
+    }
+    if "applies_to" in preparation:
+        out["applies_to"] = preparation["applies_to"]
+    return out
+
+
+def _decision_view_groups(response: dict, reply: dict) -> list[_Group]:
+    if "decision_view" not in response:
+        return []
+    rows = response["decision_view"]
+    section = {"decisions": [], "page": _compact_page(len(rows)), "canonical_ref": "/response/decision_view"}
+    reply["decision_view"] = section
+    return [(section["decisions"], section["page"], rows, section["canonical_ref"], _compact_decision)]
+
+
+def _answer_diff_groups(response: dict, reply: dict) -> list[_Group]:
+    if not isinstance(response.get("answer_diff"), dict):
+        if "answer_diff" in response:
+            reply["answer_diff"] = (
+                None
+                if response["answer_diff"] is None
+                else {"navigation": "exact_artifact", "canonical_ref": "/response/answer_diff"}
+            )
+        return []
+    changes = response["answer_diff"]
+    section: dict = {"canonical_ref": "/response/answer_diff", "pages": {}}
+    reply["answer_diff"] = section
+    groups: list[_Group] = []
+    for kind in changes:
+        rows = changes.get(kind, [])
+        shown_changes: list = []
+        change_page = _compact_page(len(rows))
+        section[kind] = shown_changes
+        section["pages"][kind] = change_page
+        groups.append((shown_changes, change_page, rows, f"/response/answer_diff/{kind}", _compact_change))
+    return groups
+
+
+def _protocol_block(view: dict) -> dict:
+    return {
+        "canonical_ref": "/response/protocol_view",
+        "sections": [
+            {key: row[key] for key in ("id", "declared", "coverage", "findings", "findings_text")}
+            for row in view["sections"]
+        ],
+        "decisions": [
+            {
+                "id": d["id"],
+                "disposition": d["disposition"],
+                "alternatives": [
+                    {key: a[key] for key in ("id", "label", "compatibility")} for a in d["alternatives"]
+                ],
+            }
+            for d in view["decisions"]
+        ],
+        "findings": [],
+        "checks": [],
+        "pages": {
+            "findings": _compact_page(len(view["delivery_findings"])),
+            "checks": _compact_page(len(view["check_summaries"])),
+        },
+    }
+
+
+def _protocol_groups(response: dict, reply: dict) -> list[_Group]:
+    if "protocol_view" not in response:
+        return []
+    view = response["protocol_view"]
+    protocol = _protocol_block(view)
+    reply["protocol"] = protocol
+    return [
+        (
+            protocol["findings"],
+            protocol["pages"]["findings"],
+            view["delivery_findings"],
+            "/response/protocol_view/delivery_findings",
+            _with_address,
+        ),
+        (
+            protocol["checks"],
+            protocol["pages"]["checks"],
+            view["check_summaries"],
+            "/response/protocol_view/check_summaries",
+            _with_address,
+        ),
+    ]
+
+
+def _clinical_groups(response: dict, reply: dict) -> list[_Group]:
+    if "clinical" not in response:
+        return []
+    clinical = response["clinical"]
+    rows = clinical["findings"]
+    section = {
+        "version": clinical["version"],
+        "operation": clinical["operation"],
+        "findings": [],
+        "page": _compact_page(len(rows)),
+        "canonical_ref": "/response/clinical/findings",
+    }
+    reply["clinical"] = section
+    return [(section["findings"], section["page"], rows, section["canonical_ref"], _compact_finding)]
+
+
+def _delivery_groups(response: dict, reply: dict) -> list[_Group]:
+    if "delivery" not in response:
+        return []
+    delivery = response["delivery"]
+    rows = delivery["edits"]
+    section = {
+        "previous_artifact": delivery["previous_artifact"],
+        "edits": [],
+        "page": _compact_page(len(rows)),
+        "canonical_ref": "/response/delivery/edits",
+    }
+    reply["delivery"] = section
+    return [(section["edits"], section["page"], rows, section["canonical_ref"], _compact_edit)]
+
+
+def _degraded_reply(
+    response: dict, artifact: dict, max_bytes: int, reply: dict, groups: list[_Group]
+) -> dict:
+    """The navigation-only reply when even the summaries do not fit the budget."""
+    degraded = {
+        "code": response["code"],
+        "operation": response["operation"],
+        "artifact": {"id": artifact["id"]},
+        "view": "compact",
+        "max_bytes": max_bytes,
+        "navigation": "exact_artifact",
+        "canonical_ref": "/response",
+        "pages": {address: _compact_page(len(rows)) for _shown, _page, rows, address, _project in groups},
+        "omitted_fields": reply["omitted_fields"],
+    }
+    if "protocol_view" in response:
+        # The protocol block did not fit: name it as omitted, keep the counts that matter, say where
+        # the rest is retained.
+        summaries = response["protocol_view"]["check_summaries"]
+        degraded["omitted_fields"] = [*reply["omitted_fields"], "protocol"]
+        degraded["protocol_omitted"] = {
+            "conflicts": sum(c["conflicts"] for c in summaries),
+            "repair_choices": sum(c["repairs"] for c in summaries),
+            "canonical_ref": "/response/protocol_view",
+        }
+    return degraded
+
+
+def _restore_omitted_fields(response: dict, reply: dict, max_bytes: int) -> None:
+    """Return each omitted summary field whole when it still fits the budget."""
+    for key in tuple(reply["omitted_fields"]):
+        if key == "diagnostics":
+            continue
+        reply[key] = deepcopy(response[key])
+        if response_bytes(reply) <= max_bytes - REPLY_RESERVE:
+            reply["omitted_fields"].remove(key)
+        else:
+            del reply[key]
+
+
+def _admit_rows(reply: dict, groups: list[_Group], max_bytes: int) -> None:
+    """Round-robin one row per group while the reply fits; a rejected row is removed, never shortened."""
+    active = list(groups)
+    while active:
+        following = []
+        for shown, page, rows, address, project in active:
+            index = len(shown)
+            if index == len(rows):
+                continue
+            shown.append(project(rows[index], f"{address}/{index}"))
+            page.update(_compact_page(len(rows), len(shown)))
+            if response_bytes(reply) > max_bytes - REPLY_RESERVE and "witness" in shown[-1]:
+                # The worded example trace is optional: drop it before dropping the finding, and say so.
+                shown[-1] = {
+                    **{k: v for k, v in shown[-1].items() if k not in ("witness", "witness_truncated")},
+                    "witness_omitted": True,
+                }
+            if response_bytes(reply) <= max_bytes - REPLY_RESERVE:
+                following.append((shown, page, rows, address, project))
+            else:
+                shown.pop()
+                page.update(_compact_page(len(rows), len(shown)))
+        active = following
+
+
 def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -> dict:
     """Bound a retained reply and expose exact navigation for every omitted field and row.
 
@@ -333,190 +550,33 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
         raise ValueError(code)
     if type(artifact) is not dict or artifact_id_code(artifact.get("id")) != "valid_artifact_id":
         raise ValueError("compact_requires_canonical_artifact")
-    reply = {
-        "code": response["code"],
-        "operation": response["operation"],
-        "artifact": {key: artifact[key] for key in ("id", "bytes", "schema_version") if key in artifact},
-        "view": "compact",
-        "max_bytes": max_bytes,
-        "canonical_ref": "/response",
-        "canonical_result": "Full request/response retained unchanged. Read canonical_ref with "
-        "reason_result part address; follow page.next_offset.",
-    }
+    reply = _compact_header(response, artifact, max_bytes)
     if "preparation" in response:
-        preparation = response["preparation"]
-        reply["preparation"] = {
-            "artifact": preparation["artifact"],
-            "meaning": preparation["meaning"],
-            "defaults": len(preparation["defaults"]),
-            "origins": len(preparation["origins"]),
-            "canonical_ref": "/response/preparation",
-        }
-        if "applies_to" in preparation:
-            reply["preparation"]["applies_to"] = preparation["applies_to"]
+        reply["preparation"] = _compact_preparation(response["preparation"])
     # A group admits a contiguous prefix. If a summary cannot fit, next_offset still names that row.
     # Each channel gets a turn; a long finding list cannot crowd out every revision or decision row.
-    groups: list[tuple[list, dict, list, str, Callable[[dict, str], dict]]] = []
-    if "decision_view" in response:
-        rows = response["decision_view"]
-        section = {
-            "decisions": [],
-            "page": _compact_page(len(rows)),
-            "canonical_ref": "/response/decision_view",
-        }
-        reply["decision_view"] = section
-        groups.append(
-            (section["decisions"], section["page"], rows, section["canonical_ref"], _compact_decision)
-        )
-    if isinstance(response.get("answer_diff"), dict):
-        changes = response["answer_diff"]
-        section = {"canonical_ref": "/response/answer_diff", "pages": {}}
-        reply["answer_diff"] = section
-        for kind in changes:
-            rows = changes.get(kind, [])
-            shown_changes: list = []
-            change_page = _compact_page(len(rows))
-            section[kind] = shown_changes
-            section["pages"][kind] = change_page
-            groups.append(
-                (
-                    shown_changes,
-                    change_page,
-                    rows,
-                    f"/response/answer_diff/{kind}",
-                    _compact_change,
-                )
-            )
-    elif "answer_diff" in response:
-        reply["answer_diff"] = (
-            None
-            if response["answer_diff"] is None
-            else {"navigation": "exact_artifact", "canonical_ref": "/response/answer_diff"}
-        )
-    protocol: dict | None = None
-    if "protocol_view" in response:
-        view = response["protocol_view"]
-        protocol = {
-            "canonical_ref": "/response/protocol_view",
-            "sections": [
-                {key: row[key] for key in ("id", "declared", "coverage", "findings", "findings_text")}
-                for row in view["sections"]
-            ],
-            "decisions": [
-                {
-                    "id": d["id"],
-                    "disposition": d["disposition"],
-                    "alternatives": [
-                        {key: a[key] for key in ("id", "label", "compatibility")} for a in d["alternatives"]
-                    ],
-                }
-                for d in view["decisions"]
-            ],
-            "findings": [],
-            "checks": [],
-            "pages": {
-                "findings": _compact_page(len(view["delivery_findings"])),
-                "checks": _compact_page(len(view["check_summaries"])),
-            },
-        }
-        reply["protocol"] = protocol
-        groups.append(
-            (
-                protocol["findings"],
-                protocol["pages"]["findings"],
-                view["delivery_findings"],
-                "/response/protocol_view/delivery_findings",
-                lambda row, address: {**deepcopy(row), "canonical_ref": address},
-            )
-        )
-        groups.append(
-            (
-                protocol["checks"],
-                protocol["pages"]["checks"],
-                view["check_summaries"],
-                "/response/protocol_view/check_summaries",
-                lambda row, address: {**deepcopy(row), "canonical_ref": address},
-            )
-        )
-    if "clinical" in response:
-        clinical = response["clinical"]
-        rows = clinical["findings"]
-        section = {
-            "version": clinical["version"],
-            "operation": clinical["operation"],
-            "findings": [],
-            "page": _compact_page(len(rows)),
-            "canonical_ref": "/response/clinical/findings",
-        }
-        reply["clinical"] = section
-        groups.append(
-            (section["findings"], section["page"], rows, section["canonical_ref"], _compact_finding)
-        )
-    if "delivery" in response:
-        delivery = response["delivery"]
-        rows = delivery["edits"]
-        section = {
-            "previous_artifact": delivery["previous_artifact"],
-            "edits": [],
-            "page": _compact_page(len(rows)),
-            "canonical_ref": "/response/delivery/edits",
-        }
-        reply["delivery"] = section
-        groups.append((section["edits"], section["page"], rows, section["canonical_ref"], _compact_edit))
-    fields = ("summary", "problems", "result_digest", "result_digest_scope", "presentation", "diagnostics")
+    groups: list[_Group] = [
+        *_decision_view_groups(response, reply),
+        *_answer_diff_groups(response, reply),
+        *_protocol_groups(response, reply),
+        *_clinical_groups(response, reply),
+        *_delivery_groups(response, reply),
+    ]
+    fields = (
+        "summary",
+        "problems",
+        "result_digest",
+        "result_digest_scope",
+        "presentation",
+        "diagnostics",
+        "input_diagnostics",
+    )
     reply["omitted_fields"] = [key for key in fields if key in response]
-    if response_bytes(reply) > max_bytes - 128:
-        degraded = {
-            "code": response["code"],
-            "operation": response["operation"],
-            "artifact": {"id": artifact["id"]},
-            "view": "compact",
-            "max_bytes": max_bytes,
-            "navigation": "exact_artifact",
-            "canonical_ref": "/response",
-            "pages": {address: _compact_page(len(rows)) for _shown, _page, rows, address, _project in groups},
-            "omitted_fields": reply["omitted_fields"],
-        }
-        if "protocol_view" in response:
-            # The protocol block did not fit: name it as omitted, keep the counts that matter, say where
-            # the rest is retained.
-            summaries = response["protocol_view"]["check_summaries"]
-            degraded["omitted_fields"] = [*reply["omitted_fields"], "protocol"]
-            degraded["protocol_omitted"] = {
-                "conflicts": sum(c["conflicts"] for c in summaries),
-                "repair_choices": sum(c["repairs"] for c in summaries),
-                "canonical_ref": "/response/protocol_view",
-            }
-        return degraded
-    for key in tuple(reply["omitted_fields"]):
-        if key == "diagnostics":
-            continue
-        reply[key] = deepcopy(response[key])
-        if response_bytes(reply) <= max_bytes - 128:
-            reply["omitted_fields"].remove(key)
-        else:
-            del reply[key]
-    active = list(groups)
-    while active:
-        following = []
-        for shown, page, rows, address, project in active:
-            index = len(shown)
-            if index == len(rows):
-                continue
-            shown.append(project(rows[index], f"{address}/{index}"))
-            page.update(_compact_page(len(rows), len(shown)))
-            if response_bytes(reply) > max_bytes - 128 and "witness" in shown[-1]:
-                # The worded example trace is optional: drop it before dropping the finding, and say so.
-                shown[-1] = {
-                    **{k: v for k, v in shown[-1].items() if k not in ("witness", "witness_truncated")},
-                    "witness_omitted": True,
-                }
-            if response_bytes(reply) <= max_bytes - 128:
-                following.append((shown, page, rows, address, project))
-            else:
-                shown.pop()
-                page.update(_compact_page(len(rows), len(shown)))
-        active = following
+    if response_bytes(reply) > max_bytes - REPLY_RESERVE:
+        return _degraded_reply(response, artifact, max_bytes, reply, groups)
+    _restore_omitted_fields(response, reply, max_bytes)
+    _admit_rows(reply, groups, max_bytes)
+    protocol = reply.get("protocol")
     if protocol is not None:
         # Truncation names what it omitted; every omitted row stays reachable at its canonical address.
         protocol["omitted"] = {

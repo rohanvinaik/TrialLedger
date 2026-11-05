@@ -731,7 +731,7 @@ def _applicability_premises(declared: dict, prepared: dict) -> list[str] | None:
         or any(prepared["premises"][p]["kind"] not in APPLICABILITY_PREMISE_KINDS for p in premises)
     ):
         raise ValueError("protocol_applicability_binding")
-    return list(premises)
+    return list(cast(list[str], premises))
 
 
 def _applicability(
@@ -747,7 +747,7 @@ def _applicability(
     if premises is None:
         return "conditional", [], None, []
     context = {k: v for k, v in declared["scope"]["context"].items() if v is not None}
-    rows = []
+    rows: list[dict[str, Any]] = []
     for item in conditions:
         request = {
             "operation": "entailment",
@@ -783,6 +783,110 @@ def _applicability(
     return ("not_applicable" if "does_not_apply" in codes else "unconditional"), rows, status, refs
 
 
+SIGNAL_KEYS = ("id", "kind", "code", "calculation_code", "status", "admission", "blockers")
+
+
+def _finding_status(status: object, applied_status: object) -> str | None:
+    """The finding is no stronger than its applicability proof; the arithmetic keeps its own standing."""
+    if not (status or applied_status):
+        return None
+    return entail.weakest_status(cast(tuple[str, ...], tuple(v for v in (status, applied_status) if v)))
+
+
+def _applied(application: str, applied_status: object, applied_refs: list) -> dict:
+    return {
+        "application": application,
+        "application_status": applied_status,
+        "application_refs": list(applied_refs),
+    }
+
+
+def _applied_claim_row(row: dict, application: str, applied_status: object, applied_refs: list) -> dict:
+    # C4: a declared assessment condition is never applied unconditionally.
+    return {
+        **deepcopy(row),
+        **_applied(application, applied_status, applied_refs),
+        "finding_status": _finding_status(row.get("status"), applied_status),
+    }
+
+
+def _support_causes(signal: dict) -> list[str]:
+    """One `<state>:<signal id>` cause per distinct non-accepted support state, in support order."""
+    causes = []
+    for entry in signal.get("support") or []:
+        code = signals.support_state([entry.get("status")], [entry.get("resolution")])
+        if code != "accepted":
+            causes.append(f"{code}:{signal['id']}")
+    return list(dict.fromkeys(causes))
+
+
+def _protocol_signal_record(
+    signal: dict, application: str, applied_status: object, applied_refs: list
+) -> dict:
+    record = {key: deepcopy(signal[key]) for key in SIGNAL_KEYS} | {
+        "claim_admission": [
+            _applied_claim_row(row, application, applied_status, applied_refs)
+            for row in signal.get("claim_admission", [])
+        ]
+    }
+    # Simultaneous causes stay visible: the gate reports one admission state, but every non-accepted support
+    # entry (a proposed object beside an unadopted linked assessment) is named here (composition tests).
+    record["blockers"] = list(record["blockers"]) + [
+        cause for cause in _support_causes(signal) if cause not in record["blockers"]
+    ]
+    if signal.get("claim_admission"):
+        return record
+    # A signal without claim rows (estimand, dependencies, external method) carries the same applicability
+    # at signal level: a condition reached through a linked object is never dropped because no claim row
+    # exists (composition audit).
+    return record | {
+        **_applied(application, applied_status, applied_refs),
+        "finding_status": _finding_status(signal.get("status"), applied_status),
+    }
+
+
+def _complete_signals(result: dict) -> list[dict]:
+    return (result.get("result") or {}).get("signals", []) if result.get("code") == "complete" else []
+
+
+def _protocol_child_record(
+    child: dict, executed: dict, result: dict, application: tuple[str, list, object, list]
+) -> dict:
+    kind, applicability, applied_status, applied_refs = application
+    return {
+        "id": child["id"],
+        "receipt": deepcopy(child["receipt"]),
+        "request": executed,
+        "result": deepcopy(result),
+        "request_digest": state.digest(executed),
+        "result_digest": state.digest(result),
+        "signals": [
+            _protocol_signal_record(signal, kind, applied_status, applied_refs)
+            for signal in _complete_signals(result)
+        ],
+        "conditions": deepcopy(child["receipt"].get("conditions", [])),
+        "applicability": applicability,
+        "refusal": None if result.get("code") == "complete" else list(result.get("problems", [])),
+    }
+
+
+def _protocol_check_record(
+    index: dict, check_id: str, projected: dict, children: list, limited: list
+) -> dict:
+    declared = index["checks"][check_id]
+    return {
+        "id": check_id,
+        "kind": declared["kind"],
+        "required": declared["required"],
+        "scope": deepcopy(declared["scope"]),
+        "objects": list(declared["objects"]),
+        "projection": projected["projection"],
+        "children": children,
+        "unresolved": deepcopy(projected["unresolved"]) + limited,
+        "not_computed": deepcopy(projected["not_computed"]),
+    }
+
+
 def _run_protocol_checks(
     prepared: dict,
     values: dict,
@@ -814,7 +918,7 @@ def _run_protocol_checks(
         declared = index["checks"][check_id]
         deciding = _applicability_premises(declared, prepared)
         for child in projected["children"]:
-            application, applicability, applied_status, applied_refs = _applicability(
+            application = _applicability(
                 child["receipt"].get("conditions", []),
                 deciding,
                 declared,
@@ -834,88 +938,8 @@ def _run_protocol_checks(
                 # their results. The refused child's charge is released, so later checks that fit still run.
                 checked, limit = _limited_child(executed, budget, limits, error)
                 limited.append(limit)
-            result = checked["result"]
-            signals_out = (
-                (result.get("result") or {}).get("signals", []) if result.get("code") == "complete" else []
-            )
-            children.append(
-                {
-                    "id": child["id"],
-                    "receipt": deepcopy(child["receipt"]),
-                    "request": executed,
-                    "result": deepcopy(result),
-                    "request_digest": state.digest(executed),
-                    "result_digest": state.digest(result),
-                    "signals": [
-                        {
-                            key: deepcopy(signal[key])
-                            for key in (
-                                "id",
-                                "kind",
-                                "code",
-                                "calculation_code",
-                                "status",
-                                "admission",
-                                "blockers",
-                            )
-                        }
-                        | {
-                            "claim_admission": [
-                                # C4: a declared assessment condition is never applied unconditionally.
-                                {
-                                    **deepcopy(row),
-                                    "application": application,
-                                    "application_status": applied_status,
-                                    "application_refs": list(applied_refs),
-                                    # The finding is no stronger than its applicability proof; the
-                                    # arithmetic keeps its own independent standing in "status".
-                                    "finding_status": entail.weakest_status(
-                                        tuple(v for v in (row.get("status"), applied_status) if v)
-                                    )
-                                    if row.get("status") or applied_status
-                                    else None,
-                                }
-                                for row in signal.get("claim_admission", [])
-                            ]
-                        }
-                        | (
-                            # A signal without claim rows (estimand, dependencies, external method) carries
-                            # the same applicability at signal level: a condition reached through a linked
-                            # object is never dropped because no claim row exists (composition audit).
-                            {
-                                "application": application,
-                                "application_status": applied_status,
-                                "application_refs": list(applied_refs),
-                                "finding_status": entail.weakest_status(
-                                    tuple(v for v in (signal.get("status"), applied_status) if v)
-                                )
-                                if signal.get("status") or applied_status
-                                else None,
-                            }
-                            if not signal.get("claim_admission")
-                            else {}
-                        )
-                        for signal in signals_out
-                    ],
-                    "conditions": deepcopy(child["receipt"].get("conditions", [])),
-                    "applicability": applicability,
-                    "refusal": None if result.get("code") == "complete" else list(result.get("problems", [])),
-                }
-            )
-        declared = index["checks"][check_id]
-        checks.append(
-            {
-                "id": check_id,
-                "kind": declared["kind"],
-                "required": declared["required"],
-                "scope": deepcopy(declared["scope"]),
-                "objects": list(declared["objects"]),
-                "projection": projected["projection"],
-                "children": children,
-                "unresolved": deepcopy(projected["unresolved"]) + limited,
-                "not_computed": deepcopy(projected["not_computed"]),
-            }
-        )
+            children.append(_protocol_child_record(child, executed, checked["result"], application))
+        checks.append(_protocol_check_record(index, check_id, projected, children, limited))
     return checks
 
 
@@ -966,136 +990,142 @@ def _frame_claim(claim: dict, lifted: set[str]) -> dict:
     return row
 
 
+def _conditional_claim_ids(check: dict) -> list[str]:
+    claims = [
+        claim["id"]
+        for child in check["children"]
+        for signal in child["signals"]
+        for claim in signal["claim_admission"]
+        if claim.get("application") == "conditional"
+    ]
+    # A plain signal applied only under a condition is a conditional obligation too.
+    plain = [
+        signal["id"]
+        for child in check["children"]
+        for signal in child["signals"]
+        if not signal["claim_admission"] and signal.get("application") == "conditional"
+    ]
+    return claims + plain
+
+
+def _alternative_child_row(child: dict) -> dict:
+    signals = _complete_signals(child["result"])
+    return {
+        "request_digest": child["request_digest"],
+        "result_digest": child["result_digest"],
+        # The alternative's own computed schedule values (windows, feasible part, gap), retained so
+        # delivery can show them without recomputing.
+        "schedule": [deepcopy(s["value"]) for s in signals if s.get("kind") == "schedule_coverage"],
+        # The alternative's own exact design inputs and tail probabilities.
+        "statistics": [
+            {key: deepcopy(s["value"].get(key)) for key in BINOMIAL_RETAINED}
+            for s in signals
+            if s.get("kind") == "binomial_design"
+        ],
+    }
+
+
+def _alternative_check_row(check: dict, code: str, lifted: set[str]) -> dict:
+    return {
+        "id": check["id"],
+        "required": check["required"],
+        "check_code": code,
+        "conditional_claims": _conditional_claim_ids(check),
+        "claims": [
+            _frame_claim(claim, lifted)
+            for child in check["children"]
+            for signal in child["signals"]
+            for claim in signal["claim_admission"]
+        ],
+        "children": [_alternative_child_row(c) for c in check["children"]],
+    }
+
+
+def _alternative_row(
+    item: dict,
+    alternative: dict,
+    held: dict,
+    prepared: dict,
+    values: dict,
+    execute: Callable[[object], dict],
+    budget: dict,
+) -> dict:
+    from TrialLedger.layer2 import protocol_decisions
+
+    assumed = frozenset(o["id"] for o in alternative["replace_objects"])
+    frame = "hypothetical" if assumed else "fixed"
+    checks = _run_protocol_checks(
+        prepared,
+        values,
+        execute,
+        budget,
+        held["index"],
+        list(alternative["checks"]),
+        assumed,
+        f"frame:{frame}:{item['id']}:{alternative['id']}",
+    )
+    lifted = protocol_decisions.assumed_entry_ids(set(assumed))
+    codes = [protocol_decisions.classify(check) for check in checks]
+    rows = [_alternative_check_row(check, code, lifted) for check, code in zip(checks, codes, strict=True)]
+    compatibility = protocol_decisions.compatibility(
+        [code for check, code in zip(checks, codes, strict=True) if check["required"]]
+    )
+    return {
+        "id": alternative["id"],
+        "label": alternative["label"],
+        "frame": frame,
+        "assumption_refs": sorted(assumed),
+        "unconditional_application": "admitted"
+        if frame == "fixed" and compatibility == "compatible_under_declared_checks"
+        else "withheld",
+        "compatibility": compatibility,
+        "conditional_checks": [row["id"] for row in rows if row["conditional_claims"]],
+        "checks": rows,
+        "candidate_digest": state.digest(held["raw"]),
+        # Attribution of each replaced object, so a revision can tell an origin, standing or edition change
+        # from a bare input change (REV-1).
+        "replacements": [
+            {key: deepcopy(o.get(key)) for key in ("id", "version", "origin", "standing")}
+            for o in alternative["replace_objects"]
+        ],
+    }
+
+
+def _protocol_decision_row(item: dict, alternatives: list[dict]) -> dict:
+    from TrialLedger.layer2 import protocol_decisions
+
+    selected = item["selected"]
+    chosen = next(
+        (a["compatibility"] for a in alternatives if selected and a["id"] == selected["alternative"]), None
+    )
+    return {
+        "id": item["id"],
+        "kind": item["kind"],
+        "question": item["question"],
+        "target": deepcopy(item["target"]),
+        "coverage": item["coverage"],
+        "selected": deepcopy(selected),
+        "selection": deepcopy(selected),
+        "alternatives": alternatives,
+        "disposition": protocol_decisions.disposition(
+            [(a["compatibility"], a["candidate_digest"], a["frame"] == "hypothetical") for a in alternatives],
+            chosen,
+        ),
+        **({"evidence": deepcopy(item["evidence"])} if "evidence" in item else {}),
+    }
+
+
 def _protocol_decision_rows(
     prepared: dict, values: dict, execute: Callable[[object], dict], budget: dict
 ) -> list[dict]:
     """Evaluate every protocol alternative freshly on its own detached candidate (C8)."""
-    from TrialLedger.layer2 import protocol_decisions
-
     out = []
     for item in prepared.get("protocol_decisions", []):
-        alternatives = []
-        for alternative, held in zip(item["alternatives"], item["candidates"], strict=True):
-            assumed = frozenset(o["id"] for o in alternative["replace_objects"])
-            frame = "hypothetical" if assumed else "fixed"
-            checks = _run_protocol_checks(
-                prepared,
-                values,
-                execute,
-                budget,
-                held["index"],
-                list(alternative["checks"]),
-                assumed,
-                f"frame:{frame}:{item['id']}:{alternative['id']}",
-            )
-            lifted = protocol_decisions.assumed_entry_ids(set(assumed))
-            rows, required = [], []
-            for check in checks:
-                code = protocol_decisions.classify(check)
-                if check["required"]:
-                    required.append(code)
-                rows.append(
-                    {
-                        "id": check["id"],
-                        "required": check["required"],
-                        "check_code": code,
-                        "conditional_claims": [
-                            claim["id"]
-                            for child in check["children"]
-                            for signal in child["signals"]
-                            for claim in signal["claim_admission"]
-                            if claim.get("application") == "conditional"
-                        ]
-                        + [
-                            # A plain signal applied only under a condition is a conditional obligation too.
-                            signal["id"]
-                            for child in check["children"]
-                            for signal in child["signals"]
-                            if not signal["claim_admission"] and signal.get("application") == "conditional"
-                        ],
-                        "claims": [
-                            _frame_claim(claim, lifted)
-                            for child in check["children"]
-                            for signal in child["signals"]
-                            for claim in signal["claim_admission"]
-                        ],
-                        "children": [
-                            {
-                                "request_digest": c["request_digest"],
-                                "result_digest": c["result_digest"],
-                                # The alternative's own computed schedule values (windows, feasible part,
-                                # gap), retained so delivery can show them without recomputing.
-                                "schedule": [
-                                    deepcopy(signal["value"])
-                                    for signal in (
-                                        (c["result"].get("result") or {}).get("signals", [])
-                                        if c["result"].get("code") == "complete"
-                                        else []
-                                    )
-                                    if signal.get("kind") == "schedule_coverage"
-                                ],
-                                # The alternative's own exact design inputs and tail probabilities.
-                                "statistics": [
-                                    {key: deepcopy(signal["value"].get(key)) for key in BINOMIAL_RETAINED}
-                                    for signal in (
-                                        (c["result"].get("result") or {}).get("signals", [])
-                                        if c["result"].get("code") == "complete"
-                                        else []
-                                    )
-                                    if signal.get("kind") == "binomial_design"
-                                ],
-                            }
-                            for c in check["children"]
-                        ],
-                    }
-                )
-            compatibility = protocol_decisions.compatibility(required)
-            alternatives.append(
-                {
-                    "id": alternative["id"],
-                    "label": alternative["label"],
-                    "frame": frame,
-                    "assumption_refs": sorted(assumed),
-                    "unconditional_application": "admitted"
-                    if frame == "fixed" and compatibility == "compatible_under_declared_checks"
-                    else "withheld",
-                    "compatibility": compatibility,
-                    "conditional_checks": [row["id"] for row in rows if row["conditional_claims"]],
-                    "checks": rows,
-                    "candidate_digest": state.digest(held["raw"]),
-                    # Attribution of each replaced object, so a revision can tell an origin, standing or
-                    # edition change from a bare input change (REV-1).
-                    "replacements": [
-                        {key: deepcopy(o.get(key)) for key in ("id", "version", "origin", "standing")}
-                        for o in alternative["replace_objects"]
-                    ],
-                }
-            )
-        selected = item["selected"]
-        chosen = next(
-            (a["compatibility"] for a in alternatives if selected and a["id"] == selected["alternative"]),
-            None,
-        )
-        out.append(
-            {
-                "id": item["id"],
-                "kind": item["kind"],
-                "question": item["question"],
-                "target": deepcopy(item["target"]),
-                "coverage": item["coverage"],
-                "selected": deepcopy(selected),
-                "selection": deepcopy(selected),
-                "alternatives": alternatives,
-                "disposition": protocol_decisions.disposition(
-                    [
-                        (a["compatibility"], a["candidate_digest"], a["frame"] == "hypothetical")
-                        for a in alternatives
-                    ],
-                    chosen,
-                ),
-                **({"evidence": deepcopy(item["evidence"])} if "evidence" in item else {}),
-            }
-        )
+        alternatives = [
+            _alternative_row(item, alternative, held, prepared, values, execute, budget)
+            for alternative, held in zip(item["alternatives"], item["candidates"], strict=True)
+        ]
+        out.append(_protocol_decision_row(item, alternatives))
     return out
 
 
@@ -1496,14 +1526,13 @@ def _semantic_record(check: dict) -> dict:
                 ],
                 sort_keys=True,
             ),
-            # Non-claim signals (estimand, dependencies, external methods) carry their deciding support only
-            # in the projected request; claim rows carry their own (walkthrough wave 4).
-            ("plain_support",): json.dumps(
+            # The deciding support entries with their standing, for every signal: a changed object standing
+            # is a support change whether or not the check has claim rows (composition tests).
+            ("request_support",): json.dumps(
                 [
                     s.get("support")
                     for ch in check.get("children", [])
                     for s in ch.get("request", {}).get("signals", [])
-                    if s.get("kind") not in signals.CLAIM_KINDS
                 ],
                 sort_keys=True,
             ),
@@ -1571,139 +1600,148 @@ def _record_changed(left: dict, right: dict) -> bool:
     return left.keys() != right.keys() or any(left[k] != right[k] for k in left)
 
 
+def _added_or_withdrawn_row(key: str, left: dict | None, right: dict | None) -> dict:
+    # A check or decision added or withdrawn: every row carries `code` (trace audit F1).
+    return {
+        "id": key,
+        "code": state.change_code(left is not None, right is not None, False),
+        "axes": [],
+        "changes": [],
+    }
+
+
+def _involved(objects: list[dict], check: dict, side: int, field: str) -> list:
+    """A field of every object that gates the check: declared, consumed and the linked closure (Rohan)."""
+    consumed = [
+        o
+        for child in check.get("children", [])
+        for o in (child.get("receipt", {}).get("closure") or child.get("receipt", {}).get("objects", []))
+    ]
+    ids = list(dict.fromkeys([*check.get("objects", []), *consumed]))
+    return [objects[side].get(i, {}).get(field) for i in ids]
+
+
+def _limited_sides(left: dict, right: dict) -> list[str]:
+    return [
+        side
+        for side, held in (("before", left), ("after", right))
+        if any(u.get("code") == "session_work_limit" for u in held.get("unresolved") or [])
+    ]
+
+
+def _check_change_flags(left: dict, right: dict, objects: list[dict]) -> dict:
+    same = source_evidence.exact_json_equal
+    lr, rr = _semantic_record(left), _semantic_record(right)
+    return {
+        "verdict": _record_changed(lr["verdict"], rr["verdict"]),
+        # Admission changed where the computed verdict did not (residual requirement).
+        "requirements": any(
+            lr["requirements"].get(k) != rr["requirements"].get(k)
+            and lr["verdict"].get(k) == rr["verdict"].get(k)
+            for k in lr["requirements"].keys() | rr["requirements"].keys()
+        ),
+        "support": _record_changed(lr["warrant"], rr["warrant"]),
+        "origin": not same(_involved(objects, left, 0, "origin"), _involved(objects, right, 1, "origin")),
+        "scope_model": not same(_involved(objects, left, 0, "scope"), _involved(objects, right, 1, "scope"))
+        or not same(_involved(objects, left, 0, "version"), _involved(objects, right, 1, "version"))
+        or not same(left.get("scope"), right.get("scope")),
+        "input": [c.get("request_digest") for c in left.get("children", [])]
+        != [c.get("request_digest") for c in right.get("children", [])],
+    }
+
+
+def _check_diff_row(key: str, left: dict | None, right: dict | None, objects: list[dict]) -> dict:
+    if left is None or right is None:
+        return _added_or_withdrawn_row(key, left, right)
+    limited = _limited_sides(left, right)
+    if limited:
+        # A check stopped by a session work limit was not computed in that snapshot: comparing it would
+        # read a missing computation as a changed clinical answer (C10; budgets.md).
+        return {"id": key, "code": "not_computed", "axes": [], "limited": limited, "changes": []}
+    axes = protocol_axes(_check_change_flags(left, right, objects))
+    return {
+        "id": key,
+        "code": state.change_code(True, True, not axes),
+        "axes": axes,
+        "changes": _check_changes(left, right),
+    }
+
+
+def _replaced(alternative: dict, field: str) -> list:
+    return [(r.get("id"), r.get(field)) for r in alternative.get("replacements", [])]
+
+
+def _decision_change_flags(left: dict, right: dict, la: dict, ra: dict) -> dict:
+    same = source_evidence.exact_json_equal
+    common = la.keys() & ra.keys()
+    return {
+        "verdict": left["disposition"] != right["disposition"]
+        or la.keys() != ra.keys()
+        or any(la[i]["compatibility"] != ra[i]["compatibility"] for i in common),
+        "requirements": any(
+            [(x["id"], x["admission"]) for c in la[i]["checks"] for x in c["claims"]]
+            != [(x["id"], x["admission"]) for c in ra[i]["checks"] for x in c["claims"]]
+            for i in common
+        ),
+        # A replaced object's standing is its warrant inside the frame.
+        "support": any(not same(_replaced(la[i], "standing"), _replaced(ra[i], "standing")) for i in common),
+        # The caller's selection (alternative, origin, basis) and replacement origins are attribution.
+        "origin": not same(left.get("selected"), right.get("selected"))
+        or any(not same(_replaced(la[i], "origin"), _replaced(ra[i], "origin")) for i in common),
+        "scope_model": any(
+            not same(_replaced(la[i], "version"), _replaced(ra[i], "version")) for i in common
+        ),
+        "wording": left["question"] != right["question"]
+        or any(la[i]["label"] != ra[i]["label"] for i in common),
+        "input": any(la[i]["candidate_digest"] != ra[i]["candidate_digest"] for i in common),
+    }
+
+
+def _decision_changes(left: dict, right: dict, la: dict, ra: dict) -> list[dict]:
+    changes = []
+    if not source_evidence.exact_json_equal(left.get("selected"), right.get("selected")):
+        changes.append(
+            {
+                "field": "selected",
+                "before": deepcopy(left.get("selected")),
+                "after": deepcopy(right.get("selected")),
+            }
+        )
+    if left["disposition"] != right["disposition"]:
+        changes.append({"field": "disposition", "before": left["disposition"], "after": right["disposition"]})
+    for i in sorted(la.keys() | ra.keys()):
+        before = la[i]["compatibility"] if i in la else None
+        after = ra[i]["compatibility"] if i in ra else None
+        if before != after:
+            changes.append({"alternative": i, "field": "compatibility", "before": before, "after": after})
+    return changes
+
+
+def _decision_diff_row(key: str, left: dict | None, right: dict | None) -> dict:
+    if left is None or right is None:
+        return _added_or_withdrawn_row(key, left, right)
+    la, ra = ({a["id"]: a for a in d["alternatives"]} for d in (left, right))
+    axes = protocol_axes(_decision_change_flags(left, right, la, ra))
+    return {
+        "id": key,
+        "code": state.change_code(True, True, not axes),
+        "axes": axes,
+        "changes": _decision_changes(left, right, la, ra),
+    }
+
+
 def _protocol_answer_diff(before: dict, after: dict) -> dict:
     """Protocol consequences per check and decision, beside (never instead of) the audit diff (C9, REV-1)."""
     objects = [{o["id"]: o for o in snapshot.get("objects", [])} for snapshot in (before, after)]
-
-    def involved(check: dict, side: int, field: str) -> list:
-        # Declared objects and every object a projection consumed (e.g. a collection linked to an estimand).
-        consumed = [
-            o for child in check.get("children", []) for o in child.get("receipt", {}).get("objects", [])
-        ]
-        ids = list(dict.fromkeys([*check.get("objects", []), *consumed]))
-        return [objects[side].get(i, {}).get(field) for i in ids]
-
-    same = source_evidence.exact_json_equal
-    out: dict = {"checks": [], "decisions": []}
     old, new = ({c["id"]: c for c in snapshot.get("checks", [])} for snapshot in (before, after))
-    for key in sorted(old.keys() | new.keys()):
-        left, right = old.get(key), new.get(key)
-        if left is None or right is None:
-            out["checks"].append(
-                {
-                    "id": key,
-                    # A check or decision added or withdrawn: every row carries `code` (trace audit F1).
-                    "code": state.change_code(left is not None, right is not None, False),
-                    "axes": [],
-                    "changes": [],
-                }
-            )
-            continue
-        limited = [
-            side
-            for side, held in (("before", left), ("after", right))
-            if any(u.get("code") == "session_work_limit" for u in held.get("unresolved") or [])
-        ]
-        if limited:
-            # A check stopped by a session work limit was not computed in that snapshot: comparing it would
-            # read a missing computation as a changed clinical answer (C10; budgets.md).
-            out["checks"].append(
-                {"id": key, "code": "not_computed", "axes": [], "limited": limited, "changes": []}
-            )
-            continue
-        lr, rr = _semantic_record(left), _semantic_record(right)
-        verdict = _record_changed(lr["verdict"], rr["verdict"])
-        changed = {
-            "verdict": verdict,
-            # Admission changed where the computed verdict did not (residual requirement).
-            "requirements": any(
-                lr["requirements"].get(k) != rr["requirements"].get(k)
-                and lr["verdict"].get(k) == rr["verdict"].get(k)
-                for k in lr["requirements"].keys() | rr["requirements"].keys()
-            ),
-            "support": _record_changed(lr["warrant"], rr["warrant"]),
-            "origin": not same(involved(left, 0, "origin"), involved(right, 1, "origin")),
-            "scope_model": not same(involved(left, 0, "scope"), involved(right, 1, "scope"))
-            or not same(involved(left, 0, "version"), involved(right, 1, "version"))
-            or not same(left.get("scope"), right.get("scope")),
-            "input": [c.get("request_digest") for c in left.get("children", [])]
-            != [c.get("request_digest") for c in right.get("children", [])],
-        }
-        axes = protocol_axes(changed)
-        out["checks"].append(
-            {
-                "id": key,
-                "code": state.change_code(True, True, not axes),
-                "axes": axes,
-                "changes": _check_changes(left, right),
-            }
-        )
+    checks = [
+        _check_diff_row(key, old.get(key), new.get(key), objects) for key in sorted(old.keys() | new.keys())
+    ]
     old, new = ({d["id"]: d for d in snapshot.get("decisions", [])} for snapshot in (before, after))
-    for key in sorted(old.keys() | new.keys()):
-        left, right = old.get(key), new.get(key)
-        if left is None or right is None:
-            out["decisions"].append(
-                {
-                    "id": key,
-                    # A check or decision added or withdrawn: every row carries `code` (trace audit F1).
-                    "code": state.change_code(left is not None, right is not None, False),
-                    "axes": [],
-                    "changes": [],
-                }
-            )
-            continue
-        la, ra = ({a["id"]: a for a in d["alternatives"]} for d in (left, right))
-        common = la.keys() & ra.keys()
-
-        def replaced(alternative: dict, field: str) -> list:
-            return [(r.get("id"), r.get(field)) for r in alternative.get("replacements", [])]
-
-        changed = {
-            "verdict": left["disposition"] != right["disposition"]
-            or la.keys() != ra.keys()
-            or any(la[i]["compatibility"] != ra[i]["compatibility"] for i in common),
-            "requirements": any(
-                [(x["id"], x["admission"]) for c in la[i]["checks"] for x in c["claims"]]
-                != [(x["id"], x["admission"]) for c in ra[i]["checks"] for x in c["claims"]]
-                for i in common
-            ),
-            # A replaced object's standing is its warrant inside the frame.
-            "support": any(
-                not same(replaced(la[i], "standing"), replaced(ra[i], "standing")) for i in common
-            ),
-            # The caller's selection (alternative, origin, basis) and replacement origins are attribution.
-            "origin": not same(left.get("selected"), right.get("selected"))
-            or any(not same(replaced(la[i], "origin"), replaced(ra[i], "origin")) for i in common),
-            "scope_model": any(
-                not same(replaced(la[i], "version"), replaced(ra[i], "version")) for i in common
-            ),
-            "wording": left["question"] != right["question"]
-            or any(la[i]["label"] != ra[i]["label"] for i in common),
-            "input": any(la[i]["candidate_digest"] != ra[i]["candidate_digest"] for i in common),
-        }
-        axes = protocol_axes(changed)
-        changes = []
-        if not same(left.get("selected"), right.get("selected")):
-            changes.append(
-                {
-                    "field": "selected",
-                    "before": deepcopy(left.get("selected")),
-                    "after": deepcopy(right.get("selected")),
-                }
-            )
-        if left["disposition"] != right["disposition"]:
-            changes.append(
-                {"field": "disposition", "before": left["disposition"], "after": right["disposition"]}
-            )
-        for i in sorted(la.keys() | ra.keys()):
-            before = la[i]["compatibility"] if i in la else None
-            after = ra[i]["compatibility"] if i in ra else None
-            if before != after:
-                changes.append({"alternative": i, "field": "compatibility", "before": before, "after": after})
-        out["decisions"].append(
-            {"id": key, "code": state.change_code(True, True, not axes), "axes": axes, "changes": changes}
-        )
-    return out
+    decisions = [
+        _decision_diff_row(key, old.get(key), new.get(key)) for key in sorted(old.keys() | new.keys())
+    ]
+    return {"checks": checks, "decisions": decisions}
 
 
 def _answer_diff(before: dict, after: dict) -> dict:
