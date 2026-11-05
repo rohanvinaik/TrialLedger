@@ -52,7 +52,8 @@ this one, and a cycle is a refusal. Write the small `_object`/`_text`/`_rows` he
   "checks": {id: <deep-copied check>},
   "check_order": [check ids in input order],
   "sections": {name: {"state": "requested" | "not_applicable" | "not_requested",
-                      "objects": [...], "basis": [...]}}
+                      "objects": [...], "basis": [...]}},
+  "stale_adoptions": {object id: [adoption premise ids naming that object at another version]}
 }
 ```
 
@@ -93,6 +94,7 @@ Every object has exactly `id`, `kind`, `scope`, `version`, `origin`, `standing`,
 - `ref` is a nonempty string.
 - `analysis` must be null (`protocol_origin_analysis`).
 - user_choice and hypothesis need `source: null` (`protocol_origin_source`).
+- A hypothesis-origin object may only have proposed standing (`protocol_hypothesis_cannot_supply_fact`).
 - source_interpretation needs a `source` present in `sources` (`protocol_unknown_source`), and a `ref` that
   starts with `sources[source]["snapshot"]["study_ref"] + "#"` (`protocol_origin_digest`).
   `source_evidence._selected(study, pointer)` must resolve the rest; any exception from it becomes

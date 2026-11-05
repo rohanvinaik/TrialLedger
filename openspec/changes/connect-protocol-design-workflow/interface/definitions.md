@@ -49,3 +49,12 @@ child: <non-negative integer index into that check's children>  (optional, defau
   - A relation is never established from shared labels or check ids.
   - A proposed operand reading never becomes an admitted relation premise (`definition_proposed_refused`).
   - A missing address is never filled.
+
+## Wave-4 additions (2026-11-04)
+
+- Rows with a protocol operand carry `observed_match: {left, right}`, each `exact_copy`, `differs`,
+  `not_a_proposition` or `not_bound`: an exact comparison of the declared reading with the value at its address.
+  It never certifies meaning.
+- Rows with a protocol operand carry `bound_support: {side: [{id, status, resolution}]}`, the support entries of
+  the bound child's projected signals. The relation's `status` is `proposed` unless all are accepted, and
+  otherwise is the weakest of the readings and the bound entries (Rohan, 2026-11-04). v1 rows are unchanged.

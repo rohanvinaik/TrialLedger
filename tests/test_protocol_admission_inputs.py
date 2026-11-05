@@ -54,7 +54,7 @@ def _binomial_session(**parameters) -> dict:
     template = protocol["objects"][0]
     reference = copy.deepcopy(template["data"]["definition"])
     values = {
-        "model": "single_arm_exact_binomial",
+        "model": "fixed_n_iid_bernoulli",
         "direction": "greater",
         "n": 20,
         "critical_count": 7,
@@ -120,6 +120,10 @@ def test_a_well_formed_binomial_design_is_admitted_and_computed():
     assert reply["code"] == "complete", reply.get("problems")
     check = next(c for c in reply["result"]["protocol"]["checks"] if c["id"] == "efficacy-check")
     assert [child["result"]["code"] for child in check["children"]] == ["complete"]
+    (signal,) = check["children"][0]["result"]["result"]["signals"]
+    assert signal["code"] != "unsupported_method"
+    assert (signal["value"]["n"], signal["value"]["critical_count"]) == (20, 7)
+    assert "/" in signal["value"]["null_rejection_probability"] and "/" in signal["value"]["power"]
 
 
 @pytest.mark.parametrize(

@@ -85,7 +85,12 @@ def validate(raw: object, index: dict, target: dict) -> dict:
         if type(alt["label"]) is not str or not alt["label"]:
             raise _fail("fields")
         checks = alt["checks"]
-        if type(checks) is not list or len(set(map(str, checks))) != len(checks):
+        # Check ids are strings; uniqueness is exact, never on a string rendering ([1, "1"] is malformed).
+        if (
+            type(checks) is not list
+            or any(type(c) is not str for c in checks)
+            or len(set(checks)) != len(checks)
+        ):
             raise _fail("fields")
         if any(c not in index["checks"] for c in checks):
             raise _fail("unknown_check")
@@ -171,10 +176,11 @@ def compatibility(required_codes: list[str]) -> str:
     return "compatible_under_declared_checks"
 
 
-def disposition(rows: list[tuple[str, str]], selected: str | None) -> str:
-    """Decision disposition from (compatibility, candidate digest) rows and the attributed selection (pure).
+def disposition(rows: list[tuple], selected: str | None) -> str:
+    """Decision disposition from (compatibility, digest[, hypothetical]) rows and the selection (pure).
 
-    `rows` are in alternative order; `selected` is the selected alternative's compatibility or None.
+    `rows` are in alternative order; `selected` is the selected alternative's compatibility or None. A row's
+    optional third element is True for a hypothetical frame (a what-if), which can never make it settled.
 
     pre: all(row[0] in COMPATIBILITY for row in rows)
     post: __return__ in DISPOSITIONS
@@ -185,14 +191,18 @@ def disposition(rows: list[tuple[str, str]], selected: str | None) -> str:
         return "blocker"
     if selected == "repair_choice_open_under_declared_checks":
         return "repair_choice"
-    compatible = [digest for code, digest in rows if code == "compatible_under_declared_checks"]
+    compatible = [row[1] for row in rows if row[0] == "compatible_under_declared_checks"]
     if len(compatible) >= 2 and len(set(compatible)) >= 2:
         return "design_choice"
-    if any(code == "undetermined" for code, _ in rows):
+    if any(code == "undetermined" for code, *_ in rows):
         return "evidence_question"
     if len(compatible) >= 1:
-        return "settled_within_declared_alternatives"
-    if any(code == "repair_choice_open_under_declared_checks" for code, _ in rows):
+        # A sole compatible what-if (hypothetical frame, not adopted) is the candidate repair, never
+        # "settled": nothing adopted is settled (Rohan, 2026-11-04). Rows may carry a third element,
+        # True for a hypothetical frame.
+        fixed = [row for row in rows if row[0] == "compatible_under_declared_checks" and row[2:3] != (True,)]
+        return "settled_within_declared_alternatives" if fixed else "repair_choice"
+    if any(code == "repair_choice_open_under_declared_checks" for code, *_ in rows):
         return "repair_choice"
     return "no_compatible_alternative"
 

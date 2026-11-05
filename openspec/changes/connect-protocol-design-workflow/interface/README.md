@@ -101,6 +101,18 @@ it but never edit it. Report a gap as a factual case instead.
   current for one object and stale for another without either application overwriting the other. Only the
   stale object's deciding roles are withheld, and receipts keep the original premise id.
 
+**Wave-4 walkthrough decisions confirmed by Rohan (2026-11-04).**
+- An unmet exact binomial target on the selected plan stays a repair choice (a fixable design gap), not a
+  blocker.
+- A required check that is never computed (an external method) stays deciding: its alternatives are
+  `undetermined` and the decision an `evidence_question`. Delivery names the external method as the cause, and
+  shows each alternative's other check results. A caller who wants it reported only declares it optional.
+- A definition relation bound to protocol checks is capped by the standing of the objects it is bound to. It
+  is still computed, but its status is `proposed` until every bound support entry (object standing, adoption)
+  is accepted. Rows carry `bound_support`.
+- A sole compatible alternative that is a what-if (hypothetical frame) is never `settled_within_declared_
+  alternatives`; the disposition is `repair_choice`, pointing at that candidate repair.
+
 **R2. C6 field naming and the reserved state.**
 - C6's `variables` keeps its name, and each entry uses the decision-table domain shape.
 - `policy_state` is a reserved equality literal whose value is the current state. It may appear in guards,

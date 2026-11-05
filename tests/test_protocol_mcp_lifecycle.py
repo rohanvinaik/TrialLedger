@@ -136,6 +136,14 @@ def fetch(mcp: McpClient, artifact: str, address: str):
     reply = mcp.call("reason_result", id=artifact, part="address", address=address)
     if "value" in reply:
         value = reply["value"]
+        page = reply.get("page")
+        # A large object or list value is paged by keys/items: follow page.next_offset (AGENTS.md).
+        while page and page.get("next_offset") is not None:
+            more = mcp.call(
+                "reason_result", id=artifact, part="address", address=address, offset=page["next_offset"]
+            )
+            value = {**value, **more["value"]} if isinstance(value, dict) else value + more["value"]
+            page = more.get("page")
         text_page = reply.get("text_page")
         while text_page and text_page.get("next_offset") is not None:
             more = mcp.call(

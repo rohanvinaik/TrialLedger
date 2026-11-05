@@ -161,6 +161,46 @@ def _request(identity: str, direction: str, left: dict, right: dict) -> dict:
     }
 
 
+def observed_match_code(bound: bool, equal: bool, proposition: bool) -> str:
+    """How a declared reading relates to the value actually at its address (pure; never certifies meaning).
+
+    post: __return__ in ("not_bound", "exact_copy", "differs", "not_a_proposition")
+    post: __return__ != "exact_copy" or (bound and equal)
+    """
+    if not bound:
+        return "not_bound"
+    if equal:
+        return "exact_copy"
+    return "differs" if proposition else "not_a_proposition"
+
+
+def _observed_match(observed: object, body: object, bound: bool) -> str:
+    return observed_match_code(
+        bound,
+        bound and source_evidence.exact_json_equal(observed, body),
+        isinstance(observed, dict) and "class" in observed,
+    )
+
+
+def _bound_support(child: dict) -> list[dict]:
+    """The support entries of a bound protocol child's projected signals: objects, adoption, check support."""
+    entries = {}
+    for signal in child["request"].get("signals", []):
+        for entry in signal.get("support", []):
+            entries.setdefault(entry["id"], {k: entry.get(k) for k in ("id", "status", "resolution")})
+    return list(entries.values())
+
+
+def _capped_status(status: str | None, bound_support: dict) -> str | None:
+    """A relation bound to protocol objects reads proposed until every bound entry is accepted."""
+    entries = [entry for rows in bound_support.values() for entry in rows]
+    if status is None or not entries:
+        return status
+    if support_state([e["status"] for e in entries], [e["resolution"] for e in entries]) != "accepted":
+        return "proposed"
+    return entail.weakest_status((status, *(e["status"] for e in entries)))
+
+
 def _protocol_child(protocol: dict | None, operand: dict) -> dict | None:
     """The retained `{request, result}` of a replayed protocol check child, or None when absent."""
     checks = {row["id"]: row for row in (protocol or {}).get("checks", [])}
@@ -186,7 +226,7 @@ def run(
     """
     output = []
     for row in rows:
-        observed, blockers = {}, []
+        observed, blockers, bound, bound_support = {}, [], set(), {}
         for key in ("left", "right"):
             operand = row[key]
             if "protocol_check" in operand:
@@ -197,11 +237,13 @@ def run(
                     observed[key] = None
                     continue
                 refused = "definition_protocol_child_refused:" + operand["protocol_check"]
+                bound_support[key] = _bound_support(analysis)
             else:
                 analysis = analyses[operand["analysis"]]
                 refused = "definition_analysis_refused:" + operand["analysis"]
             # A missing address is a named translation refusal, never a guessed field.
             observed[key] = deepcopy(source_evidence._selected(analysis, operand["address"]))
+            bound.add(key)
             if analysis["result"].get("code") != "complete":
                 blockers.append(refused)
             _, found = entail.proposition_formula(_body(operand["body"]))
@@ -232,16 +274,32 @@ def run(
                 "id": row["id"],
                 "relation": row["relation"],
                 "code": code,
-                "status": (
+                "status": _capped_status(
                     entail.weakest_status(tuple(ref["status"] for ref in references))
                     if gate == "accepted" and code != "unresolved"
-                    else None
+                    else None,
+                    bound_support,
                 ),
                 "target": deepcopy(
                     analyses[row["left"]["analysis"]]["target"] if "analysis" in row["left"] else target
                 ),
                 "declaration": deepcopy(row),
                 "observed": observed,
+                # Protocol operands only (v1 rows stay byte-identical, CMP-1): an exact copy of the bound
+                # value, or a reading that differs from it; the reading stays an attributed translation.
+                **(
+                    {
+                        "observed_match": {
+                            key: _observed_match(observed[key], row[key]["body"], key in bound)
+                            for key in ("left", "right")
+                        }
+                    }
+                    if any("protocol_check" in row[key] for key in ("left", "right"))
+                    else {}
+                ),
+                # The bound protocol objects' own support (object standing, adoption): the relation is never
+                # stronger than what it is bound to (Rohan, 2026-11-04). Protocol operands only (CMP-1).
+                **({"bound_support": bound_support} if bound_support else {}),
                 "checks": checks,
                 "blockers": sorted(set(blockers)),
                 "basis": deepcopy(row["basis"]),

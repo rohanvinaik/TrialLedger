@@ -549,12 +549,110 @@ records the executed checks and their scope.
 
 </details>
 
+## A protocol plan in practice
+
+> “Our week-12 visit is allowed from day 77 to day 91, but the plan collects through day 80. Does that
+> cover what we say, which way should we fix it, and what changes if we extend it?”
+
+This is an executable teaching case. The plan, its adoption and every choice are **invented**; the checks
+are real. Your assistant starts from discovery, not from memory:
+
+```bash
+echo '{"operation":"describe","view":"protocol","detail":"full"}' > describe.json
+trialledger reason --request describe.json
+```
+
+The reply lists the built checks, the data each protocol object carries, the claims each check may make and
+a runnable example per family. Your assistant saves `examples.decisions` as `plan.json`. It holds a
+week-12 assessment (nominal day 84, permitted days 77–91), a collection plan through day 80, one schedule
+check, and a comparison of two collection plans with the drafted plan selected.
+
+**1. Prepare, then run.** Preparation expands the compact objects without computing anything and keeps
+what it defaulted:
+
+```bash
+trialledger reason --request plan.json --store reasoning --compact          # artifact 864b5eed…
+trialledger reason --prepared 864b5eedf6c642159b60aa3df55c51fdd38ba98d6a50cf39d3c32d6a18e8cd45 \
+    --store reasoning --compact                                              # artifact c01d4aca…
+```
+
+**2. Read the schedule check by claim.** For the drafted plan, “given your declared intervals”:
+
+| Claim | Outcome | Why |
+|---|---|---|
+| A visit exists | satisfied | days 77–80 are both permitted and collected |
+| The nominal day 84 is collected | not collected | collection ends at day 80 |
+| The full permitted window is covered | uncovered | days (80, 91] are permitted but not collected |
+
+```bash
+trialledger reason-result --store reasoning --part address \
+    --id c01d4acaafafdc40f6d231e5bcbce0b04a07f8564c2ec655ca6f66116625f0b4 \
+    --address /response/result/protocol/decisions
+```
+
+**3. Compare the two plans.** The decision `collection-plan` compares “Through day 80” with “Through day
+91”. The drafted plan is a **repair choice** still open: its gaps are plan gaps for you to settle, not policy
+conflicts. “Through day 91” is compatible under the declared checks, but it is a replacement held in its own
+hypothetical frame, so its result is withheld from unconditional application. The drafted selection stays
+yours; nothing here picks the plan for you.
+
+**4. Revise on instruction.** The person says: collect through day 91. That is an explicit instruction to
+change an adopted plan, so the new content is a new version of the collection, and its adoption is recorded
+with it. Content changed under an unchanged version is refused (`changed_protocol_object_version_required:collection`).
+
+```json
+[
+ {"op":"replace","path":"/protocol/objects/2/data/availability/0/upper","value":"91",
+  "origin":{"kind":"user_choice","ref":"user:invented instruction to collect through day 91 (teaching example)","source":null,"analysis":null}},
+ {"op":"replace","path":"/protocol/objects/2/version","value":"invented-v2"}
+]
+```
+
+```bash
+trialledger reason-revise --store reasoning --edits edits.json --revision collect-to-91 \
+    --id c01d4acaafafdc40f6d231e5bcbce0b04a07f8564c2ec655ca6f66116625f0b4
+```
+
+The review lists the two adoption edits as `adoption_of_instructed_version`. In `answer_diff`, the
+schedule check changed on its verdict, support, origin and scope axes: the nominal-day and full-window
+claims moved from not collected / uncovered to satisfied. A what-if under a `hypothesis` origin would not
+adopt, and its earlier adoption would read as stale instead.
+
+**5. Hand it over.**
+
+```bash
+trialledger reason-export --store reasoning --out review-out \
+    --id 0bcdcfc3befa70c00d2f081896f77fef971a945263b47383b28da5138f121406
+```
+
+The export returns the review workbook (with a schedule-of-assessments sheet), the readable decision list
+and the manifest under `review-out/review`. The assessments section reports “no conflict or open repair
+choice found in the declared checks”.
+
+**What this does and does not establish.**
+
+- **Working checks.** Exact schedule coverage over declared intervals; finite declared-variable policies
+  (coverage, exclusivity, prohibition, invariant and termination claims, with bounded witnesses); exact
+  fixed-n single-arm binomial probabilities; plan comparisons; definition relations; revision axes; delivery.
+- **Encoded assumptions.** A binomial result applies only when its three roles (fixed n, independent
+  binary outcomes, alignment of the endpoint with the design) are declared as premises; the arithmetic is
+  always shown. Policy inputs from outside the model are re-chosen freely at each step. Coverage concerns
+  the declared variables and states only, so a covered policy is not a safe policy. Standing, adoption and
+  origin are the caller's attribution; TrialLedger authenticates none of it.
+- **Deferred.** General statistical design (sample-size search, optimisation), adaptive, survival and
+  cluster methods (a declared external method stays *not computed*, with its missing inputs named), the
+  automatic protocol writer and prose compilation. Not computed is not a finding.
+
+A clean schedule check says the declared intervals line up. It does not say the visit is clinically
+appropriate, the protocol is valid or complete, or anyone has approved it.
+
 ## What isn't built yet
 
 - **Automatic reading of eligibility prose.** Today you and your assistant settle readings together;
   TrialLedger compiles only the structured minimum and maximum age directly.
-- **Complete protocol writing from a brief.** It is designed and partly built; the operations above are its
-  working core.
+- **Complete protocol writing from a brief.** It is designed and partly built; the operations above, including
+  the protocol checks, are its working core. Adaptive, cluster and survival calculations, sample-size search and
+  optimisation are not built.
 - **Scoring how significant a line of design reasoning is.** This is designed. Today's "unusual" measure
   is a simpler count within a comparison set.
 - **Reading linked publications.** A link marks a place to look, not something TrialLedger has read.

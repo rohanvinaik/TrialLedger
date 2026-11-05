@@ -369,6 +369,22 @@ changed corpus denominators have distinct contracts. Retraction checks use fresh
 previous reduced proof. The fresh Phase 2 influenza workflow in
 `acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/` exercises the resulting user handoff.
 
+Protocol-plan checks (change `connect-protocol-design-workflow`) have their own test families under
+`tests/test_protocol_*.py`: numbers and schemas; objects, admission and adoption editions; schedule, policy
+and statistics operators, each beside an independent oracle (`*_oracle.py`); projections, options and
+definition relations; session replay and replay budgets; revision edits and axes; the view, delivery and
+export legibility; MCP lifecycle; and import direction. `tests/test_discovery_examples_run.py` is the
+executable discovery guard: every runnable example any `describe` view returns runs to complete as
+published, through the library, the CLI and an MCP client, with agreeing result digests. A new example in
+discovery is therefore executed automatically; a view added to `DISCOVERY_VIEWS` is covered without editing
+the test. Keep three things apart in documentation. Working checks: schedule coverage, finite
+declared-variable policies, exact fixed-n single-arm binomial, plan comparisons, definition relations,
+revision axes, delivery. Encoded assumptions: the three binomial roles, external variables re-chosen at each
+step, coverage over declared variables only, caller attribution unauthenticated. Deferred: general
+statistical design, adaptive, survival and cluster methods, the automatic protocol writer and prose
+compilation. Documentation examples must run as written; the README's protocol session was executed
+end to end.
+
 Trace production consumers and duplicate paths before behavior edits. Use symbolic/AST inspection, read
 whole units and keep decisions pure with named outcomes. Write positive and negative intent tests, exercise
 null/empty/malformed/boundary inputs through the actual entry point and trace signals to consumers. Converge

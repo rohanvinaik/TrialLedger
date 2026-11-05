@@ -195,6 +195,22 @@ wording and material gaps for the next conversation.
 Complete protocol writing remains unintegrated. These operations are the working evidence and reasoning
 core supporting the person's clinical design process now.
 
+## Check a protocol plan
+
+When the person drafts assessments, a dose or stopping policy, a single-arm binomial design or two competing
+plan edits, discover `{"operation":"describe","view":"protocol","detail":"full"}`, take the relevant
+family example's shape, prepare it with the person's declared objects, run the prepared request, then
+revise and export as above. The [README's protocol conversation](../README.md#a-protocol-plan-in-practice)
+shows each call. An instructed plan change is revised with `reason-revise --edits` giving a new object version
+under the person's origin; the adoption of that version is recorded with it (`delivery` lists it as
+`adoption_of_instructed_version`). Content changed under an unchanged version is refused. A what-if stays
+hypothetical and adopts nothing. Read the plan comparison by alternative (compatible, repair choice open,
+undetermined, incompatible), and `answer_diff.protocol_checks` / `protocol_decisions` by axis. The export
+adds protocol synopsis, findings, schedule-of-assessments, plan-comparison and adoption sheets. This is a
+check of declared intervals, variables and parameters: not a judgement of clinical appropriateness, safety,
+validity or completeness. Adaptive, cluster and survival calculations, sample-size search and the protocol
+writer are not built.
+
 ## Keep permission, requirement and choice separate in the review
 
 The main decision and option sheets include permission mentions, with their applicability, scope, standing

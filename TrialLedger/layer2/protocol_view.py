@@ -243,7 +243,10 @@ def _template(row: dict, child: dict) -> str:
         return "Not determined: an input this claim needs is not declared."
     if effective == "unresolved":
         admission = str(row.get("admission"))
-        return f"Not applied: {ADMISSION_WORDS.get(admission, 'the deciding support is ' + admission)}."
+        return (
+            f"Not applied: {ADMISSION_WORDS.get(admission, 'the deciding support is ' + admission)}."
+            + binomial_detail(row, child)
+        )
     if effective == "not_executed":
         return "Not computed within the declared work limit."
     key: Any = (claim, effective)
@@ -316,7 +319,7 @@ def _claim_rows(check: dict) -> list[tuple[dict, dict]]:
 
 
 def _is_not_computed(check: dict) -> bool:
-    if check.get("not_computed") is not None:
+    if check.get("not_computed") is not None or refusal_codes(check):
         return True
     if any(s.get("code") == "limit" for s in _signals(check)):
         return True
@@ -440,6 +443,18 @@ def _check_row(index: int, check: dict) -> dict:
         "unresolved": copy.deepcopy(check.get("unresolved") or []),
         "not_computed": copy.deepcopy(check.get("not_computed")),
         "not_computed_items": not_computed_items(check),
+        "refusals": refusal_codes(check),
+        "clean_signals": [
+            {
+                "signal": sig.get("id"),
+                "kind": sig.get("kind"),
+                "code": sig.get("code"),
+                "ref": _child_ref(index, j),
+            }
+            for j, sig in _plain_signals(check)
+            if not signal_finding_codes(sig)
+        ],
+        "models": model_rows(check),
         "conditions": [copy.deepcopy(c) for child in children for c in child.get("conditions") or []],
         "refs": [
             {
@@ -653,8 +668,21 @@ def unresolved_words(entry: dict) -> str:
     return f"{words}{' (objects: ' + objects + ')' if objects else ''} [{code}]"
 
 
+REFUSAL_WORDS = {
+    "estimand_variable_mismatch": "the estimand's variable does not match the declared definition variable",
+    "rule_output_not_derived": "a dependency rule's output is not declared as derived",
+}
+
+
+def refusal_codes(check: dict) -> list[str]:
+    """Codes of every refused child of a check, in child order (pure)."""
+    return [
+        str(code) for child in check.get("children") or [] for code in (child.get("refusal") or []) if code
+    ]
+
+
 def not_computed_items(check: dict) -> list[dict]:
-    """One entry per reason a check was not computed: unresolved projection or external method (pure)."""
+    """One entry per reason a check was not computed: unresolved, refused child or external method."""
     out = [
         {
             "code": str(entry.get("code")),
@@ -662,6 +690,9 @@ def not_computed_items(check: dict) -> list[dict]:
         }
         for entry in check.get("unresolved") or []
     ]
+    for code in refusal_codes(check):
+        words = REFUSAL_WORDS.get(code, code.replace("_", " "))
+        out.append({"code": code, "text": f"No finding: the check's input was refused: {words} [{code}]."})
     declared = check.get("not_computed")
     if declared is not None:
         missing = ", ".join(str(m) for m in declared.get("missing") or []) or "none declared"
@@ -833,6 +864,15 @@ FIELD_WORDS = {
     "code": "result code",
     "calculation_code": "calculated code",
     "blockers": "blockers",
+    "n": "sample size n",
+    "critical_count": "critical count",
+    "p0": "p0",
+    "p1": "p1",
+    "null_rejection_probability": "null rejection probability",
+    "power": "power",
+    "selected": "selected alternative",
+    "disposition": "disposition",
+    "compatibility": "compatibility",
 }
 AXIS_WORDS = {
     "verdict": "the computed outcome changed",
@@ -851,25 +891,247 @@ def outcome_words(code: object) -> str:
     return f"{words} ({code})" if words else str(code)
 
 
-def _changed_value(value: object) -> str:
+def _changed_value(value: object, field: object = None) -> str:
     if value is None:
-        return "n/a"
+        return "none selected" if field == "selected" else "n/a"
     if isinstance(value, list | tuple):
         return "; ".join(str(v) for v in value) or "none"
+    if field == "compatibility":
+        return f"{value} ({COMPATIBILITY_WORDS.get(str(value), str(value))})"
+    if field == "disposition":
+        return f"{value} ({DISPOSITION_WORDS.get(str(value), str(value))})"
+    if field in ("null_rejection_probability", "power", "p0", "p1"):
+        return exact_with_decimal(value)
+    if field in ("n", "critical_count", "selected"):
+        return str(value)
     return outcome_words(value)
 
 
 def change_lines(changes: list[dict]) -> tuple[list[str], list[str]]:
-    """Before and after lines for the per-claim changes of one retained answer_diff row (pure)."""
+    """Before and after lines for the per-claim, value and decision changes of one answer_diff row (pure)."""
     before, after = [], []
     for change in changes:
         if not isinstance(change, dict):
             continue
-        subject = f"Claim {change['claim']}" if "claim" in change else f"Check finding {change.get('signal')}"
-        field = FIELD_WORDS.get(str(change.get("field")), str(change.get("field")))
-        before.append(f"{subject}, {field}: {_changed_value(change.get('before'))}")
-        after.append(f"{subject}, {field}: {_changed_value(change.get('after'))}")
+        if "claim" in change:
+            subject = f"Claim {change['claim']}"
+        elif "alternative" in change:
+            subject = f"Alternative {change['alternative']}"
+        elif "signal" in change:
+            subject = f"Check finding {change.get('signal')}"
+        else:
+            subject = "Decision"
+        field = change.get("field")
+        label = FIELD_WORDS.get(str(field), str(field))
+        before.append(f"{subject}, {label}: {_changed_value(change.get('before'), field)}")
+        after.append(f"{subject}, {label}: {_changed_value(change.get('after'), field)}")
     return before, after
+
+
+ROLE_WORDS = {
+    "fixed_n": "the sample size n is fixed in advance",
+    "iid_binary": "responses are independent binary outcomes sharing one probability",
+    "alignment": "the declared p0, p1 and response definition match the planned endpoint (your declaration)",
+}
+MODEL_WORDS = {
+    "fixed_n_iid_bernoulli": "fixed sample size with independent, identically distributed binary responses",
+}
+GUARANTEE_WORDS = {"exact_conditional_on_declared_model": "exact, conditional on the declared model"}
+STAT_FIELDS = (
+    ("n", "sample size n"),
+    ("critical_count", "critical count (reject at or above)"),
+    ("p0", "p0"),
+    ("p1", "p1"),
+    ("null_rejection_probability", "null rejection probability"),
+    ("power", "power"),
+)
+
+
+def decimal_text(raw: Any, places: int = 4) -> str:
+    """A rounded display decimal (half-even) of an exact rational string; the exact value stays beside it."""
+    try:
+        value = Fraction(str(raw))
+    except (ValueError, ZeroDivisionError):
+        return ""
+    rounded = round(value * 10**places)  # Fraction.__round__ is half-even
+    sign = "-" if rounded < 0 else ""
+    digits = str(abs(rounded)).rjust(places + 1, "0")
+    return f"{sign}{digits[:-places]}.{digits[-places:]}"
+
+
+def exact_with_decimal(raw: Any) -> str:
+    """`exact (decimal)` for a rational string; integers and non-rationals render as they are."""
+    text = str(raw)
+    if "/" not in text:
+        return text
+    shown = decimal_text(text)
+    return f"{text} ({shown})" if shown else text
+
+
+def assumption_reason_words(reason: str) -> str:
+    """Plain words for one binomial application reason, the code kept beside (pure)."""
+    head, _, tail = str(reason).partition(":")
+    if head == "assumption_missing":
+        return f"the model assumption '{tail}' is not declared ({reason})"
+    if head == "assumption_not_accepted":
+        return f"the assumption {tail} is not accepted: it is a proposal or unresolved ({reason})"
+    return f"{str(reason).replace('_', ' ')} ({reason})"
+
+
+def statistics_text(stat: dict) -> str:
+    """One retained binomial plan in words: n, critical count, p0, p1, null rejection probability, power."""
+    return "; ".join(f"{label} {exact_with_decimal(stat[key])}" for key, label in STAT_FIELDS if key in stat)
+
+
+def model_rows(check: dict) -> list[dict]:
+    """Each binomial model's declared assumptions, application and exact statistics, as returned (pure)."""
+    rows = []
+    for child in check.get("children") or []:
+        value = _signal_value(child)
+        if "model" not in value or "assumptions" not in value:
+            continue
+        coverage = value.get("assumption_coverage") or {}
+        by_role = {a.get("role"): a for a in value.get("assumptions") or [] if isinstance(a, dict)}
+        roles = []
+        for role in ROLE_WORDS:
+            declared = by_role.get(role)
+            roles.append(
+                {
+                    "role": role,
+                    "words": ROLE_WORDS[role],
+                    "coverage": coverage.get(role, "declared" if declared else "missing"),
+                    "standing": None if declared is None else declared.get("status"),
+                    "resolution": None if declared is None else declared.get("resolution"),
+                    "version": None if declared is None else declared.get("version"),
+                    "ref": None if declared is None else declared.get("ref"),
+                }
+            )
+        application = value.get("application") or {}
+        rows.append(
+            {
+                "check": check["id"],
+                "model": str(value.get("model")),
+                "model_words": MODEL_WORDS.get(str(value.get("model")), str(value.get("model"))),
+                "guarantee": GUARANTEE_WORDS.get(str(value.get("guarantee")), str(value.get("guarantee"))),
+                "application": application.get("code"),
+                "reasons": [assumption_reason_words(r) for r in application.get("reasons") or []],
+                "roles": roles,
+                "statistics": statistics_text(value),
+                "not_computed": [str(x).replace("_", " ") for x in value.get("not_computed") or []],
+            }
+        )
+    return rows
+
+
+def binomial_detail(row: dict, child: dict) -> str:
+    """Why a withheld binomial claim is not applied, and that its computed values stay visible (pure)."""
+    value = _signal_value(child)
+    if row.get("claim") not in QUANTITIES or "application" not in value:
+        return ""
+    reasons = (value.get("application") or {}).get("reasons") or []
+    if not reasons:
+        return ""
+    display = value.get("display") if isinstance(value.get("display"), dict) else {}
+    shown = ", ".join(
+        f"{name} {display[key]}"
+        for key, name in (("null_rejection_probability", "null rejection probability"), ("power", "power"))
+        if key in display
+    )
+    return (
+        " Withheld because "
+        + "; ".join(assumption_reason_words(r) for r in reasons)
+        + "."
+        + (f" The computed values ({shown}) stay visible; they are not applied." if shown else "")
+    )
+
+
+# Definition relations whose operands name protocol checks (result.definition_checks, not result.protocol).
+RELATION_WORDS = {
+    "implies": "the left reading implies the right reading",
+    "equivalent": "the left and right readings are equivalent",
+    "disjoint": "the left and right readings cannot both hold",
+}
+RELATION_CODE_WORDS = {
+    "consistent": "no counterexample to the declared relation was found",
+    "conflict": "the declared relation is refuted by a counterexample (a statement about your declared "
+    "relation, not a contradiction inside the protocol)",
+    "unresolved": "the declared relation is not settled",
+}
+DIRECTION_WORDS = {"left_implies_right": "left implies right", "right_implies_left": "right implies left"}
+MATCH_WORDS = {
+    "exact_copy": "this reading is an exact copy of the value at its address",
+    "differs": "this reading differs from the value at its address",
+    "not_a_proposition": "the value at its address is not a typed proposition",
+    "not_bound": "this reading is not bound to an address",
+}
+
+
+def relation_rows(result: dict) -> list[dict]:
+    """Definition relations with a protocol operand, read from the retained result (pure)."""
+    rows = []
+    for index, item in enumerate(result.get("definition_checks") or []):
+        declaration = item.get("declaration") or {}
+        if not any("protocol_check" in (declaration.get(side) or {}) for side in ("left", "right")):
+            continue
+        match = item.get("observed_match") or {}
+        sides = []
+        for side in ("left", "right"):
+            operand = declaration.get(side) or {}
+            state = match.get(side)
+            sides.append(
+                {
+                    "side": side,
+                    "check": operand.get("protocol_check"),
+                    "address": operand.get("address"),
+                    "standing": operand.get("status"),
+                    "match": state,
+                    "match_words": MATCH_WORDS.get(str(state), "not reported"),
+                }
+            )
+        directions = []
+        for check in item.get("checks") or []:
+            decision = _get(check, "result", "result", "decision") or {}
+            directions.append(
+                {
+                    "direction": check.get("direction"),
+                    "words": DIRECTION_WORDS.get(str(check.get("direction")), str(check.get("direction"))),
+                    "result": decision.get("result"),
+                    "blockers": list(decision.get("blockers") or []),
+                }
+            )
+        rows.append(
+            {
+                "id": item.get("id"),
+                "relation": item.get("relation"),
+                "relation_words": RELATION_WORDS.get(str(item.get("relation")), str(item.get("relation"))),
+                "code": item.get("code"),
+                "code_words": RELATION_CODE_WORDS.get(str(item.get("code")), str(item.get("code"))),
+                "standing": item.get("status"),
+                "sides": sides,
+                "directions": directions,
+                "blockers": list(item.get("blockers") or []),
+                "ref": f"/definition_checks/{index}",
+            }
+        )
+    return rows
+
+
+def superseded_adoptions(result: dict) -> dict[str, str]:
+    """Adoption premises naming an object version no longer declared: id -> plain words (pure)."""
+    protocol = result.get("protocol") if isinstance(result, dict) else None
+    if not isinstance(protocol, dict):
+        return {}
+    current = {(o.get("id"), o.get("version")) for o in protocol.get("objects") or []}
+    out = {}
+    seen = {p.get("id"): p for key in ("premises", "effective_premises") for p in result.get(key) or []}
+    for pid, premise in seen.items():
+        if not isinstance(premise, dict) or premise.get("kind") != "adoption":
+            continue
+        named = [(o.get("id"), o.get("version")) for o in _get(premise, "payload", "objects") or []]
+        if named and not any(pair in current for pair in named):
+            version = ", ".join(f"{i} {v}" for i, v in named)
+            out[str(pid)] = f"names a superseded version ({version}); not used"
+    return out
 
 
 def _section_detail(consuming: list[dict]) -> list[dict]:
@@ -911,6 +1173,19 @@ def _section_detail(consuming: list[dict]) -> list[dict]:
     return detail
 
 
+def _optional_not_computed_text(consuming: list[dict]) -> str:
+    """Names an optional check that was not computed when every required check was (pure; adds words only)."""
+    required = [c for c in consuming if c.get("required")]
+    optional = [c for c in consuming if not c.get("required") and _is_not_computed(c)]
+    if not optional or not required or any(_is_not_computed(c) for c in required):
+        return ""
+    parts = []
+    for check in optional:
+        reasons = [i["text"].removeprefix("No finding: ").rstrip(".") for i in not_computed_items(check)]
+        parts.append(f"{check['id']} not computed: {'; '.join(reasons) or 'work limit reached'}")
+    return " Required checks computed; optional check " + "; optional check ".join(parts) + "."
+
+
 def _section_rows(protocol: dict, check_rows: list[dict], checks: list[dict]) -> list[dict]:
     rows = []
     for sid in SECTION_IDS:
@@ -936,9 +1211,11 @@ def _section_rows(protocol: dict, check_rows: list[dict], checks: list[dict]) ->
                 "declared": declared["state"],
                 "coverage": coverage,
                 "findings": findings,
-                "findings_text": FINDINGS_TEXT[findings]
-                if coverage not in ("not_requested", "not_applicable")
-                else f"No checks: section {coverage.replace('_', ' ')}.",
+                "findings_text": (
+                    FINDINGS_TEXT[findings] + _optional_not_computed_text(consuming)
+                    if coverage not in ("not_requested", "not_applicable")
+                    else f"No checks: section {coverage.replace('_', ' ')}."
+                ),
                 "findings_detail": detail,
                 "reasons": reasons,
                 "objects": objects,
@@ -1049,6 +1326,13 @@ def adoption_code(supported: bool, stale: bool, standing: str | None) -> str:
     return "adopted_proposed"
 
 
+def _definition_standing(obj: dict) -> str | None:
+    """Standing of an object's own `data.definition` reference, when it is a standing record (pure)."""
+    definition = (obj.get("data") or {}).get("definition") if isinstance(obj.get("data"), dict) else None
+    status = definition.get("status") if isinstance(definition, dict) else None
+    return status if isinstance(status, str) else None
+
+
 def _adoption_rows(protocol: dict, result: dict, checks: list[dict]) -> list[dict]:
     """Who adopted each protocol object, at which version, with which standing (explicit records only)."""
     premises = {p.get("id"): p for p in result.get("effective_premises") or [] if isinstance(p, dict)}
@@ -1075,6 +1359,7 @@ def _adoption_rows(protocol: dict, result: dict, checks: list[dict]) -> list[dic
                 ],
                 "adoption": adoption_code(bool(records), obj["id"] in stale, weakest),
                 "object_standing": (obj.get("standing") or {}).get("status"),
+                "definition_standing": _definition_standing(obj),
             }
         )
     return rows

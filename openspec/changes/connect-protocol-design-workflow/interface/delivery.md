@@ -111,3 +111,42 @@ reachable (its own column, a parenthesis, or the "Open exact result" link).
 - **Protocol findings** gains a last column `Example trace (first witness)`: the view's `witness_wording` (the first
   bounded witness of a policy gap, competing transitions, violation or unestablished termination, in words), or
   `n/a`. The decision list adds it as an indented `Example trace:` line under that claim's bullet.
+
+### Wave-4 additions (2026-11-05)
+
+Wording and rows only; each reads retained fields, none is computed in delivery.
+
+- **Plan comparisons.** `Claim outcomes under this alternative` shows each claim's effective outcome and
+  admission; a claim whose support is refused reads "not applied" with the reason, and its calculated outcome is
+  labelled "for reference only". When claims are not applied the retained windows carry "(calculated; its claims
+  are not applied)". New columns `Checks deciding this alternative` (required or optional, check code and the
+  reason: not-computed method with its missing inputs, or the unapplied claims) and `Retained binomial plan`
+  (n, critical count, p0, p1, exact null-rejection probability and power, each rational with a rounded 4-place
+  decimal), from `children[].statistics`. The view's alternatives gain `deciding_checks` and `statistics`.
+- **Changes.** `changes` rows render binomial value changes (n, critical count, p0, p1, null-rejection
+  probability, power; rationals with decimals) and decision changes (selected alternative, disposition,
+  per-alternative compatibility) as before → after text.
+- **Model assumptions** (md `### Model assumptions` after Findings; sheet `Model assumptions` only when a
+  binomial check exists): the model in words, each role (fixed_n, iid_binary, alignment) declared or missing with
+  standing and version, the application and why it is withheld, the retained plan, the guarantee and what is not
+  computed. A withheld binomial claim's wording names the missing or unaccepted role and states that the computed
+  values stay visible and are not applied. The view's check rows gain `models`.
+- **Definition relations** (md `### Definition relations`; sheet `Definition relations` only when a relation has
+  a protocol operand): relation, code, each direction's result, caller-declared standing and `observed_match`;
+  a `differs` side warns "this reading differs from the value at its address". A `conflict` reads "refuted by a
+  counterexample ... not a contradiction inside the protocol", is counted on the Findings counts line and listed
+  under Open items. `protocol_view.relation_rows(result)` is a separate pure function over `result`.
+- **Header.** The decision list no longer says "No decision entries were declared"; it says no general
+  design-choice entries were declared and points to Protocol and Findings.
+- **Refused child.** A refused check child is a `Not computed` finding with its words and code; the check
+  summary code reads `refused`; the section reads `not_computed`, never "none found". The check row gains
+  `refusals`.
+- **Consistent plain signals** (`clean_signals`) get a `No finding` row and bullet ("... check returned
+  consistent").
+- **Adoption.** New `Definition reference standing` column (the object's own `data.definition` status) with
+  words such as "its definition reference is proposed"; new `Superseded adoption records (listed, not used)`
+  column and md lines ("names a superseded version (...); not used"), also marked in Sources and origins.
+- **Compact findings** carry the bounded witness sentence (`witness`, `witness_truncated`; 240 characters). If it
+  does not fit the byte budget it is dropped before the finding is, and the row says `witness_omitted`.
+- **Optional not-computed check.** A section whose required checks computed adds "Required checks computed;
+  optional check X not computed: <reason>." to `findings_text`; coverage codes are unchanged.

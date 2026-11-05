@@ -59,7 +59,8 @@ INPUTS = {
         "fields": {
             "scope": "nonempty identity of the policy application and stage",
             "version": "nonempty policy version",
-            "variables": "decision-table domains [{id, values:[equality Literal]}]; at most 4096 valuations",
+            "variables": "decision-table domains [{id, values:[equality Literal]}]; at most 8 variables of "
+            "at most 32 values each, and at most 4096 valuations in their product",
             "constraints": "[{id, condition, rule}]: tagged propositions restricting feasible valuations",
             "states": "1 to 32 unique nonempty state names; declared order is the tie order",
             "initial": "nonempty unique subset of states",

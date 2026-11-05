@@ -349,6 +349,7 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
                 "schema": {"operation": "describe", "view": "entailment", "detail": "schema"},
                 "full": {"operation": "describe", "view": "full"},
                 "delivery": {"operation": "describe", "view": "delivery"},
+                "protocol": {"operation": "describe", "view": "protocol", "detail": "full"},
             },
             "boundaries": [
                 (
@@ -410,7 +411,8 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
             },
             "revision_edits": {
                 "shape": "[{op: replace, path: RFC 6901 pointer into the prior session, value, origin?}], "
-                "1 to 64 edits, applied in order; only existing locations are replaced",
+                "1 to 64 edits, applied in order; only existing locations are replaced. origin is exactly "
+                "{kind, ref, source, analysis}; for user_choice or hypothesis, source and analysis are null",
                 "roots": "premises, analyses, decisions, limits, target, definition_checks, protocol",
                 "premises": "a changed premise needs an explicit origin: an edit at the premise or its "
                 "origin, or origin on the edit; copied source assertions cannot be edited here",

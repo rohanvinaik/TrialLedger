@@ -23,6 +23,9 @@ PARTS = {
     "session": "/request/session",
     "decisions": "/response/result/decisions",
     "decision_view": "/response/decision_view",
+    # Protocol results and plan comparisons (v2 sessions; walkthrough wave 4).
+    "protocol": "/response/result/protocol",
+    "protocol_decisions": "/response/result/protocol/decisions",
     "changes": "/response/answer_diff",
 }
 

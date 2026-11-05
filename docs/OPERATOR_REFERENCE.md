@@ -217,6 +217,7 @@ The focused `describe` guides carry the relevant `answer_guide`; view `full` inc
 | Which trials differ only in X | reason `corpus` near_misses | The pair, the one difference, sponsors and years |
 | Is X good, appropriate or best | Decompose into computed parts (fits the brief, how common, class pattern, gaps) | Computed parts with basis; label remaining judgment as the person's |
 | Did it work; were the results notable | No computed object | Read posted outcomes from the record; label interpretation as your reading |
+| Does the plan's visit window match what is collected; do these doses obey the declared prohibitions; what exact power does a fixed-n single-arm design give; which of two plan edits is compatible | `design_session` with a `protocol` (objects, checks, decisions); discover with `describe` view `protocol` | Per-claim outcome and its effective outcome, deciding roles, repair choices separate from conflicts, assumptions named |
 | Write the complete new protocol | Not yet integrated | Use the supported pieces; do not present your own draft as the writer's output |
 
 Do not apply an operation's decision rules by hand and present the outcome as computed. If no operation
@@ -537,6 +538,34 @@ action decision for 1/6. The checker preserves the uncovered condition; do not i
 countermodel it did not return. A structurally consistent finite table proves neither sequential termination,
 clinical appropriateness nor statistical operating characteristics. Add the missing action or conflicting
 choice to the person's decision list.
+
+### Protocol plans: schedules, policies and binomial designs
+
+Discover with `{"operation":"describe","view":"protocol"}`; `"detail":"full"` adds an example per family
+(schedule, finite_policy, binomial_design, external_method, estimand, decisions, definition_relation),
+`object_data`, `check_patterns`, `admission`, `decisions`, `notes` and `built_boundary`. Do not duplicate
+those contracts; read the view before encoding.
+
+- **Standing and adoption.** Each object has its own standing (default proposed/unresolved) and, separately,
+  explicit adoption records naming an exact id and version. Findings are admitted only when both hold;
+  claims are gated one by one by the roles that decide them, and a refused claim keeps its raw outcome
+  beside an unresolved `effective_outcome`.
+- **Editions.** Changed content needs a new version on every revision path, or the revision is refused
+  (`changed_protocol_object_version_required:<id>`). An instructed change under a newly attributed
+  `user_choice` origin adopts the new version in the same revision (`adoption_of_instructed_version`); a
+  `hypothesis` origin never does and the earlier adoption reads stale for that object only.
+- **Gaps versus conflicts.** An uncovered or uncollected part of a window is a plan gap and a repair choice.
+  A violated prohibition or uncovered case in a declared policy is a policy conflict.
+- **Declared once.** The estimand's collection requirement is declared on the collection (`event_handling`).
+- **Not computed.** An `external_method` and a binomial design missing a role report the arithmetic or named
+  missing inputs, never a finding.
+
+Working: schedule coverage, finite declared-variable policies, exact fixed-n single-arm binomial, plan
+comparisons, definition relations, revision axes, delivery. Assumed: the binomial roles (fixed n,
+independent binary outcomes, alignment) are declared premises; external policy variables are re-chosen at
+each step; coverage is over declared variables only. Not built: adaptive, cluster or survival calculations,
+sample-size search, optimisation and the protocol writer. Coverage and compatibility are never safety,
+validity, completeness or approval.
 
 ### Estimand relevance and assessment requirements
 

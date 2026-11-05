@@ -148,6 +148,7 @@ actual addressed values and exact target remain visible; proposed readings do no
 | Feed a retained NIH record into reasoning | `source_assertions`, structured-age rules and proposed readings |
 | What evidence distinguishes survivors? | `evidence_requests`, hypothetical accepted/rejected profiles |
 | Keep sources, choices, analyses and revisions connected | `design_session`, origins, coverage and fresh replay |
+| Is our schedule, policy, binomial design or plan choice consistent as declared? | `design_session` protocol; `describe` view `protocol` |
 
 Read the detailed reference before population/definition binding, baseline exception, stage, finite action
 table or estimand work. Several channels may inform one decision without becoming the same predicate.
@@ -202,6 +203,32 @@ source-ledger ID is separate. Projection supplies both study and expected_digest
 did not. Its independent `requirements` axis applies to option analyses and parent decisions alike. For
 example, widening ECOG can change the outstanding ECOG requirement beside an allowed CNS profile without
 changing that profile's verdict. Report a true `answer` change separately; inspect every changed axis.
+
+## Protocol plans
+
+For a draft's assessments, policies or statistical plan, run `{"operation":"describe","view":"protocol"}`
+(add `"detail":"full"` for per-family examples, `object_data`, `check_patterns` and `built_boundary`) and
+follow it rather than this summary. Prepare, run, revise and export like any session. The built checks are
+schedule coverage, finite declared-variable policies, exact fixed-n single-arm binomial, plan comparisons
+and definition relations.
+
+- Each protocol object carries its own standing, apart from explicit adoption records naming an exact id
+  and version. Standing and adoption are conjunctive; unspecified standing stays proposed.
+- An instructed plan change records a new version and its adoption together, under the person's attributed
+  origin, with no second confirmation. A what-if (`hypothesis` origin) never adopts: the earlier adoption
+  then reads stale. Changed content under an unchanged version is refused on every revision path.
+- Plan gaps (uncovered window, uncollected day) are repair choices for the person. A policy failure
+  (violated prohibition, uncovered case) is a conflict. Report them separately and never auto-repair.
+- A refused or unadmitted claim's raw outcome is never its effective outcome: report `effective_outcome`.
+- Not computed (an `external_method`, a missing binomial role, a limit) is not a finding. Name what is missing.
+- A definition relation over protocol checks relates two attributed readings. It is never stronger than the
+  objects it is bound to (`bound_support`), and `observed_match` says whether each reading copies its bound
+  value. A refuted relation is not a contradiction inside the protocol.
+- Declare the estimand link once, on the collection. Coverage concerns declared variables only and external
+  variables are re-chosen at each step: a covered policy is not a safe one. Never say safe, valid, complete
+  or approved; standing, adoption and origin are caller attribution.
+- Not built: adaptive, cluster or survival calculation, sample-size search or optimiser, protocol writer,
+  prose compilation. Say so rather than computing it by hand.
 
 ## Acquisition and verification
 

@@ -6,8 +6,9 @@ govern. Everything here goes through the public `design_session` request on a v2
 
 ## Decision shape (v2)
 
-A v2 session's `decisions` may mix legacy query decisions (unchanged) and protocol decisions. A protocol decision is
-exactly:
+A v2 session's `decisions` may mix legacy query decisions (unchanged) and protocol decisions. The discriminator is
+the presence of a `kind` key: a legacy decision carries no `kind`, and any decision with one is validated as a
+protocol decision. A protocol decision is exactly:
 
 ```text
 {kind: "protocol_options", id, question, target, coverage, selected, alternatives, evidence?}
@@ -19,7 +20,7 @@ exactly:
   - `replace_objects` is a list of 0 to 16 **complete** v2 protocol objects (the C3 envelope). Each `id` must
     already exist in the session protocol, with the **same `kind`** and the **same `scope.target`**. An empty
     list means "the baseline as declared".
-  - `checks` is a unique list of declared check ids.
+  - `checks` is a unique list of declared check ids (strings, compared exactly).
 - **Every alternative must list every session check that has `required: true`** and whose `scope.target` equals
   the decision's target. Optional context checks (`required: false`) listed by any alternative must be listed
   by all of them. At least one required check must exist.
@@ -35,6 +36,7 @@ exactly:
 - `protocol_option_context_mismatch`
 - `protocol_option_no_required_check`
 - `protocol_option_coverage`
+- `protocol_option_selection` (a malformed `selected` block)
 - any `protocol_*` code from re-validating a candidate protocol, such as a malformed replacement object
 
 A replacement may never be a source object, add or delete an object, or change which checks are required.

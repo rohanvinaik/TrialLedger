@@ -163,7 +163,11 @@ def test_binomial_claims_refused_with_arithmetic_kept_in_child():
     for cid in ("alpha", "power"):
         row = claim(out, "efficacy-exact", cid)
         assert row["effective_outcome"] == "unresolved"
-        assert row["wording"] == "Not applied: a premise this claim needs is not fully resolved."
+        assert row["wording"] == (
+            "Not applied: a premise this claim needs is not fully resolved. Withheld because the model "
+            "assumption 'alignment' is not declared (assumption_missing:alignment). The computed values "
+            "(null rejection probability 0.0100, power 0.4044) stay visible; they are not applied."
+        )
         assert row["standing_support"] == [
             "object:efficacy",
             "object:response",

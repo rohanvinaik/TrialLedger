@@ -63,10 +63,23 @@ revision and export. CLI takes the inner object in a file: `trialledger reason -
 | Bind a complete retained NIH record and exact anchors | source_assertions |
 | What hypothetical evidence distinguishes survivors? | evidence_requests |
 | Keep sources, choices, analyses and revisions connected | design_session |
+| Check a plan's schedule, policy, binomial design or plan choice | design_session protocol (describe view protocol) |
 
 Python construction helpers expose canonical Always/AllOf/AnyOf/Not and strict literal/quantity/assertion
 constructors; expanded shows exact inputs. They do not interpret prose. Structural schemas do not certify
 clinical meaning, cross-field admission or source truth.
+
+## Protocol plans
+
+For assessments, finite policies, an exact single-arm binomial design, plan comparisons or definition
+relations, discover `{"operation":"describe","view":"protocol"}` (detail full for per-family examples and
+the built boundary), then prepare, run, revise and export through the session. Protocol objects carry their
+own standing beside explicit adoption records naming an exact id and version. An instructed plan change
+records its new version and adoption together; a what-if never adopts; changed content under an unchanged
+version is refused. A plan gap is a repair choice for the person; a policy failure is a conflict. Report a
+claim's effective outcome, never a refused claim's raw one. Not computed is not a finding. Coverage is over
+declared variables only; a covered policy is not a safe one. Not built: adaptive, cluster or survival
+calculation, sample-size search, optimiser, protocol writer and prose compilation.
 
 ## Retain and hand over
 

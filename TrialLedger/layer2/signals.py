@@ -241,7 +241,12 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
         "value": calculation["value"],
         "rule": calculation["rule"],
         "status": status,
-        "basis": [ref for p in signal.support for ref in p.basis],
+        # Protocol claim kinds list each basis reference once (walkthrough wave 4); v1 kinds are unchanged.
+        "basis": (
+            list(dict.fromkeys(ref for p in signal.support for ref in p.basis))
+            if signal.kind in CLAIM_KINDS
+            else [ref for p in signal.support for ref in p.basis]
+        ),
         "support": [dataclasses.asdict(p) for p in signal.support],
         "admission": {"code": state, "application_blockers": list(signal.application_blockers)},
         "blockers": blockers,

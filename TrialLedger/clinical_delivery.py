@@ -69,6 +69,9 @@ FINDING_PRIORITY = (
 CONFLICT_OUTCOMES = frozenset({"gap", "competing", "violation", "not_established", "inconsistent_domain"})
 
 
+WITNESS_CHARACTERS = 240
+
+
 def finding_priority_kind(kind: str, outcome: str | None) -> str:
     """Delivery class of one view open item; a failure splits into conflict or repair choice (pure).
 
@@ -91,13 +94,25 @@ def protocol_delivery_view(result: dict) -> dict:
         kind = finding_priority_kind(item["kind"], outcomes.get((item["check"], item["claim"])))
         rank = FINDING_PRIORITY.index(kind) if kind in FINDING_PRIORITY else len(FINDING_PRIORITY)
         ordered.append((rank, index, {**item, "class": kind}))
+    witnesses = {
+        (c["id"], claim["id"]): claim.get("witness_wording") for c in view["checks"] for claim in c["claims"]
+    }
+    for _, _, row in ordered:
+        witness = witnesses.get((row["check"], row["claim"]))
+        if witness:
+            # Bounded for the compact budget; a cut one says so and the full sentence stays at the result.
+            row["witness"] = (
+                witness if len(witness) <= WITNESS_CHARACTERS else witness[:WITNESS_CHARACTERS] + "…"
+            )
+            row["witness_truncated"] = len(witness) > WITNESS_CHARACTERS
     view["delivery_findings"] = [row for _, _, row in sorted(ordered, key=lambda r: (r[0], r[1]))]
     view["check_summaries"] = [
         {
             "id": check["id"],
             "kind": check["kind"],
             "required": check["required"],
-            "code": (check.get("summary") or {}).get("code"),
+            "code": (check.get("summary") or {}).get("code")
+            or ("refused" if check.get("refusals") else None),
             "conflicts": sum(
                 1
                 for claim in check["claims"]
@@ -115,28 +130,60 @@ def protocol_delivery_view(result: dict) -> dict:
         for check in view["checks"]
     ]
     schedule = {row["check"]: row for row in view["schedule"]}
+    checks = {row["id"]: row for row in view["checks"]}
     view["decisions"] = [
         {
             "id": d["id"],
             "question": d["question"],
             "disposition": d["disposition"],
             "selected": deepcopy(d.get("selected")),
-            "alternatives": [_alternative_row(a, schedule) for a in d["alternatives"]],
+            "alternatives": [_alternative_row(a, schedule, checks) for a in d["alternatives"]],
         }
         for d in result["protocol"].get("decisions", [])
     ]
     return view
 
 
-def _alternative_row(alternative: dict, schedule: dict) -> dict:
-    """One alternative with its own claim outcomes and its own retained schedule windows.
+def _effective(claim: dict) -> str:
+    """An alternative claim's effective outcome: as retained, else unresolved when its support is refused."""
+    if claim.get("effective_outcome") is not None:
+        return claim["effective_outcome"]
+    return claim["outcome"] if claim.get("admission") == "accepted" else "unresolved"
 
-    Windows are read from each child's retained `schedule` values (the alternative's own result) by the
-    view's shared builder. When none is retained the row says so; nothing is computed here.
+
+def _check_reason(check: dict, baseline: dict | None) -> str:
+    """Why one alternative check is not clean: its own claims, or the declared check's not-computed items."""
+    from TrialLedger.layer2 import protocol_view
+
+    claims = check.get("claims", [])
+    refused = [c for c in claims if c.get("admission") != "accepted"]
+    if not claims and not check.get("children") and baseline is not None:
+        items = [
+            i["text"].removeprefix("No finding: ").rstrip(".") for i in baseline.get("not_computed_items", [])
+        ]
+        if items:
+            return "; ".join(items)
+    if refused:
+        words = protocol_view.ADMISSION_WORDS
+        default = "its support is not accepted"
+        return "; ".join(
+            f"claim {c['id']} not applied: {words.get(str(c.get('admission')), default)}" for c in refused
+        )
+    if not claims:
+        return "no claim outcomes retained for this check"
+    return "; ".join(f"claim {c['id']}: {protocol_view.outcome_words(_effective(c))}" for c in claims)
+
+
+def _alternative_row(alternative: dict, schedule: dict, checks: dict | None = None) -> dict:
+    """One alternative with its own claim outcomes, retained schedule windows and retained binomial plans.
+
+    Windows and statistics are read from each child's retained `schedule` / `statistics` values (the
+    alternative's own result). A claim shows its effective outcome and admission, never the raw outcome as if
+    applied. When nothing is retained the row says so; nothing is computed here.
     """
     from TrialLedger.layer2 import protocol_view
 
-    rows, claims = [], []
+    rows, claims, deciding, statistics = [], [], [], []
     for check in alternative.get("checks", []):
         values = [v for child in check.get("children", []) for v in child.get("schedule") or []]
         source = schedule.get(check["id"])
@@ -153,12 +200,27 @@ def _alternative_row(alternative: dict, schedule: dict) -> dict:
                     "anchor": values[0].get("anchor") if values else (source or {}).get("anchor"),
                 }
             )
+        statistics += [
+            {"check": check["id"], "text": protocol_view.statistics_text(stat), **stat}
+            for child in check.get("children", [])
+            for stat in child.get("statistics") or []
+        ]
+        deciding.append(
+            {
+                "check": check["id"],
+                "required": check.get("required", False),
+                "check_code": check.get("check_code"),
+                "reason": _check_reason(check, (checks or {}).get(check["id"])),
+            }
+        )
         claims += [
             {
                 "check": check["id"],
                 "id": claim["id"],
                 "claim": claim["claim"],
                 "outcome": claim["outcome"],
+                "effective_outcome": _effective(claim),
+                "admission": claim.get("admission"),
                 "standing": claim["finding_status"],
                 "assumed": list(claim.get("assumed", [])),
             }
@@ -174,6 +236,8 @@ def _alternative_row(alternative: dict, schedule: dict) -> dict:
         "unconditional_application": alternative["unconditional_application"],
         "windows": rows,
         "claim_outcomes": claims,
+        "deciding_checks": deciding,
+        "statistics": statistics,
     }
 
 
@@ -438,6 +502,12 @@ def compact(response: dict, artifact: dict, *, max_bytes: int = DEFAULT_BYTES) -
                 continue
             shown.append(project(rows[index], f"{address}/{index}"))
             page.update(_compact_page(len(rows), len(shown)))
+            if response_bytes(reply) > max_bytes - 128 and "witness" in shown[-1]:
+                # The worded example trace is optional: drop it before dropping the finding, and say so.
+                shown[-1] = {
+                    **{k: v for k, v in shown[-1].items() if k not in ("witness", "witness_truncated")},
+                    "witness_omitted": True,
+                }
             if response_bytes(reply) <= max_bytes - 128:
                 following.append((shown, page, rows, address, project))
             else:

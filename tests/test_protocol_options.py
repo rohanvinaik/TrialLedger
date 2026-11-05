@@ -445,3 +445,11 @@ def test_a_conditional_required_check_whose_claims_pass_is_compatible_and_listed
     assert row["compatibility"] == "compatible_under_declared_checks"
     assert "week12-schedule" in row["conditional_checks"]
     assert check["conditional_claims"]
+
+
+def test_alternative_check_ids_are_strings_compared_exactly():
+    """A non-string or repeated check id is malformed (protocol_option_fields), never matched as a string."""
+    for checks in (("week12-schedule", 1), ("week12-schedule", "week12-schedule")):
+        request = _with_decision(_base(), [_alt("a", [], checks), _alt("b", [], ("week12-schedule",))])
+        reply = run(request)
+        assert (reply["code"], reply["problems"]) == ("refused", ["protocol_option_fields"]), checks

@@ -130,6 +130,11 @@ def prepare_revision(previous_request: object, previous_response: object, next_s
     if type(following) is not dict:
         raise ValueError("invalid_fields:session")
     supplied_parent = following.get("parent_digest")
+    if supplied_parent is not None and supplied_parent == old["session"].get("parent_digest"):
+        # A session read back from the prior artifact still carries that artifact's own parent; it is a
+        # copied field, not a claimed parent, and the program fills the real one below (walkthrough wave 4).
+        supplied_parent = None
+        following["parent_digest"] = None
     following.setdefault("parent_digest", None)
     next_prepared = state.prepare(following)
     _edition_guard(old["session"], next_prepared["session"])
@@ -926,7 +931,15 @@ def _frame_claim(claim: dict, lifted: set[str]) -> dict:
     """A claim inside a candidate frame; one resting on a local assumption is never reported as known (C8)."""
     row = {
         key: claim.get(key)
-        for key in ("id", "claim", "outcome", "admission", "application", "finding_status")
+        for key in (
+            "id",
+            "claim",
+            "outcome",
+            "effective_outcome",
+            "admission",
+            "application",
+            "finding_status",
+        )
     }
     assumed = sorted(set(claim.get("support") or []) & lifted)
     row["assumed"] = assumed
@@ -996,6 +1009,16 @@ def _protocol_decision_rows(
                                     )
                                     if signal.get("kind") == "schedule_coverage"
                                 ],
+                                # The alternative's own exact design inputs and tail probabilities.
+                                "statistics": [
+                                    {key: deepcopy(signal["value"].get(key)) for key in BINOMIAL_RETAINED}
+                                    for signal in (
+                                        (c["result"].get("result") or {}).get("signals", [])
+                                        if c["result"].get("code") == "complete"
+                                        else []
+                                    )
+                                    if signal.get("kind") == "binomial_design"
+                                ],
                             }
                             for c in check["children"]
                         ],
@@ -1039,7 +1062,11 @@ def _protocol_decision_rows(
                 "selection": deepcopy(selected),
                 "alternatives": alternatives,
                 "disposition": protocol_decisions.disposition(
-                    [(a["compatibility"], a["candidate_digest"]) for a in alternatives], chosen
+                    [
+                        (a["compatibility"], a["candidate_digest"], a["frame"] == "hypothetical")
+                        for a in alternatives
+                    ],
+                    chosen,
                 ),
                 **({"evidence": deepcopy(item["evidence"])} if "evidence" in item else {}),
             }
@@ -1439,6 +1466,17 @@ def _semantic_record(check: dict) -> dict:
                 ],
                 sort_keys=True,
             ),
+            # Non-claim signals (estimand, dependencies, external methods) carry their deciding support only
+            # in the projected request; claim rows carry their own (walkthrough wave 4).
+            ("plain_support",): json.dumps(
+                [
+                    s.get("support")
+                    for ch in check.get("children", [])
+                    for s in ch.get("request", {}).get("signals", [])
+                    if s.get("kind") not in signals.CLAIM_KINDS
+                ],
+                sort_keys=True,
+            ),
             ("applicability",): json.dumps(
                 [
                     (a.get("code"), a.get("status"), a.get("proof"))
@@ -1452,6 +1490,8 @@ def _semantic_record(check: dict) -> dict:
 
 
 CHANGE_FIELDS = ("effective_outcome", "application", "admission", "finding_status", "application_status")
+# Exact binomial design inputs and tail probabilities retained per alternative and compared across revisions.
+BINOMIAL_RETAINED = ("n", "critical_count", "p0", "p1", "null_rejection_probability", "power")
 
 
 def _check_changes(left: dict, right: dict) -> list[dict]:
@@ -1473,6 +1513,21 @@ def _check_changes(left: dict, right: dict) -> list[dict]:
         }
         for check in (left, right)
     ]
+    values = [
+        {
+            (child.get("id"), signal.get("id")): signal.get("value") or {}
+            for child in check.get("children", [])
+            for signal in ((child.get("result") or {}).get("result") or {}).get("signals", [])
+            if signal.get("kind") == "binomial_design"
+        }
+        for check in (left, right)
+    ]
+    for key in sorted(values[0].keys() | values[1].keys(), key=str):
+        for field in BINOMIAL_RETAINED:
+            before = values[0].get(key, {}).get(field)
+            after = values[1].get(key, {}).get(field)
+            if before != after:
+                out.append({"signal": key[1], "field": field, "before": before, "after": after})
     for key in sorted(signals[0].keys() | signals[1].keys(), key=str):
         for field in ("code", "calculation_code", "blockers"):
             before = signals[0].get(key, {}).get(field)
@@ -1491,7 +1546,12 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
     objects = [{o["id"]: o for o in snapshot.get("objects", [])} for snapshot in (before, after)]
 
     def involved(check: dict, side: int, field: str) -> list:
-        return [objects[side].get(i, {}).get(field) for i in check.get("objects", [])]
+        # Declared objects and every object a projection consumed (e.g. a collection linked to an estimand).
+        consumed = [
+            o for child in check.get("children", []) for o in child.get("receipt", {}).get("objects", [])
+        ]
+        ids = list(dict.fromkeys([*check.get("objects", []), *consumed]))
+        return [objects[side].get(i, {}).get(field) for i in ids]
 
     same = source_evidence.exact_json_equal
     out: dict = {"checks": [], "decisions": []}
@@ -1588,7 +1648,27 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
             "input": any(la[i]["candidate_digest"] != ra[i]["candidate_digest"] for i in common),
         }
         axes = protocol_axes(changed)
-        out["decisions"].append({"id": key, "code": state.change_code(True, True, not axes), "axes": axes})
+        changes = []
+        if not same(left.get("selected"), right.get("selected")):
+            changes.append(
+                {
+                    "field": "selected",
+                    "before": deepcopy(left.get("selected")),
+                    "after": deepcopy(right.get("selected")),
+                }
+            )
+        if left["disposition"] != right["disposition"]:
+            changes.append(
+                {"field": "disposition", "before": left["disposition"], "after": right["disposition"]}
+            )
+        for i in sorted(la.keys() | ra.keys()):
+            before = la[i]["compatibility"] if i in la else None
+            after = ra[i]["compatibility"] if i in ra else None
+            if before != after:
+                changes.append({"alternative": i, "field": "compatibility", "before": before, "after": after})
+        out["decisions"].append(
+            {"id": key, "code": state.change_code(True, True, not axes), "axes": axes, "changes": changes}
+        )
     return out
 
 
