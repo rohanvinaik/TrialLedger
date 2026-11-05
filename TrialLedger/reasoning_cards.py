@@ -386,7 +386,8 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
                 ),
                 (
                     "reason_revise uses the artifact id plus an explicit next session or bounded replacement "
-                    "edits with changed-premise origins; both snapshots are recomputed."
+                    "edits (revision_edits) with changed-premise and changed-object origins; both snapshots "
+                    "are recomputed."
                 ),
                 (
                     "reason_export writes a separate review workbook, readable decision list, canonical "
@@ -406,6 +407,18 @@ def describe_card(view: str, *, schema: bool = False) -> dict[str, Any] | None:
             else {
                 name: {"required": spec["inputSchema"]["required"], "description": spec["description"]}
                 for name, spec in tools.items()
+            },
+            "revision_edits": {
+                "shape": "[{op: replace, path: RFC 6901 pointer into the prior session, value, origin?}], "
+                "1 to 64 edits, applied in order; only existing locations are replaced",
+                "roots": "premises, analyses, decisions, limits, target, definition_checks, protocol",
+                "premises": "a changed premise needs an explicit origin: an edit at the premise or its "
+                "origin, or origin on the edit; copied source assertions cannot be edited here",
+                "protocol_objects": "a changed /protocol/objects/<i> needs an explicit origin in the same "
+                "way. A change to its content (anything but origin, standing, support and version) also "
+                "needs a new version, so an adoption of the earlier version reads as stale (unresolved) "
+                "until a new adoption record and support are supplied",
+                "protocol_checks_and_sections": "edits need no origin; origin on them is refused",
             },
             "source_handles": {
                 "contract": deepcopy(SOURCE_CONTRACT),

@@ -22,6 +22,6 @@ export findings predate it.
 | Spurious `scope_model` | **Diagnosed**: not spurious. The walker changed the estimand object's version |
 | Ids ambiguous, `source_interpretation` ref format, `external_method` inputs vs missing, raw vs effective outcomes, adoption attribution | **Documented** in the protocol card's `notes` |
 | Collection `event_handling` is not consumed; availability is declared twice (estimand plan vs collection) | **Open**: a real design gap. It belongs with task 5.4 (cross-operation relations and bindings), and the card states it plainly meanwhile |
-| Operator parameters (p0 > p1, k > n+1) are refused only at run time, after `prepare` succeeds | **Open**: admission-time operator validation is not yet run in preparation |
+| Operator parameters (p0 > p1, k > n+1) are refused only at run time, after `prepare` succeeds | **Fixed**: admission projects each check and runs each operator's own `validate` (parse only, no solver), for the baseline and every plan alternative. `prepare` and the run both refuse as `protocol_check_input:<check id>:<operator code>` (`tests/test_protocol_admission_inputs.py`) |
 | `--revision` with `--session` rejected; `diff` omits protocol objects; `describe view protocol` ignores `detail` | **Open** (minor) |
 | Adoption with an unrelated premise is accepted | **By design**: adoption is the caller's attribution; the tool does not judge relevance. Now documented |

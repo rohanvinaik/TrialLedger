@@ -292,6 +292,35 @@ def _decision_index(items: object) -> dict[str, dict]:
     return out
 
 
+def _protocol_input_check(index: dict, premises: dict) -> None:
+    """Refuse malformed protocol operator inputs at admission, before any work is reserved or computed.
+
+    Each check is projected exactly as replay will project it, then each operator parses its own data and
+    claims (`validate`, no solver). Premise standing affects only support rows, never operator data, so a
+    placeholder standing that is never retained is used here. Bad parameters (for example p0 >= p1, or a
+    critical count above n + 1) are refused by check id instead of halfway through a replay.
+    """
+    from TrialLedger.layer2 import protocol_projections, signals
+
+    placeholder = {
+        key: {"status": "proposed", "resolution": "unresolved", "basis": ["admission input check"]}
+        for key in premises
+    }
+    for check_id in index["check_order"]:
+        projected = protocol_projections.project(index, check_id, premise_standing=placeholder)
+        for child in projected["children"]:
+            request = child["request"]
+            for signal in request.get("signals", []) if request.get("operation") == "signals" else []:
+                if signal.get("kind") not in signals.CLAIM_KINDS:
+                    continue
+                try:
+                    signals.operator(signal["kind"]).validate(
+                        signal["kind"], signal["data"], signal.get("claims") or []
+                    )
+                except ValueError as error:
+                    raise ValueError(f"protocol_check_input:{check_id}:{error}") from error
+
+
 def prepare(value: object) -> dict:
     """Detach and validate ledgers and complete replay dependencies before any child call."""
     held = source_evidence._json_copy(value, "design_session")
@@ -401,9 +430,6 @@ def prepare(value: object) -> dict:
             else:
                 graph["analysis:" + key].append("premise:" + ref)
     _decision_inputs(decisions, analyses)
-    from TrialLedger.layer2 import definition_checks
-
-    related_definitions = definition_checks.prepare(session.get("definition_checks", []), analyses)
     context = {
         key: decision_evidence.locate(item.get("evidence", []), sources) for key, item in decisions.items()
     }
@@ -414,6 +440,7 @@ def prepare(value: object) -> dict:
         protocol = protocol_objects.validate_protocol(
             session["protocol"], target=session["target"], premises=premises, sources=sources
         )
+        _protocol_input_check(protocol, premises)
     protocol_decisions_out = []
     if protocol is not None:
         from TrialLedger.layer2 import protocol_decisions, protocol_objects
@@ -427,15 +454,18 @@ def prepare(value: object) -> dict:
                 raw_candidate = protocol_decisions.candidate(
                     session["protocol"], alternative["replace_objects"]
                 )
-                candidates.append(
-                    {
-                        "raw": raw_candidate,
-                        "index": protocol_objects.validate_protocol(
-                            raw_candidate, target=session["target"], premises=premises, sources=sources
-                        ),
-                    }
+                candidate_index = protocol_objects.validate_protocol(
+                    raw_candidate, target=session["target"], premises=premises, sources=sources
                 )
+                _protocol_input_check(candidate_index, premises)
+                candidates.append({"raw": raw_candidate, "index": candidate_index})
             protocol_decisions_out.append({**item, "candidates": candidates})
+    from TrialLedger.layer2 import definition_checks
+
+    # Protocol operands are validated against the admitted protocol index (v2 only; definitions.md).
+    related_definitions = definition_checks.prepare(
+        session.get("definition_checks", []), analyses, protocol=protocol
+    )
     order = _ordered(graph)
     return {
         "session": session,

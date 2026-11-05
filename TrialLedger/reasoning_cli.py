@@ -65,7 +65,10 @@ def configure(commands: argparse._SubParsersAction, reason: argparse.ArgumentPar
     choice = revise.add_mutually_exclusive_group(required=True)
     choice.add_argument("--session", type=Path, help="complete next session with explicit clinical origins")
     choice.add_argument(
-        "--edits", type=Path, help="bounded explicit replacement edits, with origins for changed premises"
+        "--edits",
+        type=Path,
+        help="bounded explicit replacement edits, with origins for changed premises and protocol objects "
+        "(describe view delivery: revision_edits)",
     )
     revise.add_argument("--revision", help="new revision label when applying edits")
     revise.add_argument(

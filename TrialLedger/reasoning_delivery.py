@@ -10,7 +10,9 @@ from TrialLedger import clinical_delivery, reasoning_artifacts
 from TrialLedger.evidence_access import pointer_value
 
 MAX_EDITS = 64
-EDIT_ROOTS = ("premises", "analyses", "decisions", "limits", "target", "definition_checks")
+EDIT_ROOTS = ("premises", "analyses", "decisions", "limits", "target", "definition_checks", "protocol")
+# Protocol object fields attributed separately from its content (a content edit needs a new version).
+OBJECT_ATTRIBUTION = ("origin", "standing", "support", "version")
 EDIT_CODES = (
     "unsupported_edit_operation",
     "invalid_edit_path",
@@ -117,8 +119,8 @@ def edited_session(previous: dict, revision: str, edits: list) -> tuple[dict, li
     if type(edits) is not list or not 1 <= len(edits) <= MAX_EDITS:
         raise ValueError("invalid_revision_edits")
     session = deepcopy(previous)
-    reviewed, attributed = [], set()
-    whole_premises = False
+    reviewed, attributed, attributed_objects = [], set(), set()
+    whole_premises = whole_objects = False
     for patch in edits:
         if type(patch) is not dict or set(patch) - {"op", "path", "value", "origin"}:
             raise ValueError("invalid_revision_edit_fields")
@@ -144,8 +146,27 @@ def edited_session(previous: dict, revision: str, edits: list) -> tuple[dict, li
                         raise ValueError("edited_premise_not_an_object")
                     session["premises"][index]["origin"] = deepcopy(patch["origin"])
                     attributed.add(index)
+        elif steps[0] == "protocol" and len(steps) <= 2:
+            if len(steps) == 1 or steps[1] == "objects":
+                whole_objects = True
+            if "origin" in patch:
+                raise ValueError("edit_origin_requires_protocol_object")
+        elif steps[0] == "protocol" and steps[1] == "objects" and steps[2].isdecimal():
+            index = int(steps[2])
+            if len(steps) == 3 or steps[3] == "origin":
+                attributed_objects.add(index)
+            if "origin" in patch:
+                held = session["protocol"]["objects"][index]
+                if type(held) is not dict:
+                    raise ValueError("edited_protocol_object_not_an_object")
+                held["origin"] = deepcopy(patch["origin"])
+                attributed_objects.add(index)
         elif "origin" in patch:
-            raise ValueError("edit_origin_requires_premise")
+            raise ValueError(
+                "edit_origin_requires_protocol_object"
+                if steps[0] == "protocol"
+                else "edit_origin_requires_premise"
+            )
         reviewed.append(
             {"path": patch["path"], "before": deepcopy(before), "after": deepcopy(patch["value"])}
         )
@@ -163,9 +184,47 @@ def edited_session(previous: dict, revision: str, edits: list) -> tuple[dict, li
             raise ValueError("source_premise_requires_new_binding")
         if changed and before is not None:
             reviewed.extend(_rebind_adoption(before, item, index))
+    _check_protocol_objects(previous, session, whole_objects, attributed_objects)
     session["revision"] = revision
     session["parent_digest"] = None
     return session, reviewed
+
+
+def _check_protocol_objects(previous: dict, session: dict, whole: bool, attributed: set[int]) -> None:
+    """A changed protocol object needs explicit attribution, and changed content needs a new version.
+
+    Adoption records name an exact object id and version, so editing an object's content under its old
+    version would carry that adoption to content nobody adopted. A content edit must therefore declare a new
+    version: the earlier adoption then reads as a stale version (soft, unresolved) until a new adoption record
+    is supplied. Origin, standing and support edits need attribution but keep the version.
+    """
+    from TrialLedger.layer2 import source_evidence
+
+    if "protocol" not in session:
+        return
+    protocol = session["protocol"]
+    objects = protocol.get("objects") if type(protocol) is dict else None
+    if type(objects) is not list:
+        raise ValueError("edited_protocol_invalid")
+    old = {
+        item["id"]: item
+        for item in ((previous.get("protocol") or {}).get("objects") or [])
+        if type(item) is dict and "id" in item
+    }
+    for index, raw in enumerate(objects):
+        if type(raw) is not dict or "id" not in raw or "origin" not in raw:
+            raise ValueError("edited_protocol_object_invalid")
+        item = cast(dict, raw)
+        before = old.get(item["id"])
+        if before is not None and source_evidence.exact_json_equal(before, item):
+            continue
+        if not (whole or index in attributed):
+            raise ValueError("changed_protocol_object_origin_required")
+        if before is None:
+            continue
+        content = [{k: v for k, v in held.items() if k not in OBJECT_ATTRIBUTION} for held in (before, item)]
+        if not source_evidence.exact_json_equal(*content) and item.get("version") == before.get("version"):
+            raise ValueError("changed_protocol_object_version_required")
 
 
 def execute(

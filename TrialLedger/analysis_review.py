@@ -314,6 +314,13 @@ def _signal(row: dict, address: str, owner: str) -> dict:
     }
 
 
+def _bound_computation(binding: dict) -> str:
+    """Name the computed output a reading is bound to: an analysis, or a protocol check child."""
+    if "protocol_check" in binding:
+        return f"bound protocol check: {binding.get('protocol_check')}, child {binding.get('child', 0)}"
+    return f"bound analysis: {binding.get('analysis')}"
+
+
 def _definition(row: dict, address: str, owner: str) -> dict:
     declaration = row.get("declaration", {})
     details = []
@@ -323,7 +330,7 @@ def _definition(row: dict, address: str, owner: str) -> dict:
         body = proposition(binding.get("body"), ref + "/body")["text"]
         details.append(
             _detail(
-                f"{side.capitalize()} meaning: {body}; bound analysis: {binding.get('analysis')}; "
+                f"{side.capitalize()} meaning: {body}; {_bound_computation(binding)}; "
                 f"bound address: {binding.get('address')}; resolution: {binding.get('resolution')}; "
                 f"basis: {'; '.join(binding.get('basis', [])) or 'Not stated'}.",
                 ref,

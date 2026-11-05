@@ -419,6 +419,18 @@ def work_reservation(data: dict) -> int:
     return _reservation(_parse(data))
 
 
+def validate(kind: str, data: dict, claims: list[dict]) -> None:
+    """Admission-time input check: the named refusals check() would raise, without computing anything.
+
+    Parses the data and the requested claims exactly as check() does, so a malformed declaration is refused
+    before any work is reserved or any claim is evaluated (PAH cold audit: parameters refused only at run).
+    """
+    if kind != KIND:
+        raise ValueError("unsupported_schedule_kind")
+    _parse(data)
+    _claim_rows(claims)
+
+
 def check(kind: str, data: dict, claims: list[dict]) -> dict:
     """Evaluate the named schedule claims exactly and return the plain result envelope.
 

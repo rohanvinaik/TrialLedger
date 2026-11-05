@@ -702,6 +702,18 @@ def _plain_claims(model: _Model, claims: list[dict], outcome: str) -> list[dict]
     return [_claim_row(model, claim, outcome, 0, [], []) for claim in claims]
 
 
+def validate(kind: str, data: dict, claims: list[dict]) -> None:
+    """Admission-time input check: the named refusals check() would raise, without computing anything.
+
+    Parses the data and the requested claims exactly as check() does, so a malformed declaration is refused
+    before any work is reserved or any claim is evaluated (PAH cold audit: parameters refused only at run).
+    """
+    if kind != KIND:
+        raise ValueError("unsupported_policy_kind")
+    _parse(data)
+    _claims(claims)
+
+
 def check(kind: str, data: dict, claims: list[dict]) -> dict:
     """Check the requested finite-policy claims exhaustively over the declared model."""
     if kind != KIND:

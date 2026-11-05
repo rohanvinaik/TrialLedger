@@ -141,7 +141,10 @@ PROTOCOL_ADMISSION = (
     "An object's own standing and its adoption support are conjunctive (C3): support premises record "
     "adoption, "
     "and the object's own standing (default proposed/unresolved) must also be declared known (or "
-    "interpolated) and resolved before its findings are admitted. Check-wide support applies to every claim."
+    "interpolated) and resolved before its findings are admitted. Check-wide support applies to every claim. "
+    "Each check's operator inputs are parsed at admission without computing (for example 0 <= p0 < p1 <= 1, "
+    "0 <= critical_count <= n + 1, and 1 to 16 binomial assumptions); a malformed input refuses "
+    "preparation and the run alike as protocol_check_input:<check id>:<operator code>."
 )
 PROTOCOL_INPUTS = {
     "compact_protocol_object": {
@@ -867,12 +870,6 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
         "decisions": decisions,
         "limits": limits,
     }
-    if "definition_checks" in raw:
-        from TrialLedger.layer2.definition_checks import prepare as prepare_definitions
-
-        session["definition_checks"] = prepare_definitions(
-            _definition_checks(raw["definition_checks"], defaults), by_analysis
-        )
     if "protocol" in raw:
         session["schema_version"] = 2
         adoptions: list = []
@@ -891,11 +888,23 @@ def _session(raw: dict, criteria: list, origins: list, defaults: list) -> dict:
         # Protocol alternatives are session decisions (C8); the protocol envelope itself stays exactly C2.
         session["decisions"].extend(protocol.pop("decisions", []))
         session["protocol"] = protocol
-        # Validation only (no solver): the expansion must already be an admissible v2 session. Digest-bound
-        # retained-study handles are hydrated by the transport at execution, so a session carrying them is
-        # validated there instead; prepare() discloses that deferral (PAH cold audit).
-        if not _has_retained_handles(sources):
-            session_state.prepare(session)
+    if "definition_checks" in raw:
+        from TrialLedger.layer2.definition_checks import prepare as prepare_definitions
+
+        # Protocol operands name declared checks; each has the session target (definitions.md).
+        declared = (
+            {"checks": {check["id"]: {"scope": check["scope"]} for check in session["protocol"]["checks"]}}
+            if "protocol" in session
+            else None
+        )
+        session["definition_checks"] = prepare_definitions(
+            _definition_checks(raw["definition_checks"], defaults), by_analysis, protocol=declared
+        )
+    # Validation only (no solver): a v2 expansion must already be an admissible session. Digest-bound
+    # retained-study handles are hydrated by the transport at execution, so a session carrying them is
+    # validated there instead; prepare() discloses that deferral (PAH cold audit).
+    if "protocol" in session and not _has_retained_handles(sources):
+        session_state.prepare(session)
     return {"operation": "design_session", "session": session, "previous": None}
 
 

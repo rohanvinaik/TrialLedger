@@ -1012,10 +1012,14 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
         ledger.append({"analysis": key, "projections": projected})
     from TrialLedger.layer2 import definition_checks
 
+    # Protocol checks run before definition relations, so a relation can read their retained children.
+    protocol_out = _protocol_checks(prepared, values, execute, budget) if "protocol" in prepared else None
     related_definitions = definition_checks.run(
         prepared["definition_checks"],
         analyses,
         lambda request: _child(request, execute, budget, limits),
+        protocol=protocol_out,
+        target=prepared["session"]["target"],
     )
     return {
         "schema_version": prepared["session"]["schema_version"],
@@ -1038,11 +1042,7 @@ def replay(prepared: dict, execute: Callable[[object], dict], budget: dict) -> d
         "analyses": list(analyses.values()),
         "projection_ledger": ledger,
         "decisions": _decisions(prepared, analyses, values, execute, budget),
-        **(
-            {"protocol": _protocol_checks(prepared, values, execute, budget)}
-            if "protocol" in prepared
-            else {}
-        ),
+        **({"protocol": protocol_out} if protocol_out is not None else {}),
         **({"definition_checks": related_definitions} if "definition_checks" in prepared["session"] else {}),
         "limits": deepcopy(limits),
         "limit_semantics": {

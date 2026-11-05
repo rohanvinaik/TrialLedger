@@ -18,6 +18,35 @@ LIMIT = 32
 RELATIONS = ("implies", "equivalent", "disjoint")
 STANDING_FIELDS = {"status", "resolution", "basis"}
 OPERAND_FIELDS = {"analysis", "address", "body", *STANDING_FIELDS}
+# A protocol operand names a declared protocol check (and child) instead of an analysis (definitions.md).
+PROTOCOL_OPERAND_FIELDS = {"protocol_check", "address", "body", *STANDING_FIELDS}
+
+
+def _operand(raw: object, key: str, analyses: dict, protocol: dict | None) -> dict:
+    if type(raw) is dict and "analysis" in raw and "protocol_check" in raw:
+        raise ValueError("definition_operand_reference")
+    if type(raw) is dict and "protocol_check" in raw:
+        fields = set(raw)
+        if fields - {"child"} != PROTOCOL_OPERAND_FIELDS:
+            raise ValueError("invalid_fields:" + key)
+        if protocol is None:
+            raise ValueError("definition_protocol_requires_v2")
+        if _text(raw["protocol_check"], key + ".protocol_check") not in protocol["checks"]:
+            raise ValueError("definition_unknown_protocol_check")
+        if "child" in raw and (type(raw["child"]) is not int or raw["child"] < 0):
+            raise ValueError("definition_operand_reference")
+        return raw
+    operand = _object(raw, OPERAND_FIELDS, key)
+    if _text(operand["analysis"], key + ".analysis") not in analyses:
+        raise ValueError("definition_unknown_analysis")
+    return operand
+
+
+def _operand_target(operand: dict, analyses: dict, protocol: dict | None) -> dict:
+    """`protocol` here is the admission index: a dict of declared checks keyed by id."""
+    if "protocol_check" in operand and protocol is not None:
+        return protocol["checks"][operand["protocol_check"]]["scope"]["target"]
+    return analyses[operand["analysis"]]["target"]
 
 
 def relation_result_code(results: list[str], blocked: bool) -> str:
@@ -70,7 +99,7 @@ def _body(raw: object) -> a.Proposition:
     return value
 
 
-def prepare(raw: object, analyses: dict) -> list[dict]:
+def prepare(raw: object, analyses: dict, protocol: dict | None = None) -> list[dict]:
     """Validate declarations without looking up future results or supplying meaning."""
     if type(raw) is not list or len(raw) > LIMIT:
         raise ValueError("definition_checks_limit_or_type")
@@ -83,15 +112,13 @@ def prepare(raw: object, analyses: dict) -> list[dict]:
         seen.add(identity)
         _standing(row)
         for key in ("left", "right"):
-            operand = _object(row[key], OPERAND_FIELDS, key)
-            if _text(operand["analysis"], key + ".analysis") not in analyses:
-                raise ValueError("definition_unknown_analysis")
+            operand = _operand(row[key], key, analyses, protocol)
             address = _text(operand["address"], key + ".address")
             if address not in ("/request", "/result") and not address.startswith(("/request/", "/result/")):
                 raise ValueError("definition_address_requires_request_or_result")
             _standing(operand)
             _body(operand["body"])
-        targets = [analyses[row[key]["analysis"]]["target"] for key in ("left", "right")]
+        targets = [_operand_target(row[key], analyses, protocol) for key in ("left", "right")]
         if not source_evidence.exact_json_equal(*targets):
             raise ValueError("definition_target_mismatch")
         out.append(deepcopy(row))
@@ -107,13 +134,20 @@ def _directions(row: dict) -> list[tuple[str, dict, dict]]:
     return [(row["relation"], row["left"], row["right"])]
 
 
+def _source(operand: dict) -> str:
+    """The exact computed address a reading is bound to: an analysis, or a protocol check child."""
+    if "protocol_check" in operand:
+        return f"protocol:{operand['protocol_check']}/{operand.get('child', 0)}#{operand['address']}"
+    return operand["analysis"] + "#" + operand["address"]
+
+
 def _request(identity: str, direction: str, left: dict, right: dict) -> dict:
     body, query = _body(left["body"]), _body(right["body"])
     if direction == "disjoint":
         query = a.Not(query)
     given = a.ScopedAssertion(
         "definition:" + identity + ":" + direction,
-        left["analysis"] + "#" + left["address"],
+        _source(left),
         "required",
         body,
         rule=a.Rule("definition.declared_meaning", "1", warrants=tuple(left["basis"])),
@@ -127,18 +161,49 @@ def _request(identity: str, direction: str, left: dict, right: dict) -> dict:
     }
 
 
-def run(rows: list[dict], analyses: dict, execute: Callable[[dict], dict]) -> list[dict]:
-    """Bind actual outputs then freshly compute each accepted declared relation."""
+def _protocol_child(protocol: dict | None, operand: dict) -> dict | None:
+    """The retained `{request, result}` of a replayed protocol check child, or None when absent."""
+    checks = {row["id"]: row for row in (protocol or {}).get("checks", [])}
+    children = checks.get(operand["protocol_check"], {}).get("children", [])
+    index = operand.get("child", 0)
+    if index >= len(children):
+        return None
+    child = children[index]
+    return {"request": child["request"], "result": child["result"]}
+
+
+def run(
+    rows: list[dict],
+    analyses: dict,
+    execute: Callable[[dict], dict],
+    protocol: dict | None = None,
+    target: dict | None = None,
+) -> list[dict]:
+    """Bind actual outputs then freshly compute each accepted declared relation.
+
+    `protocol` is the replayed protocol result (its `checks` rows carry retained children); `target` is the
+    session target, which every protocol check has by admission.
+    """
     output = []
     for row in rows:
         observed, blockers = {}, []
         for key in ("left", "right"):
             operand = row[key]
-            analysis = analyses[operand["analysis"]]
+            if "protocol_check" in operand:
+                analysis = _protocol_child(protocol, operand)
+                if analysis is None:
+                    # A missing child is a named translation refusal, never a guess.
+                    blockers.append("definition_protocol_child_missing:" + operand["protocol_check"])
+                    observed[key] = None
+                    continue
+                refused = "definition_protocol_child_refused:" + operand["protocol_check"]
+            else:
+                analysis = analyses[operand["analysis"]]
+                refused = "definition_analysis_refused:" + operand["analysis"]
             # A missing address is a named translation refusal, never a guessed field.
             observed[key] = deepcopy(source_evidence._selected(analysis, operand["address"]))
             if analysis["result"].get("code") != "complete":
-                blockers.append("definition_analysis_refused:" + operand["analysis"])
+                blockers.append(refused)
             _, found = entail.proposition_formula(_body(operand["body"]))
             blockers.extend(found)
         references = [row, row["left"], row["right"]]
@@ -172,7 +237,9 @@ def run(rows: list[dict], analyses: dict, execute: Callable[[dict], dict]) -> li
                     if gate == "accepted" and code != "unresolved"
                     else None
                 ),
-                "target": deepcopy(analyses[row["left"]["analysis"]]["target"]),
+                "target": deepcopy(
+                    analyses[row["left"]["analysis"]]["target"] if "analysis" in row["left"] else target
+                ),
                 "declaration": deepcopy(row),
                 "observed": observed,
                 "checks": checks,

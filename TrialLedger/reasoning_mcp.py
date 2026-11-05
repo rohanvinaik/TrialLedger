@@ -58,8 +58,9 @@ TOOL_SCHEMAS = {
         "name": "reason_revise",
         "description": (
             "What changes if we revise the draft? Supply a retained design_session artifact id and either "
-            "an explicit next session or replacement edits plus a new revision label. Changed premises "
-            "need explicit origin attribution; copied source snapshots cannot be edited by this shortcut. "
+            "an explicit next session or replacement edits plus a new revision label. Changed premises and "
+            "protocol objects need explicit origin attribution, and changed object content needs a new "
+            "version; copied source snapshots cannot be edited by this shortcut. "
             "Both snapshots are recomputed. Integrity fingerprints are filled by the program. "
             "prepare_only returns the valid request; otherwise a new retained result is returned."
         ),
