@@ -89,6 +89,7 @@ CHANGE_WORDS = {
     "new": "New item",
     "withdrawn": "Withdrawn item",
     "projection_unknown": "Comparison not available",
+    "not_computed": "Not compared: the check was not run within the session's work limit in one snapshot",
 }
 
 
@@ -1026,6 +1027,8 @@ def _claim_entries(view: dict, identity: str) -> list[dict]:
                     "determining": _join(claim.get("determining_ids")),
                     "pointer": pointer,
                     "bullet": f"{claim['claim']}: {claim['wording']} — standing {claim.get('standing')};",
+                    # The view's first bounded witness, in words (policy claims only); never recomputed here.
+                    "witness": claim.get("witness_wording"),
                 }
             )
         for finding in check.get("findings", []):
@@ -1204,6 +1207,7 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             "Wording",
             "Determining references",
             "Result reference",
+            "Example trace (first witness)",
         ],
     )
     entries = _claim_entries(view, identity)
@@ -1239,6 +1243,7 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
                 entry["wording"],
                 entry["determining"],
                 reference,
+                entry.get("witness") or "n/a",
             ],
             reference,
         )
@@ -1255,6 +1260,8 @@ def _protocol_rows(book: Workbook, payload: dict, identity: str) -> list[str]:
             if entry["check"] is check:
                 kind_word = protocol_view.KIND_WORDS.get(entry["kind"], entry["kind"])
                 lines.append(f"- [{kind_word}] {entry['bullet']} result {_ref(identity, entry['pointer'])}")
+                if entry.get("witness"):
+                    lines.append(f"  - Example trace: {entry['witness']}")
         lines.append("")
     lines += [
         "### Schedule of assessments",

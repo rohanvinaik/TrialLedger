@@ -1,0 +1,1506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trialledger.invalid/schemas/protocol/1/protocol.schema.json",
+  "version": "1",
+  "title": "TrialLedger protocol ledger (v2 session.protocol)",
+  "description": "C2-C4: protocol envelope, the eight closed object kinds, checks, sections and the adoption premise.",
+  "$defs": {
+    "object_id": {
+      "$ref": "common.schema.json#/$defs/id_text"
+    },
+    "ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id_text"
+      },
+      "uniqueItems": true
+    },
+    "text_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/text"
+      },
+      "uniqueItems": true
+    },
+    "data_measurement": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "$ref": "common.schema.json#/$defs/standing_ref"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/text"
+            }
+          ]
+        },
+        "mode": {
+          "enum": [
+            "observed",
+            "imputed",
+            "derived"
+          ]
+        },
+        "baseline": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/object_id"
+            }
+          ]
+        }
+      },
+      "required": [
+        "definition",
+        "unit",
+        "mode",
+        "baseline"
+      ],
+      "additionalProperties": false
+    },
+    "data_endpoint": {
+      "type": "object",
+      "properties": {
+        "variable": {
+          "$ref": "#/$defs/object_id"
+        },
+        "definition": {
+          "$ref": "common.schema.json#/$defs/standing_ref"
+        },
+        "estimand": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/object_id"
+            }
+          ]
+        },
+        "dependencies": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "scope": {},
+                "version": {},
+                "rules": {},
+                "adopted": {},
+                "available": {},
+                "unavailable": {},
+                "conditions": {}
+              },
+              "required": [
+                "scope",
+                "version",
+                "rules",
+                "adopted",
+                "available",
+                "unavailable",
+                "conditions"
+              ],
+              "additionalProperties": false,
+              "description": "Key set only; deep validation is dependency_evidence at projection."
+            }
+          ]
+        }
+      },
+      "required": [
+        "variable",
+        "definition",
+        "estimand",
+        "dependencies"
+      ],
+      "additionalProperties": false
+    },
+    "data_estimand": {
+      "type": "object",
+      "properties": {
+        "scope": {},
+        "version": {},
+        "id": {},
+        "definitions": {},
+        "events": {},
+        "requirements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "common.schema.json#/$defs/text"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "collection_plan": {},
+        "data_state": {},
+        "dependencies": {}
+      },
+      "required": [
+        "scope",
+        "version",
+        "id",
+        "definitions",
+        "events",
+        "requirements",
+        "collection_plan",
+        "data_state",
+        "dependencies"
+      ],
+      "additionalProperties": false,
+      "description": "Key set only (R-EST); requirements[*].id nonempty. Unique requirement ids are semantic."
+    },
+    "data_assessment": {
+      "type": "object",
+      "properties": {
+        "measurement": {
+          "$ref": "#/$defs/object_id"
+        },
+        "anchor": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "unit": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "nominal": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/rational"
+            }
+          ]
+        },
+        "permitted": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/interval_union"
+            }
+          ]
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/proposition"
+            }
+          ]
+        }
+      },
+      "required": [
+        "measurement",
+        "anchor",
+        "unit",
+        "nominal",
+        "permitted",
+        "condition"
+      ],
+      "additionalProperties": false
+    },
+    "event_handling": {
+      "type": "object",
+      "properties": {
+        "estimand": {
+          "$ref": "#/$defs/object_id"
+        },
+        "requirement": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "action": {
+          "enum": [
+            "collect",
+            "stop"
+          ]
+        }
+      },
+      "required": [
+        "estimand",
+        "requirement",
+        "action"
+      ],
+      "additionalProperties": false
+    },
+    "data_collection": {
+      "type": "object",
+      "properties": {
+        "assessment": {
+          "$ref": "#/$defs/object_id"
+        },
+        "mode": {
+          "enum": [
+            "observed",
+            "imputed",
+            "derived"
+          ]
+        },
+        "availability": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/interval_union"
+            }
+          ]
+        },
+        "event_handling": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/event_handling"
+            }
+          ]
+        }
+      },
+      "required": [
+        "assessment",
+        "mode",
+        "availability",
+        "event_handling"
+      ],
+      "additionalProperties": false
+    },
+    "assumption": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "enum": [
+            "fixed_n",
+            "iid_binary",
+            "alignment"
+          ]
+        },
+        "premise": {
+          "$ref": "common.schema.json#/$defs/text"
+        }
+      },
+      "required": [
+        "role",
+        "premise"
+      ],
+      "additionalProperties": false
+    },
+    "binomial_parameters": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "direction": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "n": {
+          "type": "integer"
+        },
+        "critical_count": {
+          "type": "integer"
+        },
+        "p0": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "p1": {
+          "$ref": "common.schema.json#/$defs/text"
+        }
+      },
+      "required": [
+        "model",
+        "direction",
+        "n",
+        "critical_count",
+        "p0",
+        "p1"
+      ],
+      "additionalProperties": false
+    },
+    "data_efficacy_binomial": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "$ref": "#/$defs/object_id"
+        },
+        "method": {
+          "const": "binomial_design"
+        },
+        "parameters": {
+          "$ref": "#/$defs/binomial_parameters"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assumption"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "endpoint",
+        "method",
+        "parameters",
+        "assumptions"
+      ],
+      "additionalProperties": false
+    },
+    "data_efficacy_external": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "$ref": "#/$defs/object_id"
+        },
+        "method": {
+          "const": "external_method"
+        },
+        "parameters": {
+          "$ref": "#/$defs/object_id"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assumption"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "endpoint",
+        "method",
+        "parameters",
+        "assumptions"
+      ],
+      "additionalProperties": false
+    },
+    "data_efficacy": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/data_efficacy_binomial"
+        },
+        {
+          "$ref": "#/$defs/data_efficacy_external"
+        }
+      ]
+    },
+    "policy_binding": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "variable": {
+              "$ref": "common.schema.json#/$defs/text"
+            },
+            "object": {
+              "$ref": "#/$defs/object_id"
+            },
+            "premise": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "variable",
+            "object",
+            "premise"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "variable": {
+              "$ref": "common.schema.json#/$defs/text"
+            },
+            "object": {
+              "type": "null"
+            },
+            "premise": {
+              "$ref": "common.schema.json#/$defs/text"
+            }
+          },
+          "required": [
+            "variable",
+            "object",
+            "premise"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "data_policy": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "object",
+          "properties": {
+            "scope": {},
+            "version": {},
+            "variables": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "$ref": "common.schema.json#/$defs/text"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            },
+            "constraints": {},
+            "states": {},
+            "initial": {},
+            "terminal": {},
+            "actions": {},
+            "transitions": {},
+            "prohibitions": {},
+            "invariants": {}
+          },
+          "required": [
+            "scope",
+            "version",
+            "variables",
+            "constraints",
+            "states",
+            "initial",
+            "terminal",
+            "actions",
+            "transitions",
+            "prohibitions",
+            "invariants"
+          ],
+          "additionalProperties": false,
+          "description": "Key set only (R-POL) with variables[*].id nonempty; deep validation is the finite_policy operator at projection."
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/policy_binding"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "model",
+        "bindings"
+      ],
+      "additionalProperties": false
+    },
+    "external_input": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "ref": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "unit",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "data_external_method": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "$ref": "common.schema.json#/$defs/standing_ref"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/external_input"
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "definition",
+        "inputs",
+        "missing"
+      ],
+      "additionalProperties": false
+    },
+    "object_measurement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "measurement"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_measurement"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object_endpoint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "endpoint"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_endpoint"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object_estimand": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "estimand"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_estimand"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object_assessment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "assessment"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_assessment"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object_collection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "collection"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_collection"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object_efficacy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "efficacy"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_efficacy"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object_policy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "policy"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_policy"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object_external_method": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/object_id"
+        },
+        "kind": {
+          "const": "external_method"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/origin"
+        },
+        "standing": {
+          "$ref": "common.schema.json#/$defs/standing"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        },
+        "depends_on": {
+          "$ref": "#/$defs/ids"
+        },
+        "data": {
+          "$ref": "#/$defs/data_external_method"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "version",
+        "origin",
+        "standing",
+        "support",
+        "depends_on",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "object": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/object_measurement"
+        },
+        {
+          "$ref": "#/$defs/object_endpoint"
+        },
+        {
+          "$ref": "#/$defs/object_estimand"
+        },
+        {
+          "$ref": "#/$defs/object_assessment"
+        },
+        {
+          "$ref": "#/$defs/object_collection"
+        },
+        {
+          "$ref": "#/$defs/object_efficacy"
+        },
+        {
+          "$ref": "#/$defs/object_policy"
+        },
+        {
+          "$ref": "#/$defs/object_external_method"
+        }
+      ],
+      "description": "Cross-field rules are out of schema scope: unique ids, dangling/wrong-kind/unlisted references, cycles, support premises being adoption records of this exact id and version (protocol_adoption_mismatch, stale adoptions), hypothesis-origin objects being proposed, source pointers, collection requirement existence."
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "projection": {
+          "$ref": "common.schema.json#/$defs/text"
+        }
+      },
+      "required": [
+        "projection"
+      ],
+      "description": "Ledger-layer shape: any record naming a projection. Closed shapes follow."
+    },
+    "binding_condition_applicability": {
+      "type": "object",
+      "properties": {
+        "projection": {
+          "const": "condition_applicability"
+        },
+        "premises": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "projection",
+        "premises"
+      ],
+      "additionalProperties": false
+    },
+    "binding_operation": {
+      "type": "object",
+      "properties": {
+        "projection": {
+          "enum": [
+            "temporal_request",
+            "decision_table_request"
+          ]
+        },
+        "data": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "projection",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "check": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "kind": {
+          "enum": [
+            "temporal",
+            "schedule",
+            "dependencies",
+            "estimand",
+            "definition",
+            "decision_table",
+            "finite_policy",
+            "binomial_design",
+            "external_method"
+          ]
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "objects": {
+          "$ref": "#/$defs/ids"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {}
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "objects",
+        "bindings",
+        "claims",
+        "required",
+        "support"
+      ],
+      "additionalProperties": false,
+      "description": "Ledger-layer check envelope: claims is any list (the operator validates it). Per-kind object patterns (protocol_check_objects:<kind>) are semantic."
+    },
+    "check_schedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "kind": {
+          "const": "schedule"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "objects": {
+          "$ref": "#/$defs/ids"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "claims": {
+          "$ref": "schedule-coverage.schema.json#/$defs/claims"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "objects",
+        "bindings",
+        "claims",
+        "required",
+        "support"
+      ],
+      "additionalProperties": false
+    },
+    "check_finite_policy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "kind": {
+          "const": "finite_policy"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "objects": {
+          "$ref": "#/$defs/ids"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "claims": {
+          "$ref": "finite-policy.schema.json#/$defs/claims"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "objects",
+        "bindings",
+        "claims",
+        "required",
+        "support"
+      ],
+      "additionalProperties": false
+    },
+    "check_binomial_design": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "kind": {
+          "const": "binomial_design"
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "objects": {
+          "$ref": "#/$defs/ids"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "claims": {
+          "$ref": "binomial-design.schema.json#/$defs/claims"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "objects",
+        "bindings",
+        "claims",
+        "required",
+        "support"
+      ],
+      "additionalProperties": false
+    },
+    "check_other": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id_text"
+        },
+        "kind": {
+          "enum": [
+            "temporal",
+            "dependencies",
+            "estimand",
+            "definition",
+            "decision_table",
+            "external_method"
+          ]
+        },
+        "scope": {
+          "$ref": "common.schema.json#/$defs/scope"
+        },
+        "objects": {
+          "$ref": "#/$defs/ids"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {}
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "support": {
+          "$ref": "#/$defs/text_ids"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "scope",
+        "objects",
+        "bindings",
+        "claims",
+        "required",
+        "support"
+      ],
+      "additionalProperties": false
+    },
+    "check_admitted": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/check_schedule"
+        },
+        {
+          "$ref": "#/$defs/check_finite_policy"
+        },
+        {
+          "$ref": "#/$defs/check_binomial_design"
+        },
+        {
+          "$ref": "#/$defs/check_other"
+        }
+      ],
+      "description": "C4 check whose claims are the kind's advertised claims, as session admission (_protocol_input_check) requires of schedule and finite_policy."
+    },
+    "section_requested": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "enum": [
+            "population",
+            "eligibility",
+            "interventions",
+            "endpoints",
+            "assessments",
+            "efficacy",
+            "safety",
+            "exploratory"
+          ]
+        },
+        "state": {
+          "const": "requested"
+        },
+        "objects": {
+          "$ref": "#/$defs/ids"
+        },
+        "basis": {
+          "$ref": "#/$defs/text_ids"
+        }
+      },
+      "required": [
+        "id",
+        "state",
+        "objects",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "section_not_applicable": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "enum": [
+            "population",
+            "eligibility",
+            "interventions",
+            "endpoints",
+            "assessments",
+            "efficacy",
+            "safety",
+            "exploratory"
+          ]
+        },
+        "state": {
+          "const": "not_applicable"
+        },
+        "objects": {
+          "$ref": "#/$defs/ids"
+        },
+        "basis": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "state",
+        "objects",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "section": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/section_requested"
+        },
+        {
+          "$ref": "#/$defs/section_not_applicable"
+        }
+      ]
+    },
+    "protocol": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/object"
+          },
+          "maxItems": 256
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/check"
+          },
+          "maxItems": 128
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/section"
+          },
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "schema_version",
+        "objects",
+        "checks",
+        "sections"
+      ],
+      "additionalProperties": false,
+      "description": "C2 protocol envelope (ledger layer). Empty arrays are valid and imply no completeness. Section id uniqueness is semantic."
+    },
+    "protocol_admitted": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/object"
+          },
+          "maxItems": 256
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/check_admitted"
+          },
+          "maxItems": 128
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/section"
+          },
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "schema_version",
+        "objects",
+        "checks",
+        "sections"
+      ],
+      "additionalProperties": false
+    },
+    "adoption_premise": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "kind": {
+          "const": "adoption"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "objects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "$ref": "common.schema.json#/$defs/text"
+                  },
+                  "version": {
+                    "$ref": "common.schema.json#/$defs/text"
+                  }
+                },
+                "required": [
+                  "id",
+                  "version"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "status": {
+              "$ref": "common.schema.json#/$defs/status"
+            },
+            "resolution": {
+              "$ref": "common.schema.json#/$defs/resolution"
+            }
+          },
+          "required": [
+            "objects",
+            "status",
+            "resolution"
+          ],
+          "additionalProperties": false
+        },
+        "origin": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "user_choice"
+            },
+            "ref": {
+              "$ref": "common.schema.json#/$defs/text"
+            },
+            "source": {
+              "type": "null"
+            },
+            "analysis": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "kind",
+            "ref",
+            "source",
+            "analysis"
+          ],
+          "additionalProperties": false
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "payload",
+        "origin",
+        "depends_on"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

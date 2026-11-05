@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trialledger.invalid/schemas/protocol/1/binomial-design.schema.json",
+  "version": "1",
+  "title": "binomial_design operator data and claims",
+  "description": "C7. Input of protocol_statistics.check(kind, data, claims).",
+  "$defs": {
+    "assumption": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "enum": [
+            "fixed_n",
+            "iid_binary",
+            "alignment"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "status": {
+          "$ref": "common.schema.json#/$defs/status"
+        },
+        "resolution": {
+          "$ref": "common.schema.json#/$defs/resolution"
+        },
+        "basis": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          },
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "role",
+        "ref",
+        "version",
+        "status",
+        "resolution",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "direction": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "n": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512
+        },
+        "critical_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 513
+        },
+        "p0": {
+          "$ref": "common.schema.json#/$defs/rational"
+        },
+        "p1": {
+          "$ref": "common.schema.json#/$defs/rational"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assumption"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "scope",
+        "model",
+        "direction",
+        "n",
+        "critical_count",
+        "p0",
+        "p1",
+        "assumptions"
+      ],
+      "additionalProperties": false,
+      "description": "Out of schema scope: critical_count <= n+1, 0 <= p0 < p1 <= 1, component bit caps, model == fixed_n_iid_bernoulli and direction == greater (unsupported_method is a result, not a refusal)."
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "quantity": {
+          "enum": [
+            "null_rejection_probability",
+            "power"
+          ]
+        },
+        "comparison": {
+          "enum": [
+            "<=",
+            ">="
+          ]
+        },
+        "value": {
+          "$ref": "common.schema.json#/$defs/rational"
+        }
+      },
+      "required": [
+        "id",
+        "quantity",
+        "comparison",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      },
+      "maxItems": 16,
+      "description": "Value in [0,1] and unique ids are semantic (binomial_invalid_claims, binomial_duplicate_claim)."
+    }
+  }
+}

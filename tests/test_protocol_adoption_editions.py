@@ -260,3 +260,35 @@ def test_a_new_edition_through_a_session_revision_keeps_the_old_adoption_stale_u
     claims = _claims(revised)
     for identity in AVAILABLE_CLAIMS:
         assert claims[identity]["admission"] == "binding_unresolved", identity
+
+
+# --- A third path: plan alternatives (protocol_options replace_objects) ---
+
+
+def test_a_same_version_replacement_in_a_plan_alternative_never_yields_an_admitted_known_finding():
+    """A replacement keeping the baseline version, even user_choice and known, stays a hypothetical frame.
+
+    The baseline's adoption names that version, but the replaced object's own entries are only assumed inside
+    the frame, so every finding resting on it is proposed and the alternative's application is withheld.
+    """
+    from tests.test_protocol_options import _alt, _base, _complete, _decision, _with_decision
+
+    base = _base()
+    template = next(o for o in base["session"]["protocol"]["objects"] if o["id"] == "collection")
+    replacement = copy.deepcopy(template)
+    replacement["data"]["availability"] = [
+        {"lower": None, "upper": "95", "lower_inclusive": False, "upper_inclusive": True}
+    ]
+    replacement["origin"] = {**ORIGIN, "ref": "user:invented same-version replacement"}
+    replacement["standing"] = {"status": "known", "resolution": "resolved", "basis": ["user:invented"]}
+    assert replacement["version"] == template["version"]
+    alternatives = [
+        _alt("same-version", [replacement], ("week12-schedule",)),
+        _alt("draft", [], ("week12-schedule",)),
+    ]
+    decision = _decision(_complete(_with_decision(base, alternatives)))
+    alternative = next(a for a in decision["alternatives"] if a["id"] == "same-version")
+    assert (alternative["frame"], alternative["unconditional_application"]) == ("hypothetical", "withheld")
+    claims = [claim for check in alternative["checks"] for claim in check["claims"]]
+    assert claims and all(claim["finding_status"] == "proposed" for claim in claims)
+    assert all(claim["assumed"] == ["object:collection"] for claim in claims)

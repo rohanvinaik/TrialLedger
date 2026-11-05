@@ -47,6 +47,7 @@ FAILURES = (
     "open",
     "conflict",
 )
+WITNESSED_OUTCOMES = frozenset({"gap", "competing", "violation", "not_established"})
 STATIC_WORDING = {
     ("existence", "satisfied"): "At least one permitted assessment time falls within planned collection.",
     ("existence", "no_feasible_time"): "No permitted assessment time falls within planned collection.",
@@ -182,6 +183,57 @@ def claim_wording(row: dict, child: dict) -> str:
         return "Not applicable: the declared condition does not hold in this scope." + suffix
     text = _template(row, child)
     return (CONDITIONAL_PREFIX + text if row.get("application") == "conditional" else text) + suffix
+
+
+def literal_text(literal: Any) -> str:
+    """One retained valuation literal in plain words: its key, polarity and (for quantities) value."""
+    if not isinstance(literal, dict):
+        return "an undeclared value"
+    key = _get(literal, "predicate", "key")
+    name = key if isinstance(key, str) and key else "a declared variable"
+    value = literal.get("value") if isinstance(literal.get("value"), dict) else {}
+    if value.get("kind") == "boolean":
+        return name if literal.get("polarity") != "negative" else f"not {name}"
+    number = value.get("number")
+    if isinstance(number, int | float) and not isinstance(number, bool):
+        unit = value.get("unit")
+        text = f"{name} {value.get('comparison')} {number:g}" + (f" {unit}" if unit else "")
+        return text if literal.get("polarity") != "negative" else f"not ({text})"
+    return name
+
+
+def witness_text(detail: dict) -> str:
+    """A concise sentence for the first retained bounded witness trace; empty when none is retained.
+
+    The trace is read as returned (state, valuation, transition, actions); nothing is recomputed.
+    """
+    witnesses = detail.get("witnesses")
+    first = witnesses[0] if isinstance(witnesses, list) and witnesses else None
+    trace = first.get("trace") if isinstance(first, dict) else None
+    last = trace[-1] if isinstance(trace, list) and trace and isinstance(trace[-1], dict) else None
+    if last is None:
+        return ""
+    valuation = last.get("valuation") if isinstance(last.get("valuation"), dict) else {}
+    values = ", ".join(literal_text(valuation[key]) for key in sorted(valuation))
+    where = f"in state {last.get('state')}" + (f" with {values}" if values else "")
+    transition, actions = last.get("transition"), last.get("actions")
+    if transition is None:
+        outcome = "no declared rule applies"
+    else:
+        chosen = ", ".join(str(item) for item in actions) if isinstance(actions, list) and actions else "none"
+        outcome = f"transition {transition} selects {chosen}"
+    steps = f" after {len(trace) - 1} earlier step(s)" if len(trace) > 1 else ""
+    return f"Example from the retained bounded trace: {where}{steps}, {outcome}."
+
+
+def witness_wording(row: dict, child: dict) -> str | None:
+    """The bounded witness sentence for an applied policy finding, else None (claim wording unchanged)."""
+    if row.get("effective_outcome") not in WITNESSED_OUTCOMES or row.get("application") == "not_applicable":
+        return None
+    text = witness_text(_value_claim(child, row.get("id")))
+    if not text:
+        return None
+    return CONDITIONAL_PREFIX + text if row.get("application") == "conditional" else text
 
 
 def _template(row: dict, child: dict) -> str:
@@ -355,6 +407,7 @@ def _check_row(index: int, check: dict) -> dict:
                             if r not in (row.get("determining_ids") or [])
                         ],
                         "wording": claim_wording(row, child),
+                        "witness_wording": witness_wording(row, child),
                         "kind_of_finding": claim_kind(row),
                     }
                 )
@@ -546,6 +599,7 @@ UNRESOLVED_WORDS = {
     "computed",
     "projection_slice_5": "this kind of check is not computed in this version",
     "adoption_stale_version": "an object was adopted at an older version than the one now declared",
+    "session_work_limit": "not run: the session's configured work limit was reached before this check",
 }
 FINDING_CODE_WORDS = {
     "schedule_no_permitted_time": "the permitted window is empty",
@@ -589,6 +643,13 @@ def unresolved_words(entry: dict) -> str:
     code = str(entry.get("code"))
     words = UNRESOLVED_WORDS.get(code, code.replace("_", " "))
     objects = ", ".join(str(o) for o in entry.get("objects") or [])
+    if code == "session_work_limit":
+        configured = entry.get("configured") or {}
+        words += (
+            f" ({entry.get('limit')}; this check reserves {entry.get('reserved')} after "
+            f"{entry.get('already_reserved')} already reserved, against max_solver_work "
+            f"{configured.get('max_solver_work')} and max_analyses {configured.get('max_analyses')})"
+        )
     return f"{words}{' (objects: ' + objects + ')' if objects else ''} [{code}]"
 
 

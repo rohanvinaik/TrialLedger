@@ -4014,7 +4014,8 @@
          ]
         }
        ],
-       "candidate_digest": "50783f9dc88f4e6272c4fba104c09c107967e037e5db28ad8f54a1c672acb03e"
+       "candidate_digest": "50783f9dc88f4e6272c4fba104c09c107967e037e5db28ad8f54a1c672acb03e",
+       "replacements": []
       },
       {
        "id": "extend",
@@ -4150,7 +4151,26 @@
          ]
         }
        ],
-       "candidate_digest": "04ccf2400fd4e1f32690974f593db9bec91b904e040e2db92c86a0d5b8e52de5"
+       "candidate_digest": "04ccf2400fd4e1f32690974f593db9bec91b904e040e2db92c86a0d5b8e52de5",
+       "replacements": [
+        {
+         "id": "collection",
+         "version": "fixture-v1",
+         "origin": {
+          "kind": "user_choice",
+          "ref": "user:simulated choice (fixture)",
+          "source": null,
+          "analysis": null
+         },
+         "standing": {
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+           "user:simulated choice (fixture)"
+          ]
+         }
+        }
+       ]
       }
      ],
      "disposition": "repair_choice"

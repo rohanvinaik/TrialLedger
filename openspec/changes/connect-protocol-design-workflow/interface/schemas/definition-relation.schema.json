@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trialledger.invalid/schemas/protocol/1/definition-relation.schema.json",
+  "version": "1",
+  "title": "Definition relations over analyses and protocol checks",
+  "description": "The session definition_checks rows, including the protocol_check operand (definitions.md).",
+  "$defs": {
+    "analysis_operand": {
+      "type": "object",
+      "properties": {
+        "analysis": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "address": {
+          "type": "string",
+          "pattern": "^/(request|result)(/[\\s\\S]*)?$"
+        },
+        "body": {
+          "$ref": "common.schema.json#/$defs/proposition"
+        },
+        "status": {
+          "$ref": "common.schema.json#/$defs/status"
+        },
+        "resolution": {
+          "$ref": "common.schema.json#/$defs/resolution"
+        },
+        "basis": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "analysis",
+        "address",
+        "body",
+        "status",
+        "resolution",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "protocol_operand": {
+      "type": "object",
+      "properties": {
+        "protocol_check": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "child": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "address": {
+          "type": "string",
+          "pattern": "^/(request|result)(/[\\s\\S]*)?$"
+        },
+        "body": {
+          "$ref": "common.schema.json#/$defs/proposition"
+        },
+        "status": {
+          "$ref": "common.schema.json#/$defs/status"
+        },
+        "resolution": {
+          "$ref": "common.schema.json#/$defs/resolution"
+        },
+        "basis": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "protocol_check",
+        "address",
+        "body",
+        "status",
+        "resolution",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "operand": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/analysis_operand"
+        },
+        {
+          "$ref": "#/$defs/protocol_operand"
+        }
+      ],
+      "description": "Exactly one of analysis or protocol_check (definition_operand_reference). Protocol operands need a v2 session and a declared check id (semantic)."
+    },
+    "relation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "relation": {
+          "enum": [
+            "implies",
+            "equivalent",
+            "disjoint"
+          ]
+        },
+        "left": {
+          "$ref": "#/$defs/operand"
+        },
+        "right": {
+          "$ref": "#/$defs/operand"
+        },
+        "status": {
+          "$ref": "common.schema.json#/$defs/status"
+        },
+        "resolution": {
+          "$ref": "common.schema.json#/$defs/resolution"
+        },
+        "basis": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "id",
+        "relation",
+        "left",
+        "right",
+        "status",
+        "resolution",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "definition_checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      },
+      "maxItems": 32
+    }
+  }
+}

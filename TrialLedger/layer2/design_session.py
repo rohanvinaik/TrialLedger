@@ -359,11 +359,23 @@ def _nested_table_work(node: object) -> int:
         from TrialLedger.layer2.decision_tables import work_reservation
 
         cost = work_reservation(data)
-    elif node.get("kind") in signals.CLAIM_KINDS and isinstance(node.get("data"), dict):
-        # Protocol operators publish their own conservative formulas (interface operators.md, C10);
-        # a malformed declaration refuses here with the operator's named translation code.
-        cost = signals.operator(node["kind"]).work_reservation(node["data"])
     return cost + sum(_nested_table_work(v) for v in node.values())
+
+
+def _nested_protocol_work(node: object) -> int:
+    """Each protocol operator's own published conservative reservation, charged once (C10).
+
+    `signals.evaluate` calls a claim-kind operator exactly once per signal, so the generic table repeat
+    multiplier is not applied: a smaller safe represented bound is known (interface budgets.md, F3).
+    A malformed declaration refuses here with the operator's named translation code.
+    """
+    if isinstance(node, list):
+        return sum(_nested_protocol_work(v) for v in node)
+    if not isinstance(node, dict):
+        return 0
+    if node.get("kind") in signals.CLAIM_KINDS and isinstance(node.get("data"), dict):
+        return signals.operator(node["kind"]).work_reservation(node["data"])
+    return sum(_nested_protocol_work(v) for v in node.values())
 
 
 def _reserve(request: dict) -> int:
@@ -434,7 +446,7 @@ def _reserve(request: dict) -> int:
     # Parsing, raw validation and effective checks may visit the same table. Count every declared
     # query/frame/candidate use conservatively instead of assuming the wrapper calls it once.
     table_repeats = 3 * (queries + 1) * (len(frames) + 1) * (len(candidates) + 1)
-    return base + _nested_table_work(request) * table_repeats
+    return base + _nested_table_work(request) * table_repeats + _nested_protocol_work(request)
 
 
 def _request(analysis: dict, prepared: dict, values: dict) -> tuple[dict, list[dict]]:
@@ -791,7 +803,8 @@ def _run_protocol_checks(
     checks = []
     for check_id in check_ids:
         projected = protocol_projections.project(index, check_id, premise_standing=standing)
-        children = []
+        children: list[dict] = []
+        limited: list[dict] = []
         declared = index["checks"][check_id]
         deciding = _applicability_premises(declared, prepared)
         for child in projected["children"]:
@@ -807,7 +820,14 @@ def _run_protocol_checks(
                 if assumed
                 else child["request"]
             )
-            checked = _child(executed, execute, budget, limits)
+            try:
+                checked = _child(executed, execute, budget, limits)
+            except SessionBudgetError as error:
+                # C10: a bound that stops one check leaves it unexecuted (never satisfied) and names the
+                # limit with reserved work and the configured ceiling; independently completed checks keep
+                # their results. The refused child's charge is released, so later checks that fit still run.
+                checked, limit = _limited_child(executed, budget, limits, error)
+                limited.append(limit)
             result = checked["result"]
             signals_out = (
                 (result.get("result") or {}).get("signals", []) if result.get("code") == "complete" else []
@@ -869,11 +889,37 @@ def _run_protocol_checks(
                 "objects": list(declared["objects"]),
                 "projection": projected["projection"],
                 "children": children,
-                "unresolved": deepcopy(projected["unresolved"]),
+                "unresolved": deepcopy(projected["unresolved"]) + limited,
                 "not_computed": deepcopy(projected["not_computed"]),
             }
         )
     return checks
+
+
+def _limited_child(request: dict, budget: dict, limits: dict, error: SessionBudgetError) -> tuple[dict, dict]:
+    """Release a refused protocol child's charge and record it as stopped by the named session limit."""
+    reserved = error.diagnostics["request_reservation"]
+    budget["expanded_items"] -= _nodes(request)
+    budget["solver_work_reserved"] -= reserved
+    budget["analyses"] -= 1
+    code = str(error)
+    result = {"code": "refused", "operation": request["operation"], "result": None, "problems": [code]}
+    checked = {
+        "request": deepcopy(request),
+        "result": result,
+        "request_digest": state.digest(request),
+        "result_digest": state.digest(result),
+    }
+    limit = {
+        "code": "session_work_limit",
+        "objects": [],
+        "premises": [],
+        "limit": code,
+        "reserved": reserved,
+        "already_reserved": budget["solver_work_reserved"],
+        "configured": {key: limits[key] for key in ("max_analyses", "max_solver_work")},
+    }
+    return checked, limit
 
 
 def _frame_claim(claim: dict, lifted: set[str]) -> dict:
@@ -969,6 +1015,12 @@ def _protocol_decision_rows(
                     "conditional_checks": [row["id"] for row in rows if row["conditional_claims"]],
                     "checks": rows,
                     "candidate_digest": state.digest(held["raw"]),
+                    # Attribution of each replaced object, so a revision can tell an origin, standing or
+                    # edition change from a bare input change (REV-1).
+                    "replacements": [
+                        {key: deepcopy(o.get(key)) for key in ("id", "version", "origin", "standing")}
+                        for o in alternative["replace_objects"]
+                    ],
                 }
             )
         selected = item["selected"]
@@ -1094,19 +1146,29 @@ def _diff(before: dict, after: dict) -> dict:
     if "definition_checks" in before or "definition_checks" in after:
         fields.append("definition_checks")
     for field in fields:
-        old, new = ({v["id"]: v for v in snapshot.get(field, [])} for snapshot in (before, after))
-        out[field] = [
-            {
-                "id": key,
-                "code": state.change_code(
-                    key in old, key in new, source_evidence.exact_json_equal(old.get(key), new.get(key))
-                ),
-                "before_digest": state.digest(old[key]) if key in old else None,
-                "after_digest": state.digest(new[key]) if key in new else None,
-            }
-            for key in sorted(old.keys() | new.keys())
-        ]
+        out[field] = _audit_rows(before.get(field, []), after.get(field, []))
+    if "protocol" in before or "protocol" in after:
+        # The complete audit includes every protocol object, check and decision (wave-3 walkthrough finding).
+        for name in ("objects", "checks", "decisions"):
+            out["protocol_" + name] = _audit_rows(
+                (before.get("protocol") or {}).get(name, []), (after.get("protocol") or {}).get(name, [])
+            )
     return out
+
+
+def _audit_rows(before: list, after: list) -> list[dict]:
+    old, new = ({v["id"]: v for v in rows} for rows in (before, after))
+    return [
+        {
+            "id": key,
+            "code": state.change_code(
+                key in old, key in new, source_evidence.exact_json_equal(old.get(key), new.get(key))
+            ),
+            "before_digest": state.digest(old[key]) if key in old else None,
+            "after_digest": state.digest(new[key]) if key in new else None,
+        }
+        for key in sorted(old.keys() | new.keys())
+    ]
 
 
 ANSWER_CHANGE_CODES = (
@@ -1431,6 +1493,7 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
     def involved(check: dict, side: int, field: str) -> list:
         return [objects[side].get(i, {}).get(field) for i in check.get("objects", [])]
 
+    same = source_evidence.exact_json_equal
     out: dict = {"checks": [], "decisions": []}
     old, new = ({c["id"]: c for c in snapshot.get("checks", [])} for snapshot in (before, after))
     for key in sorted(old.keys() | new.keys()):
@@ -1444,7 +1507,18 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
                 }
             )
             continue
-        same = source_evidence.exact_json_equal
+        limited = [
+            side
+            for side, held in (("before", left), ("after", right))
+            if any(u.get("code") == "session_work_limit" for u in held.get("unresolved") or [])
+        ]
+        if limited:
+            # A check stopped by a session work limit was not computed in that snapshot: comparing it would
+            # read a missing computation as a changed clinical answer (C10; budgets.md).
+            out["checks"].append(
+                {"id": key, "code": "not_computed", "axes": [], "limited": limited, "changes": []}
+            )
+            continue
         lr, rr = _semantic_record(left), _semantic_record(right)
         verdict = _record_changed(lr["verdict"], rr["verdict"])
         changed = {
@@ -1486,6 +1560,10 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
             continue
         la, ra = ({a["id"]: a for a in d["alternatives"]} for d in (left, right))
         common = la.keys() & ra.keys()
+
+        def replaced(alternative: dict, field: str) -> list:
+            return [(r.get("id"), r.get(field)) for r in alternative.get("replacements", [])]
+
         changed = {
             "verdict": left["disposition"] != right["disposition"]
             or la.keys() != ra.keys()
@@ -1494,6 +1572,16 @@ def _protocol_answer_diff(before: dict, after: dict) -> dict:
                 [(x["id"], x["admission"]) for c in la[i]["checks"] for x in c["claims"]]
                 != [(x["id"], x["admission"]) for c in ra[i]["checks"] for x in c["claims"]]
                 for i in common
+            ),
+            # A replaced object's standing is its warrant inside the frame.
+            "support": any(
+                not same(replaced(la[i], "standing"), replaced(ra[i], "standing")) for i in common
+            ),
+            # The caller's selection (alternative, origin, basis) and replacement origins are attribution.
+            "origin": not same(left.get("selected"), right.get("selected"))
+            or any(not same(replaced(la[i], "origin"), replaced(ra[i], "origin")) for i in common),
+            "scope_model": any(
+                not same(replaced(la[i], "version"), replaced(ra[i], "version")) for i in common
             ),
             "wording": left["question"] != right["question"]
             or any(la[i]["label"] != ra[i]["label"] for i in common),

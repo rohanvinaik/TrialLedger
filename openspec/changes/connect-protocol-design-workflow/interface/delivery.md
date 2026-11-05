@@ -108,3 +108,6 @@ reachable (its own column, a parenthesis, or the "Open exact result" link).
   protocol codes use the Protocol findings wording.
 - Header-only sheets carry one `None in this session` row. The md decision "Current computed result" line and
   "No option has been selected by the caller yet." replace the ambiguous "Selected ... option: Open".
+- **Protocol findings** gains a last column `Example trace (first witness)`: the view's `witness_wording` (the first
+  bounded witness of a policy gap, competing transitions, violation or unestablished termination, in words), or
+  `n/a`. The decision list adds it as an indented `Example trace:` line under that claim's bullet.

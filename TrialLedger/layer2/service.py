@@ -1679,7 +1679,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     if view == "protocol":
         from TrialLedger.layer2.request_preparation import protocol_card
 
-        return protocol_card(schema=detail == "schema")
+        return protocol_card(detail=detail)
     if view not in ("full", "worked_session") and (detail != "full" or view == "delivery"):
         from TrialLedger.reasoning_cards import describe_card
 

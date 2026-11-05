@@ -1148,9 +1148,556 @@ def protocol_example() -> dict:
     return request
 
 
-def protocol_card(*, schema: bool = False) -> dict:
+# ---------------------------------------------------------------------------------------------------------
+# Focused runnable protocol examples, one per implemented family. Every value is invented teaching data.
+# ---------------------------------------------------------------------------------------------------------
+_INVENTED_ORIGIN = {"kind": "user_choice", "ref": "user:invented teaching plan (not a real trial)"}
+_INVENTED_ADOPTION = {
+    "ref": "user:invented adoption (teaching example)",
+    "status": "known",
+    "resolution": "resolved",
+}
+_INVENTED_VERSION = "invented-v1"
+
+
+def _invented_reference(name: str) -> dict:
     return {
-        "detail": "schema" if schema else "card",
+        "ref": "invented:" + name,
+        "version": "1",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": ["user:invented teaching plan (not a real trial)"],
+    }
+
+
+def _invented_object(identity: str, kind: str, data: dict, adopted: bool = True) -> dict:
+    row = {
+        "id": identity,
+        "kind": kind,
+        "version": _INVENTED_VERSION,
+        "origin": deepcopy(_INVENTED_ORIGIN),
+        "data": data,
+    }
+    if adopted:
+        row["adopted_by"] = deepcopy(_INVENTED_ADOPTION)
+    return row
+
+
+def _invented_session(protocol: dict, criteria: list | None = None) -> dict:
+    """A protocol-only design_session preparation around invented objects."""
+    request = session_example()
+    del request["questions"]
+    request["criteria"] = criteria or []
+    request["protocol"] = protocol
+    return request
+
+
+def _invented_measurement(identity: str = "score", unit: str = "points") -> dict:
+    return _invented_object(
+        identity,
+        "measurement",
+        {
+            "definition": _invented_reference(identity + " definition"),
+            "unit": unit,
+            "mode": "observed",
+            "baseline": None,
+        },
+    )
+
+
+def _invented_flag(key: str, positive: bool = True) -> dict:
+    from TrialLedger.layer2 import assertions as assertion
+
+    literal = assertion.Literal(
+        assertion.Subject("study_procedure"),
+        assertion.Predicate("measurement", key),
+        assertion.Value("boolean", "eq"),
+        polarity="positive" if positive else "negative",
+    )
+    return json.loads(assertion.canonical(literal))
+
+
+def _invented_all(*parts: dict) -> dict:
+    return {"class": "AllOf", "parts": list(parts)}
+
+
+def _invented_not(part: dict) -> dict:
+    return {"class": "Not", "part": part}
+
+
+def _invented_action(name: str) -> dict:
+    return {"id": name, "scope": {"level": "cohort", "ref": "invented:cohort"}, "description": name}
+
+
+def policy_example() -> dict:
+    """A dose policy whose continue rule ignores a safety signal, violating a declared prohibition."""
+    signal, concern = _invented_flag("efficacy_signal"), _invented_flag("safety_concern")
+    model = {
+        "scope": "invented:dose-policy",
+        "version": "invented-v1",
+        "variables": [
+            {"id": key, "values": [_invented_flag(key), _invented_flag(key, False)]}
+            for key in ("efficacy_signal", "safety_concern")
+        ],
+        "constraints": [],
+        "states": ["interim", "decided"],
+        "initial": ["interim"],
+        "terminal": ["decided"],
+        "actions": [_invented_action("continue_dosing"), _invented_action("hold_dosing")],
+        "transitions": [
+            {
+                "id": "continue",
+                "from": "interim",
+                "to": "decided",
+                "guard": signal,
+                "actions": ["continue_dosing"],
+            },
+            {
+                "id": "hold",
+                "from": "interim",
+                "to": "decided",
+                "guard": _invented_not(signal),
+                "actions": ["hold_dosing"],
+            },
+        ],
+        "prohibitions": [
+            {
+                "id": "no-continue-with-safety-concern",
+                "state": None,
+                "condition": concern,
+                "actions": ["continue_dosing"],
+                "rule": _invented_reference("safety prohibition"),
+            }
+        ],
+        "invariants": [],
+    }
+    protocol = {
+        "objects": [_invented_object("dose-policy", "policy", {"model": model, "bindings": []})],
+        "checks": [
+            {
+                "id": "dose-policy-check",
+                "kind": "finite_policy",
+                "objects": ["dose-policy"],
+                "required": True,
+                "claims": [
+                    {"id": "coverage", "claim": "coverage", "witness_limit": 8},
+                    {"id": "prohibition", "claim": "prohibition", "witness_limit": 8},
+                    {"id": "termination", "claim": "termination", "witness_limit": 8},
+                ],
+            }
+        ],
+        "sections": [{"id": "safety", "state": "requested", "objects": ["dose-policy"]}],
+    }
+    return _invented_session(protocol)
+
+
+def _invented_efficacy_objects(method: str, parameters: object, assumptions: list) -> list:
+    return [
+        _invented_measurement("response", "responder"),
+        _invented_object(
+            "response-endpoint",
+            "endpoint",
+            {
+                "variable": "response",
+                "definition": _invented_reference("response endpoint"),
+                "estimand": None,
+                "dependencies": None,
+            },
+        ),
+        _invented_object(
+            "efficacy-design",
+            "efficacy",
+            {
+                "endpoint": "response-endpoint",
+                "method": method,
+                "parameters": parameters,
+                "assumptions": assumptions,
+            },
+        ),
+    ]
+
+
+def binomial_example() -> dict:
+    """A single-arm exact fixed-n binomial design with all three declared assumption roles."""
+    roles = ("fixed_n", "iid_binary", "alignment")
+    criteria = [
+        {
+            "id": "assume-" + role,
+            "modality": "descriptive",
+            "body": _invented_flag("assumption_" + role),
+            "origin": {"kind": "user_choice", "ref": "user:invented " + role + " assumption"},
+            "status": "known",
+            "resolution": "resolved",
+        }
+        for role in roles
+    ]
+    parameters = {
+        "model": "fixed_n_iid_bernoulli",
+        "direction": "greater",
+        "n": 20,
+        "critical_count": 7,
+        "p0": "1/5",
+        "p1": "2/5",
+    }
+    objects = _invented_efficacy_objects(
+        "binomial_design", parameters, [{"role": role, "premise": "assume-" + role} for role in roles]
+    )
+    protocol = {
+        "objects": objects,
+        "checks": [
+            {
+                "id": "binomial-check",
+                "kind": "binomial_design",
+                "objects": ["efficacy-design", "response-endpoint"],
+                "required": True,
+                "claims": [
+                    {
+                        "id": "type-one",
+                        "quantity": "null_rejection_probability",
+                        "comparison": "<=",
+                        "value": "1/10",
+                    },
+                    {"id": "power", "quantity": "power", "comparison": ">=", "value": "7/10"},
+                ],
+            }
+        ],
+        "sections": [{"id": "efficacy", "state": "requested", "objects": ["efficacy-design"]}],
+    }
+    return _invented_session(protocol, criteria)
+
+
+def external_method_example() -> dict:
+    """An external method with named missing inputs: it reads not_computed and is never evaluated here."""
+    method = {
+        "definition": _invented_reference("externally computed survival analysis"),
+        "inputs": [
+            {"name": "alpha", "value": "1/20", "unit": None, "ref": None},
+            {"name": "hazard_ratio", "value": None, "unit": None, "ref": None},
+        ],
+        "missing": ["accrual_rate"],
+    }
+    objects = _invented_efficacy_objects("external_method", "outside-method", [])
+    objects.append(_invented_object("outside-method", "external_method", method))
+    protocol = {
+        "objects": objects,
+        "checks": [
+            {
+                "id": "outside-method-check",
+                "kind": "external_method",
+                "objects": ["efficacy-design", "outside-method"],
+                "required": True,
+            }
+        ],
+        "sections": [{"id": "efficacy", "state": "requested", "objects": ["efficacy-design"]}],
+    }
+    return _invented_session(protocol)
+
+
+def estimand_example() -> dict:
+    """An estimand linked once from its collection, plus an endpoint dependencies check."""
+    estimand = {
+        "scope": "invented:cohort-A:week12",
+        "version": "1",
+        "id": "invented:week12-policy",
+        "definitions": {
+            name: _invented_reference(name)
+            for name in ("intercurrent_events", "population", "summary", "treatment", "variable")
+        },
+        "events": [
+            {
+                "id": "discontinuation",
+                "event_ref": _invented_reference("treatment discontinuation"),
+                "strategy": "treatment_policy",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": ["user:invented teaching plan (not a real trial)"],
+            }
+        ],
+        "requirements": [
+            {
+                "id": "week12",
+                "event": "discontinuation",
+                "variable": "invented:variable",
+                "window": "invented:week12-regardless-of-discontinuation",
+                "role": "observed_measurement",
+                "mode": "observed",
+                "relevance": "required",
+                "rule": _invented_reference("week12 relevance"),
+            }
+        ],
+        "collection_plan": [],
+        "data_state": [],
+        "dependencies": None,
+    }
+    day_range = {"lower": "77", "upper": "91", "lower_inclusive": True, "upper_inclusive": True}
+    measurement = lambda name: {"id": name, "mode": "observed"}  # noqa: E731
+    dependencies = {
+        "scope": "invented:cohort-A:change-score",
+        "version": "1",
+        "rules": [
+            {
+                "id": "change",
+                "version": "invented-definition-1",
+                "output": {"id": "change", "mode": "derived"},
+                "alternatives": [[measurement("baseline"), measurement("week12")]],
+                "when": [],
+            }
+        ],
+        "adopted": ["change"],
+        "available": [measurement("baseline"), measurement("week12")],
+        "unavailable": [],
+        "conditions": {},
+    }
+    protocol = {
+        "objects": [
+            _invented_measurement(),
+            _invented_object(
+                "week12",
+                "assessment",
+                {
+                    "measurement": "score",
+                    "anchor": "randomization",
+                    "unit": "day",
+                    "nominal": "84",
+                    "permitted": [day_range],
+                    "condition": None,
+                },
+            ),
+            _invented_object("week-policy", "estimand", estimand),
+            _invented_object(
+                "week12-collection",
+                "collection",
+                {
+                    "assessment": "week12",
+                    "mode": "observed",
+                    "availability": [day_range],
+                    "event_handling": {
+                        "estimand": "week-policy",
+                        "requirement": "week12",
+                        "action": "collect",
+                    },
+                },
+            ),
+            _invented_object(
+                "change-endpoint",
+                "endpoint",
+                {
+                    "variable": "score",
+                    "definition": _invented_reference("change endpoint"),
+                    "estimand": None,
+                    "dependencies": dependencies,
+                },
+            ),
+        ],
+        "checks": [
+            {"id": "estimand-check", "kind": "estimand", "objects": ["week-policy"], "required": True},
+            {
+                "id": "dependencies-check",
+                "kind": "dependencies",
+                "objects": ["change-endpoint"],
+                "required": True,
+            },
+        ],
+        "sections": [
+            {"id": "endpoints", "state": "requested", "objects": ["week-policy", "change-endpoint"]}
+        ],
+    }
+    return _invented_session(protocol)
+
+
+def decisions_example() -> dict:
+    """Two collection plans compared under one schedule check; the baseline plan is selected."""
+    request = protocol_example()
+    protocol = request["protocol"]
+    for item in protocol["objects"]:
+        item["adopted_by"] = deepcopy(_INVENTED_ADOPTION)
+    longer = deepcopy(protocol["objects"][2])
+    del longer["adopted_by"]
+    longer["data"]["availability"] = [
+        {"lower": None, "upper": "91", "lower_inclusive": False, "upper_inclusive": True}
+    ]
+    longer["support"] = ["adopt:collection:" + longer["version"]]
+    protocol["decisions"] = [
+        {
+            "id": "collection-plan",
+            "question": "How long should invented week-12 collection run?",
+            "alternatives": [
+                {"id": "as-drafted", "label": "Through day 80", "checks": ["week12-schedule"]},
+                {
+                    "id": "extend",
+                    "label": "Through day 91",
+                    "replace": [longer],
+                    "checks": ["week12-schedule"],
+                },
+            ],
+            "selected": {
+                "alternative": "as-drafted",
+                "origin": "user",
+                "basis": ["user:invented selection (teaching example)"],
+            },
+        }
+    ]
+    return request
+
+
+def definition_example() -> dict:
+    """Two invented MADRS-style trigger readings: the stricter reading implies the earlier one."""
+    from TrialLedger.layer2 import assertions as assertion
+
+    def threshold(number: int) -> dict:
+        value = assertion.Value("quantity", "ge", number=number, unit="score")
+        literal = assertion.Literal(
+            assertion.Subject("participant"), assertion.Predicate("measurement", "madrs"), value
+        )
+        return json.loads(assertion.canonical(literal))
+
+    def policy(identity: str, guard: dict, action: str) -> dict:
+        scores = [
+            json.loads(
+                assertion.canonical(
+                    assertion.Literal(
+                        assertion.Subject("participant"),
+                        assertion.Predicate("measurement", "madrs"),
+                        assertion.Value("quantity", "eq", number=number, unit="score"),
+                    )
+                )
+            )
+            for number in (18, 21, 23)
+        ]
+        return {
+            "model": {
+                "scope": "invented:" + identity,
+                "version": "invented-v1",
+                "variables": [{"id": "madrs", "values": scores}],
+                "constraints": [],
+                "states": ["monitoring", "decided"],
+                "initial": ["monitoring"],
+                "terminal": ["decided"],
+                "actions": [_invented_action(action), _invented_action("keep_monitoring")],
+                "transitions": [
+                    {
+                        "id": action,
+                        "from": "monitoring",
+                        "to": "decided",
+                        "guard": guard,
+                        "actions": [action],
+                    },
+                    {
+                        "id": "not-" + action,
+                        "from": "monitoring",
+                        "to": "decided",
+                        "guard": _invented_not(guard),
+                        "actions": ["keep_monitoring"],
+                    },
+                ],
+                "prohibitions": [],
+                "invariants": [],
+            },
+            "bindings": [],
+        }
+
+    trigger, relapse = threshold(20), threshold(22)
+    readings = {
+        "trigger-check": ("trigger-rule", trigger, "retreat"),
+        "relapse-check": ("relapse-rule", relapse, "record_relapse"),
+    }
+    protocol = {
+        "objects": [
+            _invented_object(obj, "policy", policy(obj, guard, action))
+            for obj, guard, action in readings.values()
+        ],
+        "checks": [
+            {
+                "id": check,
+                "kind": "finite_policy",
+                "objects": [obj],
+                "required": True,
+                "claims": [{"id": "coverage", "claim": "coverage", "witness_limit": 8}],
+            }
+            for check, (obj, _guard, _action) in readings.items()
+        ],
+        "sections": [],
+    }
+    request = _invented_session(protocol)
+
+    def operand(check: str, guard: dict) -> dict:
+        return {
+            "protocol_check": check,
+            "child": 0,
+            "address": "/request/signals/0/data/transitions/0/guard",
+            "body": guard,
+            "status": "known",
+            "resolution": "resolved",
+            "basis": ["user:invented " + check + " reading (teaching example)"],
+        }
+
+    request["definition_checks"] = [
+        {
+            "id": "relapse-implies-trigger",
+            "relation": "implies",
+            "left": operand("relapse-check", relapse),
+            "right": operand("trigger-check", trigger),
+            "status": "known",
+            "resolution": "resolved",
+            "basis": ["user:invented definition-relation declaration (teaching example)"],
+        }
+    ]
+    return request
+
+
+def protocol_examples() -> dict:
+    """Family -> complete invented prepare request, each of which prepares and runs to complete."""
+    return {
+        "schedule": protocol_example(),
+        "finite_policy": policy_example(),
+        "binomial_design": binomial_example(),
+        "external_method": external_method_example(),
+        "estimand": estimand_example(),
+        "decisions": decisions_example(),
+        "definition_relation": definition_example(),
+    }
+
+
+PROTOCOL_BUILT = {
+    "built": [
+        "exact schedule window coverage (existence, nominal day, full permitted window)",
+        "finite declared-variable policies: coverage, exclusivity, prohibition, invariant and termination "
+        "claims with bounded witnesses",
+        "exact fixed-n one-sided single-arm binomial design (null rejection probability and power)",
+        "plan comparisons (protocol.decisions) over the declared checks",
+        "definition relations (implies, equivalent, disjoint) over two attributed protocol-check readings",
+    ],
+    "not_built": [
+        "adaptive, cluster or survival calculations (an external_method stays not computed, with its named "
+        "missing inputs)",
+        "optimisation or sample-size search",
+        "protocol writing",
+        "any judgement of clinical appropriateness, safety, validity or completeness",
+    ],
+    "policy_coverage": "coverage is over the declared variables and states only; an undeclared variable, "
+    "safety signal or operating characteristic is not covered. External variables are re-chosen at every "
+    "step. A covered policy is not a safe policy.",
+}
+PROTOCOL_FAMILIES = {
+    "schedule": "week-12 visit: a feasible visit, an uncollected nominal day and an uncovered window part "
+    "(unadopted, so findings stay unadmitted)",
+    "finite_policy": "dose policy whose continue rule ignores a declared safety prohibition: a violation "
+    "with bounded witnesses, plus coverage and termination",
+    "binomial_design": "single-arm exact binomial with fixed_n, iid_binary and alignment declared as "
+    "premises; exact probabilities against stated bounds",
+    "external_method": "not_computed: declared with named missing inputs and never evaluated",
+    "estimand": "estimand with its week-12 requirement linked once from the collection (event_handling), "
+    "plus an endpoint dependencies check",
+    "decisions": "two collection plans compared under one schedule check, baseline selected",
+    "definition_relation": "two trigger readings over two finite-policy checks; the stricter implies the "
+    "earlier",
+}
+
+
+def protocol_card(*, detail: str = "card") -> dict:
+    """The protocol discovery card at three levels: card (default), schema and full."""
+    result: dict[str, Any] = {
+        "detail": detail,
         "operation": "prepare",
         "question": "Declare protocol objects, checks and sections for a version-2 design session.",
         "procedure": "Add a protocol {objects,checks,sections} to a design_session preparation; inspect "
@@ -1158,16 +1705,29 @@ def protocol_card(*, schema: bool = False) -> dict:
         "returned request. Read result.protocol: per-check children, per-claim admission and receipts.",
         "boundary": "No clinical value, claim, required flag, origin or adoption is defaulted; unspecified "
         "standing stays proposed/unresolved, so findings stay unadmitted until adoption support is declared.",
+        "built_boundary": deepcopy(PROTOCOL_BUILT),
         "input_shapes": deepcopy(PROTOCOL_INPUTS),
         "object_data": deepcopy(PROTOCOL_DATA),
         "check_patterns": deepcopy(PROTOCOL_CHECKS),
         "admission": PROTOCOL_ADMISSION,
         "decisions": deepcopy(PROTOCOL_DECISIONS),
-        "notes": deepcopy(PROTOCOL_NOTES),
         "operator_inputs": {"operation": "describe", "view": "signals", "detail": "full"},
-        "example_basis": "Invented teaching choices, not a real trial or human confirmation.",
-        "example": protocol_example(),
-        "next": "Run the example through prepare, then reason; the schedule check reports a feasible visit, "
-        "an uncollected nominal day and an uncovered (80, 91] part of the window, all unadmitted "
-        "until the objects are adopted.",
+        "discover": {
+            "schema": {"operation": "describe", "view": "protocol", "detail": "schema"},
+            "full": {"operation": "describe", "view": "protocol", "detail": "full"},
+        },
     }
+    if detail != "schema":
+        result["notes"] = deepcopy(PROTOCOL_NOTES)
+        result["example_basis"] = "Invented teaching choices, not a real trial or human confirmation."
+        result["example"] = protocol_example()
+        result["example_families"] = deepcopy(PROTOCOL_FAMILIES)
+        result["next"] = (
+            "Run the example through prepare, then reason; the schedule check reports a feasible visit, "
+            "an uncollected nominal day and an uncovered (80, 91] part of the window, all unadmitted "
+            "until the objects are adopted. One focused runnable example per implemented family is "
+            "returned under examples in detail full."
+        )
+    if detail == "full":
+        result["examples"] = protocol_examples()
+    return result

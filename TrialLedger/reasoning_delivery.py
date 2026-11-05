@@ -430,7 +430,8 @@ def revise(
         if not isinstance(revision, str):
             raise ValueError("revision_label_required_for_edits")
         session, review = edited_session(prior["request"]["session"], revision, edits)
-    elif revision is not None:
+    elif revision is not None and (type(session) is not dict or session.get("revision") != revision):
+        # An explicit session carries its own label: a matching label is accepted, a different one refused.
         raise ValueError("revision_label_is_in_explicit_session")
     if type(session) is not dict:
         raise ValueError("revision_session_not_an_object")

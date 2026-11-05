@@ -1,0 +1,768 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trialledger.invalid/schemas/protocol/1/common.schema.json",
+  "version": "1",
+  "title": "TrialLedger protocol: shared definitions",
+  "description": "Shared structures for C2-C8: rational, interval, standing, scope/context, origin and typed propositions.",
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "rational": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$",
+      "description": "C5 exact rational syntax. Component bit cap (256) is out of schema scope; enforced by protocol_numbers."
+    },
+    "interval": {
+      "type": "object",
+      "properties": {
+        "lower": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/rational"
+            }
+          ]
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/rational"
+            }
+          ]
+        },
+        "lower_inclusive": {
+          "type": "boolean"
+        },
+        "upper_inclusive": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "lower",
+        "upper",
+        "lower_inclusive",
+        "upper_inclusive"
+      ],
+      "additionalProperties": false
+    },
+    "interval_union": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interval"
+      },
+      "maxItems": 32,
+      "description": "Reversed/empty single intervals and inclusion at infinity are semantic refusals (protocol_numbers), out of schema scope. An empty list is valid explicit emptiness; null (unknown) is added by the caller."
+    },
+    "status": {
+      "enum": [
+        "known",
+        "interpolated",
+        "proposed"
+      ]
+    },
+    "resolution": {
+      "enum": [
+        "resolved",
+        "partially_resolved",
+        "unresolved",
+        "conflicting"
+      ]
+    },
+    "basis": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/text"
+      },
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "standing": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "resolution": {
+          "$ref": "#/$defs/resolution"
+        },
+        "basis": {
+          "$ref": "#/$defs/basis"
+        }
+      },
+      "required": [
+        "status",
+        "resolution",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "standing_ref": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/text"
+        },
+        "version": {
+          "$ref": "#/$defs/text"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "resolution": {
+          "$ref": "#/$defs/resolution"
+        },
+        "basis": {
+          "$ref": "#/$defs/basis"
+        }
+      },
+      "required": [
+        "ref",
+        "version",
+        "status",
+        "resolution",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "new_trial",
+            "historical"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/text"
+        },
+        "scope": {
+          "type": "object",
+          "properties": {
+            "study": {
+              "$ref": "#/$defs/text"
+            },
+            "population": {
+              "$ref": "#/$defs/text"
+            },
+            "arm": {
+              "$ref": "#/$defs/text"
+            },
+            "time": {
+              "$ref": "#/$defs/text"
+            },
+            "version": {
+              "$ref": "#/$defs/text"
+            }
+          },
+          "required": [
+            "study",
+            "population",
+            "arm",
+            "time",
+            "version"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "kind",
+        "ref",
+        "scope"
+      ],
+      "additionalProperties": false
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "cohort": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/text"
+            }
+          ]
+        },
+        "phase": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/text"
+            }
+          ]
+        },
+        "arm": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/text"
+            }
+          ]
+        }
+      },
+      "required": [
+        "cohort",
+        "phase",
+        "arm"
+      ],
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "$ref": "#/$defs/target"
+        },
+        "context": {
+          "$ref": "#/$defs/context"
+        }
+      },
+      "required": [
+        "target",
+        "context"
+      ],
+      "additionalProperties": false,
+      "description": "Equality with the session target is a semantic refusal (protocol_scope_target), out of schema scope. Null context means open, never inferred."
+    },
+    "origin_choice": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "user_choice",
+            "hypothesis"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/text"
+        },
+        "source": {
+          "type": "null"
+        },
+        "analysis": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "kind",
+        "ref",
+        "source",
+        "analysis"
+      ],
+      "additionalProperties": false
+    },
+    "origin_interpretation": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "source_interpretation"
+        },
+        "ref": {
+          "$ref": "#/$defs/text"
+        },
+        "source": {
+          "$ref": "#/$defs/text"
+        },
+        "analysis": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "kind",
+        "ref",
+        "source",
+        "analysis"
+      ],
+      "additionalProperties": false
+    },
+    "origin": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/origin_choice"
+        },
+        {
+          "$ref": "#/$defs/origin_interpretation"
+        }
+      ],
+      "description": "Protocol-object origin. source_rule and derived refuse (protocol_origin_kind). Source existence and pointer resolution are semantic."
+    },
+    "premise_origin": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "source_rule",
+            "source_interpretation",
+            "user_choice",
+            "hypothesis",
+            "derived"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/text"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/text"
+            }
+          ]
+        },
+        "analysis": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/text"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "ref",
+        "source",
+        "analysis"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Evidence"
+        },
+        "kind": {
+          "enum": [
+            "atom_ref",
+            "record_field",
+            "rule_application",
+            "targeted_answer",
+            "text_span",
+            "warrant_ref"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "class",
+        "kind",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Subject"
+        },
+        "kind": {
+          "enum": [
+            "caregiver",
+            "encounter",
+            "other_person",
+            "participant",
+            "partner",
+            "source_case",
+            "specimen",
+            "study_intervention",
+            "study_procedure",
+            "unresolved"
+          ]
+        },
+        "referent": {
+          "type": "string",
+          "minLength": 0
+        }
+      },
+      "required": [
+        "class",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "predicate": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Predicate"
+        },
+        "kind": {
+          "enum": [
+            "condition_status",
+            "consent",
+            "defined_term",
+            "demographic",
+            "disease_attribute",
+            "encounter_purpose",
+            "exposure",
+            "measurement",
+            "medication_stability",
+            "medication_use",
+            "procedure_event",
+            "reproductive_status",
+            "treatment_history",
+            "unresolved"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "minLength": 0
+        }
+      },
+      "required": [
+        "class",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "value": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Value"
+        },
+        "kind": {
+          "enum": [
+            "boolean",
+            "definition_ref",
+            "entity_ref",
+            "enum",
+            "enum_set",
+            "interval",
+            "quantity",
+            "unresolved"
+          ]
+        },
+        "comparison": {
+          "enum": [
+            "eq",
+            "ge",
+            "gt",
+            "in",
+            "le",
+            "lt",
+            "ne",
+            "not_in"
+          ]
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "number": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 0
+        },
+        "inclusivity": {
+          "enum": [
+            "exclusive",
+            "inclusive",
+            "unspecified"
+          ]
+        }
+      },
+      "required": [
+        "class",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "temporal_scope": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "TemporalScope"
+        },
+        "orientation": {
+          "enum": [
+            "after",
+            "at",
+            "before",
+            "between",
+            "during",
+            "unspecified"
+          ]
+        },
+        "anchor": {
+          "enum": [
+            "calendar_date",
+            "enrollment",
+            "named_event",
+            "randomization",
+            "study_interval",
+            "treatment_start",
+            "unspecified"
+          ]
+        },
+        "anchor_ref": {
+          "type": "string",
+          "minLength": 0
+        },
+        "lower": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 0
+        },
+        "inclusivity": {
+          "enum": [
+            "exclusive",
+            "inclusive",
+            "unspecified"
+          ]
+        },
+        "certainty": {
+          "enum": [
+            "entailed",
+            "explicit",
+            "unresolved"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "required": [
+        "class",
+        "orientation",
+        "anchor"
+      ],
+      "additionalProperties": false
+    },
+    "always": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Always"
+        }
+      },
+      "required": [
+        "class"
+      ],
+      "additionalProperties": false
+    },
+    "literal": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Literal"
+        },
+        "subject": {
+          "$ref": "#/$defs/subject"
+        },
+        "predicate": {
+          "$ref": "#/$defs/predicate"
+        },
+        "value": {
+          "$ref": "#/$defs/value"
+        },
+        "polarity": {
+          "enum": [
+            "negative",
+            "positive",
+            "unresolved"
+          ]
+        },
+        "time": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/temporal_scope"
+            }
+          ]
+        },
+        "qualifiers": {
+          "$ref": "#/$defs/condition"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "required": [
+        "class",
+        "subject",
+        "predicate",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "all_of": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "AllOf"
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/proposition"
+          },
+          "minItems": 2
+        }
+      },
+      "required": [
+        "class",
+        "parts"
+      ],
+      "additionalProperties": false
+    },
+    "any_of": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "AnyOf"
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/proposition"
+          },
+          "minItems": 2
+        }
+      },
+      "required": [
+        "class",
+        "parts"
+      ],
+      "additionalProperties": false
+    },
+    "not": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Not"
+        },
+        "part": {
+          "$ref": "#/$defs/proposition"
+        }
+      },
+      "required": [
+        "class",
+        "part"
+      ],
+      "additionalProperties": false
+    },
+    "opaque": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "const": "Opaque"
+        },
+        "ref": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "class",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "proposition": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/literal"
+        },
+        {
+          "$ref": "#/$defs/all_of"
+        },
+        {
+          "$ref": "#/$defs/any_of"
+        },
+        {
+          "$ref": "#/$defs/not"
+        },
+        {
+          "$ref": "#/$defs/opaque"
+        }
+      ],
+      "description": "Tagged canonical JSON of assertions.PROPOSITIONS. Unresolved-formula blockers (entail.proposition_formula) and Value kind/comparison fit are semantic, out of schema scope."
+    },
+    "condition": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/always"
+        },
+        {
+          "$ref": "#/$defs/proposition"
+        }
+      ]
+    }
+  }
+}

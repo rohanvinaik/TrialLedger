@@ -212,3 +212,18 @@ def test_the_cli_edits_flag_accepts_attributed_protocol_edits(tmp_path, capsys):
     reply = json.loads(capsys.readouterr().out)
     assert reply["code"] == "complete", reply.get("problems")
     assert reply["delivery"]["previous_artifact"] == identity
+
+
+def test_a_matching_revision_label_beside_an_explicit_session_is_accepted_and_a_different_one_refused(
+    tmp_path,
+):
+    """Wave-3 minor: --revision with --session was refused even when it repeated the session's label."""
+    identity = _held(tmp_path)
+    following = copy.deepcopy(artifacts.load(tmp_path, identity)["request"]["session"])
+    following["revision"] = "two"
+    following.pop("parent_digest", None)
+    following["protocol"]["checks"][0]["required"] = False
+    revised = delivery.revise(tmp_path, identity, session=following, revision="two", response_view="full")
+    assert revised["code"] == "complete", revised.get("problems")
+    with pytest.raises(ValueError, match="^revision_label_is_in_explicit_session$"):
+        delivery.revise(tmp_path, identity, session=following, revision="three")

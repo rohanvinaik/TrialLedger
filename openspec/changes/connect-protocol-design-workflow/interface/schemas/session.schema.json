@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trialledger.invalid/schemas/protocol/1/session.schema.json",
+  "version": "1",
+  "title": "design_session request, version 2",
+  "description": "C2: the managed v2 session request with its protocol ledger.",
+  "$defs": {
+    "limits": {
+      "type": "object",
+      "properties": {
+        "max_analyses": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "max_premises": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "max_sources": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "max_decisions": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "max_expanded_items": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "max_solver_work": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "max_output_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16000000
+        }
+      },
+      "required": [
+        "max_analyses",
+        "max_premises",
+        "max_sources",
+        "max_decisions",
+        "max_expanded_items",
+        "max_solver_work",
+        "max_output_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "study": {
+          "type": "object"
+        },
+        "expected_digest": {
+          "$ref": "common.schema.json#/$defs/text"
+        }
+      },
+      "required": [
+        "id",
+        "study",
+        "expected_digest"
+      ],
+      "additionalProperties": false
+    },
+    "premise": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "kind": {
+          "enum": [
+            "source_assertion",
+            "assertion",
+            "signal",
+            "binding",
+            "observation",
+            "candidate",
+            "corpus_trial",
+            "coordinate_evidence",
+            "derived_assertion"
+          ]
+        },
+        "payload": {
+          "type": "object"
+        },
+        "origin": {
+          "$ref": "common.schema.json#/$defs/premise_origin"
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "payload",
+        "origin",
+        "depends_on"
+      ],
+      "additionalProperties": false
+    },
+    "any_premise": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/premise"
+        },
+        {
+          "$ref": "protocol.schema.json#/$defs/adoption_premise"
+        }
+      ]
+    },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "operation": {
+          "enum": [
+            "entailment",
+            "coordinates",
+            "corpus",
+            "design_bounds",
+            "evidence_requests",
+            "signals",
+            "interpretations",
+            "source_assertions"
+          ]
+        },
+        "target": {
+          "$ref": "common.schema.json#/$defs/target"
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "uses": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "operation",
+        "target",
+        "parameters",
+        "uses"
+      ],
+      "additionalProperties": false
+    },
+    "session_v2": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2
+        },
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "revision": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "parent_digest": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/text"
+            }
+          ]
+        },
+        "target": {
+          "$ref": "common.schema.json#/$defs/target"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "premises": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/any_premise"
+          }
+        },
+        "analyses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/analysis"
+          }
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "$ref": "decision.schema.json#/$defs/decision"
+          }
+        },
+        "limits": {
+          "$ref": "#/$defs/limits"
+        },
+        "protocol": {
+          "$ref": "protocol.schema.json#/$defs/protocol_admitted"
+        },
+        "definition_checks": {
+          "$ref": "definition-relation.schema.json#/$defs/definition_checks"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "revision",
+        "parent_digest",
+        "target",
+        "sources",
+        "premises",
+        "analyses",
+        "decisions",
+        "limits",
+        "protocol"
+      ],
+      "additionalProperties": false,
+      "description": "Version 2 retains the v1 session fields and adds protocol (C2). Version 1 sessions are not described here and are unchanged."
+    },
+    "previous": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "$ref": "#/$defs/session_v2"
+        },
+        "result": {
+          "type": "object"
+        },
+        "expected_result_digest": {
+          "$ref": "common.schema.json#/$defs/text"
+        }
+      },
+      "required": [
+        "session",
+        "result",
+        "expected_result_digest"
+      ],
+      "additionalProperties": false
+    },
+    "request": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "const": "design_session"
+        },
+        "session": {
+          "$ref": "#/$defs/session_v2"
+        },
+        "previous": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/previous"
+            }
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "session",
+        "previous"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -78,6 +78,7 @@ PROTOCOL_SHEET_HEADERS = {
         "Wording",
         "Determining references",
         "Result reference",
+        "Example trace (first witness)",
     ],
     "Schedule of assessments": [
         "Check",

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trialledger.invalid/schemas/protocol/1/schedule-coverage.schema.json",
+  "version": "1",
+  "title": "schedule_coverage operator data and claims",
+  "description": "C5. Input of protocol_schedule.check(kind, data, claims). Nominal, permitted and available keep null (unknown) distinct from [] (explicitly none).",
+  "$defs": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "anchor": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "nominal": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/rational"
+            }
+          ]
+        },
+        "permitted": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/interval_union"
+            }
+          ]
+        },
+        "available": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/interval_union"
+            }
+          ]
+        }
+      },
+      "required": [
+        "scope",
+        "anchor",
+        "unit",
+        "nominal",
+        "permitted",
+        "available"
+      ],
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim": {
+          "enum": [
+            "existence",
+            "nominal",
+            "full_window"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "claim"
+      ],
+      "additionalProperties": false
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      },
+      "minItems": 1,
+      "maxItems": 3,
+      "description": "Each claim kind and each id at most once (semantic: schedule_duplicate_claim)."
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trialledger.invalid/schemas/protocol/1/decision.schema.json",
+  "version": "1",
+  "title": "Protocol decisions",
+  "description": "C8: the protocol_options decision beside legacy query decisions.",
+  "$defs": {
+    "evidence_entry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "source": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "anchor": {},
+        "role": {
+          "enum": [
+            "quote",
+            "reading",
+            "gap"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 4096
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 1024
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "anchor",
+        "role"
+      ],
+      "additionalProperties": false
+    },
+    "selected": {
+      "type": "object",
+      "properties": {
+        "alternative": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "origin": {
+          "const": "user"
+        },
+        "basis": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "alternative",
+        "origin",
+        "basis"
+      ],
+      "additionalProperties": false
+    },
+    "alternative": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "label": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "replace_objects": {
+          "type": "array",
+          "items": {
+            "$ref": "protocol.schema.json#/$defs/object"
+          },
+          "maxItems": 16
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/text"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "replace_objects",
+        "checks"
+      ],
+      "additionalProperties": false
+    },
+    "protocol_options": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "protocol_options"
+        },
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "question": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "target": {
+          "$ref": "common.schema.json#/$defs/target"
+        },
+        "coverage": {
+          "const": "declared_design"
+        },
+        "selected": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/selected"
+            }
+          ]
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/alternative"
+          },
+          "minItems": 2,
+          "maxItems": 16
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence_entry"
+          },
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "question",
+        "target",
+        "coverage",
+        "selected",
+        "alternatives"
+      ],
+      "additionalProperties": false,
+      "description": "C8. Out of schema scope: unique alternative ids, kind/target preservation of replacements, check existence and required-check completeness (protocol_option_*), selected.alternative naming an alternative."
+    },
+    "legacy_alternative": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "label": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "analysis": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "query": {}
+      },
+      "required": [
+        "id",
+        "label",
+        "analysis",
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "legacy_decision": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "question": {
+          "$ref": "common.schema.json#/$defs/text"
+        },
+        "target": {
+          "$ref": "common.schema.json#/$defs/target"
+        },
+        "coverage": {
+          "enum": [
+            "represented_restriction",
+            "declared_design"
+          ]
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/legacy_alternative"
+          },
+          "minItems": 2,
+          "maxItems": 16
+        },
+        "selected": {},
+        "evidence": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "id",
+        "question",
+        "target",
+        "coverage",
+        "alternatives",
+        "selected"
+      ],
+      "additionalProperties": false,
+      "description": "Legacy query decision. It has no kind key: a v2 decision with a kind key is a protocol decision."
+    },
+    "decision": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/protocol_options"
+        },
+        {
+          "$ref": "#/$defs/legacy_decision"
+        }
+      ]
+    }
+  }
+}
