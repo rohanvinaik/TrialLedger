@@ -12,5 +12,10 @@ operations available before the whole pipeline is integrated.
 implementation, not whether the design has been written.
 
 The initial workbook change in `changes/archive/` is historical evidence, not another active instruction.
+
+Future standards interoperability is proposed in the [ICH M11 / CDISC USDM roadmap](../docs/M11_USDM_ROADMAP.md)
+and [OpenSpec change](changes/add-m11-usdm-interoperability/proposal.md). Its planning artifacts and GitHub
+tracking describe future delivery; they do not claim a working adapter or current standards conformance.
+
 Superseded agent-written changes were removed during this reset; Git retains their history. They must not
 be reintroduced as reporting prerequisites.

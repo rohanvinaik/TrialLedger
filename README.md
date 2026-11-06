@@ -144,6 +144,10 @@ collection requirements after treatment discontinuation. The broader protocol wo
 in the [current implementation plan](openspec/changes/connect-protocol-design-workflow/HANDOFF.md).
 Complete automatic protocol writing remains unfinished.
 
+The [ICH M11 / CDISC USDM roadmap](docs/M11_USDM_ROADMAP.md) proposes standards-based protocol import,
+checked revisions and bidirectional exchange, followed by broader M11 document support. This is a future
+direction, with explicit delivery stages and compatibility boundaries—not a current interoperability claim.
+
 <details>
 <summary>How the reasoning works, larger worked sessions and precise trust boundaries</summary>
 
