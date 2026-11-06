@@ -44,6 +44,26 @@ these draft premises is an explicit step, not an automatic reading certified by 
 record also distinguishes measurable and non-measurable CNS lesions; this example does not turn that into
 a universal measurable-lesion requirement. [Run the check and inspect its sources](examples/template-merge/).
 
+## Six trials. The same missing question.
+
+An exploratory, single-reviewer review of registry histories reported six trials—ARCHER 1050, AURA3,
+FLAURA, EXCLAIM-2, BR.26 and RADIANT—amending eligibility during recruitment to clarify how prior adjuvant
+or neoadjuvant treatment counts. The recurring question: **does “no prior systemic therapy” include treatment before surgery,
+after surgery, or only treatment for advanced disease?** In a TrialLedger conversation, the assistant makes
+those readings explicit and the engine checks their consequences before you adopt one.
+
+A smaller wording change shows what that buys. For the neuropathy clause examined in
+[IFCT-GFPC 0502](https://clinicaltrials.gov/study/NCT00300586), ask whether a grade-3 patient is ruled out:
+
+| Explicitly typed exclusion | Answer under this restriction |
+|---|---|
+| Grade 2 peripheral neuropathy | No: `UNDETERMINED` |
+| Grade 2 or higher peripheral neuropathy | Yes: `REFUTED` |
+
+Both answers reproduce through the public CLI. The reading and the consequence query are explicit steps;
+the engine does not silently supply “or higher”. The six-trial pattern is a retrospective finding, while
+broader estimates of what would have been caught remain hypotheses, not measured detection rates.
+
 ## Useful information can exist without a reported answer
 
 IPASS reports 607 safety-evaluable participants and 590 quality-of-life-evaluable participants in a
